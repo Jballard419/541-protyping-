@@ -126,7 +126,8 @@ public class VirtualInstrumentManager : MonoBehaviour {
     {
     #if DEBUG && DEBUG_MUSICAL_TYPING
         // If musical typing is enabled, then watch for key events and send them along to the handler.
-        if ( Event.current.isKey )
+        if ( Event.current.isKey &&
+            ( Input.GetKeyDown( Event.current.keyCode ) || Input.GetKeyUp( Event.current.keyCode ) ) )
         {
             DEBUG_HandleMusicalTyping( Event.current );
         }
