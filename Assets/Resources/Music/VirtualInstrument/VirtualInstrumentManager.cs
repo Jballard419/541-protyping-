@@ -140,9 +140,6 @@ public class VirtualInstrumentManager : MonoBehaviour {
     {
         Assert.IsNotNull( mInstrument, "OnInstrumentLoaded was called, but the instrument was not loaded." );
 
-        // Get the sample rate 
-        int sampleRate = mInstrument.GetSampleRate();
-
         // Initialize the array of NoteOutputObjects.
         mOutputs = new NoteOutputObject[mNumActiveNotes];
 
@@ -153,7 +150,7 @@ public class VirtualInstrumentManager : MonoBehaviour {
         GameObject toBeCloned = new GameObject();
         toBeCloned.transform.position = gameObject.transform.position;
         mOutputs[0] = toBeCloned.AddComponent<NoteOutputObject>();
-        mOutputs[0].SetAudioData( mInstrument.GetRawAudioDataForNote( mActiveNotes[0] ), sampleRate, mInstrument.GetBuiltInDynamicsThresholds() );
+        mOutputs[0].SetAudioData( mInstrument.GetRawAudioDataForNote( mActiveNotes[0] ), mInstrument.GetBuiltInDynamicsThresholds() );
 
 
 
@@ -163,7 +160,7 @@ public class VirtualInstrumentManager : MonoBehaviour {
         {
             mOutputs[i] = Instantiate( toBeCloned.GetComponent<NoteOutputObject>() );
             Assert.IsNotNull( mOutputs[i] );
-            mOutputs[i].SetAudioData( mInstrument.GetRawAudioDataForNote( mActiveNotes[i] ), sampleRate, mInstrument.GetBuiltInDynamicsThresholds() );
+            mOutputs[i].SetAudioData( mInstrument.GetRawAudioDataForNote( mActiveNotes[i] ), mInstrument.GetBuiltInDynamicsThresholds() );
         }
 
         mReady = true;

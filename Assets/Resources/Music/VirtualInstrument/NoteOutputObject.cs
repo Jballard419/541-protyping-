@@ -20,16 +20,17 @@ public class NoteOutputObject : MonoBehaviour
     // Private Variables
     //---------------------------------------------------------------------------- 
     private AudioSource                mSource; // The AudioSource component of this object
-    private bool                       mAudioDataBeingModified; // Whether or not the audio buffer is currently in use.
-    private bool                       mKeyReleased; // Whether or not the corresponding key has been released.
     private bool                       mLoaded; // Whether or not this object has loaded.
-    private bool                       mNoteIsPlaying; // Whether or not the corresponding note is currently being played.
-    private float                      mVelocityFactor; // A percentage mapping a given velocity to the output volume 
+    private bool                       mNewNote; // Whether or not a new note needs to be started.
+    private bool                       mNotePlaying; // Whether or not the note is currently playing.
+    private bool                       mNoteRelease; // Whether or not the note has been released.
+    private float                      mNewNoteVelocityFactor; // The velocity of a new note mapped to the range [0,1]
+    private float                      mVelocityFactor; // A percentage mapping a given velocity to the output volume
     private float[][]                  mAudioData; // A container for raw audio data.
     private int                        mCounter; // A counter to keep track of the current position in the raw audio data.
     private int                        mDynamicsIndex; // The index corresponding to which built-in dynamics value is currently in use.
+    private int                        mNewNoteDynamicsIndex; // The dynamics index of the new note.
     private int                        mNumBuiltInDynamics; // The number of built-in dynamics values.
-    private int                        mSampleRate; // The sample rate of the audio data.
     private int[]                      mBuiltInDynamicsThresholds; // The thresholds that map a velocity to a built-in dynamics value.
     private int[]                      mEndSampleIndices; // The indices corresponding to the last sample in the audio data.
 
@@ -44,12 +45,11 @@ public class NoteOutputObject : MonoBehaviour
         mCounter = 0;
         mEndSampleIndices = null;
         mAudioData = null;
-        mNoteIsPlaying = false;
+        mNewNote = false;
         mNumBuiltInDynamics = 0;
         mDynamicsIndex = 0;
-        mVelocityFactor = 1;
-        mAudioDataBeingModified = false;
-        mKeyReleased = true;
+        mVelocityFactor = 1f;
+        mNoteRelease = false;
 
         // Create an Audio Source and attach it as a component to this object. 
         mSource = gameObject.AddComponent<AudioSource>();
@@ -67,9 +67,9 @@ public class NoteOutputObject : MonoBehaviour
     // Removes the audio data and sets relevant variables to default values.
     public void RemoveAudioData()
     {
-        // Note: Might not need this assert...
-        Assert.IsFalse( mNoteIsPlaying, "Tried to unload a virtual instrument output object while it was playing!" );
-        mNoteIsPlaying = false;
+        mLoaded = false;
+        mNoteRelease = false;
+        mNewNote = false;
 
         // Remove the audio data array.
         if( mAudioData != null )
@@ -92,6 +92,7 @@ public class NoteOutputObject : MonoBehaviour
         // a function to give the output object a clean slate. 
         mEndSampleIndices = null;
         mCounter = 0;
+        mNumBuiltInDynamics = 0;
 
         // If we previously loaded data, then we need to stop the source and mark that 
         // the output object is not properly loaded.
@@ -108,13 +109,10 @@ public class NoteOutputObject : MonoBehaviour
     //         dynamics thresholds to account for, then it is just the raw audio data for a
     //         single note.
     // IN: aThresholds Optional values for mapping which audio to play for a given velocity. 
-    public void SetAudioData( float[][] aAudioData, int aSampleRate = 44100, int[] aThresholds = null )
+    public void SetAudioData( float[][] aAudioData, int[] aThresholds = null )
     {
         // Remove any existing audio data.
         RemoveAudioData();
-
-        // Set the sample rate.
-        mSampleRate = aSampleRate;
 
         // Set the values related to built-in dynamics if necessary. 
         if( aThresholds != null )
@@ -130,7 +128,7 @@ public class NoteOutputObject : MonoBehaviour
         // Initialize the audio data array and copy the values from the given parameter.
         // If we don't have to worry about built in dynamics, then use hard-coded indices 
         // for the outer array.
-        if( mNumBuiltInDynamics == 0 )
+        if ( mNumBuiltInDynamics == 0 )
         {
             mAudioData = new float[1][];
             mAudioData[0] = new float[aAudioData[0].Length];
@@ -146,6 +144,7 @@ public class NoteOutputObject : MonoBehaviour
         {
             mAudioData = new float[mNumBuiltInDynamics][];
             mEndSampleIndices = new int[mNumBuiltInDynamics];
+           // int bufferLength = 0;
             for ( int i = 0; i < mNumBuiltInDynamics; i++ )
             {
                 mAudioData[i] = new float[aAudioData[i].Length];
@@ -169,9 +168,12 @@ public class NoteOutputObject : MonoBehaviour
     // VirtualInstrumentManager's OnNoteFadeOut Event.
     public void BeginNoteFadeOut()
     {
-        // Set that the note should fade out. The filter in OnAudioFilterRead will handle everything 
-        // else.
-        mKeyReleased = true;
+        if ( mLoaded )
+        {
+            // Set that the note should fade out. 
+            // Actually processing the fade out will be handled by the onAudioFilterRead function.
+            mNoteRelease = true;
+        }
     }
 
     // Handler for setting the note to be played. Should be called from VirtualInstrumentManager's OnNotePlay event. 
@@ -180,19 +182,8 @@ public class NoteOutputObject : MonoBehaviour
     {
         Assert.IsTrue( aVelocity <= 100, "VirtualInstrumentOutput was given a velocity greater than 100!" );
 
-        // Only want to perform this function if the note is not currently playing or if the key was hit while
-        // the note was fading out from a previous hit. 
-        if ( mKeyReleased && mLoaded )
+        if ( mLoaded )
         {
-
-            // Don't mess with the buffer data if it is being read/modified! Note: Might need to implement better 
-            // synchronization control. 
-            while ( mAudioDataBeingModified );
-            mAudioDataBeingModified = true;
-
-
-            // Set the counter to 0 so that playback begins at the start of the sample file. 
-            mCounter = 0;
 
             // Calculate the velocity multiplier. The multiplier is a percentage that is used to adjust the
             // levels of the audio data to modify the output volume. 
@@ -204,17 +195,17 @@ public class NoteOutputObject : MonoBehaviour
                 {
                     if ( aVelocity <= mBuiltInDynamicsThresholds[i] )
                     {
-                        mDynamicsIndex = i;
+                        mNewNoteDynamicsIndex = i;
 
                         // Calculate the velocity factor which will range from 0.5 to 1.0.
                         if ( i == 0 )
                         {
-                            mVelocityFactor = .5f +
+                            mNewNoteVelocityFactor = .5f +
                                     ( ( .5f / (float)mBuiltInDynamicsThresholds[0] ) * ( (float)aVelocity ) );
                         }
                         else
                         {
-                            mVelocityFactor = .5f +
+                            mNewNoteVelocityFactor = .5f +
                                 ( ( .5f / (float)( mBuiltInDynamicsThresholds[i] - mBuiltInDynamicsThresholds[i - 1] ) ) * ( aVelocity - mBuiltInDynamicsThresholds[i - 1] ) );
                         }
                     }
@@ -223,16 +214,12 @@ public class NoteOutputObject : MonoBehaviour
             // If built-in dynamics are not supported, then just use the given velocity as a percentage. 
             else
             {
-                mVelocityFactor = (float)aVelocity / 100f;
+                mNewNoteVelocityFactor = (float)aVelocity / 100f;
             }
 
-            // Set that the note is playing, the key is not released, and the audio data is not being modified anymore. 
-            mKeyReleased = false;
-            mNoteIsPlaying = true;
-            mAudioDataBeingModified = false;
-        }
+            mNewNote = true;
 
-        
+        }
 
     }
 
@@ -245,51 +232,50 @@ public class NoteOutputObject : MonoBehaviour
     // IN: channels The number of channels in the audio data. Not too relevent at this moment.
     private void OnAudioFilterRead( float[] data, int channels )
     {
-        // Only generate the sound if we need to. 
-        if( mNoteIsPlaying && !mAudioDataBeingModified )
+        // Only generate the sound if it's loaded.
+        if( mLoaded )
         {
-            // Set that the buffer is in use.
-            mAudioDataBeingModified = true;
-
-            // Account for fading out the note on release. If we are fading out, then skip to 100ms in the 
-            // sample if we haven't reached that point yet. Note: May need to be adjusted. 
-            if ( mKeyReleased && mVelocityFactor > 0f ) 
+            
+            if( mNewNote )
             {
-                mVelocityFactor -= 0.01f ;
-            }
-
-            // Get the remaining number of samples left in the audio data. 
-            int remainingSamples = mEndSampleIndices[mDynamicsIndex] - mCounter;
-
-            // If there is not enough remaining data, then partially fill the array with the remaining data 
-            // and fill the rest of the array with zeroes. Also reset the counter and update mNoteIsPlaying to 
-            // false so that the note will stop playing after this loop.
-            if ( data.Length > remainingSamples )
-            {
-                for ( int i = 0; i < remainingSamples; i++ )
-                {
-                    data[i] = mAudioData[mDynamicsIndex][mCounter + i] * mVelocityFactor;
-                }
-                for ( int i = remainingSamples; i < data.Length; i++ )
-                {
-                    data[i] = 0f;
-                }
+                // Handle starting a new note by setting the relevant member variables
                 mCounter = 0;
-                mNoteIsPlaying = false;
+                mVelocityFactor = mNewNoteVelocityFactor;
+                mDynamicsIndex = mNewNoteDynamicsIndex;
+                mNewNote = false;
+                mNoteRelease = false;
+                mNotePlaying = true;
+            }
+            else if( mNoteRelease )
+            {
+                // If the note has been released, then set the velocity factor to 
+                // decrease each time this function is called.
+                mVelocityFactor *= .99f;
             }
 
-            // If there is more than enough remaining data, then fill the array with data and update the counter.
-            else
+
+            if( mNotePlaying )
             {
-                for ( int i = 0; i < data.Length; i++ )
+                // If we're currently playing a note then retrieve the audio data. 
+                for( int i = 0; i < data.Length && ( mCounter + i ) < mEndSampleIndices[mDynamicsIndex]; i++ )
                 {
                     data[i] = mAudioData[mDynamicsIndex][mCounter + i] * mVelocityFactor;
                 }
-                mCounter += data.Length;
-            }
 
-            // Set that the audio buffer is no longer being modified.
-            mAudioDataBeingModified = false;
+                // If we've reached the end of the audio data, then the note is no longer playing so
+                // we should reset some variables.
+                if( mCounter + data.Length >= mEndSampleIndices[mDynamicsIndex] )
+                {
+                    mCounter = 0;
+                    mNotePlaying = false;
+                    mNoteRelease = false;
+                }
+                // If we haven't reached the end of the audio data yet, then increase the counter.
+                else
+                {
+                    mCounter += data.Length;
+                }
+            }
         }
     }
 }
