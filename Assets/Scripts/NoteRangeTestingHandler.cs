@@ -8,8 +8,6 @@ public class NoteRangeTestingHandler : MonoBehaviour {
     private string lowestText = "Lowest Note in Range: ";
     private Text textObject;
     private Slider lowestSlider;
-    private Music.PITCH lowestSupported = Music.PITCH.B0;
-    private Music.PITCH highestSupported = Music.PITCH.C8;
     private VirtualInstrumentManager vmm = null;
 
 	// Use this for initialization
@@ -17,12 +15,13 @@ public class NoteRangeTestingHandler : MonoBehaviour {
         vmm = GameObject.Find("Main Camera").GetComponent<VirtualInstrumentManager>();
         lowestSlider = gameObject.GetComponent<Slider>();
         textObject = gameObject.transform.GetChild( 3 ).GetComponent<Text>();
-	}
+        lowestSlider.minValue = (int)Music.PITCH.B0;
+        lowestSlider.maxValue = (int)Music.PITCH.CS6;
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        lowestSlider.minValue = (int)lowestSupported;
-        lowestSlider.maxValue = (int)highestSupported;
+
 	}
 
     public void OnLowestSliderValueChanged( float aNewLowestValue )

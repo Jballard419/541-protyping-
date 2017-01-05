@@ -38,8 +38,8 @@ public class VirtualInstrument
     protected int                                mNumSupportedNotes; // The number of notes supported by the instrument
     protected int                                mSampleRate; // The sample rate of the virtual instrument
     protected int[]                              mBuiltInDynamicsThresholds; // The thresholds for when to use a specific dynamic
-    protected Music.PITCH                         mLowestSupportedNote; // The lowest supported note of the instrument
-    protected Music.PITCH                         mHighestSupportedNote; // The highest supported note of the instrument
+    protected Music.PITCH                        mLowestSupportedNote; // The lowest supported note of the instrument
+    protected Music.PITCH                        mHighestSupportedNote; // The highest supported note of the instrument
     protected string                             mFilepath; // The base filepath for the samples.
     protected string[]                           mFilenames; // An array of filenames for the samples.
     protected string[]                           mBuiltInDynamics; // The names of the built in dynamics
@@ -216,7 +216,7 @@ public class VirtualInstrument
                 // Increment the index variables.
                 index++;
                 fileIndex++;
-                Assert.IsTrue( fileIndex < mNumFiles, "Tried to load more files than were available. Recheck how many files are availabled for the piano virtual instrument" );
+                Assert.IsTrue( fileIndex <= mNumFiles, "Tried to load more files than were available. Recheck how many files are availabled for the virtual instrument" );
             }
         }
         // If built-in dynamics are available for this instrument, then load audio clips for each built-in dynamics value.

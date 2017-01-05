@@ -48,12 +48,18 @@ public class VirtualInstrumentManager : MonoBehaviour {
     {
     }
 
+    public class ChangeInstrumentEvent : UnityEvent<Music.INSTRUMENT_TYPE>
+    {
+    }
+    
+
     //---------------------------------------------------------------------------- 
     // Public Variables
     //---------------------------------------------------------------------------- 
     public NoteStartEvent NotePlay; // The event that will be invoked whenever a note should be played.
     public NoteReleaseEvent NoteRelease; // The event that will be invoked whenever a note should fade out.
     public ChangeNoteRangeEvent ChangeNoteRange; // The event that will be invoked whenever the note range should change.
+    public ChangeInstrumentEvent ChangeInstrument; // The event that will be invoked whenever the instrument should be changed.
 
     //---------------------------------------------------------------------------- 
     // Private Variables
@@ -61,9 +67,9 @@ public class VirtualInstrumentManager : MonoBehaviour {
     private bool                       mReady; // Whether or not the manager is ready to play notes.
     private int                        mNumActiveNotes; // The number of currently active notes.
     private Music.INSTRUMENT_TYPE      mInstrumentType; // The type of instrument that is currently loaded.
-    private Music.PITCH                 mLowestActiveNote; // The lowest currently active note.
-    private Music.PITCH                 mHighestActiveNote; // The highest currently active note.
-    private Music.PITCH[]               mActiveNotes; // An array that holds all of the currently active notes.
+    private Music.PITCH                mLowestActiveNote; // The lowest currently active note.
+    private Music.PITCH                mHighestActiveNote; // The highest currently active note.
+    private Music.PITCH[]              mActiveNotes; // An array that holds all of the currently active notes.
     private NoteOutputObject[]         mOutputs; // An array that holds the NoteOutputObjects that actually handle sound output.
     private VirtualInstrument          mInstrument; // The loaded virtual instrument that this object will manage.
 
@@ -145,9 +151,11 @@ public class VirtualInstrumentManager : MonoBehaviour {
         NotePlay = new NoteStartEvent();
         NoteRelease = new NoteReleaseEvent();
         ChangeNoteRange = new ChangeNoteRangeEvent();
+        ChangeInstrument = new ChangeInstrumentEvent();
         NotePlay.AddListener( OnNotePlayEvent );
         NoteRelease.AddListener( OnNoteReleaseEvent );
         ChangeNoteRange.AddListener( OnChangeNoteRangeEvent );
+        ChangeInstrument.AddListener( OnChangeInstrumentEvent );
     }
 
     // Sets the default values for the member variables.
@@ -178,6 +186,9 @@ public class VirtualInstrumentManager : MonoBehaviour {
         VirtualInstrument returned = null;
         switch ( aINSTRUMENT_TYPE )
         {
+            case Music.INSTRUMENT_TYPE.MARIMBA:
+                returned = new Marimba( this );
+                break;
             case Music.INSTRUMENT_TYPE.PIANO:
             default:
                 returned = new Piano( this );
@@ -205,6 +216,29 @@ public class VirtualInstrumentManager : MonoBehaviour {
             DEBUG_HandleMusicalTyping( Event.current );
         }
     #endif
+    }
+
+    // Handles changing the loaded instrument. Should only be called via a ChangeInstrumentEvent being invoked.
+    public void OnChangeInstrumentEvent( Music.INSTRUMENT_TYPE aNewInstrumentType )
+    {
+        // Mark that we're not ready for note events.
+        mReady = false;
+
+        // Set the instrument type.
+        mInstrumentType = aNewInstrumentType;
+
+        // Set default values for the active notes.
+        mLowestActiveNote = DEFAULT_LOWEST_PITCH;
+        mHighestActiveNote = DEFAULT_HIGHEST_PITCH;
+        mNumActiveNotes = (int)mHighestActiveNote - (int)mLowestActiveNote + 1;
+        mActiveNotes = new Music.PITCH[mNumActiveNotes];
+        for( int i = 0; i < mNumActiveNotes; i++ )
+        {
+            mActiveNotes[i] = (Music.PITCH)( i + (int)mLowestActiveNote );
+        }
+
+        // Start a coroutine to load the instrument.
+        StartCoroutine( LoadInstrument( mInstrumentType, ( returned ) => { mInstrument = returned; } ) );
     }
 
     // Handles changing the note range. Should only be called via a ChangeNoteRangeEvent being invoked.

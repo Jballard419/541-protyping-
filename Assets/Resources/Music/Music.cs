@@ -20,7 +20,8 @@ public class Music {
     public static int MAX_SUPPORTED_NOTES = 120;
     public enum INSTRUMENT_TYPE
     {
-        PIANO
+        PIANO,
+        MARIMBA
     };
     public enum PITCH
     {
