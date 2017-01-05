@@ -17,28 +17,43 @@ using UnityEngine.Assertions;
 public class VirtualInstrumentManager : MonoBehaviour {
 
     //---------------------------------------------------------------------------- 
+    // Constants
+    //---------------------------------------------------------------------------- 
+    private static Music.PITCH DEFAULT_LOWEST_PITCH = Music.PITCH.C4;
+    private static Music.PITCH DEFAULT_HIGHEST_PITCH = Music.PITCH.B5;
+    private static Music.INSTRUMENT_TYPE DEFAULT_INSTRUMENT_TYPE = Music.INSTRUMENT_TYPE.PIANO;
+
+    //---------------------------------------------------------------------------- 
     // Types
     //---------------------------------------------------------------------------- 
 
     // A type of event that is invoked whenever a note should be played. Functions
     // that invoke this type of event will need to provide parameters that detail
     // the note to play and the velocity at which to play it.
-    public class NoteStartEvent : UnityEvent<Music.NOTE, int>
+    public class NoteStartEvent : UnityEvent<Music.PITCH, int>
     {
     }
 
     // A type of event that is invoked whenever a note should fade out as though 
     // the key was released. Functions that invoke this type of event will need to 
     // provide which note to fade out as a parameter.
-    public class NoteReleaseEvent : UnityEvent<Music.NOTE>
+    public class NoteReleaseEvent : UnityEvent<Music.PITCH>
+    {
+    }
+
+    // A type of event that is invoked whenever a note should fade out as though 
+    // the key was released. Functions that invoke this type of event will need to 
+    // provide which note to fade out as a parameter.
+    public class ChangeNoteRangeEvent : UnityEvent<Music.PITCH>
     {
     }
 
     //---------------------------------------------------------------------------- 
     // Public Variables
     //---------------------------------------------------------------------------- 
-    public NoteStartEvent NotePlayEvent; // The event that will be invoked whenever a note should be played.
-    public NoteReleaseEvent NoteFadeOutEvent;
+    public NoteStartEvent NotePlay; // The event that will be invoked whenever a note should be played.
+    public NoteReleaseEvent NoteRelease; // The event that will be invoked whenever a note should fade out.
+    public ChangeNoteRangeEvent ChangeNoteRange; // The event that will be invoked whenever the note range should change.
 
     //---------------------------------------------------------------------------- 
     // Private Variables
@@ -46,9 +61,9 @@ public class VirtualInstrumentManager : MonoBehaviour {
     private bool                       mReady; // Whether or not the manager is ready to play notes.
     private int                        mNumActiveNotes; // The number of currently active notes.
     private Music.INSTRUMENT_TYPE      mInstrumentType; // The type of instrument that is currently loaded.
-    private Music.NOTE                 mLowestActiveNote; // The lowest currently active note.
-    private Music.NOTE                 mHighestActiveNote; // The highest currently active note.
-    private Music.NOTE[]               mActiveNotes; // An array that holds all of the currently active notes.
+    private Music.PITCH                 mLowestActiveNote; // The lowest currently active note.
+    private Music.PITCH                 mHighestActiveNote; // The highest currently active note.
+    private Music.PITCH[]               mActiveNotes; // An array that holds all of the currently active notes.
     private NoteOutputObject[]         mOutputs; // An array that holds the NoteOutputObjects that actually handle sound output.
     private VirtualInstrument          mInstrument; // The loaded virtual instrument that this object will manage.
 
@@ -66,30 +81,88 @@ public class VirtualInstrumentManager : MonoBehaviour {
     // Sets initial values when the object is first loaded.
     public void Awake()
     {
+        mReady = false;
+
         #if DEBUG && DEBUG_MUSICAL_TYPING
             DEBUG_SetDebugVariables();
         #endif
 
         // Set up the events.
-        NotePlayEvent = new NoteStartEvent();
-        NoteFadeOutEvent = new NoteReleaseEvent();
-        NotePlayEvent.AddListener( OnNotePlay );
-        NoteFadeOutEvent.AddListener( OnNoteFadeOut );
+        SetUpEvents();
 
         // Set default values for the member variables.
-        mReady = false;
-        mLowestActiveNote = Music.NOTE.C4;
-        mHighestActiveNote = Music.NOTE.B5;
-        mNumActiveNotes = (int)mHighestActiveNote - (int)mLowestActiveNote + 1;
-        mActiveNotes = new Music.NOTE[mNumActiveNotes];
-        for ( int i = 0; i < mNumActiveNotes; i++ )
-        {
-            mActiveNotes[i] = (Music.NOTE)( i + (int)mLowestActiveNote );
-        }
-        mInstrumentType = Music.INSTRUMENT_TYPE.PIANO;
+        SetDefaultValues();
 
         // Begin loading the default virtual instrument which is a piano.
         StartCoroutine( LoadInstrument( mInstrumentType, ( returned ) => { mInstrument = returned; } ) ); 
+    }
+
+
+    //---------------------------------------------------------------------------- 
+    // Private Functions
+    //---------------------------------------------------------------------------- 
+
+    private void LoadNoteOutputObjects()
+    {
+        Assert.IsNotNull( mInstrument, "Tried to load NoteOutputObjects when the instrument was null!" );
+
+        if( mOutputs == null )
+        {
+            // Initialize the array of NoteOutputObjects.
+            mOutputs = new NoteOutputObject[mNumActiveNotes];
+
+            // In order to have multiple notes play at once, an invisible GameObject is created and cloned multiple 
+            // times to serve as containers for each NoteOutputObject. The invisible object will be placed at the position
+            // of the virtual instrument manager, so be sure to put the virtual instrument manager on an object that is as
+            // close to the AudioListener as possible.  
+            GameObject toBeCloned = new GameObject( Music.NoteToString( mLowestActiveNote ) + "NoteOutputObjectContainer" );
+            toBeCloned.transform.position = gameObject.transform.position;
+            mOutputs[0] = toBeCloned.AddComponent<NoteOutputObject>();
+            GameObject clone = null;
+
+            // For each note, clone the invisible object (which will also clone the NoteOutputObject).
+            for( int i = 1; i < mNumActiveNotes; i++ )
+            {
+                clone = Instantiate( toBeCloned );
+                clone.name = Music.NoteToString( mLowestActiveNote ) + "NoteOutputObjectContainer";
+                mOutputs[i] = clone.GetComponent<NoteOutputObject>();
+            }
+        }
+
+        // Set the audio data of the NoteOutputObject.
+        for( int i = 0; i < mNumActiveNotes; i++ )
+        {
+            mOutputs[i].SetAudioData( mInstrument.GetRawAudioDataForNote( mActiveNotes[i] ), mInstrument.GetBuiltInDynamicsThresholds() );
+        }
+
+        mReady = true;
+    }
+
+    // Sets up the events and adds their listeners.
+    // Should only be called on Awake().
+    private void SetUpEvents()
+    {
+        NotePlay = new NoteStartEvent();
+        NoteRelease = new NoteReleaseEvent();
+        ChangeNoteRange = new ChangeNoteRangeEvent();
+        NotePlay.AddListener( OnNotePlayEvent );
+        NoteRelease.AddListener( OnNoteReleaseEvent );
+        ChangeNoteRange.AddListener( OnChangeNoteRangeEvent );
+    }
+
+    // Sets the default values for the member variables.
+    // Should only be called on Awake().
+    private void SetDefaultValues()
+    {
+        mLowestActiveNote = DEFAULT_LOWEST_PITCH;
+        mHighestActiveNote = DEFAULT_HIGHEST_PITCH;
+        mNumActiveNotes = (int)mHighestActiveNote - (int)mLowestActiveNote + 1;
+        mActiveNotes = new Music.PITCH[mNumActiveNotes];
+        for( int i = 0; i < mNumActiveNotes; i++ )
+        {
+            mActiveNotes[i] = (Music.PITCH)( i + (int)mLowestActiveNote );
+        }
+        mInstrumentType = DEFAULT_INSTRUMENT_TYPE;
     }
 
     //---------------------------------------------------------------------------- 
@@ -134,51 +207,58 @@ public class VirtualInstrumentManager : MonoBehaviour {
     #endif
     }
 
+    // Handles changing the note range. Should only be called via a ChangeNoteRangeEvent being invoked.
+    // IN: aNewLowestNote The lowest note of the new range.
+    public void OnChangeNoteRangeEvent( Music.PITCH aNewLowestNote )
+    {
+        if( mReady )
+        {
+            mReady = false;
+
+            // Make sure that we can change to the note range given.
+            int newHighestIndex = (int)aNewLowestNote + mNumActiveNotes - 1;
+            if( !mInstrument.IsNoteSupported( aNewLowestNote ) || !mInstrument.IsNoteSupported( (Music.PITCH)newHighestIndex ) )
+            {
+                Assert.IsTrue( false, "Tried to change the note range to include notes that aren't supported by the instrument!" );
+                return;
+            }
+
+            // Set the active note variables accordingly.
+            mLowestActiveNote = aNewLowestNote;
+            mHighestActiveNote = (Music.PITCH)( (int)aNewLowestNote + mNumActiveNotes - 1 );
+            for( int i = 0; i < mNumActiveNotes; i++ )
+            {
+                mActiveNotes[i] = (Music.PITCH)( (int)aNewLowestNote + i );
+            }
+
+            // Load the note output objects.
+            LoadNoteOutputObjects();
+        }
+
+    }
+
     // Function to handle the instrument being loaded. Should only be called via an initialized virtual 
     // instrument's LoadEvent being invoked.  
     public void OnInstrumentLoaded()
     {
         Assert.IsNotNull( mInstrument, "OnInstrumentLoaded was called, but the instrument was not loaded." );
 
-        // Initialize the array of NoteOutputObjects.
-        mOutputs = new NoteOutputObject[mNumActiveNotes];
-
-        // In order to have multiple notes play at once, an invisible GameObject is created and cloned multiple 
-        // times to serve as containers for each NoteOutputObject. The invisible object will be placed at the position
-        // of the virtual instrument manager, so be sure to put the virtual instrument manager on an object that is as
-        // close to the AudioListener as possible.  
-        GameObject toBeCloned = new GameObject();
-        toBeCloned.transform.position = gameObject.transform.position;
-        mOutputs[0] = toBeCloned.AddComponent<NoteOutputObject>();
-        mOutputs[0].SetAudioData( mInstrument.GetRawAudioDataForNote( mActiveNotes[0] ), mInstrument.GetBuiltInDynamicsThresholds() );
-
-
-
-        // For each note, clone the NoteOutputObject component of the invisible object (which will also clone the invisible object).
-        // After that, set the audio data of the NoteOutputObject.
-        for ( int i = 0; i < mNumActiveNotes; i++ )
-        {
-            mOutputs[i] = Instantiate( toBeCloned.GetComponent<NoteOutputObject>() );
-            Assert.IsNotNull( mOutputs[i] );
-            mOutputs[i].SetAudioData( mInstrument.GetRawAudioDataForNote( mActiveNotes[i] ), mInstrument.GetBuiltInDynamicsThresholds() );
-        }
-
-        mReady = true;
+        LoadNoteOutputObjects();
     }
 
     // Begins fading out the note as though the key was released. Should only be called via an invoked NoteReleaseEvent.
     // IN: aNoteToFade The note to fade out. 
-    public void OnNoteFadeOut( Music.NOTE aNoteToFade )
+    public void OnNoteReleaseEvent( Music.PITCH aNoteToRelease )
     {
-        Assert.IsTrue( (int)aNoteToFade >= (int)mLowestActiveNote && (int)aNoteToFade <= (int)mHighestActiveNote, "Tried to fade out a note that is not active!" );
-        int noteIndex = (int)aNoteToFade - (int)mLowestActiveNote;
+        Assert.IsTrue( (int)aNoteToRelease >= (int)mLowestActiveNote && (int)aNoteToRelease <= (int)mHighestActiveNote, "Tried to fade out a note that is not active!" );
+        int noteIndex = (int)aNoteToRelease - (int)mLowestActiveNote;
         mOutputs[noteIndex].BeginNoteFadeOut();
     }
 
     // Begin playing a note. Should only be called via an invoked NoteStartEvent.
     // IN: aNoteToPlay The note to play.
     // IN: aVelocity The velocity at which to play the note.
-    public void OnNotePlay( Music.NOTE aNoteToPlay, int aVelocity )
+    public void OnNotePlayEvent( Music.PITCH aNoteToPlay, int aVelocity )
     {
         if ( mReady )
         {
@@ -251,11 +331,11 @@ public class VirtualInstrumentManager : MonoBehaviour {
                 {
                     if ( aKeyEvent.type == EventType.KeyDown )
                     {
-                        NotePlayEvent.Invoke( mActiveNotes[i], DEBUG_velocity );
+                        NotePlay.Invoke( mActiveNotes[i], DEBUG_velocity );
                     }
                     if ( aKeyEvent.type == EventType.KeyUp )
                     {
-                        NoteFadeOutEvent.Invoke( mActiveNotes[i] );
+                        NoteRelease.Invoke( mActiveNotes[i] );
                     }
                 }
             i++;

@@ -38,8 +38,8 @@ public class VirtualInstrument
     protected int                                mNumSupportedNotes; // The number of notes supported by the instrument
     protected int                                mSampleRate; // The sample rate of the virtual instrument
     protected int[]                              mBuiltInDynamicsThresholds; // The thresholds for when to use a specific dynamic
-    protected Music.NOTE                         mLowestSupportedNote; // The lowest supported note of the instrument
-    protected Music.NOTE                         mHighestSupportedNote; // The highest supported note of the instrument
+    protected Music.PITCH                         mLowestSupportedNote; // The lowest supported note of the instrument
+    protected Music.PITCH                         mHighestSupportedNote; // The highest supported note of the instrument
     protected string                             mFilepath; // The base filepath for the samples.
     protected string[]                           mFilenames; // An array of filenames for the samples.
     protected string[]                           mBuiltInDynamics; // The names of the built in dynamics
@@ -99,14 +99,14 @@ public class VirtualInstrument
 
     // Gets the highest note that this instrument supports.
     // OUT: The highest note that this instrument supports.
-    public Music.NOTE GetHighestSupportedNote()
+    public Music.PITCH GetHighestSupportedNote()
     {
         return mHighestSupportedNote;
     }
 
     // Gets the lowest note that this instrument supports.
     // OUT: The lowest note that this instrument supports.
-    public Music.NOTE GetLowestSupportedNote()
+    public Music.PITCH GetLowestSupportedNote()
     {
         return mLowestSupportedNote;
     }
@@ -121,7 +121,7 @@ public class VirtualInstrument
     // Gets the raw audio data of each built-in dynamics value for a given note. 
     // IN: aNote The note for which the data is retrieved.
     // OUT: The raw audio data for each built-in dynamics value for the given note
-    public float[][] GetRawAudioDataForNote( Music.NOTE aNote )
+    public float[][] GetRawAudioDataForNote( Music.PITCH aNote )
     {
         Assert.IsTrue( (int)aNote >= (int)mLowestSupportedNote && (int)aNote <= (int)mHighestSupportedNote,
             "Tried to load the audio data for a note that is not supported by the instrument!" );
@@ -175,7 +175,7 @@ public class VirtualInstrument
 
     // Checks if a given note is able to be played by this instrument.
     // OUT: True if the instrument can play the note. False otherwise.
-    public bool IsNoteSupported( Music.NOTE aNote )
+    public bool IsNoteSupported( Music.PITCH aNote )
     {
         return ( (int)aNote >= (int)mLowestSupportedNote && (int)aNote <= (int)mHighestSupportedNote );
     }

@@ -20,6 +20,7 @@ public class NoteOutputObject : MonoBehaviour
     // Private Variables
     //---------------------------------------------------------------------------- 
     private AudioSource                mSource; // The AudioSource component of this object
+    private bool                       mAudioDataBeingUsed; // Whether or not OnAudioFilterRead is currently using the audio data
     private bool                       mLoaded; // Whether or not this object has loaded.
     private bool                       mNewNote; // Whether or not a new note needs to be started.
     private bool                       mNotePlaying; // Whether or not the note is currently playing.
@@ -41,6 +42,7 @@ public class NoteOutputObject : MonoBehaviour
     // Called when the object is created. This function sets the initial values for each variable.
     private void Awake()
     {
+        mAudioDataBeingUsed = false;
         mLoaded = false;
         mCounter = 0;
         mEndSampleIndices = null;
@@ -111,6 +113,10 @@ public class NoteOutputObject : MonoBehaviour
     // IN: aThresholds Optional values for mapping which audio to play for a given velocity. 
     public void SetAudioData( float[][] aAudioData, int[] aThresholds = null )
     {
+        mLoaded = false;
+
+        while( mAudioDataBeingUsed ) ;
+        
         // Remove any existing audio data.
         RemoveAudioData();
 
@@ -235,7 +241,7 @@ public class NoteOutputObject : MonoBehaviour
         // Only generate the sound if it's loaded.
         if( mLoaded )
         {
-            
+            mAudioDataBeingUsed = true;
             if( mNewNote )
             {
                 // Handle starting a new note by setting the relevant member variables
@@ -276,6 +282,7 @@ public class NoteOutputObject : MonoBehaviour
                     mCounter += data.Length;
                 }
             }
+            mAudioDataBeingUsed = false;
         }
     }
 }

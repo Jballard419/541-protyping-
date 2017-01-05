@@ -22,7 +22,7 @@ public class Music {
     {
         PIANO
     };
-    public enum NOTE
+    public enum PITCH
     {
         C0,
         CS0,
@@ -146,7 +146,7 @@ public class Music {
         B9
     }
 
-    public static string NoteToString( NOTE aNoteValue )
+    public static string NoteToString( PITCH aNoteValue )
     {
         return NoteToString( (int)aNoteValue );
     }
