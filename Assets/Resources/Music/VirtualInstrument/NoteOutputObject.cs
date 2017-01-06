@@ -130,6 +130,12 @@ public class NoteOutputObject : MonoBehaviour
                 mBuiltInDynamicsThresholds[i] = aThresholds[i];
             }
         }
+        else
+        {
+            mBuiltInDynamicsThresholds = null;
+            mDynamicsIndex = 0;
+            mNumBuiltInDynamics = 0;
+        }
 
         // Initialize the audio data array and copy the values from the given parameter.
         // If we don't have to worry about built in dynamics, then use hard-coded indices 
