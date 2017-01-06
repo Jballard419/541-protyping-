@@ -51,15 +51,14 @@ public class VirtualInstrumentManager : MonoBehaviour {
     public class ChangeInstrumentEvent : UnityEvent<Music.INSTRUMENT_TYPE>
     {
     }
-    
 
     //---------------------------------------------------------------------------- 
     // Public Variables
     //---------------------------------------------------------------------------- 
-    public NoteStartEvent NotePlay; // The event that will be invoked whenever a note should be played.
-    public NoteReleaseEvent NoteRelease; // The event that will be invoked whenever a note should fade out.
-    public ChangeNoteRangeEvent ChangeNoteRange; // The event that will be invoked whenever the note range should change.
-    public ChangeInstrumentEvent ChangeInstrument; // The event that will be invoked whenever the instrument should be changed.
+    public NoteStartEvent              NotePlay; // The event that will be invoked whenever a note should be played.
+    public NoteReleaseEvent            NoteRelease; // The event that will be invoked whenever a note should fade out.
+    public ChangeNoteRangeEvent        ChangeNoteRange; // The event that will be invoked whenever the note range should change.
+    public ChangeInstrumentEvent       ChangeInstrument; // The event that will be invoked whenever the instrument should be changed.
 
     //---------------------------------------------------------------------------- 
     // Private Variables
@@ -73,13 +72,6 @@ public class VirtualInstrumentManager : MonoBehaviour {
     private NoteOutputObject[]         mOutputs; // An array that holds the NoteOutputObjects that actually handle sound output.
     private VirtualInstrument          mInstrument; // The loaded virtual instrument that this object will manage.
 
-#if DEBUG
-    //---------------------------------------------------------------------------- 
-    // Debug Variables
-    //---------------------------------------------------------------------------- 
-    private int                     DEBUG_velocity;
-#endif
-
     //---------------------------------------------------------------------------- 
     // Unity Functions
     //---------------------------------------------------------------------------- 
@@ -90,7 +82,7 @@ public class VirtualInstrumentManager : MonoBehaviour {
         mReady = false;
 
         #if DEBUG && DEBUG_MUSICAL_TYPING
-            DEBUG_SetDebugVariables();
+            DEBUG_SetMusicalTypingVariables();
         #endif
 
         // Set up the events.
@@ -130,7 +122,7 @@ public class VirtualInstrumentManager : MonoBehaviour {
             for( int i = 1; i < mNumActiveNotes; i++ )
             {
                 clone = Instantiate( toBeCloned );
-                clone.name = Music.NoteToString( mLowestActiveNote ) + "NoteOutputObjectContainer";
+                clone.name = Music.NoteToString( mActiveNotes[i] ) + "NoteOutputObjectContainer";
                 mOutputs[i] = clone.GetComponent<NoteOutputObject>();
             }
         }
@@ -141,7 +133,13 @@ public class VirtualInstrumentManager : MonoBehaviour {
             mOutputs[i].SetAudioData( mInstrument.GetRawAudioDataForNote( mActiveNotes[i] ), mInstrument.GetBuiltInDynamicsThresholds() );
         }
 
+        // Set that we're ready for note events.
         mReady = true;
+
+#if DEBUG
+        Debug.Log( "NoteOutputObjects are loaded" );
+#endif
+
     }
 
     // Sets up the events and adds their listeners.
@@ -213,7 +211,7 @@ public class VirtualInstrumentManager : MonoBehaviour {
         if ( Event.current.isKey &&
             ( Input.GetKeyDown( Event.current.keyCode ) || Input.GetKeyUp( Event.current.keyCode ) ) )
         {
-            DEBUG_HandleMusicalTyping( Event.current );
+            DEBUG_HandleMusicalTypingEvent( Event.current );
         }
     #endif
     }
@@ -303,23 +301,21 @@ public class VirtualInstrumentManager : MonoBehaviour {
 
     }
 
-#if DEBUG
+#if DEBUG && DEBUG_MUSICAL_TYPING
+
+    // Musical Typing allows for using a computer keyboard to debug sound output by 
+    // triggering note events for a 19-note range whenever specific keys on the 
+    // keyboard are pressed/released. The velocities for each key can be set via
+    // an invoked ChangeKeyVelocityEvent.
+    // The keys that are used are (in this order)
+    // a, w, s, e, d, f, t, g, y, h, u, j, k, o, l, p, ;, ', and ] 
 
     //---------------------------------------------------------------------------- 
-    // Debug Functions & Types
+    // Musical Typing Constants
     //---------------------------------------------------------------------------- 
 
-    #if DEBUG_MUSICAL_TYPING
-
-        // Musical Typing allows for using a computer keyboard to debug sound output by 
-        // triggering note events for a 19-note range whenever specific keys on the 
-        // keyboard are pressed/released. A preset velocity variable is used to simulate the 
-        // velocity of the generated note events.
-        // The keys that are used are (in this order)
-        // a, w, s, e, d, f, t, g, y, h, u, j, k, o, l, p, ;, ', and ] 
-
-        private static int DEBUG_numMusicalTypingKeys = 19;
-        private static KeyCode[] DEBUG_musicalTypingKeys =
+    private static int DEBUG_numMusicalTypingKeys = 19;
+    private static KeyCode[] DEBUG_musicalTypingKeys =
         {
             KeyCode.A,
             KeyCode.W,
@@ -342,46 +338,75 @@ public class VirtualInstrumentManager : MonoBehaviour {
             KeyCode.RightBracket
         };
 
-        // DEBUG_velocity is used to simulate velocity values for musical typing events.
-        // Its default value is 100 (max). This function can be used as a callback for 
-        // a slider or something similar to allow for changing DEBUG_velocity's value so that 
-        // different velocities can be tested.
-        public void DEBUG_HandleDebugVelocityChange( float aNewDebugVelocity )
-        {
-            DEBUG_velocity = (int)aNewDebugVelocity;
-        }
+    //---------------------------------------------------------------------------- 
+    // Musical Typing Types
+    //---------------------------------------------------------------------------- 
 
-        // Handler for musical typing that maps key events to note events. 
-        public void DEBUG_HandleMusicalTyping( Event aKeyEvent )
+    // A type of event that is invoked whenever a musical typing key will generate
+    // a different velocity. 
+    public class DEBUG_ChangeKeyVelocityEvent : UnityEvent<int, int>
+    {
+    }
+
+    //---------------------------------------------------------------------------- 
+    // Musical Typing Variables
+    //---------------------------------------------------------------------------- 
+    private int[]                         DEBUG_keyVelocities; // The velocities that will be used whenever musical typing simulates a note event.
+    public DEBUG_ChangeKeyVelocityEvent   DEBUG_ChangeKeyVelocity; // An event that will be invoked whenever the velocity for a musical typing key should change.
+
+    //---------------------------------------------------------------------------- 
+    // Musical Typing Private Functions
+    //---------------------------------------------------------------------------- 
+    
+    // Sets default values for Musical Typing.
+    private void DEBUG_SetMusicalTypingVariables()
+    {
+        DEBUG_ChangeKeyVelocity = new DEBUG_ChangeKeyVelocityEvent();
+        DEBUG_ChangeKeyVelocity.AddListener( DEBUG_HandleKeyVelocityChange );
+        DEBUG_keyVelocities = new int[DEBUG_numMusicalTypingKeys];
+        for( int i = 0; i < DEBUG_numMusicalTypingKeys; i++ )
         {
-            // Check if a musical typing key is pressed or released and fire off the 
-            // corresponding NotePlay or NoteFadeOut event if so. The debug velocity is 
-            // used for the events.
-            bool found = false;
-            int i = 0;
-            while ( !found && i < DEBUG_numMusicalTypingKeys )
+            DEBUG_keyVelocities[i] = 100;
+        }
+    }
+
+    //---------------------------------------------------------------------------- 
+    // Musical Typing Event Handlers
+    //---------------------------------------------------------------------------- 
+
+    // Handler for changing the velocity that is used when musical typing simulates a note event.
+    // Should only be called via an invoked DEBUG_ChangeKeyVelocity event.
+    private void DEBUG_HandleKeyVelocityChange( int aKeyIndex, int aNewVelocity )
+    {
+        DEBUG_keyVelocities[aKeyIndex] = aNewVelocity;
+    }
+
+    // Handler for musical typing that maps key events to note events. 
+    // IN: aKeyEvent A GUI keyboard event triggered by a key being pressed or released.
+    private void DEBUG_HandleMusicalTypingEvent( Event aKeyEvent )
+    {
+        // Check if a musical typing key is pressed or released and fire off the 
+        // corresponding NotePlay or NoteFadeOut event if so. The debug velocity is 
+        // used for the events.
+        bool found = false;
+        int i = 0;
+        while ( !found && i < DEBUG_numMusicalTypingKeys )
+        {
+            if ( aKeyEvent.keyCode == DEBUG_musicalTypingKeys[i] )
             {
-                if ( aKeyEvent.keyCode == DEBUG_musicalTypingKeys[i] )
+                if ( aKeyEvent.type == EventType.KeyDown )
                 {
-                    if ( aKeyEvent.type == EventType.KeyDown )
-                    {
-                        NotePlay.Invoke( mActiveNotes[i], DEBUG_velocity );
-                    }
-                    if ( aKeyEvent.type == EventType.KeyUp )
-                    {
-                        NoteRelease.Invoke( mActiveNotes[i] );
-                    }
+                    NotePlay.Invoke( mActiveNotes[i], DEBUG_keyVelocities[i] );
                 }
-            i++;
+                if ( aKeyEvent.type == EventType.KeyUp )
+                {
+                    NoteRelease.Invoke( mActiveNotes[i] );
+                }
             }
+        i++;
         }
+    }
 
-        // Sets default values for debug functions for this object.
-        public void DEBUG_SetDebugVariables()
-        {
-            DEBUG_velocity = 100;
-        }
-
-    #endif
 #endif
+
 }
