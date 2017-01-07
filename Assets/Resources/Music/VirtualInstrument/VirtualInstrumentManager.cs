@@ -12,6 +12,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Audio;
 using UnityEngine.Assertions;
 
 public class VirtualInstrumentManager : MonoBehaviour {
@@ -52,6 +53,20 @@ public class VirtualInstrumentManager : MonoBehaviour {
     {
     }
 
+    public class ModifyEchoFilterEvent : UnityEvent<EchoFilterParameters>
+    {
+    }
+
+    // A struct that contains the parameters for the echo filter. 
+    public struct EchoFilterParameters
+    {
+        public bool Active;
+        public float Decay;
+        public float Delay;
+        public float DryMix;
+        public float WetMix;
+    }
+
     //---------------------------------------------------------------------------- 
     // Public Variables
     //---------------------------------------------------------------------------- 
@@ -59,10 +74,12 @@ public class VirtualInstrumentManager : MonoBehaviour {
     public NoteReleaseEvent            NoteRelease; // The event that will be invoked whenever a note should fade out.
     public ChangeNoteRangeEvent        ChangeNoteRange; // The event that will be invoked whenever the note range should change.
     public ChangeInstrumentEvent       ChangeInstrument; // The event that will be invoked whenever the instrument should be changed.
+    public ModifyEchoFilterEvent       ModifyEchoFilter; // The event that will be invoked when the echo filter needs to be modified.
 
     //---------------------------------------------------------------------------- 
     // Private Variables
     //---------------------------------------------------------------------------- 
+    private AudioMixer                 mMixer; // The audio mixer that all audio output will be routed through.
     private bool                       mReady; // Whether or not the manager is ready to play notes.
     private int                        mNumActiveNotes; // The number of currently active notes.
     private Music.INSTRUMENT_TYPE      mInstrumentType; // The type of instrument that is currently loaded.
@@ -71,6 +88,7 @@ public class VirtualInstrumentManager : MonoBehaviour {
     private Music.PITCH[]              mActiveNotes; // An array that holds all of the currently active notes.
     private NoteOutputObject[]         mOutputs; // An array that holds the NoteOutputObjects that actually handle sound output.
     private VirtualInstrument          mInstrument; // The loaded virtual instrument that this object will manage.
+
 
     //---------------------------------------------------------------------------- 
     // Unity Functions
@@ -95,6 +113,34 @@ public class VirtualInstrumentManager : MonoBehaviour {
         StartCoroutine( LoadInstrument( mInstrumentType, ( returned ) => { mInstrument = returned; } ) ); 
     }
 
+    //---------------------------------------------------------------------------- 
+    // Public Functions
+    //---------------------------------------------------------------------------- 
+
+    // Checks if the parameters for the echo filter are valid. Delay ranges from 10 to 5000,
+    // and Decay|Dry Mix|Wet Mix range from 0 to 1.
+    // IN: aParams The parameters for the echo filter.
+    // OUT: true if the value is valid. false otherwise.
+    public bool CheckEchoFilterParameters( EchoFilterParameters aParams )
+    {
+        if( ( aParams.Decay < 0f || aParams.Decay > 1f ) ||
+            ( aParams.Delay < 10f || aParams.Delay > 5000f ) ||
+            ( aParams.DryMix < 0f || aParams.DryMix > 1f ) ||
+            ( aParams.WetMix < 0f || aParams.WetMix > 1f ) )
+        {
+            return false;
+        } 
+        else
+        {
+            return true;
+        }
+    }
+
+    // Gets the virtual instrument that is being managed.
+    public VirtualInstrument GetInstrument()
+    {
+        return mInstrument;
+    }
 
     //---------------------------------------------------------------------------- 
     // Private Functions
@@ -130,7 +176,7 @@ public class VirtualInstrumentManager : MonoBehaviour {
         // Set the audio data of the NoteOutputObject.
         for( int i = 0; i < mNumActiveNotes; i++ )
         {
-            mOutputs[i].SetAudioData( mInstrument.GetRawAudioDataForNote( mActiveNotes[i] ), mInstrument.GetBuiltInDynamicsThresholds() );
+            mOutputs[i].SetAudioData( mInstrument.GetRawAudioDataForNote( mActiveNotes[i] ), mMixer, mInstrument.GetBuiltInDynamicsThresholds() );
         }
 
         // Set that we're ready for note events.
@@ -150,16 +196,21 @@ public class VirtualInstrumentManager : MonoBehaviour {
         NoteRelease = new NoteReleaseEvent();
         ChangeNoteRange = new ChangeNoteRangeEvent();
         ChangeInstrument = new ChangeInstrumentEvent();
+        ModifyEchoFilter = new ModifyEchoFilterEvent();
         NotePlay.AddListener( OnNotePlayEvent );
         NoteRelease.AddListener( OnNoteReleaseEvent );
         ChangeNoteRange.AddListener( OnChangeNoteRangeEvent );
         ChangeInstrument.AddListener( OnChangeInstrumentEvent );
+        ModifyEchoFilter.AddListener( OnModifyEchoFilterEvent );
     }
 
     // Sets the default values for the member variables.
     // Should only be called on Awake().
     private void SetDefaultValues()
     {
+        mMixer = Resources.Load<AudioMixer>( "Music/VirtualInstrument/VirtualInstrumentAudioMixer" );
+        Assert.IsNotNull( mMixer, "Audio mixer was unable to load!" );
+
         mLowestActiveNote = DEFAULT_LOWEST_PITCH;
         mHighestActiveNote = DEFAULT_HIGHEST_PITCH;
         mNumActiveNotes = (int)mHighestActiveNote - (int)mLowestActiveNote + 1;
@@ -276,6 +327,33 @@ public class VirtualInstrumentManager : MonoBehaviour {
         Assert.IsNotNull( mInstrument, "OnInstrumentLoaded was called, but the instrument was not loaded." );
 
         LoadNoteOutputObjects();
+    }
+
+    // Function to modify the echo filter. Should only be called via an invoked ModifyEchoFilterEvent. 
+    // IN: aParameters The parameters for the echo filter.
+    public void OnModifyEchoFilterEvent( EchoFilterParameters aParameters )
+    {
+        // If the filter is active and the parameters are valid, then use the new parameters.
+        if( aParameters.Active )
+        {
+            if( CheckEchoFilterParameters( aParameters ) )
+            {
+                mMixer.SetFloat( "echoDelay", aParameters.Delay );
+                mMixer.SetFloat( "echoDecay", aParameters.Decay );
+                mMixer.SetFloat( "echoDryMix", aParameters.DryMix );
+                mMixer.SetFloat( "echoWetMix", aParameters.WetMix );
+            }
+
+        }
+        // If the filter is not active, then set values that negate the filter.
+        else
+        {
+            mMixer.SetFloat( "echoDelay", 1f );
+            mMixer.SetFloat( "echoDecay", 0f );
+            mMixer.SetFloat( "echoDryMix", 100f );
+            mMixer.SetFloat( "echoWetMix", 0f );
+        }
+
     }
 
     // Begins fading out the note as though the key was released. Should only be called via an invoked NoteReleaseEvent.

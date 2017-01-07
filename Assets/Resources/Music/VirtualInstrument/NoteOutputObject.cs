@@ -12,6 +12,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.Assertions;
 
 public class NoteOutputObject : MonoBehaviour
@@ -20,6 +21,8 @@ public class NoteOutputObject : MonoBehaviour
     // Private Variables
     //---------------------------------------------------------------------------- 
     private AudioSource                mSource; // The AudioSource component of this object
+    private AudioReverbFilter          mReverbFilter; // A reverb filter for the sound if it is needed.
+    private AudioEchoFilter            mEchoFilter; // An echo filter for the sound if it is needed.
     private bool                       mAudioDataBeingUsed; // Whether or not OnAudioFilterRead is currently using the audio data
     private bool                       mLoaded; // Whether or not this object has loaded.
     private bool                       mNewNote; // Whether or not a new note needs to be started.
@@ -54,12 +57,42 @@ public class NoteOutputObject : MonoBehaviour
         mNoteRelease = false;
 
         // Create an Audio Source and attach it as a component to this object. 
+        mSource = gameObject.GetComponent<AudioSource>();
+        if( mSource != null )
+        {
+            DestroyImmediate( mSource );
+        }
+
         mSource = gameObject.AddComponent<AudioSource>();
         mSource.enabled = true;
         mSource.playOnAwake = false;
         mSource.minDistance = 10000f;
         mSource.maxDistance = 10000000f;
         mSource.volume = 1f;
+
+        mEchoFilter = gameObject.GetComponent<AudioEchoFilter>();
+        if( mEchoFilter != null )
+        {
+            DestroyImmediate( mEchoFilter );
+        }
+
+        mEchoFilter = gameObject.AddComponent<AudioEchoFilter>();
+        mEchoFilter.enabled = true;
+        mEchoFilter.wetMix = 1f;
+        mEchoFilter.decayRatio = 0.25f;
+        mEchoFilter.delay = 100f;
+
+
+        mReverbFilter = gameObject.GetComponent<AudioReverbFilter>();
+        if( mReverbFilter != null )
+        {
+            DestroyImmediate( mReverbFilter );
+        }
+        mReverbFilter = gameObject.AddComponent<AudioReverbFilter>();
+            
+        mReverbFilter.enabled = true;
+
+
     }
 
     //---------------------------------------------------------------------------- 
@@ -72,6 +105,7 @@ public class NoteOutputObject : MonoBehaviour
         mLoaded = false;
         mNoteRelease = false;
         mNewNote = false;
+        mNotePlaying = false;
 
         // Remove the audio data array.
         if( mAudioData != null )
@@ -111,7 +145,7 @@ public class NoteOutputObject : MonoBehaviour
     //         dynamics thresholds to account for, then it is just the raw audio data for a
     //         single note.
     // IN: aThresholds Optional values for mapping which audio to play for a given velocity. 
-    public void SetAudioData( float[][] aAudioData, int[] aThresholds = null )
+    public void SetAudioData( float[][] aAudioData, AudioMixer aMixer, int[] aThresholds = null )
     {
         mLoaded = false;
 
@@ -135,7 +169,11 @@ public class NoteOutputObject : MonoBehaviour
             mBuiltInDynamicsThresholds = null;
             mDynamicsIndex = 0;
             mNumBuiltInDynamics = 0;
+            mCounter = 0;
         }
+
+        // Set the output mixer.
+        mSource.outputAudioMixerGroup = aMixer.FindMatchingGroups( "Master" )[0];
 
         // Initialize the audio data array and copy the values from the given parameter.
         // If we don't have to worry about built in dynamics, then use hard-coded indices 
@@ -227,6 +265,7 @@ public class NoteOutputObject : MonoBehaviour
             else
             {
                 mNewNoteVelocityFactor = (float)aVelocity / 100f;
+                mNewNoteDynamicsIndex = 0;
             }
 
             mNewNote = true;
@@ -289,6 +328,31 @@ public class NoteOutputObject : MonoBehaviour
                 }
             }
             mAudioDataBeingUsed = false;
+        }
+    }
+
+    // Toggles whether or not the echo filter is active.
+    public void ToggleEcho( bool aOn )
+    {
+        if( aOn )
+        {
+            mEchoFilter.enabled = true;
+        }
+        else
+        {
+            mEchoFilter.enabled = false;
+        }
+    }
+
+    public void ToggleReverb( bool aOn )
+    {
+        if( aOn )
+        {
+            mReverbFilter.enabled = true;
+        }
+        else
+        {
+            mReverbFilter.enabled = false;
         }
     }
 }
