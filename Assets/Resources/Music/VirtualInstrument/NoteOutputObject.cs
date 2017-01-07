@@ -246,20 +246,20 @@ public class NoteOutputObject : MonoBehaviour
                     if ( aVelocity <= mBuiltInDynamicsThresholds[i] )
                     {
                         mNewNoteDynamicsIndex = i;
-
-                        // Calculate the velocity factor which will range from 0.5 to 1.0.
-                        if ( i == 0 )
-                        {
-                            mNewNoteVelocityFactor = .5f +
-                                    ( ( .5f / (float)mBuiltInDynamicsThresholds[0] ) * ( (float)aVelocity ) );
-                        }
-                        else
-                        {
-                            mNewNoteVelocityFactor = .5f +
-                                ( ( .5f / (float)( mBuiltInDynamicsThresholds[i] - mBuiltInDynamicsThresholds[i - 1] ) ) * ( aVelocity - mBuiltInDynamicsThresholds[i - 1] ) );
-                        }
                     }
                 }
+                // Calculate the velocity factor.
+                float inEnd = (float)mBuiltInDynamicsThresholds[mNewNoteDynamicsIndex];
+                float outEnd = .5f * (float)mBuiltInDynamicsThresholds[mNewNoteDynamicsIndex] / (float)mBuiltInDynamicsThresholds[mNumBuiltInDynamics - 1];
+                float inStart = 0f;
+                float outStart = 0f;
+                if( mNewNoteDynamicsIndex != 0 )
+                {
+                    inStart = (float)mBuiltInDynamicsThresholds[mNewNoteDynamicsIndex - 1];
+                    outStart = (float)mBuiltInDynamicsThresholds[mNewNoteDynamicsIndex - 1] / (float)mBuiltInDynamicsThresholds[mNewNoteDynamicsIndex];
+                }
+
+                mNewNoteVelocityFactor = outStart + ( ( ( outEnd - outStart ) / ( inEnd - inStart ) ) * ( (float)aVelocity - inStart ) );
             }
             // If built-in dynamics are not supported, then just use the given velocity as a percentage. 
             else

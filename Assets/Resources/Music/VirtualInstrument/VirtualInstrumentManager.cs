@@ -415,9 +415,18 @@ public class VirtualInstrumentManager : MonoBehaviour {
                 velocity = noteArray[i].Velocity;
                 velIndex = mInstrument.GetBuiltInDynamicsThresholdIndex( velocity );
                 float[][] noteData = mInstrument.GetRawAudioDataForNote( noteArray[i].Pitch );
-                for( int j = 0; j < noteArray[i].Length && j < noteData[velIndex].Length; j++ )
+                int j = 0;
+                while( j < noteArray[i].Length && j < noteData[velIndex].Length )
                 {
                     songData[0][j + offset] += noteData[velIndex][j];
+                    j++;
+                }
+                float releaseFactor = 1f;
+                while( j < noteData[velIndex].Length && j + offset < numSamples )
+                {
+                    songData[0][j + offset] = releaseFactor * noteData[velIndex][j];
+                    releaseFactor *= .999f;
+                    j++;
                 }
             }
         }

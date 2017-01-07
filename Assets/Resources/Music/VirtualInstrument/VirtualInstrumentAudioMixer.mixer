@@ -44,6 +44,7 @@ AudioMixerGroupController:
   m_Effects:
   - {fileID: 24400002}
   - {fileID: 244263793266777480}
+  - {fileID: 244676264106236846}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0
@@ -97,6 +98,27 @@ AudioMixerEffectController:
   - m_ParameterName: Wetmix
     m_GUID: 2b08aefd75decd943920e5d77e5ff63d
   m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 1
+  m_Bypass: 0
+--- !u!244 &244676264106236846
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_EffectID: 1d852b551dee26347a17a1a46f57ddb6
+  m_EffectName: Pitch Shifter
+  m_MixLevel: 554d297473cc236408b5ec57dc85f016
+  m_Parameters:
+  - m_ParameterName: Pitch
+    m_GUID: 3b33822392292154c99d53ccbece0213
+  - m_ParameterName: FFT size
+    m_GUID: f0ec56c5940ec974ca123192a74016be
+  - m_ParameterName: Overlap
+    m_GUID: 0b9a4ab9b5c952e4da21a7b54b86fd6c
+  - m_ParameterName: Max channels
+    m_GUID: 788fc5908d35d2c44a29e540a0418025
+  m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
 --- !u!245 &245162992809623660
@@ -109,11 +131,22 @@ AudioMixerSnapshotController:
   m_SnapshotID: 59e631836264cbc4f880def881931946
   m_FloatValues:
     4e771f11dcdded247bb1e0bb0a9923ad: 1
+    fc3e69514a4bd3244bb8a8fbca457d74: 10
+    3b33822392292154c99d53ccbece0213: 1
+    905831248892be84bb357c784d733a4b: 0.856
     cf4f1044779e00c4da33c39ba3b25f0c: 2
-    72365cf558130114ab04e78d7e929778: 0
+    72365cf558130114ab04e78d7e929778: -30
     c4b75266a2956a145b3fda02b3a5441b: 0
-    8a990e690be84a541b9c7798b7fe1365: 1
+    079d6d3752dde644ebed428e991f054a: 484
+    06e3be3960c5b8b4dac8217c0dd9ef77: 100000
+    8a990e690be84a541b9c7798b7fe1365: 40
+    99e163fa6ce4fe54bb883bbade1f3ce3: 0
     5fd67b6bf2b6050439d9489024cba416: 0
-    2b08aefd75decd943920e5d77e5ff63d: 0
-    c8a76ccec6b19564c9c52f21a9839b54: 0
+    935038cb2ff642a4797b0fe166054a44: 6.87
+    b6fa643cf3803d840b0248734accde53: 20000
+    0a129cac6efc9c544a1057e793c7195a: 10
+    bf65f1ad2568fe749ae8c1ba0d386e4b: 1
+    2b08aefd75decd943920e5d77e5ff63d: 0.891
+    c8a76ccec6b19564c9c52f21a9839b54: 0.97
+    40b54a9f6c8ffa34a904b384ca385954: 0.881
   m_TransitionOverrides: {}
