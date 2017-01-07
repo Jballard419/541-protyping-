@@ -49,11 +49,21 @@ public class VirtualInstrumentManager : MonoBehaviour {
     {
     }
 
+    // A type of event that's invoked when the instrument should change. Tha
+    // parameter is the type of instrument to change to.
     public class ChangeInstrumentEvent : UnityEvent<Music.INSTRUMENT_TYPE>
     {
     }
 
+    // A type of event that's invoked in order to modify the echo filter.
+    // The parameter is a struct of EchoFilterParameters.
     public class ModifyEchoFilterEvent : UnityEvent<EchoFilterParameters>
+    {
+    }
+
+    // A type of event that's invoked in order to play a song.
+    // The parameter is the a queue of notes to play.
+    public class PlaySongEvent : UnityEvent<Queue<Music.Note>>
     {
     }
 
@@ -75,6 +85,7 @@ public class VirtualInstrumentManager : MonoBehaviour {
     public ChangeNoteRangeEvent        ChangeNoteRange; // The event that will be invoked whenever the note range should change.
     public ChangeInstrumentEvent       ChangeInstrument; // The event that will be invoked whenever the instrument should be changed.
     public ModifyEchoFilterEvent       ModifyEchoFilter; // The event that will be invoked when the echo filter needs to be modified.
+    public PlaySongEvent               PlaySong; // The event that will be invoked when a song should be played.
 
     //---------------------------------------------------------------------------- 
     // Private Variables
@@ -86,6 +97,7 @@ public class VirtualInstrumentManager : MonoBehaviour {
     private Music.PITCH                mLowestActiveNote; // The lowest currently active note.
     private Music.PITCH                mHighestActiveNote; // The highest currently active note.
     private Music.PITCH[]              mActiveNotes; // An array that holds all of the currently active notes.
+    private NoteOutputObject           mSongOutput; // A NoteOutputObject, but the note is actually a song.
     private NoteOutputObject[]         mOutputs; // An array that holds the NoteOutputObjects that actually handle sound output.
     private VirtualInstrument          mInstrument; // The loaded virtual instrument that this object will manage.
 
@@ -197,11 +209,13 @@ public class VirtualInstrumentManager : MonoBehaviour {
         ChangeNoteRange = new ChangeNoteRangeEvent();
         ChangeInstrument = new ChangeInstrumentEvent();
         ModifyEchoFilter = new ModifyEchoFilterEvent();
+        PlaySong = new PlaySongEvent();
         NotePlay.AddListener( OnNotePlayEvent );
         NoteRelease.AddListener( OnNoteReleaseEvent );
         ChangeNoteRange.AddListener( OnChangeNoteRangeEvent );
         ChangeInstrument.AddListener( OnChangeInstrumentEvent );
         ModifyEchoFilter.AddListener( OnModifyEchoFilterEvent );
+        PlaySong.AddListener( OnPlaySongEvent );
     }
 
     // Sets the default values for the member variables.
@@ -220,6 +234,9 @@ public class VirtualInstrumentManager : MonoBehaviour {
             mActiveNotes[i] = (Music.PITCH)( i + (int)mLowestActiveNote );
         }
         mInstrumentType = DEFAULT_INSTRUMENT_TYPE;
+
+        GameObject songOutputContainer = new GameObject();
+        mSongOutput = songOutputContainer.AddComponent<NoteOutputObject>();
     }
 
     //---------------------------------------------------------------------------- 
@@ -377,6 +394,35 @@ public class VirtualInstrumentManager : MonoBehaviour {
             mOutputs[noteIndex].BeginNotePlaying( aVelocity );
         }
 
+    }
+
+    // Begins playing a song. 
+    // IN: aNoteQueue The queue of notes that make up the song.
+    public void OnPlaySongEvent( Queue<Music.Note> aNoteQueue )
+    {
+        Music.Note[] noteArray = aNoteQueue.ToArray();
+        int numSamples = noteArray[noteArray.Length - 1].Length + noteArray[noteArray.Length - 1].OffsetSamples;
+        float[][] songData = new float[1][];
+        songData[0] = new float[numSamples];
+        int offset = 0;
+        int velocity = 0;
+        int velIndex = 0;
+        for( int i = 0; i < noteArray.Length; i++ )
+        {
+            if( noteArray[i].Pitch != Music.PITCH.REST )
+            {
+                offset = noteArray[i].OffsetSamples;
+                velocity = noteArray[i].Velocity;
+                velIndex = mInstrument.GetBuiltInDynamicsThresholdIndex( velocity );
+                float[][] noteData = mInstrument.GetRawAudioDataForNote( noteArray[i].Pitch );
+                for( int j = 0; j < noteArray[i].Length && j < noteData[velIndex].Length; j++ )
+                {
+                    songData[0][j + offset] += noteData[velIndex][j];
+                }
+            }
+        }
+        mSongOutput.SetAudioData( songData, mMixer, null );
+        mSongOutput.BeginNotePlaying( 100 );
     }
 
 #if DEBUG && DEBUG_MUSICAL_TYPING

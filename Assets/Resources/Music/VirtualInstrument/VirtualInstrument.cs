@@ -79,7 +79,7 @@ public class VirtualInstrument
         else
         {
             int dynamicsIndex = 0;
-            for ( int i = mNumBuiltInDynamics - 1; i > -1; i++ )
+            for ( int i = mNumBuiltInDynamics - 1; i > -1; i-- )
             {
                 if ( aVelocity <= mBuiltInDynamicsThresholds[i] )
                 {

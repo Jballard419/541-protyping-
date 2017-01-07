@@ -23,6 +23,97 @@ public class Music {
         PIANO,
         MARIMBA
     };
+
+    public struct Note
+    {
+        public int Length;
+        public PITCH Pitch;
+        public int Velocity;
+        public int OffsetSamples;
+    }
+
+    public static Note CreateNote( int aLength, PITCH aPitch, int aVelocity, int aOffsetSamples )
+    {
+        Note newNote;
+        newNote.Length = aLength;
+        newNote.Pitch = aPitch;
+        newNote.Velocity = aVelocity;
+        newNote.OffsetSamples = aOffsetSamples;
+        return newNote;
+    }
+
+    public enum NOTE_LENGTH
+    {
+        T,
+        S,
+        E,
+        Q,
+        H,
+        W
+    };
+
+    public static NOTE_LENGTH[] DemoSongNoteLengths =
+        {
+            NOTE_LENGTH.Q, NOTE_LENGTH.E, NOTE_LENGTH.E, NOTE_LENGTH.S, NOTE_LENGTH.S, NOTE_LENGTH.S, NOTE_LENGTH.S, NOTE_LENGTH.E, NOTE_LENGTH.E, 
+            NOTE_LENGTH.Q, NOTE_LENGTH.Q, NOTE_LENGTH.E, NOTE_LENGTH.E, NOTE_LENGTH.E, NOTE_LENGTH.E, 
+            NOTE_LENGTH.Q, NOTE_LENGTH.Q, NOTE_LENGTH.Q, NOTE_LENGTH.Q, 
+            NOTE_LENGTH.E, NOTE_LENGTH.E, NOTE_LENGTH.E, NOTE_LENGTH.E, NOTE_LENGTH.W
+        };
+
+    public static PITCH[] DemoSongPitches =
+    {
+        PITCH.D4, PITCH.REST, PITCH.A4, PITCH.GS4, PITCH.A4, PITCH.GS4, PITCH.A4, PITCH.GS4, PITCH.A4,
+        PITCH.F4, PITCH.D4, PITCH.REST, PITCH.D4, PITCH.F4, PITCH.A4,
+        PITCH.AS4, PITCH.F4, PITCH.AS4, PITCH.C5,
+        PITCH.A4, PITCH.AS4, PITCH.A4, PITCH.AS4, PITCH.A4, 
+    };
+
+    public static Queue<Note> GetDemoSong( int aBPM )
+    {
+        Queue<Note> returned = new Queue<Note>();
+        int offset = 0;
+        int samp = 0;
+
+        for( int i = 0; i < 24; i++ )
+        {
+            samp = GetNoteLengthInSamples( aBPM, 44100, DemoSongNoteLengths[i] );
+            returned.Enqueue( CreateNote( samp, DemoSongPitches[i], 70, offset ) );
+            if( DemoSongPitches[i] != PITCH.REST )
+            {
+                PITCH lower = (PITCH)( (int)DemoSongPitches[i] - 12 );
+                returned.Enqueue( CreateNote( samp, lower, 70, offset ) );
+            }
+
+            offset += samp;
+        }
+
+        return returned;
+    }
+
+    public static int GetNoteLengthInSamples( int aBPM, int aSampleRate, NOTE_LENGTH aNoteLength )
+    {
+        float beatsPerSecond = (float)aBPM / 60f;
+        float numSamplesPerBeat = 2f * ( 1f / beatsPerSecond ) * (float)aSampleRate;
+
+        switch( aNoteLength )
+        {
+            case NOTE_LENGTH.T:
+                return (int)( numSamplesPerBeat / 8f );
+            case NOTE_LENGTH.S:
+                return (int)( numSamplesPerBeat / 4f );
+            case NOTE_LENGTH.Q:
+                return (int)( numSamplesPerBeat );
+            case NOTE_LENGTH.E:
+                return (int)( numSamplesPerBeat / 2f );
+            case NOTE_LENGTH.H:
+                return (int)( numSamplesPerBeat * 2f );
+            case NOTE_LENGTH.W:
+            default:
+                return (int)( numSamplesPerBeat * 4f );
+        }
+    }
+
+
     public enum PITCH
     {
         C0,
@@ -144,7 +235,8 @@ public class Music {
         GS9,
         A9,
         AS9,
-        B9
+        B9,
+        REST
     }
 
     public static string NoteToString( PITCH aNoteValue )

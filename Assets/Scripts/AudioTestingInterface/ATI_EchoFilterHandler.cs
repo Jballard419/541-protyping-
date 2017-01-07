@@ -11,6 +11,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ATI_EchoFilterHandler : MonoBehaviour {
 
@@ -71,11 +72,13 @@ public class ATI_EchoFilterHandler : MonoBehaviour {
     // Private Variables
     //---------------------------------------------------------------------------- 
     private bool                                           active = false; // Is the filter active?
+    private bool                                           sceneLoad = false;
     private GameObject                                     decayInput = null; // The input field to get the value for decay.
     private GameObject                                     delayInput = null; // The input field to get the value for delay.
     private GameObject                                     dryInput = null; // The input field to get the value for the dry mix.
     private GameObject                                     echoToggleObject = null; // The object that toggles if the filter is active or not.
     private GameObject                                     wetInput = null; // The input field to get the value for the wet mix.
+    private AsyncOperation                                          paramScene = null;
     private Sprite[]                                       toggleImages = null; // The images to show whether or not the filter is active.
     private VirtualInstrumentManager.EchoFilterParameters  echoParams; // The echo filter parameters.
     private VirtualInstrumentManager                       vmm = null; // The virtual instrument manager.
@@ -106,11 +109,9 @@ public class ATI_EchoFilterHandler : MonoBehaviour {
         toggleImages = new Sprite[2];
         toggleImages[0] = Resources.Load<Sprite>( "Music/Images/off_button" );
         toggleImages[1] = Resources.Load<Sprite>( "Music/Images/on_button" );
-        echoToggleObject = gameObject.transform.GetChild( 3 ).gameObject;
-        echoToggleObject.GetComponent<Toggle>().onValueChanged.AddListener( OnEchoFilterToggle );
+        gameObject.GetComponent<Toggle>().onValueChanged.AddListener( OnEchoFilterToggle );
 
-        // Set values for the input fields.
-        SetInputFieldValues();
+
 
 #endif
 
@@ -119,6 +120,15 @@ public class ATI_EchoFilterHandler : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        if( sceneLoad && paramScene != null )
+        {
+            if( paramScene.isDone )
+            {
+                SetInputFieldValues();
+                sceneLoad = false;
+            }
+
+        }
 	}
 
 
@@ -215,19 +225,20 @@ public class ATI_EchoFilterHandler : MonoBehaviour {
         // Get each of the input fields and set the values.
         ATI_EchoFilterInputFieldHandler temp;
 
-        delayInput = gameObject.transform.GetChild( 2 ).gameObject;
+        //delayInput = gameObject.transform.GetChild( 2 ).gameObject;
+        delayInput = SceneManager.GetSceneByName( "EchoFilterParametersScene" ).GetRootGameObjects()[0].transform.GetChild( 0 ).GetChild( 2 ).gameObject;
         temp = delayInput.AddComponent<ATI_EchoFilterInputFieldHandler>();
         temp.SetValues( "Delay", this );
 
-        decayInput = gameObject.transform.GetChild( 1 ).gameObject;
+        decayInput = SceneManager.GetSceneByName( "EchoFilterParametersScene" ).GetRootGameObjects()[0].transform.GetChild( 0 ).GetChild( 1 ).gameObject;
         temp = decayInput.AddComponent<ATI_EchoFilterInputFieldHandler>();
         temp.SetValues( "Decay", this );
 
-        dryInput = gameObject.transform.GetChild( 0 ).GetChild( 1 ).gameObject;
+        dryInput = SceneManager.GetSceneByName( "EchoFilterParametersScene" ).GetRootGameObjects()[0].transform.GetChild( 0 ).GetChild( 0 ).GetChild( 1 ).gameObject;
         temp = dryInput.AddComponent<ATI_EchoFilterInputFieldHandler>();
         temp.SetValues( "DryMix", this );
 
-        wetInput = gameObject.transform.GetChild( 0 ).GetChild( 0 ).gameObject;
+        wetInput = SceneManager.GetSceneByName( "EchoFilterParametersScene" ).GetRootGameObjects()[0].transform.GetChild( 0 ).GetChild( 0 ).GetChild( 0 ).gameObject;
         temp = wetInput.AddComponent<ATI_EchoFilterInputFieldHandler>();
         temp.SetValues( "WetMix", this );
     }
@@ -242,16 +253,20 @@ public class ATI_EchoFilterHandler : MonoBehaviour {
     {
         if( aOn )
         {
-            echoToggleObject.transform.GetChild( 0 ).GetComponent<Image>().sprite = toggleImages[1];
+            gameObject.transform.GetChild( 0 ).GetComponent<Image>().sprite = toggleImages[1];
             active = true;
+            paramScene = SceneManager.LoadSceneAsync( "EchoFilterParametersScene", LoadSceneMode.Additive );
+            // Set values for the input fields.
+            sceneLoad = true;
             echoParams.Active = true;
             SendEchoFilterParameters();
         }
         else
         {
-            echoToggleObject.transform.GetChild( 0 ).GetComponent<Image>().sprite = toggleImages[0];
+            gameObject.transform.GetChild( 0 ).GetComponent<Image>().sprite = toggleImages[0];
             active = false;
             echoParams.Active = false;
+            SceneManager.UnloadSceneAsync( "EchoFilterParametersScene" );
             SendEchoFilterParameters();
         }
     }
