@@ -12,40 +12,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ATI_NoteRangeSelectionHandler : MonoBehaviour {
-
-
-
-#if DEBUG && DEBUG_MUSICAL_TYPING
-
-    //---------------------------------------------------------------------------- 
-    // Private Variables
-    //---------------------------------------------------------------------------- 
-    private Slider                     rangeSlider; // The slider that allows for changing the note range.
-    private string                     rangeText = "Range: C4 to FS5"; // The text that is used to display the current range.
-    private Text                       textObject; // The text object that is used to display the current range.
-    private VirtualInstrumentManager   vmm = null; // The virtual instrument manager.
-#endif
+public class ATI_NoteRangeSelectionHandler : ATI.SliderHandler {
 
     //---------------------------------------------------------------------------- 
     // Unity Functions
     //---------------------------------------------------------------------------- 
 
     // Use this for initialization
-    void Start () {
+    new void Start () {
 
 #if DEBUG && DEBUG_MUSICAL_TYPING
 
-        // Get the virtual instrument manager
-        vmm = GameObject.Find("Main Camera").GetComponent<VirtualInstrumentManager>();
+        // Call the base start function.
+        base.Start();
 
-        // Get the slider and set its min and max values.
-        rangeSlider = gameObject.GetComponent<Slider>();
-        rangeSlider.minValue = (int)vmm.GetInstrument().GetLowestSupportedNote();
-        rangeSlider.maxValue = (int)vmm.GetInstrument().GetHighestSupportedNote() - 24;
-
-        // Get the text object.
-        textObject = gameObject.transform.GetChild( 3 ).GetComponent<Text>();
+        // Get the slider and set up its trigger
+        ATI.SliderTrigger st = null;
+        mSliders = new Slider[1];
+        mSliders[0] = gameObject.transform.GetComponent<Slider>();
+        st = mSliders[0].gameObject.AddComponent<ATI.SliderTrigger>();
+        st.SetHandler( this );
+        st.SetType( ATI.SliderType.NoteRange );
+        
 
 #endif
 
@@ -62,16 +50,17 @@ public class ATI_NoteRangeSelectionHandler : MonoBehaviour {
     // Event Handlers
     //---------------------------------------------------------------------------- 
 
-    // Handles the value of the slider being changed.
-    // IN: aNewLowestValue The new value that is the lowest note of the range.
-    public void OnLowestSliderValueChanged( float aNewLowestValue )
+    protected override void HandleNoteRangeChange( bool aEndDrag )
     {
-        // Update the text object.
-        rangeText = "Range: " + Music.NoteToString( (int)aNewLowestValue ) + " to " + Music.NoteToString( (int)aNewLowestValue + 18 );
-        textObject.text = rangeText;
+        // Set the text.
+        gameObject.transform.GetChild( 3 ).GetComponent<Text>().text = "Range: " + Music.NoteToString( (int)mSliders[0].value )
+            + " to " + Music.NoteToString( (int)mSliders[0].value + 24 );
 
-        // Invoke the virtual instrument manager's ChangeNoteRange event.
-        vmm.ChangeNoteRange.Invoke( (Music.PITCH)rangeSlider.value );
+        // If the value has been set, then invoke the virtual instrument manager's ChangeNoteRange event.
+        if( aEndDrag )
+        {
+            mVIM.ChangeNoteRange.Invoke( (Music.PITCH)mSliders[0].value );
+        }
     }
 
 #endif
