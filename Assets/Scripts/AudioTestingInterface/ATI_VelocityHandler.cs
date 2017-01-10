@@ -129,7 +129,7 @@ public class ATI_VelocityHandler : ATI.SliderHandler
     protected override void HandleHighestRandomVelocityChange( bool aEndDrag )
     {
         // Set the text and update the lowest random velocity slider's max value.
-        mHighestRandomSlider.transform.GetChild( 4 ).GetComponent<Text>().text = "Highest: " + mLowestRandomSlider.value.ToString();
+        mHighestRandomSlider.transform.GetChild( 4 ).GetComponent<Text>().text = "Highest: " + mHighestRandomSlider.value.ToString();
         mLowestRandomSlider.maxValue = mHighestRandomSlider.value;
 
         // If the value is set, then randomize the velocities for each key.
