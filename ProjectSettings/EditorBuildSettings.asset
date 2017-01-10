@@ -6,6 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/AudioTestingInterface.unity
+    path: Assets/Scenes/AudioTestingInterfaceScenes/AudioTestingInterface.unity
   - enabled: 1
-    path: Assets/Scenes/EchoFilterParametersScene.unity
+    path: Assets/Scenes/AudioTestingInterfaceScenes/EchoFilterParametersScene.unity
+  - enabled: 1
+    path: Assets/Scenes/AudioTestingInterfaceScenes/ReverbFilterParametersScene.unity

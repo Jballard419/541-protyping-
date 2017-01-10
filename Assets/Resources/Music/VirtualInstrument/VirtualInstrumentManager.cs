@@ -61,6 +61,12 @@ public class VirtualInstrumentManager : MonoBehaviour {
     {
     }
 
+    // A type of event that's invoked in order to modify the reverb filter.
+    // The parameter is a struct of ReverbFilterParameters
+    public class ModifyReverbFilterEvent : UnityEvent<ReverbFilterParameters>
+    {
+    }
+
     // A type of event that's invoked in order to play a song.
     // The parameter is the a queue of notes to play.
     public class PlaySongEvent : UnityEvent<Queue<Music.Note>>
@@ -77,6 +83,26 @@ public class VirtualInstrumentManager : MonoBehaviour {
         public float WetMix;
     }
 
+    // A struct that contains the parameters for the reverb filter.
+    public struct ReverbFilterParameters
+    {
+        public bool Active;
+        public float DryLevel;
+        public float Room;
+        public float RoomHF;
+        public float DecayTime;
+        public float DecayHFRatio;
+        public float Reflections;
+        public float ReflectDelay;
+        public float Reverb;
+        public float ReverbDelay;
+        public float Diffusion;
+        public float Density;
+        public float HFReference;
+        public float RoomLF;
+        public float LFReference;
+    }
+
     //---------------------------------------------------------------------------- 
     // Public Variables
     //---------------------------------------------------------------------------- 
@@ -85,6 +111,7 @@ public class VirtualInstrumentManager : MonoBehaviour {
     public ChangeNoteRangeEvent        ChangeNoteRange; // The event that will be invoked whenever the note range should change.
     public ChangeInstrumentEvent       ChangeInstrument; // The event that will be invoked whenever the instrument should be changed.
     public ModifyEchoFilterEvent       ModifyEchoFilter; // The event that will be invoked when the echo filter needs to be modified.
+    public ModifyReverbFilterEvent     ModifyReverbFilter; // The event that will be invoked when the reverb filter needs to be modified.
     public PlaySongEvent               PlaySong; // The event that will be invoked when a song should be played.
 
     //---------------------------------------------------------------------------- 
@@ -128,25 +155,6 @@ public class VirtualInstrumentManager : MonoBehaviour {
     //---------------------------------------------------------------------------- 
     // Public Functions
     //---------------------------------------------------------------------------- 
-
-    // Checks if the parameters for the echo filter are valid. Delay ranges from 10 to 5000,
-    // and Decay|Dry Mix|Wet Mix range from 0 to 1.
-    // IN: aParams The parameters for the echo filter.
-    // OUT: true if the value is valid. false otherwise.
-    public bool CheckEchoFilterParameters( EchoFilterParameters aParams )
-    {
-        if( ( aParams.Decay < 0f || aParams.Decay > 1f ) ||
-            ( aParams.Delay < 10f || aParams.Delay > 5000f ) ||
-            ( aParams.DryMix < 0f || aParams.DryMix > 1f ) ||
-            ( aParams.WetMix < 0f || aParams.WetMix > 1f ) )
-        {
-            return false;
-        } 
-        else
-        {
-            return true;
-        }
-    }
 
     // Gets the virtual instrument that is being managed.
     public VirtualInstrument GetInstrument()
@@ -209,12 +217,14 @@ public class VirtualInstrumentManager : MonoBehaviour {
         ChangeNoteRange = new ChangeNoteRangeEvent();
         ChangeInstrument = new ChangeInstrumentEvent();
         ModifyEchoFilter = new ModifyEchoFilterEvent();
+        ModifyReverbFilter = new ModifyReverbFilterEvent();
         PlaySong = new PlaySongEvent();
         NotePlay.AddListener( OnNotePlayEvent );
         NoteRelease.AddListener( OnNoteReleaseEvent );
         ChangeNoteRange.AddListener( OnChangeNoteRangeEvent );
         ChangeInstrument.AddListener( OnChangeInstrumentEvent );
         ModifyEchoFilter.AddListener( OnModifyEchoFilterEvent );
+        ModifyReverbFilter.AddListener( OnModifyReverbFilterEvent );
         PlaySong.AddListener( OnPlaySongEvent );
     }
 
@@ -353,14 +363,10 @@ public class VirtualInstrumentManager : MonoBehaviour {
         // If the filter is active and the parameters are valid, then use the new parameters.
         if( aParameters.Active )
         {
-            if( CheckEchoFilterParameters( aParameters ) )
-            {
-                mMixer.SetFloat( "echoDelay", aParameters.Delay );
-                mMixer.SetFloat( "echoDecay", aParameters.Decay );
-                mMixer.SetFloat( "echoDryMix", aParameters.DryMix );
-                mMixer.SetFloat( "echoWetMix", aParameters.WetMix );
-            }
-
+            mMixer.SetFloat( "echoDelay", aParameters.Delay );
+            mMixer.SetFloat( "echoDecay", aParameters.Decay );
+            mMixer.SetFloat( "echoDryMix", aParameters.DryMix );
+            mMixer.SetFloat( "echoWetMix", aParameters.WetMix );
         }
         // If the filter is not active, then set values that negate the filter.
         else
@@ -370,7 +376,46 @@ public class VirtualInstrumentManager : MonoBehaviour {
             mMixer.SetFloat( "echoDryMix", 100f );
             mMixer.SetFloat( "echoWetMix", 0f );
         }
+    }
 
+    // Function to modify the reverb filter. Should only be called via an invoked ModifyReverbFilterEvent. 
+    // IN: aParameters The parameters for the reverb filter.
+    public void OnModifyReverbFilterEvent( ReverbFilterParameters aParameters )
+    {
+        if( aParameters.Active )
+        {
+            mMixer.SetFloat( "revDryLevel", aParameters.DryLevel );
+            mMixer.SetFloat( "revRoom", aParameters.Room );
+            mMixer.SetFloat( "revRoomHF", aParameters.RoomHF );
+            mMixer.SetFloat( "revDecayTime", aParameters.DecayTime );
+            mMixer.SetFloat( "revDecayHFRatio", aParameters.DecayHFRatio );
+            mMixer.SetFloat( "revReflections", aParameters.Reflections );
+            mMixer.SetFloat( "revReflectDelay", aParameters.ReflectDelay );
+            mMixer.SetFloat( "revReverb", aParameters.Reverb );
+            mMixer.SetFloat( "revReverbDelay", aParameters.ReverbDelay );
+            mMixer.SetFloat( "revDiffusion", aParameters.Diffusion );
+            mMixer.SetFloat( "revDensity", aParameters.Density );
+            mMixer.SetFloat( "revHFReference", aParameters.HFReference );
+            mMixer.SetFloat( "revRoomLF", aParameters.RoomLF );
+            mMixer.SetFloat( "revLFReference", aParameters.LFReference );
+        }
+        else
+        {
+            mMixer.SetFloat( "revDryLevel", 0f );
+            mMixer.SetFloat( "revRoom", -10000f );
+            mMixer.SetFloat( "revRoomHF", -10000f );
+            mMixer.SetFloat( "revDecayTime", 0.1f );
+            mMixer.SetFloat( "revDecayHFRatio", 0.1f );
+            mMixer.SetFloat( "revReflections", -10000f );
+            mMixer.SetFloat( "revReflectDelay", -10000f );
+            mMixer.SetFloat( "revReverb", -10000f );
+            mMixer.SetFloat( "revReverbDelay", 0f );
+            mMixer.SetFloat( "revDiffusion", 0f );
+            mMixer.SetFloat( "revDensity", 0f );
+            mMixer.SetFloat( "revHFReference", 20f );
+            mMixer.SetFloat( "revRoomLF", -10000f );
+            mMixer.SetFloat( "revLFReference", 20f );
+        }
     }
 
     // Begins fading out the note as though the key was released. Should only be called via an invoked NoteReleaseEvent.

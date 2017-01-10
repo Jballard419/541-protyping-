@@ -34,6 +34,20 @@ public class ATI {
         Decay,
         DryMix,
         WetMix,
+        DryLevel,
+        Room,
+        RoomHF,
+        DecayTime,
+        DecayHFRatio,
+        Reflections,
+        ReflectDelay,
+        Reverb,
+        ReverbDelay,
+        Diffusion,
+        Density,
+        HFReference,
+        RoomLF,
+        LFReference,
         Uninitialized
     }
 
@@ -442,6 +456,48 @@ public class ATI {
                 case AudioEffectParameterType.WetMix:
                     HandleWetMixChange( aValue );
                     break;
+                case AudioEffectParameterType.DryLevel:
+                    HandleDryLevelChange( aValue );
+                    break;
+                case AudioEffectParameterType.Room:
+                    HandleRoomChange( aValue );
+                    break;
+                case AudioEffectParameterType.RoomHF:
+                    HandleRoomHFChange( aValue );
+                    break;
+                case AudioEffectParameterType.DecayTime:
+                    HandleDecayTimeChange( aValue );
+                    break;
+                case AudioEffectParameterType.DecayHFRatio:
+                    HandleDecayHFRatioChange( aValue );
+                    break;
+                case AudioEffectParameterType.Reflections:
+                    HandleReflectionsChange( aValue );
+                    break;
+                case AudioEffectParameterType.ReflectDelay:
+                    HandleReflectDelayChange( aValue );
+                    break;
+                case AudioEffectParameterType.Reverb:
+                    HandleReverbChange( aValue );
+                    break;
+                case AudioEffectParameterType.ReverbDelay:
+                    HandleReverbDelayChange( aValue );
+                    break;
+                case AudioEffectParameterType.Diffusion:
+                    HandleDiffusionChange( aValue );
+                    break;
+                case AudioEffectParameterType.Density:
+                    HandleDensityChange( aValue );
+                    break;
+                case AudioEffectParameterType.HFReference:
+                    HandleHFReferenceChange( aValue );
+                    break;
+                case AudioEffectParameterType.RoomLF:
+                    HandleRoomLFChange( aValue );
+                    break;
+                case AudioEffectParameterType.LFReference:
+                    HandleLFReferenceChange( aValue );
+                    break;
                 default:
                     break;
             }
@@ -454,6 +510,20 @@ public class ATI {
         protected virtual void HandleDelayChange( float aValue ) { }
         protected virtual void HandleDryMixChange( float aValue ) { }
         protected virtual void HandleWetMixChange( float aValue ) { }
+        protected virtual void HandleDryLevelChange( float aValue ) { }
+        protected virtual void HandleRoomChange( float aValue ) { }
+        protected virtual void HandleRoomHFChange( float aValue ) { }
+        protected virtual void HandleDecayTimeChange( float aValue ) { }
+        protected virtual void HandleDecayHFRatioChange( float aValue ) { }
+        protected virtual void HandleReflectionsChange( float aValue ) { }
+        protected virtual void HandleReflectDelayChange( float aValue ) { }
+        protected virtual void HandleReverbChange( float aValue ) { }
+        protected virtual void HandleReverbDelayChange( float aValue ) { }
+        protected virtual void HandleDiffusionChange( float aValue ) { }
+        protected virtual void HandleDensityChange( float aValue ) { }
+        protected virtual void HandleHFReferenceChange( float aValue ) { }
+        protected virtual void HandleRoomLFChange( float aValue ) { }
+        protected virtual void HandleLFReferenceChange( float aValue ) { }
         protected virtual void SetDefaultParameters() { }
         protected virtual void HandleSceneLoad() { }
         protected virtual void SendParametersToVIM() { }
