@@ -13,7 +13,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class ATI_EchoFilterHandler : MonoBehaviour {
+public class ATI_EchoFilterHandler : ATI.AudioEffectHandler {
 
 #if DEBUG && DEBUG_MUSICAL_TYPING
 
@@ -21,67 +21,16 @@ public class ATI_EchoFilterHandler : MonoBehaviour {
     // Types
     //---------------------------------------------------------------------------- 
 
-    // A class that is attached to each input field to manage sending the value appropriately.
-    private class ATI_EchoFilterInputFieldHandler : MonoBehaviour
-    {
-        private string type = null; // The type of input field.
-        private InputField field; // The associated input field.
-        private ATI_EchoFilterHandler parentHandler; // The parent handler.
-
-        private void Start()
-        {
-            // Get the associated input field and set a handler to handle when
-            // editing the field is finished.
-            field = gameObject.GetComponent<InputField>();
-            field.onEndEdit.AddListener( SendChangeToHandler );
-        }
-
-        private void Update()
-        {
-        }
-
-        // Handler to get a change in value and send it to the parent handler.
-        private void SendChangeToHandler( string aNewValue )
-        {
-            float newValue = float.Parse( aNewValue );
-
-            // Delay ranges from 10 to 5000. The other values range from 0 to 1 but 
-            // are given from the input field as 0 to 100% so they must be divided by 100.
-            if( type == "Delay" )
-            {
-                parentHandler.GetChangeFromInputField( type, newValue );
-            }
-            else
-            {
-                parentHandler.GetChangeFromInputField( type, ( newValue / 100f ) );
-            }
-
-        }
-
-        // Sets the values for the type and the parent handler.
-        public void SetValues( string aType, ATI_EchoFilterHandler aParent )
-        {
-            type = aType;
-            parentHandler = aParent;
-        }
-
-
-    }
+    
 
     //---------------------------------------------------------------------------- 
     // Private Variables
     //---------------------------------------------------------------------------- 
-    private bool                                           active = false; // Is the filter active?
-    private bool                                           sceneLoad = false;
-    private GameObject                                     decayInput = null; // The input field to get the value for decay.
-    private GameObject                                     delayInput = null; // The input field to get the value for delay.
-    private GameObject                                     dryInput = null; // The input field to get the value for the dry mix.
-    private GameObject                                     echoToggleObject = null; // The object that toggles if the filter is active or not.
-    private GameObject                                     wetInput = null; // The input field to get the value for the wet mix.
-    private AsyncOperation                                          paramScene = null;
-    private Sprite[]                                       toggleImages = null; // The images to show whether or not the filter is active.
-    private VirtualInstrumentManager.EchoFilterParameters  echoParams; // The echo filter parameters.
-    private VirtualInstrumentManager                       vmm = null; // The virtual instrument manager.
+    private GameObject                                     mDecayContainer = null; // The input field to get the value for decay.
+    private GameObject                                     mDelayContainer = null; // The input field to get the value for delay.
+    private GameObject                                     mDryMixContainer = null; // The input field to get the value for the dry mix.
+    private GameObject                                     mWetMixContainer = null; // The input field to get the value for the wet mix.
+    private VirtualInstrumentManager.EchoFilterParameters  mParams; // The echo filter parameters.
 
 #endif 
 
@@ -90,47 +39,15 @@ public class ATI_EchoFilterHandler : MonoBehaviour {
     //---------------------------------------------------------------------------- 
 
     // Use this for initialization
-    void Start ()
+    new void Start ()
     {
 
 #if DEBUG && DEBUG_MUSICAL_TYPING
-
-        // Get the virtual instrument manager.
-        vmm = GameObject.Find( "Main Camera" ).GetComponent<VirtualInstrumentManager>();
-
-        // Set the default parameters.
-        echoParams.Active = false;
-        echoParams.Decay = 0.25f;
-        echoParams.Delay = 200f;
-        echoParams.DryMix = 1f;
-        echoParams.WetMix = 1f;
-
-        // Set up values for the images that will be used to denote if the filter is active or not.
-        toggleImages = new Sprite[2];
-        toggleImages[0] = Resources.Load<Sprite>( "Music/Images/off_button" );
-        toggleImages[1] = Resources.Load<Sprite>( "Music/Images/on_button" );
-        gameObject.GetComponent<Toggle>().onValueChanged.AddListener( OnEchoFilterToggle );
-
-
-
+        base.Start();
+        mParamSceneName = "EchoFilterParametersScene";
 #endif
 
     }
-	
-	// Update is called once per frame
-	void Update ()
-    {
-        if( sceneLoad && paramScene != null )
-        {
-            if( paramScene.isDone )
-            {
-                SetInputFieldValues();
-                sceneLoad = false;
-            }
-
-        }
-	}
-
 
 #if DEBUG && DEBUG_MUSICAL_TYPING
 
@@ -138,139 +55,114 @@ public class ATI_EchoFilterHandler : MonoBehaviour {
     // Public Functions
     //---------------------------------------------------------------------------- 
 
-    // Gets a change in value from one of the input fields
-    // IN: aType The type of input field.
-    // IN: aNewValue The value that has been changed.
-    public void GetChangeFromInputField( string aType, float aNewValue )
-    {
-        float oldValue = aNewValue;
-        
-        // Set the new value, but keep track of the old value in case the new value is invalid.
-        switch( aType )
-        {
-            case "Decay":
-                oldValue = echoParams.Decay;
-                echoParams.Decay = aNewValue;
-                break;
-            case "Delay":
-                oldValue = echoParams.Delay;
-                echoParams.Delay = aNewValue;
-                break;
-            case "DryMix":
-                oldValue = echoParams.DryMix;
-                echoParams.DryMix = aNewValue;
-                break;
-            case "WetMix":
-                oldValue = echoParams.WetMix;
-                echoParams.WetMix = aNewValue;
-                break;
-            default:
-                break;
-        }
-
-        // If the new value is valid, then send the parameters.
-        if( vmm.CheckEchoFilterParameters( echoParams ) )
-        {
-            SendEchoFilterParameters();
-        }
-
-        // If the new value is not valid, then reset the input field's text and 
-        // set the parameter back to its old value.
-        else
-        {
-            switch( aType )
-            {
-                case "Decay":
-                    echoParams.Decay = oldValue;
-                    decayInput.transform.FindChild( "EchoDecayInputText" ).GetComponent<Text>().text 
-                        = oldValue.ToString();
-                    break;
-                case "Delay":
-                    echoParams.Delay = oldValue;
-                    delayInput.transform.FindChild( "EchoDelayInputText" ).GetComponent<Text>().text
-                        = oldValue.ToString();
-                    break;
-                case "DryMix":
-                    echoParams.DryMix = oldValue;
-                    dryInput.transform.FindChild( "EchoDryMixInputText" ).GetComponent<Text>().text
-                        = oldValue.ToString();
-                    break;
-                case "WetMix":
-                    echoParams.WetMix = oldValue;
-                    wetInput.transform.FindChild( "EchoWetMixInputText" ).GetComponent<Text>().text
-                        = oldValue.ToString();
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
-
     //---------------------------------------------------------------------------- 
     // Private Functions
     //---------------------------------------------------------------------------- 
 
-    // Sends the chosen parameters to the VirtualInstrumentManager
-    private void SendEchoFilterParameters()
+    protected override void SetDefaultParameters()
     {
-        if( active )
-        {
-            vmm.ModifyEchoFilter.Invoke( echoParams );
-        }
+        // Set the default parameters.
+        mParams.Active = false;
+        mParams.Decay = 0.25f;
+        mParams.Delay = 200f;
+        mParams.DryMix = 1f;
+        mParams.WetMix = 1f;
     }
 
-    // Sets the values for each input field.
-    private void SetInputFieldValues()
+    // Sends the chosen parameters to the VirtualInstrumentManager
+    protected override void SendParametersToVIM()
     {
-        // Get each of the input fields and set the values.
-        ATI_EchoFilterInputFieldHandler temp;
+        if( mEnabled )
+        {
+            mVIM.ModifyEchoFilter.Invoke( mParams );
+        }
 
-        //delayInput = gameObject.transform.GetChild( 2 ).gameObject;
-        delayInput = SceneManager.GetSceneByName( "EchoFilterParametersScene" ).GetRootGameObjects()[0].transform.GetChild( 0 ).GetChild( 2 ).gameObject;
-        temp = delayInput.AddComponent<ATI_EchoFilterInputFieldHandler>();
-        temp.SetValues( "Delay", this );
+    }
 
-        decayInput = SceneManager.GetSceneByName( "EchoFilterParametersScene" ).GetRootGameObjects()[0].transform.GetChild( 0 ).GetChild( 1 ).gameObject;
-        temp = decayInput.AddComponent<ATI_EchoFilterInputFieldHandler>();
-        temp.SetValues( "Decay", this );
+    protected override void TurnOnEffect()
+    {
+        mEnabled = true;
+        mParams.Active = true;
+        mToggleImage.sprite = mButtonImages[1];
+        SendParametersToVIM();
+    }
 
-        dryInput = SceneManager.GetSceneByName( "EchoFilterParametersScene" ).GetRootGameObjects()[0].transform.GetChild( 0 ).GetChild( 0 ).GetChild( 1 ).gameObject;
-        temp = dryInput.AddComponent<ATI_EchoFilterInputFieldHandler>();
-        temp.SetValues( "DryMix", this );
+    protected override void TurnOffEffect()
+    {
+        mEnabled = false;
+        mParams.Active = false;
+        mToggleImage.sprite = mButtonImages[0];
+        mParamObject.transform.SetParent( SceneManager.GetSceneByName( "EchoFilterParametersScene" ).GetRootGameObjects()[0].transform );
+        SceneManager.UnloadSceneAsync( mParamSceneName );
+        mParamObject = null;
+        mDryMixContainer = null;
+        mWetMixContainer = null;
+        mTriggers = null;
+        mDecayContainer = null;
+        mDelayContainer = null;
 
-        wetInput = SceneManager.GetSceneByName( "EchoFilterParametersScene" ).GetRootGameObjects()[0].transform.GetChild( 0 ).GetChild( 0 ).GetChild( 0 ).gameObject;
-        temp = wetInput.AddComponent<ATI_EchoFilterInputFieldHandler>();
-        temp.SetValues( "WetMix", this );
+    }
+
+    protected override void HandleSceneLoad()
+    {
+        mTriggers = new ATI.AudioEffectParameterTrigger[4];
+
+        mDryMixContainer = mParamObject.transform.GetChild( 0 ).GetChild( 0 ).GetChild( 2 ).gameObject;
+        mTriggers[0] = mDryMixContainer.AddComponent<ATI.AudioEffectParameterTrigger>();
+        mTriggers[0].SetHandler( this );
+        mTriggers[0].SetType( ATI.AudioEffectParameterType.DryMix );
+        mTriggers[0].SetRange( 0f, 100f );
+        mTriggers[0].SetValue( mParams.DryMix * 100f );
+
+        mWetMixContainer = mParamObject.transform.GetChild( 0 ).GetChild( 0 ).GetChild( 3 ).gameObject;
+        mTriggers[1] = mWetMixContainer.AddComponent<ATI.AudioEffectParameterTrigger>();
+        mTriggers[1].SetHandler( this );
+        mTriggers[1].SetType( ATI.AudioEffectParameterType.WetMix );
+        mTriggers[1].SetRange( 0f, 100f );
+        mTriggers[1].SetValue( mParams.WetMix * 100f );
+
+        mDelayContainer = mParamObject.transform.GetChild( 0 ).GetChild( 0 ).GetChild( 0 ).gameObject;
+        mTriggers[2] = mDelayContainer.AddComponent<ATI.AudioEffectParameterTrigger>();
+        mTriggers[2].SetHandler( this );
+        mTriggers[2].SetType( ATI.AudioEffectParameterType.Delay );
+        mTriggers[2].SetRange( 10f, 5000f );
+        mTriggers[2].SetValue( mParams.Delay );
+
+        mDecayContainer = mParamObject.transform.GetChild( 0 ).GetChild( 0 ).GetChild( 1 ).gameObject;
+        mTriggers[3] = mDecayContainer.AddComponent<ATI.AudioEffectParameterTrigger>();
+        mTriggers[3].SetHandler( this );
+        mTriggers[3].SetType( ATI.AudioEffectParameterType.Decay );
+        mTriggers[3].SetRange( 0f, 100f );
+        mTriggers[3].SetValue( mParams.Decay * 100f );
     }
 
     //---------------------------------------------------------------------------- 
     // Event Handlers
     //---------------------------------------------------------------------------- 
 
-    // Handles when the filter is toggled on or off.
-    // IN: aOn Is the filter turned on?
-    public void OnEchoFilterToggle( bool aOn )
+    protected override void HandleDecayChange( float aValue )
     {
-        if( aOn )
-        {
-            gameObject.transform.GetChild( 0 ).GetComponent<Image>().sprite = toggleImages[1];
-            active = true;
-            paramScene = SceneManager.LoadSceneAsync( "EchoFilterParametersScene", LoadSceneMode.Additive );
-            // Set values for the input fields.
-            sceneLoad = true;
-            echoParams.Active = true;
-            SendEchoFilterParameters();
-        }
-        else
-        {
-            gameObject.transform.GetChild( 0 ).GetComponent<Image>().sprite = toggleImages[0];
-            active = false;
-            echoParams.Active = false;
-            SceneManager.UnloadSceneAsync( "EchoFilterParametersScene" );
-            SendEchoFilterParameters();
-        }
+        mParams.Decay = aValue / 100f;
+        SendParametersToVIM();
     }
 
+    protected override void HandleDelayChange( float aValue )
+    {
+        mParams.Delay = aValue;
+        SendParametersToVIM();
+    }
+
+    protected override void HandleDryMixChange( float aValue )
+    {
+        mParams.DryMix = aValue / 100f;
+        SendParametersToVIM();
+    }
+
+    protected override void HandleWetMixChange( float aValue )
+    {
+        mParams.WetMix = aValue / 100f;
+        SendParametersToVIM();
+    }
 #endif
 
 }

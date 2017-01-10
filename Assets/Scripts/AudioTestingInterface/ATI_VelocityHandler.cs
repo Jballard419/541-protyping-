@@ -29,7 +29,6 @@ public class ATI_VelocityHandler : ATI.SliderHandler
     //---------------------------------------------------------------------------- 
     private ATI.SliderTrigger          mHighestRandomSliderTrigger = null; // The trigger for the slider that handles the highest random velocity.
     private ATI.SliderTrigger          mLowestRandomSliderTrigger = null; // The trigger for the slider that handles the lowest random velocity.
-    private ATI.SliderTrigger[]        mSliderTriggers = null; // The triggers for each slider.
     private bool                       mRandomize = false; // Should the musical typing velocities be randomized?
     private Slider                     mLowestRandomSlider = null; // The slider that handles the lowest random velocity.
     private Slider                     mHighestRandomSlider = null; // The slider that handles the highest random velocity.
