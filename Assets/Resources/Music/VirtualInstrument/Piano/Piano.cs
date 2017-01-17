@@ -27,9 +27,9 @@ public class Piano : VirtualInstrument
     {
 
         // Set default values
-        mLowestSupportedNote = Music.NOTE.C4;
-        mHighestSupportedNote = Music.NOTE.B5;
-        mNumSupportedNotes = 24;
+        mLowestSupportedNote = Music.PITCH.B0;
+        mHighestSupportedNote = Music.PITCH.C8;
+        mNumSupportedNotes = 86;
         mSampleRate = 44100;
         mSampleInterval = 1f / mSampleRate;
 
@@ -73,7 +73,7 @@ public class Piano : VirtualInstrument
     {
         // Set the base filepath and number of files.
         mFilepath = "Music/VirtualInstrument/Piano/Samples/";
-        mNumFiles = 72;
+        mNumFiles = 258;
 
         // Initialize the array of filenames.
         mFilenames = new string[mNumFiles];
@@ -84,7 +84,7 @@ public class Piano : VirtualInstrument
         {
             for( int j = (int)mLowestSupportedNote; j <= (int)mHighestSupportedNote; j++ )
             {
-                mFilenames[index] = mFilepath + Music.NoteToString( j ) + mBuiltInDynamics[i];
+                mFilenames[index] = mFilepath + mBuiltInDynamics[i] + "/" + Music.NoteToString( j ) + mBuiltInDynamics[i];
                 index++;
             }
         }

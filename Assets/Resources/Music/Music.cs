@@ -14,15 +14,55 @@ using UnityEngine;
 
 public class Music {
 
+    //---------------------------------------------------------------------------- 
+    // Constants
+    //---------------------------------------------------------------------------- 
+
     public static string[] PITCH_STRING = { "C", "CS", "D", "DS", "E", "F", "FS", "G", "GS", "A", "AS", "B" };
     public static short NUM_NOTES_IN_OCTAVE = 12;
     public static float SEMITONE_FACTOR = 1.059463f;
     public static int MAX_SUPPORTED_NOTES = 120;
+
+    //---------------------------------------------------------------------------- 
+    // Types
+    //---------------------------------------------------------------------------- 
+
+    // The possible instrument types.
     public enum INSTRUMENT_TYPE
     {
-        PIANO
+        PIANO,
+        MARIMBA
     };
-    public enum NOTE
+
+    // An abstract musical note.
+    public struct Note
+    {
+        public int Velocity;
+        public PITCH[] Pitches;
+        public NOTE_LENGTH Length;
+        public NOTE_LENGTH Offset;
+    }
+
+    // The length of a note.
+    public enum NOTE_LENGTH
+    {
+        T, // 32nd note.
+        D_T, // Dotted 32nd note.
+        S, // 16th note.
+        D_S, // Dotted 16th note.
+        E, // Eighth note.
+        D_E, // Dotted eighth note.
+        Q, // Quarter note.
+        D_Q, // Dotted quarter note.
+        H, // Half note.
+        D_H, // Dotted half note.
+        W, // Whole note.
+        D_W, // Dotted whole note.
+        NONE // Used when there are no offsets (i.e. chords)
+    };
+
+    // The possible pitches that can be played.
+    public enum PITCH
     {
         C0,
         CS0,
@@ -143,18 +183,105 @@ public class Music {
         GS9,
         A9,
         AS9,
-        B9
+        B9,
+        REST
     }
 
-    public static string NoteToString( NOTE aNoteValue )
+    // A container that represents a time signature.
+    public struct TimeSignature
+    {
+        public int BeatsPerMeasure;
+        public NOTE_LENGTH BaseBeat;
+    } 
+
+    //---------------------------------------------------------------------------- 
+    // Static Functions
+    //---------------------------------------------------------------------------- 
+    public static float GetNoteLengthRelativeToMeasure( NOTE_LENGTH aLength, TimeSignature aTimeSignature )
+    {
+        float quarterNoteLength = 1f;
+        switch( aTimeSignature.BaseBeat )
+        {
+            case NOTE_LENGTH.E:
+                quarterNoteLength *= 2f;
+                break;
+            default:
+                break;
+                
+        }
+
+        quarterNoteLength /= (float)aTimeSignature.BeatsPerMeasure;
+
+        switch( aLength )
+        {
+            case Music.NOTE_LENGTH.T:
+                return quarterNoteLength / 8f;
+            case Music.NOTE_LENGTH.D_T:
+                return 1.5f * quarterNoteLength / 8f;
+            case Music.NOTE_LENGTH.S:
+                return quarterNoteLength / 4f;
+            case Music.NOTE_LENGTH.D_S:
+                return 1.5f * quarterNoteLength / 4f;
+            case Music.NOTE_LENGTH.E:
+                return quarterNoteLength / 2f;
+            case Music.NOTE_LENGTH.D_E:
+                return 1.5f * quarterNoteLength / 2f;
+            case Music.NOTE_LENGTH.Q:
+                return quarterNoteLength;
+            case Music.NOTE_LENGTH.D_Q:
+                return quarterNoteLength * 1.5f;
+            case Music.NOTE_LENGTH.H:
+                return quarterNoteLength * 2f;
+            case Music.NOTE_LENGTH.D_H:
+                return quarterNoteLength * 3f;
+            case Music.NOTE_LENGTH.W:
+                return quarterNoteLength * 4f;
+            case Music.NOTE_LENGTH.D_W:
+                return quarterNoteLength * 6f;
+            default:
+                return 0;
+        }
+    }
+
+    // Converts a pitch to a string.
+    public static string NoteToString( PITCH aNoteValue )
     {
         return NoteToString( (int)aNoteValue );
     }
 
+    // Overloaded function that converts a pitch to a string
     public static string NoteToString( int aNoteValue )
     {
         int pitchIndex = aNoteValue % 12;
         int octave = aNoteValue / 12;
         return PITCH_STRING[pitchIndex] + octave.ToString();
     }
+
+    // Returns a 4/4 time signature.
+    public static TimeSignature TIME_SIGNATURE_4_4()
+    {
+        TimeSignature returned;
+        returned.BeatsPerMeasure = 4;
+        returned.BaseBeat = NOTE_LENGTH.Q;
+        return returned;
+    }
+
+    // Returns a 3/4 time signature.
+    public static TimeSignature TIME_SIGNATURE_3_4()
+    {
+        TimeSignature returned;
+        returned.BeatsPerMeasure = 3;
+        returned.BaseBeat = NOTE_LENGTH.Q;
+        return returned;
+    }
+
+    // Returns a 6/8 time signature.
+    public static TimeSignature TIME_SIGNATURE_6_8()
+    {
+        TimeSignature returned;
+        returned.BeatsPerMeasure = 6;
+        returned.BaseBeat = NOTE_LENGTH.E;
+        return returned;
+    }
+
 }

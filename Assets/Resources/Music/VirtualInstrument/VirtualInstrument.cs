@@ -30,16 +30,16 @@ public class VirtualInstrument
     //---------------------------------------------------------------------------- 
     // Protected Variables
     //---------------------------------------------------------------------------- 
-    protected AudioClip[][]                      mAudioClips; // The samples of the virtual instrument
     protected bool                               mLoaded; // Whether or not the virtual instrument is loaded.
     protected float                              mSampleInterval; // The sample interval of the virtual instrument
+    protected float[][][]                          mAudioData; // The samples of the virtual instrument
     protected int                                mNumFiles; // The number of sample files
     protected int                                mNumBuiltInDynamics; // The number of built in dynamics
     protected int                                mNumSupportedNotes; // The number of notes supported by the instrument
     protected int                                mSampleRate; // The sample rate of the virtual instrument
     protected int[]                              mBuiltInDynamicsThresholds; // The thresholds for when to use a specific dynamic
-    protected Music.NOTE                         mLowestSupportedNote; // The lowest supported note of the instrument
-    protected Music.NOTE                         mHighestSupportedNote; // The highest supported note of the instrument
+    protected Music.PITCH                        mLowestSupportedNote; // The lowest supported note of the instrument
+    protected Music.PITCH                        mHighestSupportedNote; // The highest supported note of the instrument
     protected string                             mFilepath; // The base filepath for the samples.
     protected string[]                           mFilenames; // An array of filenames for the samples.
     protected string[]                           mBuiltInDynamics; // The names of the built in dynamics
@@ -79,7 +79,7 @@ public class VirtualInstrument
         else
         {
             int dynamicsIndex = 0;
-            for ( int i = mNumBuiltInDynamics - 1; i > -1; i++ )
+            for ( int i = mNumBuiltInDynamics - 1; i > -1; i-- )
             {
                 if ( aVelocity <= mBuiltInDynamicsThresholds[i] )
                 {
@@ -97,16 +97,53 @@ public class VirtualInstrument
         return mBuiltInDynamicsThresholds;
     }
 
+    // Gets the adjusted velocity factor from 0 to 1.0. 
+    // IN: aVelocity The velocity for the note from 0 to 100.
+    public float GetAdjustedVelocityFactor( int aVelocity )
+    {
+        int dynamicsIndex = 0;
+        float velocityFactor = aVelocity / 100f;
+
+        // Calculate the velocity multiplier. The multiplier is a percentage that is used to adjust the
+        // levels of the audio data to modify the output volume. 
+        // If built-in dynamics are supported, then the velocity multiplier will range from 0.5 to 1.0.
+        if( mNumBuiltInDynamics != 0 )
+        {
+            // See which built-in dynamics value we need to use. Start at the top threshold and work down.
+            for( int i = mNumBuiltInDynamics - 1; i > -1; i-- )
+            {
+                if( aVelocity <= mBuiltInDynamicsThresholds[i] )
+                {
+                    dynamicsIndex = i;
+                }
+            }
+            // Calculate the velocity factor.
+            float inEnd = (float)mBuiltInDynamicsThresholds[dynamicsIndex];
+            float outEnd = .5f * (float)mBuiltInDynamicsThresholds[dynamicsIndex] / (float)mBuiltInDynamicsThresholds[mNumBuiltInDynamics - 1];
+            float inStart = 0f;
+            float outStart = 0f;
+            if( dynamicsIndex != 0 )
+            {
+                inStart = (float)mBuiltInDynamicsThresholds[dynamicsIndex - 1];
+                outStart = (float)mBuiltInDynamicsThresholds[dynamicsIndex - 1] / (float)mBuiltInDynamicsThresholds[dynamicsIndex];
+            }
+
+            velocityFactor = outStart + ( ( ( outEnd - outStart ) / ( inEnd - inStart ) ) * ( (float)aVelocity - inStart ) );
+        }
+        // If built-in dynamics are not supported, then just use the given velocity as a percentage. 
+        return velocityFactor;
+    }
+
     // Gets the highest note that this instrument supports.
     // OUT: The highest note that this instrument supports.
-    public Music.NOTE GetHighestSupportedNote()
+    public Music.PITCH GetHighestSupportedNote()
     {
         return mHighestSupportedNote;
     }
 
     // Gets the lowest note that this instrument supports.
     // OUT: The lowest note that this instrument supports.
-    public Music.NOTE GetLowestSupportedNote()
+    public Music.PITCH GetLowestSupportedNote()
     {
         return mLowestSupportedNote;
     }
@@ -121,31 +158,39 @@ public class VirtualInstrument
     // Gets the raw audio data of each built-in dynamics value for a given note. 
     // IN: aNote The note for which the data is retrieved.
     // OUT: The raw audio data for each built-in dynamics value for the given note
-    public float[][] GetRawAudioDataForNote( Music.NOTE aNote )
+    public float[][] GetRawAudioDataForNote( Music.PITCH aNote )
     {
         Assert.IsTrue( (int)aNote >= (int)mLowestSupportedNote && (int)aNote <= (int)mHighestSupportedNote,
             "Tried to load the audio data for a note that is not supported by the instrument!" );
-        Assert.IsNotNull( mAudioClips, "Tried to get data from a non-loaded virtual instrument!" );
-        Assert.IsNotNull( mAudioClips[0][(int)aNote], "Tried to get data from a virtual instrument for a note that was not loaded!" );
+        Assert.IsNotNull( mAudioData, "Tried to get data from a non-loaded virtual instrument!" );
+        Assert.IsNotNull( mAudioData[0][(int)aNote], "Tried to get data from a virtual instrument for a note that was not loaded!" );
 
-        // Allocate a 2-D float array that will be returned.
-        float[][] data;
+        float[][] data = null;
 
         // If there aren't any built-in dynamics, then use a hard-coded index and copy the data to the array from the audio clip.
         if ( mNumBuiltInDynamics == 0 )
         {
             data = new float[1][];
-            data[0] = new float[mAudioClips[0][(int)aNote].samples];
-            mAudioClips[0][(int)aNote].GetData( data[0], 0 );
+            int dataLength = mAudioData[0][(int)aNote].Length;
+            data[0] = new float[dataLength];
+            for( int i = 0; i < dataLength; i++ )
+            {
+                data[0][i] = mAudioData[0][(int)aNote][i];
+            }
         }
         // If there are built-in dynamics, then get the data from the audio clips for each corresponding file.
         else
         {
             data = new float[mNumBuiltInDynamics][];
-            for ( int i = 0; i < mNumBuiltInDynamics; i++ )
+            int dataLength = 0;
+            for( int i = 0; i < mNumBuiltInDynamics; i++ )
             {
-                data[i] = new float[mAudioClips[i][(int)aNote].samples];
-                mAudioClips[i][(int)aNote].GetData( data[i], 0 );
+                dataLength = mAudioData[i][(int)aNote].Length;
+                data[i] = new float[dataLength];
+                for( int j = 0; j < dataLength; j++ )
+                {
+                    data[i][j] = mAudioData[i][(int)aNote][j];
+                }
             }
         }
 
@@ -175,9 +220,155 @@ public class VirtualInstrument
 
     // Checks if a given note is able to be played by this instrument.
     // OUT: True if the instrument can play the note. False otherwise.
-    public bool IsNoteSupported( Music.NOTE aNote )
+    public bool IsNoteSupported( Music.PITCH aNote )
     {
         return ( (int)aNote >= (int)mLowestSupportedNote && (int)aNote <= (int)mHighestSupportedNote );
+    }
+
+    // Normalizes the audio clips after their data has been loaded.
+    // IN: aAudioClip The audio clips to normalize.
+    private void NormalizeAudioClips( AudioClip[][] aAudioClips )
+    {
+        float max = 0f;
+        float[] temp = null;
+        int dataLength = 0;
+
+        // Iterate through every audio clip.
+        if( mNumBuiltInDynamics != 0 )
+        {
+            // Initialize the audio data 3-D array.
+            mAudioData = new float[mNumBuiltInDynamics][][];
+ 
+          /*  // Get the max value of all the clips' data.
+            for( int i = (int)mLowestSupportedNote; i <= (int)mHighestSupportedNote; i++ )
+            {
+                // Get the length of the clip data.
+                dataLength = aAudioClips[mNumBuiltInDynamics - 1][i].samples;
+
+                // Get the clip data
+                temp = new float[dataLength];
+                aAudioClips[mNumBuiltInDynamics - 1][i].GetData( temp, 0 );
+
+                // Update the total max value.
+                for( int j = 0; j < dataLength; j++ )
+                {
+                    if( temp[j] > max )
+                    {
+                        max = temp[j];
+                    }
+                }
+            }*/
+
+            // Set the normalize factor for each built-in dynamic.
+            float[] normalizedPeaks = new float[mNumBuiltInDynamics];
+            for( int i = 0; i < mNumBuiltInDynamics; i++ )
+            {
+                normalizedPeaks[i] = .3f * ( (float)mBuiltInDynamicsThresholds[i] / (float)mBuiltInDynamicsThresholds[mNumBuiltInDynamics - 1] );
+            }
+
+            // Normalize all of the clips
+            for( int i = 0; i < mNumBuiltInDynamics; i++ )
+            {
+                // Initialize the interior 2-D array of the audio data.
+                mAudioData[i] = new float[Music.MAX_SUPPORTED_NOTES][];
+
+                for( int j = (int)mLowestSupportedNote; j <= (int)mHighestSupportedNote; j++ )
+                {
+                    // Get the length of the clip data and initialize the inner audio data array. 
+                    dataLength = aAudioClips[i][j].samples;
+                    mAudioData[i][j] = new float[dataLength];
+                    
+                    // Get this clip's data
+                    temp = new float[dataLength];
+                    aAudioClips[i][j].GetData( temp, 0 );
+
+                    // Get the max value of the clip data.
+                    for( int k = 0; k < dataLength; k++ )
+                    {
+                        if( temp[k] > max )
+                        {
+                            max = temp[k];
+                        }
+                    }
+
+                    // Get the normalize factor for this clip.
+                    float normalizeFactor = normalizedPeaks[i] / max;
+
+                    // Normalize the clip and put the normalized data into the audio data array.
+                    for( int k = 0; k < dataLength; k++ )
+                    {
+                        mAudioData[i][j][k] = temp[k] * normalizeFactor;
+                    }
+
+                    // Reset the max value for the next clip.
+                    max = 0f;
+                }
+            }
+        }
+        // Iterate through every audio clip.
+        else
+        {
+            // Allocate the audio data 3-D array and its interior 2-D array.
+            mAudioData = new float[1][][];
+            mAudioData[0] = new float[Music.MAX_SUPPORTED_NOTES][];
+
+          /*  // Get the max value of all the clips' data.
+            for( int i = (int)mLowestSupportedNote; i <= (int)mHighestSupportedNote; i++ )
+            {
+                dataLength = aAudioClips[0][i].samples;
+                // Get the clip data
+
+                temp = new float[dataLength];
+                aAudioClips[0][i].GetData( temp, 0 );
+
+                // Update the total max value.
+                for( int j = 0; j < dataLength; j++ )
+                {
+                    if( temp[j] > max )
+                    {
+                        max = temp[j];
+                    }
+                }
+            } */
+
+            // Set the normalized peak.
+            float normalizedPeak = .3f;
+
+
+
+            // Normalize all of the audio clips.
+            for( int i = (int)mLowestSupportedNote; i < (int)mHighestSupportedNote; i++ )
+            {
+                dataLength = aAudioClips[0][i].samples;
+                mAudioData[0][i] = new float[dataLength];
+
+                // Get the clip data
+                temp = new float[dataLength];
+                aAudioClips[0][i].GetData( temp, 0 );
+
+                // Get the max value of this clip's data.
+                for( int j = 0; j < dataLength; j++ )
+                {
+                    if( temp[j] > max )
+                    {
+                        max = temp[j];
+                    }
+                }
+
+                // Set the normalize factor.
+                float normalizeFactor = normalizedPeak / max;
+
+                // Normalize the clip.
+                for( int j = 0; j < aAudioClips[0][i].samples; j++ )
+                {
+                    mAudioData[0][i][j] = temp[j] * normalizeFactor;
+                }
+
+                // Reset the max value for the next clip.
+                max = 0f;
+            }
+        }
+
     }
 
     //---------------------------------------------------------------------------- 
@@ -192,38 +383,37 @@ public class VirtualInstrument
         // assigned to an array of audio clips. 
         int index = (int)mLowestSupportedNote;
         int fileIndex = 0;
-
+        AudioClip[][] audioClips = null;
         // If there aren't any built-in dynamics, then use a hard-coded index of 0 for the outer array.
         if ( mNumBuiltInDynamics == 0 )
         {
-
             // Initialize the array of audio clips. In order to account for instruments differing in the range of notes 
             // that they support, the inner audio clip array is set to have an element for every possible note. Unsupported
             // notes will have null audio clips at their indices.    
-            mAudioClips = new AudioClip[1][];
-            mAudioClips[0] = new AudioClip[Music.MAX_SUPPORTED_NOTES];
+            audioClips = new AudioClip[1][];
+            audioClips[0] = new AudioClip[Music.MAX_SUPPORTED_NOTES];
 
             // The indices of the loaded audio clips are mapped to their corresponding note. 
             while ( index <= (int)mHighestSupportedNote )
             {
                 // Load the audio clip into the audio clip array.
-                mAudioClips[0][index] = Resources.Load<AudioClip>( mFilenames[fileIndex] );
-                Assert.IsNotNull( mAudioClips[0][index], "Failed to load audioclip from file " + mFilenames[fileIndex] );
+                audioClips[0][index] = Resources.Load<AudioClip>( mFilenames[fileIndex] );
+                Assert.IsNotNull( audioClips[0][index], "Failed to load audioclip from file " + mFilenames[fileIndex] );
 
                 // Load the audio data for the audio clip
-                mAudioClips[0][index].LoadAudioData();
+                audioClips[0][index].LoadAudioData();
 
                 // Increment the index variables.
                 index++;
                 fileIndex++;
-                Assert.IsTrue( fileIndex < mNumFiles, "Tried to load more files than were available. Recheck how many files are availabled for the piano virtual instrument" );
+                Assert.IsTrue( fileIndex <= mNumFiles, "Tried to load more files than were available. Recheck how many files are availabled for the virtual instrument" );
             }
         }
         // If built-in dynamics are available for this instrument, then load audio clips for each built-in dynamics value.
         else
         {
             // Initializ the outer array of audio clips
-            mAudioClips = new AudioClip[mNumBuiltInDynamics][];
+            audioClips = new AudioClip[mNumBuiltInDynamics][];
 
             // Iterate through each outer array.
             for ( int i = 0; i < mNumBuiltInDynamics; i++ )
@@ -231,17 +421,17 @@ public class VirtualInstrument
                 // Initialize the inner array of audio clips. In order to account for instruments differing in the range of notes 
                 // that they support, the inner audio clip array is set to have an element for every possible note. Unsupported
                 // notes will have null audio clips at their indices.    
-                mAudioClips[i] = new AudioClip[Music.MAX_SUPPORTED_NOTES];
+                audioClips[i] = new AudioClip[Music.MAX_SUPPORTED_NOTES];
 
                 // The indices of the loaded audio clips are mapped to their corresponding note. 
                 while ( index <= (int)mHighestSupportedNote )
                 {
                     // Load the audio clip into the audio clip array.
-                    mAudioClips[i][index] = Resources.Load<AudioClip>( mFilenames[fileIndex] );
-                    Assert.IsNotNull( mAudioClips[0][index], "Failed to load audioclip from file " + mFilenames[fileIndex] );
+                    audioClips[i][index] = Resources.Load<AudioClip>( mFilenames[fileIndex] );
+                    Assert.IsNotNull( audioClips[0][index], "Failed to load audioclip from file " + mFilenames[fileIndex] );
 
                     // Load the audio data for the audio clip
-                    mAudioClips[i][index].LoadAudioData();
+                    audioClips[i][index].LoadAudioData();
 
                     // Increment the index variables.
                     index++;
@@ -252,6 +442,8 @@ public class VirtualInstrument
                 index = (int)mLowestSupportedNote;
             }
         }
+        // Normalize the audio clips.
+        NormalizeAudioClips( audioClips );
     }
 
     //---------------------------------------------------------------------------- 
