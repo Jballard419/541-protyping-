@@ -1,63 +1,42 @@
 ﻿//---------------------------------------------------------------------------- 
-// /Scripts/AudioTestingInterface/ATI_InstrumentSelectionHandler.cs
+// /Scripts/AudioTestingInterface/ATI_SongCreatorButton.cs
 // Unnamed VR Virtual Piano Project 
 // Created for the classes EECS 541 & 542 at the University of Kansas
 // Team: Dylan Egnoske, James Ballard, Justin Arnspiger, Quinten Johnson 
 // 
-// Description: Script that handles selecting between different instruments in
-//              the AudioTestingInterface scene.
+// Description: Script that handles loading the SongCreationInterface when the
+//              button is pressed.
 //---------------------------------------------------------------------------- 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
-public class ATI_InstrumentSelectionHandler : MonoBehaviour {
-
-
-
-#if DEBUG && DEBUG_MUSICAL_TYPING
+public class ATI_SongCreatorButton : MonoBehaviour {
 
     //---------------------------------------------------------------------------- 
-    // Private Variables
+    // Private variables
     //---------------------------------------------------------------------------- 
-    VirtualInstrumentManager vmm = null; // The virtual instrument manager.
-
-#endif
-
+    private Button                     LoadSongCreationButton = null; // The button that loads the song creation interface when clicked.
 
     //---------------------------------------------------------------------------- 
     // Unity Functions
     //---------------------------------------------------------------------------- 
 
     // Use this for initialization
-    void Start ()
-    {
-
-#if DEBUG && DEBUG_MUSICAL_TYPING
-        vmm = GameObject.Find( "VirtualInstrumentManager" ).GetComponent<VirtualInstrumentManager>();
-#endif
-
-    }
-	
-	// Update is called once per frame
-	void Update ()
-    {	
+    void Start () {
+        LoadSongCreationButton = gameObject.GetComponent<Button>();
+        LoadSongCreationButton.onClick.AddListener( LoadSongCreationInterface );
 	}
-
-#if DEBUG && DEBUG_MUSICAL_TYPING
-
 
     //---------------------------------------------------------------------------- 
     // Event Handlers
     //---------------------------------------------------------------------------- 
 
-    // Handles a change in the selected instrument
-    // IN: aSelection The index of the selected instrument. See the Music.INSTRUMENT_TYPE
-    //     enum for which instrument the index corresponds to.
-    public void OnInstrumentSelected( int aSelection )
+    // Loads the song creation interface scene.
+    void LoadSongCreationInterface()
     {
-        vmm.ChangeInstrument.Invoke( (Music.INSTRUMENT_TYPE)aSelection );
+        SceneManager.LoadScene( "SongCreationInterface", LoadSceneMode.Additive );
     }
-
-#endif
 }

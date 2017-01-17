@@ -18,12 +18,6 @@ public class ATI_EchoFilterHandler : ATI.AudioEffectHandler {
 #if DEBUG && DEBUG_MUSICAL_TYPING
 
     //---------------------------------------------------------------------------- 
-    // Types
-    //---------------------------------------------------------------------------- 
-
-    
-
-    //---------------------------------------------------------------------------- 
     // Private Variables
     //---------------------------------------------------------------------------- 
     private GameObject                                     mDecayContainer = null; // The input field to get the value for decay.
@@ -43,6 +37,7 @@ public class ATI_EchoFilterHandler : ATI.AudioEffectHandler {
     {
 
 #if DEBUG && DEBUG_MUSICAL_TYPING
+        // Call the base start function and set the parameter scene name.
         base.Start();
         mParamSceneName = "EchoFilterParametersScene";
 #endif
@@ -52,13 +47,10 @@ public class ATI_EchoFilterHandler : ATI.AudioEffectHandler {
 #if DEBUG && DEBUG_MUSICAL_TYPING
 
     //---------------------------------------------------------------------------- 
-    // Public Functions
+    // Protected Functions
     //---------------------------------------------------------------------------- 
 
-    //---------------------------------------------------------------------------- 
-    // Private Functions
-    //---------------------------------------------------------------------------- 
-
+    // Sets the default echo filter parameters.
     protected override void SetDefaultParameters()
     {
         // Set the default parameters.
@@ -72,28 +64,36 @@ public class ATI_EchoFilterHandler : ATI.AudioEffectHandler {
     // Sends the chosen parameters to the VirtualInstrumentManager
     protected override void SendParametersToVIM()
     {
-        if( mEnabled )
-        {
-            mVIM.ModifyEchoFilter.Invoke( mParams );
-        }
-
+        // Invoke the virtual instrument manager's ModifyEchoFilterEvent.
+        mVIM.ModifyEchoFilter.Invoke( mParams );
     }
 
+    // Turns on the effect.
     protected override void TurnOnEffect()
     {
+        // Mark that the effect is enabled in both the parameters and the member variable.
         mEnabled = true;
         mParams.Active = true;
+
+        // Change the button image.
         mToggleImage.sprite = mButtonImages[1];
+
+        // Send the parameters to the Virtual Instrument Manager.
         SendParametersToVIM();
     }
 
+    // Turns off the effect.
     protected override void TurnOffEffect()
     {
+        // Mark that the effect is no longer enabled in both the parameters
+        // and the member variable.
         mEnabled = false;
         mParams.Active = false;
+
+        // Change the button image.
         mToggleImage.sprite = mButtonImages[0];
-        mParamObject.transform.SetParent( SceneManager.GetSceneByName( "EchoFilterParametersScene" ).GetRootGameObjects()[0].transform );
-        SceneManager.UnloadSceneAsync( mParamSceneName );
+
+        // Set the parameter objects to null.
         mParamObject = null;
         mDryMixContainer = null;
         mWetMixContainer = null;
@@ -101,12 +101,45 @@ public class ATI_EchoFilterHandler : ATI.AudioEffectHandler {
         mDecayContainer = null;
         mDelayContainer = null;
 
+        // Send the parameters to the Virtual Instrument Manager.
+        SendParametersToVIM();
     }
 
+    //---------------------------------------------------------------------------- 
+    // Event Handlers
+    //---------------------------------------------------------------------------- 
+
+    // Handles a change in the decay parameter.
+    // IN: aValue The parameter's new value.
+    protected override void HandleDecayChange( float aValue )
+    {
+        mParams.Decay = aValue / 100f;
+        SendParametersToVIM();
+    }
+
+    // Handles a change in the delay parameter.
+    // IN: aValue The parameter's new value.
+    protected override void HandleDelayChange( float aValue )
+    {
+        mParams.Delay = aValue;
+        SendParametersToVIM();
+    }
+
+    // Handles a change in the dry mix parameter.
+    // IN: aValue The parameter's new value.
+    protected override void HandleDryMixChange( float aValue )
+    {
+        mParams.DryMix = aValue / 100f;
+        SendParametersToVIM();
+    }
+
+    // Handles when the scene has finished loading.
     protected override void HandleSceneLoad()
     {
+        // Initialize the AudioEffectParameterTrigger array.
         mTriggers = new ATI.AudioEffectParameterTrigger[4];
 
+        // Get the dry mix parameter object and set its values.
         mDryMixContainer = mParamObject.transform.GetChild( 0 ).GetChild( 0 ).GetChild( 2 ).gameObject;
         mTriggers[0] = mDryMixContainer.AddComponent<ATI.AudioEffectParameterTrigger>();
         mTriggers[0].SetHandler( this );
@@ -114,6 +147,7 @@ public class ATI_EchoFilterHandler : ATI.AudioEffectHandler {
         mTriggers[0].SetRange( 0f, 100f );
         mTriggers[0].SetValue( mParams.DryMix * 100f );
 
+        // Get the wet mix parameter object and set its values.
         mWetMixContainer = mParamObject.transform.GetChild( 0 ).GetChild( 0 ).GetChild( 3 ).gameObject;
         mTriggers[1] = mWetMixContainer.AddComponent<ATI.AudioEffectParameterTrigger>();
         mTriggers[1].SetHandler( this );
@@ -121,6 +155,7 @@ public class ATI_EchoFilterHandler : ATI.AudioEffectHandler {
         mTriggers[1].SetRange( 0f, 100f );
         mTriggers[1].SetValue( mParams.WetMix * 100f );
 
+        // Get the delay parameter object and set its values.
         mDelayContainer = mParamObject.transform.GetChild( 0 ).GetChild( 0 ).GetChild( 0 ).gameObject;
         mTriggers[2] = mDelayContainer.AddComponent<ATI.AudioEffectParameterTrigger>();
         mTriggers[2].SetHandler( this );
@@ -128,6 +163,7 @@ public class ATI_EchoFilterHandler : ATI.AudioEffectHandler {
         mTriggers[2].SetRange( 10f, 5000f );
         mTriggers[2].SetValue( mParams.Delay );
 
+        // Get the decay parameter object and set its values.
         mDecayContainer = mParamObject.transform.GetChild( 0 ).GetChild( 0 ).GetChild( 1 ).gameObject;
         mTriggers[3] = mDecayContainer.AddComponent<ATI.AudioEffectParameterTrigger>();
         mTriggers[3].SetHandler( this );
@@ -136,28 +172,8 @@ public class ATI_EchoFilterHandler : ATI.AudioEffectHandler {
         mTriggers[3].SetValue( mParams.Decay * 100f );
     }
 
-    //---------------------------------------------------------------------------- 
-    // Event Handlers
-    //---------------------------------------------------------------------------- 
-
-    protected override void HandleDecayChange( float aValue )
-    {
-        mParams.Decay = aValue / 100f;
-        SendParametersToVIM();
-    }
-
-    protected override void HandleDelayChange( float aValue )
-    {
-        mParams.Delay = aValue;
-        SendParametersToVIM();
-    }
-
-    protected override void HandleDryMixChange( float aValue )
-    {
-        mParams.DryMix = aValue / 100f;
-        SendParametersToVIM();
-    }
-
+    // Handles a change in the wet mix parameter.
+    // IN: aValue The parameter's new value.
     protected override void HandleWetMixChange( float aValue )
     {
         mParams.WetMix = aValue / 100f;

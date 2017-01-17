@@ -18,6 +18,11 @@ using UnityEngine.SceneManagement;
 
 public class ATI {
 
+    //---------------------------------------------------------------------------- 
+    // Types
+    //---------------------------------------------------------------------------- 
+
+    // The type of slider.
     public enum SliderType
     {
         MusicalTypingKeyVelocity,
@@ -28,6 +33,7 @@ public class ATI {
         Uninitialized
     };
 
+    // The type of audio effect parameter.
     public enum AudioEffectParameterType
     {
         Delay,
@@ -77,18 +83,25 @@ public class ATI {
         //---------------------------------------------------------------------------- 
 
         // Sets the parent handler
+        // IN: aHandler The parent handler
         public void SetHandler( SliderHandler aHandler )
         {
             mHandler = aHandler;
         }
 
         // Sets the slider type.
+        // IN: aType The slider type.
         public void SetType( SliderType aType )
         {
             mSliderType = aType;
         }
 
+        //---------------------------------------------------------------------------- 
+        // Event Handlers
+        //---------------------------------------------------------------------------- 
+
         // Handles when a slider is being dragged, but not yet released.
+        // IN: aEventData The drag event data.
         public void OnDrag( PointerEventData aEventData )
         {
             if( aEventData.dragging )
@@ -98,6 +111,7 @@ public class ATI {
         }
 
         // Handles when a slider is finished being dragged.
+        // IN: aEventData The EndDragEvent data.
         public void OnEndDrag( PointerEventData aEventData )
         {
             mHandler.HandleDragEnd( mSlider, mSliderType );
@@ -122,7 +136,7 @@ public class ATI {
         public void Start()
         {
             // Get the virtual instrument manager.
-            mVIM = GameObject.Find( "Main Camera" ).GetComponent<VirtualInstrumentManager>();
+            mVIM = GameObject.Find( "VirtualInstrumentManager" ).GetComponent<VirtualInstrumentManager>();
         }
 
         //---------------------------------------------------------------------------- 
@@ -131,6 +145,7 @@ public class ATI {
 
         // Gets the index of the slider.
         // IN: aSlider The slider to get the index for.
+        // OUT: The index of the slider.
         public int GetSliderIndex( Slider aSlider )
         {
             if( mSliders != null )
@@ -231,11 +246,11 @@ public class ATI {
         //---------------------------------------------------------------------------- 
         // Private Variables
         //---------------------------------------------------------------------------- 
-        private AudioEffectParameterType mType = AudioEffectParameterType.Uninitialized; // The type of input field.
-        private float mValue = 0f; // The current value.
-        private float[] mRange = null; // The range of possible values.
-        private InputField mField = null; // The associated input field.
-        private AudioEffectHandler mHandler; // The parent handler.
+        private AudioEffectHandler               mHandler; // The parent handler.
+        private AudioEffectParameterType         mType = AudioEffectParameterType.Uninitialized; // The type of input field.
+        private float                            mValue = 0f; // The current value.
+        private float[]                          mRange = null; // The range of possible values.
+        private InputField                       mField = null; // The associated input field.
 
         //---------------------------------------------------------------------------- 
         // Unity Functions
@@ -243,9 +258,6 @@ public class ATI {
 
         void Awake()
         {
-            // Call the base start function.
-            //base.Start();
-
             // Get the associated input field and set a handler to handle when
             // editing the field is finished.
             mField = gameObject.transform.GetChild( 0 ).GetComponent<InputField>();
@@ -256,13 +268,11 @@ public class ATI {
             mSliderTriggers = new SliderTrigger[1];
             mSliders[0] = gameObject.transform.GetChild( 1 ).GetComponent<Slider>();
             mSliderTriggers[0] = mSliders[0].gameObject.AddComponent<SliderTrigger>();
+
+            // Set the values for the slider trigger.
             mSliderTriggers[0].SetHandler( this );
             mSliderTriggers[0].SetType( SliderType.AudioEffectParameter );
             
-        }
-
-        private void Update()
-        {
         }
 
         //---------------------------------------------------------------------------- 
@@ -270,12 +280,15 @@ public class ATI {
         //---------------------------------------------------------------------------- 
 
         // Sets the handler for this audio effect parameter trigger.
+        // IN: aHandler The parent handler.
         public void SetHandler( AudioEffectHandler aHandler )
         {
             mHandler = aHandler;
         }
 
         // Sets the range of possible values for this parameter trigger.
+        // IN: aLowest The lowest possible value for the parameter.
+        // IN: aHighest The highest possible value for the parameter.
         public void SetRange( float aLowest, float aHighest )
         {
             // Allocate the range array if needed.
@@ -284,25 +297,33 @@ public class ATI {
                 mRange = new float[2];
             }
 
-            // Update the member variables and the slider.
+            // Update the member variables
             mRange[0] = aLowest;
             mRange[1] = aHighest;
 
+            // Update the slider.
             mSliders[0].minValue = aLowest;
             mSliders[0].maxValue = aHighest;
         }
 
         // Sets the type of audio effect parameter for this trigger.
+        // IN: aType The type of parameter.
         public void SetType( AudioEffectParameterType aType )
         {
             mType = aType;
         }
 
         // Sets the value of the parameter.
+        // IN: aValue The new value of the parameter.
         public void SetValue( float aValue )
         {
+            // Update the member variable.
             mValue = aValue;
+            
+            // Update the slider.
             mSliders[0].value = aValue;
+            
+            // Update the input field.
             mField.text = mValue.ToString( "F2" );
         }
 
@@ -311,9 +332,10 @@ public class ATI {
         //---------------------------------------------------------------------------- 
 
         // Handler to get a change in value and send it to the parent handler.
+        // IN: aNewValue The new value of the input field.
         private void SendInputFieldChangeToHandler( string aNewValue )
         {
-            // Get the new value.
+            // Get the new value as a float.
             float value = float.Parse( aNewValue );
 
             // Make sure that we have a range of possible values.
@@ -341,34 +363,39 @@ public class ATI {
         // Handles a change in the slider value.
         protected override void SendSliderChangeToHandler()
         {
+            // Update the member variable, input field, and send the change 
+            // to the parent handler.
             mValue = mSliders[0].value;
             mField.text = mValue.ToString( "F2" );
             mHandler.HandleAudioEffectParameterChange( mType, mValue );
         }
     }
 
+    // Handles events from an AudioEffectParameterTrigger.
     public class AudioEffectHandler : MonoBehaviour
     {
         //---------------------------------------------------------------------------- 
         // Protected Variables
         //---------------------------------------------------------------------------- 
-        protected AsyncOperation mSceneLoadOperation = null;
-        protected AudioEffectParameterTrigger[] mTriggers = null; // The triggers for when parameters change.
-        protected bool mEnabled = false; // Is the audio effect turned on?
-        protected GameObject mParamObject = null; // The parameters object.
-        protected Image mToggleImage = null; // The image component of the toggle switch.
-        protected Sprite[] mButtonImages = null; // The images to use for toggling the effect.
-        protected string mParamSceneName = null; // The name of the parameters scene.
-        protected Toggle mToggleSwitch = null; // The toggle switch for this audio effect.
-        protected VirtualInstrumentManager mVIM = null; // The Virtual Instrument Manager.
+        protected AsyncOperation                 mSceneLoadOperation = null; // The operation to load a scene to show the parameters.
+        protected AudioEffectParameterTrigger[]  mTriggers = null; // The triggers for when parameters change.
+        protected bool                           mEnabled = false; // Is the audio effect turned on?
+        protected GameObject                     mParamObject = null; // The parameters object.
+        protected Image                          mToggleImage = null; // The image component of the toggle switch.
+        protected Sprite[]                       mButtonImages = null; // The images to use for toggling the effect.
+        protected string                         mParamSceneName = null; // The name of the parameters scene.
+        protected Toggle                         mToggleSwitch = null; // The toggle switch for this audio effect.
+        protected VirtualInstrumentManager       mVIM = null; // The Virtual Instrument Manager.
 
         //---------------------------------------------------------------------------- 
         // Unity Functions
         //---------------------------------------------------------------------------- 
+
+        // Initializes values.
         public void Start()
         {
             // Get the virtual instrument manager.
-            mVIM = GameObject.Find( "Main Camera" ).GetComponent<VirtualInstrumentManager>();
+            mVIM = GameObject.Find( "VirtualInstrumentManager" ).GetComponent<VirtualInstrumentManager>();
 
             // Get the toggle switch and add its listener.
             mToggleSwitch = gameObject.transform.GetChild( 0 ).GetComponent<Toggle>();
@@ -382,18 +409,26 @@ public class ATI {
             mButtonImages[0] = Resources.Load<Sprite>( "Music/Images/off_button" );
             mButtonImages[1] = Resources.Load<Sprite>( "Music/Images/on_button" );
 
+            // Set the default parameters.
             SetDefaultParameters();
 
         }
 
+        // Called every frame.
         private void Update()
         {
+            // If we are currently loading a scene, then see if it is done.
             if( mSceneLoadOperation != null && mEnabled )
             {
+                // If the scene is done, then get the parameter container and set it 
+                // underneath this object.
                 if( mSceneLoadOperation.isDone )
                 {
+                    // Get the parameter container.
                     mParamObject = SceneManager.GetSceneByName( mParamSceneName ).GetRootGameObjects()[0].transform.GetChild( 0 ).gameObject;
                     mParamObject.transform.SetParent( gameObject.transform, true );
+
+                    // Set the container's position.
                     Vector3 temp = new Vector3( 0f, 0f, 0f );
                     temp.y -= ( ( mParamObject.GetComponent<RectTransform>().rect.height * mParamObject.transform.localScale.y / 2f ) + 
                         ( gameObject.GetComponent<RectTransform>().rect.height / 2f ) );
@@ -401,45 +436,54 @@ public class ATI {
                         ( gameObject.GetComponent<RectTransform>().rect.width / 2f ) );
                     mParamObject.transform.localPosition = temp;
 
+                    // Reset the scene load operation.
                     mSceneLoadOperation = null;
+
+                    // Make the specific subclass handle the scene being loaded.
                     HandleSceneLoad();
                 }
             }
         }
 
         //---------------------------------------------------------------------------- 
-        // Public Functions
-        //---------------------------------------------------------------------------- 
-
-
-        //---------------------------------------------------------------------------- 
-        // Private Functions
-        //---------------------------------------------------------------------------- 
-
-
-        //---------------------------------------------------------------------------- 
         // Event Handlers
         //---------------------------------------------------------------------------- 
+
+        // Handles the audio effect being turned on or off.
+        // IN: aEnabled Is the effect now on or off?
         public void OnToggle( bool aEnabled )
         {
+            // If the effect is now on, handle turning on the effect.
             if( aEnabled )
             {
-                TurnOnEffect();
-
+                // Sanity Check.
                 if( mParamSceneName == null )
                 {
                     Assert.IsTrue( false, "Turned on an uninitialized audio effect!" );
                     return;
                 }
 
+                // Make the subclass turn on the effect.
+                TurnOnEffect();
+
+                // Start loading the parameter scene.
                 mSceneLoadOperation = SceneManager.LoadSceneAsync( mParamSceneName, LoadSceneMode.Additive );
             }
+            // If the effect is now off, then turn off the effect.
             else
             {
+                // Unload the parameter scene.
+                mParamObject.transform.SetParent( SceneManager.GetSceneByName( mParamSceneName ).GetRootGameObjects()[0].transform );
+                SceneManager.UnloadSceneAsync( mParamSceneName );
+
+                // Make the subclass turn off the effect.
                 TurnOffEffect();
             }
         }
 
+        // Handles a change in an audio effect parameter
+        // IN: aType The type of parameter.
+        // IN: aValue The new value of the parameter.
         public void HandleAudioEffectParameterChange( AudioEffectParameterType aType, float aValue )
         {
             switch( aType )

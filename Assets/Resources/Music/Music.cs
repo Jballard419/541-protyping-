@@ -14,106 +14,54 @@ using UnityEngine;
 
 public class Music {
 
+    //---------------------------------------------------------------------------- 
+    // Constants
+    //---------------------------------------------------------------------------- 
+
     public static string[] PITCH_STRING = { "C", "CS", "D", "DS", "E", "F", "FS", "G", "GS", "A", "AS", "B" };
     public static short NUM_NOTES_IN_OCTAVE = 12;
     public static float SEMITONE_FACTOR = 1.059463f;
     public static int MAX_SUPPORTED_NOTES = 120;
+
+    //---------------------------------------------------------------------------- 
+    // Types
+    //---------------------------------------------------------------------------- 
+
+    // The possible instrument types.
     public enum INSTRUMENT_TYPE
     {
         PIANO,
         MARIMBA
     };
 
+    // An abstract musical note.
     public struct Note
     {
-        public int Length;
-        public PITCH Pitch;
         public int Velocity;
-        public int OffsetSamples;
+        public PITCH[] Pitches;
+        public NOTE_LENGTH Length;
+        public NOTE_LENGTH Offset;
     }
 
-    public static Note CreateNote( int aLength, PITCH aPitch, int aVelocity, int aOffsetSamples )
-    {
-        Note newNote;
-        newNote.Length = aLength;
-        newNote.Pitch = aPitch;
-        newNote.Velocity = aVelocity;
-        newNote.OffsetSamples = aOffsetSamples;
-        return newNote;
-    }
-
+    // The length of a note.
     public enum NOTE_LENGTH
     {
-        T,
-        S,
-        E,
-        Q,
-        H,
-        W
+        T, // 32nd note.
+        D_T, // Dotted 32nd note.
+        S, // 16th note.
+        D_S, // Dotted 16th note.
+        E, // Eighth note.
+        D_E, // Dotted eighth note.
+        Q, // Quarter note.
+        D_Q, // Dotted quarter note.
+        H, // Half note.
+        D_H, // Dotted half note.
+        W, // Whole note.
+        D_W, // Dotted whole note.
+        NONE // Used when there are no offsets (i.e. chords)
     };
 
-    public static NOTE_LENGTH[] DemoSongNoteLengths =
-        {
-            NOTE_LENGTH.Q, NOTE_LENGTH.E, NOTE_LENGTH.E, NOTE_LENGTH.S, NOTE_LENGTH.S, NOTE_LENGTH.S, NOTE_LENGTH.S, NOTE_LENGTH.E, NOTE_LENGTH.E, 
-            NOTE_LENGTH.Q, NOTE_LENGTH.Q, NOTE_LENGTH.E, NOTE_LENGTH.E, NOTE_LENGTH.E, NOTE_LENGTH.E, 
-            NOTE_LENGTH.Q, NOTE_LENGTH.Q, NOTE_LENGTH.Q, NOTE_LENGTH.Q, 
-            NOTE_LENGTH.E, NOTE_LENGTH.E, NOTE_LENGTH.E, NOTE_LENGTH.E, NOTE_LENGTH.W
-        };
-
-    public static PITCH[] DemoSongPitches =
-    {
-        PITCH.D4, PITCH.REST, PITCH.A4, PITCH.GS4, PITCH.A4, PITCH.GS4, PITCH.A4, PITCH.GS4, PITCH.A4,
-        PITCH.F4, PITCH.D4, PITCH.REST, PITCH.D4, PITCH.F4, PITCH.A4,
-        PITCH.AS4, PITCH.F4, PITCH.AS4, PITCH.C5,
-        PITCH.A4, PITCH.AS4, PITCH.A4, PITCH.AS4, PITCH.A4, 
-    };
-
-    public static Queue<Note> GetDemoSong( int aBPM )
-    {
-        Queue<Note> returned = new Queue<Note>();
-        int offset = 0;
-        int samp = 0;
-
-        for( int i = 0; i < 24; i++ )
-        {
-            samp = GetNoteLengthInSamples( aBPM, 44100, DemoSongNoteLengths[i] );
-            returned.Enqueue( CreateNote( samp, DemoSongPitches[i], 70, offset ) );
-            if( DemoSongPitches[i] != PITCH.REST )
-            {
-                PITCH lower = (PITCH)( (int)DemoSongPitches[i] - 12 );
-                returned.Enqueue( CreateNote( samp, lower, 70, offset ) );
-            }
-
-            offset += samp;
-        }
-
-        return returned;
-    }
-
-    public static int GetNoteLengthInSamples( int aBPM, int aSampleRate, NOTE_LENGTH aNoteLength )
-    {
-        float beatsPerSecond = (float)aBPM / 60f;
-        float numSamplesPerBeat = 2f * ( 1f / beatsPerSecond ) * (float)aSampleRate;
-
-        switch( aNoteLength )
-        {
-            case NOTE_LENGTH.T:
-                return (int)( numSamplesPerBeat / 8f );
-            case NOTE_LENGTH.S:
-                return (int)( numSamplesPerBeat / 4f );
-            case NOTE_LENGTH.Q:
-                return (int)( numSamplesPerBeat );
-            case NOTE_LENGTH.E:
-                return (int)( numSamplesPerBeat / 2f );
-            case NOTE_LENGTH.H:
-                return (int)( numSamplesPerBeat * 2f );
-            case NOTE_LENGTH.W:
-            default:
-                return (int)( numSamplesPerBeat * 4f );
-        }
-    }
-
-
+    // The possible pitches that can be played.
     public enum PITCH
     {
         C0,
@@ -239,15 +187,101 @@ public class Music {
         REST
     }
 
+    // A container that represents a time signature.
+    public struct TimeSignature
+    {
+        public int BeatsPerMeasure;
+        public NOTE_LENGTH BaseBeat;
+    } 
+
+    //---------------------------------------------------------------------------- 
+    // Static Functions
+    //---------------------------------------------------------------------------- 
+    public static float GetNoteLengthRelativeToMeasure( NOTE_LENGTH aLength, TimeSignature aTimeSignature )
+    {
+        float quarterNoteLength = 1f;
+        switch( aTimeSignature.BaseBeat )
+        {
+            case NOTE_LENGTH.E:
+                quarterNoteLength *= 2f;
+                break;
+            default:
+                break;
+                
+        }
+
+        quarterNoteLength /= (float)aTimeSignature.BeatsPerMeasure;
+
+        switch( aLength )
+        {
+            case Music.NOTE_LENGTH.T:
+                return quarterNoteLength / 8f;
+            case Music.NOTE_LENGTH.D_T:
+                return 1.5f * quarterNoteLength / 8f;
+            case Music.NOTE_LENGTH.S:
+                return quarterNoteLength / 4f;
+            case Music.NOTE_LENGTH.D_S:
+                return 1.5f * quarterNoteLength / 4f;
+            case Music.NOTE_LENGTH.E:
+                return quarterNoteLength / 2f;
+            case Music.NOTE_LENGTH.D_E:
+                return 1.5f * quarterNoteLength / 2f;
+            case Music.NOTE_LENGTH.Q:
+                return quarterNoteLength;
+            case Music.NOTE_LENGTH.D_Q:
+                return quarterNoteLength * 1.5f;
+            case Music.NOTE_LENGTH.H:
+                return quarterNoteLength * 2f;
+            case Music.NOTE_LENGTH.D_H:
+                return quarterNoteLength * 3f;
+            case Music.NOTE_LENGTH.W:
+                return quarterNoteLength * 4f;
+            case Music.NOTE_LENGTH.D_W:
+                return quarterNoteLength * 6f;
+            default:
+                return 0;
+        }
+    }
+
+    // Converts a pitch to a string.
     public static string NoteToString( PITCH aNoteValue )
     {
         return NoteToString( (int)aNoteValue );
     }
 
+    // Overloaded function that converts a pitch to a string
     public static string NoteToString( int aNoteValue )
     {
         int pitchIndex = aNoteValue % 12;
         int octave = aNoteValue / 12;
         return PITCH_STRING[pitchIndex] + octave.ToString();
     }
+
+    // Returns a 4/4 time signature.
+    public static TimeSignature TIME_SIGNATURE_4_4()
+    {
+        TimeSignature returned;
+        returned.BeatsPerMeasure = 4;
+        returned.BaseBeat = NOTE_LENGTH.Q;
+        return returned;
+    }
+
+    // Returns a 3/4 time signature.
+    public static TimeSignature TIME_SIGNATURE_3_4()
+    {
+        TimeSignature returned;
+        returned.BeatsPerMeasure = 3;
+        returned.BaseBeat = NOTE_LENGTH.Q;
+        return returned;
+    }
+
+    // Returns a 6/8 time signature.
+    public static TimeSignature TIME_SIGNATURE_6_8()
+    {
+        TimeSignature returned;
+        returned.BeatsPerMeasure = 6;
+        returned.BaseBeat = NOTE_LENGTH.E;
+        return returned;
+    }
+
 }

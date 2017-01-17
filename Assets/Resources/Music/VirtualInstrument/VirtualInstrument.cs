@@ -97,6 +97,43 @@ public class VirtualInstrument
         return mBuiltInDynamicsThresholds;
     }
 
+    // Gets the adjusted velocity factor from 0 to 1.0. 
+    // IN: aVelocity The velocity for the note from 0 to 100.
+    public float GetAdjustedVelocityFactor( int aVelocity )
+    {
+        int dynamicsIndex = 0;
+        float velocityFactor = aVelocity / 100f;
+
+        // Calculate the velocity multiplier. The multiplier is a percentage that is used to adjust the
+        // levels of the audio data to modify the output volume. 
+        // If built-in dynamics are supported, then the velocity multiplier will range from 0.5 to 1.0.
+        if( mNumBuiltInDynamics != 0 )
+        {
+            // See which built-in dynamics value we need to use. Start at the top threshold and work down.
+            for( int i = mNumBuiltInDynamics - 1; i > -1; i-- )
+            {
+                if( aVelocity <= mBuiltInDynamicsThresholds[i] )
+                {
+                    dynamicsIndex = i;
+                }
+            }
+            // Calculate the velocity factor.
+            float inEnd = (float)mBuiltInDynamicsThresholds[dynamicsIndex];
+            float outEnd = .5f * (float)mBuiltInDynamicsThresholds[dynamicsIndex] / (float)mBuiltInDynamicsThresholds[mNumBuiltInDynamics - 1];
+            float inStart = 0f;
+            float outStart = 0f;
+            if( dynamicsIndex != 0 )
+            {
+                inStart = (float)mBuiltInDynamicsThresholds[dynamicsIndex - 1];
+                outStart = (float)mBuiltInDynamicsThresholds[dynamicsIndex - 1] / (float)mBuiltInDynamicsThresholds[dynamicsIndex];
+            }
+
+            velocityFactor = outStart + ( ( ( outEnd - outStart ) / ( inEnd - inStart ) ) * ( (float)aVelocity - inStart ) );
+        }
+        // If built-in dynamics are not supported, then just use the given velocity as a percentage. 
+        return velocityFactor;
+    }
+
     // Gets the highest note that this instrument supports.
     // OUT: The highest note that this instrument supports.
     public Music.PITCH GetHighestSupportedNote()

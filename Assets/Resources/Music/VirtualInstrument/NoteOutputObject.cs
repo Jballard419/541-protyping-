@@ -21,8 +21,6 @@ public class NoteOutputObject : MonoBehaviour
     // Private Variables
     //---------------------------------------------------------------------------- 
     private AudioSource                mSource; // The AudioSource component of this object
-    private AudioReverbFilter          mReverbFilter; // A reverb filter for the sound if it is needed.
-    private AudioEchoFilter            mEchoFilter; // An echo filter for the sound if it is needed.
     private bool                       mAudioDataBeingUsed; // Whether or not OnAudioFilterRead is currently using the audio data
     private bool                       mLoaded; // Whether or not this object has loaded.
     private bool                       mNewNote; // Whether or not a new note needs to be started.
@@ -45,6 +43,7 @@ public class NoteOutputObject : MonoBehaviour
     // Called when the object is created. This function sets the initial values for each variable.
     private void Awake()
     {
+        // Set the values of the member variables
         mAudioDataBeingUsed = false;
         mLoaded = false;
         mCounter = 0;
@@ -56,43 +55,23 @@ public class NoteOutputObject : MonoBehaviour
         mVelocityFactor = 1f;
         mNoteRelease = false;
 
-        // Create an Audio Source and attach it as a component to this object. 
+        // Make sure that this isn't destroyed when a new scene is loaded.
+        DontDestroyOnLoad( this );
+
+        // Destroy the audio source if it already exists.
         mSource = gameObject.GetComponent<AudioSource>();
         if( mSource != null )
         {
-            DestroyImmediate( mSource );
+            DestroyImmediate( mSource, false );
         }
 
+        // Add a new audio source to this object and set its values.
         mSource = gameObject.AddComponent<AudioSource>();
         mSource.enabled = true;
         mSource.playOnAwake = false;
         mSource.minDistance = 10000f;
         mSource.maxDistance = 10000000f;
-        mSource.volume = 1f;
-
-        mEchoFilter = gameObject.GetComponent<AudioEchoFilter>();
-        if( mEchoFilter != null )
-        {
-            DestroyImmediate( mEchoFilter );
-        }
-
-        mEchoFilter = gameObject.AddComponent<AudioEchoFilter>();
-        mEchoFilter.enabled = true;
-        mEchoFilter.wetMix = 1f;
-        mEchoFilter.decayRatio = 0.25f;
-        mEchoFilter.delay = 100f;
-
-
-        mReverbFilter = gameObject.GetComponent<AudioReverbFilter>();
-        if( mReverbFilter != null )
-        {
-            DestroyImmediate( mReverbFilter );
-        }
-        mReverbFilter = gameObject.AddComponent<AudioReverbFilter>();
-            
-        mReverbFilter.enabled = true;
-
-
+        //mSource.volume = 1f;
     }
 
     //---------------------------------------------------------------------------- 
@@ -218,7 +197,7 @@ public class NoteOutputObject : MonoBehaviour
     // VirtualInstrumentManager's OnNoteFadeOut Event.
     public void BeginNoteFadeOut()
     {
-        if ( mLoaded )
+        if ( mLoaded && mNotePlaying )
         {
             // Set that the note should fade out. 
             // Actually processing the fade out will be handled by the onAudioFilterRead function.
@@ -227,49 +206,18 @@ public class NoteOutputObject : MonoBehaviour
     }
 
     // Handler for setting the note to be played. Should be called from VirtualInstrumentManager's OnNotePlay event. 
-    // IN: aVelocity The velocity of the note to be played. Ranges from 0 (silent) to 100 (max volume).
-    public void BeginNotePlaying( int aVelocity )
+    // IN: aVelocityFactor The adjusted velocity of the note to be played. Ranges from 0 (silent) to 1.0 (max volume).
+    // IN: aDynamicsIndex the index of the built-in dynamics.
+    public void BeginNotePlaying( float aVelocityFactor, int aDynamicsIndex )
     {
-        Assert.IsTrue( aVelocity <= 100, "VirtualInstrumentOutput was given a velocity greater than 100!" );
+        Assert.IsTrue( aVelocityFactor <= 1f, "NoteOutputObject was given a velocity factor greater than 1!" );
 
         if ( mLoaded )
         {
-
-            // Calculate the velocity multiplier. The multiplier is a percentage that is used to adjust the
-            // levels of the audio data to modify the output volume. 
-            // If built-in dynamics are supported, then the velocity multiplier will range from 0.5 to 1.0.
-            if ( mNumBuiltInDynamics != 0 )
-            {
-                // See which built-in dynamics value we need to use. Start at the top threshold and work down.
-                for ( int i = mNumBuiltInDynamics - 1; i > -1; i-- )
-                {
-                    if ( aVelocity <= mBuiltInDynamicsThresholds[i] )
-                    {
-                        mNewNoteDynamicsIndex = i;
-                    }
-                }
-                // Calculate the velocity factor.
-                float inEnd = (float)mBuiltInDynamicsThresholds[mNewNoteDynamicsIndex];
-                float outEnd = .5f * (float)mBuiltInDynamicsThresholds[mNewNoteDynamicsIndex] / (float)mBuiltInDynamicsThresholds[mNumBuiltInDynamics - 1];
-                float inStart = 0f;
-                float outStart = 0f;
-                if( mNewNoteDynamicsIndex != 0 )
-                {
-                    inStart = (float)mBuiltInDynamicsThresholds[mNewNoteDynamicsIndex - 1];
-                    outStart = (float)mBuiltInDynamicsThresholds[mNewNoteDynamicsIndex - 1] / (float)mBuiltInDynamicsThresholds[mNewNoteDynamicsIndex];
-                }
-
-                mNewNoteVelocityFactor = outStart + ( ( ( outEnd - outStart ) / ( inEnd - inStart ) ) * ( (float)aVelocity - inStart ) );
-            }
-            // If built-in dynamics are not supported, then just use the given velocity as a percentage. 
-            else
-            {
-                mNewNoteVelocityFactor = (float)aVelocity / 100f;
-                mNewNoteDynamicsIndex = 0;
-            }
-
+            mNewNoteVelocityFactor = aVelocityFactor;
+            mNewNoteDynamicsIndex = aDynamicsIndex;
             mNewNote = true;
-
+            mNoteRelease = false;
         }
 
     }
@@ -301,58 +249,43 @@ public class NoteOutputObject : MonoBehaviour
             {
                 // If the note has been released, then set the velocity factor to 
                 // decrease each time this function is called.
-                mVelocityFactor *= .99f;
+                mVelocityFactor -= ( 1f / 100f );
             }
-
-
             if( mNotePlaying )
             {
-                // If we're currently playing a note then retrieve the audio data. 
-                for( int i = 0; i < data.Length && ( mCounter + i ) < mEndSampleIndices[mDynamicsIndex]; i++ )
+                // If the note hasn't faded out, then play it.
+                if( mVelocityFactor > 0 )
                 {
-                    data[i] = mAudioData[mDynamicsIndex][mCounter + i] * mVelocityFactor;
-                }
+                    // If we're currently playing a note then retrieve the audio data. 
+                    for( int i = 0; i < data.Length && ( mCounter + i ) < mEndSampleIndices[mDynamicsIndex]; i++ )
+                    {
+                        data[i] = mAudioData[mDynamicsIndex][mCounter + i] * mVelocityFactor;
+                    }
 
-                // If we've reached the end of the audio data, then the note is no longer playing so
+                    // If we've reached the end of the audio data, then the note is no longer playing so
+                    // we should reset some variables.
+                    if( mCounter + data.Length >= mEndSampleIndices[mDynamicsIndex] )
+                    {
+                        mCounter = 0;
+                        mNotePlaying = false;
+                        mNoteRelease = false;
+                    }
+                    // If we haven't reached the end of the audio data yet, then increase the counter.
+                    else
+                    {
+                        mCounter += data.Length;
+                    }
+                }
+                // If the note has faded out, then the note is no longer playing so
                 // we should reset some variables.
-                if( mCounter + data.Length >= mEndSampleIndices[mDynamicsIndex] )
+                else
                 {
                     mCounter = 0;
                     mNotePlaying = false;
                     mNoteRelease = false;
-                }
-                // If we haven't reached the end of the audio data yet, then increase the counter.
-                else
-                {
-                    mCounter += data.Length;
-                }
+                }                
             }
             mAudioDataBeingUsed = false;
-        }
-    }
-
-    // Toggles whether or not the echo filter is active.
-    public void ToggleEcho( bool aOn )
-    {
-        if( aOn )
-        {
-            mEchoFilter.enabled = true;
-        }
-        else
-        {
-            mEchoFilter.enabled = false;
-        }
-    }
-
-    public void ToggleReverb( bool aOn )
-    {
-        if( aOn )
-        {
-            mReverbFilter.enabled = true;
-        }
-        else
-        {
-            mReverbFilter.enabled = false;
         }
     }
 }

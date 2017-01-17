@@ -69,7 +69,7 @@ public class VirtualInstrumentManager : MonoBehaviour {
 
     // A type of event that's invoked in order to play a song.
     // The parameter is the a queue of notes to play.
-    public class PlaySongEvent : UnityEvent<Queue<Music.Note>>
+    public class PlaySongEvent : UnityEvent<Song>
     {
     }
 
@@ -113,6 +113,7 @@ public class VirtualInstrumentManager : MonoBehaviour {
     public ModifyEchoFilterEvent       ModifyEchoFilter; // The event that will be invoked when the echo filter needs to be modified.
     public ModifyReverbFilterEvent     ModifyReverbFilter; // The event that will be invoked when the reverb filter needs to be modified.
     public PlaySongEvent               PlaySong; // The event that will be invoked when a song should be played.
+    public SongManagerClass            SongManager; // The song manager                 
 
     //---------------------------------------------------------------------------- 
     // Private Variables
@@ -137,6 +138,7 @@ public class VirtualInstrumentManager : MonoBehaviour {
     public void Awake()
     {
         mReady = false;
+        DontDestroyOnLoad( this );
 
         #if DEBUG && DEBUG_MUSICAL_TYPING
             DEBUG_SetMusicalTypingVariables();
@@ -166,6 +168,7 @@ public class VirtualInstrumentManager : MonoBehaviour {
     // Private Functions
     //---------------------------------------------------------------------------- 
 
+    // Loads the objects that play the audio data.
     private void LoadNoteOutputObjects()
     {
         Assert.IsNotNull( mInstrument, "Tried to load NoteOutputObjects when the instrument was null!" );
@@ -247,6 +250,8 @@ public class VirtualInstrumentManager : MonoBehaviour {
 
         GameObject songOutputContainer = new GameObject();
         mSongOutput = songOutputContainer.AddComponent<NoteOutputObject>();
+
+        SongManager = gameObject.AddComponent<SongManagerClass>();
     }
 
     //---------------------------------------------------------------------------- 
@@ -418,15 +423,6 @@ public class VirtualInstrumentManager : MonoBehaviour {
         }
     }
 
-    // Begins fading out the note as though the key was released. Should only be called via an invoked NoteReleaseEvent.
-    // IN: aNoteToFade The note to fade out. 
-    public void OnNoteReleaseEvent( Music.PITCH aNoteToRelease )
-    {
-        Assert.IsTrue( (int)aNoteToRelease >= (int)mLowestActiveNote && (int)aNoteToRelease <= (int)mHighestActiveNote, "Tried to fade out a note that is not active!" );
-        int noteIndex = (int)aNoteToRelease - (int)mLowestActiveNote;
-        mOutputs[noteIndex].BeginNoteFadeOut();
-    }
-
     // Begin playing a note. Should only be called via an invoked NoteStartEvent.
     // IN: aNoteToPlay The note to play.
     // IN: aVelocity The velocity at which to play the note.
@@ -436,47 +432,92 @@ public class VirtualInstrumentManager : MonoBehaviour {
         {
             Assert.IsTrue( (int)aNoteToPlay >= (int)mLowestActiveNote && (int)aNoteToPlay <= (int)mHighestActiveNote, "Tried to play a note that is not active!" );
             int noteIndex = (int)aNoteToPlay - (int)mLowestActiveNote;
-            mOutputs[noteIndex].BeginNotePlaying( aVelocity );
+            int velIndex = mInstrument.GetBuiltInDynamicsThresholdIndex( aVelocity );
+            float velFactor = mInstrument.GetAdjustedVelocityFactor( aVelocity );
+            mOutputs[noteIndex].BeginNotePlaying( velFactor, velIndex );
         }
 
     }
 
-    // Begins playing a song. 
-    // IN: aNoteQueue The queue of notes that make up the song.
-    public void OnPlaySongEvent( Queue<Music.Note> aNoteQueue )
+    // Begins fading out the note as though the key was released. Should only be called via an invoked NoteReleaseEvent.
+    // IN: aNoteToFade The note to fade out. 
+    public void OnNoteReleaseEvent( Music.PITCH aNoteToRelease )
     {
-        Music.Note[] noteArray = aNoteQueue.ToArray();
-        int numSamples = noteArray[noteArray.Length - 1].Length + noteArray[noteArray.Length - 1].OffsetSamples;
-        float[][] songData = new float[1][];
-        songData[0] = new float[numSamples];
+        Assert.IsTrue( (int)aNoteToRelease >= (int)mLowestActiveNote && (int)aNoteToRelease <= (int)mHighestActiveNote, "Tried to fade out a note that is not active!" );
+        int noteIndex = (int)aNoteToRelease - (int)mLowestActiveNote;
+        mOutputs[noteIndex].BeginNoteFadeOut();
+    }
+
+    // Begins playing a song. 
+    // IN: aSong The song to play.
+    public void OnPlaySongEvent( Song aSong )
+    {
+        // Get the song's note data.
+        Song.NoteData[] songNoteData = aSong.GetNoteData();
+
+        // Get the number of notes in the song.
+        int numNotes = songNoteData.Length;
+
+        // Get the total number of samples in the song.
+        int numSamples = 0;
+        for( int i = 0; i < numNotes; i++ )
+        {
+            numSamples = Mathf.Max( ( songNoteData[i].NumSamples + songNoteData[i].TotalOffset ), numSamples );
+        }
+
+        // Allocate a 2-D array for the song's audio data.
+        float[][] songAudioData = new float[1][];
+        songAudioData[0] = new float[numSamples];
+
+        // Make some variables to keep track of the velocity and offset.
         int offset = 0;
         int velocity = 0;
         int velIndex = 0;
-        for( int i = 0; i < noteArray.Length; i++ )
+        float velFactor = 0f;
+
+        // Iterate through all of the notes.
+        for( int i = 0; i < numNotes; i++ )
         {
-            if( noteArray[i].Pitch != Music.PITCH.REST )
+            // If the note is a rest, we don't need to worry about it.
+            if( songNoteData[i].Pitches[0] != Music.PITCH.REST )
             {
-                offset = noteArray[i].OffsetSamples;
-                velocity = noteArray[i].Velocity;
+                // Get the offset and velocity from the note.
+                offset = songNoteData[i].TotalOffset;
+                velocity = songNoteData[i].Velocity;
+
+                // Get the associated dynamics index and velocity factor.
                 velIndex = mInstrument.GetBuiltInDynamicsThresholdIndex( velocity );
-                float[][] noteData = mInstrument.GetRawAudioDataForNote( noteArray[i].Pitch );
-                int j = 0;
-                while( j < noteArray[i].Length && j < noteData[velIndex].Length )
+                velFactor = mInstrument.GetAdjustedVelocityFactor( velocity );
+
+                // Add the audio data for all of the pitches in the note.
+                for( int j = 0; j < songNoteData[i].Pitches.Length; j++ )
                 {
-                    songData[0][j + offset] += noteData[velIndex][j];
-                    j++;
-                }
-                float releaseFactor = 1f;
-                while( j < noteData[velIndex].Length && j + offset < numSamples )
-                {
-                    songData[0][j + offset] = releaseFactor * noteData[velIndex][j];
-                    releaseFactor *= .999f;
-                    j++;
+                    // Get the audio data for the note.
+                    float[][] pitchAudioData = mInstrument.GetRawAudioDataForNote( songNoteData[i].Pitches[j] );
+
+                    // Put all of the samples from the pitch's audio data into the song audio data.
+                    int k = 0;
+                    while( k < songNoteData[i].NumSamples && k < pitchAudioData[velIndex].Length )
+                    {
+                        songAudioData[0][k + offset] += ( pitchAudioData[velIndex][k] * velFactor );
+                        k++;
+                    }
+
+                    // Adjust for when the note is released.
+                    float releaseFactor = velFactor;
+                    while( k < pitchAudioData[velIndex].Length && k + offset < numSamples && releaseFactor > 0 )
+                    {
+                        songAudioData[0][k + offset] += pitchAudioData[velIndex][k] * releaseFactor;
+                        releaseFactor -= ( 1f / 22500f );
+                        k++;
+                    }
                 }
             }
         }
-        mSongOutput.SetAudioData( songData, mMixer, null );
-        mSongOutput.BeginNotePlaying( 100 );
+
+        // Set the song output object's audio data and begin playing the song.
+        mSongOutput.SetAudioData( songAudioData, mMixer, null );
+        mSongOutput.BeginNotePlaying( 1f, 0 );
     }
 
 #if DEBUG && DEBUG_MUSICAL_TYPING
