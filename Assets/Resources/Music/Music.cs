@@ -31,7 +31,8 @@ public class Music {
     public enum INSTRUMENT_TYPE
     {
         PIANO,
-        MARIMBA
+        MARIMBA,
+        DRUM_KIT
     };
 
     // An abstract musical note.

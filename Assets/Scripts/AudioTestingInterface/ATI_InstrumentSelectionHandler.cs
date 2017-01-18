@@ -20,7 +20,7 @@ public class ATI_InstrumentSelectionHandler : MonoBehaviour {
     //---------------------------------------------------------------------------- 
     // Private Variables
     //---------------------------------------------------------------------------- 
-    VirtualInstrumentManager vmm = null; // The virtual instrument manager.
+    VirtualInstrumentManager mVIM = null; // The virtual instrument manager.
 
 #endif
 
@@ -34,7 +34,7 @@ public class ATI_InstrumentSelectionHandler : MonoBehaviour {
     {
 
 #if DEBUG && DEBUG_MUSICAL_TYPING
-        vmm = GameObject.Find( "VirtualInstrumentManager" ).GetComponent<VirtualInstrumentManager>();
+        mVIM = GameObject.Find( "VirtualInstrumentManager" ).GetComponent<VirtualInstrumentManager>();
 #endif
 
     }
@@ -56,7 +56,7 @@ public class ATI_InstrumentSelectionHandler : MonoBehaviour {
     //     enum for which instrument the index corresponds to.
     public void OnInstrumentSelected( int aSelection )
     {
-        vmm.ChangeInstrument.Invoke( (Music.INSTRUMENT_TYPE)aSelection );
+        mVIM.ChangeInstrument.Invoke( (Music.INSTRUMENT_TYPE)aSelection );
     }
 
 #endif

@@ -55,6 +55,11 @@ public class VirtualInstrumentManager : MonoBehaviour {
     {
     }
 
+    // A type of event that's invoked in order to signal that the instrument is loaded.
+    public class InstrumentLoadedEvent : UnityEvent
+    {
+    }
+
     // A type of event that's invoked in order to modify the echo filter.
     // The parameter is a struct of EchoFilterParameters.
     public class ModifyEchoFilterEvent : UnityEvent<EchoFilterParameters>
@@ -110,6 +115,7 @@ public class VirtualInstrumentManager : MonoBehaviour {
     public NoteReleaseEvent            NoteRelease; // The event that will be invoked whenever a note should fade out.
     public ChangeNoteRangeEvent        ChangeNoteRange; // The event that will be invoked whenever the note range should change.
     public ChangeInstrumentEvent       ChangeInstrument; // The event that will be invoked whenever the instrument should be changed.
+    public InstrumentLoadedEvent       InstrumentLoaded; // The event that will be invoked when the instrument has finished loading.
     public ModifyEchoFilterEvent       ModifyEchoFilter; // The event that will be invoked when the echo filter needs to be modified.
     public ModifyReverbFilterEvent     ModifyReverbFilter; // The event that will be invoked when the reverb filter needs to be modified.
     public PlaySongEvent               PlaySong; // The event that will be invoked when a song should be played.
@@ -158,10 +164,45 @@ public class VirtualInstrumentManager : MonoBehaviour {
     // Public Functions
     //---------------------------------------------------------------------------- 
 
+    // Gets the highest active note.
+    // OUT: The highest active note.
+    public Music.PITCH GetHighestActiveNote()
+    {
+        return mHighestActiveNote;
+    }
+
+    // Gets the highest note that is supported by the loaded instrument.
+    // OUT: The highest note that is supported by the loaded instrument. 
+    public Music.PITCH GetHighestSupportedNote()
+    {
+        return mInstrument.GetHighestSupportedNote();
+    }
+
     // Gets the virtual instrument that is being managed.
     public VirtualInstrument GetInstrument()
     {
         return mInstrument;
+    }
+
+    // Gets the lowest active note.
+    // OUT: The lowest active note.
+    public Music.PITCH GetLowestActiveNote()
+    {
+        return mLowestActiveNote;
+    }
+
+    // Gets the lowest note that is supported by the loaded instrument.
+    // OUT: The lowest note that is supported by the loaded instrument.
+    public Music.PITCH GetLowestSupportedNote()
+    {
+        return mInstrument.GetLowestSupportedNote();
+    }
+
+    // Gets the number of active notes.
+    // OUT: THe number of active notes.
+    public int GetNumActiveNotes()
+    {
+        return mNumActiveNotes;
     }
 
     //---------------------------------------------------------------------------- 
@@ -173,27 +214,24 @@ public class VirtualInstrumentManager : MonoBehaviour {
     {
         Assert.IsNotNull( mInstrument, "Tried to load NoteOutputObjects when the instrument was null!" );
 
-        if( mOutputs == null )
+        // Initialize the array of NoteOutputObjects.
+        mOutputs = new NoteOutputObject[mNumActiveNotes];
+
+        // In order to have multiple notes play at once, an invisible GameObject is created and cloned multiple 
+        // times to serve as containers for each NoteOutputObject. The invisible object will be placed at the position
+        // of the virtual instrument manager, so be sure to put the virtual instrument manager on an object that is as
+        // close to the AudioListener as possible.  
+        GameObject toBeCloned = new GameObject( Music.NoteToString( mLowestActiveNote ) + "NoteOutputObjectContainer" );
+        toBeCloned.transform.position = gameObject.transform.position;
+        mOutputs[0] = toBeCloned.AddComponent<NoteOutputObject>();
+        GameObject clone = null;
+
+        // For each note, clone the invisible object (which will also clone the NoteOutputObject).
+        for( int i = 1; i < mNumActiveNotes; i++ )
         {
-            // Initialize the array of NoteOutputObjects.
-            mOutputs = new NoteOutputObject[mNumActiveNotes];
-
-            // In order to have multiple notes play at once, an invisible GameObject is created and cloned multiple 
-            // times to serve as containers for each NoteOutputObject. The invisible object will be placed at the position
-            // of the virtual instrument manager, so be sure to put the virtual instrument manager on an object that is as
-            // close to the AudioListener as possible.  
-            GameObject toBeCloned = new GameObject( Music.NoteToString( mLowestActiveNote ) + "NoteOutputObjectContainer" );
-            toBeCloned.transform.position = gameObject.transform.position;
-            mOutputs[0] = toBeCloned.AddComponent<NoteOutputObject>();
-            GameObject clone = null;
-
-            // For each note, clone the invisible object (which will also clone the NoteOutputObject).
-            for( int i = 1; i < mNumActiveNotes; i++ )
-            {
-                clone = Instantiate( toBeCloned );
-                clone.name = Music.NoteToString( mActiveNotes[i] ) + "NoteOutputObjectContainer";
-                mOutputs[i] = clone.GetComponent<NoteOutputObject>();
-            }
+            clone = Instantiate( toBeCloned );
+            clone.name = Music.NoteToString( mActiveNotes[i] ) + "NoteOutputObjectContainer";
+            mOutputs[i] = clone.GetComponent<NoteOutputObject>();
         }
 
         // Set the audio data of the NoteOutputObject.
@@ -219,6 +257,7 @@ public class VirtualInstrumentManager : MonoBehaviour {
         NoteRelease = new NoteReleaseEvent();
         ChangeNoteRange = new ChangeNoteRangeEvent();
         ChangeInstrument = new ChangeInstrumentEvent();
+        InstrumentLoaded = new InstrumentLoadedEvent();
         ModifyEchoFilter = new ModifyEchoFilterEvent();
         ModifyReverbFilter = new ModifyReverbFilterEvent();
         PlaySong = new PlaySongEvent();
@@ -226,6 +265,7 @@ public class VirtualInstrumentManager : MonoBehaviour {
         NoteRelease.AddListener( OnNoteReleaseEvent );
         ChangeNoteRange.AddListener( OnChangeNoteRangeEvent );
         ChangeInstrument.AddListener( OnChangeInstrumentEvent );
+        InstrumentLoaded.AddListener( OnInstrumentLoaded );
         ModifyEchoFilter.AddListener( OnModifyEchoFilterEvent );
         ModifyReverbFilter.AddListener( OnModifyReverbFilterEvent );
         PlaySong.AddListener( OnPlaySongEvent );
@@ -265,8 +305,11 @@ public class VirtualInstrumentManager : MonoBehaviour {
     {
         // Load a new instrument
         VirtualInstrument returned = null;
-        switch ( aINSTRUMENT_TYPE )
+        switch( aINSTRUMENT_TYPE )
         {
+            case Music.INSTRUMENT_TYPE.DRUM_KIT:
+                returned = new DrumKit( this );
+                break;
             case Music.INSTRUMENT_TYPE.MARIMBA:
                 returned = new Marimba( this );
                 break;
@@ -278,7 +321,7 @@ public class VirtualInstrumentManager : MonoBehaviour {
 
         // Return the loaded instrument and invoke the instrument's LoadEvent.
         aInstrumentCallback( returned );
-        returned.LoadEvent.Invoke();
+        InstrumentLoaded.Invoke();
         yield return null;
     }
 
@@ -308,10 +351,27 @@ public class VirtualInstrumentManager : MonoBehaviour {
         // Set the instrument type.
         mInstrumentType = aNewInstrumentType;
 
+        // Handle the difference in active notes for a drum kit vs. a normal instrument.
+        if( mInstrumentType == Music.INSTRUMENT_TYPE.DRUM_KIT )
+        {
+            mNumActiveNotes = 18;
+        }
+        else
+        {
+            mNumActiveNotes = 24;
+        }
+
+        // Destroy the note output objects.
+        for( int i = 0; i < mOutputs.Length; i++ )
+        {
+            DestroyImmediate( mOutputs[i], false );
+        }
+
+        mOutputs = null;
+
         // Set default values for the active notes.
         mLowestActiveNote = DEFAULT_LOWEST_PITCH;
-        mHighestActiveNote = DEFAULT_HIGHEST_PITCH;
-        mNumActiveNotes = (int)mHighestActiveNote - (int)mLowestActiveNote + 1;
+        mHighestActiveNote = (Music.PITCH)( (int)mLowestActiveNote + mNumActiveNotes - 1 );
         mActiveNotes = new Music.PITCH[mNumActiveNotes];
         for( int i = 0; i < mNumActiveNotes; i++ )
         {
@@ -609,7 +669,7 @@ public class VirtualInstrumentManager : MonoBehaviour {
         // used for the events.
         bool found = false;
         int i = 0;
-        while ( !found && i < DEBUG_numMusicalTypingKeys )
+        while ( !found && i < DEBUG_numMusicalTypingKeys && i < mNumActiveNotes )
         {
             if ( aKeyEvent.keyCode == DEBUG_musicalTypingKeys[i] )
             {
