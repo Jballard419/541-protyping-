@@ -26,6 +26,7 @@ public class Marimba : VirtualInstrument
     {
 
         // Set default values
+        mIsDrum = false;
         mLowestSupportedNote = Music.PITCH.C2;
         mHighestSupportedNote = Music.PITCH.C7;
         mNumSupportedNotes = 61;

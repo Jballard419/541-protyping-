@@ -27,8 +27,9 @@ public class DrumKit : VirtualInstrument
     {
 
         // Set default values
-        mLowestSupportedNote = Music.PITCH.C4;
-        mHighestSupportedNote = Music.PITCH.F5;
+        mIsDrum = true;
+        mLowestSupportedNote = Music.PITCH.C0;
+        mHighestSupportedNote = Music.PITCH.F1;
         mNumSupportedNotes = 18;
         mSampleRate = 44100;
         mSampleInterval = 1f / mSampleRate;
@@ -72,7 +73,7 @@ public class DrumKit : VirtualInstrument
         int index = 0;
         for( int i = (int)mLowestSupportedNote; i <= (int)mHighestSupportedNote; i++ )
         {
-            mFilenames[index] = mFilepath + Music.NoteToString( i );
+            mFilenames[index] = mFilepath + Music.DrumToString( i );
             index++;
         }
     }

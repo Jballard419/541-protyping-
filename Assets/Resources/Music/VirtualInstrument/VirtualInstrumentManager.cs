@@ -372,8 +372,15 @@ public class VirtualInstrumentManager : MonoBehaviour {
 
         mOutputs = null;
 
-        // Set default values for the active notes.
-        mLowestActiveNote = DEFAULT_LOWEST_PITCH;
+        // Set default values for the active notes and be sure to account for drums
+        if( mInstrumentType == Music.INSTRUMENT_TYPE.DRUM_KIT )
+        {
+            mLowestActiveNote = Music.PITCH.C0;
+        }
+        else
+        {
+            mLowestActiveNote = DEFAULT_LOWEST_PITCH;
+        }        
         mHighestActiveNote = (Music.PITCH)( (int)mLowestActiveNote + mNumActiveNotes - 1 );
         mActiveNotes = new Music.PITCH[mNumActiveNotes];
         for( int i = 0; i < mNumActiveNotes; i++ )
@@ -493,10 +500,43 @@ public class VirtualInstrumentManager : MonoBehaviour {
     {
         if ( mReady )
         {
-            Assert.IsTrue( (int)aNoteToPlay >= (int)mLowestActiveNote && (int)aNoteToPlay <= (int)mHighestActiveNote, "Tried to play a note that is not active!" );
+            // Sanity checks.
+            Assert.IsTrue( (int)aNoteToPlay >= (int)mLowestActiveNote && (int)aNoteToPlay <= (int)mHighestActiveNote, 
+                "Tried to play the note " + Music.NoteToString( aNoteToPlay ) + " which is not active!" );
+            Assert.IsTrue( aVelocity <= 100 && aVelocity >= 0,
+                "Tried to play a note with a velocity of " + aVelocity.ToString() + " which is not within the range from 0 to 100!" );
+
+            // Get the note index.
             int noteIndex = (int)aNoteToPlay - (int)mLowestActiveNote;
+
+            // Account for drum kits where we would need to make some outputs silent in some situations.
+            // Ex: Playing a closed hi-hat should stop an open hi-hat that is still playing.
+            if( mInstrumentType == Music.INSTRUMENT_TYPE.DRUM_KIT )
+            {
+                switch( (Music.DRUM)aNoteToPlay )
+                {
+                    case Music.DRUM.HIHAT_C:
+                        mOutputs[(int)Music.DRUM.HIHAT_O].BeginNotePlaying( 0, 0 );
+                        mOutputs[(int)Music.DRUM.HIHAT_P].BeginNotePlaying( 0, 0 );
+                        break;
+                    case Music.DRUM.HIHAT_O:
+                        mOutputs[(int)Music.DRUM.HIHAT_C].BeginNotePlaying( 0, 0 );
+                        mOutputs[(int)Music.DRUM.HIHAT_P].BeginNotePlaying( 0, 0 );
+                        break;
+                    case Music.DRUM.HIHAT_P:
+                        mOutputs[(int)Music.DRUM.HIHAT_C].BeginNotePlaying( 0, 0 );
+                        mOutputs[(int)Music.DRUM.HIHAT_O].BeginNotePlaying( 0, 0 );
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            // Get the built-in dynamics index and the velocity factor.
             int velIndex = mInstrument.GetBuiltInDynamicsThresholdIndex( aVelocity );
             float velFactor = mInstrument.GetAdjustedVelocityFactor( aVelocity );
+
+            // Begin playing the note.
             mOutputs[noteIndex].BeginNotePlaying( velFactor, velIndex );
         }
 
@@ -506,9 +546,14 @@ public class VirtualInstrumentManager : MonoBehaviour {
     // IN: aNoteToFade The note to fade out. 
     public void OnNoteReleaseEvent( Music.PITCH aNoteToRelease )
     {
-        Assert.IsTrue( (int)aNoteToRelease >= (int)mLowestActiveNote && (int)aNoteToRelease <= (int)mHighestActiveNote, "Tried to fade out a note that is not active!" );
-        int noteIndex = (int)aNoteToRelease - (int)mLowestActiveNote;
-        mOutputs[noteIndex].BeginNoteFadeOut();
+        // Don't account for note releases for drums.
+        if( mInstrumentType != Music.INSTRUMENT_TYPE.DRUM_KIT )
+        {
+            Assert.IsTrue( (int)aNoteToRelease >= (int)mLowestActiveNote && (int)aNoteToRelease <= (int)mHighestActiveNote, 
+                "Tried to fade out the note " + Music.NoteToString( aNoteToRelease ) + " which is not active!" );
+            int noteIndex = (int)aNoteToRelease - (int)mLowestActiveNote;
+            mOutputs[noteIndex].BeginNoteFadeOut();
+        }
     }
 
     // Begins playing a song. 

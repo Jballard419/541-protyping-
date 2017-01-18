@@ -18,10 +18,15 @@ public class Music {
     // Constants
     //---------------------------------------------------------------------------- 
 
+    public static string[] DRUM_STRING =
+        { "KICK_1", "KICK_2", "SNARE_1", "SNARE_RIM", "SNARE_2", "LOWTOM_1",
+        "HIHAT_C", "LOWTOM_2", "HIHAT_P", "MIDTOM_1", "HIHAT_O", "MIDTOM_2",
+        "HIGHTOM_1", "CRASH_1", "HIGHTOM_2", "RIDE", "CRASH_2", "RIDE_BELL" };
     public static string[] PITCH_STRING = { "C", "CS", "D", "DS", "E", "F", "FS", "G", "GS", "A", "AS", "B" };
     public static short NUM_NOTES_IN_OCTAVE = 12;
     public static float SEMITONE_FACTOR = 1.059463f;
     public static int MAX_SUPPORTED_NOTES = 120;
+    public static int MAX_SUPPORTED_DRUMS = 18;
 
     //---------------------------------------------------------------------------- 
     // Types
@@ -42,6 +47,29 @@ public class Music {
         public PITCH[] Pitches;
         public NOTE_LENGTH Length;
         public NOTE_LENGTH Offset;
+    }
+
+    // The possible drums/cymbals that can be played.
+    public enum DRUM
+    {
+        KICK_1,
+        KICK_2,
+        SNARE_1,
+        SNARE_RIM,
+        SNARE_2,
+        LOWTOM_1,
+        HIHAT_C,
+        LOWTOM_2,
+        HIHAT_P,
+        MIDTOM_1,
+        HIHAT_O,
+        MIDTOM_2,
+        HIGHTOM_1,
+        CRASH_1,
+        HIGHTOM_2,
+        RIDE,
+        CRASH_2,
+        RIDE_BELL
     }
 
     // The length of a note.
@@ -193,11 +221,28 @@ public class Music {
     {
         public int BeatsPerMeasure;
         public NOTE_LENGTH BaseBeat;
-    } 
+    }
 
     //---------------------------------------------------------------------------- 
     // Static Functions
     //---------------------------------------------------------------------------- 
+
+    // Returns a string based on the given drum.
+    // IN: aDrum The given drum
+    // OUT: The string describing the drum.
+    public static string DrumToString( DRUM aDrum )
+    {
+        return DRUM_STRING[(int)aDrum];
+    }
+
+    // Returns a string based on the given drum.
+    // IN: aDrumIndex An index corresponding to a drum
+    // OUT: The string describing the drum.
+    public static string DrumToString( int aDrumIndex )
+    {
+        return DRUM_STRING[aDrumIndex];
+    }
+
     public static float GetNoteLengthRelativeToMeasure( NOTE_LENGTH aLength, TimeSignature aTimeSignature )
     {
         float quarterNoteLength = 1f;

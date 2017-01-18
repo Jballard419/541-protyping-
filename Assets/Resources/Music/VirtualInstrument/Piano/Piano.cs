@@ -27,6 +27,7 @@ public class Piano : VirtualInstrument
     {
 
         // Set default values
+        mIsDrum = false;
         mLowestSupportedNote = Music.PITCH.B0;
         mHighestSupportedNote = Music.PITCH.C8;
         mNumSupportedNotes = 86;

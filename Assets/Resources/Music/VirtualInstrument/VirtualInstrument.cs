@@ -23,10 +23,11 @@ public class VirtualInstrument
 {
     //---------------------------------------------------------------------------- 
     // Protected Variables
-    //---------------------------------------------------------------------------- 
+    //----------------------------------------------------------------------------
+    protected bool                               mIsDrum; // Whether or not the virtual instrument is a drum. 
     protected bool                               mLoaded; // Whether or not the virtual instrument is loaded.
     protected float                              mSampleInterval; // The sample interval of the virtual instrument
-    protected float[][][]                          mAudioData; // The samples of the virtual instrument
+    protected float[][][]                        mAudioData; // The samples of the virtual instrument
     protected int                                mNumFiles; // The number of sample files
     protected int                                mNumBuiltInDynamics; // The number of built in dynamics
     protected int                                mNumSupportedNotes; // The number of notes supported by the instrument
@@ -243,8 +244,15 @@ public class VirtualInstrument
             // Normalize all of the clips
             for( int i = 0; i < mNumBuiltInDynamics; i++ )
             {
-                // Initialize the interior 2-D array of the audio data.
-                mAudioData[i] = new float[Music.MAX_SUPPORTED_NOTES][];
+                // Initialize the interior 2-D array of the audio data and account for drums.
+                if( mIsDrum )
+                {
+                    mAudioData[i] = new float[Music.MAX_SUPPORTED_DRUMS][];
+                }
+                else
+                {
+                    mAudioData[i] = new float[Music.MAX_SUPPORTED_NOTES][];
+                }
 
                 for( int j = (int)mLowestSupportedNote; j <= (int)mHighestSupportedNote; j++ )
                 {
@@ -284,7 +292,16 @@ public class VirtualInstrument
         {
             // Allocate the audio data 3-D array and its interior 2-D array.
             mAudioData = new float[1][][];
-            mAudioData[0] = new float[Music.MAX_SUPPORTED_NOTES][];
+
+            // Account for drums when allocating the 2-D array.
+            if( mIsDrum )
+            {
+                mAudioData[0] = new float[Music.MAX_SUPPORTED_DRUMS][];
+            }
+            else
+            {
+                mAudioData[0] = new float[Music.MAX_SUPPORTED_NOTES][];
+            }
 
             // Set the normalized peak.
             float normalizedPeak = -.1f;
@@ -342,9 +359,18 @@ public class VirtualInstrument
         {
             // Initialize the array of audio clips. In order to account for instruments differing in the range of notes 
             // that they support, the inner audio clip array is set to have an element for every possible note. Unsupported
-            // notes will have null audio clips at their indices.    
+            // notes will have null audio clips at their indices. Drum kits will not have to worry about this.   
             audioClips = new AudioClip[1][];
-            audioClips[0] = new AudioClip[Music.MAX_SUPPORTED_NOTES];
+
+            if( mIsDrum )
+            {
+                audioClips[0] = new AudioClip[Music.MAX_SUPPORTED_DRUMS];
+            }
+            else
+            {
+                audioClips[0] = new AudioClip[Music.MAX_SUPPORTED_NOTES];
+            }
+
 
             // The indices of the loaded audio clips are mapped to their corresponding note. 
             while ( index <= (int)mHighestSupportedNote )
@@ -373,8 +399,17 @@ public class VirtualInstrument
             {
                 // Initialize the inner array of audio clips. In order to account for instruments differing in the range of notes 
                 // that they support, the inner audio clip array is set to have an element for every possible note. Unsupported
-                // notes will have null audio clips at their indices.    
-                audioClips[i] = new AudioClip[Music.MAX_SUPPORTED_NOTES];
+                // notes will have null audio clips at their indices. Drum kits will not have to worry about this.
+
+                if( mIsDrum )
+                {
+                    audioClips[i] = new AudioClip[Music.MAX_SUPPORTED_DRUMS];
+                }
+                else
+                {
+                    audioClips[i] = new AudioClip[Music.MAX_SUPPORTED_NOTES];
+
+                }
 
                 // The indices of the loaded audio clips are mapped to their corresponding note. 
                 while ( index <= (int)mHighestSupportedNote )

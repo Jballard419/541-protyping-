@@ -17,6 +17,7 @@ public class ATI_DemoSongButtonHandler : MonoBehaviour {
     //---------------------------------------------------------------------------- 
     // Private Variables
     //---------------------------------------------------------------------------- 
+    bool mActive = true; // Is the demo song menu active?
     Button mPlayButton = null; // The button to play the selected demo song.
     Dropdown mSongSelectionMenu = null; // The dropdown menu to select a demo song.
     Slider mBPMSlider = null; // The slider to control the song's bpm.
@@ -31,6 +32,9 @@ public class ATI_DemoSongButtonHandler : MonoBehaviour {
     {
         // Get the virtual instrument manager.
         mVIM = GameObject.Find( "VirtualInstrumentManager" ).GetComponent<VirtualInstrumentManager>();
+
+        // Account for the VIM changing instruments.
+        mVIM.ChangeInstrument.AddListener( HandleInstrumentChange );
 
         // Set up the selection menu.
         mSongSelectionMenu = gameObject.GetComponent<Dropdown>();
@@ -77,6 +81,25 @@ public class ATI_DemoSongButtonHandler : MonoBehaviour {
 
         // Update the loaded song.
         mSong.SetBPM( aBPM );
+    }
+
+    // Handles the VIM changing instruments
+    public void HandleInstrumentChange( Music.INSTRUMENT_TYPE aType )
+    {
+        if( aType == Music.INSTRUMENT_TYPE.DRUM_KIT )
+        {
+            mActive = false;
+            mBPMSlider.gameObject.SetActive( false );
+            mPlayButton.gameObject.SetActive( false );
+            mSongSelectionMenu.gameObject.SetActive( false );
+        }
+        else if( !mActive )
+        {
+            mActive = true;
+            mBPMSlider.gameObject.SetActive( true );
+            mPlayButton.gameObject.SetActive( true );
+            mSongSelectionMenu.gameObject.SetActive( true );
+        }
     }
 
     // Plays the loaded song when the play button is clicked.
