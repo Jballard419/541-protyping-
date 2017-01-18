@@ -66,9 +66,11 @@ public class ATI_NoteRangeSelectionHandler : ATI.SliderHandler {
     private void HandleInstrumentLoaded()
     {
         // Update the slider.
-        mSliders[0].value = (float)mVIM.GetLowestActiveNote();
         mSliders[0].minValue = (float)mVIM.GetLowestSupportedNote();
-        mSliders[0].maxValue = (float)( mVIM.GetHighestSupportedNote() - mVIM.GetNumActiveNotes() );
+        mSliders[0].maxValue = (float)( mVIM.GetHighestSupportedNote() - mVIM.GetNumActiveNotes() + 1 );
+        mSliders[0].value = (float)mVIM.GetLowestActiveNote();
+
+
 
         // Update the slider text.
         // Set the text.

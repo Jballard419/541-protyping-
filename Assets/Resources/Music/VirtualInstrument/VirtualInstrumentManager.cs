@@ -214,25 +214,28 @@ public class VirtualInstrumentManager : MonoBehaviour {
     {
         Assert.IsNotNull( mInstrument, "Tried to load NoteOutputObjects when the instrument was null!" );
 
-        // Initialize the array of NoteOutputObjects.
-        mOutputs = new NoteOutputObject[mNumActiveNotes];
-
-        // In order to have multiple notes play at once, an invisible GameObject is created and cloned multiple 
-        // times to serve as containers for each NoteOutputObject. The invisible object will be placed at the position
-        // of the virtual instrument manager, so be sure to put the virtual instrument manager on an object that is as
-        // close to the AudioListener as possible.  
-        GameObject toBeCloned = new GameObject( Music.NoteToString( mLowestActiveNote ) + "NoteOutputObjectContainer" );
-        toBeCloned.transform.position = gameObject.transform.position;
-        mOutputs[0] = toBeCloned.AddComponent<NoteOutputObject>();
-        GameObject clone = null;
-
-        // For each note, clone the invisible object (which will also clone the NoteOutputObject).
-        for( int i = 1; i < mNumActiveNotes; i++ )
+        if( mOutputs == null )
         {
-            clone = Instantiate( toBeCloned );
-            clone.name = Music.NoteToString( mActiveNotes[i] ) + "NoteOutputObjectContainer";
-            mOutputs[i] = clone.GetComponent<NoteOutputObject>();
-        }
+            // Initialize the array of NoteOutputObjects.
+            mOutputs = new NoteOutputObject[mNumActiveNotes];
+
+            // In order to have multiple notes play at once, an invisible GameObject is created and cloned multiple 
+            // times to serve as containers for each NoteOutputObject. The invisible object will be placed at the position
+            // of the virtual instrument manager, so be sure to put the virtual instrument manager on an object that is as
+            // close to the AudioListener as possible.  
+            GameObject toBeCloned = new GameObject( Music.NoteToString( mLowestActiveNote ) + "NoteOutputObjectContainer" );
+            toBeCloned.transform.position = gameObject.transform.position;
+            mOutputs[0] = toBeCloned.AddComponent<NoteOutputObject>();
+            GameObject clone = null;
+
+            // For each note, clone the invisible object (which will also clone the NoteOutputObject).
+            for( int i = 1; i < mNumActiveNotes; i++ )
+            {
+                clone = Instantiate( toBeCloned );
+                clone.name = Music.NoteToString( mActiveNotes[i] ) + "NoteOutputObjectContainer";
+                mOutputs[i] = clone.GetComponent<NoteOutputObject>();
+            }
+        }       
 
         // Set the audio data of the NoteOutputObject.
         for( int i = 0; i < mNumActiveNotes; i++ )
