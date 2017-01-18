@@ -22,12 +22,6 @@ using UnityEngine.Assertions;
 public class VirtualInstrument
 {
     //---------------------------------------------------------------------------- 
-    // Public Variables
-    //---------------------------------------------------------------------------- 
-    public UnityEvent LoadEvent; // Invoked on the parent VirtualInstrumentManager when the instrument has finished loading.
-
-
-    //---------------------------------------------------------------------------- 
     // Protected Variables
     //---------------------------------------------------------------------------- 
     protected bool                               mLoaded; // Whether or not the virtual instrument is loaded.
@@ -56,8 +50,7 @@ public class VirtualInstrument
     // OUT: A newly created VirtualInstrument.
     public VirtualInstrument( VirtualInstrumentManager aParent )
     {
-        LoadEvent = new UnityEvent();
-        LoadEvent.AddListener( aParent.OnInstrumentLoaded );
+        mParent = aParent;
     }
 
     //---------------------------------------------------------------------------- 
@@ -106,7 +99,7 @@ public class VirtualInstrument
 
         // Calculate the velocity multiplier. The multiplier is a percentage that is used to adjust the
         // levels of the audio data to modify the output volume. 
-        // If built-in dynamics are supported, then the velocity multiplier will range from 0.5 to 1.0.
+        // If built-in dynamics are supported, then the velocity multiplier will range from the lower threshold divided by the higher threshold to 1.0.
         if( mNumBuiltInDynamics != 0 )
         {
             // See which built-in dynamics value we need to use. Start at the top threshold and work down.
@@ -119,7 +112,7 @@ public class VirtualInstrument
             }
             // Calculate the velocity factor.
             float inEnd = (float)mBuiltInDynamicsThresholds[dynamicsIndex];
-            float outEnd = .5f * (float)mBuiltInDynamicsThresholds[dynamicsIndex] / (float)mBuiltInDynamicsThresholds[mNumBuiltInDynamics - 1];
+            float outEnd = 1f;
             float inStart = 0f;
             float outStart = 0f;
             if( dynamicsIndex != 0 )
@@ -161,9 +154,10 @@ public class VirtualInstrument
     public float[][] GetRawAudioDataForNote( Music.PITCH aNote )
     {
         Assert.IsTrue( (int)aNote >= (int)mLowestSupportedNote && (int)aNote <= (int)mHighestSupportedNote,
-            "Tried to load the audio data for a note that is not supported by the instrument!" );
+            "Tried to load the audio data for the note " + Music.NoteToString( aNote ) + " which is not a note that is supported by this instrument!" );
         Assert.IsNotNull( mAudioData, "Tried to get data from a non-loaded virtual instrument!" );
-        Assert.IsNotNull( mAudioData[0][(int)aNote], "Tried to get data from a virtual instrument for a note that was not loaded!" );
+        Assert.IsNotNull( mAudioData[0][(int)aNote],
+            "Tried to get data from a virtual instrument for the note " + Music.NoteToString( aNote ) + " which was not loaded!" );
 
         float[][] data = null;
 
@@ -238,32 +232,12 @@ public class VirtualInstrument
         {
             // Initialize the audio data 3-D array.
             mAudioData = new float[mNumBuiltInDynamics][][];
- 
-          /*  // Get the max value of all the clips' data.
-            for( int i = (int)mLowestSupportedNote; i <= (int)mHighestSupportedNote; i++ )
-            {
-                // Get the length of the clip data.
-                dataLength = aAudioClips[mNumBuiltInDynamics - 1][i].samples;
-
-                // Get the clip data
-                temp = new float[dataLength];
-                aAudioClips[mNumBuiltInDynamics - 1][i].GetData( temp, 0 );
-
-                // Update the total max value.
-                for( int j = 0; j < dataLength; j++ )
-                {
-                    if( temp[j] > max )
-                    {
-                        max = temp[j];
-                    }
-                }
-            }*/
 
             // Set the normalize factor for each built-in dynamic.
             float[] normalizedPeaks = new float[mNumBuiltInDynamics];
             for( int i = 0; i < mNumBuiltInDynamics; i++ )
             {
-                normalizedPeaks[i] = .3f * ( (float)mBuiltInDynamicsThresholds[i] / (float)mBuiltInDynamicsThresholds[mNumBuiltInDynamics - 1] );
+                normalizedPeaks[i] = -.1f * ( (float)mBuiltInDynamicsThresholds[i] / (float)mBuiltInDynamicsThresholds[mNumBuiltInDynamics - 1] );
             }
 
             // Normalize all of the clips
@@ -285,9 +259,9 @@ public class VirtualInstrument
                     // Get the max value of the clip data.
                     for( int k = 0; k < dataLength; k++ )
                     {
-                        if( temp[k] > max )
+                        if( Mathf.Abs( temp[k] ) > max )
                         {
-                            max = temp[k];
+                            max = Mathf.Abs( temp[k] );
                         }
                     }
 
@@ -312,32 +286,11 @@ public class VirtualInstrument
             mAudioData = new float[1][][];
             mAudioData[0] = new float[Music.MAX_SUPPORTED_NOTES][];
 
-          /*  // Get the max value of all the clips' data.
-            for( int i = (int)mLowestSupportedNote; i <= (int)mHighestSupportedNote; i++ )
-            {
-                dataLength = aAudioClips[0][i].samples;
-                // Get the clip data
-
-                temp = new float[dataLength];
-                aAudioClips[0][i].GetData( temp, 0 );
-
-                // Update the total max value.
-                for( int j = 0; j < dataLength; j++ )
-                {
-                    if( temp[j] > max )
-                    {
-                        max = temp[j];
-                    }
-                }
-            } */
-
             // Set the normalized peak.
-            float normalizedPeak = .3f;
-
-
+            float normalizedPeak = -.1f;
 
             // Normalize all of the audio clips.
-            for( int i = (int)mLowestSupportedNote; i < (int)mHighestSupportedNote; i++ )
+            for( int i = (int)mLowestSupportedNote; i <= (int)mHighestSupportedNote; i++ )
             {
                 dataLength = aAudioClips[0][i].samples;
                 mAudioData[0][i] = new float[dataLength];
@@ -349,9 +302,9 @@ public class VirtualInstrument
                 // Get the max value of this clip's data.
                 for( int j = 0; j < dataLength; j++ )
                 {
-                    if( temp[j] > max )
+                    if( Mathf.Abs( temp[j] ) > max )
                     {
-                        max = temp[j];
+                        max = Mathf.Abs( temp[j] );
                     }
                 }
 
