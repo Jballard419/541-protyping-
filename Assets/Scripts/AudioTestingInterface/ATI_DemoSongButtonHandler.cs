@@ -14,6 +14,8 @@ using UnityEngine.UI;
 
 public class ATI_DemoSongButtonHandler : MonoBehaviour {
 
+    public bool DrumLoopSelector = false; // Is this a drum loop selector?
+
     //---------------------------------------------------------------------------- 
     // Private Variables
     //---------------------------------------------------------------------------- 
@@ -21,7 +23,7 @@ public class ATI_DemoSongButtonHandler : MonoBehaviour {
     Button mPlayButton = null; // The button to play the selected demo song.
     Dropdown mSongSelectionMenu = null; // The dropdown menu to select a demo song.
     Slider mBPMSlider = null; // The slider to control the song's bpm.
-    Song mSong = null; // The loaded demo song
+    Song mSong = null; // The loaded demo song.
     Text mBPMSliderText = null; // The text to show the current bpm for the song. 
     VirtualInstrumentManager mVIM = null; // The virtual instrument manager.
 
@@ -39,15 +41,27 @@ public class ATI_DemoSongButtonHandler : MonoBehaviour {
         // Set up the selection menu.
         mSongSelectionMenu = gameObject.GetComponent<Dropdown>();
         mSongSelectionMenu.options.Clear();
-        mSongSelectionMenu.AddOptions( mVIM.SongManager.GetSongNames() );
-        mSongSelectionMenu.onValueChanged.AddListener( LoadDemoSong );
-        
+
+        if( !DrumLoopSelector )
+        {
+            mSongSelectionMenu.AddOptions( mVIM.SongManager.GetSongNames() );
+            mSongSelectionMenu.onValueChanged.AddListener( LoadDemoSong );
+            
+            // Load the default demo song.
+            mSong = mVIM.SongManager.GetSongs()[0];
+        }
+        else
+        {
+            mSongSelectionMenu.AddOptions( mVIM.SongManager.GetDrumLoopNames() );
+            mSongSelectionMenu.onValueChanged.AddListener( LoadDemoSong );
+            mSong = mVIM.SongManager.GetDrumLoops()[0];
+        }
+       
         // Set up the play button.
         mPlayButton = gameObject.transform.GetChild( 4 ).GetComponent<Button>();
         mPlayButton.onClick.AddListener( OnPlayButtonClicked );
 
-        // Load the default demo song.
-        mSong = mVIM.SongManager.GetSong( 0 );
+
 
         // Set up the BPM slider.
         mBPMSlider = gameObject.transform.GetChild( 5 ).GetComponent<Slider>();
@@ -66,7 +80,7 @@ public class ATI_DemoSongButtonHandler : MonoBehaviour {
     // Loads a demo song.
     public void LoadDemoSong( int aIndex )
     {
-        mSong = mVIM.SongManager.GetSong( aIndex );
+        mSong = mVIM.SongManager.GetSong( mSongSelectionMenu.options[aIndex].text );
     }
 
     //---------------------------------------------------------------------------- 
@@ -86,7 +100,7 @@ public class ATI_DemoSongButtonHandler : MonoBehaviour {
     // Handles the VIM changing instruments
     public void HandleInstrumentChange( Music.INSTRUMENT_TYPE aType )
     {
-        if( aType == Music.INSTRUMENT_TYPE.DRUM_KIT )
+        if( aType == Music.INSTRUMENT_TYPE.DRUM_KIT && !DrumLoopSelector )
         {
             mActive = false;
             mBPMSlider.gameObject.SetActive( false );
@@ -105,7 +119,14 @@ public class ATI_DemoSongButtonHandler : MonoBehaviour {
     // Plays the loaded song when the play button is clicked.
     public void OnPlayButtonClicked()
     {
-        mVIM.PlaySong.Invoke( mSong );
+        if( DrumLoopSelector )
+        {
+            mVIM.PlayDrumLoop.Invoke( mSong );
+        }
+        else
+        {
+            mVIM.PlaySong.Invoke( mSong );
+        }
     }
 
 }

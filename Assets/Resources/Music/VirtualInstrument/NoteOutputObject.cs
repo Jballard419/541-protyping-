@@ -23,6 +23,7 @@ public class NoteOutputObject : MonoBehaviour
     private AudioSource                mSource; // The AudioSource component of this object
     private bool                       mAudioDataBeingUsed; // Whether or not OnAudioFilterRead is currently using the audio data
     private bool                       mLoaded; // Whether or not this object has loaded.
+    private bool                       mLoop; // Whether or not the audio should loop.
     private bool                       mNewNote; // Whether or not a new note needs to be started.
     private bool                       mNotePlaying; // Whether or not the note is currently playing.
     private bool                       mNoteRelease; // Whether or not the note has been released.
@@ -54,6 +55,7 @@ public class NoteOutputObject : MonoBehaviour
         mDynamicsIndex = 0;
         mVelocityFactor = 1f;
         mNoteRelease = false;
+        mLoop = false;
 
         // Make sure that this isn't destroyed when a new scene is loaded.
         DontDestroyOnLoad( this );
@@ -77,6 +79,13 @@ public class NoteOutputObject : MonoBehaviour
     //---------------------------------------------------------------------------- 
     // Public Functions
     //---------------------------------------------------------------------------- 
+
+    // Gets whether or not the audio should loop.
+    // OUT: True if the audio should loop. False otherwise.
+    public bool GetLoop()
+    {
+        return mLoop;
+    }
 
     // Removes the audio data and sets relevant variables to default values.
     public void RemoveAudioData()
@@ -189,6 +198,19 @@ public class NoteOutputObject : MonoBehaviour
         mLoaded = true;
     }
 
+    // Sets whether or not the audio should loop.
+    // IN: aLoop Whether or not the audio should loop.
+    public void SetLoop( bool aLoop )
+    {
+        mLoop = aLoop;
+    }
+
+    // Stops the audio from playing (actually it makes it silent, but same thing for our purposes).
+    public void StopPlaying()
+    {
+        mNotePlaying = false;
+    }
+
     //---------------------------------------------------------------------------- 
     // Event Handlers
     //---------------------------------------------------------------------------- 
@@ -256,25 +278,44 @@ public class NoteOutputObject : MonoBehaviour
                 // If the note hasn't faded out, then play it.
                 if( mVelocityFactor > 0 )
                 {
-                    // If we're currently playing a note then retrieve the audio data. 
-                    for( int i = 0; i < data.Length && ( mCounter + i ) < mEndSampleIndices[mDynamicsIndex]; i++ )
+                    // See if we should loop or not.
+                    if( mLoop )
                     {
-                        data[i] = mAudioData[mDynamicsIndex][mCounter + i] * mVelocityFactor;
+                        // Retrieve the audio data.
+                        for( int i = 0; i < data.Length; i++ )
+                        {
+                            if( mCounter == mEndSampleIndices[mDynamicsIndex] )
+                            {
+                                mCounter = 0;
+                            }
+                            data[i] = mAudioData[mDynamicsIndex][mCounter] * mVelocityFactor;
+                            mCounter++;
+                        }
                     }
-
-                    // If we've reached the end of the audio data, then the note is no longer playing so
-                    // we should reset some variables.
-                    if( mCounter + data.Length >= mEndSampleIndices[mDynamicsIndex] )
-                    {
-                        mCounter = 0;
-                        mNotePlaying = false;
-                        mNoteRelease = false;
-                    }
-                    // If we haven't reached the end of the audio data yet, then increase the counter.
+                    // If we shouldn't loop, then make sure that we stop playing right before the end index.
                     else
                     {
-                        mCounter += data.Length;
+                        // If we're currently playing a note then retrieve the audio data. 
+                        for( int i = 0; i < data.Length && ( mCounter + i ) < mEndSampleIndices[mDynamicsIndex]; i++ )
+                        {
+                            data[i] = mAudioData[mDynamicsIndex][mCounter + i] * mVelocityFactor;
+                        }
+
+                        // If we've reached the end of the audio data, then the note is no longer playing so
+                        // we should reset some variables.
+                        if( mCounter + data.Length >= mEndSampleIndices[mDynamicsIndex] )
+                        {
+                            mCounter = 0;
+                            mNotePlaying = false;
+                            mNoteRelease = false;
+                        }
+                        // If we haven't reached the end of the audio data yet, then increase the counter.
+                        else
+                        {
+                            mCounter += data.Length;
+                        }
                     }
+
                 }
                 // If the note has faded out, then the note is no longer playing so
                 // we should reset some variables.

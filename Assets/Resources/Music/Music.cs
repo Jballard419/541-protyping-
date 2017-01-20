@@ -41,12 +41,27 @@ public class Music {
     };
 
     // An abstract musical note.
-    public struct Note
+    public struct MelodyNote
     {
         public int Velocity;
         public PITCH[] Pitches;
         public NOTE_LENGTH Length;
-        public NOTE_LENGTH Offset;
+    }
+
+    // Abstract drum hit(s)
+    public struct PercussionNote
+    {
+        public bool HasHiHat;
+        public int Velocity;
+        public DRUM[] Hits;
+    }
+
+    // Abstract combination of drum hit(s)/musical notes.
+    public struct CombinedNote
+    {
+        public MelodyNote MusicalNote;
+        public PercussionNote Drums;
+        public NOTE_LENGTH OffsetFromPrevNote;
     }
 
     // The possible drums/cymbals that can be played.
@@ -227,6 +242,43 @@ public class Music {
     // Static Functions
     //---------------------------------------------------------------------------- 
 
+    // Creates a new CombinedNote struct given its values.
+    public static CombinedNote CreateNote( int aMelodyVelocity, NOTE_LENGTH aLength, PITCH[] aPitches, int aDrumVelocity, DRUM[] aDrumHits, NOTE_LENGTH aOffsetFromPrevNote )
+    {
+        // Create the new note struct.
+        CombinedNote newNote = new CombinedNote();
+
+        // Set up the melody note.
+        newNote.MusicalNote.Velocity = aMelodyVelocity;
+        newNote.MusicalNote.Length = aLength;
+        newNote.MusicalNote.Pitches = aPitches;
+
+        // Set up the percussion note.
+        newNote.Drums.Velocity = aDrumVelocity;
+        newNote.Drums.Hits = aDrumHits;
+        newNote.Drums.HasHiHat = false;
+        if( aDrumHits != null )
+        {
+            // Check if the new note has any hi hat hits.
+            newNote.Drums.HasHiHat = false;
+            for( int i = 0; i < aDrumHits.Length; i++ )
+            {
+                if( aDrumHits[i] == Music.DRUM.HIHAT_C ||
+                    aDrumHits[i] == Music.DRUM.HIHAT_O ||
+                    aDrumHits[i] == Music.DRUM.HIHAT_P )
+                {
+                    newNote.Drums.HasHiHat = true;
+                }
+            }
+        }
+
+        // Set the offset.
+        newNote.OffsetFromPrevNote = aOffsetFromPrevNote;
+
+        // Return the new note.
+        return newNote;
+    }
+
     // Returns a string based on the given drum.
     // IN: aDrum The given drum
     // OUT: The string describing the drum.
@@ -243,9 +295,13 @@ public class Music {
         return DRUM_STRING[aDrumIndex];
     }
 
+    // Gets the percentage that a note length takes up in a measure for the given time signature.
     public static float GetNoteLengthRelativeToMeasure( NOTE_LENGTH aLength, TimeSignature aTimeSignature )
     {
+        // Relate everything to quarter notes.
         float quarterNoteLength = 1f;
+
+        // Get the ratio of quarter note to beat.
         switch( aTimeSignature.BaseBeat )
         {
             case NOTE_LENGTH.E:
@@ -256,8 +312,10 @@ public class Music {
                 
         }
 
+        // Get the percentage that a quarter note takes up in the measure.
         quarterNoteLength /= (float)aTimeSignature.BeatsPerMeasure;
 
+        // Return the percentage that the given note length takes up in a measure.
         switch( aLength )
         {
             case Music.NOTE_LENGTH.T:

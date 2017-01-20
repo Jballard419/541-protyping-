@@ -55,6 +55,11 @@ public class VirtualInstrumentManager : MonoBehaviour {
     {
     }
 
+    // A type of event that's invoked in order to signal that the drum kit is loaded.
+    public class DrumKitLoadedEvent : UnityEvent
+    {
+    }
+
     // A type of event that's invoked in order to signal that the instrument is loaded.
     public class InstrumentLoadedEvent : UnityEvent
     {
@@ -75,6 +80,12 @@ public class VirtualInstrumentManager : MonoBehaviour {
     // A type of event that's invoked in order to play a song.
     // The parameter is the a queue of notes to play.
     public class PlaySongEvent : UnityEvent<Song>
+    {
+    }
+
+    // A type of event that's invoked in order to play a song.
+    // The parameter is the a queue of notes to play.
+    public class PlayDrumLoopEvent : UnityEvent<Song>
     {
     }
 
@@ -115,9 +126,11 @@ public class VirtualInstrumentManager : MonoBehaviour {
     public NoteReleaseEvent            NoteRelease; // The event that will be invoked whenever a note should fade out.
     public ChangeNoteRangeEvent        ChangeNoteRange; // The event that will be invoked whenever the note range should change.
     public ChangeInstrumentEvent       ChangeInstrument; // The event that will be invoked whenever the instrument should be changed.
+    public DrumKitLoadedEvent          DrumKitLoaded; // The event that will be invoked whenever the drum kit has finished loading.
     public InstrumentLoadedEvent       InstrumentLoaded; // The event that will be invoked when the instrument has finished loading.
     public ModifyEchoFilterEvent       ModifyEchoFilter; // The event that will be invoked when the echo filter needs to be modified.
     public ModifyReverbFilterEvent     ModifyReverbFilter; // The event that will be invoked when the reverb filter needs to be modified.
+    public PlayDrumLoopEvent           PlayDrumLoop; // The event that will be invoked when a drum loop should be played.
     public PlaySongEvent               PlaySong; // The event that will be invoked when a song should be played.
     public SongManagerClass            SongManager; // The song manager                 
 
@@ -131,8 +144,10 @@ public class VirtualInstrumentManager : MonoBehaviour {
     private Music.PITCH                mLowestActiveNote; // The lowest currently active note.
     private Music.PITCH                mHighestActiveNote; // The highest currently active note.
     private Music.PITCH[]              mActiveNotes; // An array that holds all of the currently active notes.
+    private NoteOutputObject           mDrumLoopOutput; // A NoteOutputObject, but the note is actually a drum loop.
     private NoteOutputObject           mSongOutput; // A NoteOutputObject, but the note is actually a song.
     private NoteOutputObject[]         mOutputs; // An array that holds the NoteOutputObjects that actually handle sound output.
+    private VirtualInstrument          mDrumKit; // A drum kit virtual instrument for drum loops.
     private VirtualInstrument          mInstrument; // The loaded virtual instrument that this object will manage.
 
 
@@ -157,7 +172,8 @@ public class VirtualInstrumentManager : MonoBehaviour {
         SetDefaultValues();
 
         // Begin loading the default virtual instrument which is a piano.
-        StartCoroutine( LoadInstrument( mInstrumentType, ( returned ) => { mInstrument = returned; } ) ); 
+        StartCoroutine( LoadInstrument( mInstrumentType, ( returned ) => { mInstrument = returned; } ) );
+        StartCoroutine( LoadDrumKit( ( returned ) => { mDrumKit = returned; } ) );
     }
 
     //---------------------------------------------------------------------------- 
@@ -226,6 +242,7 @@ public class VirtualInstrumentManager : MonoBehaviour {
             GameObject toBeCloned = new GameObject( Music.NoteToString( mLowestActiveNote ) + "NoteOutputObjectContainer" );
             toBeCloned.transform.position = gameObject.transform.position;
             mOutputs[0] = toBeCloned.AddComponent<NoteOutputObject>();
+            mOutputs[0].SetLoop( false );
             GameObject clone = null;
 
             // For each note, clone the invisible object (which will also clone the NoteOutputObject).
@@ -237,10 +254,11 @@ public class VirtualInstrumentManager : MonoBehaviour {
             }
         }       
 
-        // Set the audio data of the NoteOutputObject.
+        // Set the audio data of the NoteOutputObject and make sure that they don't loop..
         for( int i = 0; i < mNumActiveNotes; i++ )
         {
             mOutputs[i].SetAudioData( mInstrument.GetRawAudioDataForNote( mActiveNotes[i] ), mMixer, mInstrument.GetBuiltInDynamicsThresholds() );
+            mOutputs[i].SetLoop( false );
         }
 
         // Set that we're ready for note events.
@@ -263,6 +281,7 @@ public class VirtualInstrumentManager : MonoBehaviour {
         InstrumentLoaded = new InstrumentLoadedEvent();
         ModifyEchoFilter = new ModifyEchoFilterEvent();
         ModifyReverbFilter = new ModifyReverbFilterEvent();
+        PlayDrumLoop = new PlayDrumLoopEvent();
         PlaySong = new PlaySongEvent();
         NotePlay.AddListener( OnNotePlayEvent );
         NoteRelease.AddListener( OnNoteReleaseEvent );
@@ -271,7 +290,9 @@ public class VirtualInstrumentManager : MonoBehaviour {
         InstrumentLoaded.AddListener( OnInstrumentLoaded );
         ModifyEchoFilter.AddListener( OnModifyEchoFilterEvent );
         ModifyReverbFilter.AddListener( OnModifyReverbFilterEvent );
+        PlayDrumLoop.AddListener( OnPlayDrumLoopEvent );
         PlaySong.AddListener( OnPlaySongEvent );
+
     }
 
     // Sets the default values for the member variables.
@@ -281,6 +302,7 @@ public class VirtualInstrumentManager : MonoBehaviour {
         mMixer = Resources.Load<AudioMixer>( "Music/VirtualInstrument/VirtualInstrumentAudioMixer" );
         Assert.IsNotNull( mMixer, "Audio mixer was unable to load!" );
 
+        // Set the active notes.
         mLowestActiveNote = DEFAULT_LOWEST_PITCH;
         mHighestActiveNote = DEFAULT_HIGHEST_PITCH;
         mNumActiveNotes = (int)mHighestActiveNote - (int)mLowestActiveNote + 1;
@@ -289,17 +311,40 @@ public class VirtualInstrumentManager : MonoBehaviour {
         {
             mActiveNotes[i] = (Music.PITCH)( i + (int)mLowestActiveNote );
         }
+
+        // Set the instrument type
         mInstrumentType = DEFAULT_INSTRUMENT_TYPE;
 
+        // Initialize the song and drum loop outputs.
         GameObject songOutputContainer = new GameObject();
         mSongOutput = songOutputContainer.AddComponent<NoteOutputObject>();
+        mSongOutput.SetLoop( false );
 
+        GameObject drumOutputContainer = new GameObject();
+        mDrumLoopOutput = drumOutputContainer.AddComponent<NoteOutputObject>();
+        mDrumLoopOutput.SetLoop( true );
+
+        // Initialize the SongManager.
         SongManager = gameObject.AddComponent<SongManagerClass>();
     }
 
     //---------------------------------------------------------------------------- 
     // Coroutines
     //---------------------------------------------------------------------------- 
+
+    // Coroutine to load a drum kit. 
+    // IN: aINSTRUMENT_TYPE The type of instrument to load.
+    // IN: aInstrumentCallback Callback to allow returning the loaded instrument to the calling context. 
+    private IEnumerator LoadDrumKit( System.Action<VirtualInstrument> aDrumKitCallback )
+    {
+        // Load a new instrument
+        VirtualInstrument returned = new DrumKit( this );
+
+        // Return the loaded instrument and invoke the instrument's LoadEvent.
+        aDrumKitCallback( returned );
+        //DrumKitLoaded.Invoke();
+        yield return null;
+    }
 
     // Coroutine to load a virtual instrument. 
     // IN: aINSTRUMENT_TYPE The type of instrument to load.
@@ -556,22 +601,157 @@ public class VirtualInstrumentManager : MonoBehaviour {
         }
     }
 
+    // Begins playing a drum loop
+    // IN: aLoop The loop to play.
+    public void OnPlayDrumLoopEvent( Song aLoop )
+    {
+        // Get the song's note data.
+        Song.CombinedNoteData[] loopNoteData = aLoop.GetNoteData();
+
+        // Get the number of notes in the loop.
+        int numNotes = loopNoteData.Length;
+
+        // Get the number of samples in a measure of the loop.
+        Music.TimeSignature loopTS = aLoop.GetTimeSignature();
+        int numSamplesInMeasure = loopTS.BeatsPerMeasure * Song.GetNoteLengthInSamples( aLoop.GetBPM(), 44100, loopTS.BaseBeat, loopTS );
+
+        // Get the total number of samples in the loop
+        int numSamples = 0;
+        if( loopNoteData[numNotes - 1].TotalOffset > numSamplesInMeasure )
+        {
+            numSamples = loopNoteData[numNotes - 1].TotalOffset + ( loopNoteData[numNotes - 1].TotalOffset % numSamplesInMeasure );
+        }
+        else
+        {
+            numSamples = loopNoteData[numNotes - 1].TotalOffset + ( numSamplesInMeasure % loopNoteData[numNotes - 1].TotalOffset );
+        }
+
+        
+        // Allocate a 2-D array for the song's audio data.
+        float[][] loopAudioData = new float[1][];
+        loopAudioData[0] = new float[numSamples];
+
+        // Make some variables to keep track of the velocity and offset.
+        int offset = 0;
+        int velocity = 0;
+        int velIndex = 0;
+        float velFactor = 0f;
+
+        // Iterate through all of the notes.
+        for( int i = 0; i < numNotes; i++ )
+        {
+            // Get the offset and velocity from the note.
+            offset = loopNoteData[i].TotalOffset;
+            velocity = loopNoteData[i].PercussionData.Velocity;
+
+            // Get the associated dynamics index and velocity factor.
+            velIndex = mDrumKit.GetBuiltInDynamicsThresholdIndex( velocity );
+            velFactor = mDrumKit.GetAdjustedVelocityFactor( velocity );
+
+            // Add the audio data for all of the drums in the note.
+            for( int j = 0; j < loopNoteData[i].PercussionData.Hits.Length; j++ )
+            {
+                // Get the audio data for the note.
+                float[][] drumAudioData = mDrumKit.GetRawAudioDataForNote( (Music.PITCH)( loopNoteData[i].PercussionData.Hits[j] ) );
+
+                // Put all of the samples from the drum's audio data into the song audio data.
+                int audioDataIndex = 0;
+                int loopDataIndex = offset;
+
+                // Account for silencing hi-hats if needed.
+                int numSamplesUntilNextHiHat = numSamples;
+                if( loopNoteData[i].PercussionData.Hits[j] == Music.DRUM.HIHAT_O )
+                {
+                    int nextHiHatIndex = i+1;
+                    bool nextHiHatFound = false;
+
+                    // Get the next hi hat hit by iterating through the notes.
+                    while( nextHiHatIndex != i && !nextHiHatFound )
+                    {
+                        // Make sure we don't have any index out of bounds errors.
+                        if( nextHiHatIndex == numNotes )
+                        {
+                            nextHiHatIndex = 0;
+                        }
+
+                        // See if this note has hi-hat hits. Break the loop if so.
+                        if( loopNoteData[nextHiHatIndex].PercussionData.HasHiHat )
+                        {
+                            nextHiHatFound = true;
+                            numSamplesUntilNextHiHat = loopNoteData[nextHiHatIndex].TotalOffset - loopNoteData[i].TotalOffset;
+                            if( numSamplesUntilNextHiHat < 0 )
+                            {
+                                numSamplesUntilNextHiHat = ( -1 * numSamplesUntilNextHiHat ) + ( numSamples - loopNoteData[i].TotalOffset );
+                            }
+                        }
+                        else
+                        {
+                            // Go to the next note if this note doesn't have any hi-hat hits.
+                            nextHiHatIndex++;
+                        }
+                    }
+                }
+
+                // Put the audio data for the drum into the loop.
+                while( audioDataIndex < drumAudioData[velIndex].Length && numSamplesUntilNextHiHat > 0 )
+                {
+                    loopAudioData[0][loopDataIndex] += ( drumAudioData[velIndex][audioDataIndex] * velFactor );
+                    loopDataIndex++;
+
+                    // Account for bleeding over into the next loop.
+                    if( loopDataIndex >= numSamples )
+                    {
+                        loopDataIndex = 0;
+                    }
+
+                    audioDataIndex++;
+                    numSamplesUntilNextHiHat--;
+                }
+
+            }
+        }
+
+        // Set the song output object's audio data and begin playing the song.
+        mDrumLoopOutput.SetAudioData( loopAudioData, mMixer, null );
+        mDrumLoopOutput.SetLoop( true );
+        mDrumLoopOutput.BeginNotePlaying( 1f, 0 );
+    }
+
+
     // Begins playing a song. 
     // IN: aSong The song to play.
     public void OnPlaySongEvent( Song aSong )
     {
         // Get the song's note data.
-        Song.NoteData[] songNoteData = aSong.GetNoteData();
+        Song.CombinedNoteData[] songNoteData = aSong.GetNoteData();
 
         // Get the number of notes in the song.
         int numNotes = songNoteData.Length;
 
         // Get the total number of samples in the song.
         int numSamples = 0;
-        for( int i = 0; i < numNotes; i++ )
+
+        if( aSong.GetSongType() != Song.SongType.DrumLoop )
         {
-            numSamples = Mathf.Max( ( songNoteData[i].NumSamples + songNoteData[i].TotalOffset ), numSamples );
+            for( int i = 0; i < numNotes; i++ )
+            {
+                numSamples = Mathf.Max( ( songNoteData[i].MelodyData.NumSamples + songNoteData[i].TotalOffset ), numSamples );
+            }
         }
+        else
+        {
+            numSamples = 0;
+            for( int i = 0; i < songNoteData[numNotes - 1].PercussionData.Hits.Length; i++ )
+            {
+                if( numSamples < ( songNoteData[numNotes - 1].TotalOffset + 
+                    mDrumKit.GetRawAudioDataForNote( (Music.PITCH)( songNoteData[numNotes - 1].PercussionData.Hits[i] ) )[0].Length ) )
+                {
+                    numSamples = songNoteData[numNotes - 1].TotalOffset +
+                        mDrumKit.GetRawAudioDataForNote( (Music.PITCH)( songNoteData[numNotes - 1].PercussionData.Hits[i] ) )[0].Length;
+                }
+            }
+        }
+
 
         // Allocate a 2-D array for the song's audio data.
         float[][] songAudioData = new float[1][];
@@ -586,26 +766,26 @@ public class VirtualInstrumentManager : MonoBehaviour {
         // Iterate through all of the notes.
         for( int i = 0; i < numNotes; i++ )
         {
-            // If the note is a rest, we don't need to worry about it.
-            if( songNoteData[i].Pitches[0] != Music.PITCH.REST )
+            // If the note is a rest, we don't need to worry its pitches. Otherwise, add the note's pitches.
+            if( songNoteData[i].MelodyData.Pitches != null && songNoteData[i].MelodyData.Pitches[0] != Music.PITCH.REST )
             {
                 // Get the offset and velocity from the note.
                 offset = songNoteData[i].TotalOffset;
-                velocity = songNoteData[i].Velocity;
+                velocity = songNoteData[i].MelodyData.Velocity;
 
                 // Get the associated dynamics index and velocity factor.
                 velIndex = mInstrument.GetBuiltInDynamicsThresholdIndex( velocity );
                 velFactor = mInstrument.GetAdjustedVelocityFactor( velocity );
 
                 // Add the audio data for all of the pitches in the note.
-                for( int j = 0; j < songNoteData[i].Pitches.Length; j++ )
+                for( int j = 0; j < songNoteData[i].MelodyData.Pitches.Length; j++ )
                 {
                     // Get the audio data for the note.
-                    float[][] pitchAudioData = mInstrument.GetRawAudioDataForNote( songNoteData[i].Pitches[j] );
+                    float[][] pitchAudioData = mInstrument.GetRawAudioDataForNote( songNoteData[i].MelodyData.Pitches[j] );
 
                     // Put all of the samples from the pitch's audio data into the song audio data.
                     int k = 0;
-                    while( k < songNoteData[i].NumSamples && k < pitchAudioData[velIndex].Length )
+                    while( k < songNoteData[i].MelodyData.NumSamples && k < pitchAudioData[velIndex].Length )
                     {
                         songAudioData[0][k + offset] += ( pitchAudioData[velIndex][k] * velFactor );
                         k++;
@@ -619,6 +799,73 @@ public class VirtualInstrumentManager : MonoBehaviour {
                         releaseFactor -= ( 1f / 22500f );
                         k++;
                     }
+                }
+            }
+
+            // If the note has drums, then add them.
+            if( songNoteData[i].PercussionData.Hits != null )
+            {
+                // Get the offset and velocity from the note.
+                offset = songNoteData[i].TotalOffset;
+                velocity = songNoteData[i].PercussionData.Velocity;
+
+                // Get the associated dynamics index and velocity factor.
+                velIndex = mDrumKit.GetBuiltInDynamicsThresholdIndex( velocity );
+                velFactor = mDrumKit.GetAdjustedVelocityFactor( velocity );
+
+                // Add the audio data for all of the drums in the note.
+                for( int j = 0; j < songNoteData[i].PercussionData.Hits.Length; j++ )
+                {
+                    // Get the audio data for the note.
+                    float[][] drumAudioData = mDrumKit.GetRawAudioDataForNote( (Music.PITCH)( songNoteData[i].PercussionData.Hits[j] ) );
+
+                    // Put all of the samples from the drum's audio data into the song audio data.
+                    int audioDataIndex = 0;
+                    int drumDataIndex = offset;
+
+                    // Account for silencing hi-hats if needed.
+                    int numSamplesUntilNextHiHat = numSamples;
+                    if( songNoteData[i].PercussionData.Hits[j] == Music.DRUM.HIHAT_O )
+                    {
+                        int nextHiHatIndex = i+1;
+                        bool nextHiHatFound = false;
+
+                        // Get the next hi hat hit by iterating through the notes.
+                        while( nextHiHatIndex != i && !nextHiHatFound )
+                        {
+                            // Make sure we don't have any index out of bounds errors.
+                            if( nextHiHatIndex == numNotes )
+                            {
+                                nextHiHatIndex = 0;
+                            }
+
+                            // See if this note has hi-hat hits. Break the loop if so.
+                            if( songNoteData[nextHiHatIndex].PercussionData.HasHiHat )
+                            {
+                                nextHiHatFound = true;
+                                numSamplesUntilNextHiHat = songNoteData[nextHiHatIndex].TotalOffset - songNoteData[i].TotalOffset;
+                                if( numSamplesUntilNextHiHat < 0 )
+                                {
+                                    numSamplesUntilNextHiHat = ( -1 * numSamplesUntilNextHiHat ) + ( numSamples - songNoteData[i].TotalOffset );
+                                }
+                            }
+                            else
+                            {
+                                // Go to the next note if this note doesn't have any hi-hat hits.
+                                nextHiHatIndex++;
+                            }
+                        }
+                    }
+
+                    // Put the audio data for the drum into the song.
+                    while( audioDataIndex < drumAudioData[velIndex].Length && numSamplesUntilNextHiHat > 0 && drumDataIndex < numSamples )
+                    {
+                        songAudioData[0][drumDataIndex] += ( drumAudioData[velIndex][audioDataIndex] * velFactor );
+                        drumDataIndex++;
+                        audioDataIndex++;
+                        numSamplesUntilNextHiHat--;
+                    }
+
                 }
             }
         }

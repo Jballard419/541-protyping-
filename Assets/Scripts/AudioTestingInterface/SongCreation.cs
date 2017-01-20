@@ -29,13 +29,14 @@ public class SongCreation : MonoBehaviour {
         // Private Variables 
         //----------------------------------------------------------------------------
         private Button mRemoveNoteButton = null; // The button to remove this note.
-        private EventTrigger mEditTrigger = null;
+        private EventTrigger mEditTrigger = null; // The edit trigger.
         private Image mLengthImage = null; // The image to show the note's length
         private Image mOffsetImage = null; // The image to show the note's offset from the previous note.
         private int mNoteIndex = 0; // The inde of this note.
         private MeasureDisplayPanel mParent = null; // The parent container.
-        private Music.NOTE_LENGTH mOffset = Music.NOTE_LENGTH.NONE;
-        private SongCreation mSongCreationHandler = null;
+        private Music.NOTE_LENGTH mOffset = Music.NOTE_LENGTH.NONE; // The offset.
+        private SongCreation mSongCreationHandler = null; // The song creation scene handler.
+        private Text mDrums = null; // The text that displays the note's drums.
         private Text mPitches = null; // The text that displays the note's pitches.
         private Text mVelocity = null; // The text that displays the note's velocity.
 
@@ -63,6 +64,7 @@ public class SongCreation : MonoBehaviour {
             mVelocity = gameObject.transform.GetChild( 4 ).GetChild( 0 ).GetComponent<Text>();
             mRemoveNoteButton = gameObject.transform.GetChild( 0 ).gameObject.GetComponent<Button>();
             mRemoveNoteButton.onClick.AddListener( OnRemoveButtonClicked );
+            mDrums = gameObject.transform.GetChild( 5 ).GetChild( 0 ).GetComponent<Text>();
         }    
 
         //---------------------------------------------------------------------------- 
@@ -92,6 +94,12 @@ public class SongCreation : MonoBehaviour {
         {
             return mOffset;
         }   
+
+        // Sets the drum string for the note.
+        public void SetDrums( string aDrumString )
+        {
+            mDrums.text = aDrumString;
+        }
 
         // Sets the image used to represent the length of the note.
         public void SetLengthImage( Sprite aImage )
@@ -234,9 +242,13 @@ public class SongCreation : MonoBehaviour {
         //----------------------------------------------------------------------------
 
         // Adds a note to the note display.
-        public void AddNote( Music.PITCH[] aPitches, Music.NOTE_LENGTH aLength, Music.NOTE_LENGTH aOffset, int aVelocity, int aNoteIndex )
+        public void AddNote( int aNoteIndex, int aMelodyVelocity, Music.NOTE_LENGTH aLength, Music.PITCH[] aPitches, 
+            int aDrumVelocity, Music.DRUM[] aDrumHits, Music.NOTE_LENGTH aOffsetFromPrevNote )
         {
             Sprite[] sprites = mParent.GetSprites();
+
+            string pitches = "None";
+            string drums = "None";
 
             // Need special handling for the very first note due to having to use it as a base to copy from.
             if( mFirstOverallNote )
@@ -244,39 +256,54 @@ public class SongCreation : MonoBehaviour {
                 // Mark that we would no longer be adding the very first note.
                 mFirstOverallNote = false;
 
-                // Set the pitches.
-                string pitches = "";
-                foreach( Music.PITCH pitch in aPitches )
+                // Set the pitches if needed.
+                if( aPitches != null )
                 {
-                    if( pitch == Music.PITCH.REST )
+                    pitches = "";
+                    foreach( Music.PITCH pitch in aPitches )
                     {
-                        pitches += "Rest ";
-                    }
-                    else
-                    {
-                        pitches += ( Music.NoteToString( pitch ) + " " );
+                        if( pitch == Music.PITCH.REST )
+                        {
+                            pitches += "Rest ";
+                        }
+                        else
+                        {
+                            pitches += ( Music.NoteToString( pitch ) + " " );
+                        }
                     }
                 }
+
+                // Set the drums if needed.
+                if( aDrumHits != null )
+                {
+                    drums = "";
+                    foreach( Music.DRUM drum in aDrumHits )
+                    {
+                        drums += Music.DrumToString( drum ) + " ";
+                    }
+                }
+
                 mNotes[0].SetPitches( pitches );
+                mNotes[0].SetDrums( drums );
 
                 // Set the images.
                 mNotes[0].SetLengthImage( sprites[(int)aLength] );
                 mNotes[0].SetOffsetImage( null );
 
                 // Set the offset and velocity.
-                mNotes[0].SetOffset( aOffset );
-                mNotes[0].SetVelocity( aVelocity.ToString() );
+                mNotes[0].SetOffset( aOffsetFromPrevNote );
+                mNotes[0].SetVelocity( aMelodyVelocity.ToString() );
                 mNotes[0].SetNoteIndex( aNoteIndex );
             }
             else
             {
                 // If this is not the first overall note, then calculate the percentage used up in the measure.
-                float newPercentage = mPercentageUsed + Music.GetNoteLengthRelativeToMeasure( aOffset, Music.TIME_SIGNATURE_4_4() );
+                float newPercentage = mPercentageUsed + Music.GetNoteLengthRelativeToMeasure( aOffsetFromPrevNote, Music.TIME_SIGNATURE_4_4() );
 
                 // If there is no more room in the measure for this note, then send it back to the parent.
                 if( newPercentage >= 1f )
                 {
-                    mParent.HandleFullMeasure( this, newPercentage - mPercentageUsed, aPitches, aLength, aOffset, aVelocity );
+                    mParent.HandleFullMeasure( this, newPercentage - mPercentageUsed, aMelodyVelocity, aLength, aPitches, aDrumVelocity, aDrumHits, aOffsetFromPrevNote );
                 }
 
                 // If there is more room, then create the new panel and add it to this measure.
@@ -302,27 +329,41 @@ public class SongCreation : MonoBehaviour {
                     clone.transform.SetParent( gameObject.transform.parent );
                     clone.transform.localScale = mParent.transform.GetChild( 1 ).localScale;
 
-                    // Set the pitch string.
-                    string pitchString = "";
-                    for( int i = 0; i < aPitches.Length; i++ )
+                    // Set the pitch string if needed.
+                    if( aPitches != null )
                     {
-                        if( aPitches[i] == Music.PITCH.REST )
+                        pitches = "";
+                        for( int i = 0; i < aPitches.Length; i++ )
                         {
-                            pitchString += "Rest ";
+                            if( aPitches[i] == Music.PITCH.REST )
+                            {
+                                pitches += "Rest ";
+                            }
+                            else
+                            {
+                                pitches += ( Music.NoteToString( aPitches[i] ) + " " );
+                            }
                         }
-                        else
+                    }
+
+                    // Set the drum string if needed.
+                    if( aDrumHits != null )
+                    {
+                        drums = "";
+                        foreach( Music.DRUM drum in aDrumHits )
                         {
-                            pitchString += ( Music.NoteToString( aPitches[i] ) + " " );
+                            drums += Music.DrumToString( drum ) + " ";
                         }
                     }
 
                     // Initialize the cloned panel.
                     NoteDisplayPanel newPanel = clone.GetComponent<NoteDisplayPanel>();
-                    newPanel.SetPitches( pitchString );
+                    newPanel.SetDrums( drums );
+                    newPanel.SetPitches( pitches );
                     newPanel.SetLengthImage( sprites[(int)aLength] );
-                    newPanel.SetOffsetImage( sprites[(int)aOffset] );
-                    newPanel.SetOffset( aOffset );
-                    newPanel.SetVelocity( aVelocity.ToString() );
+                    newPanel.SetOffsetImage( sprites[(int)aOffsetFromPrevNote] );
+                    newPanel.SetOffset( aOffsetFromPrevNote );
+                    newPanel.SetVelocity( aMelodyVelocity.ToString() );
                     newPanel.SetParentContainer( this );
                     newPanel.SetNoteIndex( aNoteIndex );
 
@@ -489,9 +530,9 @@ public class SongCreation : MonoBehaviour {
         //----------------------------------------------------------------------------
 
         // Adds a note to the container
-        public void AddNote( Music.PITCH[] aPitches, Music.NOTE_LENGTH aLength, Music.NOTE_LENGTH aOffset, int aVelocity )
+        public void AddNote( int aMelodyVelocity, Music.NOTE_LENGTH aLength, Music.PITCH[] aPitches, int aDrumVelocity, Music.DRUM[] aDrumHits, Music.NOTE_LENGTH aOffsetFromPrevNote )
         {     
-            mMeasures[mCurrentMeasure].AddNote( aPitches, aLength, aOffset, aVelocity, mNumNotes );
+            mMeasures[mCurrentMeasure].AddNote( mNumNotes, aMelodyVelocity, aLength, aPitches, aDrumVelocity, aDrumHits, aOffsetFromPrevNote );
             mNumNotes++;
         }
 
@@ -512,7 +553,8 @@ public class SongCreation : MonoBehaviour {
         //----------------------------------------------------------------------------
 
         // Handles when a measure becomes full.
-        public void HandleFullMeasure( MeasureDisplayPanel aFullMeasure, float aSpillover, Music.PITCH[] aPitches, Music.NOTE_LENGTH aLength, Music.NOTE_LENGTH aOffset, int aVelocity )
+        public void HandleFullMeasure( MeasureDisplayPanel aFullMeasure, float aSpillover,
+            int aMelodyVelocity, Music.NOTE_LENGTH aLength, Music.PITCH[] aPitches, int aDrumVelocity, Music.DRUM[] aDrumHits, Music.NOTE_LENGTH aOffsetFromPrevNote )
         {
             // Create a new measure toggle.
             GameObject clone = Instantiate( mMeasures[0].gameObject );
@@ -533,7 +575,7 @@ public class SongCreation : MonoBehaviour {
             mMeasures[mCurrentMeasure].SetPercentageUsed( 0f - aSpillover );
 
             // Add the note to the new measure.
-            mMeasures[mCurrentMeasure].AddNote( aPitches, aLength, aOffset, aVelocity, mNumNotes );
+            mMeasures[mCurrentMeasure].AddNote( mNumNotes, aMelodyVelocity, aLength, aPitches, aDrumVelocity, aDrumHits, aOffsetFromPrevNote );
 
             // Make only the new measure be shown.
             HandleMeasureToggled( mMeasures[mCurrentMeasure] );
@@ -660,9 +702,97 @@ public class SongCreation : MonoBehaviour {
         private Toggle[] mPitches = null; // The toggle switches for each pitch
 
         //---------------------------------------------------------------------------- 
-        // Unity Functions
+        // Public Functions
         //---------------------------------------------------------------------------- 
-        private void Awake()
+
+        // Gets the selected pitches.
+        public Music.PITCH[] GetSelectedPitches()
+        {
+            Music.PITCH[] returned = null;
+
+            // If we're currently a rest note, return the rest pitch
+            if( mRestNote )
+            {
+                returned = new Music.PITCH[1];
+                returned[0] = Music.PITCH.REST;
+            }
+            // If there aren't any pitches selected, then return null.
+            else if( mSelectedPitches.Count == 0 )
+            {
+                return null;
+            }
+            // If we're not currently a rest note and some pitches are selected, then return all of the selected pitches.
+            else
+            {
+                int index = 0;
+                returned = new Music.PITCH[mSelectedPitches.Count];
+                foreach( int pitch in mSelectedPitches )
+                {
+                    returned[index] = (Music.PITCH)mSelectedPitches[index];
+                    index++;
+                }
+            }
+            return returned;
+        }
+
+        // Resets the selected pitches.
+        public void ResetPitches()
+        {
+            // Reset the child objects.
+            foreach( int pitch in mSelectedPitches )
+            {
+                mPitchSelectionTriggers[pitch].SetSelection( false );
+            }
+
+            // Update the rest note pitch.
+            mRestNote = false;
+
+
+            // Clear the list.
+            mSelectedPitches.Clear();
+        }
+
+        // Sets up the drums.
+        public void SetUpDrums()
+        {
+            // Create the list of selected pitches, the array of toggle switches, and the array of triggers.
+            mSelectedPitches = new List<int>();
+            mPitches = new Toggle[Music.MAX_SUPPORTED_DRUMS];
+            mPitchSelectionTriggers = new PitchSelectionTrigger[Music.MAX_SUPPORTED_DRUMS];
+
+            // Get the first toggle switch and set its text
+            mPitches[0] = gameObject.transform.GetChild( 0 ).GetComponent<Toggle>();
+            mPitches[0].transform.GetChild( 1 ).GetComponent<Text>().text = "KICK_1";
+
+            // Set up the first pitch selection trigger.
+            mPitchSelectionTriggers[0] = mPitches[0].gameObject.AddComponent<PitchSelectionTrigger>();
+            mPitchSelectionTriggers[0].SetHandler( this );
+            mPitchSelectionTriggers[0].SetIndex( 0 );
+            mPitchSelectionTriggers[0].SetSelection( false );
+
+            // Clone the first pitch object and modify it for each drum.
+            for( int i = 1; i < Music.MAX_SUPPORTED_DRUMS; i++ )
+            {
+                // Copy the first drum and set its parent.
+                mPitches[i] = Instantiate( mPitches[0] ).GetComponent<Toggle>();
+                mPitches[i].transform.SetParent( gameObject.transform );
+
+                // Set the copy's text
+                mPitches[i].transform.GetChild( 1 ).GetComponent<Text>().text = Music.DrumToString( i );
+
+                // Set up the clone's PitchSelectionTrigger.
+                mPitchSelectionTriggers[i] = mPitches[i].GetComponent<PitchSelectionTrigger>();
+                mPitchSelectionTriggers[i].SetIndex( i );
+                mPitchSelectionTriggers[i].SetHandler( this );
+
+            }
+
+            // Make sure that everything is sized appropriately.
+            mPitches[0].transform.localScale = mPitches[1].transform.localScale;
+        }
+
+        // Sets up the pitches.
+        public void SetUpPitches()
         {
             // Create the list of selected pitches, the array of toggle switches, and the array of triggers.
             mSelectedPitches = new List<int>();
@@ -714,52 +844,6 @@ public class SongCreation : MonoBehaviour {
             mRest.onValueChanged.AddListener( OnRestToggle );
             mRest.transform.GetChild( 1 ).GetComponent<Text>().text = "Rest";
             mRest.transform.localScale = mPitches[1].transform.localScale;
-        }
-
-        //---------------------------------------------------------------------------- 
-        // Public Functions
-        //---------------------------------------------------------------------------- 
-
-        // Gets the selected pitches.
-        public Music.PITCH[] GetSelectedPitches()
-        {
-            Music.PITCH[] returned = null;
-
-            // If we're currently a rest note, return the rest pitch
-            if( mRestNote )
-            {
-                returned = new Music.PITCH[1];
-                returned[0] = Music.PITCH.REST;
-            }
-            // If we're not currently a rest note, then return all of the selected pitches.
-            else
-            {
-                int index = 0;
-                returned = new Music.PITCH[mSelectedPitches.Count];
-                foreach( int pitch in mSelectedPitches )
-                {
-                    returned[index] = (Music.PITCH)mSelectedPitches[index];
-                    index++;
-                }
-            }
-            return returned;
-        }
-
-        // Resets the selected pitches.
-        public void ResetPitches()
-        {
-            // Reset the child objects.
-            foreach( int pitch in mSelectedPitches )
-            {
-                mPitchSelectionTriggers[pitch].SetSelection( false );
-            }
-
-            // Update the rest note pitch.
-            mRestNote = false;
-
-
-            // Clear the list.
-            mSelectedPitches.Clear();
         }
 
         //---------------------------------------------------------------------------- 
@@ -1011,6 +1095,7 @@ public class SongCreation : MonoBehaviour {
     private InputField mSongNameInputField = null; // The input field to name the song.
     private NoteDisplayContainer mNoteDisplay = null; // The container to show the notes for the song.
     private NoteDisplayPanel mEditPanel = null; // The panel that was selected to be edited.
+    private PitchSelectionContainer mDrumSelector = null; // The container for choosing drums.
     private PitchSelectionContainer mPitchSelector = null; // The container for choosing pitches.
     private Slider mBPMSlider = null; // The slider for the BPM of the song.
     private Slider mVelocitySlider = null; // The slider for the velocity of the new note.
@@ -1035,9 +1120,11 @@ public class SongCreation : MonoBehaviour {
 
         // Set up the container for selecting pitches.
         mPitchSelector = gameObject.transform.GetChild( 2 ).GetChild( 0 ).GetChild( 0 ).gameObject.AddComponent<PitchSelectionContainer>();
+        mPitchSelector.SetUpPitches();
 
         // Set up the panels for choosing a note's length and offset.
         mLengthPanel = gameObject.transform.GetChild( 3 ).gameObject.AddComponent<SongCreationSelectionContainer>();
+        mLengthPanel.SetSelected( Music.NOTE_LENGTH.Q );
         mOffsetPanel = gameObject.transform.GetChild( 4 ).gameObject.AddComponent<SongCreationSelectionContainer>();
 
         // Set up the slider for the note's velocity.
@@ -1063,6 +1150,10 @@ public class SongCreation : MonoBehaviour {
         mPlaySongButton.onClick.AddListener( OnPlaySong );
         mATIButton = gameObject.transform.GetChild( 11 ).GetComponent<Button>();
         mATIButton.onClick.AddListener( UnloadSongCreationInterface );
+
+        // Set up the drum selector.
+        mDrumSelector = gameObject.transform.GetChild( 12 ).GetChild( 0 ).GetChild( 0 ).gameObject.AddComponent<PitchSelectionContainer>();
+        mDrumSelector.SetUpDrums();
     }
 
     //---------------------------------------------------------------------------- 
@@ -1093,13 +1184,17 @@ public class SongCreation : MonoBehaviour {
         // Get the selected pitches
         Music.PITCH[] pitches = mPitchSelector.GetSelectedPitches();
 
-        // Make sure that some pitches are actually selected.
-        if( pitches.Length != 0 )
+        // Get the selected drums.
+        Music.PITCH[] drums = mDrumSelector.GetSelectedPitches();
+
+        // Make sure that some pitches or drums are actually selected.
+        if( pitches != null || drums != null )
         {
-            // Get the length, offset, and velocity.
-            Music.NOTE_LENGTH length = mLengthPanel.GetSelected();
+            // Get the offset and velocity.
+            Music.NOTE_LENGTH length = Music.NOTE_LENGTH.NONE;
             Music.NOTE_LENGTH offset = mOffsetPanel.GetSelected();
-            int velocity = (int)mVelocitySlider.value;
+            int pitchVelocity = 0;
+            int drumVelocity = 0;
 
             // If the song doesn't have any notes, then set the offset of the first note to none.
             if( mSong.GetNumNotes() == 0 )
@@ -1107,14 +1202,40 @@ public class SongCreation : MonoBehaviour {
                 offset = Music.NOTE_LENGTH.NONE;
             }
 
+            // Convert the selected pitches from the drum selector into actual drum hits.
+            Music.DRUM[] Hits = null;
+            if( drums != null )
+            {
+                Hits = new Music.DRUM[drums.Length];
+                for( int i = 0; i < drums.Length; i++ )
+                {
+                    Hits[i] = (Music.DRUM)drums[i];
+                }
+            }
+
+
+            // Update the velocity/length for the pitches and drums if needed.
+            if( pitches != null )
+            {
+                pitchVelocity = (int)mVelocitySlider.value;
+                length = mLengthPanel.GetSelected();
+            }
+
+            if( drums != null )
+            {
+                drumVelocity = (int)mVelocitySlider.value;
+            }
+
+
             // Add the note to the song.
-            mSong.AddNote( velocity, length, offset, pitches );
+            mSong.AddNote( Music.CreateNote( pitchVelocity, length, pitches, drumVelocity, Hits, offset ) );
 
             // Add the note to the note display.
-            mNoteDisplay.AddNote( pitches, length, offset, velocity );
+            mNoteDisplay.AddNote( pitchVelocity, length, pitches, drumVelocity, Hits, offset );
 
             // Reset the pitches.
             mPitchSelector.ResetPitches();
+            mDrumSelector.ResetPitches();
 
             // Update the selection of the offset panel since most cases will use the previous length.
             mOffsetPanel.SetSelected( mLengthPanel.GetSelected() );
@@ -1128,14 +1249,21 @@ public class SongCreation : MonoBehaviour {
         // Handle the case where we begin editing a note.
         if( mEditPanel == null )
         {
-            // Update the new note button to be a modify note button.
-            mNewNoteButton.transform.GetChild( 0 ).GetComponent<Text>().text = "Modify Note";
-            mNewNoteButton.onClick.RemoveListener( OnCreateNote );
-            mNewNoteButton.onClick.AddListener( OnModifyNote );
+            if( mSong.GetNumNotes() != 0 )
+            {
+                // Update the new note button to be a modify note button.
+                mNewNoteButton.transform.GetChild( 0 ).GetComponent<Text>().text = "Modify Note";
+                mNewNoteButton.onClick.RemoveListener( OnCreateNote );
+                mNewNoteButton.onClick.AddListener( OnModifyNote );
 
-            // Set the variables related to editing a note.
-            mEditPanel = aPanel;
-            mEditing = true;
+                // Set the variables related to editing a note.
+                mEditPanel = aPanel;
+                mEditing = true;
+            }
+            else
+            {
+                aPanel.StopEditing();
+            }
         }
         // Handle the case where a note/note panel is already being edited, 
         // but a different one calls this event.
@@ -1181,45 +1309,84 @@ public class SongCreation : MonoBehaviour {
             // Get the pitches 
             Music.PITCH[] pitches = mPitchSelector.GetSelectedPitches();
 
-            // Make sure that some pitches are actually selected.
-            if( pitches.Length != 0 )
+            // Get the drums
+            Music.PITCH[] drums = mDrumSelector.GetSelectedPitches();
+
+            // Make sure that some pitches or drums are actually selected.
+            if( pitches != null || drums != null )
             {
                 // Get the index of the note in the song and the images for the length/offset.
                 int index = mEditPanel.GetNoteIndex();
                 Sprite[] images = mNoteDisplay.GetSprites();
 
-                // Create a new note struct.
-                Music.Note noteReplacement;
+                // Convert the selected pitches from the drum selector into actual drum hits.
+                Music.DRUM[] Hits = null;
+                if( drums != null )
+                {
+                    Hits = new Music.DRUM[drums.Length];
+                    for( int i = 0; i < drums.Length; i++ )
+                    {
+                        Hits[i] = (Music.DRUM)drums[i];
+                    }
+                }
 
                 // Set the values of the note struct.
-                noteReplacement.Pitches = pitches;
-                noteReplacement.Length = mLengthPanel.GetSelected();
-                noteReplacement.Offset = mOffsetPanel.GetSelected();
-                noteReplacement.Velocity = (int)mVelocitySlider.value;
+                Music.NOTE_LENGTH length = Music.NOTE_LENGTH.NONE;
+                Music.NOTE_LENGTH offset = mOffsetPanel.GetSelected();
+                int pitchVelocity = 0;
+                int drumVelocity = 0;
+
+                // Update the velocity for the pitches and drums if needed.
+                if( pitches != null )
+                {
+                    pitchVelocity = (int)mVelocitySlider.value;
+                    length = mLengthPanel.GetSelected();
+                }
+                
+                if( drums != null )
+                {
+                    drumVelocity = (int)mVelocitySlider.value;
+                }
 
                 // Replace the note in the song with the modified note.
-                mSong.ReplaceNote( noteReplacement, index );
+                mSong.ReplaceNote( Music.CreateNote( pitchVelocity, length, pitches, drumVelocity, Hits, offset ), index );
 
                 // Get the string of pitches for the modified note.
-                string pitchString = "";
-                for( int i = 0; i < pitches.Length; i++ )
+                string pitchString = "None";
+                if( pitches != null )
                 {
-                    if( pitches[i] == Music.PITCH.REST )
+                    pitchString = "";
+                    for( int i = 0; i < pitches.Length; i++ )
                     {
-                        pitchString += "Rest ";
+                        if( pitches[i] == Music.PITCH.REST )
+                        {
+                            pitchString += "Rest ";
+                        }
+                        else
+                        {
+                            pitchString += ( Music.NoteToString( pitches[i] ) + " " );
+                        }
                     }
-                    else
+                }
+
+                // Get the string of drums for the modified note.
+                string drumString = "None";
+                if( Hits != null )
+                {
+                    drumString = "";
+                    foreach( Music.DRUM drum in Hits )
                     {
-                        pitchString += ( Music.NoteToString( pitches[i] ) + " " );
+                        drumString += Music.DrumToString( drum ) + " ";
                     }
                 }
 
                 // Update the panel representing the note.
+                mEditPanel.SetDrums( drumString );
                 mEditPanel.SetPitches( pitchString );
-                mEditPanel.SetLengthImage( images[(int)noteReplacement.Length] );
-                mEditPanel.SetOffsetImage( images[(int)noteReplacement.Offset] );
-                mEditPanel.SetOffset( noteReplacement.Offset );
-                mEditPanel.SetVelocity( noteReplacement.Velocity.ToString() );
+                mEditPanel.SetLengthImage( images[(int)length] );
+                mEditPanel.SetOffsetImage( images[(int)offset] );
+                mEditPanel.SetOffset( offset );
+                mEditPanel.SetVelocity( mVelocitySlider.value.ToString() );
 
                 // Mark that the panel is no longer being edited.
                 mEditPanel.StopEditing();
@@ -1235,6 +1402,7 @@ public class SongCreation : MonoBehaviour {
 
                 // Reset the pitch selections.
                 mPitchSelector.ResetPitches();
+                mDrumSelector.ResetPitches();
             }
         }            
     }

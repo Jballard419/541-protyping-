@@ -19,21 +19,48 @@ public class Song
     // Types
     //---------------------------------------------------------------------------- 
 
-    // A struct for note data which is used as a bridge between the general music objects and the audio data.
-    public struct NoteData
+    // The possible types of songs.
+    public enum SongType
+    {
+        Empty,
+        Melody,
+        DrumLoop,
+        CombinedMelodyAndPercussion
+    }
+
+    // A struct for drum data which is used as a bridge between the abstract drum objects and the audio data.
+    public struct PercussionData
+    {
+        public bool HasHiHat;
+        public int Velocity;
+        public Music.DRUM[] Hits;
+    }
+
+    // A struct for musical note data which is used as a bridge between the abstract musical note and the audio data.
+    public struct MelodyNoteData
     {
         public int NumSamples;
-        public int TotalOffset;
         public int Velocity;
         public Music.PITCH[] Pitches;
+    }
+
+    // A struct to contain data for both the drums and the melody.
+    public struct CombinedNoteData
+    {
+        public int TotalOffset;
+        public MelodyNoteData MelodyData;
+        public PercussionData PercussionData;
     }
 
     //---------------------------------------------------------------------------- 
     // Private Variables
     //---------------------------------------------------------------------------- 
     private int mBPM = 120; // The default BPM of the song.
-    private List<Music.Note> mNotes = null; // The notes of the song.
+    private int mNumDrumNotes; // The number of notes that have drums.
+    private int mNumMusicalNotes; // The number of notes that have pitches.
+    private List<Music.CombinedNote> mNotes = null; // The notes of the song.
     private Music.TimeSignature mTimeSignature; // The time signature of the song.
+    private SongType mType = SongType.Empty; // The type of song.
     private string mName = null; // The name of the song.
 
     //---------------------------------------------------------------------------- 
@@ -44,7 +71,7 @@ public class Song
     public Song()
     {
         // Set the member variables.
-        mNotes = new List<Music.Note>();
+        mNotes = new List<Music.CombinedNote>();
         mTimeSignature = Music.TIME_SIGNATURE_4_4();
         mBPM = 120;
         mName = "Untitled";
@@ -53,7 +80,7 @@ public class Song
     // A constructor to create a song from a file.
     public Song( string aSongFilePath )
     {
-        mNotes = new List<Music.Note>();
+        mNotes = new List<Music.CombinedNote>();
         CreateSongFromFile( aSongFilePath );
     }
 
@@ -62,17 +89,25 @@ public class Song
     //---------------------------------------------------------------------------- 
 
     // Adds a note to the song.
-    public void AddNote( int aVelocity, Music.NOTE_LENGTH aLength, Music.NOTE_LENGTH aOffset, Music.PITCH[] aPitches )
+    public void AddNote( Music.CombinedNote aNewNote )
     {
-        // Create the note struct.
-        Music.Note added;
-        added.Velocity = aVelocity;
-        added.Length = aLength;
-        added.Offset = aOffset;
-        added.Pitches = aPitches;
+        // Update the number of musical notes in the song if needed.
+        if( aNewNote.MusicalNote.Pitches != null )
+        {
+            mNumMusicalNotes++;
+        }
+
+        // Update the number of notes with drum hits in the song if needed.
+        if( aNewNote.Drums.Hits != null )
+        {
+            mNumDrumNotes++;
+        }
 
         // Add the note to the list.
-        mNotes.Add( added );
+        mNotes.Add( aNewNote );
+
+        // Update the song type.
+        UpdateSongType();
     }
 
     // Gets the BPM of the song.
@@ -88,10 +123,10 @@ public class Song
     }
 
     // Converts the notes in the song to NoteData structs.
-    public NoteData[] GetNoteData()
+    public CombinedNoteData[] GetNoteData()
     {
         // Allocate the returned array.
-        NoteData[] returned = new NoteData[mNotes.Count];
+        CombinedNoteData[] returned = new CombinedNoteData[mNotes.Count];
 
         // Set up variables to keep track of a note's number of samples and total offset.
         int offset = 0;
@@ -99,18 +134,26 @@ public class Song
 
         // Iterate through each note in the list.
         int index = 0;
-        foreach( Music.Note note in mNotes )
+        foreach( Music.CombinedNote note in mNotes )
         {
             // Get the number of samples and the total offset for the note.
-            numSamp = GetNoteLengthInSamples( mBPM, 44100, note.Length, mTimeSignature );
-            offset += GetNoteLengthInSamples( mBPM, 44100, note.Offset, mTimeSignature );
+            numSamp = GetNoteLengthInSamples( mBPM, 44100, note.MusicalNote.Length, mTimeSignature );
+            offset += GetNoteLengthInSamples( mBPM, 44100, note.OffsetFromPrevNote, mTimeSignature );
 
-            // Set the values for the NoteData struct.
-            returned[index].NumSamples = numSamp;
-            returned[index].Pitches = note.Pitches;
+            // Set the values for the NoteData's MelodyData.
+            returned[index].MelodyData.NumSamples = numSamp;
+            returned[index].MelodyData.Pitches = note.MusicalNote.Pitches;
+            returned[index].MelodyData.Velocity = note.MusicalNote.Velocity;
+
+            // Set the values for the NoteData's PercussionData.
+            returned[index].PercussionData.Velocity = note.Drums.Velocity;
+            returned[index].PercussionData.Hits = note.Drums.Hits;
+            returned[index].PercussionData.HasHiHat = note.Drums.HasHiHat;
+
+            // Set the offset for the NoteData.
             returned[index].TotalOffset = offset;
-            returned[index].Velocity = note.Velocity;
 
+            // Go to the next note.
             index++;
         }
 
@@ -118,7 +161,7 @@ public class Song
     }
 
     // Returns the notes in the song.
-    public List<Music.Note> GetNotes()
+    public List<Music.CombinedNote> GetNotes()
     {
         return mNotes;
     }
@@ -129,31 +172,69 @@ public class Song
         return mNotes.Count;
     }
 
+    // Gets the type of song that this is.
+    public SongType GetSongType()
+    {
+        return mType;
+    }
+
+    // Gets the time signature of the song.
+    // OUT: The time signature of the song.
+    public Music.TimeSignature GetTimeSignature()
+    {
+        return mTimeSignature;
+    }
+
     // Removes a note at a specific index from the song.
     public void RemoveNote( int aIndex )
     {
-        if( aIndex < mNotes.Count )
+        Assert.IsTrue( aIndex < mNotes.Count, 
+            "Tried to remove a note at the index " + aIndex.ToString() + " from a song with only " + mNotes.Count.ToString() + " notes in it!" );
+
+        // Get the note to be removed.
+        Music.CombinedNote removedNote = mNotes[aIndex];
+
+        // Account for how many musical notes and drum notes are left in the song.
+        if( removedNote.MusicalNote.Pitches != null )
         {
-            mNotes.RemoveAt( aIndex );
+            mNumMusicalNotes--;
         }
-        else
+        if( removedNote.Drums.Hits != null )
         {
-            Assert.IsTrue( false, "Tried to remove a note that didn't exist!" );
+            mNumDrumNotes--;
         }
 
+        // Update the song type.
+        UpdateSongType();
+
+        // Remove the note.
+        mNotes.RemoveAt( aIndex );
     }
 
     // Replaces a note at a specific index.
-    public void ReplaceNote( Music.Note aNote, int aIndex )
+    public void ReplaceNote( Music.CombinedNote aNote, int aIndex )
     {
-        if( aIndex < mNotes.Count )
+        Assert.IsTrue( aIndex < mNotes.Count,
+             "Tried to replace a note at the index " + aIndex.ToString() + " for a song with only " + mNotes.Count.ToString() + " notes in it!" );
+
+        // Get the replaced note.
+        Music.CombinedNote replacedNote = mNotes[aIndex];
+
+        // Account for changes in the number of musical notes and drum notes in the song.
+        if( replacedNote.MusicalNote.Pitches != null && aNote.MusicalNote.Pitches == null )
         {
-            mNotes[aIndex] = aNote;
+            mNumMusicalNotes--;
         }
-        else
+        if( replacedNote.Drums.Hits != null && aNote.Drums.Hits == null )
         {
-            Assert.IsTrue( false, "Tried to replace a note that didn't exist!" );
+            mNumDrumNotes--;
         }
+
+        // Update the song type.
+        UpdateSongType();
+
+        // Replace the note.
+        mNotes[aIndex] = aNote;
     }
 
     // Sets the BPM of the song.
@@ -175,7 +256,7 @@ public class Song
     }
 
     // Sets the notes of the song.
-    public void SetNotes( List<Music.Note> aNotes )
+    public void SetNotes( List<Music.CombinedNote> aNotes )
     {
         mNotes = aNotes;
     }
@@ -187,17 +268,37 @@ public class Song
         mTimeSignature.BaseBeat = aTimeSignature.BaseBeat;
     }
 
-    // Writes the song to a file. The filename will be "SONG_[mName]" and it will be stored in Resources/Music/Songs/
+    // Writes the song to a file. The file will be stored in Resources/Music/Songs/.
+    // If the song is combined melody and percussion, it will be named "SONG_songName.song"
+    // If the song is just melody, it will be named "MELODY_songName.song"
+    // If the song is a drum loop, it will be named "DRUMLOOP_songName.song"
     // The format of the file is:
     //     First line: "Name of song"
-    //     Second line: "defaultBPM;TimeSignature.BeatsPerMeasure;TimeSignature.BaseBeat"
-    //     Rest of lines: "pitch1,pitch2,...,pitchN;NoteLength;OffsetFromPreviousNote;Velocity"
-    // 
+    //     Second line: "songType;defaultBPM;TimeSignature.BeatsPerMeasure;TimeSignature.BaseBeat"
+    //     Rest of lines: 
+    //        if CombinedMelodyAndPercussion: "pitch1,pitch2,...,pitchN|drum1,drum2,...,drumN;NoteLength;OffsetFromPreviousNote;MelodyVelocity|DrumVelocity"
+    //        if DrumLoop: "drum1,drum2,...,drumN;OffsetFromPreviousNote;DrumVelocity"
+    //        if Melody: "pitch1,pitch2,...,pitchN;NoteLength;OffsetFromPreviousNote;MelodyVelocity
+    //
     // note: The values from Music enums are typecast to integers for saving. Ex: Music.PITCH.C4 is saved as 48. 
     public void WriteSongToFile()
     {
         // Set up the filepath.
-        string filepath = Application.dataPath + "/Resources/Music/Songs/SONG_" + mName;
+        string filepath = Application.dataPath + "/Resources/Music/Songs/";
+        switch( mType )
+        {
+            case SongType.DrumLoop:
+                filepath += "DRUMLOOP_" + mName + ".song";
+                break;
+            case SongType.Melody:
+                filepath += "MELODY_" + mName + ".song";
+                break;
+            case SongType.CombinedMelodyAndPercussion:
+                filepath += "SONG_" + mName + ".song";
+                break;
+            default:
+                break;
+        }
 
         // Set an array for the contents of the file
         string[] contents = new string[mNotes.Count + 2];
@@ -205,9 +306,9 @@ public class Song
         // Put the name of the song in first line to be saved.
         contents[0] = mName;
 
-        // Put the default BPM and the timesignature values in the second line to be saved.
-        contents[1] = mBPM.ToString() + ";" + mTimeSignature.BeatsPerMeasure.ToString() + ";" +
-            ( (int)mTimeSignature.BaseBeat ).ToString();
+        // Put the song type, default BPM and the time signature values in the second line to be saved.
+        contents[1] = ( (int)mType ).ToString() + ";" + mBPM.ToString() + ";" + 
+            mTimeSignature.BeatsPerMeasure.ToString() + ";" + ( (int)mTimeSignature.BaseBeat ).ToString();
 
         // Put all the notes into the lines from line 3 to line [numNotes].  
         for( int i = 0; i < mNotes.Count; i++ )
@@ -215,27 +316,95 @@ public class Song
             // Set up the note string.
             contents[i + 2] = "";
 
-            // Add the pitches to the string
-            for( int j = 0; j < mNotes[i].Pitches.Length; j++ )
+            // If pitches exist for the song, then add them.
+            if( mType != SongType.DrumLoop )
             {
-                contents[i + 2] += ( (int)mNotes[i].Pitches[j] ).ToString();
-
-                // If this is not the last pitch of the note, then add a comma
-                if( j + 1 != mNotes[i].Pitches.Length )
+                // Add the pitches if they exist for this note.
+                if( mNotes[i].MusicalNote.Pitches != null )
                 {
-                    contents[i + 2] += ",";
+                    // Add the pitches to the string
+                    for( int j = 0; j < mNotes[i].MusicalNote.Pitches.Length; j++ )
+                    {
+                        contents[i + 2] += ( (int)mNotes[i].MusicalNote.Pitches[j] ).ToString();
+
+                        // If this is not the last pitch of the note, then add a comma
+                        if( j + 1 != mNotes[i].MusicalNote.Pitches.Length )
+                        {
+                            contents[i + 2] += ",";
+                        }
+                        // If this is the last pitch of the note, then add a bar or a semicolon depending on if there are drums.
+                        else
+                        {
+                            if( mType == SongType.CombinedMelodyAndPercussion )
+                            {
+                                contents[i + 2] += "|";
+                            }
+                            else
+                            {
+                                contents[i + 2] += ";";
+                            }
+                        }
+                    }
                 }
-                // If this is the last pitch of the note, then add a semicolon.
+                // If pitches don't exist for the note, then put null.
                 else
                 {
-                    contents[i + 2] += ";";
+                    contents[i + 2] += "null|";
                 }
             }
 
-            // Add the length, offset, and velocity to the string
-            contents[i + 2] += ( ( (int)mNotes[i].Length ).ToString() + ";" );
-            contents[i + 2] += ( ( (int)mNotes[i].Offset ).ToString() + ";" );
-            contents[i + 2] += mNotes[i].Velocity.ToString();
+            // If drums exist for the song, then add them.
+            if( mType != SongType.Melody )
+            {
+                // If there are drums for this note, then add them. 
+                if( mNotes[i].Drums.Hits != null )
+                {
+                    // Add the drums to the string
+                    for( int j = 0; j < mNotes[i].Drums.Hits.Length; j++ )
+                    {
+                        contents[i + 2] += ( (int)mNotes[i].Drums.Hits[j] ).ToString();
+
+                        // If this is not the last drum hit of the note, then add a comma
+                        if( j + 1 != mNotes[i].Drums.Hits.Length )
+                        {
+                            contents[i + 2] += ",";
+                        }
+                        // If this is the last pitch of the note, then add a semicolon.
+                        else
+                        {
+                            contents[i + 2] += ";";
+                        }
+                    }
+                }
+            }            
+
+            // If the song is not a drum loop, then add the note length.
+            if( mType != SongType.DrumLoop )
+            {
+                contents[i + 2] += ( ( (int)mNotes[i].MusicalNote.Length ).ToString() + ";" );
+            }
+
+            // Add the offset from the previous note.
+            contents[i + 2] += ( ( (int)mNotes[i].OffsetFromPrevNote ).ToString() + ";" );
+
+            // If the song is not a drum loop, then add the musical note velocity.
+            if( mType != SongType.DrumLoop )
+            {
+                contents[i + 2] += mNotes[i].MusicalNote.Velocity.ToString();
+            }
+
+            // Put a bar if both drums and pitches exist for the song.
+            if( mType == SongType.CombinedMelodyAndPercussion )
+            {
+                contents[i + 2] += "|";
+            }
+
+            // If the song has drums, then put the velocity for the drums for this note.
+            if( mType != SongType.Melody )
+            {
+                contents[i + 2] += mNotes[i].Drums.Velocity;
+            }
+
         }
 
         // Write the contents to the file.
@@ -249,6 +418,14 @@ public class Song
     // Creates a song from a file.
     private void CreateSongFromFile( string aSongFilePath )
     {
+        // Create some variables for parsing the file.
+        Music.PITCH[] curNotePitches = null;
+        Music.DRUM[] curNoteDrums = null;
+        Music.NOTE_LENGTH curNoteLength = Music.NOTE_LENGTH.NONE;
+        int splitLineIndex = 0;
+        int curNoteMelodyVelocity = 0;
+        int curNoteDrumVelocity = 0;
+
         // Open the file stream.
         StreamReader parser = new StreamReader( aSongFilePath );
 
@@ -256,41 +433,156 @@ public class Song
         string curLine = parser.ReadLine();
         mName = curLine;
 
-        // Get the default BPM 
+        // Get the song type.
         curLine = parser.ReadLine();
         string[] splitLine = curLine.Split( ';' );
-        mBPM = int.Parse( splitLine[0] );
+        mType = (SongType)int.Parse( splitLine[0] );
+
+        // Get the default BPM
+        mBPM = int.Parse( splitLine[1] );
 
         // Get the time signature
-        mTimeSignature.BeatsPerMeasure = int.Parse( splitLine[1] );
-        mTimeSignature.BaseBeat = (Music.NOTE_LENGTH)int.Parse( splitLine[2] );
+        mTimeSignature.BeatsPerMeasure = int.Parse( splitLine[2] );
+        mTimeSignature.BaseBeat = (Music.NOTE_LENGTH)int.Parse( splitLine[3] );
 
         // Get the notes of the song.
         curLine = parser.ReadLine();
         while( curLine != null )
         {
+            // Get the line and reset the split line index.
             splitLine = curLine.Split( ';' );
+            splitLineIndex = 0;
 
-            // Get the pitches of the note
-            string[] pitches = splitLine[0].Split( ',' );
-            Music.PITCH[] readPitches = new Music.PITCH[pitches.Length];
-            for( int i = 0; i < pitches.Length; i++ )
+            // Get the pitches for the note if needed.
+            if( mType != SongType.DrumLoop )
             {
-                readPitches[i] = (Music.PITCH)int.Parse( pitches[i] );
+                curNotePitches = ParsePitches( splitLine[splitLineIndex] );
             }
 
-            // Get the note length and the offset from the previous note.
-            Music.NOTE_LENGTH length = (Music.NOTE_LENGTH)int.Parse( splitLine[1] );
-            Music.NOTE_LENGTH offset = (Music.NOTE_LENGTH)int.Parse( splitLine[2] );
+            // Get the drums for the note if needed.
+            if( mType != SongType.Melody )
+            {
+                curNoteDrums = ParseDrums( splitLine[splitLineIndex] );
+            }
 
-            // Get the velocity
-            int velocity = int.Parse( splitLine[3] );
+            // Go to the next section of the line.
+            splitLineIndex++;
+
+            // If needed, get the melody note length.
+            if( mType != SongType.DrumLoop )
+            {
+                curNoteLength = (Music.NOTE_LENGTH)int.Parse( splitLine[splitLineIndex] );
+                splitLineIndex++;
+            }
+
+            // Get the offset from the previous note.
+            Music.NOTE_LENGTH offset = (Music.NOTE_LENGTH)int.Parse( splitLine[splitLineIndex] );
+            splitLineIndex++;
+
+            // Get the velocity/velocities of the note.
+            if( mType == SongType.CombinedMelodyAndPercussion )
+            {
+                string[] velocityString = splitLine[splitLineIndex].Split( '|' );
+                curNoteMelodyVelocity = int.Parse( velocityString[0] );
+                curNoteDrumVelocity = int.Parse( velocityString[1] );
+            }
+            else if( mType == SongType.Melody )
+            {
+                curNoteMelodyVelocity = int.Parse( splitLine[splitLineIndex] );
+            }
+            else
+            {
+                curNoteDrumVelocity = int.Parse( splitLine[splitLineIndex] );
+            }
 
             // Add the note.
-            AddNote( velocity, length, offset, readPitches );
+            AddNote( Music.CreateNote( curNoteMelodyVelocity, curNoteLength, curNotePitches, curNoteDrumVelocity, curNoteDrums, offset ) );
 
             // Get the next line
             curLine = parser.ReadLine();
+        }
+    }
+
+    // Parses the pitches from a string.
+    // IN: aStringFromFile The string to parse.
+    private Music.DRUM[] ParseDrums( string aStringFromFile )
+    {
+        Music.DRUM[] parsedDrums = null;
+
+        // Get the entire string of drums.
+        string drumString = aStringFromFile;
+        if( mType == SongType.CombinedMelodyAndPercussion )
+        {
+            drumString = aStringFromFile.Split( '|' )[1];
+        }
+
+        // If there are drums for the note, then parse each drum.
+        if( drumString != "null" )
+        {
+            // Split the string into individual drums.
+            string[] drums = drumString.Split( ',' );
+
+            // Iterate through each drum and parse it.
+            parsedDrums = new Music.DRUM[drums.Length];
+            for( int i = 0; i < drums.Length; i++ )
+            {
+                parsedDrums[i] = (Music.DRUM)int.Parse( drums[i] );
+            }
+        }
+
+        // Return the parsed drums.
+        return parsedDrums;
+    }
+
+    // Parses the pitches from a string.
+    // IN: aStringFromFile The string to parse.
+    private Music.PITCH[] ParsePitches( string aStringFromFile )
+    {
+        Music.PITCH[] parsedPitches = null;
+
+        // Get the entire string of pitches.
+        string pitchString = aStringFromFile;
+        if( mType == SongType.CombinedMelodyAndPercussion )
+        {
+            pitchString = aStringFromFile.Split( '|' )[0];
+        }
+
+        // If there are pitches for the note, then parse each pitch.
+        if( pitchString != "null" )
+        {
+            // Split the string into individual pitches.
+            string[] pitches = pitchString.Split( ',' );
+
+            // Iterate through each pitch and parse it.
+            parsedPitches = new Music.PITCH[pitches.Length];
+            for( int i = 0; i < pitches.Length; i++ )
+            {
+                parsedPitches[i] = (Music.PITCH)int.Parse( pitches[i] );
+            }
+        }
+
+        // Return the parsed pitches.
+        return parsedPitches;
+    }
+
+    // Updates the type of song that this is.
+    private void UpdateSongType()
+    {
+        if( mNumDrumNotes > 0 && mNumMusicalNotes > 0 )
+        {
+            mType = SongType.CombinedMelodyAndPercussion;
+        }
+        else if( mNumMusicalNotes > 0 )
+        {
+            mType = SongType.Melody;
+        }
+        else if( mNumDrumNotes > 0 )
+        {
+            mType = SongType.DrumLoop;
+        }
+        else
+        {
+            mType = SongType.Empty;
         }
     }
 
