@@ -1,0 +1,34 @@
+\hypertarget{group___audio}{}\section{Audio}
+\label{group___audio}\index{Audio@{Audio}}
+
+
+Everything related to playing audio.  
+
+
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___audio_management}{Audio Management}
+\begin{DoxyCompactList}\small\item\em Everything related to managing the audio. \end{DoxyCompactList}\item 
+\hyperlink{group___audio_testing}{Audio Testing}
+\begin{DoxyCompactList}\small\item\em Modules for testing/debugging the Audio. \end{DoxyCompactList}\item 
+\hyperlink{group___doc_music_handling}{Music Handling}
+\begin{DoxyCompactList}\small\item\em Classes that handle representations of music including \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitches}, \hyperlink{group___music_structs_struct_music_1_1_combined_note}{notes}, \hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{drums}, and \hyperlink{class_song}{Songs}. \end{DoxyCompactList}\item 
+\hyperlink{group___doc_s_c}{Song Creation}
+\begin{DoxyCompactList}\small\item\em Allows for creating \hyperlink{class_song}{Songs}. Used only for development; not a feature. \end{DoxyCompactList}\item 
+\hyperlink{group___song_group}{Songs}
+\begin{DoxyCompactList}\small\item\em The backend for songs and lessons from an audio perspective. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Everything related to playing audio. 
+
+\hypertarget{group___audio_AudioInfo}{}\subsection{Information}\label{group___audio_AudioInfo}
+Samples for the piano and marimba were obtained from Electronic Music Studios at the University of Iowa (\href{http://theremin.music.uiowa.edu/MIS.html}{\tt http\+://theremin.\+music.\+uiowa.\+edu/\+M\+I\+S.\+html}). These samples are provided from Electronic Music Studios to the public for any use without restrictions. ~\newline
+ Samples for the drums were obtained from Drum\+Gizmo (\href{http://www.drumgizmo.org/wiki/doku.php?id=about}{\tt http\+://www.\+drumgizmo.\+org/wiki/doku.\+php?id=about}) and are used under the Creative Commons Attribution 3.\+0 Unported license (\href{https://creativecommons.org/licenses/by/3.0/}{\tt https\+://creativecommons.\+org/licenses/by/3.\+0/}). The kit used was the D\+R\+S\+Kit (\href{http://www.drumgizmo.org/wiki/doku.php?id=kits:drskit}{\tt http\+://www.\+drumgizmo.\+org/wiki/doku.\+php?id=kits\+:drskit}).\hypertarget{group___audio_DefVel}{}\subsubsection{Velocity}\label{group___audio_DefVel}
+Velocity is a term taken from M\+I\+DI that refers to the volume of the note. Unlike M\+I\+DI where the velocity ranges from 0-\/127, the velocity of notes for this project range from 0-\/100 so that they can be used like a percentage. ~\newline
+ A velocity of 0 means that the note is silent. A velocity of 100 means that the note is as loud as it can possibly be.\hypertarget{group___audio_DefBID}{}\subsubsection{Built-\/\+In Dynamics}\label{group___audio_DefBID}
+This term refers to the capability that some instruments have for using different sound files depending on the velocity of a note. ~\newline
+ Right now only the \hyperlink{class_piano}{Piano} supports this. There are three different sound files for each pitch which are labelled pp (pianissimo), mf (mezzoforte), or ff (fortissimo).\hypertarget{group___audio_DefBIDThresh}{}\paragraph{Built-\/\+In Dynamics Thresholds}\label{group___audio_DefBIDThresh}
+This term refers to the thresholds for when to use a specific Built-\/\+In Dynamic. For example, the thresholds for the \hyperlink{class_piano}{Piano} are \mbox{[}50, 75, 100\mbox{]}. This means that velocities of 50 and under use the pp files, velocities of 51-\/75 use the mf files, and velocities of 76-\/100 use the ff files.\hypertarget{group___audio_DefBPM}{}\subsubsection{B\+PM}\label{group___audio_DefBPM}
+This term is an abbreviation for Beats Per Minute. It refers to the tempo of a song. 

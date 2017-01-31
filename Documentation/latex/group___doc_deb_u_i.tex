@@ -1,0 +1,92 @@
+\hypertarget{group___doc_deb_u_i}{}\section{Debugging UI}
+\label{group___doc_deb_u_i}\index{Debugging UI@{Debugging UI}}
+
+
+Handles the UI used for debugging in the Keyboard\+Scene.  
+
+
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___deb_u_i_handlers}{Event Handlers}
+\item 
+\hyperlink{group___deb_u_i_priv_var}{Private Variables}
+\item 
+\hyperlink{group___deb_u_i_unity}{Unity Functions}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Handles the UI used for debugging in the Keyboard\+Scene. 
+
+\hypertarget{group___doc_deb_u_i_DocDebUIPrivVar}{}\subsection{Private Variables}\label{group___doc_deb_u_i_DocDebUIPrivVar}
+These are variables used internally by the \hyperlink{class_debug_u_i}{Debug\+UI}. ~\newline
+ \hyperlink{group___deb_u_i_priv_var}{More details}.\hypertarget{group___doc_deb_u_i_DocDebUIUnity}{}\subsection{Unity Functions}\label{group___doc_deb_u_i_DocDebUIUnity}
+These are functions that are called automatically by Unity. ~\newline
+ \hyperlink{group___deb_u_i_unity}{More details}.\hypertarget{group___doc_deb_u_i_DocDebUIHandlers}{}\subsection{Event Handlers}\label{group___doc_deb_u_i_DocDebUIHandlers}
+These are functions that are used by the \hyperlink{class_debug_u_i}{Debug\+UI} to handle events. ~\newline
+ \hyperlink{group___deb_u_i_handlers}{More details}.\hypertarget{group___doc_deb_u_i_DocDebUICode}{}\subsection{Code}\label{group___doc_deb_u_i_DocDebUICode}
+
+\begin{DoxyCodeInclude}
+1 \textcolor{keyword}{using} \hyperlink{namespace_system}{System}.Collections;
+2 \textcolor{keyword}{using} \hyperlink{namespace_system}{System}.Collections.Generic;
+3 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine};
+4 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine}.Assertions;
+5 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine}.SceneManagement;
+6 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine}.UI;
+7 \textcolor{comment}{}
+8 \textcolor{comment}{/** }
+9 \textcolor{comment}{ * @class DebugUI}
+10 \textcolor{comment}{ * @brief Handles the UI used for debugging in the KeyboardScene.}
+11 \textcolor{comment}{*/}
+12 \textcolor{keyword}{public} \textcolor{keyword}{class }\hyperlink{class_debug_u_i}{DebugUI} : MonoBehaviour \{
+13 
+14     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+15 \textcolor{comment}{    * @defgroup DebUIPrivVar Private Variables}
+16 \textcolor{comment}{    * @ingroup DocDebUI}
+17 \textcolor{comment}{    * These are variables used internally by the DebugUI.}
+18 \textcolor{comment}{    * @\{}
+19 \textcolor{comment}{    ****************************************************************************/}
+20     \textcolor{keyword}{private} Button mGoToATIButton = null; \textcolor{comment}{//!< The button to load the Audio Testing Interface.}
+21 \textcolor{comment}{}
+22     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+23 \textcolor{comment}{    * @\}}
+24 \textcolor{comment}{    * @defgroup DebUIUnity Unity Functions}
+25 \textcolor{comment}{    * @ingroup DocDebUI}
+26 \textcolor{comment}{    * These are functions that are called automatically by Unity.}
+27 \textcolor{comment}{    * @\{}
+28 \textcolor{comment}{    ****************************************************************************/}
+29 \textcolor{comment}{}
+30 \textcolor{comment}{    /**}
+31 \textcolor{comment}{     * @brief Initializes the behavior for the button that loads the Audio Testing Interface.}
+32 \textcolor{comment}{    */}
+33     \textcolor{keywordtype}{void} \hyperlink{group___deb_u_i_unity_ga1369ce8825b055ee93722b2626a06d1e}{Awake}()
+34     \{
+35         \textcolor{comment}{// Get the button to load the Audio Testing Interface.}
+36         mGoToATIButton = transform.GetChild( 1 ).GetComponent<Button>();
+37         Assert.IsNotNull( mGoToATIButton, \textcolor{stringliteral}{"Could not find the button to go to the Audio Testing Interface!"}
+       );
+38 
+39         \textcolor{comment}{// Add the listener for the button to load the Audio Testing Interface.}
+40         mGoToATIButton.onClick.AddListener( \hyperlink{group___deb_u_i_handlers_ga16e95ec9c2c6cc4cecf06e54e316f00c}{OnGoToATIButtonClicked} );
+41     \}
+42 
+43     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+44 \textcolor{comment}{    * @\}}
+45 \textcolor{comment}{    * @defgroup DebUIHandlers Event Handlers}
+46 \textcolor{comment}{    * @ingroup DocDebUI}
+47 \textcolor{comment}{    * These are functions that are used by the DebugUI to handle events.}
+48 \textcolor{comment}{    * @\{}
+49 \textcolor{comment}{    ****************************************************************************/}
+50 \textcolor{comment}{}
+51 \textcolor{comment}{    /**}
+52 \textcolor{comment}{     * @brief Loads the Audio Testing Interface.}
+53 \textcolor{comment}{    */}
+54     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{group___deb_u_i_handlers_ga16e95ec9c2c6cc4cecf06e54e316f00c}{OnGoToATIButtonClicked}()
+55     \{
+56         SceneManager.LoadScene( \textcolor{stringliteral}{"AudioTestingInterface"}, LoadSceneMode.Single );
+57     \}\textcolor{comment}{}
+58 \textcolor{comment}{    /** @\} */}
+59 \}
+\end{DoxyCodeInclude}
+ 

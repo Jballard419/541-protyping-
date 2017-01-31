@@ -1,0 +1,76 @@
+\hypertarget{group___mus_typ_unity}{}\section{Musical Typing Unity Functions}
+\label{group___mus_typ_unity}\index{Musical Typing Unity Functions@{Musical Typing Unity Functions}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___mus_typ_unity_ga2935e4d4209f57f19ea242968c861f3f}{Musical\+Typing\+Handler.\+Awake} ()
+\begin{DoxyCompactList}\small\item\em Initializes the \hyperlink{class_musical_typing_handler}{Musical\+Typing\+Handler} by getting the parent \hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} and calling Set\+Musical\+Typing\+Variables. \end{DoxyCompactList}\item 
+void \hyperlink{group___mus_typ_unity_ga13a20522cf119917cb41e21051122977}{Musical\+Typing\+Handler.\+On\+G\+UI} ()
+\begin{DoxyCompactList}\small\item\em Called whenever there is a G\+UI event. Used to see if the event is supposed to start a Musical Typing Event. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Variables used to construct \hyperlink{group___mus_typ}{Musical Typing} events. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___mus_typ_unity_ga2935e4d4209f57f19ea242968c861f3f}\label{group___mus_typ_unity_ga2935e4d4209f57f19ea242968c861f3f}} 
+\index{Musical Typing Unity Functions@{Musical Typing Unity Functions}!Awake@{Awake}}
+\index{Awake@{Awake}!Musical Typing Unity Functions@{Musical Typing Unity Functions}}
+\subsubsection{\texorpdfstring{Awake()}{Awake()}}
+{\footnotesize\ttfamily void Musical\+Typing\+Handler.\+Awake (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Initializes the \hyperlink{class_musical_typing_handler}{Musical\+Typing\+Handler} by getting the parent \hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} and calling Set\+Musical\+Typing\+Variables. 
+
+
+
+Definition at line 87 of file Musical\+Typing\+Handler.\+cs.
+
+
+
+References Musical\+Typing\+Handler.\+Set\+Musical\+Typing\+Variables().
+
+
+\begin{DoxyCode}
+88     \{
+89         \textcolor{comment}{// Get the Virtual Instrument Manager}
+90         \hyperlink{group___mus_typ_priv_var_ga63b2c5e1f9b1320a6b435a9018759444}{mVIM} = gameObject.GetComponent<\hyperlink{class_virtual_instrument_manager}{VirtualInstrumentManager}>();
+91         Assert.IsNotNull( \hyperlink{group___mus_typ_priv_var_ga63b2c5e1f9b1320a6b435a9018759444}{mVIM}, \textcolor{stringliteral}{"Musical Typing couldn't get the VirtualInstrumentManager!"} );
+92 
+93         \textcolor{comment}{// Set the default variables}
+94         \hyperlink{group___mus_typ_priv_func_ga5db8ab750574dbc31279827ea5cc501e}{SetMusicalTypingVariables}();
+95     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___mus_typ_unity_ga13a20522cf119917cb41e21051122977}\label{group___mus_typ_unity_ga13a20522cf119917cb41e21051122977}} 
+\index{Musical Typing Unity Functions@{Musical Typing Unity Functions}!On\+G\+UI@{On\+G\+UI}}
+\index{On\+G\+UI@{On\+G\+UI}!Musical Typing Unity Functions@{Musical Typing Unity Functions}}
+\subsubsection{\texorpdfstring{On\+G\+U\+I()}{OnGUI()}}
+{\footnotesize\ttfamily void Musical\+Typing\+Handler.\+On\+G\+UI (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Called whenever there is a G\+UI event. Used to see if the event is supposed to start a Musical Typing Event. 
+
+\begin{DoxySeeAlso}{See also}
+Virtual\+Instrument\+Manager\+::\+D\+E\+B\+U\+G\+\_\+\+Handle\+Musical\+Typing\+Event 
+\end{DoxySeeAlso}
+
+
+Definition at line 102 of file Musical\+Typing\+Handler.\+cs.
+
+
+
+References Musical\+Typing\+Handler.\+On\+Musical\+Typing\+Event().
+
+
+\begin{DoxyCode}
+103     \{
+104         \textcolor{comment}{// If musical typing is enabled, then watch for key events and send them along to the handler.}
+105         \textcolor{keywordflow}{if}( \hyperlink{group___mus_typ_pub_var_ga09a764161d537b31fac1a64ee5d39625}{MusicalTypingEnabled} && Event.current.isKey &&
+106             ( Input.GetKeyDown( Event.current.keyCode ) || Input.GetKeyUp( Event.current.keyCode ) ) )
+107         \{
+108             \hyperlink{group___mus_typ_handlers_ga391a3d207136b7eb0e734e289b520188}{OnMusicalTypingEvent}( Event.current );
+109         \}
+110     \}
+\end{DoxyCode}

@@ -1,0 +1,62 @@
+\hypertarget{class_s_c___note_display_container}{}\section{S\+C\+\_\+\+Note\+Display\+Container Class Reference}
+\label{class_s_c___note_display_container}\index{S\+C\+\_\+\+Note\+Display\+Container@{S\+C\+\_\+\+Note\+Display\+Container}}
+
+
+Connects the \hyperlink{class_s_c___measure_display_panel}{S\+C\+\_\+\+Measure\+Display\+Panel} objects to the \hyperlink{group___doc_s_c}{Song Creation Interface} and provides handling for them.  
+
+
+Inheritance diagram for S\+C\+\_\+\+Note\+Display\+Container\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_s_c___note_display_container}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___s_c___n_d_c_pub_func_ga43e58800daae0e46bbe1b86d78c2f677}{Add\+Note} (int a\+Melody\+Velocity, \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{Music.\+N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH} a\+Length, \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH}\mbox{[}$\,$\mbox{]} a\+Pitches, int a\+Drum\+Velocity, \hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{Music.\+D\+R\+UM}\mbox{[}$\,$\mbox{]} a\+Drum\+Hits, \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{Music.\+N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH} a\+Offset\+From\+Prev\+Note)
+\begin{DoxyCompactList}\small\item\em Adds a \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note} to the \hyperlink{group___doc_s_c___m_d_p}{current measure}. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c___n_d_c_pub_func_gaa344983500e83531210ae1c4789182f3}{Clear\+Notes} ()
+\begin{DoxyCompactList}\small\item\em Clears all of the notes. \end{DoxyCompactList}\item 
+\hyperlink{class_s_c___measure_display_panel}{S\+C\+\_\+\+Measure\+Display\+Panel} \hyperlink{group___s_c___n_d_c_pub_func_ga526a610a4462b164cc91ae7155803ba1}{Get\+Current\+Measure\+Object} ()
+\begin{DoxyCompactList}\small\item\em Gets the current \hyperlink{group___doc_s_c___m_d_p}{measure}. \end{DoxyCompactList}\item 
+Sprite \mbox{[}$\,$\mbox{]} \hyperlink{group___s_c___n_d_c_pub_func_ga3cdbb1068cd6511112c564fc636c56ca}{Get\+Sprites} ()
+\begin{DoxyCompactList}\small\item\em Gets the images used to represent a note\textquotesingle{}s \hyperlink{group___music_structs_ac35cd02f5b3c00e3040b51e40e9e6c94}{length}/\hyperlink{group___music_structs_ae281187907aed4c728c7981300dbebaf}{offset}. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c___n_d_c_handlers_ga40c5a3b59608c559ab96ad0338c5e042}{Handle\+Full\+Measure} (\hyperlink{class_s_c___measure_display_panel}{S\+C\+\_\+\+Measure\+Display\+Panel} a\+Full\+Measure, float a\+Spillover, int a\+Melody\+Velocity, \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{Music.\+N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH} a\+Length, \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH}\mbox{[}$\,$\mbox{]} a\+Pitches, int a\+Drum\+Velocity, \hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{Music.\+D\+R\+UM}\mbox{[}$\,$\mbox{]} a\+Drum\+Hits, \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{Music.\+N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH} a\+Offset\+From\+Prev\+Note)
+\begin{DoxyCompactList}\small\item\em Handler for when a \hyperlink{group___doc_s_c___m_d_p}{measure} fills up. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c___n_d_c_handlers_ga40ffb2c779af43930924348c265c9e09}{Handle\+Measure\+Deleted} (\hyperlink{class_s_c___measure_display_panel}{S\+C\+\_\+\+Measure\+Display\+Panel} a\+Measure)
+\begin{DoxyCompactList}\small\item\em Handles when a \hyperlink{group___doc_s_c___m_d_p}{measure} has all of its \hyperlink{group___music_structs_struct_music_1_1_combined_note}{notes} removed by deleting the \hyperlink{group___doc_s_c___m_d_p}{measure object}. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c___n_d_c_handlers_ga458d57203645be514d3626211044b584}{Handle\+Measure\+Toggled} (\hyperlink{class_s_c___measure_display_panel}{S\+C\+\_\+\+Measure\+Display\+Panel} a\+Measure)
+\begin{DoxyCompactList}\small\item\em Handles when a \hyperlink{group___doc_s_c___m_d_p}{measure} is \hyperlink{group___s_c___m_d_p_handlers_ga31c72fee5ddd5ae7b057b2f265341263}{toggled}. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c___n_d_c_handlers_ga6dbbf12e55681d13f43e489dd4a100dc}{On\+Remove\+Note} ()
+\begin{DoxyCompactList}\small\item\em Handles when a note is removed by decreasing the count of notes in the song. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___s_c___n_d_c_unity_ga6ce4069508f84edd9e13d8fab4c26e09}{Awake} ()
+\begin{DoxyCompactList}\small\item\em Initializes the \hyperlink{class_s_c___note_display_container}{S\+C\+\_\+\+Note\+Display\+Container}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const string \hyperlink{group___s_c___n_d_c_const_gabc95cd739b62996e8a19f0e9417e5f8e}{M\+E\+A\+S\+U\+R\+E\+\_\+\+P\+A\+N\+E\+L\+\_\+\+P\+R\+E\+F\+A\+B\+\_\+\+P\+A\+TH} = \char`\"{}Audio/Prefabs/Song\+Creation/Measure\+Panel\+Prefab\char`\"{}
+\begin{DoxyCompactList}\small\item\em The path to load the prefab for the \hyperlink{group___doc_s_c___m_d_p}{measure display panel objects}. \end{DoxyCompactList}\item 
+int \hyperlink{group___s_c___n_d_c_priv_var_gae06a4919a63806ed57b2040f41b7ca1b}{m\+Num\+Notes} = 0
+\begin{DoxyCompactList}\small\item\em The number of overall \hyperlink{group___music_structs_struct_music_1_1_combined_note}{notes} in the container. \end{DoxyCompactList}\item 
+int \hyperlink{group___s_c___n_d_c_priv_var_ga28ce2bf8358c9f686b5b9e362aa96dff}{m\+Current\+Measure} = -\/1
+\begin{DoxyCompactList}\small\item\em The current \hyperlink{group___doc_s_c___m_d_p}{measure}. \end{DoxyCompactList}\item 
+List$<$ \hyperlink{class_s_c___measure_display_panel}{S\+C\+\_\+\+Measure\+Display\+Panel} $>$ \hyperlink{group___s_c___n_d_c_priv_var_gaa072fb53f6bd6646bc85f2ebc2a02229}{m\+Measures} = null
+\begin{DoxyCompactList}\small\item\em The \hyperlink{group___doc_s_c___m_d_p}{measures} in the container. \end{DoxyCompactList}\item 
+Sprite \mbox{[}$\,$\mbox{]} \hyperlink{group___s_c___n_d_c_priv_var_gac8df613ee0996e999278da2b3f523e34}{m\+Sprites} = null
+\begin{DoxyCompactList}\small\item\em The images to show the \hyperlink{group___music_structs_ac35cd02f5b3c00e3040b51e40e9e6c94}{note lengths} and \hyperlink{group___music_structs_ae281187907aed4c728c7981300dbebaf}{offsets}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Connects the \hyperlink{class_s_c___measure_display_panel}{S\+C\+\_\+\+Measure\+Display\+Panel} objects to the \hyperlink{group___doc_s_c}{Song Creation Interface} and provides handling for them. 
+
+Definition at line 13 of file S\+C\+\_\+\+Note\+Display\+Container.\+cs.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Documents/\+School Documents/2017\+Spring/\+E\+E\+C\+S542/\+V\+R\+Piano\+Project/\+Assets/\+Scripts/\+Audio/\+Song\+Creation/\hyperlink{_s_c___note_display_container_8cs}{S\+C\+\_\+\+Note\+Display\+Container.\+cs}\end{DoxyCompactItemize}

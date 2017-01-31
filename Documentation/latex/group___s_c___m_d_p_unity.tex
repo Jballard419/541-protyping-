@@ -1,0 +1,43 @@
+\hypertarget{group___s_c___m_d_p_unity}{}\section{Unity Functions}
+\label{group___s_c___m_d_p_unity}\index{Unity Functions@{Unity Functions}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___s_c___m_d_p_unity_gafe9062b7be241c5febf7b493bb6002f9}{S\+C\+\_\+\+Measure\+Display\+Panel.\+Awake} ()
+\begin{DoxyCompactList}\small\item\em Initializes the \hyperlink{class_s_c___measure_display_panel}{S\+C\+\_\+\+Measure\+Display\+Panel}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Functions called automatically by Unity. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___s_c___m_d_p_unity_gafe9062b7be241c5febf7b493bb6002f9}\label{group___s_c___m_d_p_unity_gafe9062b7be241c5febf7b493bb6002f9}} 
+\index{Unity Functions@{Unity Functions}!Awake@{Awake}}
+\index{Awake@{Awake}!Unity Functions@{Unity Functions}}
+\subsubsection{\texorpdfstring{Awake()}{Awake()}}
+{\footnotesize\ttfamily void S\+C\+\_\+\+Measure\+Display\+Panel.\+Awake (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Initializes the \hyperlink{class_s_c___measure_display_panel}{S\+C\+\_\+\+Measure\+Display\+Panel}. 
+
+
+
+Definition at line 51 of file S\+C\+\_\+\+Measure\+Display\+Panel.\+cs.
+
+
+
+References S\+C\+\_\+\+Measure\+Display\+Panel.\+On\+Show\+Toggle().
+
+
+\begin{DoxyCode}
+52     \{
+53         \textcolor{comment}{// Set the toggle.}
+54         \hyperlink{group___s_c___m_d_p_priv_var_gabec551ab0b79d269b028f4bc99e82b00}{mShowMeasureToggle} = gameObject.transform.GetChild( 0 ).GetComponent<Toggle>();
+55         \hyperlink{group___s_c___m_d_p_priv_var_gabec551ab0b79d269b028f4bc99e82b00}{mShowMeasureToggle}.onValueChanged.AddListener( 
+      \hyperlink{group___s_c___m_d_p_handlers_ga31c72fee5ddd5ae7b057b2f265341263}{OnShowToggle} );
+56 
+57         \textcolor{comment}{// Set up the list of note display panels.}
+58         \hyperlink{group___s_c___m_d_p_priv_var_gaf8a533bce87e58d8f7a1da88f476ac6f}{mNotes} = \textcolor{keyword}{new} List<SC\_NoteDisplayPanel>();
+59     \}
+\end{DoxyCode}

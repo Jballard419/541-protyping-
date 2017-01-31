@@ -1,0 +1,508 @@
+\hypertarget{group___s_m_pub_func}{}\section{Public Functions}
+\label{group___s_m_pub_func}\index{Public Functions@{Public Functions}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___s_m_pub_func_ga1a228cb2a64e55448ccf9d1d618f05b7}{Song\+Manager\+Class.\+Add\+Song} (\hyperlink{class_song}{Song} a\+Song)
+\begin{DoxyCompactList}\small\item\em Adds a \hyperlink{class_song}{Song} to the Song\+Manager. \end{DoxyCompactList}\item 
+List$<$ string $>$ \hyperlink{group___s_m_pub_func_ga87bd14c75666b13bd02510c5b7080784}{Song\+Manager\+Class.\+Get\+Combined\+Song\+Names} ()
+\begin{DoxyCompactList}\small\item\em Gets the names of the loaded \hyperlink{group___song_group_DocSongCombined}{songs that have both percussion and melody}. \end{DoxyCompactList}\item 
+List$<$ \hyperlink{class_song}{Song} $>$ \hyperlink{group___s_m_pub_func_ga413595693011bd6021dfd6eb941bf0e6}{Song\+Manager\+Class.\+Get\+Combined\+Songs} ()
+\begin{DoxyCompactList}\small\item\em Gets the loaded \hyperlink{group___song_group_DocSongCombined}{songs that have both percussion and melody}. \end{DoxyCompactList}\item 
+List$<$ string $>$ \hyperlink{group___s_m_pub_func_ga90e0aeb3117c5db6c667a23252bf45f6}{Song\+Manager\+Class.\+Get\+Drum\+Loop\+Names} ()
+\begin{DoxyCompactList}\small\item\em Gets the names of the loaded \hyperlink{group___song_group_DocSongDrumLoop}{drum loops}. \end{DoxyCompactList}\item 
+List$<$ \hyperlink{class_song}{Song} $>$ \hyperlink{group___s_m_pub_func_ga354a675f296f9a733ad6d76fea7429dd}{Song\+Manager\+Class.\+Get\+Drum\+Loops} ()
+\begin{DoxyCompactList}\small\item\em Gets the loaded \hyperlink{group___song_group_DocSongDrumLoop}{drum loops}. \end{DoxyCompactList}\item 
+List$<$ string $>$ \hyperlink{group___s_m_pub_func_ga59df8468ac771fc8eb1a5f2025e6c5a8}{Song\+Manager\+Class.\+Get\+Melody\+Names} ()
+\begin{DoxyCompactList}\small\item\em Gets the names of the loaded \hyperlink{group___song_group_DocSongMelody}{melodies}. \end{DoxyCompactList}\item 
+List$<$ \hyperlink{class_song}{Song} $>$ \hyperlink{group___s_m_pub_func_ga7d46ab1949725dd7c3c00ac3975916fe}{Song\+Manager\+Class.\+Get\+Melodies} ()
+\begin{DoxyCompactList}\small\item\em Gets the loaded \hyperlink{group___song_group_DocSongMelody}{melodies}. \end{DoxyCompactList}\item 
+int \hyperlink{group___s_m_pub_func_gac41e94dbaa3f2db83a6d86466526f76c}{Song\+Manager\+Class.\+Get\+Number\+Of\+Combined\+Songs} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of loaded Songs that \hyperlink{group___song_group_DocSongCombined}{have both drums and melody}. \end{DoxyCompactList}\item 
+int \hyperlink{group___s_m_pub_func_ga97d32492e08ca62787088888e78589b7}{Song\+Manager\+Class.\+Get\+Number\+Of\+Drum\+Loops} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of loaded \hyperlink{group___song_group_DocSongDrumLoop}{drum loops}. \end{DoxyCompactList}\item 
+int \hyperlink{group___s_m_pub_func_gae1d2222909f1d9a1f761591c7154f42c}{Song\+Manager\+Class.\+Get\+Number\+Of\+Melodies} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of loaded \hyperlink{group___song_group_DocSongMelody}{melodies}. \end{DoxyCompactList}\item 
+\hyperlink{class_song}{Song} \hyperlink{group___s_m_pub_func_gafe818c55bd858c52c95a2fa7a566006a}{Song\+Manager\+Class.\+Get\+Song\+By\+Name} (string a\+Song\+Name)
+\begin{DoxyCompactList}\small\item\em Gets a specific \hyperlink{class_song}{Song}. \end{DoxyCompactList}\item 
+List$<$ string $>$ \hyperlink{group___s_m_pub_func_ga2a9455a763e35cfb6b242a82f7d797ae}{Song\+Manager\+Class.\+Get\+Song\+Names} ()
+\begin{DoxyCompactList}\small\item\em Gets the names of the loaded Songs. \end{DoxyCompactList}\item 
+List$<$ \hyperlink{class_song}{Song} $>$ \hyperlink{group___s_m_pub_func_ga3bf6a6d42a7c5e94cc85ba10eb9e6edb}{Song\+Manager\+Class.\+Get\+Songs} ()
+\begin{DoxyCompactList}\small\item\em Gets all of the Songs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Functions that allow other classes to interact with the \hyperlink{class_song_manager_class}{Song\+Manager\+Class}. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___s_m_pub_func_ga1a228cb2a64e55448ccf9d1d618f05b7}\label{group___s_m_pub_func_ga1a228cb2a64e55448ccf9d1d618f05b7}} 
+\index{Public Functions@{Public Functions}!Add\+Song@{Add\+Song}}
+\index{Add\+Song@{Add\+Song}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Add\+Song()}{AddSong()}}
+{\footnotesize\ttfamily void Song\+Manager\+Class.\+Add\+Song (\begin{DoxyParamCaption}\item[{\hyperlink{class_song}{Song}}]{a\+Song }\end{DoxyParamCaption})}
+
+
+
+Adds a \hyperlink{class_song}{Song} to the Song\+Manager. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Song} & A new \hyperlink{class_song}{Song}. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 64 of file Song\+Manager\+Class.\+cs.
+
+
+
+References Song.\+Get\+Name(), and Song.\+Get\+Song\+Type().
+
+
+
+Referenced by Song\+Creation\+Manager.\+On\+Save\+Song().
+
+
+\begin{DoxyCode}
+65     \{
+66         \textcolor{comment}{// Sanity Check}
+67         Assert.IsNotNull( aSong, \textcolor{stringliteral}{"Tried to add a song that didn't exist!"} );
+68 
+69         \textcolor{comment}{// Create the song entry.}
+70         \textcolor{keywordflow}{switch}( aSong.\hyperlink{group___song_pub_func_gabae5b5d8f727b2d9da7867a99347f86b}{GetSongType}() )
+71         \{
+72             \textcolor{keywordflow}{case} \hyperlink{class_song}{Song}.\hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{SongType}.Melody:
+73                 \hyperlink{group___s_m_priv_var_ga935e80f645d0546003f7df8443b79242}{mMelodies}.Add( aSong.\hyperlink{group___song_pub_func_ga705c433f2bfb5aede337698144b23c8b}{GetName}(), aSong );
+74                 \textcolor{keywordflow}{break};
+75             \textcolor{keywordflow}{case} \hyperlink{class_song}{Song}.\hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{SongType}.DrumLoop:
+76                 \hyperlink{group___s_m_priv_var_ga84f25335035755448d11acb9287360f2}{mDrumLoops}.Add( aSong.\hyperlink{group___song_pub_func_ga705c433f2bfb5aede337698144b23c8b}{GetName}(), aSong );
+77                 \hyperlink{group___s_m_priv_var_ga0ea9b6c8343a9b2cbe0eb375edaef247}{mNumDrumLoops}++;
+78                 \textcolor{keywordflow}{break};
+79             \textcolor{keywordflow}{case} \hyperlink{class_song}{Song}.\hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{SongType}.CombinedMelodyAndPercussion:
+80                 \hyperlink{group___s_m_priv_var_gaf6b4ff41b8da95d10ad3db62df111faa}{mCombinedSongs}.Add( aSong.\hyperlink{group___song_pub_func_ga705c433f2bfb5aede337698144b23c8b}{GetName}(), aSong );
+81                 \hyperlink{group___s_m_priv_var_gae423c7b9efd0e2ef721820318200e5f9}{mNumCombinedSongs}++;
+82                 \textcolor{keywordflow}{break};
+83         \}
+84     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_m_pub_func_ga87bd14c75666b13bd02510c5b7080784}\label{group___s_m_pub_func_ga87bd14c75666b13bd02510c5b7080784}} 
+\index{Public Functions@{Public Functions}!Get\+Combined\+Song\+Names@{Get\+Combined\+Song\+Names}}
+\index{Get\+Combined\+Song\+Names@{Get\+Combined\+Song\+Names}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Get\+Combined\+Song\+Names()}{GetCombinedSongNames()}}
+{\footnotesize\ttfamily List$<$string$>$ Song\+Manager\+Class.\+Get\+Combined\+Song\+Names (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the names of the loaded \hyperlink{group___song_group_DocSongCombined}{songs that have both percussion and melody}. 
+
+\begin{DoxyReturn}{Returns}
+A list of the names of the loaded \hyperlink{group___song_group_DocSongCombined}{songs that have both percussion and melody}. 
+\end{DoxyReturn}
+
+
+Definition at line 90 of file Song\+Manager\+Class.\+cs.
+
+
+\begin{DoxyCode}
+91     \{
+92         List<string> loopNames = \textcolor{keyword}{new} List<string>();
+93         \textcolor{keywordflow}{foreach}( \textcolor{keywordtype}{string} name \textcolor{keywordflow}{in} \hyperlink{group___s_m_priv_var_gaf6b4ff41b8da95d10ad3db62df111faa}{mCombinedSongs}.Keys )
+94         \{
+95             loopNames.Add( name );
+96         \}
+97 
+98         \textcolor{keywordflow}{return} loopNames;
+99     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_m_pub_func_ga413595693011bd6021dfd6eb941bf0e6}\label{group___s_m_pub_func_ga413595693011bd6021dfd6eb941bf0e6}} 
+\index{Public Functions@{Public Functions}!Get\+Combined\+Songs@{Get\+Combined\+Songs}}
+\index{Get\+Combined\+Songs@{Get\+Combined\+Songs}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Get\+Combined\+Songs()}{GetCombinedSongs()}}
+{\footnotesize\ttfamily List$<$\hyperlink{class_song}{Song}$>$ Song\+Manager\+Class.\+Get\+Combined\+Songs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the loaded \hyperlink{group___song_group_DocSongCombined}{songs that have both percussion and melody}. 
+
+\begin{DoxyReturn}{Returns}
+A list of the loaded \hyperlink{group___song_group_DocSongCombined}{songs that have both percussion and melody}. 
+\end{DoxyReturn}
+
+
+Definition at line 105 of file Song\+Manager\+Class.\+cs.
+
+
+\begin{DoxyCode}
+106     \{
+107         List<Song> returned = \textcolor{keyword}{new} List<Song>();
+108 
+109         \textcolor{keywordflow}{foreach}( \hyperlink{class_song}{Song} loop \textcolor{keywordflow}{in} \hyperlink{group___s_m_priv_var_gaf6b4ff41b8da95d10ad3db62df111faa}{mCombinedSongs}.Values )
+110         \{
+111             returned.Add( loop );
+112         \}
+113 
+114         \textcolor{keywordflow}{return} returned;
+115     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_m_pub_func_ga90e0aeb3117c5db6c667a23252bf45f6}\label{group___s_m_pub_func_ga90e0aeb3117c5db6c667a23252bf45f6}} 
+\index{Public Functions@{Public Functions}!Get\+Drum\+Loop\+Names@{Get\+Drum\+Loop\+Names}}
+\index{Get\+Drum\+Loop\+Names@{Get\+Drum\+Loop\+Names}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Get\+Drum\+Loop\+Names()}{GetDrumLoopNames()}}
+{\footnotesize\ttfamily List$<$string$>$ Song\+Manager\+Class.\+Get\+Drum\+Loop\+Names (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the names of the loaded \hyperlink{group___song_group_DocSongDrumLoop}{drum loops}. 
+
+\begin{DoxyReturn}{Returns}
+A list of the names of the loaded \hyperlink{group___song_group_DocSongDrumLoop}{drum loops}. 
+\end{DoxyReturn}
+
+
+Definition at line 121 of file Song\+Manager\+Class.\+cs.
+
+
+\begin{DoxyCode}
+122     \{
+123         List<string> loopNames = \textcolor{keyword}{new} List<string>();
+124         \textcolor{keywordflow}{foreach}( \textcolor{keywordtype}{string} name \textcolor{keywordflow}{in} \hyperlink{group___s_m_priv_var_ga84f25335035755448d11acb9287360f2}{mDrumLoops}.Keys )
+125         \{
+126             loopNames.Add( name );
+127         \}
+128 
+129         \textcolor{keywordflow}{return} loopNames;
+130     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_m_pub_func_ga354a675f296f9a733ad6d76fea7429dd}\label{group___s_m_pub_func_ga354a675f296f9a733ad6d76fea7429dd}} 
+\index{Public Functions@{Public Functions}!Get\+Drum\+Loops@{Get\+Drum\+Loops}}
+\index{Get\+Drum\+Loops@{Get\+Drum\+Loops}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Get\+Drum\+Loops()}{GetDrumLoops()}}
+{\footnotesize\ttfamily List$<$\hyperlink{class_song}{Song}$>$ Song\+Manager\+Class.\+Get\+Drum\+Loops (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the loaded \hyperlink{group___song_group_DocSongDrumLoop}{drum loops}. 
+
+\begin{DoxyReturn}{Returns}
+A list of the loaded \hyperlink{group___song_group_DocSongDrumLoop}{drum loops}. 
+\end{DoxyReturn}
+
+
+Definition at line 136 of file Song\+Manager\+Class.\+cs.
+
+
+\begin{DoxyCode}
+137     \{
+138         List<Song> returned = \textcolor{keyword}{new} List<Song>();
+139 
+140         \textcolor{keywordflow}{foreach}( \hyperlink{class_song}{Song} loop \textcolor{keywordflow}{in} \hyperlink{group___s_m_priv_var_ga84f25335035755448d11acb9287360f2}{mDrumLoops}.Values )
+141         \{
+142             returned.Add( loop );
+143         \}
+144 
+145         \textcolor{keywordflow}{return} returned;
+146     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_m_pub_func_ga7d46ab1949725dd7c3c00ac3975916fe}\label{group___s_m_pub_func_ga7d46ab1949725dd7c3c00ac3975916fe}} 
+\index{Public Functions@{Public Functions}!Get\+Melodies@{Get\+Melodies}}
+\index{Get\+Melodies@{Get\+Melodies}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Get\+Melodies()}{GetMelodies()}}
+{\footnotesize\ttfamily List$<$\hyperlink{class_song}{Song}$>$ Song\+Manager\+Class.\+Get\+Melodies (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the loaded \hyperlink{group___song_group_DocSongMelody}{melodies}. 
+
+\begin{DoxyReturn}{Returns}
+A list of the loaded \hyperlink{group___song_group_DocSongMelody}{melodies}. 
+\end{DoxyReturn}
+
+
+Definition at line 167 of file Song\+Manager\+Class.\+cs.
+
+
+\begin{DoxyCode}
+168     \{
+169         List<Song> returned = \textcolor{keyword}{new} List<Song>();
+170 
+171         \textcolor{keywordflow}{foreach}( \hyperlink{class_song}{Song} loop \textcolor{keywordflow}{in} \hyperlink{group___s_m_priv_var_ga935e80f645d0546003f7df8443b79242}{mMelodies}.Values )
+172         \{
+173             returned.Add( loop );
+174         \}
+175 
+176         \textcolor{keywordflow}{return} returned;
+177     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_m_pub_func_ga59df8468ac771fc8eb1a5f2025e6c5a8}\label{group___s_m_pub_func_ga59df8468ac771fc8eb1a5f2025e6c5a8}} 
+\index{Public Functions@{Public Functions}!Get\+Melody\+Names@{Get\+Melody\+Names}}
+\index{Get\+Melody\+Names@{Get\+Melody\+Names}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Get\+Melody\+Names()}{GetMelodyNames()}}
+{\footnotesize\ttfamily List$<$string$>$ Song\+Manager\+Class.\+Get\+Melody\+Names (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the names of the loaded \hyperlink{group___song_group_DocSongMelody}{melodies}. 
+
+\begin{DoxyReturn}{Returns}
+A list of the names of the loaded \hyperlink{group___song_group_DocSongMelody}{melodies}. 
+\end{DoxyReturn}
+
+
+Definition at line 152 of file Song\+Manager\+Class.\+cs.
+
+
+\begin{DoxyCode}
+153     \{
+154         List<string> loopNames = \textcolor{keyword}{new} List<string>();
+155         \textcolor{keywordflow}{foreach}( \textcolor{keywordtype}{string} name \textcolor{keywordflow}{in} \hyperlink{group___s_m_priv_var_ga935e80f645d0546003f7df8443b79242}{mMelodies}.Keys )
+156         \{
+157             loopNames.Add( name );
+158         \}
+159 
+160         \textcolor{keywordflow}{return} loopNames;
+161     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_m_pub_func_gac41e94dbaa3f2db83a6d86466526f76c}\label{group___s_m_pub_func_gac41e94dbaa3f2db83a6d86466526f76c}} 
+\index{Public Functions@{Public Functions}!Get\+Number\+Of\+Combined\+Songs@{Get\+Number\+Of\+Combined\+Songs}}
+\index{Get\+Number\+Of\+Combined\+Songs@{Get\+Number\+Of\+Combined\+Songs}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Get\+Number\+Of\+Combined\+Songs()}{GetNumberOfCombinedSongs()}}
+{\footnotesize\ttfamily int Song\+Manager\+Class.\+Get\+Number\+Of\+Combined\+Songs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the number of loaded Songs that \hyperlink{group___song_group_DocSongCombined}{have both drums and melody}. 
+
+\begin{DoxyReturn}{Returns}
+The number of loaded songs that \hyperlink{group___song_group_DocSongCombined}{have both drums and melody}. 
+\end{DoxyReturn}
+
+
+Definition at line 183 of file Song\+Manager\+Class.\+cs.
+
+
+
+References Song\+Manager\+Class.\+m\+Num\+Combined\+Songs.
+
+
+\begin{DoxyCode}
+184     \{
+185         \textcolor{keywordflow}{return} \hyperlink{group___s_m_priv_var_gae423c7b9efd0e2ef721820318200e5f9}{mNumCombinedSongs};
+186     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_m_pub_func_ga97d32492e08ca62787088888e78589b7}\label{group___s_m_pub_func_ga97d32492e08ca62787088888e78589b7}} 
+\index{Public Functions@{Public Functions}!Get\+Number\+Of\+Drum\+Loops@{Get\+Number\+Of\+Drum\+Loops}}
+\index{Get\+Number\+Of\+Drum\+Loops@{Get\+Number\+Of\+Drum\+Loops}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Get\+Number\+Of\+Drum\+Loops()}{GetNumberOfDrumLoops()}}
+{\footnotesize\ttfamily int Song\+Manager\+Class.\+Get\+Number\+Of\+Drum\+Loops (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the number of loaded \hyperlink{group___song_group_DocSongDrumLoop}{drum loops}. 
+
+\begin{DoxyReturn}{Returns}
+The number of loaded \hyperlink{group___song_group_DocSongDrumLoop}{drum loops}. 
+\end{DoxyReturn}
+
+
+Definition at line 192 of file Song\+Manager\+Class.\+cs.
+
+
+
+References Song\+Manager\+Class.\+m\+Num\+Drum\+Loops.
+
+
+\begin{DoxyCode}
+193     \{
+194         \textcolor{keywordflow}{return} \hyperlink{group___s_m_priv_var_ga0ea9b6c8343a9b2cbe0eb375edaef247}{mNumDrumLoops};
+195     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_m_pub_func_gae1d2222909f1d9a1f761591c7154f42c}\label{group___s_m_pub_func_gae1d2222909f1d9a1f761591c7154f42c}} 
+\index{Public Functions@{Public Functions}!Get\+Number\+Of\+Melodies@{Get\+Number\+Of\+Melodies}}
+\index{Get\+Number\+Of\+Melodies@{Get\+Number\+Of\+Melodies}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Get\+Number\+Of\+Melodies()}{GetNumberOfMelodies()}}
+{\footnotesize\ttfamily int Song\+Manager\+Class.\+Get\+Number\+Of\+Melodies (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the number of loaded \hyperlink{group___song_group_DocSongMelody}{melodies}. 
+
+\begin{DoxyReturn}{Returns}
+The number of loaded \hyperlink{group___song_group_DocSongMelody}{melodies}. 
+\end{DoxyReturn}
+
+
+Definition at line 201 of file Song\+Manager\+Class.\+cs.
+
+
+
+References Song\+Manager\+Class.\+m\+Num\+Melodies.
+
+
+\begin{DoxyCode}
+202     \{
+203         \textcolor{keywordflow}{return} \hyperlink{group___s_m_priv_var_ga58ea3b4f794b9e444eece384ae6e8197}{mNumMelodies};
+204     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_m_pub_func_gafe818c55bd858c52c95a2fa7a566006a}\label{group___s_m_pub_func_gafe818c55bd858c52c95a2fa7a566006a}} 
+\index{Public Functions@{Public Functions}!Get\+Song\+By\+Name@{Get\+Song\+By\+Name}}
+\index{Get\+Song\+By\+Name@{Get\+Song\+By\+Name}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Get\+Song\+By\+Name()}{GetSongByName()}}
+{\footnotesize\ttfamily \hyperlink{class_song}{Song} Song\+Manager\+Class.\+Get\+Song\+By\+Name (\begin{DoxyParamCaption}\item[{string}]{a\+Song\+Name }\end{DoxyParamCaption})}
+
+
+
+Gets a specific \hyperlink{class_song}{Song}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Song\+Name} & The name of the \hyperlink{class_song}{Song} to get. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The \hyperlink{class_song}{Song} with the given name.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Asserts if the name is not found, or returns null if compiled as a non-\/development build. 
+\end{DoxyNote}
+
+
+Definition at line 213 of file Song\+Manager\+Class.\+cs.
+
+
+
+Referenced by A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler.\+Load\+Demo\+Song(), A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+Load\+Demo\+Song(), and S\+C\+\_\+\+Load\+Song\+Dialog.\+On\+Song\+Selected().
+
+
+\begin{DoxyCode}
+214     \{
+215         \textcolor{comment}{// Sanity Check}
+216         Assert.IsTrue( \hyperlink{group___s_m_priv_var_ga935e80f645d0546003f7df8443b79242}{mMelodies}.ContainsKey( aSongName ) || \hyperlink{group___s_m_priv_var_ga84f25335035755448d11acb9287360f2}{mDrumLoops}.ContainsKey( 
+      aSongName ) || \hyperlink{group___s_m_priv_var_gaf6b4ff41b8da95d10ad3db62df111faa}{mCombinedSongs}.ContainsKey( aSongName ),
+217             \textcolor{stringliteral}{"Tried to get the song "} + aSongName + \textcolor{stringliteral}{" which does not exist!"} );
+218 
+219         \textcolor{comment}{// Get the song.}
+220         \textcolor{keywordflow}{if}( \hyperlink{group___s_m_priv_var_gaf6b4ff41b8da95d10ad3db62df111faa}{mCombinedSongs}.ContainsKey( aSongName ) )
+221         \{
+222             \textcolor{keywordflow}{return} \hyperlink{group___s_m_priv_var_gaf6b4ff41b8da95d10ad3db62df111faa}{mCombinedSongs}[aSongName];
+223         \}
+224         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}( \hyperlink{group___s_m_priv_var_ga84f25335035755448d11acb9287360f2}{mDrumLoops}.ContainsKey( aSongName ) )
+225         \{
+226             \textcolor{keywordflow}{return} \hyperlink{group___s_m_priv_var_ga84f25335035755448d11acb9287360f2}{mDrumLoops}[aSongName];
+227         \}
+228         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}( \hyperlink{group___s_m_priv_var_ga935e80f645d0546003f7df8443b79242}{mMelodies}.ContainsKey( aSongName ) )
+229         \{
+230             \textcolor{keywordflow}{return} \hyperlink{group___s_m_priv_var_ga935e80f645d0546003f7df8443b79242}{mMelodies}[aSongName];
+231         \}
+232         \textcolor{keywordflow}{else}
+233         \{
+234             \textcolor{keywordflow}{return} null;
+235         \}
+236     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_m_pub_func_ga2a9455a763e35cfb6b242a82f7d797ae}\label{group___s_m_pub_func_ga2a9455a763e35cfb6b242a82f7d797ae}} 
+\index{Public Functions@{Public Functions}!Get\+Song\+Names@{Get\+Song\+Names}}
+\index{Get\+Song\+Names@{Get\+Song\+Names}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Get\+Song\+Names()}{GetSongNames()}}
+{\footnotesize\ttfamily List$<$string$>$ Song\+Manager\+Class.\+Get\+Song\+Names (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the names of the loaded Songs. 
+
+\begin{DoxyReturn}{Returns}
+A list of all of the Songs\textbackslash{}\textquotesingle{} names. 
+\end{DoxyReturn}
+
+
+Definition at line 242 of file Song\+Manager\+Class.\+cs.
+
+
+
+Referenced by S\+C\+\_\+\+Load\+Song\+Dialog.\+Awake().
+
+
+\begin{DoxyCode}
+243     \{
+244         \textcolor{comment}{// Initialize the returned list.}
+245         List<string> returned = \textcolor{keyword}{new} List<string>();
+246 
+247         \textcolor{comment}{// Get the song names.}
+248         Dictionary<string,Song>.KeyCollection combinedSongNames = \hyperlink{group___s_m_priv_var_gaf6b4ff41b8da95d10ad3db62df111faa}{mCombinedSongs}.Keys;
+249         Dictionary<string,Song>.KeyCollection drumLoopNames = \hyperlink{group___s_m_priv_var_ga84f25335035755448d11acb9287360f2}{mDrumLoops}.Keys;
+250         Dictionary<string,Song>.KeyCollection melodyNames = \hyperlink{group___s_m_priv_var_ga935e80f645d0546003f7df8443b79242}{mMelodies}.Keys;
+251 
+252         \textcolor{comment}{// Get the combined song names.}
+253         \textcolor{keywordflow}{foreach}( \textcolor{keywordtype}{string} name \textcolor{keywordflow}{in} combinedSongNames )
+254         \{
+255             returned.Add( name );
+256         \}
+257 
+258         \textcolor{comment}{// Get all of the drum loop names.}
+259         \textcolor{keywordflow}{foreach}( \textcolor{keywordtype}{string} name \textcolor{keywordflow}{in} drumLoopNames )
+260         \{
+261             returned.Add( name );
+262         \}
+263 
+264         \textcolor{comment}{// Get the melody names.}
+265         \textcolor{keywordflow}{foreach}( \textcolor{keywordtype}{string} name \textcolor{keywordflow}{in} melodyNames )
+266         \{
+267             returned.Add( name );
+268         \}
+269 
+270         \textcolor{comment}{// Return the list of song names.}
+271         \textcolor{keywordflow}{return} returned;
+272     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_m_pub_func_ga3bf6a6d42a7c5e94cc85ba10eb9e6edb}\label{group___s_m_pub_func_ga3bf6a6d42a7c5e94cc85ba10eb9e6edb}} 
+\index{Public Functions@{Public Functions}!Get\+Songs@{Get\+Songs}}
+\index{Get\+Songs@{Get\+Songs}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Get\+Songs()}{GetSongs()}}
+{\footnotesize\ttfamily List$<$\hyperlink{class_song}{Song}$>$ Song\+Manager\+Class.\+Get\+Songs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets all of the Songs. 
+
+\begin{DoxyReturn}{Returns}
+A list of all of the loaded Songs. 
+\end{DoxyReturn}
+
+
+Definition at line 278 of file Song\+Manager\+Class.\+cs.
+
+
+
+Referenced by S\+C\+\_\+\+Load\+Song\+Dialog.\+Awake().
+
+
+\begin{DoxyCode}
+279     \{
+280         List<Song> returned = \textcolor{keyword}{new} List<Song>();
+281 
+282         \textcolor{comment}{// Get the songs.}
+283         Dictionary<string,Song>.ValueCollection combinedSongs = \hyperlink{group___s_m_priv_var_gaf6b4ff41b8da95d10ad3db62df111faa}{mCombinedSongs}.Values;
+284         Dictionary<string,Song>.ValueCollection drumLoops = \hyperlink{group___s_m_priv_var_ga84f25335035755448d11acb9287360f2}{mDrumLoops}.Values;
+285         Dictionary<string,Song>.ValueCollection melodies = \hyperlink{group___s_m_priv_var_ga935e80f645d0546003f7df8443b79242}{mMelodies}.Values;
+286 
+287         \textcolor{comment}{// Get the combined songs.}
+288         \textcolor{keywordflow}{foreach}( \hyperlink{class_song}{Song} song \textcolor{keywordflow}{in} combinedSongs )
+289         \{
+290             returned.Add( song );
+291         \}
+292 
+293         \textcolor{comment}{// Get all of the drum loops}
+294         \textcolor{keywordflow}{foreach}( \hyperlink{class_song}{Song} song \textcolor{keywordflow}{in} drumLoops )
+295         \{
+296             returned.Add( song );
+297         \}
+298 
+299         \textcolor{comment}{// Get the all of the melodies.}
+300         \textcolor{keywordflow}{foreach}( \hyperlink{class_song}{Song} song \textcolor{keywordflow}{in} melodies )
+301         \{
+302             returned.Add( song );
+303         \}
+304 
+305         \textcolor{comment}{// Return the songs.}
+306         \textcolor{keywordflow}{return} returned;
+307     \}
+\end{DoxyCode}

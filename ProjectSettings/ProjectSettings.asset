@@ -10,7 +10,7 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
+  companyName: EECS542
   productName: VRPianoProject
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -208,7 +208,11 @@ PlayerSettings:
   m_BuildTargetIcons: []
   m_BuildTargetBatching: []
   m_BuildTargetGraphicsAPIs: []
-  m_BuildTargetVRSettings: []
+  m_BuildTargetVRSettings:
+  - m_BuildTarget: Standalone
+    m_Enabled: 1
+    m_Devices:
+    - Oculus
   openGLRequireES31: 0
   openGLRequireES31AEP: 0
   webPlayerTemplate: APPLICATION:Default
@@ -372,7 +376,7 @@ PlayerSettings:
   webGLUseWasm: 0
   webGLCompressionFormat: 1
   scriptingDefineSymbols:
-    1: DEBUG;DEBUG_MUSICAL_TYPING
+    1: DEBUG;DEBUG_MUSICAL_TYPING;DEBUG_AUDIO_DIAGNOSTICS;SONG_CREATION_ENABLED
   platformArchitecture: {}
   scriptingBackend: {}
   incrementalIl2cppBuild: {}
@@ -454,8 +458,9 @@ PlayerSettings:
   XboxOnePersistentLocalStorageSize: 0
   vrEditorSettings: {}
   cloudServicesEnabled:
+    Collab: 1
     UNet: 1
-  cloudProjectId: 43314d0f-ff1a-49bb-8ee5-d527854c6414
-  projectName: VRPianoProject (1)
+  cloudProjectId: 3044ffd0-9354-46d8-b3d3-c393e241db82
+  projectName: VRPianoProject (3)
   organizationId: eecs542seniordesignproject
   cloudEnabled: 0

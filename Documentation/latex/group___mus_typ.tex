@@ -1,0 +1,297 @@
+\hypertarget{group___mus_typ}{}\section{Musical Typing}
+\label{group___mus_typ}\index{Musical Typing@{Musical Typing}}
+
+
+Allows for testing the audio with the computer keyboard.  
+
+
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___mus_typ_const}{Musical Typing Constants}
+\item 
+\hyperlink{group___mus_typ_handlers}{Musical Typing Event Handlers}
+\item 
+\hyperlink{group___mus_typ_priv_func}{Musical Typing Private Functions}
+\item 
+\hyperlink{group___mus_typ_priv_var}{Musical Typing Private Variables}
+\item 
+\hyperlink{group___mus_typ_pub_func}{Musical Typing Public Functions}
+\item 
+\hyperlink{group___mus_typ_pub_var}{Musical Typing Public Variables}
+\item 
+\hyperlink{group___mus_typ_unity}{Musical Typing Unity Functions}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Allows for testing the audio with the computer keyboard. 
+
+\hypertarget{group___mus_typ_DocMusTypInfo}{}\subsection{Information}\label{group___mus_typ_DocMusTypInfo}
+Musical Typing allows for using a computer keyboard to debug sound output by triggering note events for a 19-\/note range whenever specific keys on the keyboard are pressed/released. The velocities for each key can be set with D\+E\+B\+U\+G\+\_\+\+Set\+Musical\+Typing\+Key\+Velocity(). The keys that are used are (in this order) a, w, s, e, d, f, t, g, y, h, u, j, k, o, l, p, ;, \textquotesingle{}, and \mbox{]}\hypertarget{group___mus_typ_musvar}{}\subsection{Musical Typing Public Variables}\label{group___mus_typ_musvar}
+Variables used to set options for \hyperlink{group___mus_typ}{Musical Typing}. ~\newline
+ \hyperlink{group___mus_typ_pub_var}{More details}.\hypertarget{group___mus_typ_musprivvar}{}\subsection{Musical Typing Private Variables}\label{group___mus_typ_musprivvar}
+Variables used to construct \hyperlink{group___mus_typ}{Musical Typing} events. ~\newline
+ \hyperlink{group___mus_typ_priv_var}{More details}.\hypertarget{group___mus_typ_mustypunit}{}\subsection{Musical Typing Unity Functions}\label{group___mus_typ_mustypunit}
+Variables used to construct \hyperlink{group___mus_typ}{Musical Typing} events. ~\newline
+ \hyperlink{group___mus_typ_unity}{More details}.\hypertarget{group___mus_typ_muspubfunc}{}\subsection{Musical Typing Public Functions}\label{group___mus_typ_muspubfunc}
+Functions used by other classes to set detailed options for \hyperlink{group___mus_typ}{Musical Typing}. ~\newline
+ \hyperlink{group___mus_typ_pub_func}{More details}.\hypertarget{group___mus_typ_musprivfunc}{}\subsection{Musical Typing Private Functions}\label{group___mus_typ_musprivfunc}
+Functions used internally by \hyperlink{group___mus_typ}{Musical Typing}. ~\newline
+ \hyperlink{group___mus_typ_priv_func}{More details}.\hypertarget{group___mus_typ_mushandle}{}\subsection{Musical Typing Event Handlers}\label{group___mus_typ_mushandle}
+Functions used to handle \hyperlink{group___mus_typ}{Musical Typing} events. ~\newline
+ \hyperlink{group___mus_typ_handlers}{More details}.\hypertarget{group___mus_typ_muscode}{}\subsection{Code}\label{group___mus_typ_muscode}
+
+\begin{DoxyCodeInclude}
+1 \textcolor{preprocessor}{#if DEBUG\_MUSICAL\_TYPING}
+2 
+3 \textcolor{keyword}{using} \hyperlink{namespace_system}{System}.Collections;
+4 \textcolor{keyword}{using} \hyperlink{namespace_system}{System}.Collections.Generic;
+5 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine};
+6 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine}.Assertions;
+7 \textcolor{comment}{}
+8 \textcolor{comment}{/** }
+9 \textcolor{comment}{ * @class MusicalTypingHandler}
+10 \textcolor{comment}{ * @brief Allows for testing the audio with the computer keyboard.}
+11 \textcolor{comment}{ * }
+12 \textcolor{comment}{ * Musical Typing allows for using a computer keyboard to debug sound output by }
+13 \textcolor{comment}{ * triggering note events for a 19-note range whenever specific keys on the }
+14 \textcolor{comment}{ * keyboard are pressed/released. The velocities for each key can be set with}
+15 \textcolor{comment}{ * DEBUG\_SetMusicalTypingKeyVelocity().}
+16 \textcolor{comment}{ * The keys that are used are (in this order)}
+17 \textcolor{comment}{ * a, w, s, e, d, f, t, g, y, h, u, j, k, o, l, p, ;, ', and ] }
+18 \textcolor{comment}{*/}
+19 \textcolor{keyword}{public} \textcolor{keyword}{class }\hyperlink{class_musical_typing_handler}{MusicalTypingHandler} : MonoBehaviour \{
+20 
+21     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+22 \textcolor{comment}{    * @defgroup MusTypConst Musical Typing Constants}
+23 \textcolor{comment}{    * @ingroup MusTyp}
+24 \textcolor{comment}{    * Constants used to handle @link MusTyp Musical Typing@endlink.}
+25 \textcolor{comment}{    ****************************************************************************/}\textcolor{comment}{}
+26 \textcolor{comment}{    /** @\{ */}
+27     \textcolor{keyword}{private} \textcolor{keyword}{static} \textcolor{keywordtype}{int} DEBUG\_numMusicalTypingKeys = 19; \textcolor{comment}{//!< The number of Musical Typing keys.}
+28 \textcolor{comment}{}    \textcolor{keyword}{private} \textcolor{keyword}{static} KeyCode[] DEBUG\_musicalTypingKeys =
+29         \{
+30             KeyCode.A,
+31             KeyCode.W,
+32             KeyCode.S,
+33             KeyCode.E,
+34             KeyCode.D,
+35             KeyCode.F,
+36             KeyCode.T,
+37             KeyCode.G,
+38             KeyCode.Y,
+39             KeyCode.H,
+40             KeyCode.U,
+41             KeyCode.J,
+42             KeyCode.K,
+43             KeyCode.O,
+44             KeyCode.L,
+45             KeyCode.P,
+46             KeyCode.Semicolon,
+47             KeyCode.Quote,
+48             KeyCode.RightBracket
+49         \}; \textcolor{comment}{//!< The keys that are used for musical typing.}
+50 \textcolor{comment}{}\textcolor{comment}{    /** @\} */}
+51 
+52     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+53 \textcolor{comment}{    * @defgroup MusTypPubVar Musical Typing Public Variables}
+54 \textcolor{comment}{    * @ingroup MusTyp}
+55 \textcolor{comment}{    * Variables used to set options for @link MusTyp Musical Typing@endlink.}
+56 \textcolor{comment}{    ****************************************************************************/}\textcolor{comment}{}
+57 \textcolor{comment}{    /** @\{ */}
+58     \textcolor{keyword}{public} \textcolor{keywordtype}{bool}                          MusicalTypingEnabled = \textcolor{keyword}{true}; \textcolor{comment}{//!< Is musical typing enabled?
+       Default is true when the preprocessor flag is set.}
+59 \textcolor{comment}{}    \textcolor{keyword}{public} \textcolor{keywordtype}{bool}                          RandomizeVelocities = \textcolor{keyword}{false}; \textcolor{comment}{//!< Should the velocities used for
+       simulating a NotePlayEvent be randomized? Default is false.}
+60 \textcolor{comment}{}\textcolor{comment}{    /** @\} */}
+61 
+62     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+63 \textcolor{comment}{    * @defgroup MusTypPrivVar Musical Typing Private Variables}
+64 \textcolor{comment}{    * @ingroup MusTyp}
+65 \textcolor{comment}{    * Variables used to construct @link MusTyp Musical Typing@endlink events.}
+66 \textcolor{comment}{    ****************************************************************************/}\textcolor{comment}{}
+67 \textcolor{comment}{    /** @\{ */}
+68 \textcolor{preprocessor}{    #if DEBUG\_AUDIO\_DIAGNOSTICS}
+69         \textcolor{keyword}{private} \hyperlink{group___audio_testing_class_a_t_i___diagnostics}{ATI\_Diagnostics}               mDiagnosticsHandler = null; \textcolor{comment}{//!< The handler
+       for audio diagnostics display}
+70 \textcolor{comment}{}\textcolor{preprocessor}{    #endif}
+71     \textcolor{keyword}{private} \textcolor{keywordtype}{bool}[]                        mPressedKeys = null; \textcolor{comment}{//!< The keys that are currently pressed.}
+72 \textcolor{comment}{}    \textcolor{keyword}{private} \textcolor{keywordtype}{int}[]                         \hyperlink{group___mus_typ_priv_var_ga4836c9fe1805279497f421a29879bf5a}{mKeyVelocities}; \textcolor{comment}{//!< The velocities that will be
+       used whenever musical typing simulates a note event.}
+73 \textcolor{comment}{}    \textcolor{keyword}{private} \textcolor{keywordtype}{int}[]                         \hyperlink{group___mus_typ_priv_var_ga15df83911d88e77e46726ff5642d04e6}{mRandomVelocityRange}; \textcolor{comment}{//!< The range used to
+       randomize Musical Typing velocities. Default is 0 to 100.}
+74 \textcolor{comment}{}    \textcolor{keyword}{private} \hyperlink{class_virtual_instrument_manager}{VirtualInstrumentManager}      mVIM = null; \textcolor{comment}{//!< The parent
+       VirtualInstrumentManager}
+75 \textcolor{comment}{}\textcolor{comment}{    /** @\} */}
+76 
+77     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+78 \textcolor{comment}{    * @defgroup MusTypUnity Musical Typing Unity Functions}
+79 \textcolor{comment}{    * @ingroup MusTyp}
+80 \textcolor{comment}{    * Variables used to construct @link MusTyp Musical Typing@endlink events.}
+81 \textcolor{comment}{    ****************************************************************************/}\textcolor{comment}{}
+82 \textcolor{comment}{    /** @\{ */}
+83 \textcolor{comment}{}
+84 \textcolor{comment}{    /**}
+85 \textcolor{comment}{     * @brief Initializes the MusicalTypingHandler by getting the parent VirtualInstrumentManager and
+       calling SetMusicalTypingVariables.}
+86 \textcolor{comment}{    */}
+87     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{group___mus_typ_unity_ga2935e4d4209f57f19ea242968c861f3f}{Awake}()
+88     \{
+89         \textcolor{comment}{// Get the Virtual Instrument Manager}
+90         mVIM = gameObject.GetComponent<\hyperlink{class_virtual_instrument_manager}{VirtualInstrumentManager}>();
+91         Assert.IsNotNull( mVIM, \textcolor{stringliteral}{"Musical Typing couldn't get the VirtualInstrumentManager!"} );
+92 
+93         \textcolor{comment}{// Set the default variables}
+94         \hyperlink{group___mus_typ_priv_func_ga5db8ab750574dbc31279827ea5cc501e}{SetMusicalTypingVariables}();
+95     \}
+96 \textcolor{comment}{}
+97 \textcolor{comment}{    /**}
+98 \textcolor{comment}{     * @brief Called whenever there is a GUI event. Used to see if the event is supposed to start a Musical
+       Typing Event.}
+99 \textcolor{comment}{     * }
+100 \textcolor{comment}{     * @see VirtualInstrumentManager::DEBUG\_HandleMusicalTypingEvent}
+101 \textcolor{comment}{    */}
+102     \textcolor{keywordtype}{void} \hyperlink{group___mus_typ_unity_ga13a20522cf119917cb41e21051122977}{OnGUI}()
+103     \{
+104         \textcolor{comment}{// If musical typing is enabled, then watch for key events and send them along to the handler.}
+105         \textcolor{keywordflow}{if}( MusicalTypingEnabled && Event.current.isKey &&
+106             ( Input.GetKeyDown( Event.current.keyCode ) || Input.GetKeyUp( Event.current.keyCode ) ) )
+107         \{
+108             \hyperlink{group___mus_typ_handlers_ga391a3d207136b7eb0e734e289b520188}{OnMusicalTypingEvent}( Event.current );
+109         \}
+110     \}\textcolor{comment}{}
+111 \textcolor{comment}{    /** @\} */}
+112 
+113     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+114 \textcolor{comment}{    * @defgroup MusTypPubFunc Musical Typing Public Functions}
+115 \textcolor{comment}{    * @ingroup MusTyp}
+116 \textcolor{comment}{    * Functions used by other classes to set detailed options for @link MusTyp Musical Typing@endlink.}
+117 \textcolor{comment}{    ****************************************************************************/}\textcolor{comment}{}
+118 \textcolor{comment}{    /** @\{ */}
+119 \textcolor{comment}{}
+120 \textcolor{comment}{    /**}
+121 \textcolor{comment}{     * @brief Sets the velocity used when a specific key on the computer keyboard generates a musical
+       typing event.}
+122 \textcolor{comment}{     * @param[in] aKeyIndex The index of the key whose Musical Typing velocity is being modified.}
+123 \textcolor{comment}{     * @param[in] aKeyVelocity The new velocity for the key.}
+124 \textcolor{comment}{    */}
+125     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___mus_typ_pub_func_ga02f86b46bb63dc751b669035b7aa5ce0}{SetKeyVelocity}( \textcolor{keywordtype}{int} aKeyIndex, \textcolor{keywordtype}{int} aKeyVelocity )
+126     \{
+127         Assert.IsTrue( aKeyIndex >= 0 && aKeyIndex < 19, \textcolor{stringliteral}{"Tried to change the Musical Typing velocity for a
+       non-existent key!"} );
+128         Assert.IsTrue( aKeyVelocity >= 0 && aKeyVelocity <= 100, \textcolor{stringliteral}{"Gave a velocity of "} + aKeyVelocity.
+      ToString() + \textcolor{stringliteral}{", but the range is 0-100!"} );
+129 
+130         mKeyVelocities[aKeyIndex] = aKeyVelocity;
+131     \}
+132 \textcolor{comment}{}
+133 \textcolor{comment}{    /**}
+134 \textcolor{comment}{     * @brief Sets the range used for randomizing Musical Typing velocities.}
+135 \textcolor{comment}{     * @param[in] aLowestVelocity The lowest velocity of the range.}
+136 \textcolor{comment}{     * @param[in] aHighestVelocity The highest velocity of the range.}
+137 \textcolor{comment}{    */}
+138     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___mus_typ_pub_func_gaf6ba35e3a081cff62fa963ed32d218c8}{SetRandomVelocityRange}( \textcolor{keywordtype}{int} aLowestVelocity, \textcolor{keywordtype}{int} aHighestVelocity )
+139     \{
+140         mRandomVelocityRange[0] = aLowestVelocity;
+141         mRandomVelocityRange[1] = aHighestVelocity;
+142     \}\textcolor{comment}{}
+143 \textcolor{comment}{    /** @\} */}
+144 
+145     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+146 \textcolor{comment}{    * @defgroup MusTypPrivFunc Musical Typing Private Functions}
+147 \textcolor{comment}{    * @ingroup MusTyp}
+148 \textcolor{comment}{    * Functions used internally by @link MusTyp Musical Typing@endlink.}
+149 \textcolor{comment}{    ****************************************************************************/}\textcolor{comment}{}
+150 \textcolor{comment}{    /** @\{ */}
+151 \textcolor{comment}{}
+152 \textcolor{comment}{    /** }
+153 \textcolor{comment}{     * @brief Sets the default values for musical typing.}
+154 \textcolor{comment}{    */}
+155     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{group___mus_typ_priv_func_ga5db8ab750574dbc31279827ea5cc501e}{SetMusicalTypingVariables}()
+156     \{
+157 \textcolor{preprocessor}{        #if DEBUG\_AUDIO\_DIAGNOSTICS}
+158             \textcolor{comment}{// Get the diagnostics handler}
+159             mDiagnosticsHandler = mVIM.\hyperlink{group___v_i_m_pub_func_ga7e60bc3c5464d8f34f0d56def675bcc6}{GetDiagnosticsHandler}();
+160 \textcolor{preprocessor}{        #endif}
+161 
+162         \textcolor{comment}{// Set up the key velocities and the pressed keys.}
+163         mKeyVelocities = \textcolor{keyword}{new} \textcolor{keywordtype}{int}[\hyperlink{group___mus_typ_const_ga1a5182f5dda1cd3a5b400911a3f4cb69}{DEBUG\_numMusicalTypingKeys}];
+164         mPressedKeys = \textcolor{keyword}{new} \textcolor{keywordtype}{bool}[\hyperlink{group___mus_typ_const_ga1a5182f5dda1cd3a5b400911a3f4cb69}{DEBUG\_numMusicalTypingKeys}];
+165         \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < \hyperlink{group___mus_typ_const_ga1a5182f5dda1cd3a5b400911a3f4cb69}{DEBUG\_numMusicalTypingKeys}; i++ )
+166         \{
+167             mKeyVelocities[i] = 100;
+168             mPressedKeys[i] = \textcolor{keyword}{false};
+169         \}
+170 
+171         \textcolor{comment}{// Set up the default range used when velocities are random.}
+172         mRandomVelocityRange = \textcolor{keyword}{new} \textcolor{keywordtype}{int}[2];
+173         mRandomVelocityRange[0] = 0;
+174         mRandomVelocityRange[1] = 100;
+175     \}\textcolor{comment}{}
+176 \textcolor{comment}{    /** @\} */}
+177 
+178     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+179 \textcolor{comment}{    * @defgroup MusTypHandlers Musical Typing Event Handlers}
+180 \textcolor{comment}{    * @ingroup MusTyp}
+181 \textcolor{comment}{    * Functions used to handle @link MusTyp Musical Typing@endlink events.}
+182 \textcolor{comment}{    ****************************************************************************/}\textcolor{comment}{}
+183 \textcolor{comment}{    /** @\{ */}
+184 \textcolor{comment}{}
+185 \textcolor{comment}{    /**}
+186 \textcolor{comment}{     * @brief Handler for Musical Typing Events }
+187 \textcolor{comment}{     * @param[in] aKeyEvent A GUI keyboard event triggered by a key being pressed or released.}
+188 \textcolor{comment}{     * }
+189 \textcolor{comment}{     * This function sees if a pressed/released key is one that is used for Musical Typing. }
+190 \textcolor{comment}{     * If so, it simulates a note event based on the pressed/released key.}
+191 \textcolor{comment}{    */}
+192     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{group___mus_typ_handlers_ga391a3d207136b7eb0e734e289b520188}{OnMusicalTypingEvent}( Event aKeyEvent )
+193     \{
+194         \textcolor{comment}{// Check if a musical typing key is pressed or released and fire off the }
+195         \textcolor{comment}{// corresponding PlayNote or NoteFadeOut event if so. The debug velocity is }
+196         \textcolor{comment}{// used for the events.}
+197         \textcolor{keywordtype}{int} i = 0;
+198         \textcolor{keywordtype}{int} numActive = mVIM.\hyperlink{group___v_i_m_pub_func_ga3d6c823b1c1083eac8202f6c89e60b48}{GetNumActiveNotes}();
+199         \textcolor{keywordflow}{while}( MusicalTypingEnabled && i < DEBUG\_numMusicalTypingKeys && i < numActive )
+200         \{
+201             \textcolor{comment}{// See if the key is a Musical Typing key.}
+202             \textcolor{keywordflow}{if}( aKeyEvent.keyCode == DEBUG\_musicalTypingKeys[i] )
+203             \{
+204                 \textcolor{comment}{// If the key was pressed, then simulate a NotePlayEvent.}
+205                 \textcolor{keywordflow}{if}( aKeyEvent.type == EventType.KeyDown && !mPressedKeys[i] )
+206                 \{
+207 \textcolor{preprocessor}{                    #if DEBUG\_AUDIO\_DIAGNOSTICS}
+208                         mDiagnosticsHandler.\hyperlink{group___audio_testing_a133561901c2aef535b2f3c098e55b959}{SetInputTime}.Invoke();
+209 \textcolor{preprocessor}{                    #endif}
+210 
+211                     \textcolor{comment}{// Update the pressed keys}
+212                     mPressedKeys[i] = \textcolor{keyword}{true};
+213 
+214                     \textcolor{comment}{// Get the velocity that should be used.}
+215                     \textcolor{keywordtype}{int} velocity = mKeyVelocities[i];
+216                     \textcolor{keywordflow}{if}( RandomizeVelocities )
+217                     \{
+218                         velocity = \hyperlink{namespace_unity_engine}{UnityEngine}.Random.Range( mRandomVelocityRange[0], 
+      mRandomVelocityRange[1] );
+219                     \}
+220                     mVIM.\hyperlink{group___v_i_m_events_gaa21021c13a8c9d13cbf374d5bf9d68fa}{PlayNote}.Invoke( mVIM.\hyperlink{group___v_i_m_pub_func_ga119e0c582106fc9ecc2631e39d71d681}{GetActiveNotes}()[i], velocity );
+221                 \}
+222                 \textcolor{comment}{// If the key was released, then simulate a ReleaseNoteEvent.}
+223                 \textcolor{keywordflow}{if}( aKeyEvent.type == EventType.KeyUp )
+224                 \{
+225                     \textcolor{comment}{// Update the pressed keys}
+226                     mPressedKeys[i] = \textcolor{keyword}{false};
+227 
+228                     mVIM.\hyperlink{group___v_i_m_events_ga3a1726a6366126421434c2c7be5e5678}{ReleaseNote}.Invoke( mVIM.\hyperlink{group___v_i_m_pub_func_ga119e0c582106fc9ecc2631e39d71d681}{GetActiveNotes}()[i] );
+229                 \}
+230             \}
+231             i++;
+232         \}
+233     \}
+234 \textcolor{comment}{}
+235 \textcolor{comment}{    /** @\} */}
+236 
+237 \}
+238 \textcolor{preprocessor}{#endif}
+\end{DoxyCodeInclude}
+ 

@@ -1,0 +1,59 @@
+\hypertarget{group___mus_typ_priv_func}{}\section{Musical Typing Private Functions}
+\label{group___mus_typ_priv_func}\index{Musical Typing Private Functions@{Musical Typing Private Functions}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___mus_typ_priv_func_ga5db8ab750574dbc31279827ea5cc501e}{Musical\+Typing\+Handler.\+Set\+Musical\+Typing\+Variables} ()
+\begin{DoxyCompactList}\small\item\em Sets the default values for musical typing. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Functions used internally by \hyperlink{group___mus_typ}{Musical Typing}. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___mus_typ_priv_func_ga5db8ab750574dbc31279827ea5cc501e}\label{group___mus_typ_priv_func_ga5db8ab750574dbc31279827ea5cc501e}} 
+\index{Musical Typing Private Functions@{Musical Typing Private Functions}!Set\+Musical\+Typing\+Variables@{Set\+Musical\+Typing\+Variables}}
+\index{Set\+Musical\+Typing\+Variables@{Set\+Musical\+Typing\+Variables}!Musical Typing Private Functions@{Musical Typing Private Functions}}
+\subsubsection{\texorpdfstring{Set\+Musical\+Typing\+Variables()}{SetMusicalTypingVariables()}}
+{\footnotesize\ttfamily void Musical\+Typing\+Handler.\+Set\+Musical\+Typing\+Variables (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Sets the default values for musical typing. 
+
+
+
+Definition at line 155 of file Musical\+Typing\+Handler.\+cs.
+
+
+
+References Musical\+Typing\+Handler.\+D\+E\+B\+U\+G\+\_\+num\+Musical\+Typing\+Keys, and Virtual\+Instrument\+Manager.\+Get\+Diagnostics\+Handler().
+
+
+
+Referenced by Musical\+Typing\+Handler.\+Awake().
+
+
+\begin{DoxyCode}
+156     \{
+157 \textcolor{preprocessor}{        #if DEBUG\_AUDIO\_DIAGNOSTICS}
+158             \textcolor{comment}{// Get the diagnostics handler}
+159             \hyperlink{group___mus_typ_priv_var_gaaeabcb1c6445b0ff93059036cc4ec1f4}{mDiagnosticsHandler} = \hyperlink{group___mus_typ_priv_var_ga63b2c5e1f9b1320a6b435a9018759444}{mVIM}.
+      \hyperlink{group___v_i_m_pub_func_ga7e60bc3c5464d8f34f0d56def675bcc6}{GetDiagnosticsHandler}();
+160 \textcolor{preprocessor}{        #endif}
+161 
+162         \textcolor{comment}{// Set up the key velocities and the pressed keys.}
+163         \hyperlink{group___mus_typ_priv_var_ga4836c9fe1805279497f421a29879bf5a}{mKeyVelocities} = \textcolor{keyword}{new} \textcolor{keywordtype}{int}[\hyperlink{group___mus_typ_const_ga1a5182f5dda1cd3a5b400911a3f4cb69}{DEBUG\_numMusicalTypingKeys}];
+164         \hyperlink{group___mus_typ_priv_var_gaede8bc4123f7bfe514816593fdfbec67}{mPressedKeys} = \textcolor{keyword}{new} \textcolor{keywordtype}{bool}[\hyperlink{group___mus_typ_const_ga1a5182f5dda1cd3a5b400911a3f4cb69}{DEBUG\_numMusicalTypingKeys}];
+165         \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < \hyperlink{group___mus_typ_const_ga1a5182f5dda1cd3a5b400911a3f4cb69}{DEBUG\_numMusicalTypingKeys}; i++ )
+166         \{
+167             \hyperlink{group___mus_typ_priv_var_ga4836c9fe1805279497f421a29879bf5a}{mKeyVelocities}[i] = 100;
+168             \hyperlink{group___mus_typ_priv_var_gaede8bc4123f7bfe514816593fdfbec67}{mPressedKeys}[i] = \textcolor{keyword}{false};
+169         \}
+170 
+171         \textcolor{comment}{// Set up the default range used when velocities are random.}
+172         \hyperlink{group___mus_typ_priv_var_ga15df83911d88e77e46726ff5642d04e6}{mRandomVelocityRange} = \textcolor{keyword}{new} \textcolor{keywordtype}{int}[2];
+173         \hyperlink{group___mus_typ_priv_var_ga15df83911d88e77e46726ff5642d04e6}{mRandomVelocityRange}[0] = 0;
+174         \hyperlink{group___mus_typ_priv_var_ga15df83911d88e77e46726ff5642d04e6}{mRandomVelocityRange}[1] = 100;
+175     \}
+\end{DoxyCode}

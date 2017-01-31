@@ -1,0 +1,62 @@
+\hypertarget{group___piano_construct}{}\section{Constructors}
+\label{group___piano_construct}\index{Constructors@{Constructors}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___piano_construct_ga5128747ca1a1fbdc94a78362d3b87eed}{Piano.\+Piano} (\hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} a\+Parent)
+\begin{DoxyCompactList}\small\item\em Creates a new \hyperlink{class_piano}{Piano} instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The constructor for the \hyperlink{class_piano}{Piano}. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___piano_construct_ga5128747ca1a1fbdc94a78362d3b87eed}\label{group___piano_construct_ga5128747ca1a1fbdc94a78362d3b87eed}} 
+\index{Constructors@{Constructors}!Piano@{Piano}}
+\index{Piano@{Piano}!Constructors@{Constructors}}
+\subsubsection{\texorpdfstring{Piano()}{Piano()}}
+{\footnotesize\ttfamily Piano.\+Piano (\begin{DoxyParamCaption}\item[{\hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager}}]{a\+Parent }\end{DoxyParamCaption})}
+
+
+
+Creates a new \hyperlink{class_piano}{Piano} instance. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Parent} & The \hyperlink{group___v_i_m}{Virtual Instrument Manager} that will manage this instrument. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A newly created \hyperlink{class_piano}{Piano} \hyperlink{group___v_i}{Virtual Instrument}
+\end{DoxyReturn}
+Calls the \hyperlink{group___v_i_base}{base constructor}, sets the values specific to \hyperlink{class_piano}{Piano} \hyperlink{group___v_i}{Virtual Instruments} and begins loading the wav files. 
+
+Definition at line 49 of file Piano.\+cs.
+
+
+
+References Piano.\+Create\+Filenames(), Piano.\+Initialize\+Built\+In\+Dynamics(), Virtual\+Instrument.\+m\+Highest\+Supported\+Pitch, Virtual\+Instrument.\+m\+Is\+Drum, Virtual\+Instrument.\+m\+Loaded, Virtual\+Instrument.\+m\+Lowest\+Supported\+Pitch, Virtual\+Instrument.\+m\+Num\+Supported\+Pitches, Virtual\+Instrument.\+m\+Sample\+Interval, and Virtual\+Instrument.\+m\+Sample\+Rate.
+
+
+\begin{DoxyCode}
+49                                                      : base( aParent )
+50     \{
+51 
+52         \textcolor{comment}{// Set default values}
+53         \hyperlink{group___v_i_base_pro_var_ga47dbd8aa02ab32b8f802adfd2d3d81de}{mIsDrum} = \textcolor{keyword}{false};
+54         \hyperlink{group___v_i_base_pro_var_ga3cae52b1bcc0178a8a6b03c7aaf7aac8}{mLowestSupportedPitch} = \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.B0;
+55         \hyperlink{group___v_i_base_pro_var_ga61fb2c33b53a0f663047779d7ceb18f3}{mHighestSupportedPitch} = \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.C8;
+56         \hyperlink{group___v_i_base_pro_var_gafc759a16324cf9b3f230bcbf040afcd2}{mNumSupportedPitches} = 86;
+57         \hyperlink{group___v_i_base_pro_var_ga80b3d2ff29b27698eea6bcf2f8ddc5d7}{mSampleRate} = 44100;
+58         \hyperlink{group___v_i_base_pro_var_ga20c1d3d25ea666378d72c833d160ae2e}{mSampleInterval} = 1f / \hyperlink{group___v_i_base_pro_var_ga80b3d2ff29b27698eea6bcf2f8ddc5d7}{mSampleRate};
+59 
+60         \textcolor{comment}{// Call functions to set the values relating to built-in dynamics, }
+61         \textcolor{comment}{// create the filenames for each sample, and load audio clips for each sample.}
+62         \hyperlink{group___piano_virt_func_ga6bc02528f8808b8a30aa7d5776445a6d}{InitializeBuiltInDynamics}();
+63         \hyperlink{group___piano_virt_func_gaafd50f0f04ea7ea4f560accc628b8f1b}{CreateFilenames}();
+64 
+65         \textcolor{comment}{// Set that this instrument is loaded.}
+66         \hyperlink{group___v_i_base_pro_var_ga8978807d1878db5aae91fbd057c46097}{mLoaded} = \textcolor{keyword}{true};
+67 
+68     \}
+\end{DoxyCode}

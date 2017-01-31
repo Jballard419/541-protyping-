@@ -1,0 +1,50 @@
+\hypertarget{class_s_c___pitch_selection_trigger}{}\section{S\+C\+\_\+\+Pitch\+Selection\+Trigger Class Reference}
+\label{class_s_c___pitch_selection_trigger}\index{S\+C\+\_\+\+Pitch\+Selection\+Trigger@{S\+C\+\_\+\+Pitch\+Selection\+Trigger}}
+
+
+Informs the \hyperlink{group___doc_s_c___p_s_c}{parent handler} about a \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitch} or \hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{drum} being selected in the \hyperlink{group___doc_s_c}{Song Creation Interface}.  
+
+
+Inheritance diagram for S\+C\+\_\+\+Pitch\+Selection\+Trigger\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_s_c___pitch_selection_trigger}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___s_c___p_s_t_pub_func_ga0b334518dbdac5874adf9436cd2c7fed}{Set\+Handler} (\hyperlink{class_s_c___pitch_selection_container}{S\+C\+\_\+\+Pitch\+Selection\+Container} a\+Handler)
+\begin{DoxyCompactList}\small\item\em Sets \hyperlink{group___doc_s_c___p_s_c}{the parent handler}. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c___p_s_t_pub_func_ga0b4edbf9719a384aa5cf8d29d1065696}{Set\+Index} (int a\+Index)
+\begin{DoxyCompactList}\small\item\em Sets the index of this trigger in \hyperlink{group___doc_s_c___p_s_c}{the parent handler}. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c___p_s_t_pub_func_ga267db9aed38ba33ad44c26c84a1757df}{Set\+Selection} (bool a\+Selected)
+\begin{DoxyCompactList}\small\item\em Sets whether or not this trigger is selected. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c___p_s_t_handlers_ga5f4ea69eee3ed20cb09d56b7281ce861}{On\+Pitch\+Selected} (bool a\+Selected)
+\begin{DoxyCompactList}\small\item\em Handles when a the trigger is selected via the \hyperlink{group___s_c___p_s_t_priv_var_ga1ecd33f50c82f6ffda81850438907a31}{associated toggle switch} by \hyperlink{group___s_c___p_s_c_handlers_gaa2afa8167100515d412cf751d9334f0c}{passing the event} to the \hyperlink{group___doc_s_c___p_s_c}{parent handler}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___s_c___p_s_t_unity_gafa93dcca78e174eb2de6c4ea83b66a39}{Awake} ()
+\begin{DoxyCompactList}\small\item\em Initializes the \hyperlink{class_s_c___pitch_selection_trigger}{S\+C\+\_\+\+Pitch\+Selection\+Trigger} by getting a reference to its \hyperlink{group___s_c___p_s_t_priv_var_ga1ecd33f50c82f6ffda81850438907a31}{toggle switch}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{group___s_c___p_s_t_priv_var_ga7d7771170c1f6cb1d6a9eb41e96a478f}{m\+Index} = -\/1
+\begin{DoxyCompactList}\small\item\em The index of this trigger in \hyperlink{group___doc_s_c___p_s_c}{the parent handler}. \end{DoxyCompactList}\item 
+\hyperlink{class_s_c___pitch_selection_container}{S\+C\+\_\+\+Pitch\+Selection\+Container} \hyperlink{group___s_c___p_s_t_priv_var_ga23cf7134e224e9718a99949979cd5078}{m\+Handler} = null
+\begin{DoxyCompactList}\small\item\em \hyperlink{group___doc_s_c___p_s_c}{The parent handler}. \end{DoxyCompactList}\item 
+Toggle \hyperlink{group___s_c___p_s_t_priv_var_ga1ecd33f50c82f6ffda81850438907a31}{m\+Toggle}
+\begin{DoxyCompactList}\small\item\em The associated toggle switch that indicates whether or not the represented \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitch} or \hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{drum} is selected. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Informs the \hyperlink{group___doc_s_c___p_s_c}{parent handler} about a \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitch} or \hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{drum} being selected in the \hyperlink{group___doc_s_c}{Song Creation Interface}. 
+
+Definition at line 15 of file S\+C\+\_\+\+Pitch\+Selection\+Trigger.\+cs.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Documents/\+School Documents/2017\+Spring/\+E\+E\+C\+S542/\+V\+R\+Piano\+Project/\+Assets/\+Scripts/\+Audio/\+Song\+Creation/\hyperlink{_s_c___pitch_selection_trigger_8cs}{S\+C\+\_\+\+Pitch\+Selection\+Trigger.\+cs}\end{DoxyCompactItemize}

@@ -1,0 +1,49 @@
+\hypertarget{class_piano}{}\section{Piano Class Reference}
+\label{class_piano}\index{Piano@{Piano}}
+
+
+A specific type of \hyperlink{group___v_i}{Virtual Instrument} that uses piano samples.  
+
+
+Inheritance diagram for Piano\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_piano}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___piano_construct_ga5128747ca1a1fbdc94a78362d3b87eed}{Piano} (\hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} a\+Parent)
+\begin{DoxyCompactList}\small\item\em Creates a new \hyperlink{class_piano}{Piano} instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override void \hyperlink{group___piano_virt_func_ga6bc02528f8808b8a30aa7d5776445a6d}{Initialize\+Built\+In\+Dynamics} ()
+\begin{DoxyCompactList}\small\item\em Initializes values related to the \hyperlink{group___audio_DefBID}{Built-\/\+In Dynamics} for this instrument and allocates the audio data container. The \hyperlink{class_piano}{Piano} samples are available in three separate \hyperlink{group___audio_DefBID}{dynamics} \+: ~\newline
+ pp\+: pianissimo (Very Soft) for \hyperlink{group___audio_DefVel}{velocities} from 0 to 50. ~\newline
+ mf\+: mezzo-\/forte (Half-\/loud) for \hyperlink{group___audio_DefVel}{velocities} from 51 to 75. ~\newline
+ ff\+: fortissimo (Very Loud) for \hyperlink{group___audio_DefVel}{velocities} from 76 to 100. \end{DoxyCompactList}\item 
+override void \hyperlink{group___piano_virt_func_gaafd50f0f04ea7ea4f560accc628b8f1b}{Create\+Filenames} ()
+\begin{DoxyCompactList}\small\item\em Creates the filenames from which to load the wav files. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A specific type of \hyperlink{group___v_i}{Virtual Instrument} that uses piano samples. 
+
+The lowest \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitch} supported by the piano is \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{B0} and the highest \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitch} supported is \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{C8}.
+
+~\newline
+ This instrument is special (so far) in this project in that it supports \hyperlink{group___audio_DefBID}{Built-\/\+In Dynamics} with three different sound files for each pitch. Go to \hyperlink{group___audio_DefBID}{the section about Built-\/\+In Dynamics} for more details.
+
+~\newline
+ Its wav files are stored in \char`\"{}\+Resources/\+Audio/\+Virtual\+Instrument/\+Piano/\+Samples/ff\char`\"{}, \char`\"{}\+Resources/\+Audio/\+Virtual\+Instrument/\+Piano/\+Samples/mf\char`\"{}, and \char`\"{}\+Resources/\+Audio/\+Virtual\+Instrument/\+Piano/\+Samples/pp\char`\"{} 
+
+Definition at line 31 of file Piano.\+cs.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Documents/\+School Documents/2017\+Spring/\+E\+E\+C\+S542/\+V\+R\+Piano\+Project/\+Assets/\+Scripts/\+Audio/\+Virtual\+Instrument/\hyperlink{_piano_8cs}{Piano.\+cs}\end{DoxyCompactItemize}

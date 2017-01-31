@@ -1,0 +1,322 @@
+\hypertarget{class_a_t_i_1_1_audio_effect_parameter_trigger}{}\section{A\+T\+I.\+Audio\+Effect\+Parameter\+Trigger Class Reference}
+\label{class_a_t_i_1_1_audio_effect_parameter_trigger}\index{A\+T\+I.\+Audio\+Effect\+Parameter\+Trigger@{A\+T\+I.\+Audio\+Effect\+Parameter\+Trigger}}
+Inheritance diagram for A\+T\+I.\+Audio\+Effect\+Parameter\+Trigger\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_a_t_i_1_1_audio_effect_parameter_trigger}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_a69dc7845ba6454981ce5454ca55b4cb1}{Set\+Handler} (\hyperlink{class_a_t_i_1_1_audio_effect_handler}{Audio\+Effect\+Handler} a\+Handler)
+\item 
+void \hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_a3b61498abf2b3e3c8cba23e296ff9273}{Set\+Range} (float a\+Lowest, float a\+Highest)
+\item 
+void \hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_a12b9e1d13260a5970f5effed71b9a216}{Set\+Type} (\hyperlink{class_a_t_i_a1123d61b8dceb5867a3683e8d2224ee1}{Audio\+Effect\+Parameter\+Type} a\+Type)
+\item 
+void \hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_a07ec3a40faeed18c0d85abb035270292}{Set\+Value} (float a\+Value)
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override void \hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_ad1dde7a7b8ca7db2766b4941ef826e76}{Send\+Slider\+Change\+To\+Handler} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_ae980fd38eb2207caaa9049f2f47b982a}{Awake} ()
+\item 
+void \hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_a3f60059b95efae2e486d505c8a703547}{Send\+Input\+Field\+Change\+To\+Handler} (string a\+New\+Value)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_a_t_i_1_1_audio_effect_handler}{Audio\+Effect\+Handler} \hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_adbbf64af845654ab7737b081b232b456}{m\+Handler}
+\item 
+\hyperlink{class_a_t_i_a1123d61b8dceb5867a3683e8d2224ee1}{Audio\+Effect\+Parameter\+Type} \hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_ac2ca110ecb26468c2c9fde094a1e5bd7}{m\+Type} = \hyperlink{class_a_t_i_a1123d61b8dceb5867a3683e8d2224ee1af704f57ea420275ad51bf55b7dec2c96}{Audio\+Effect\+Parameter\+Type.\+Uninitialized}
+\item 
+float \hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_ad123c432e1decb6410707940ab7383e6}{m\+Value} = 0f
+\item 
+float \mbox{[}$\,$\mbox{]} \hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_a5d507ef47c507ce355323ab8a072be7d}{m\+Range} = null
+\item 
+Input\+Field \hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_af2d8e3ab407c8e1eb216fd67976ac0c8}{m\+Field} = null
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 245 of file A\+T\+I.\+cs.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_a_t_i_1_1_audio_effect_parameter_trigger_ae980fd38eb2207caaa9049f2f47b982a}\label{class_a_t_i_1_1_audio_effect_parameter_trigger_ae980fd38eb2207caaa9049f2f47b982a}} 
+\index{A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger@{A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger}!Awake@{Awake}}
+\index{Awake@{Awake}!A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger@{A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger}}
+\subsubsection{\texorpdfstring{Awake()}{Awake()}}
+{\footnotesize\ttfamily void A\+T\+I.\+Audio\+Effect\+Parameter\+Trigger.\+Awake (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 260 of file A\+T\+I.\+cs.
+
+
+
+References A\+T\+I.\+Slider\+Trigger.\+Set\+Handler().
+
+
+\begin{DoxyCode}
+261         \{
+262             \textcolor{comment}{// Get the associated input field and set a handler to handle when}
+263             \textcolor{comment}{// editing the field is finished.}
+264             \hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_af2d8e3ab407c8e1eb216fd67976ac0c8}{mField} = gameObject.transform.GetChild( 0 ).GetComponent<InputField>();
+265             \hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_af2d8e3ab407c8e1eb216fd67976ac0c8}{mField}.onEndEdit.AddListener( \hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_a3f60059b95efae2e486d505c8a703547}{SendInputFieldChangeToHandler} 
+      );
+266 
+267             \textcolor{comment}{// Get the associated slider and add its trigger }
+268             \hyperlink{class_a_t_i_1_1_slider_handler_a038a487fbd701cb786e77c210830be76}{mSliders} = \textcolor{keyword}{new} Slider[1];
+269             \hyperlink{class_a_t_i_1_1_slider_handler_a20208bc52a906cf87aa9df8e5fb2c636}{mSliderTriggers} = \textcolor{keyword}{new} SliderTrigger[1];
+270             \hyperlink{class_a_t_i_1_1_slider_handler_a038a487fbd701cb786e77c210830be76}{mSliders}[0] = gameObject.transform.GetChild( 1 ).GetComponent<Slider>();
+271             \hyperlink{class_a_t_i_1_1_slider_handler_a20208bc52a906cf87aa9df8e5fb2c636}{mSliderTriggers}[0] = \hyperlink{class_a_t_i_1_1_slider_handler_a038a487fbd701cb786e77c210830be76}{mSliders}[0].gameObject.AddComponent<SliderTrigger>(
+      );
+272 
+273             \textcolor{comment}{// Set the values for the slider trigger.}
+274             mSliderTriggers[0].SetHandler( \textcolor{keyword}{this} );
+275             mSliderTriggers[0].SetType( \hyperlink{class_a_t_i_ac4c6056a99cbd16ff0d292d33b038b9b}{SliderType}.AudioEffectParameter );
+276 
+277         \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i_1_1_audio_effect_parameter_trigger_a3f60059b95efae2e486d505c8a703547}\label{class_a_t_i_1_1_audio_effect_parameter_trigger_a3f60059b95efae2e486d505c8a703547}} 
+\index{A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger@{A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger}!Send\+Input\+Field\+Change\+To\+Handler@{Send\+Input\+Field\+Change\+To\+Handler}}
+\index{Send\+Input\+Field\+Change\+To\+Handler@{Send\+Input\+Field\+Change\+To\+Handler}!A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger@{A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger}}
+\subsubsection{\texorpdfstring{Send\+Input\+Field\+Change\+To\+Handler()}{SendInputFieldChangeToHandler()}}
+{\footnotesize\ttfamily void A\+T\+I.\+Audio\+Effect\+Parameter\+Trigger.\+Send\+Input\+Field\+Change\+To\+Handler (\begin{DoxyParamCaption}\item[{string}]{a\+New\+Value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 337 of file A\+T\+I.\+cs.
+
+
+
+References A\+T\+I.\+Audio\+Effect\+Handler.\+Handle\+Audio\+Effect\+Parameter\+Change().
+
+
+\begin{DoxyCode}
+338         \{
+339             \textcolor{comment}{// Get the new value as a float.}
+340             \textcolor{keywordtype}{float} value = \textcolor{keywordtype}{float}.Parse( aNewValue );
+341 
+342             \textcolor{comment}{// Make sure that we have a range of possible values.}
+343             \textcolor{keywordflow}{if}( \hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_a5d507ef47c507ce355323ab8a072be7d}{mRange} == null )
+344             \{
+345                 Assert.IsTrue( \textcolor{keyword}{false}, \textcolor{stringliteral}{"Tried to handle a change in the input field for an audio effect, but
+       the trigger's range was uninitialized!"} );
+346                 \textcolor{keywordflow}{return};
+347             \}
+348 
+349             \textcolor{comment}{// If the new value is within the range, then update the slider and send the change to the
+       handler.}
+350             \textcolor{keywordflow}{if}( value >= \hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_a5d507ef47c507ce355323ab8a072be7d}{mRange}[0] && value <= \hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_a5d507ef47c507ce355323ab8a072be7d}{mRange}[1] )
+351             \{
+352                 \hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_ad123c432e1decb6410707940ab7383e6}{mValue} = value;
+353                 \hyperlink{class_a_t_i_1_1_slider_handler_a038a487fbd701cb786e77c210830be76}{mSliders}[0].value = value;
+354                 \hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_adbbf64af845654ab7737b081b232b456}{mHandler}.\hyperlink{class_a_t_i_1_1_audio_effect_handler_a298f455be06ae16a870fa291337a77c6}{HandleAudioEffectParameterChange}( 
+      \hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_ac2ca110ecb26468c2c9fde094a1e5bd7}{mType}, value );
+355             \}
+356 
+357             \textcolor{comment}{// If the new value is not within the range, then reset it.}
+358             \textcolor{keywordflow}{else}
+359             \{
+360                 \hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_af2d8e3ab407c8e1eb216fd67976ac0c8}{mField}.text = \hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_ad123c432e1decb6410707940ab7383e6}{mValue}.ToString( \textcolor{stringliteral}{"F2"} );
+361             \}
+362         \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i_1_1_audio_effect_parameter_trigger_ad1dde7a7b8ca7db2766b4941ef826e76}\label{class_a_t_i_1_1_audio_effect_parameter_trigger_ad1dde7a7b8ca7db2766b4941ef826e76}} 
+\index{A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger@{A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger}!Send\+Slider\+Change\+To\+Handler@{Send\+Slider\+Change\+To\+Handler}}
+\index{Send\+Slider\+Change\+To\+Handler@{Send\+Slider\+Change\+To\+Handler}!A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger@{A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger}}
+\subsubsection{\texorpdfstring{Send\+Slider\+Change\+To\+Handler()}{SendSliderChangeToHandler()}}
+{\footnotesize\ttfamily override void A\+T\+I.\+Audio\+Effect\+Parameter\+Trigger.\+Send\+Slider\+Change\+To\+Handler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{class_a_t_i_1_1_slider_handler_a51fd8e687677af70535a9332ded83d3b}{A\+T\+I.\+Slider\+Handler}.
+
+
+
+Definition at line 365 of file A\+T\+I.\+cs.
+
+
+
+References A\+T\+I.\+Audio\+Effect\+Handler.\+Handle\+Audio\+Effect\+Parameter\+Change().
+
+
+\begin{DoxyCode}
+366         \{
+367             \textcolor{comment}{// Update the member variable, input field, and send the change }
+368             \textcolor{comment}{// to the parent handler.}
+369             \hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_ad123c432e1decb6410707940ab7383e6}{mValue} = \hyperlink{class_a_t_i_1_1_slider_handler_a038a487fbd701cb786e77c210830be76}{mSliders}[0].value;
+370             \hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_af2d8e3ab407c8e1eb216fd67976ac0c8}{mField}.text = \hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_ad123c432e1decb6410707940ab7383e6}{mValue}.ToString( \textcolor{stringliteral}{"F2"} );
+371             \hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_adbbf64af845654ab7737b081b232b456}{mHandler}.\hyperlink{class_a_t_i_1_1_audio_effect_handler_a298f455be06ae16a870fa291337a77c6}{HandleAudioEffectParameterChange}( 
+      \hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_ac2ca110ecb26468c2c9fde094a1e5bd7}{mType}, \hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_ad123c432e1decb6410707940ab7383e6}{mValue} );
+372         \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i_1_1_audio_effect_parameter_trigger_a69dc7845ba6454981ce5454ca55b4cb1}\label{class_a_t_i_1_1_audio_effect_parameter_trigger_a69dc7845ba6454981ce5454ca55b4cb1}} 
+\index{A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger@{A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger}!Set\+Handler@{Set\+Handler}}
+\index{Set\+Handler@{Set\+Handler}!A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger@{A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger}}
+\subsubsection{\texorpdfstring{Set\+Handler()}{SetHandler()}}
+{\footnotesize\ttfamily void A\+T\+I.\+Audio\+Effect\+Parameter\+Trigger.\+Set\+Handler (\begin{DoxyParamCaption}\item[{\hyperlink{class_a_t_i_1_1_audio_effect_handler}{Audio\+Effect\+Handler}}]{a\+Handler }\end{DoxyParamCaption})}
+
+
+
+Definition at line 285 of file A\+T\+I.\+cs.
+
+
+
+Referenced by A\+T\+I\+\_\+\+Echo\+Filter\+Handler.\+Handle\+Scene\+Load(), and A\+T\+I\+\_\+\+Reverb\+Filter\+Handler.\+Handle\+Scene\+Load().
+
+
+\begin{DoxyCode}
+286         \{
+287             \hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_adbbf64af845654ab7737b081b232b456}{mHandler} = aHandler;
+288         \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i_1_1_audio_effect_parameter_trigger_a3b61498abf2b3e3c8cba23e296ff9273}\label{class_a_t_i_1_1_audio_effect_parameter_trigger_a3b61498abf2b3e3c8cba23e296ff9273}} 
+\index{A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger@{A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger}!Set\+Range@{Set\+Range}}
+\index{Set\+Range@{Set\+Range}!A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger@{A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger}}
+\subsubsection{\texorpdfstring{Set\+Range()}{SetRange()}}
+{\footnotesize\ttfamily void A\+T\+I.\+Audio\+Effect\+Parameter\+Trigger.\+Set\+Range (\begin{DoxyParamCaption}\item[{float}]{a\+Lowest,  }\item[{float}]{a\+Highest }\end{DoxyParamCaption})}
+
+
+
+Definition at line 293 of file A\+T\+I.\+cs.
+
+
+
+Referenced by A\+T\+I\+\_\+\+Echo\+Filter\+Handler.\+Handle\+Scene\+Load(), and A\+T\+I\+\_\+\+Reverb\+Filter\+Handler.\+Handle\+Scene\+Load().
+
+
+\begin{DoxyCode}
+294         \{
+295             \textcolor{comment}{// Allocate the range array if needed.}
+296             \textcolor{keywordflow}{if}( \hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_a5d507ef47c507ce355323ab8a072be7d}{mRange} == null )
+297             \{
+298                 \hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_a5d507ef47c507ce355323ab8a072be7d}{mRange} = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[2];
+299             \}
+300 
+301             \textcolor{comment}{// Update the member variables}
+302             \hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_a5d507ef47c507ce355323ab8a072be7d}{mRange}[0] = aLowest;
+303             \hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_a5d507ef47c507ce355323ab8a072be7d}{mRange}[1] = aHighest;
+304 
+305             \textcolor{comment}{// Update the slider.}
+306             \hyperlink{class_a_t_i_1_1_slider_handler_a038a487fbd701cb786e77c210830be76}{mSliders}[0].minValue = aLowest;
+307             \hyperlink{class_a_t_i_1_1_slider_handler_a038a487fbd701cb786e77c210830be76}{mSliders}[0].maxValue = aHighest;
+308         \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i_1_1_audio_effect_parameter_trigger_a12b9e1d13260a5970f5effed71b9a216}\label{class_a_t_i_1_1_audio_effect_parameter_trigger_a12b9e1d13260a5970f5effed71b9a216}} 
+\index{A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger@{A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger}!Set\+Type@{Set\+Type}}
+\index{Set\+Type@{Set\+Type}!A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger@{A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger}}
+\subsubsection{\texorpdfstring{Set\+Type()}{SetType()}}
+{\footnotesize\ttfamily void A\+T\+I.\+Audio\+Effect\+Parameter\+Trigger.\+Set\+Type (\begin{DoxyParamCaption}\item[{\hyperlink{class_a_t_i_a1123d61b8dceb5867a3683e8d2224ee1}{Audio\+Effect\+Parameter\+Type}}]{a\+Type }\end{DoxyParamCaption})}
+
+
+
+Definition at line 312 of file A\+T\+I.\+cs.
+
+
+
+Referenced by A\+T\+I\+\_\+\+Echo\+Filter\+Handler.\+Handle\+Scene\+Load(), and A\+T\+I\+\_\+\+Reverb\+Filter\+Handler.\+Handle\+Scene\+Load().
+
+
+\begin{DoxyCode}
+313         \{
+314             \hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_ac2ca110ecb26468c2c9fde094a1e5bd7}{mType} = aType;
+315         \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i_1_1_audio_effect_parameter_trigger_a07ec3a40faeed18c0d85abb035270292}\label{class_a_t_i_1_1_audio_effect_parameter_trigger_a07ec3a40faeed18c0d85abb035270292}} 
+\index{A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger@{A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger}!Set\+Value@{Set\+Value}}
+\index{Set\+Value@{Set\+Value}!A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger@{A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger}}
+\subsubsection{\texorpdfstring{Set\+Value()}{SetValue()}}
+{\footnotesize\ttfamily void A\+T\+I.\+Audio\+Effect\+Parameter\+Trigger.\+Set\+Value (\begin{DoxyParamCaption}\item[{float}]{a\+Value }\end{DoxyParamCaption})}
+
+
+
+Definition at line 319 of file A\+T\+I.\+cs.
+
+
+
+Referenced by A\+T\+I\+\_\+\+Echo\+Filter\+Handler.\+Handle\+Scene\+Load(), and A\+T\+I\+\_\+\+Reverb\+Filter\+Handler.\+Handle\+Scene\+Load().
+
+
+\begin{DoxyCode}
+320         \{
+321             \textcolor{comment}{// Update the member variable.}
+322             \hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_ad123c432e1decb6410707940ab7383e6}{mValue} = aValue;
+323 
+324             \textcolor{comment}{// Update the slider.}
+325             \hyperlink{class_a_t_i_1_1_slider_handler_a038a487fbd701cb786e77c210830be76}{mSliders}[0].value = aValue;
+326 
+327             \textcolor{comment}{// Update the input field.}
+328             \hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_af2d8e3ab407c8e1eb216fd67976ac0c8}{mField}.text = \hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_ad123c432e1decb6410707940ab7383e6}{mValue}.ToString( \textcolor{stringliteral}{"F2"} );
+329         \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_a_t_i_1_1_audio_effect_parameter_trigger_af2d8e3ab407c8e1eb216fd67976ac0c8}\label{class_a_t_i_1_1_audio_effect_parameter_trigger_af2d8e3ab407c8e1eb216fd67976ac0c8}} 
+\index{A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger@{A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger}!m\+Field@{m\+Field}}
+\index{m\+Field@{m\+Field}!A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger@{A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger}}
+\subsubsection{\texorpdfstring{m\+Field}{mField}}
+{\footnotesize\ttfamily Input\+Field A\+T\+I.\+Audio\+Effect\+Parameter\+Trigger.\+m\+Field = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 254 of file A\+T\+I.\+cs.
+
+\mbox{\Hypertarget{class_a_t_i_1_1_audio_effect_parameter_trigger_adbbf64af845654ab7737b081b232b456}\label{class_a_t_i_1_1_audio_effect_parameter_trigger_adbbf64af845654ab7737b081b232b456}} 
+\index{A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger@{A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger}!m\+Handler@{m\+Handler}}
+\index{m\+Handler@{m\+Handler}!A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger@{A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger}}
+\subsubsection{\texorpdfstring{m\+Handler}{mHandler}}
+{\footnotesize\ttfamily \hyperlink{class_a_t_i_1_1_audio_effect_handler}{Audio\+Effect\+Handler} A\+T\+I.\+Audio\+Effect\+Parameter\+Trigger.\+m\+Handler\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 250 of file A\+T\+I.\+cs.
+
+\mbox{\Hypertarget{class_a_t_i_1_1_audio_effect_parameter_trigger_a5d507ef47c507ce355323ab8a072be7d}\label{class_a_t_i_1_1_audio_effect_parameter_trigger_a5d507ef47c507ce355323ab8a072be7d}} 
+\index{A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger@{A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger}!m\+Range@{m\+Range}}
+\index{m\+Range@{m\+Range}!A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger@{A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger}}
+\subsubsection{\texorpdfstring{m\+Range}{mRange}}
+{\footnotesize\ttfamily float \mbox{[}$\,$\mbox{]} A\+T\+I.\+Audio\+Effect\+Parameter\+Trigger.\+m\+Range = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 253 of file A\+T\+I.\+cs.
+
+\mbox{\Hypertarget{class_a_t_i_1_1_audio_effect_parameter_trigger_ac2ca110ecb26468c2c9fde094a1e5bd7}\label{class_a_t_i_1_1_audio_effect_parameter_trigger_ac2ca110ecb26468c2c9fde094a1e5bd7}} 
+\index{A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger@{A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger}!m\+Type@{m\+Type}}
+\index{m\+Type@{m\+Type}!A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger@{A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger}}
+\subsubsection{\texorpdfstring{m\+Type}{mType}}
+{\footnotesize\ttfamily \hyperlink{class_a_t_i_a1123d61b8dceb5867a3683e8d2224ee1}{Audio\+Effect\+Parameter\+Type} A\+T\+I.\+Audio\+Effect\+Parameter\+Trigger.\+m\+Type = \hyperlink{class_a_t_i_a1123d61b8dceb5867a3683e8d2224ee1af704f57ea420275ad51bf55b7dec2c96}{Audio\+Effect\+Parameter\+Type.\+Uninitialized}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 251 of file A\+T\+I.\+cs.
+
+\mbox{\Hypertarget{class_a_t_i_1_1_audio_effect_parameter_trigger_ad123c432e1decb6410707940ab7383e6}\label{class_a_t_i_1_1_audio_effect_parameter_trigger_ad123c432e1decb6410707940ab7383e6}} 
+\index{A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger@{A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger}!m\+Value@{m\+Value}}
+\index{m\+Value@{m\+Value}!A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger@{A\+T\+I\+::\+Audio\+Effect\+Parameter\+Trigger}}
+\subsubsection{\texorpdfstring{m\+Value}{mValue}}
+{\footnotesize\ttfamily float A\+T\+I.\+Audio\+Effect\+Parameter\+Trigger.\+m\+Value = 0f\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 252 of file A\+T\+I.\+cs.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Documents/\+School Documents/2017\+Spring/\+E\+E\+C\+S542/\+V\+R\+Piano\+Project/\+Assets/\+Scripts/\+Audio/\+Testing/\hyperlink{_a_t_i_8cs}{A\+T\+I.\+cs}\end{DoxyCompactItemize}

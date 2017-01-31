@@ -1,0 +1,234 @@
+\hypertarget{group___key_contain_priv_func}{}\section{Private Functions}
+\label{group___key_contain_priv_func}\index{Private Functions@{Private Functions}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___key_contain_priv_func_ga679f5ca9d6b1505180e90ee00bbfe616}{Key\+Container.\+Clear\+Keyboard} ()
+\begin{DoxyCompactList}\small\item\em Clears the keyboard. \end{DoxyCompactList}\item 
+void \hyperlink{group___key_contain_priv_func_ga65f79700f265d2223681ac95981ab4a3}{Key\+Container.\+Load\+Keys} ()
+\begin{DoxyCompactList}\small\item\em Loads the keys in the container. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Functions used internally by the \hyperlink{class_key_container}{Key\+Container} 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___key_contain_priv_func_ga679f5ca9d6b1505180e90ee00bbfe616}\label{group___key_contain_priv_func_ga679f5ca9d6b1505180e90ee00bbfe616}} 
+\index{Private Functions@{Private Functions}!Clear\+Keyboard@{Clear\+Keyboard}}
+\index{Clear\+Keyboard@{Clear\+Keyboard}!Private Functions@{Private Functions}}
+\subsubsection{\texorpdfstring{Clear\+Keyboard()}{ClearKeyboard()}}
+{\footnotesize\ttfamily void Key\+Container.\+Clear\+Keyboard (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Clears the keyboard. 
+
+
+
+Definition at line 131 of file Key\+Container.\+cs.
+
+
+
+References Key\+Container.\+m\+Represented\+Pitches.
+
+
+
+Referenced by Key\+Container.\+Handle\+Change\+Note\+Range\+Event(), and Key\+Container.\+Handle\+Play\+Song\+Event().
+
+
+\begin{DoxyCode}
+132     \{
+133         Assert.IsNotNull( \hyperlink{group___key_contain_priv_var_ga01addf187bb12ffe824374df98e2c2d8}{mKeyObjects}, \textcolor{stringliteral}{"Tried to clear the keyboard, but it was already clear!"} 
+      );
+134 
+135         \textcolor{comment}{// Destroy the key objects.}
+136         \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < \hyperlink{group___key_contain_priv_var_ga103945a6efe3469191e5253d13fec5be}{mRepresentedPitches}.Length; i++ )
+137         \{
+138             DestroyImmediate( \hyperlink{group___key_contain_priv_var_ga01addf187bb12ffe824374df98e2c2d8}{mKeyObjects}[i], \textcolor{keyword}{false} );
+139         \}
+140 
+141         \textcolor{comment}{// Set the array to null.}
+142         \hyperlink{group___key_contain_priv_var_ga01addf187bb12ffe824374df98e2c2d8}{mKeyObjects} = null;
+143 
+144         \textcolor{comment}{// Destroy the key objects.}
+145         \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < \hyperlink{group___key_contain_priv_var_ga103945a6efe3469191e5253d13fec5be}{mRepresentedPitches}.Length; i++ )
+146         \{
+147             DestroyImmediate( \hyperlink{group___key_contain_priv_var_gaf21490115ecf2b80c1bd382d7469a08c}{mLessonMarkers}[i], \textcolor{keyword}{false} );
+148         \}
+149         \hyperlink{group___key_contain_priv_var_gaf21490115ecf2b80c1bd382d7469a08c}{mLessonMarkers} = null;
+150 
+151         \textcolor{comment}{// Clean up.}
+152         GC.Collect();
+153         Resources.UnloadUnusedAssets();
+154     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___key_contain_priv_func_ga65f79700f265d2223681ac95981ab4a3}\label{group___key_contain_priv_func_ga65f79700f265d2223681ac95981ab4a3}} 
+\index{Private Functions@{Private Functions}!Load\+Keys@{Load\+Keys}}
+\index{Load\+Keys@{Load\+Keys}!Private Functions@{Private Functions}}
+\subsubsection{\texorpdfstring{Load\+Keys()}{LoadKeys()}}
+{\footnotesize\ttfamily void Key\+Container.\+Load\+Keys (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Loads the keys in the container. 
+
+This function loads each key and sets their position and values. 
+
+Definition at line 161 of file Key\+Container.\+cs.
+
+
+
+References Black\+Key.\+Black\+Key\+Pressed, Black\+Key.\+Black\+Key\+Released, Key\+Container.\+Handle\+Black\+Key\+Pressed(), Key\+Container.\+Handle\+Black\+Key\+Released(), Key\+Container.\+Handle\+White\+Key\+Pressed(), Key\+Container.\+Handle\+White\+Key\+Released(), Music.\+Is\+Pitch\+A\+Black\+Key(), Key\+Container.\+m\+Represented\+Pitches, Key\+Container.\+m\+White\+Key\+Width, Music.\+Note\+To\+String(), Black\+Key.\+Pitch, White\+Key.\+Pitch, Black\+Key.\+Set\+Parent\+Container(), White\+Key.\+Set\+Parent\+Container(), White\+Key.\+White\+Key\+Pressed, and White\+Key.\+White\+Key\+Released.
+
+
+
+Referenced by Key\+Container.\+Awake(), Key\+Container.\+Handle\+Change\+Note\+Range\+Event(), and Key\+Container.\+Handle\+Play\+Song\+Event().
+
+
+\begin{DoxyCode}
+162     \{
+163         \textcolor{comment}{// Destroy the previous keys if needed.}
+164         \textcolor{keywordflow}{if}( \hyperlink{group___key_contain_priv_var_ga01addf187bb12ffe824374df98e2c2d8}{mKeyObjects} != null )
+165         \{
+166            \textcolor{comment}{// ClearKeyboard();}
+167         \}
+168 
+169         \textcolor{comment}{// Load the keys.}
+170         \hyperlink{group___key_contain_priv_var_ga01addf187bb12ffe824374df98e2c2d8}{mKeyObjects} = \textcolor{keyword}{new} GameObject[\hyperlink{group___key_contain_priv_var_ga103945a6efe3469191e5253d13fec5be}{mRepresentedPitches}.Length];
+171         \hyperlink{group___key_contain_priv_var_gaf21490115ecf2b80c1bd382d7469a08c}{mLessonMarkers} = \textcolor{keyword}{new} GameObject[\hyperlink{group___key_contain_priv_var_ga103945a6efe3469191e5253d13fec5be}{mRepresentedPitches}.Length];
+172         Vector3 keyPosition = Vector3.zero;
+173         \textcolor{keywordtype}{int} whiteKeyIndex = -1 * ( \hyperlink{group___key_contain_priv_var_ga7a5547a1fe5c40eac487fe6c826c8f9c}{mNumWhiteKeys} / 2 );
+174         \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < \hyperlink{group___key_contain_priv_var_ga103945a6efe3469191e5253d13fec5be}{mRepresentedPitches}.Length; i++ )
+175         \{
+176 
+177             \textcolor{comment}{// Handle if the key is a black key.}
+178             \textcolor{keywordflow}{if}( \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_gacc2c1a66df7197225f61c5737f794065}{IsPitchABlackKey}( \hyperlink{group___key_contain_priv_var_ga103945a6efe3469191e5253d13fec5be}{mRepresentedPitches}[i] ) )
+179             \{
+180                 \textcolor{comment}{// Make an empty black key to help initialize this one.}
+181                 \hyperlink{class_black_key}{BlackKey} key = null;
+182 
+183                 \textcolor{comment}{// Create the black key object.}
+184                 \hyperlink{group___key_contain_priv_var_ga01addf187bb12ffe824374df98e2c2d8}{mKeyObjects}[i] = Instantiate( Resources.Load<GameObject>( 
+      \hyperlink{group___key_contain_const_gac968b0d398c545a13abad255d8287825}{BLACK\_KEY\_PATH} ) );
+185                 Assert.IsNotNull( \hyperlink{group___key_contain_priv_var_ga01addf187bb12ffe824374df98e2c2d8}{mKeyObjects}[i], \textcolor{stringliteral}{"Failed to load prefab from "} + 
+      \hyperlink{group___key_contain_const_gac968b0d398c545a13abad255d8287825}{BLACK\_KEY\_PATH} + \textcolor{stringliteral}{"!"} );
+186                 \hyperlink{group___key_contain_priv_var_ga01addf187bb12ffe824374df98e2c2d8}{mKeyObjects}[i].name = \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( 
+      \hyperlink{group___key_contain_priv_var_ga103945a6efe3469191e5253d13fec5be}{mRepresentedPitches}[i] ) + \textcolor{stringliteral}{"Key"};
+187 
+188                 \textcolor{comment}{// Get the black key.}
+189                 key = \hyperlink{group___key_contain_priv_var_ga01addf187bb12ffe824374df98e2c2d8}{mKeyObjects}[i].GetComponent<\hyperlink{class_black_key}{BlackKey}>();
+190                 Assert.IsNotNull( key, \textcolor{stringliteral}{"Could not get a reference to the BlackKey script!"} );
+191 
+192                 \textcolor{comment}{// Set its pitch.}
+193                 key.\hyperlink{group___black_key_pub_var_gad233c456182c9cef7c01486484940439}{Pitch} = \hyperlink{group___key_contain_priv_var_ga103945a6efe3469191e5253d13fec5be}{mRepresentedPitches}[i];
+194 
+195                 \textcolor{comment}{// Add listeners to its events.}
+196                 key.\hyperlink{group___black_key_events_ga51f1badf49df0c54e31a20ba4b7abd6b}{BlackKeyPressed}.AddListener( 
+      \hyperlink{group___key_contain_handlers_ga05cc2543fd9772b26e27bf4f6247ab47}{HandleBlackKeyPressed} );
+197                 key.\hyperlink{group___black_key_events_ga2710bdaba16dbdb82c0d38f11ce642d8}{BlackKeyReleased}.AddListener( 
+      \hyperlink{group___key_contain_handlers_ga5a0c5565c5ebc6026b3122f487e51704}{HandleBlackKeyReleased} );
+198 
+199                 \textcolor{comment}{// Set its position, which is determined by its joint. First, get the spring joint.}
+200                 SpringJoint spring = \hyperlink{group___key_contain_priv_var_ga01addf187bb12ffe824374df98e2c2d8}{mKeyObjects}[i].GetComponent<SpringJoint>();
+201                 Assert.IsNotNull( spring, \textcolor{stringliteral}{"Could not get spring joint of black key!"} );
+202 
+203                 \textcolor{comment}{// Get the offset position.}
+204                 keyPosition = Vector3.zero;
+205                 keyPosition.z += ( ( (float)( whiteKeyIndex - 1 ) * 
+      \hyperlink{group___key_contain_priv_var_gae5b8787a5242834f99ad8072e7ea6004}{mWhiteKeyWidth} ) + ( \hyperlink{group___key_contain_priv_var_gae5b8787a5242834f99ad8072e7ea6004}{mWhiteKeyWidth} / 2f ) );
+206 
+207                 \textcolor{comment}{// Update the joint's connected anchor.}
+208                 spring.autoConfigureConnectedAnchor = \textcolor{keyword}{false};
+209                 spring.connectedAnchor += keyPosition;
+210 
+211                 \textcolor{comment}{// Set the new position.}
+212                 keyPosition.y = \hyperlink{group___key_contain_priv_var_ga01addf187bb12ffe824374df98e2c2d8}{mKeyObjects}[i].transform.position.y;
+213                 keyPosition.x = \hyperlink{group___key_contain_priv_var_ga01addf187bb12ffe824374df98e2c2d8}{mKeyObjects}[i].transform.position.x;
+214                 \hyperlink{group___key_contain_priv_var_ga01addf187bb12ffe824374df98e2c2d8}{mKeyObjects}[i].transform.position = keyPosition;
+215 
+216                 \textcolor{comment}{// Put settings back on the spring joint.}
+217                 spring.autoConfigureConnectedAnchor = \textcolor{keyword}{true};
+218 
+219                 \textcolor{comment}{// Set its place in the hierarchy.}
+220                 \hyperlink{group___key_contain_priv_var_ga01addf187bb12ffe824374df98e2c2d8}{mKeyObjects}[i].transform.SetParent( transform, \textcolor{keyword}{true} );
+221 
+222                 Debug.Log( \textcolor{stringliteral}{"Position of key representing "} + \hyperlink{class_music}{Music}.
+      \hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( \hyperlink{group___key_contain_priv_var_ga103945a6efe3469191e5253d13fec5be}{mRepresentedPitches}[i] ) + \textcolor{stringliteral}{":"} + keyPosition.ToString() );
+223 
+224                 \textcolor{comment}{// Set its parent.}
+225                 key.\hyperlink{group___black_key_pub_func_ga49d807a46e36ba19211be329db1cbd2e}{SetParentContainer}( \textcolor{keyword}{this} );
+226             \}
+227 
+228             \textcolor{comment}{// Handle if the key is a white key.}
+229             \textcolor{keywordflow}{else}
+230             \{
+231                 \textcolor{comment}{// Make an empty black key to help initialize this one.}
+232                 \hyperlink{class_white_key}{WhiteKey} key = null;
+233 
+234                 \textcolor{comment}{// Create the black key object.}
+235                 \hyperlink{group___key_contain_priv_var_ga01addf187bb12ffe824374df98e2c2d8}{mKeyObjects}[i] = Instantiate( Resources.Load<GameObject>( 
+      \hyperlink{group___key_contain_const_ga8ce7e53d5c067095ee26b96fcc522584}{WHITE\_KEY\_PATH} ) );
+236                 Assert.IsNotNull( \hyperlink{group___key_contain_priv_var_ga01addf187bb12ffe824374df98e2c2d8}{mKeyObjects}[i], \textcolor{stringliteral}{"Failed to load prefab from "} + 
+      \hyperlink{group___key_contain_const_ga8ce7e53d5c067095ee26b96fcc522584}{WHITE\_KEY\_PATH} + \textcolor{stringliteral}{"!"} );
+237                 \hyperlink{group___key_contain_priv_var_ga01addf187bb12ffe824374df98e2c2d8}{mKeyObjects}[i].name = \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( 
+      \hyperlink{group___key_contain_priv_var_ga103945a6efe3469191e5253d13fec5be}{mRepresentedPitches}[i] ) + \textcolor{stringliteral}{"Key"};
+238 
+239                 \textcolor{comment}{// Get the black key.}
+240                 key = \hyperlink{group___key_contain_priv_var_ga01addf187bb12ffe824374df98e2c2d8}{mKeyObjects}[i].GetComponent<\hyperlink{class_white_key}{WhiteKey}>();
+241                 Assert.IsNotNull( key, \textcolor{stringliteral}{"Could not get a reference to the BlackKey script!"} );
+242 
+243                 \textcolor{comment}{// Set its pitch.}
+244                 key.\hyperlink{group___white_key_pub_var_ga1ddd98b85ba069defc7cf47d25f625f4}{Pitch} = \hyperlink{group___key_contain_priv_var_ga103945a6efe3469191e5253d13fec5be}{mRepresentedPitches}[i];
+245 
+246                 \textcolor{comment}{// Add listeners to its events.}
+247                 key.\hyperlink{group___white_key_events_gab84691fc1e9f7b62884589d1813433e2}{WhiteKeyPressed}.AddListener( 
+      \hyperlink{group___key_contain_handlers_ga4e2c5e8be389a7514429910e7d61f028}{HandleWhiteKeyPressed} );
+248                 key.\hyperlink{group___white_key_events_ga180e88cd7ab95af43231f53469e87830}{WhiteKeyReleased}.AddListener( 
+      \hyperlink{group___key_contain_handlers_ga5b98b0105300225fd79638525ad3cb3c}{HandleWhiteKeyReleased} );
+249 
+250                 \textcolor{comment}{// Get the hinge joint.}
+251                 HingeJoint hinge = \hyperlink{group___key_contain_priv_var_ga01addf187bb12ffe824374df98e2c2d8}{mKeyObjects}[i].GetComponent<HingeJoint>();
+252                 hinge.autoConfigureConnectedAnchor = \textcolor{keyword}{false};
+253 
+254                 \textcolor{comment}{// Get the offset position.}
+255                 keyPosition = Vector3.zero;
+256                 keyPosition.z += ( (float)whiteKeyIndex * \hyperlink{group___key_contain_priv_var_gae5b8787a5242834f99ad8072e7ea6004}{mWhiteKeyWidth} );
+257 
+258                 \textcolor{comment}{// Set the hinge's position.}
+259                 hinge.anchor += keyPosition;
+260                 hinge.connectedAnchor += keyPosition;
+261 
+262                 \textcolor{comment}{// Set the key's position.}
+263                 \hyperlink{group___key_contain_priv_var_ga01addf187bb12ffe824374df98e2c2d8}{mKeyObjects}[i].transform.position += keyPosition;
+264                 hinge.autoConfigureConnectedAnchor = \textcolor{keyword}{true};
+265 
+266                 \textcolor{comment}{// Update the index of which white key we're on.}
+267                 whiteKeyIndex++;
+268 
+269                 \textcolor{comment}{// Set its place in the hierarchy.}
+270                 \hyperlink{group___key_contain_priv_var_ga01addf187bb12ffe824374df98e2c2d8}{mKeyObjects}[i].transform.SetParent( transform, \textcolor{keyword}{true} ); 
+271 
+272                 Debug.Log( \textcolor{stringliteral}{"Position of key representing "} + \hyperlink{class_music}{Music}.
+      \hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( \hyperlink{group___key_contain_priv_var_ga103945a6efe3469191e5253d13fec5be}{mRepresentedPitches}[i] ) + \textcolor{stringliteral}{":"} + 
+      \hyperlink{group___key_contain_priv_var_ga01addf187bb12ffe824374df98e2c2d8}{mKeyObjects}[i].transform.position.ToString() );
+273 
+274                 \textcolor{comment}{// Set its parent.}
+275                 key.\hyperlink{group___white_key_pub_func_gab926585e88db73a20431ac93d979b61d}{SetParentContainer}( \textcolor{keyword}{this} );
+276             \}
+277 
+278             \textcolor{comment}{// Load the lesson marker.}
+279             \hyperlink{group___key_contain_priv_var_gaf21490115ecf2b80c1bd382d7469a08c}{mLessonMarkers}[i] = Instantiate( Resources.Load<GameObject>( 
+      \hyperlink{group___key_contain_const_ga4caccd17bb57caca66047951046aa44a}{LESSON\_MARKER\_PATH} ) );
+280             Assert.IsNotNull( \hyperlink{group___key_contain_priv_var_gaf21490115ecf2b80c1bd382d7469a08c}{mLessonMarkers}[i], \textcolor{stringliteral}{"Could not load the lesson marker!"} );
+281 
+282             \textcolor{comment}{// Set the lesson marker position.}
+283             \hyperlink{group___key_contain_priv_var_gaf21490115ecf2b80c1bd382d7469a08c}{mLessonMarkers}[i].transform.SetParent( transform, \textcolor{keyword}{true} );
+284             keyPosition.y += ( \hyperlink{group___key_contain_priv_var_ga01addf187bb12ffe824374df98e2c2d8}{mKeyObjects}[i].GetComponent<Renderer>().bounds.size.y / 2f ) + 0.
+      001f;
+285             keyPosition.x += ( \hyperlink{group___key_contain_priv_var_ga01addf187bb12ffe824374df98e2c2d8}{mKeyObjects}[i].GetComponent<Renderer>().bounds.size.x / 5f );
+286             \hyperlink{group___key_contain_priv_var_gaf21490115ecf2b80c1bd382d7469a08c}{mLessonMarkers}[i].transform.position = keyPosition;
+287             \hyperlink{group___key_contain_priv_var_gaf21490115ecf2b80c1bd382d7469a08c}{mLessonMarkers}[i].SetActive( \textcolor{keyword}{false} );
+288 
+289         \}
+290     \}
+\end{DoxyCode}

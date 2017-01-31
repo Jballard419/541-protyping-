@@ -1,0 +1,60 @@
+\hypertarget{group___music_group}{}\section{Music Handling}
+\label{group___music_group}\index{Music Handling@{Music Handling}}
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___music_constants}{Constants}
+\item 
+\hyperlink{group___music_enums}{Enums}
+\item 
+\hyperlink{group___music_stat_func}{Static Functions}
+\item 
+\hyperlink{group___music_structs}{Structs}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+A container for everything related to music such as pitches and note lengths. This class does not need to be initialized to use.\hypertarget{group___music_group_DocMusicIntro}{}\subsection{Introduction}\label{group___music_group_DocMusicIntro}
+This class provides structs, enums, constants, and static functions related to abstract representations of music. \char`\"{}\+Abstract representation\char`\"{} meaning that this class only deals with the musical notation side of things rather than the audio data. For examples, note length from this class would be given as something like a quarter note rather than a number of waveform samples.
+
+\begin{DoxyParagraph}{}
+
+\end{DoxyParagraph}
+\hypertarget{group___music_group_DocMusicConstants}{}\subsection{Constants}\label{group___music_group_DocMusicConstants}
+These are constants used in the \hyperlink{group___music_stat_func}{static functions below}. ~\newline
+ \hyperlink{group___music_constants}{More details}.
+
+\begin{DoxyParagraph}{}
+
+\end{DoxyParagraph}
+\hypertarget{group___music_group_DocMusicEnums}{}\subsection{Enums}\label{group___music_group_DocMusicEnums}
+These are enums which help other classes organize anything related to music. Enums are pretty much just integer arrays with unique identifiers instead of indices. They\textquotesingle{}re used to help make code more readable. An example of using an enum would be\+:
+\begin{DoxyCode}
+\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH} newNotePitch = \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.C4; 
+\end{DoxyCode}
+ The actual values of each member of these enums (remember that it\textquotesingle{}s pretty much an array of integers) range from 0 to the number of members minus 1, and these values can be retrieved by typecasting. For example\+: 
+\begin{DoxyCode}
+\textcolor{keywordtype}{int} noteIndex = (int)\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.C4; \textcolor{comment}{// noteIndex now holds the value 48. }
+\end{DoxyCode}
+ note\+Index holds the value 48 because \hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1dab713e6323a68d3ddabf4855826c50148}{C4} is the 49th member of the \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitch enum} which starts from 0. The members values can be typecast to int,float,... and vice-\/versa. For example\+: 
+\begin{DoxyCode}
+\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH} newPitch = (\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH})48; \textcolor{comment}{// newPitch now holds the value Music.PITCH.C4 }
+\end{DoxyCode}
+ ~\newline
+ \hyperlink{group___music_enums}{More details}.
+
+\begin{DoxyParagraph}{}
+
+\end{DoxyParagraph}
+\hypertarget{group___music_group_DocMusicStructs}{}\subsection{Structs}\label{group___music_group_DocMusicStructs}
+These are structs used to hold abstract representations of \hyperlink{class_music}{Music}. There are three structs for different types of notes (\hyperlink{group___music_structs_struct_music_1_1_melody_note}{melody}, \hyperlink{group___music_structs_struct_music_1_1_percussion_note}{percussion}, and \hyperlink{group___music_structs_struct_music_1_1_combined_note}{both}) and one for representing a \hyperlink{group___music_structs_struct_music_1_1_time_signature}{time signature}. ~\newline
+ \hyperlink{group___music_structs}{More details}.
+
+\begin{DoxyParagraph}{}
+
+\end{DoxyParagraph}
+\hypertarget{group___music_group_DocMusicStatFunc}{}\subsection{Static Functions}\label{group___music_group_DocMusicStatFunc}
+These are functions that can be used to help utilize the \hyperlink{group___music_enums}{enums} and \hyperlink{group___music_structs}{structs} from the \hyperlink{class_music}{Music} class. ~\newline
+ \hyperlink{group___music_stat_func}{More details}. 

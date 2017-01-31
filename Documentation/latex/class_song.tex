@@ -1,0 +1,130 @@
+\hypertarget{class_song}{}\section{Song Class Reference}
+\label{class_song}\index{Song@{Song}}
+
+
+A C\# class that represents a song.  
+
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{group___song_structs_struct_song_1_1_combined_note_data}{Combined\+Note\+Data}
+\begin{DoxyCompactList}\small\item\em A struct that contains data for both \hyperlink{group___music_structs_struct_music_1_1_percussion_note}{drums} and the \hyperlink{group___music_structs_struct_music_1_1_melody_note}{melody}.  \hyperlink{group___song_structs_struct_song_1_1_combined_note_data}{More...}\end{DoxyCompactList}\item 
+struct \hyperlink{group___song_structs_struct_song_1_1_melody_note_data}{Melody\+Note\+Data}
+\begin{DoxyCompactList}\small\item\em A struct for data related to \hyperlink{group___music_structs_struct_music_1_1_melody_note}{notes that contain pitches}.  \hyperlink{group___song_structs_struct_song_1_1_melody_note_data}{More...}\end{DoxyCompactList}\item 
+struct \hyperlink{group___song_structs_struct_song_1_1_percussion_data}{Percussion\+Data}
+\begin{DoxyCompactList}\small\item\em A struct for data related to \hyperlink{group___music_structs_struct_music_1_1_percussion_note}{drums}.  \hyperlink{group___song_structs_struct_song_1_1_percussion_data}{More...}\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{Song\+Type} \{ \hyperlink{group___song_enums_ggae681a1f001333e39fc1cb4fea97bfe1bace2c8aed9c2fa0cfbed56cbda4d8bf07}{Song\+Type.\+Empty}, 
+\hyperlink{group___song_enums_ggae681a1f001333e39fc1cb4fea97bfe1bace2f3a5579d231b3b8f8b9e5fc46d361}{Song\+Type.\+Melody}, 
+\hyperlink{group___song_enums_ggae681a1f001333e39fc1cb4fea97bfe1ba150deef06b13ddaeac61d0d2699ec61e}{Song\+Type.\+Drum\+Loop}, 
+\hyperlink{group___song_enums_ggae681a1f001333e39fc1cb4fea97bfe1ba5130447d9fcb867ce341b3d17b117ced}{Song\+Type.\+Combined\+Melody\+And\+Percussion}
+ \}\begin{DoxyCompactList}\small\item\em The possible types of songs. \end{DoxyCompactList}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___song_construct_gae2e6486a6a2f523b7c81de472d761ff5}{Song} ()
+\begin{DoxyCompactList}\small\item\em The default constructor. \end{DoxyCompactList}\item 
+\hyperlink{group___song_construct_ga157b9e8a0ca714707c2bf58bed5ebf4c}{Song} (string a\+Song\+File\+Path)
+\begin{DoxyCompactList}\small\item\em A constructor that creates the song by \hyperlink{group___song_priv_func_ga5c8edd8f7ebeab0d93f5619a644c30f5}{loading a file}. \end{DoxyCompactList}\item 
+void \hyperlink{group___song_pub_func_gab7c8fe4dc29f5ae7b7728c583fe51f7e}{Add\+Note} (\hyperlink{group___music_structs_struct_music_1_1_combined_note}{Music.\+Combined\+Note} a\+New\+Note)
+\begin{DoxyCompactList}\small\item\em Adds a \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note} to the \hyperlink{class_song}{Song}. \end{DoxyCompactList}\item 
+int \hyperlink{group___song_pub_func_gaaaf3d27d474713d7d368e3fd4c570be0}{Get\+B\+PM} ()
+\begin{DoxyCompactList}\small\item\em Gets the B\+PM of the song. \end{DoxyCompactList}\item 
+\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} \hyperlink{group___song_pub_func_gafaa104e8653edf64148260ecd400570f}{Get\+Highest\+Pitch} ()
+\begin{DoxyCompactList}\small\item\em Gets the highest pitch in the song. \end{DoxyCompactList}\item 
+\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} \hyperlink{group___song_pub_func_gae4e71c8eb059cc9cf0b77e78971ab326}{Get\+Lowest\+Pitch} ()
+\begin{DoxyCompactList}\small\item\em Gets the lowest pitch in the song. \end{DoxyCompactList}\item 
+string \hyperlink{group___song_pub_func_ga705c433f2bfb5aede337698144b23c8b}{Get\+Name} ()
+\begin{DoxyCompactList}\small\item\em Gets the name of the song. \end{DoxyCompactList}\item 
+\hyperlink{group___music_structs_struct_music_1_1_combined_note}{Music.\+Combined\+Note} \hyperlink{group___song_pub_func_ga485c83c9278103fed23c532bba1252f0}{Get\+Note} (int a\+Index)
+\begin{DoxyCompactList}\small\item\em Gets a \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note} in the \hyperlink{class_song}{Song}. \end{DoxyCompactList}\item 
+\hyperlink{group___song_structs_struct_song_1_1_combined_note_data}{Combined\+Note\+Data} \mbox{[}$\,$\mbox{]} \hyperlink{group___song_pub_func_gae3df1fd5448b7d9cefb0fed4af967985}{Get\+Note\+Data} ()
+\begin{DoxyCompactList}\small\item\em Converts the \hyperlink{group___music_structs_struct_music_1_1_combined_note}{notes} in the song to Note\+Data. \end{DoxyCompactList}\item 
+List$<$ \hyperlink{group___music_structs_struct_music_1_1_combined_note}{Music.\+Combined\+Note} $>$ \hyperlink{group___song_pub_func_ga842675b7691fca074ee394031afc7675}{Get\+All\+Notes} ()
+\begin{DoxyCompactList}\small\item\em Returns a list of the \hyperlink{group___music_structs_struct_music_1_1_combined_note}{notes} in the \hyperlink{class_song}{Song}. \end{DoxyCompactList}\item 
+int \hyperlink{group___song_pub_func_gad124d0af146885327f8ac455bc013b63}{Get\+Num\+Notes} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of \hyperlink{group___music_structs_struct_music_1_1_combined_note}{notes} in the \hyperlink{class_song}{Song}. \end{DoxyCompactList}\item 
+\hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{Song\+Type} \hyperlink{group___song_pub_func_gabae5b5d8f727b2d9da7867a99347f86b}{Get\+Song\+Type} ()
+\begin{DoxyCompactList}\small\item\em Gets the \hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{type of song} that the \hyperlink{class_song}{Song} is. \end{DoxyCompactList}\item 
+\hyperlink{group___music_structs_struct_music_1_1_time_signature}{Music.\+Time\+Signature} \hyperlink{group___song_pub_func_ga26315bb6d554d46e2eba2ac03ee70cc1}{Get\+Time\+Signature} ()
+\begin{DoxyCompactList}\small\item\em Gets the \hyperlink{group___music_structs_struct_music_1_1_time_signature}{time signature} of the \hyperlink{class_song}{Song}. \end{DoxyCompactList}\item 
+void \hyperlink{group___song_pub_func_ga856634e047b8c35160958c3aa53d6b28}{Remove\+Note} (int a\+Index)
+\begin{DoxyCompactList}\small\item\em Removes a note from the song. \end{DoxyCompactList}\item 
+void \hyperlink{group___song_pub_func_ga326d61c75339080057a02c6decb0cde3}{Replace\+Note} (\hyperlink{group___music_structs_struct_music_1_1_combined_note}{Music.\+Combined\+Note} a\+Note, int a\+Index)
+\begin{DoxyCompactList}\small\item\em Replaces a note at a given index. \end{DoxyCompactList}\item 
+void \hyperlink{group___song_pub_func_gaa65bbba1af7192edff7e0f848029013b}{Set\+B\+PM} (int a\+B\+PM)
+\begin{DoxyCompactList}\small\item\em Sets the default \hyperlink{group___audio_DefBPM}{B\+PM} of the \hyperlink{class_song}{Song}. \end{DoxyCompactList}\item 
+void \hyperlink{group___song_pub_func_ga1efefe19fd0c5962f7f8ed16c65cd835}{Set\+B\+PM} (float a\+B\+PM)
+\begin{DoxyCompactList}\small\item\em Sets the default \hyperlink{group___audio_DefBPM}{B\+PM} of the \hyperlink{class_song}{Song}. \end{DoxyCompactList}\item 
+void \hyperlink{group___song_pub_func_gacb01510cf72657fc7c64bb6ba00c2c56}{Set\+Name} (string a\+Song\+Name)
+\begin{DoxyCompactList}\small\item\em Sets the \hyperlink{group___song_priv_var_ga6a5e6c1e4aa92939e2b5c1e3d9908df8}{name} of the \hyperlink{class_song}{Song}. \end{DoxyCompactList}\item 
+void \hyperlink{group___song_pub_func_gaf9f2c7e6f4400f6f9854e68e70a49470}{Set\+Time\+Signature} (\hyperlink{group___music_structs_struct_music_1_1_time_signature}{Music.\+Time\+Signature} a\+Time\+Signature)
+\begin{DoxyCompactList}\small\item\em Sets the \hyperlink{group___music_structs_struct_music_1_1_time_signature}{time signature} of the \hyperlink{class_song}{Song}. \end{DoxyCompactList}\item 
+void \hyperlink{group___song_pub_func_ga70b0f6021c3b0590c561a88e3d1e5c2f}{Write\+Song\+To\+File} ()
+\begin{DoxyCompactList}\small\item\em Writes the song to a file. The file will be stored in Streaming\+Assets/\+Songs/. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \hyperlink{group___song_stat_func_ga03712f6defbff25d5a1cd964e4bc3211}{Get\+Note\+Length\+In\+Samples} (int a\+B\+PM, int a\+Sample\+Rate, \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{Music.\+N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH} a\+Note\+Length, \hyperlink{group___music_structs_struct_music_1_1_time_signature}{Music.\+Time\+Signature} a\+Time\+Signature)
+\begin{DoxyCompactList}\small\item\em Gets the number of waveform samples required to accurately represent the \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{length of a note} for a given \hyperlink{group___audio_DefBPM}{B\+PM} and \hyperlink{group___music_structs_struct_music_1_1_time_signature}{time signature}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static string \hyperlink{group___song_const_ga95247572cf734f9e8b35973de4eeb1a4}{S\+O\+N\+G\+\_\+\+F\+I\+L\+E\+\_\+\+P\+A\+TH} = Application.\+streaming\+Assets\+Path + \char`\"{}/Songs/\char`\"{}
+\begin{DoxyCompactList}\small\item\em The path of the folder that contains \hyperlink{class_song}{Song} files. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___song_priv_func_ga5c8edd8f7ebeab0d93f5619a644c30f5}{Load\+Song\+From\+File} (string a\+Song\+File\+Path)
+\begin{DoxyCompactList}\small\item\em Loads a \hyperlink{group___song_group_DocSongFileFormat}{Song file} and uses it to set the values for this \hyperlink{class_song}{Song}. \end{DoxyCompactList}\item 
+\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{Music.\+D\+R\+UM} \mbox{[}$\,$\mbox{]} \hyperlink{group___song_priv_func_gaaa4ca12f0885a34cbfb09bb7a1db178b}{Parse\+Drums} (string a\+String\+From\+File)
+\begin{DoxyCompactList}\small\item\em Parses the \hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{drums} from a string in a \hyperlink{group___song_group_DocSongFileFormat}{Song file}. \end{DoxyCompactList}\item 
+\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} \mbox{[}$\,$\mbox{]} \hyperlink{group___song_priv_func_gacf6fee93921e1a5edbc477c0898c357a}{Parse\+Pitches} (string a\+String\+From\+File)
+\begin{DoxyCompactList}\small\item\em Parses the \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitches} from a string in a \hyperlink{group___song_group_DocSongFileFormat}{Song file}. \end{DoxyCompactList}\item 
+void \hyperlink{group___song_priv_func_ga5f837e6b7f576732fa38747caa057621}{Search\+For\+Highest\+Pitch} ()
+\begin{DoxyCompactList}\small\item\em Searches through the notes for the highest pitch. \end{DoxyCompactList}\item 
+void \hyperlink{group___song_priv_func_gac2e812c6385529eb7a9be5082c7bde75}{Search\+For\+Lowest\+Pitch} ()
+\begin{DoxyCompactList}\small\item\em Searches through the notes for the lowest pitch. \end{DoxyCompactList}\item 
+void \hyperlink{group___song_priv_func_ga9a1d6eba1576c3631d3c0331196d9ae2}{Update\+Song\+Type} ()
+\begin{DoxyCompactList}\small\item\em Updates the \hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{type of song} that the \hyperlink{class_song}{Song} is. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{group___song_priv_var_ga3341fbbd9c0c58fe6514623e6b6c5a1e}{m\+B\+PM} = 120
+\begin{DoxyCompactList}\small\item\em The default \hyperlink{group___audio_DefBPM}{B\+PM} of the \hyperlink{class_song}{Song}. \end{DoxyCompactList}\item 
+int \hyperlink{group___song_priv_var_ga3dbce17d96b434d4492280c39cff1778}{m\+Num\+Drum\+Notes}
+\begin{DoxyCompactList}\small\item\em The number of \hyperlink{group___music_structs_struct_music_1_1_combined_note}{notes} that have \hyperlink{group___music_structs_struct_music_1_1_percussion_note}{drums}. \end{DoxyCompactList}\item 
+int \hyperlink{group___song_priv_var_gaf55b4fd2df0457ba1306a75ac3fdc8b1}{m\+Num\+Musical\+Notes}
+\begin{DoxyCompactList}\small\item\em The number of \hyperlink{group___music_structs_struct_music_1_1_combined_note}{notes} that have \hyperlink{group___music_structs_struct_music_1_1_melody_note}{pitches}. \end{DoxyCompactList}\item 
+List$<$ \hyperlink{group___music_structs_struct_music_1_1_combined_note}{Music.\+Combined\+Note} $>$ \hyperlink{group___song_priv_var_ga674bc904a1f856d485d5fb7fe84bac85}{m\+Notes} = null
+\begin{DoxyCompactList}\small\item\em The \hyperlink{group___music_structs_struct_music_1_1_combined_note}{notes} of the \hyperlink{class_song}{Song}. \end{DoxyCompactList}\item 
+\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} \hyperlink{group___song_priv_var_ga2dcd39d9add609e9df56a94057441dcc}{m\+Highest\+Pitch} = \hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da9c5959e6f08f10d0edbadf5be1f33c53}{Music.\+P\+I\+T\+C\+H.\+C0}
+\begin{DoxyCompactList}\small\item\em The highest \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitch} in the \hyperlink{class_song}{Song}. \end{DoxyCompactList}\item 
+\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} \hyperlink{group___song_priv_var_ga293976ef4c2050687a81edfbf77b4fc1}{m\+Lowest\+Pitch} = \hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da18fc90be5b8124af983421d29bfc4352}{Music.\+P\+I\+T\+C\+H.\+B9}
+\begin{DoxyCompactList}\small\item\em The lowest \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitch} in the \hyperlink{class_song}{Song}. \end{DoxyCompactList}\item 
+\hyperlink{group___music_structs_struct_music_1_1_time_signature}{Music.\+Time\+Signature} \hyperlink{group___song_priv_var_ga2b2dcc0e83e49f7303b6a1371877b25e}{m\+Time\+Signature}
+\begin{DoxyCompactList}\small\item\em The \hyperlink{group___music_structs_struct_music_1_1_time_signature}{time signature} of the \hyperlink{class_song}{Song}. \end{DoxyCompactList}\item 
+\hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{Song\+Type} \hyperlink{group___song_priv_var_gaf3b9d0f461522324f897b746311b43c5}{m\+Type} = \hyperlink{group___song_enums_ggae681a1f001333e39fc1cb4fea97bfe1bace2c8aed9c2fa0cfbed56cbda4d8bf07}{Song\+Type.\+Empty}
+\begin{DoxyCompactList}\small\item\em The \hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{type of song} that this \hyperlink{class_song}{Song} is. \end{DoxyCompactList}\item 
+string \hyperlink{group___song_priv_var_ga6a5e6c1e4aa92939e2b5c1e3d9908df8}{m\+Name} = null
+\begin{DoxyCompactList}\small\item\em The name of the \hyperlink{class_song}{Song}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A C\# class that represents a song. 
+
+This class\textquotesingle{}s responsibilities include\+: \begin{DoxyItemize}
+\item Serving as a container for a pre-\/arranged series of \hyperlink{group___music_structs_struct_music_1_1_combined_note}{notes}. \item Converting the \hyperlink{group___music_structs_struct_music_1_1_combined_note}{abstract representions of musical notes} into \hyperlink{group___song_structs_struct_song_1_1_combined_note_data}{a form that relates to the actual waveforms of the audio}. \item Saving and loading copies of itself to/from a file. \end{DoxyItemize}
+
+
+Definition at line 18 of file Song.\+cs.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Documents/\+School Documents/2017\+Spring/\+E\+E\+C\+S542/\+V\+R\+Piano\+Project/\+Assets/\+Scripts/\+Audio/\+Song\+Management/\hyperlink{_song_8cs}{Song.\+cs}\end{DoxyCompactItemize}

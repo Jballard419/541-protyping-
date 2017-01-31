@@ -1,0 +1,288 @@
+\hypertarget{group___v_i_base_priv_func}{}\section{Private Functions}
+\label{group___v_i_base_priv_func}\index{Private Functions@{Private Functions}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___v_i_base_priv_func_gaecd4f9ead08a03be878b2085055a975c}{Virtual\+Instrument.\+Normalize\+Audio\+Clips\+For\+Pitch} (\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} a\+Pitch, Audio\+Clip\mbox{[}$\,$\mbox{]} a\+Clips)
+\begin{DoxyCompactList}\small\item\em Normalizes the data from the audio clips and puts them in the m\+Audio\+Data member variable. \end{DoxyCompactList}\item 
+void \hyperlink{group___v_i_base_priv_func_ga0262de8cfb1e671b01ba76de2e9d140a}{Virtual\+Instrument.\+Normalize\+Audio\+Clips} (Audio\+Clip\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} a\+Audio\+Clips)
+\begin{DoxyCompactList}\small\item\em Normalizes the data from the audio clips and puts them in the m\+Audio\+Data member variable. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Functions common to all types of instruments. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___v_i_base_priv_func_ga0262de8cfb1e671b01ba76de2e9d140a}\label{group___v_i_base_priv_func_ga0262de8cfb1e671b01ba76de2e9d140a}} 
+\index{Private Functions@{Private Functions}!Normalize\+Audio\+Clips@{Normalize\+Audio\+Clips}}
+\index{Normalize\+Audio\+Clips@{Normalize\+Audio\+Clips}!Private Functions@{Private Functions}}
+\subsubsection{\texorpdfstring{Normalize\+Audio\+Clips()}{NormalizeAudioClips()}}
+{\footnotesize\ttfamily void Virtual\+Instrument.\+Normalize\+Audio\+Clips (\begin{DoxyParamCaption}\item[{Audio\+Clip}]{a\+Audio\+Clips\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Normalizes the data from the audio clips and puts them in the m\+Audio\+Data member variable. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Audio\+Clips} & The audio clips that were loaded for this instrument.\\
+\hline
+\end{DoxyParams}
+This function makes it so that the waveforms of the samples used for the instrument have a peak of -\/0.\+1. If \hyperlink{group___audio_DefBID}{Built-\/\+In Dynamics} are supported, then the peak is multiplied by a ratio of the \hyperlink{group___audio_DefBIDThresh}{Built-\/\+In Dynamics thresholds}. For example, waveforms that are used for \hyperlink{group___audio_DefVel}{velocities} from 50-\/75 would have a peak that is 75\% of the peak of the waveforms used for \hyperlink{group___audio_DefVel}{velocities} from 76-\/100. 
+
+Definition at line 574 of file Virtual\+Instrument.\+cs.
+
+
+
+References Music.\+M\+A\+X\+\_\+\+S\+U\+P\+P\+O\+R\+T\+E\+D\+\_\+\+D\+R\+U\+MS, Music.\+M\+A\+X\+\_\+\+S\+U\+P\+P\+O\+R\+T\+E\+D\+\_\+\+N\+O\+T\+ES, Virtual\+Instrument.\+m\+Highest\+Supported\+Pitch, Virtual\+Instrument.\+m\+Lowest\+Supported\+Pitch, and Virtual\+Instrument.\+m\+Num\+Built\+In\+Dynamics.
+
+
+
+Referenced by Virtual\+Instrument.\+Load\+Audio\+Clips().
+
+
+\begin{DoxyCode}
+575     \{
+576         \textcolor{keywordtype}{float} max = 0f;
+577         \textcolor{keywordtype}{float}[] temp = null;
+578         \textcolor{keywordtype}{int} dataLength = 0;
+579 
+580         \textcolor{comment}{// Iterate through every audio clip.}
+581         \textcolor{keywordflow}{if}( \hyperlink{group___v_i_base_pro_var_gac265f64f759d267ee1e1680f8d387011}{mNumBuiltInDynamics} != 0 )
+582         \{
+583             \textcolor{comment}{// Initialize the audio data 3-D array.}
+584             \hyperlink{group___v_i_base_pro_var_ga52e76d9b74408660584676035a92a2c6}{mAudioData} = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[\hyperlink{group___v_i_base_pro_var_gac265f64f759d267ee1e1680f8d387011}{mNumBuiltInDynamics}][][];
+585 
+586             \textcolor{comment}{// Set up the normalized peaks for each Built-In Dynamic.}
+587             \textcolor{keywordtype}{float}[] normalizedPeaks = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[\hyperlink{group___v_i_base_pro_var_gac265f64f759d267ee1e1680f8d387011}{mNumBuiltInDynamics}];
+588             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < \hyperlink{group___v_i_base_pro_var_gac265f64f759d267ee1e1680f8d387011}{mNumBuiltInDynamics}; i++ )
+589             \{
+590                 normalizedPeaks[i] = \hyperlink{group___v_i_base_const_gaf060c000443f92784bd8db8d866d8b2a}{NORMALIZED\_PEAK} * ( (float)
+      \hyperlink{group___v_i_base_pro_var_gae3db4264dc2a96e99ea680c6d637e6bf}{mBuiltInDynamicsThresholds}[i] / (\textcolor{keywordtype}{float})
+      \hyperlink{group___v_i_base_pro_var_gae3db4264dc2a96e99ea680c6d637e6bf}{mBuiltInDynamicsThresholds}[mNumBuiltInDynamics - 1] );
+591             \}
+592 
+593             \textcolor{comment}{// Normalize all of the clips}
+594             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < \hyperlink{group___v_i_base_pro_var_gac265f64f759d267ee1e1680f8d387011}{mNumBuiltInDynamics}; i++ )
+595             \{
+596                 \textcolor{comment}{// Initialize the interior 2-D array of the audio data and account for drums.}
+597                 \textcolor{keywordflow}{if}( \hyperlink{group___v_i_base_pro_var_ga47dbd8aa02ab32b8f802adfd2d3d81de}{mIsDrum} )
+598                 \{
+599                     \hyperlink{group___v_i_base_pro_var_ga52e76d9b74408660584676035a92a2c6}{mAudioData}[i] = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[\hyperlink{class_music}{Music}.
+      \hyperlink{group___music_constants_gabce1a1ac5b9b6355af6bd7fb3868467a}{MAX\_SUPPORTED\_DRUMS}][];
+600                 \}
+601                 \textcolor{keywordflow}{else}
+602                 \{
+603                     \hyperlink{group___v_i_base_pro_var_ga52e76d9b74408660584676035a92a2c6}{mAudioData}[i] = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[\hyperlink{class_music}{Music}.
+      \hyperlink{group___music_constants_gaaf07da909a12e9fec0e43b70864f27b7}{MAX\_SUPPORTED\_NOTES}][];
+604                 \}
+605 
+606                 \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} j = (\textcolor{keywordtype}{int})\hyperlink{group___v_i_base_pro_var_ga3cae52b1bcc0178a8a6b03c7aaf7aac8}{mLowestSupportedPitch}; j <= (int)
+      \hyperlink{group___v_i_base_pro_var_ga61fb2c33b53a0f663047779d7ceb18f3}{mHighestSupportedPitch}; j++ )
+607                 \{
+608                     \textcolor{comment}{// Get the length of the clip data and initialize the inner audio data array. }
+609                     dataLength = aAudioClips[i][j].samples;
+610                     \hyperlink{group___v_i_base_pro_var_ga52e76d9b74408660584676035a92a2c6}{mAudioData}[i][j] = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[dataLength];
+611 
+612                     \textcolor{comment}{// Get this clip's data}
+613                     temp = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[dataLength];
+614                     aAudioClips[i][j].GetData( temp, 0 );
+615 
+616                     \textcolor{comment}{// Get the max value of the clip data.}
+617                     \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} k = 0; k < dataLength; k++ )
+618                     \{
+619                         \textcolor{keywordflow}{if}( Mathf.Abs( temp[k] ) > max )
+620                         \{
+621                             max = Mathf.Abs( temp[k] );
+622                         \}
+623                     \}
+624 
+625                     \textcolor{comment}{// Get the normalize factor for this clip.}
+626                     \textcolor{keywordtype}{float} normalizeFactor = normalizedPeaks[i] / max;
+627 
+628                     \textcolor{comment}{// Normalize the clip and put the normalized data into the audio data array.}
+629                     \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} k = 0; k < dataLength; k++ )
+630                     \{
+631                         \hyperlink{group___v_i_base_pro_var_ga52e76d9b74408660584676035a92a2c6}{mAudioData}[i][j][k] = temp[k] * normalizeFactor;
+632                     \}
+633 
+634                     \textcolor{comment}{// Reset the max value for the next clip.}
+635                     max = 0f;
+636                 \}
+637             \}
+638         \}
+639         \textcolor{comment}{// Iterate through every audio clip.}
+640         \textcolor{keywordflow}{else}
+641         \{
+642             \textcolor{comment}{// Allocate the audio data 3-D array and its interior 2-D array.}
+643             \hyperlink{group___v_i_base_pro_var_ga52e76d9b74408660584676035a92a2c6}{mAudioData} = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[1][][];
+644 
+645             \textcolor{comment}{// Account for drums when allocating the 2-D array.}
+646             \textcolor{keywordflow}{if}( \hyperlink{group___v_i_base_pro_var_ga47dbd8aa02ab32b8f802adfd2d3d81de}{mIsDrum} )
+647             \{
+648                 \hyperlink{group___v_i_base_pro_var_ga52e76d9b74408660584676035a92a2c6}{mAudioData}[0] = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[\hyperlink{class_music}{Music}.
+      \hyperlink{group___music_constants_gabce1a1ac5b9b6355af6bd7fb3868467a}{MAX\_SUPPORTED\_DRUMS}][];
+649             \}
+650             \textcolor{keywordflow}{else}
+651             \{
+652                 \hyperlink{group___v_i_base_pro_var_ga52e76d9b74408660584676035a92a2c6}{mAudioData}[0] = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[\hyperlink{class_music}{Music}.
+      \hyperlink{group___music_constants_gaaf07da909a12e9fec0e43b70864f27b7}{MAX\_SUPPORTED\_NOTES}][];
+653             \}
+654 
+655             \textcolor{comment}{// Set the normalized peak.}
+656             \textcolor{keywordtype}{float} normalizedPeak = -.1f;
+657 
+658             \textcolor{comment}{// Normalize all of the audio clips.}
+659             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = (\textcolor{keywordtype}{int})\hyperlink{group___v_i_base_pro_var_ga3cae52b1bcc0178a8a6b03c7aaf7aac8}{mLowestSupportedPitch}; i <= (int)
+      \hyperlink{group___v_i_base_pro_var_ga61fb2c33b53a0f663047779d7ceb18f3}{mHighestSupportedPitch}; i++ )
+660             \{
+661                 dataLength = aAudioClips[0][i].samples;
+662                 \hyperlink{group___v_i_base_pro_var_ga52e76d9b74408660584676035a92a2c6}{mAudioData}[0][i] = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[dataLength];
+663 
+664                 \textcolor{comment}{// Get the clip data}
+665                 temp = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[dataLength];
+666                 aAudioClips[0][i].GetData( temp, 0 );
+667 
+668                 \textcolor{comment}{// Get the max value of this clip's data.}
+669                 \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} j = 0; j < dataLength; j++ )
+670                 \{
+671                     \textcolor{keywordflow}{if}( Mathf.Abs( temp[j] ) > max )
+672                     \{
+673                         max = Mathf.Abs( temp[j] );
+674                     \}
+675                 \}
+676 
+677                 \textcolor{comment}{// Set the normalize factor.}
+678                 \textcolor{keywordtype}{float} normalizeFactor = normalizedPeak / max;
+679 
+680                 \textcolor{comment}{// Normalize the clip.}
+681                 \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} j = 0; j < aAudioClips[0][i].samples; j++ )
+682                 \{
+683                     \hyperlink{group___v_i_base_pro_var_ga52e76d9b74408660584676035a92a2c6}{mAudioData}[0][i][j] = temp[j] * normalizeFactor;
+684                 \}
+685 
+686                 \textcolor{comment}{// Reset the max value for the next clip.}
+687                 max = 0f;
+688             \}
+689         \}
+690     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___v_i_base_priv_func_gaecd4f9ead08a03be878b2085055a975c}\label{group___v_i_base_priv_func_gaecd4f9ead08a03be878b2085055a975c}} 
+\index{Private Functions@{Private Functions}!Normalize\+Audio\+Clips\+For\+Pitch@{Normalize\+Audio\+Clips\+For\+Pitch}}
+\index{Normalize\+Audio\+Clips\+For\+Pitch@{Normalize\+Audio\+Clips\+For\+Pitch}!Private Functions@{Private Functions}}
+\subsubsection{\texorpdfstring{Normalize\+Audio\+Clips\+For\+Pitch()}{NormalizeAudioClipsForPitch()}}
+{\footnotesize\ttfamily void Virtual\+Instrument.\+Normalize\+Audio\+Clips\+For\+Pitch (\begin{DoxyParamCaption}\item[{\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH}}]{a\+Pitch,  }\item[{Audio\+Clip \mbox{[}$\,$\mbox{]}}]{a\+Clips }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Normalizes the data from the audio clips and puts them in the m\+Audio\+Data member variable. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Pitch} & The pitch that corresponds to the audio clips. \\
+\hline
+\mbox{\tt in}  & {\em a\+Clips} & The clips to normalize.\\
+\hline
+\end{DoxyParams}
+This function makes it so that the waveforms of the samples used for the instrument have a peak of -\/0.\+1. If \hyperlink{group___audio_DefBID}{Built-\/\+In Dynamics} are supported, then the peak is multiplied by a ratio of the \hyperlink{group___audio_DefBIDThresh}{Built-\/\+In Dynamics thresholds}. For example, waveforms that are used for \hyperlink{group___audio_DefVel}{velocities} from 50-\/75 would have a peak that is 75\% of the peak of the waveforms used for \hyperlink{group___audio_DefVel}{velocities} from 76-\/100. 
+
+Definition at line 477 of file Virtual\+Instrument.\+cs.
+
+
+
+References Virtual\+Instrument.\+m\+Num\+Built\+In\+Dynamics.
+
+
+
+Referenced by Virtual\+Instrument.\+Load\+Audio\+Clip\+For\+Pitch().
+
+
+\begin{DoxyCode}
+478     \{
+479         \textcolor{comment}{// Make some temp variables for iterating through the data in the clips.}
+480         \textcolor{keywordtype}{float} max = 0f;
+481         \textcolor{keywordtype}{float}[] dataFromClip = null;
+482         \textcolor{keywordtype}{int} clipLength = 0;
+483         \textcolor{keywordtype}{int} pitchIndex = (int)aPitch;
+484 
+485         \textcolor{comment}{// If the instrument doesn't support Built-In Dynamics, then the array is actually just one clip.}
+486         \textcolor{keywordflow}{if}( \hyperlink{group___v_i_base_pro_var_gac265f64f759d267ee1e1680f8d387011}{mNumBuiltInDynamics} == 0 )
+487         \{
+488             \textcolor{comment}{// Get the length of the clip.}
+489             clipLength = aClips[0].samples;
+490 
+491             \textcolor{comment}{// Get the data of the clip}
+492             dataFromClip = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[clipLength];
+493             aClips[0].GetData( dataFromClip, 0 );
+494 
+495             \textcolor{comment}{// Allocate a place in the audio data container.}
+496             \hyperlink{group___v_i_base_pro_var_ga52e76d9b74408660584676035a92a2c6}{mAudioData}[0][pitchIndex] = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[clipLength];
+497 
+498             \textcolor{comment}{// Get the max value of this clip's data.}
+499             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < clipLength; i++ )
+500             \{
+501                 \textcolor{keywordflow}{if}( Mathf.Abs( dataFromClip[i] ) > max )
+502                 \{
+503                     max = Mathf.Abs( dataFromClip[i] );
+504                 \}
+505             \}
+506 
+507             \textcolor{comment}{// Set the normalize factor.}
+508             \textcolor{keywordtype}{float} normalizeFactor = \hyperlink{group___v_i_base_const_gaf060c000443f92784bd8db8d866d8b2a}{NORMALIZED\_PEAK} / max;
+509 
+510             \textcolor{comment}{// Normalize the clip and put it in the audio data container}
+511             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < clipLength; i++ )
+512             \{
+513                 \hyperlink{group___v_i_base_pro_var_ga52e76d9b74408660584676035a92a2c6}{mAudioData}[0][pitchIndex][i] = dataFromClip[i] * normalizeFactor;
+514             \}
+515         \}
+516         \textcolor{comment}{// If the instrument does support Built-In Dynamics, then we need to iterate through each}
+517         \textcolor{comment}{// file associated with the clip.}
+518         \textcolor{keywordflow}{else}
+519         \{
+520             \textcolor{comment}{// Set up the normalized peaks for each Built-In Dynamic.}
+521             \textcolor{keywordtype}{float}[] normalizedPeaks = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[\hyperlink{group___v_i_base_pro_var_gac265f64f759d267ee1e1680f8d387011}{mNumBuiltInDynamics}];
+522             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < \hyperlink{group___v_i_base_pro_var_gac265f64f759d267ee1e1680f8d387011}{mNumBuiltInDynamics}; i++ )
+523             \{
+524                 normalizedPeaks[i] = \hyperlink{group___v_i_base_const_gaf060c000443f92784bd8db8d866d8b2a}{NORMALIZED\_PEAK} * ( (float)
+      \hyperlink{group___v_i_base_pro_var_gae3db4264dc2a96e99ea680c6d637e6bf}{mBuiltInDynamicsThresholds}[i] / (\textcolor{keywordtype}{float})
+      \hyperlink{group___v_i_base_pro_var_gae3db4264dc2a96e99ea680c6d637e6bf}{mBuiltInDynamicsThresholds}[mNumBuiltInDynamics - 1] );
+525             \}
+526 
+527             \textcolor{comment}{// Iterate through each clip associated with the pitch.}
+528             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < \hyperlink{group___v_i_base_pro_var_gac265f64f759d267ee1e1680f8d387011}{mNumBuiltInDynamics}; i++ )
+529             \{
+530                 \textcolor{comment}{// Get the length of the clip data. }
+531                 clipLength = aClips[i].samples;
+532 
+533                 \textcolor{comment}{// Initialize the clip's spot in the audio data container.}
+534                 \hyperlink{group___v_i_base_pro_var_ga52e76d9b74408660584676035a92a2c6}{mAudioData}[i][pitchIndex] = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[clipLength];
+535 
+536                 \textcolor{comment}{// Get the clip's data}
+537                 dataFromClip = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[clipLength];
+538                 aClips[i].GetData( dataFromClip, 0 );
+539 
+540                 \textcolor{comment}{// Get the max value of the clip data.}
+541                 \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} j = 0; j < clipLength; j++ )
+542                 \{
+543                     \textcolor{keywordflow}{if}( Mathf.Abs( dataFromClip[j] ) > max )
+544                     \{
+545                         max = Mathf.Abs( dataFromClip[j] );
+546                     \}
+547                 \}
+548 
+549                 \textcolor{comment}{// Get the normalize factor for this clip.}
+550                 \textcolor{keywordtype}{float} normalizeFactor = normalizedPeaks[i] / max;
+551 
+552                 \textcolor{comment}{// Normalize the clip and put the normalized data into the audio data array.}
+553                 \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} j = 0; j < clipLength; j++ )
+554                 \{
+555                     \hyperlink{group___v_i_base_pro_var_ga52e76d9b74408660584676035a92a2c6}{mAudioData}[i][pitchIndex][j] = dataFromClip[j] * normalizeFactor;
+556                 \}
+557 
+558                 \textcolor{comment}{// Reset the max value for the next clip.}
+559                 max = 0f;
+560             \}
+561         \}
+562     \}
+\end{DoxyCode}

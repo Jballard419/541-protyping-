@@ -1,0 +1,476 @@
+\hypertarget{class_song_creation_1_1_measure_display_panel}{}\section{Song\+Creation.\+Measure\+Display\+Panel Class Reference}
+\label{class_song_creation_1_1_measure_display_panel}\index{Song\+Creation.\+Measure\+Display\+Panel@{Song\+Creation.\+Measure\+Display\+Panel}}
+Inheritance diagram for Song\+Creation.\+Measure\+Display\+Panel\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_song_creation_1_1_measure_display_panel}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_song_creation_1_1_measure_display_panel_a620c513de8f4e5e4dbf769d1ca7b711b}{Add\+Note} (int a\+Note\+Index, int a\+Melody\+Velocity, \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{Music.\+N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH} a\+Length, \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH}\mbox{[}$\,$\mbox{]} a\+Pitches, int a\+Drum\+Velocity, \hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{Music.\+D\+R\+UM}\mbox{[}$\,$\mbox{]} a\+Drum\+Hits, \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{Music.\+N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH} a\+Offset\+From\+Prev\+Note)
+\item 
+void \hyperlink{class_song_creation_1_1_measure_display_panel_abe0267cd2c5a74710c0278478dacf52e}{Set\+Is\+First\+Overall\+Note} (bool a\+First\+Overall\+Note)
+\item 
+void \hyperlink{class_song_creation_1_1_measure_display_panel_a6ac294ddd95114544f6fcc6e3c9ab355}{Set\+Parent\+Container} (\hyperlink{class_song_creation_1_1_note_display_container}{Note\+Display\+Container} a\+Parent)
+\item 
+void \hyperlink{class_song_creation_1_1_measure_display_panel_a0efb19869f0c34cae1a617fe7c5880d5}{Set\+Percentage\+Used} (float a\+Percent)
+\item 
+void \hyperlink{class_song_creation_1_1_measure_display_panel_a77bbca4dc7add6b1e33394834e40cdde}{Set\+Toggle} (bool a\+Show\+Measure)
+\item 
+void \hyperlink{class_song_creation_1_1_measure_display_panel_a0ade5469a803bafc5a87595d0a2fef88}{On\+Show\+Toggle} (bool a\+Show\+Measure)
+\item 
+void \hyperlink{class_song_creation_1_1_measure_display_panel_a56881a6bd83cad971a42aa9f9955a0ee}{Remove\+Note} (\hyperlink{class_song_creation_1_1_note_display_panel}{Note\+Display\+Panel} a\+Note)
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_song_creation_1_1_measure_display_panel_ad38f91e55d3c37e520a35a2a0e620b42}{Awake} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{class_song_creation_1_1_measure_display_panel_a3794bf2a605eaa0595e6c6e41f5b458c}{m\+First\+Overall\+Note} = false
+\item 
+float \hyperlink{class_song_creation_1_1_measure_display_panel_a87241a464e8e3ed8ad9011fcebaec50a}{m\+Percentage\+Used} = 0f
+\item 
+List$<$ \hyperlink{class_song_creation_1_1_note_display_panel}{Note\+Display\+Panel} $>$ \hyperlink{class_song_creation_1_1_measure_display_panel_a096dfc8481f3defcdcb57bfc140ac953}{m\+Notes} = null
+\item 
+\hyperlink{class_song_creation_1_1_note_display_container}{Note\+Display\+Container} \hyperlink{class_song_creation_1_1_measure_display_panel_a997c583ac0b9687ff9399c9ed27d0dcb}{m\+Parent} = null
+\item 
+Toggle \hyperlink{class_song_creation_1_1_measure_display_panel_abe01653518d60c345faa462ccf979a55}{m\+Show\+Measure\+Toggle} = null
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 217 of file Song\+Creation.\+cs.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_song_creation_1_1_measure_display_panel_a620c513de8f4e5e4dbf769d1ca7b711b}\label{class_song_creation_1_1_measure_display_panel_a620c513de8f4e5e4dbf769d1ca7b711b}} 
+\index{Song\+Creation\+::\+Measure\+Display\+Panel@{Song\+Creation\+::\+Measure\+Display\+Panel}!Add\+Note@{Add\+Note}}
+\index{Add\+Note@{Add\+Note}!Song\+Creation\+::\+Measure\+Display\+Panel@{Song\+Creation\+::\+Measure\+Display\+Panel}}
+\subsubsection{\texorpdfstring{Add\+Note()}{AddNote()}}
+{\footnotesize\ttfamily void Song\+Creation.\+Measure\+Display\+Panel.\+Add\+Note (\begin{DoxyParamCaption}\item[{int}]{a\+Note\+Index,  }\item[{int}]{a\+Melody\+Velocity,  }\item[{\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{Music.\+N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH}}]{a\+Length,  }\item[{\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} \mbox{[}$\,$\mbox{]}}]{a\+Pitches,  }\item[{int}]{a\+Drum\+Velocity,  }\item[{\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{Music.\+D\+R\+UM} \mbox{[}$\,$\mbox{]}}]{a\+Drum\+Hits,  }\item[{\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{Music.\+N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH}}]{a\+Offset\+From\+Prev\+Note }\end{DoxyParamCaption})}
+
+
+
+Definition at line 246 of file Song\+Creation.\+cs.
+
+
+
+References Music.\+Drum\+To\+String(), Song\+Creation.\+Note\+Display\+Container.\+Get\+Current\+Measure\+Object(), Music.\+Get\+Note\+Length\+Relative\+To\+Measure(), Song\+Creation.\+Note\+Display\+Container.\+Get\+Sprites(), Song\+Creation.\+Note\+Display\+Container.\+Handle\+Full\+Measure(), Music.\+Note\+To\+String(), Song\+Creation.\+Note\+Display\+Panel.\+Set\+Drums(), Song\+Creation.\+Note\+Display\+Panel.\+Set\+Length\+Image(), Song\+Creation.\+Note\+Display\+Panel.\+Set\+Note\+Index(), Song\+Creation.\+Note\+Display\+Panel.\+Set\+Offset(), Song\+Creation.\+Note\+Display\+Panel.\+Set\+Offset\+Image(), Song\+Creation.\+Note\+Display\+Panel.\+Set\+Parent\+Container(), Song\+Creation.\+Note\+Display\+Panel.\+Set\+Pitches(), Song\+Creation.\+Note\+Display\+Panel.\+Set\+Velocity(), and Music.\+T\+I\+M\+E\+\_\+\+S\+I\+G\+N\+A\+T\+U\+R\+E\+\_\+4\+\_\+4().
+
+
+\begin{DoxyCode}
+248         \{
+249             Sprite[] sprites = \hyperlink{class_song_creation_1_1_measure_display_panel_a997c583ac0b9687ff9399c9ed27d0dcb}{mParent}.\hyperlink{class_song_creation_1_1_note_display_container_a7165497797fbeea51e1571c69c5f510c}{GetSprites}();
+250 
+251             \textcolor{keywordtype}{string} pitches = \textcolor{stringliteral}{"None"};
+252             \textcolor{keywordtype}{string} drums = \textcolor{stringliteral}{"None"};
+253 
+254             \textcolor{comment}{// Need special handling for the very first note due to having to use it as a base to copy
+       from.}
+255             \textcolor{keywordflow}{if}( \hyperlink{class_song_creation_1_1_measure_display_panel_a3794bf2a605eaa0595e6c6e41f5b458c}{mFirstOverallNote} )
+256             \{
+257                 \textcolor{comment}{// Mark that we would no longer be adding the very first note.}
+258                 \hyperlink{class_song_creation_1_1_measure_display_panel_a3794bf2a605eaa0595e6c6e41f5b458c}{mFirstOverallNote} = \textcolor{keyword}{false};
+259 
+260                 \textcolor{comment}{// Set the pitches if needed.}
+261                 \textcolor{keywordflow}{if}( aPitches != null )
+262                 \{
+263                     pitches = \textcolor{stringliteral}{""};
+264                     \textcolor{keywordflow}{foreach}( \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH} pitch in aPitches )
+265                     \{
+266                         \textcolor{keywordflow}{if}( pitch == \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.REST )
+267                         \{
+268                             pitches += \textcolor{stringliteral}{"Rest "};
+269                         \}
+270                         \textcolor{keywordflow}{else}
+271                         \{
+272                             pitches += ( \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( pitch ) + \textcolor{stringliteral}{" "} );
+273                         \}
+274                     \}
+275                 \}
+276 
+277                 \textcolor{comment}{// Set the drums if needed.}
+278                 \textcolor{keywordflow}{if}( aDrumHits != null )
+279                 \{
+280                     drums = \textcolor{stringliteral}{""};
+281                     \textcolor{keywordflow}{foreach}( \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM} drum in aDrumHits )
+282                     \{
+283                         drums += \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_gaf5f64ebe9a7e036e07f283e41f26d22b}{DrumToString}( drum ) + \textcolor{stringliteral}{" "};
+284                     \}
+285                 \}
+286 
+287                 \hyperlink{class_song_creation_1_1_measure_display_panel_a096dfc8481f3defcdcb57bfc140ac953}{mNotes}[0].SetPitches( pitches );
+288                 \hyperlink{class_song_creation_1_1_measure_display_panel_a096dfc8481f3defcdcb57bfc140ac953}{mNotes}[0].SetDrums( drums );
+289 
+290                 \textcolor{comment}{// Set the images.}
+291                 \hyperlink{class_song_creation_1_1_measure_display_panel_a096dfc8481f3defcdcb57bfc140ac953}{mNotes}[0].SetLengthImage( sprites[(\textcolor{keywordtype}{int})aLength] );
+292                 \hyperlink{class_song_creation_1_1_measure_display_panel_a096dfc8481f3defcdcb57bfc140ac953}{mNotes}[0].SetOffsetImage( null );
+293 
+294                 \textcolor{comment}{// Set the offset and velocity.}
+295                 \hyperlink{class_song_creation_1_1_measure_display_panel_a096dfc8481f3defcdcb57bfc140ac953}{mNotes}[0].SetOffset( aOffsetFromPrevNote );
+296                 \hyperlink{class_song_creation_1_1_measure_display_panel_a096dfc8481f3defcdcb57bfc140ac953}{mNotes}[0].SetVelocity( aMelodyVelocity.ToString() );
+297                 \hyperlink{class_song_creation_1_1_measure_display_panel_a096dfc8481f3defcdcb57bfc140ac953}{mNotes}[0].SetNoteIndex( aNoteIndex );
+298             \}
+299             \textcolor{keywordflow}{else}
+300             \{
+301                 \textcolor{comment}{// If this is not the first overall note, then calculate the percentage used up in the
+       measure.}
+302                 \textcolor{keywordtype}{float} newPercentage = \hyperlink{class_song_creation_1_1_measure_display_panel_a87241a464e8e3ed8ad9011fcebaec50a}{mPercentageUsed} + \hyperlink{class_music}{Music}.
+      \hyperlink{group___music_stat_func_ga91e290b48ad2289493ba4421308abe49}{GetNoteLengthRelativeToMeasure}( aOffsetFromPrevNote, 
+      \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_gac95af323eef7511543c799154e1c29fd}{TIME\_SIGNATURE\_4\_4}() );
+303 
+304                 \textcolor{comment}{// If there is no more room in the measure for this note, then send it back to the parent.}
+305                 \textcolor{keywordflow}{if}( newPercentage >= 1f )
+306                 \{
+307                     \hyperlink{class_song_creation_1_1_measure_display_panel_a997c583ac0b9687ff9399c9ed27d0dcb}{mParent}.\hyperlink{class_song_creation_1_1_note_display_container_a71314773e75bc3678c6f4078f1a222d1}{HandleFullMeasure}( \textcolor{keyword}{this}, newPercentage - 
+      \hyperlink{class_song_creation_1_1_measure_display_panel_a87241a464e8e3ed8ad9011fcebaec50a}{mPercentageUsed}, aMelodyVelocity, aLength, aPitches, aDrumVelocity, aDrumHits, 
+      aOffsetFromPrevNote );
+308                 \}
+309 
+310                 \textcolor{comment}{// If there is more room, then create the new panel and add it to this measure.}
+311                 \textcolor{keywordflow}{else}
+312                 \{
+313                     \textcolor{comment}{// Update the percentage used.}
+314                     \hyperlink{class_song_creation_1_1_measure_display_panel_a87241a464e8e3ed8ad9011fcebaec50a}{mPercentageUsed} = newPercentage;
+315 
+316                     \textcolor{comment}{// Create a new object and set it as a child. Clone the last note from the previous
+       measure if this measure is empty.}
+317                     GameObject clone = null;
+318                     \textcolor{keywordflow}{if}( \hyperlink{class_song_creation_1_1_measure_display_panel_a096dfc8481f3defcdcb57bfc140ac953}{mNotes}.Count == 0 )
+319                     \{
+320                         clone = Instantiate( \hyperlink{class_song_creation_1_1_measure_display_panel_a997c583ac0b9687ff9399c9ed27d0dcb}{mParent}.transform.GetChild( 
+      \hyperlink{class_song_creation_1_1_measure_display_panel_a997c583ac0b9687ff9399c9ed27d0dcb}{mParent}.\hyperlink{class_song_creation_1_1_note_display_container_a72a72e35af39cad274edbf2acb6fbd2e}{GetCurrentMeasureObject}().transform.GetSiblingIndex() - 1 ).
+      gameObject );
+321 
+322                     \}
+323                     \textcolor{comment}{// Clone the first note of this measure if the measure is not empty.}
+324                     \textcolor{keywordflow}{else}
+325                     \{
+326                         clone = Instantiate( \hyperlink{class_song_creation_1_1_measure_display_panel_a096dfc8481f3defcdcb57bfc140ac953}{mNotes}[0].gameObject );
+327                     \}
+328 
+329                     \textcolor{comment}{// Set the values for the note's transform.}
+330                     clone.transform.SetParent( gameObject.transform.parent );
+331                     clone.transform.localScale = \hyperlink{class_song_creation_1_1_measure_display_panel_a997c583ac0b9687ff9399c9ed27d0dcb}{mParent}.transform.GetChild( 1 ).localScale;
+332 
+333                     \textcolor{comment}{// Set the pitch string if needed.}
+334                     \textcolor{keywordflow}{if}( aPitches != null )
+335                     \{
+336                         pitches = \textcolor{stringliteral}{""};
+337                         \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < aPitches.Length; i++ )
+338                         \{
+339                             \textcolor{keywordflow}{if}( aPitches[i] == \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.REST )
+340                             \{
+341                                 pitches += \textcolor{stringliteral}{"Rest "};
+342                             \}
+343                             \textcolor{keywordflow}{else}
+344                             \{
+345                                 pitches += ( \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( aPitches[i] ) + \textcolor{stringliteral}{" "} );
+346                             \}
+347                         \}
+348                     \}
+349 
+350                     \textcolor{comment}{// Set the drum string if needed.}
+351                     \textcolor{keywordflow}{if}( aDrumHits != null )
+352                     \{
+353                         drums = \textcolor{stringliteral}{""};
+354                         \textcolor{keywordflow}{foreach}( \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM} drum in aDrumHits )
+355                         \{
+356                             drums += \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_gaf5f64ebe9a7e036e07f283e41f26d22b}{DrumToString}( drum ) + \textcolor{stringliteral}{" "};
+357                         \}
+358                     \}
+359 
+360                     \textcolor{comment}{// Initialize the cloned panel.}
+361                     NoteDisplayPanel newPanel = clone.GetComponent<NoteDisplayPanel>();
+362                     newPanel.SetDrums( drums );
+363                     newPanel.SetPitches( pitches );
+364                     newPanel.SetLengthImage( sprites[(\textcolor{keywordtype}{int})aLength] );
+365                     newPanel.SetOffsetImage( sprites[(\textcolor{keywordtype}{int})aOffsetFromPrevNote] );
+366                     newPanel.SetOffset( aOffsetFromPrevNote );
+367                     newPanel.SetVelocity( aMelodyVelocity.ToString() );
+368                     newPanel.SetParentContainer( \textcolor{keyword}{this} );
+369                     newPanel.SetNoteIndex( aNoteIndex );
+370 
+371                     \textcolor{comment}{// Add the panel to the list.}
+372                     \hyperlink{class_song_creation_1_1_measure_display_panel_a096dfc8481f3defcdcb57bfc140ac953}{mNotes}.Add( newPanel );
+373                 \}
+374             \}
+375         \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_song_creation_1_1_measure_display_panel_ad38f91e55d3c37e520a35a2a0e620b42}\label{class_song_creation_1_1_measure_display_panel_ad38f91e55d3c37e520a35a2a0e620b42}} 
+\index{Song\+Creation\+::\+Measure\+Display\+Panel@{Song\+Creation\+::\+Measure\+Display\+Panel}!Awake@{Awake}}
+\index{Awake@{Awake}!Song\+Creation\+::\+Measure\+Display\+Panel@{Song\+Creation\+::\+Measure\+Display\+Panel}}
+\subsubsection{\texorpdfstring{Awake()}{Awake()}}
+{\footnotesize\ttfamily void Song\+Creation.\+Measure\+Display\+Panel.\+Awake (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 231 of file Song\+Creation.\+cs.
+
+
+\begin{DoxyCode}
+232         \{
+233             \textcolor{comment}{// Set the toggle.}
+234             \hyperlink{class_song_creation_1_1_measure_display_panel_abe01653518d60c345faa462ccf979a55}{mShowMeasureToggle} = gameObject.transform.GetChild( 0 ).GetComponent<Toggle>(
+      );
+235             \hyperlink{class_song_creation_1_1_measure_display_panel_abe01653518d60c345faa462ccf979a55}{mShowMeasureToggle}.onValueChanged.AddListener( 
+      \hyperlink{class_song_creation_1_1_measure_display_panel_a0ade5469a803bafc5a87595d0a2fef88}{OnShowToggle} );
+236 
+237             \textcolor{comment}{// Set up the list of note display panels.}
+238             \hyperlink{class_song_creation_1_1_measure_display_panel_a096dfc8481f3defcdcb57bfc140ac953}{mNotes} = \textcolor{keyword}{new} List<NoteDisplayPanel>();
+239         \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_song_creation_1_1_measure_display_panel_a0ade5469a803bafc5a87595d0a2fef88}\label{class_song_creation_1_1_measure_display_panel_a0ade5469a803bafc5a87595d0a2fef88}} 
+\index{Song\+Creation\+::\+Measure\+Display\+Panel@{Song\+Creation\+::\+Measure\+Display\+Panel}!On\+Show\+Toggle@{On\+Show\+Toggle}}
+\index{On\+Show\+Toggle@{On\+Show\+Toggle}!Song\+Creation\+::\+Measure\+Display\+Panel@{Song\+Creation\+::\+Measure\+Display\+Panel}}
+\subsubsection{\texorpdfstring{On\+Show\+Toggle()}{OnShowToggle()}}
+{\footnotesize\ttfamily void Song\+Creation.\+Measure\+Display\+Panel.\+On\+Show\+Toggle (\begin{DoxyParamCaption}\item[{bool}]{a\+Show\+Measure }\end{DoxyParamCaption})}
+
+
+
+Definition at line 423 of file Song\+Creation.\+cs.
+
+
+
+References Song\+Creation.\+Note\+Display\+Container.\+Handle\+Measure\+Toggled().
+
+
+\begin{DoxyCode}
+424         \{
+425             \hyperlink{class_song_creation_1_1_measure_display_panel_a997c583ac0b9687ff9399c9ed27d0dcb}{mParent}.\hyperlink{class_song_creation_1_1_note_display_container_af7f99e611828e62a31947a5a4d474465}{HandleMeasureToggled}( \textcolor{keyword}{this} );
+426         \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_song_creation_1_1_measure_display_panel_a56881a6bd83cad971a42aa9f9955a0ee}\label{class_song_creation_1_1_measure_display_panel_a56881a6bd83cad971a42aa9f9955a0ee}} 
+\index{Song\+Creation\+::\+Measure\+Display\+Panel@{Song\+Creation\+::\+Measure\+Display\+Panel}!Remove\+Note@{Remove\+Note}}
+\index{Remove\+Note@{Remove\+Note}!Song\+Creation\+::\+Measure\+Display\+Panel@{Song\+Creation\+::\+Measure\+Display\+Panel}}
+\subsubsection{\texorpdfstring{Remove\+Note()}{RemoveNote()}}
+{\footnotesize\ttfamily void Song\+Creation.\+Measure\+Display\+Panel.\+Remove\+Note (\begin{DoxyParamCaption}\item[{\hyperlink{class_song_creation_1_1_note_display_panel}{Note\+Display\+Panel}}]{a\+Note }\end{DoxyParamCaption})}
+
+
+
+Definition at line 429 of file Song\+Creation.\+cs.
+
+
+
+References Music.\+Get\+Note\+Length\+Relative\+To\+Measure(), Song\+Creation.\+Note\+Display\+Panel.\+Get\+Offset(), Song\+Creation.\+Note\+Display\+Container.\+Handle\+Measure\+Deleted(), Song\+Creation.\+Note\+Display\+Container.\+On\+Remove\+Note(), and Music.\+T\+I\+M\+E\+\_\+\+S\+I\+G\+N\+A\+T\+U\+R\+E\+\_\+4\+\_\+4().
+
+
+
+Referenced by Song\+Creation.\+Note\+Display\+Panel.\+On\+Remove\+Button\+Clicked().
+
+
+\begin{DoxyCode}
+430         \{
+431             \textcolor{comment}{// Handle the case where this is the only measure and we're removing the only note.}
+432             \textcolor{keywordflow}{if}( gameObject.transform.GetChild( 0 ).GetChild( 1 ).GetComponent<Text>().text == \textcolor{stringliteral}{"Measure 1"} 
+      && \hyperlink{class_song_creation_1_1_measure_display_panel_a096dfc8481f3defcdcb57bfc140ac953}{mNotes}.Count == 1 )
+433             \{
+434                 \hyperlink{class_song_creation_1_1_measure_display_panel_a3794bf2a605eaa0595e6c6e41f5b458c}{mFirstOverallNote} = \textcolor{keyword}{true};
+435             \}
+436 
+437             \textcolor{comment}{// If there is more than one note in the measure, then just remove it from the measure.}
+438             \textcolor{keywordflow}{if}( \hyperlink{class_song_creation_1_1_measure_display_panel_a096dfc8481f3defcdcb57bfc140ac953}{mNotes}.Count > 1 )
+439             \{
+440 
+441                 \textcolor{comment}{// Find the note.}
+442                 \textcolor{keywordtype}{bool} found = \textcolor{keyword}{false};
+443                 \textcolor{keywordtype}{int} index = 0;
+444                 \textcolor{keywordflow}{while}( !found && index < \hyperlink{class_song_creation_1_1_measure_display_panel_a096dfc8481f3defcdcb57bfc140ac953}{mNotes}.Count )
+445                 \{
+446                     \textcolor{keywordflow}{if}( aNote == \hyperlink{class_song_creation_1_1_measure_display_panel_a096dfc8481f3defcdcb57bfc140ac953}{mNotes}[index] )
+447                     \{
+448                         found = \textcolor{keyword}{true};
+449                     \}
+450                     \textcolor{keywordflow}{else}
+451                     \{
+452                         index++;
+453                     \}
+454                 \}
+455                 NoteDisplayPanel temp = \hyperlink{class_song_creation_1_1_measure_display_panel_a096dfc8481f3defcdcb57bfc140ac953}{mNotes}[index];
+456 
+457                 \textcolor{comment}{// Remove the note from the list.}
+458                 \hyperlink{class_song_creation_1_1_measure_display_panel_a096dfc8481f3defcdcb57bfc140ac953}{mNotes}.RemoveAt( index );
+459 
+460                 \textcolor{comment}{// Update the percentage used.}
+461                 \hyperlink{class_song_creation_1_1_measure_display_panel_a87241a464e8e3ed8ad9011fcebaec50a}{mPercentageUsed} -= \hyperlink{class_music}{Music}.
+      \hyperlink{group___music_stat_func_ga91e290b48ad2289493ba4421308abe49}{GetNoteLengthRelativeToMeasure}( temp.GetOffset(), 
+      \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_gac95af323eef7511543c799154e1c29fd}{TIME\_SIGNATURE\_4\_4}() );
+462 
+463                 \textcolor{comment}{// Destroy the note object.}
+464                 DestroyImmediate( temp.gameObject, \textcolor{keyword}{false} );
+465 
+466             \}
+467             \textcolor{comment}{// Make sure that we don't destroy the only note panel.}
+468             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}( \hyperlink{class_song_creation_1_1_measure_display_panel_a3794bf2a605eaa0595e6c6e41f5b458c}{mFirstOverallNote} )
+469             \{
+470                 \hyperlink{class_song_creation_1_1_measure_display_panel_a096dfc8481f3defcdcb57bfc140ac953}{mNotes}[0].SetLengthImage( null );
+471                 \hyperlink{class_song_creation_1_1_measure_display_panel_a096dfc8481f3defcdcb57bfc140ac953}{mNotes}[0].SetOffset( \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.NONE );
+472                 \hyperlink{class_song_creation_1_1_measure_display_panel_a096dfc8481f3defcdcb57bfc140ac953}{mNotes}[0].SetOffsetImage( null );
+473                 \hyperlink{class_song_creation_1_1_measure_display_panel_a096dfc8481f3defcdcb57bfc140ac953}{mNotes}[0].SetPitches( \textcolor{stringliteral}{""} );
+474                 \hyperlink{class_song_creation_1_1_measure_display_panel_a096dfc8481f3defcdcb57bfc140ac953}{mNotes}[0].SetVelocity( \textcolor{stringliteral}{"70"} );
+475             \}
+476             \textcolor{comment}{// If there aren't any notes left, then handle this measure being deleted.}
+477             \textcolor{keywordflow}{else}
+478             \{
+479                 NoteDisplayPanel temp = \hyperlink{class_song_creation_1_1_measure_display_panel_a096dfc8481f3defcdcb57bfc140ac953}{mNotes}[0];
+480                 \hyperlink{class_song_creation_1_1_measure_display_panel_a096dfc8481f3defcdcb57bfc140ac953}{mNotes}.Clear();
+481                 DestroyImmediate( temp.gameObject, \textcolor{keyword}{false} );
+482                 \hyperlink{class_song_creation_1_1_measure_display_panel_a997c583ac0b9687ff9399c9ed27d0dcb}{mParent}.\hyperlink{class_song_creation_1_1_note_display_container_ae27c1c2674edd8a0918a561e082218d8}{HandleMeasureDeleted}( \textcolor{keyword}{this} );
+483             \}
+484             \hyperlink{class_song_creation_1_1_measure_display_panel_a997c583ac0b9687ff9399c9ed27d0dcb}{mParent}.\hyperlink{class_song_creation_1_1_note_display_container_a5ab7823feaccccfd9c886c7210819640}{OnRemoveNote}();
+485         \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_song_creation_1_1_measure_display_panel_abe0267cd2c5a74710c0278478dacf52e}\label{class_song_creation_1_1_measure_display_panel_abe0267cd2c5a74710c0278478dacf52e}} 
+\index{Song\+Creation\+::\+Measure\+Display\+Panel@{Song\+Creation\+::\+Measure\+Display\+Panel}!Set\+Is\+First\+Overall\+Note@{Set\+Is\+First\+Overall\+Note}}
+\index{Set\+Is\+First\+Overall\+Note@{Set\+Is\+First\+Overall\+Note}!Song\+Creation\+::\+Measure\+Display\+Panel@{Song\+Creation\+::\+Measure\+Display\+Panel}}
+\subsubsection{\texorpdfstring{Set\+Is\+First\+Overall\+Note()}{SetIsFirstOverallNote()}}
+{\footnotesize\ttfamily void Song\+Creation.\+Measure\+Display\+Panel.\+Set\+Is\+First\+Overall\+Note (\begin{DoxyParamCaption}\item[{bool}]{a\+First\+Overall\+Note }\end{DoxyParamCaption})}
+
+
+
+Definition at line 378 of file Song\+Creation.\+cs.
+
+
+\begin{DoxyCode}
+379         \{
+380             \hyperlink{class_song_creation_1_1_measure_display_panel_a3794bf2a605eaa0595e6c6e41f5b458c}{mFirstOverallNote} = aFirstOverallNote;
+381         \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_song_creation_1_1_measure_display_panel_a6ac294ddd95114544f6fcc6e3c9ab355}\label{class_song_creation_1_1_measure_display_panel_a6ac294ddd95114544f6fcc6e3c9ab355}} 
+\index{Song\+Creation\+::\+Measure\+Display\+Panel@{Song\+Creation\+::\+Measure\+Display\+Panel}!Set\+Parent\+Container@{Set\+Parent\+Container}}
+\index{Set\+Parent\+Container@{Set\+Parent\+Container}!Song\+Creation\+::\+Measure\+Display\+Panel@{Song\+Creation\+::\+Measure\+Display\+Panel}}
+\subsubsection{\texorpdfstring{Set\+Parent\+Container()}{SetParentContainer()}}
+{\footnotesize\ttfamily void Song\+Creation.\+Measure\+Display\+Panel.\+Set\+Parent\+Container (\begin{DoxyParamCaption}\item[{\hyperlink{class_song_creation_1_1_note_display_container}{Note\+Display\+Container}}]{a\+Parent }\end{DoxyParamCaption})}
+
+
+
+Definition at line 384 of file Song\+Creation.\+cs.
+
+
+\begin{DoxyCode}
+385         \{
+386             \textcolor{comment}{// Set the parent.}
+387             \hyperlink{class_song_creation_1_1_measure_display_panel_a997c583ac0b9687ff9399c9ed27d0dcb}{mParent} = aParent;
+388 
+389             \textcolor{comment}{// If this is the first measure, then add the existing note panel to the list.}
+390             \textcolor{keywordflow}{if}( \hyperlink{class_song_creation_1_1_measure_display_panel_a3794bf2a605eaa0595e6c6e41f5b458c}{mFirstOverallNote} )
+391             \{
+392                 \hyperlink{class_song_creation_1_1_measure_display_panel_a096dfc8481f3defcdcb57bfc140ac953}{mNotes}.Add( gameObject.transform.parent.GetChild( 1 ).gameObject.AddComponent<
+      NoteDisplayPanel>() );
+393                 \hyperlink{class_song_creation_1_1_measure_display_panel_a096dfc8481f3defcdcb57bfc140ac953}{mNotes}[0].SetParentContainer( \textcolor{keyword}{this} );
+394             \}
+395         \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_song_creation_1_1_measure_display_panel_a0efb19869f0c34cae1a617fe7c5880d5}\label{class_song_creation_1_1_measure_display_panel_a0efb19869f0c34cae1a617fe7c5880d5}} 
+\index{Song\+Creation\+::\+Measure\+Display\+Panel@{Song\+Creation\+::\+Measure\+Display\+Panel}!Set\+Percentage\+Used@{Set\+Percentage\+Used}}
+\index{Set\+Percentage\+Used@{Set\+Percentage\+Used}!Song\+Creation\+::\+Measure\+Display\+Panel@{Song\+Creation\+::\+Measure\+Display\+Panel}}
+\subsubsection{\texorpdfstring{Set\+Percentage\+Used()}{SetPercentageUsed()}}
+{\footnotesize\ttfamily void Song\+Creation.\+Measure\+Display\+Panel.\+Set\+Percentage\+Used (\begin{DoxyParamCaption}\item[{float}]{a\+Percent }\end{DoxyParamCaption})}
+
+
+
+Definition at line 398 of file Song\+Creation.\+cs.
+
+
+\begin{DoxyCode}
+399         \{
+400             \hyperlink{class_song_creation_1_1_measure_display_panel_a87241a464e8e3ed8ad9011fcebaec50a}{mPercentageUsed} = aPercent;
+401         \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_song_creation_1_1_measure_display_panel_a77bbca4dc7add6b1e33394834e40cdde}\label{class_song_creation_1_1_measure_display_panel_a77bbca4dc7add6b1e33394834e40cdde}} 
+\index{Song\+Creation\+::\+Measure\+Display\+Panel@{Song\+Creation\+::\+Measure\+Display\+Panel}!Set\+Toggle@{Set\+Toggle}}
+\index{Set\+Toggle@{Set\+Toggle}!Song\+Creation\+::\+Measure\+Display\+Panel@{Song\+Creation\+::\+Measure\+Display\+Panel}}
+\subsubsection{\texorpdfstring{Set\+Toggle()}{SetToggle()}}
+{\footnotesize\ttfamily void Song\+Creation.\+Measure\+Display\+Panel.\+Set\+Toggle (\begin{DoxyParamCaption}\item[{bool}]{a\+Show\+Measure }\end{DoxyParamCaption})}
+
+
+
+Definition at line 404 of file Song\+Creation.\+cs.
+
+
+
+Referenced by Song\+Creation.\+Note\+Display\+Container.\+Handle\+Measure\+Toggled().
+
+
+\begin{DoxyCode}
+405         \{
+406             \textcolor{comment}{// Show/Hide the notes in the measure depending on the given bool.}
+407             \textcolor{keywordflow}{foreach}( NoteDisplayPanel note \textcolor{keywordflow}{in} \hyperlink{class_song_creation_1_1_measure_display_panel_a096dfc8481f3defcdcb57bfc140ac953}{mNotes} )
+408             \{
+409                 note.gameObject.SetActive( aShowMeasure );
+410             \}
+411 
+412             \textcolor{comment}{// Update the toggle value.}
+413             \hyperlink{class_song_creation_1_1_measure_display_panel_abe01653518d60c345faa462ccf979a55}{mShowMeasureToggle}.onValueChanged.RemoveListener( 
+      \hyperlink{class_song_creation_1_1_measure_display_panel_a0ade5469a803bafc5a87595d0a2fef88}{OnShowToggle} );
+414             \hyperlink{class_song_creation_1_1_measure_display_panel_abe01653518d60c345faa462ccf979a55}{mShowMeasureToggle}.isOn = aShowMeasure;
+415             \hyperlink{class_song_creation_1_1_measure_display_panel_abe01653518d60c345faa462ccf979a55}{mShowMeasureToggle}.onValueChanged.AddListener( 
+      \hyperlink{class_song_creation_1_1_measure_display_panel_a0ade5469a803bafc5a87595d0a2fef88}{OnShowToggle} );
+416         \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_song_creation_1_1_measure_display_panel_a3794bf2a605eaa0595e6c6e41f5b458c}\label{class_song_creation_1_1_measure_display_panel_a3794bf2a605eaa0595e6c6e41f5b458c}} 
+\index{Song\+Creation\+::\+Measure\+Display\+Panel@{Song\+Creation\+::\+Measure\+Display\+Panel}!m\+First\+Overall\+Note@{m\+First\+Overall\+Note}}
+\index{m\+First\+Overall\+Note@{m\+First\+Overall\+Note}!Song\+Creation\+::\+Measure\+Display\+Panel@{Song\+Creation\+::\+Measure\+Display\+Panel}}
+\subsubsection{\texorpdfstring{m\+First\+Overall\+Note}{mFirstOverallNote}}
+{\footnotesize\ttfamily bool Song\+Creation.\+Measure\+Display\+Panel.\+m\+First\+Overall\+Note = false\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 222 of file Song\+Creation.\+cs.
+
+\mbox{\Hypertarget{class_song_creation_1_1_measure_display_panel_a096dfc8481f3defcdcb57bfc140ac953}\label{class_song_creation_1_1_measure_display_panel_a096dfc8481f3defcdcb57bfc140ac953}} 
+\index{Song\+Creation\+::\+Measure\+Display\+Panel@{Song\+Creation\+::\+Measure\+Display\+Panel}!m\+Notes@{m\+Notes}}
+\index{m\+Notes@{m\+Notes}!Song\+Creation\+::\+Measure\+Display\+Panel@{Song\+Creation\+::\+Measure\+Display\+Panel}}
+\subsubsection{\texorpdfstring{m\+Notes}{mNotes}}
+{\footnotesize\ttfamily List$<$\hyperlink{class_song_creation_1_1_note_display_panel}{Note\+Display\+Panel}$>$ Song\+Creation.\+Measure\+Display\+Panel.\+m\+Notes = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 224 of file Song\+Creation.\+cs.
+
+\mbox{\Hypertarget{class_song_creation_1_1_measure_display_panel_a997c583ac0b9687ff9399c9ed27d0dcb}\label{class_song_creation_1_1_measure_display_panel_a997c583ac0b9687ff9399c9ed27d0dcb}} 
+\index{Song\+Creation\+::\+Measure\+Display\+Panel@{Song\+Creation\+::\+Measure\+Display\+Panel}!m\+Parent@{m\+Parent}}
+\index{m\+Parent@{m\+Parent}!Song\+Creation\+::\+Measure\+Display\+Panel@{Song\+Creation\+::\+Measure\+Display\+Panel}}
+\subsubsection{\texorpdfstring{m\+Parent}{mParent}}
+{\footnotesize\ttfamily \hyperlink{class_song_creation_1_1_note_display_container}{Note\+Display\+Container} Song\+Creation.\+Measure\+Display\+Panel.\+m\+Parent = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 225 of file Song\+Creation.\+cs.
+
+\mbox{\Hypertarget{class_song_creation_1_1_measure_display_panel_a87241a464e8e3ed8ad9011fcebaec50a}\label{class_song_creation_1_1_measure_display_panel_a87241a464e8e3ed8ad9011fcebaec50a}} 
+\index{Song\+Creation\+::\+Measure\+Display\+Panel@{Song\+Creation\+::\+Measure\+Display\+Panel}!m\+Percentage\+Used@{m\+Percentage\+Used}}
+\index{m\+Percentage\+Used@{m\+Percentage\+Used}!Song\+Creation\+::\+Measure\+Display\+Panel@{Song\+Creation\+::\+Measure\+Display\+Panel}}
+\subsubsection{\texorpdfstring{m\+Percentage\+Used}{mPercentageUsed}}
+{\footnotesize\ttfamily float Song\+Creation.\+Measure\+Display\+Panel.\+m\+Percentage\+Used = 0f\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 223 of file Song\+Creation.\+cs.
+
+\mbox{\Hypertarget{class_song_creation_1_1_measure_display_panel_abe01653518d60c345faa462ccf979a55}\label{class_song_creation_1_1_measure_display_panel_abe01653518d60c345faa462ccf979a55}} 
+\index{Song\+Creation\+::\+Measure\+Display\+Panel@{Song\+Creation\+::\+Measure\+Display\+Panel}!m\+Show\+Measure\+Toggle@{m\+Show\+Measure\+Toggle}}
+\index{m\+Show\+Measure\+Toggle@{m\+Show\+Measure\+Toggle}!Song\+Creation\+::\+Measure\+Display\+Panel@{Song\+Creation\+::\+Measure\+Display\+Panel}}
+\subsubsection{\texorpdfstring{m\+Show\+Measure\+Toggle}{mShowMeasureToggle}}
+{\footnotesize\ttfamily Toggle Song\+Creation.\+Measure\+Display\+Panel.\+m\+Show\+Measure\+Toggle = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 226 of file Song\+Creation.\+cs.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+V\+R\+Piano\+Project/\+Assets/\+Scripts/\+Audio/\+Testing/\hyperlink{_song_creation_8cs}{Song\+Creation.\+cs}\end{DoxyCompactItemize}

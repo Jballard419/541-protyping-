@@ -1,0 +1,112 @@
+\hypertarget{group___black_key_unity}{}\section{Unity Functions}
+\label{group___black_key_unity}\index{Unity Functions@{Unity Functions}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___black_key_unity_ga6e05fcdf362e52d9a71b4f25ad840b5b}{Black\+Key.\+Awake} ()
+\begin{DoxyCompactList}\small\item\em Called when object is initialized. \end{DoxyCompactList}\item 
+void \hyperlink{group___black_key_unity_ga24ef6b8b614685c5591868b9b23197ed}{Black\+Key.\+Update} ()
+\begin{DoxyCompactList}\small\item\em Called every frame. Used for loading the \hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager}. \end{DoxyCompactList}\item 
+void \hyperlink{group___black_key_unity_gad8926397bba69558f5440eac2c38aff8}{Black\+Key.\+Fixed\+Update} ()
+\begin{DoxyCompactList}\small\item\em Called every physics step. Used for applying force to the Rigid\+Body. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Built-\/in Unity functions for creating and updating the \hyperlink{class_black_key}{Black\+Key}. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___black_key_unity_ga6e05fcdf362e52d9a71b4f25ad840b5b}\label{group___black_key_unity_ga6e05fcdf362e52d9a71b4f25ad840b5b}} 
+\index{Unity Functions@{Unity Functions}!Awake@{Awake}}
+\index{Awake@{Awake}!Unity Functions@{Unity Functions}}
+\subsubsection{\texorpdfstring{Awake()}{Awake()}}
+{\footnotesize\ttfamily void Black\+Key.\+Awake (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Called when object is initialized. 
+
+Sets the key that is used to simulate pressing the object and gets the Rigid\+Body and sets that it shouldn\textquotesingle{}t use gravity. 
+
+Definition at line 75 of file Black\+Key.\+cs.
+
+
+\begin{DoxyCode}
+76     \{
+77         \hyperlink{group___black_key_priv_var_ga2272fa345880793dcd89f7ca942f6685}{mKeyCode} = (KeyCode)\hyperlink{namespace_system}{System}.Enum.Parse( typeof( KeyCode ), 
+      \hyperlink{group___black_key_pub_var_gaa541d3fb6cbb1361d5c062ce7b3c4e29}{Key} );
+78         \hyperlink{group___black_key_priv_var_ga5185c6ea66892bcbe9e83eb615f39566}{mRigidBody} = GetComponent<Rigidbody>();
+79         \hyperlink{group___black_key_priv_var_ga5185c6ea66892bcbe9e83eb615f39566}{mRigidBody}.useGravity = \textcolor{keyword}{false};
+80         \hyperlink{group___black_key_events_ga51f1badf49df0c54e31a20ba4b7abd6b}{BlackKeyPressed} = \textcolor{keyword}{new} BlackKeyPressedEvent();
+81         \hyperlink{group___black_key_events_ga2710bdaba16dbdb82c0d38f11ce642d8}{BlackKeyReleased} = \textcolor{keyword}{new} BlackKeyReleasedEvent();
+82     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___black_key_unity_gad8926397bba69558f5440eac2c38aff8}\label{group___black_key_unity_gad8926397bba69558f5440eac2c38aff8}} 
+\index{Unity Functions@{Unity Functions}!Fixed\+Update@{Fixed\+Update}}
+\index{Fixed\+Update@{Fixed\+Update}!Unity Functions@{Unity Functions}}
+\subsubsection{\texorpdfstring{Fixed\+Update()}{FixedUpdate()}}
+{\footnotesize\ttfamily void Black\+Key.\+Fixed\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Called every physics step. Used for applying force to the Rigid\+Body. 
+
+Checks if the appropriate key was pressed and applies a force if so. It also calls the functions that send input to the \hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} if needed. 
+
+Definition at line 101 of file Black\+Key.\+cs.
+
+
+
+References Music.\+Note\+To\+String(), and Black\+Key.\+Pitch.
+
+
+\begin{DoxyCode}
+102     \{
+103         \textcolor{comment}{//float move = Input.GetAxis ("Horizontal");}
+104         Vector3 movement = \textcolor{keyword}{new} Vector3( 0, -1f, 0 );
+105         \textcolor{keywordflow}{if}( Input.GetKey( \hyperlink{group___black_key_priv_var_ga2272fa345880793dcd89f7ca942f6685}{mKeyCode} ) )
+106         \{
+107             \textcolor{comment}{//Debug.Log( Key );}
+108             \hyperlink{group___black_key_priv_var_ga5185c6ea66892bcbe9e83eb615f39566}{mRigidBody}.AddForce( movement );
+109 
+110             \textcolor{comment}{// Let others know that this key was pressed.}
+111             \textcolor{keywordflow}{if}( !\hyperlink{group___black_key_priv_var_gaf66e1f99786497961efaf5ded22e4977}{mKeyPressed} )
+112             \{
+113                 Debug.Log( \textcolor{stringliteral}{"Key representing "} + \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( 
+      \hyperlink{group___black_key_pub_var_gad233c456182c9cef7c01486484940439}{Pitch} ) + \textcolor{stringliteral}{" was pressed."} );
+114                 \hyperlink{group___black_key_priv_var_gaf66e1f99786497961efaf5ded22e4977}{mKeyPressed} = \textcolor{keyword}{true};
+115                 \hyperlink{group___black_key_events_ga51f1badf49df0c54e31a20ba4b7abd6b}{BlackKeyPressed}.Invoke( \textcolor{keyword}{this} );
+116             \}
+117 
+118         \}
+119         \textcolor{keywordflow}{else}
+120         \{
+121             \textcolor{comment}{// If the key is released, then let others know.}
+122             \textcolor{keywordflow}{if}( \hyperlink{group___black_key_priv_var_gaf66e1f99786497961efaf5ded22e4977}{mKeyPressed} )
+123             \{
+124                 Debug.Log( \textcolor{stringliteral}{"Key representing "} + \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( 
+      \hyperlink{group___black_key_pub_var_gad233c456182c9cef7c01486484940439}{Pitch} ) + \textcolor{stringliteral}{" was released."} );
+125                 \hyperlink{group___black_key_priv_var_gaf66e1f99786497961efaf5ded22e4977}{mKeyPressed} = \textcolor{keyword}{false};
+126                 \hyperlink{group___black_key_events_ga2710bdaba16dbdb82c0d38f11ce642d8}{BlackKeyReleased}.Invoke( \textcolor{keyword}{this} );
+127             \}
+128         \}
+129     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___black_key_unity_ga24ef6b8b614685c5591868b9b23197ed}\label{group___black_key_unity_ga24ef6b8b614685c5591868b9b23197ed}} 
+\index{Unity Functions@{Unity Functions}!Update@{Update}}
+\index{Update@{Update}!Unity Functions@{Unity Functions}}
+\subsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily void Black\+Key.\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Called every frame. Used for loading the \hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager}. 
+
+Checks if audio should be loaded/unloaded and handles the asynchronous scene operation that does so. 
+
+Definition at line 90 of file Black\+Key.\+cs.
+
+
+\begin{DoxyCode}
+91     \{
+92     \}
+\end{DoxyCode}

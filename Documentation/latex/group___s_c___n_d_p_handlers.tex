@@ -1,0 +1,104 @@
+\hypertarget{group___s_c___n_d_p_handlers}{}\section{Event Handlers}
+\label{group___s_c___n_d_p_handlers}\index{Event Handlers@{Event Handlers}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___s_c___n_d_p_handlers_ga0b545f6cd12ce56258842cb1036bceec}{S\+C\+\_\+\+Note\+Display\+Panel.\+On\+Remove\+Button\+Clicked} ()
+\begin{DoxyCompactList}\small\item\em Handles when the \hyperlink{group___s_c___n_d_p_priv_var_gac9af0bdc5b04a52ab9e7c13a0ad01ab7}{remove button} is clicked. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c___n_d_p_handlers_ga7b25bcc6b76ae0894ac6eefde417caf1}{S\+C\+\_\+\+Note\+Display\+Panel.\+Trigger\+Edit\+Event} (Pointer\+Event\+Data a\+Pointer\+Data)
+\begin{DoxyCompactList}\small\item\em Handles clicking on the background panel which means that we\textquotesingle{}re either beginning an edit to this \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note} or cancelling it. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Functions that are called to handle events. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___s_c___n_d_p_handlers_ga0b545f6cd12ce56258842cb1036bceec}\label{group___s_c___n_d_p_handlers_ga0b545f6cd12ce56258842cb1036bceec}} 
+\index{Event Handlers@{Event Handlers}!On\+Remove\+Button\+Clicked@{On\+Remove\+Button\+Clicked}}
+\index{On\+Remove\+Button\+Clicked@{On\+Remove\+Button\+Clicked}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{On\+Remove\+Button\+Clicked()}{OnRemoveButtonClicked()}}
+{\footnotesize\ttfamily void S\+C\+\_\+\+Note\+Display\+Panel.\+On\+Remove\+Button\+Clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Handles when the \hyperlink{group___s_c___n_d_p_priv_var_gac9af0bdc5b04a52ab9e7c13a0ad01ab7}{remove button} is clicked. 
+
+
+
+Definition at line 225 of file S\+C\+\_\+\+Note\+Display\+Panel.\+cs.
+
+
+
+References S\+C\+\_\+\+Note\+Display\+Panel.\+m\+Note\+Index, S\+C\+\_\+\+Measure\+Display\+Panel.\+On\+Remove\+Note(), and S\+C\+\_\+\+Note\+Display\+Panel.\+Set\+Note\+Index().
+
+
+
+Referenced by S\+C\+\_\+\+Note\+Display\+Panel.\+Awake().
+
+
+\begin{DoxyCode}
+226     \{
+227         \textcolor{comment}{// Set the note index for all notes after this one}
+228         \textcolor{keywordtype}{int} sib = transform.GetSiblingIndex() + 1;
+229         \textcolor{keywordtype}{int} index = \hyperlink{group___s_c___n_d_p_priv_var_ga11933919195aba904a4e8bf95f131e49}{mNoteIndex};
+230         \textcolor{keywordflow}{while}( sib < transform.parent.childCount )
+231         \{
+232             \textcolor{keywordflow}{if}( transform.parent.GetChild( sib ).GetComponent<
+      \hyperlink{class_s_c___note_display_panel}{SC\_NoteDisplayPanel}>() != null )
+233             \{
+234                 transform.parent.GetChild( sib ).GetComponent<
+      \hyperlink{class_s_c___note_display_panel}{SC\_NoteDisplayPanel}>().\hyperlink{group___s_c___n_d_p_unity_gaf3160e3686e44e7718768242438ea1cc}{SetNoteIndex}( index );
+235                 index++;
+236             \}
+237             sib++;
+238         \}
+239 
+240         \textcolor{comment}{// Signal that this note display should be removed.}
+241         \hyperlink{group___s_c___n_d_p_priv_var_ga360017747d9ed8910ddd4b3309477710}{mParent}.\hyperlink{group___s_c___m_d_p_handlers_gab48fa7fe4d7d4b29a3b0567be2b29849}{OnRemoveNote}( \textcolor{keyword}{this} );
+242 
+243         \textcolor{comment}{// Signal that this note should be removed from the song.}
+244         GameObject.Find( \textcolor{stringliteral}{"SongCreationCanvas"} ).GetComponent<\hyperlink{class_song_creation_manager}{SongCreationManager}>().
+      OnRemoveNote( \hyperlink{group___s_c___n_d_p_priv_var_ga11933919195aba904a4e8bf95f131e49}{mNoteIndex} );
+245     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_c___n_d_p_handlers_ga7b25bcc6b76ae0894ac6eefde417caf1}\label{group___s_c___n_d_p_handlers_ga7b25bcc6b76ae0894ac6eefde417caf1}} 
+\index{Event Handlers@{Event Handlers}!Trigger\+Edit\+Event@{Trigger\+Edit\+Event}}
+\index{Trigger\+Edit\+Event@{Trigger\+Edit\+Event}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{Trigger\+Edit\+Event()}{TriggerEditEvent()}}
+{\footnotesize\ttfamily void S\+C\+\_\+\+Note\+Display\+Panel.\+Trigger\+Edit\+Event (\begin{DoxyParamCaption}\item[{Pointer\+Event\+Data}]{a\+Pointer\+Data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handles clicking on the background panel which means that we\textquotesingle{}re either beginning an edit to this \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note} or cancelling it. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Pointer\+Data} & The Pointer\+Event\+Data representing the mouse click. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 251 of file S\+C\+\_\+\+Note\+Display\+Panel.\+cs.
+
+
+
+References Song\+Creation\+Manager.\+On\+Edit\+Event().
+
+
+
+Referenced by S\+C\+\_\+\+Note\+Display\+Panel.\+Awake().
+
+
+\begin{DoxyCode}
+252     \{
+253         \textcolor{keywordflow}{if}( aPointerData.button == PointerEventData.InputButton.Left )
+254         \{
+255             \textcolor{comment}{// Change the color of the background panel to show that we're editing the note that it }
+256             \textcolor{comment}{// represents.}
+257             gameObject.GetComponent<Image>().color = \textcolor{keyword}{new} Color32( 116, 116, 116, 255 );
+258 
+259             \textcolor{comment}{// Send the event to the song creation handler.}
+260             \hyperlink{group___s_c___n_d_p_priv_var_ga5e4ae5e7daa568c3e2b471c0835600c6}{mSongCreationHandler}.\hyperlink{group___s_c_m_handlers_gacb552a4f02b22d7c10a8420eb1431201}{OnEditEvent}( \textcolor{keyword}{this} );
+261         \}
+262     \}
+\end{DoxyCode}

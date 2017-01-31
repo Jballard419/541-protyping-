@@ -1,0 +1,88 @@
+\hypertarget{group___mus_typ_handlers}{}\section{Musical Typing Event Handlers}
+\label{group___mus_typ_handlers}\index{Musical Typing Event Handlers@{Musical Typing Event Handlers}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___mus_typ_handlers_ga391a3d207136b7eb0e734e289b520188}{Musical\+Typing\+Handler.\+On\+Musical\+Typing\+Event} (Event a\+Key\+Event)
+\begin{DoxyCompactList}\small\item\em Handler for Musical Typing Events. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Functions used to handle \hyperlink{group___mus_typ}{Musical Typing} events. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___mus_typ_handlers_ga391a3d207136b7eb0e734e289b520188}\label{group___mus_typ_handlers_ga391a3d207136b7eb0e734e289b520188}} 
+\index{Musical Typing Event Handlers@{Musical Typing Event Handlers}!On\+Musical\+Typing\+Event@{On\+Musical\+Typing\+Event}}
+\index{On\+Musical\+Typing\+Event@{On\+Musical\+Typing\+Event}!Musical Typing Event Handlers@{Musical Typing Event Handlers}}
+\subsubsection{\texorpdfstring{On\+Musical\+Typing\+Event()}{OnMusicalTypingEvent()}}
+{\footnotesize\ttfamily void Musical\+Typing\+Handler.\+On\+Musical\+Typing\+Event (\begin{DoxyParamCaption}\item[{Event}]{a\+Key\+Event }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handler for Musical Typing Events. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Key\+Event} & A G\+UI keyboard event triggered by a key being pressed or released.\\
+\hline
+\end{DoxyParams}
+This function sees if a pressed/released key is one that is used for Musical Typing. If so, it simulates a note event based on the pressed/released key. 
+
+Definition at line 192 of file Musical\+Typing\+Handler.\+cs.
+
+
+
+References Virtual\+Instrument\+Manager.\+Get\+Active\+Notes(), Virtual\+Instrument\+Manager.\+Get\+Num\+Active\+Notes(), Virtual\+Instrument\+Manager.\+Play\+Note, Virtual\+Instrument\+Manager.\+Release\+Note, and A\+T\+I\+\_\+\+Diagnostics.\+Set\+Input\+Time.
+
+
+
+Referenced by Musical\+Typing\+Handler.\+On\+G\+U\+I().
+
+
+\begin{DoxyCode}
+193     \{
+194         \textcolor{comment}{// Check if a musical typing key is pressed or released and fire off the }
+195         \textcolor{comment}{// corresponding PlayNote or NoteFadeOut event if so. The debug velocity is }
+196         \textcolor{comment}{// used for the events.}
+197         \textcolor{keywordtype}{int} i = 0;
+198         \textcolor{keywordtype}{int} numActive = \hyperlink{group___mus_typ_priv_var_ga63b2c5e1f9b1320a6b435a9018759444}{mVIM}.\hyperlink{group___v_i_m_pub_func_ga3d6c823b1c1083eac8202f6c89e60b48}{GetNumActiveNotes}();
+199         \textcolor{keywordflow}{while}( \hyperlink{group___mus_typ_pub_var_ga09a764161d537b31fac1a64ee5d39625}{MusicalTypingEnabled} && i < 
+      \hyperlink{group___mus_typ_const_ga1a5182f5dda1cd3a5b400911a3f4cb69}{DEBUG\_numMusicalTypingKeys} && i < numActive )
+200         \{
+201             \textcolor{comment}{// See if the key is a Musical Typing key.}
+202             \textcolor{keywordflow}{if}( aKeyEvent.keyCode == \hyperlink{group___mus_typ_const_gad8b9000a0b6c93d23310f54d07dd0b90}{DEBUG\_musicalTypingKeys}[i] )
+203             \{
+204                 \textcolor{comment}{// If the key was pressed, then simulate a NotePlayEvent.}
+205                 \textcolor{keywordflow}{if}( aKeyEvent.type == EventType.KeyDown && !\hyperlink{group___mus_typ_priv_var_gaede8bc4123f7bfe514816593fdfbec67}{mPressedKeys}[i] )
+206                 \{
+207 \textcolor{preprocessor}{                    #if DEBUG\_AUDIO\_DIAGNOSTICS}
+208                         \hyperlink{group___mus_typ_priv_var_gaaeabcb1c6445b0ff93059036cc4ec1f4}{mDiagnosticsHandler}.\hyperlink{group___audio_testing_a133561901c2aef535b2f3c098e55b959}{SetInputTime}.Invoke();
+209 \textcolor{preprocessor}{                    #endif}
+210 
+211                     \textcolor{comment}{// Update the pressed keys}
+212                     \hyperlink{group___mus_typ_priv_var_gaede8bc4123f7bfe514816593fdfbec67}{mPressedKeys}[i] = \textcolor{keyword}{true};
+213 
+214                     \textcolor{comment}{// Get the velocity that should be used.}
+215                     \textcolor{keywordtype}{int} velocity = \hyperlink{group___mus_typ_priv_var_ga4836c9fe1805279497f421a29879bf5a}{mKeyVelocities}[i];
+216                     \textcolor{keywordflow}{if}( \hyperlink{group___mus_typ_pub_var_gad09f6f673034d9cd95f699838c9518d5}{RandomizeVelocities} )
+217                     \{
+218                         velocity = \hyperlink{namespace_unity_engine}{UnityEngine}.Random.Range( 
+      \hyperlink{group___mus_typ_priv_var_ga15df83911d88e77e46726ff5642d04e6}{mRandomVelocityRange}[0], \hyperlink{group___mus_typ_priv_var_ga15df83911d88e77e46726ff5642d04e6}{mRandomVelocityRange}[1] );
+219                     \}
+220                     \hyperlink{group___mus_typ_priv_var_ga63b2c5e1f9b1320a6b435a9018759444}{mVIM}.\hyperlink{group___v_i_m_events_gaa21021c13a8c9d13cbf374d5bf9d68fa}{PlayNote}.Invoke( \hyperlink{group___mus_typ_priv_var_ga63b2c5e1f9b1320a6b435a9018759444}{mVIM}.\hyperlink{group___v_i_m_pub_func_ga119e0c582106fc9ecc2631e39d71d681}{GetActiveNotes}()[i], velocity 
+      );
+221                 \}
+222                 \textcolor{comment}{// If the key was released, then simulate a ReleaseNoteEvent.}
+223                 \textcolor{keywordflow}{if}( aKeyEvent.type == EventType.KeyUp )
+224                 \{
+225                     \textcolor{comment}{// Update the pressed keys}
+226                     \hyperlink{group___mus_typ_priv_var_gaede8bc4123f7bfe514816593fdfbec67}{mPressedKeys}[i] = \textcolor{keyword}{false};
+227 
+228                     \hyperlink{group___mus_typ_priv_var_ga63b2c5e1f9b1320a6b435a9018759444}{mVIM}.\hyperlink{group___v_i_m_events_ga3a1726a6366126421434c2c7be5e5678}{ReleaseNote}.Invoke( \hyperlink{group___mus_typ_priv_var_ga63b2c5e1f9b1320a6b435a9018759444}{mVIM}.
+      \hyperlink{group___v_i_m_pub_func_ga119e0c582106fc9ecc2631e39d71d681}{GetActiveNotes}()[i] );
+229                 \}
+230             \}
+231             i++;
+232         \}
+233     \}
+\end{DoxyCode}

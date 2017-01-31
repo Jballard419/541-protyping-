@@ -1,0 +1,472 @@
+\hypertarget{group___v_i_base_pub_func}{}\section{Public Functions}
+\label{group___v_i_base_pub_func}\index{Public Functions@{Public Functions}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{group___v_i_base_pub_func_gacddf07c08c3a8154a6934be22f539788}{Virtual\+Instrument.\+Get\+Built\+In\+Dynamics\+Threshold\+Index} (int a\+Velocity)
+\begin{DoxyCompactList}\small\item\em Gets the index for which sound file to use for a \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitch} at a given \hyperlink{group___audio_DefVel}{velocity}. \end{DoxyCompactList}\item 
+int \mbox{[}$\,$\mbox{]} \hyperlink{group___v_i_base_pub_func_gac8fc20c49c1b97b6787ed1b3e0073a7f}{Virtual\+Instrument.\+Get\+Built\+In\+Dynamics\+Thresholds} ()
+\begin{DoxyCompactList}\small\item\em Gets the ranges for which sound file to use for a \hyperlink{group___audio_DefVel}{velocity}. \end{DoxyCompactList}\item 
+float \hyperlink{group___v_i_base_pub_func_gae638c68bd0e79d0b99495be69e50f49d}{Virtual\+Instrument.\+Get\+Adjusted\+Velocity\+Factor} (int a\+Velocity)
+\begin{DoxyCompactList}\small\item\em Gets the factor by which a note\textquotesingle{}s waveform is scaled in order to account for \hyperlink{group___audio_DefVel}{velocity}. \end{DoxyCompactList}\item 
+\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} \hyperlink{group___v_i_base_pub_func_ga859f3e73b1d28051cecf0ecd1c8b10ee}{Virtual\+Instrument.\+Get\+Highest\+Supported\+Pitch} ()
+\begin{DoxyCompactList}\small\item\em Gets the highest \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitch} that this instrument can play. \end{DoxyCompactList}\item 
+\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} \hyperlink{group___v_i_base_pub_func_gac42b3915bbfec60b83650abd701d0690}{Virtual\+Instrument.\+Get\+Lowest\+Supported\+Pitch} ()
+\begin{DoxyCompactList}\small\item\em Gets the lowest \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitch} that this instrument can play. \end{DoxyCompactList}\item 
+int \hyperlink{group___v_i_base_pub_func_ga6ce5a7b3406269ea433be721d7d11177}{Virtual\+Instrument.\+Get\+Num\+Of\+Supported\+Pitches} ()
+\begin{DoxyCompactList}\small\item\em Gets the total number of \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitches} that this instrument can play. \end{DoxyCompactList}\item 
+float \mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} \hyperlink{group___v_i_base_pub_func_gaf715f7c3bbd2f1a2fa543b2f0684f8a6}{Virtual\+Instrument.\+Get\+Audio\+Data\+For\+Pitch} (\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} a\+Pitch)
+\begin{DoxyCompactList}\small\item\em Gets the raw audio data of each built-\/in dynamics value for a given \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitch}. \end{DoxyCompactList}\item 
+float \hyperlink{group___v_i_base_pub_func_gabea22c3ab14c6989b9357da0bf052fbc}{Virtual\+Instrument.\+Get\+Sample\+Interval} ()
+\begin{DoxyCompactList}\small\item\em Gets the time interval between waveform samples for this instrument. \end{DoxyCompactList}\item 
+int \hyperlink{group___v_i_base_pub_func_ga8be9d452abaf025dc7270c36b3cf379a}{Virtual\+Instrument.\+Get\+Sample\+Rate} ()
+\begin{DoxyCompactList}\small\item\em Gets the sample rate for the wav files used to create the instrument. \end{DoxyCompactList}\item 
+bool \hyperlink{group___v_i_base_pub_func_gae8b5ac2e3402dfc50ea43f0e91fd9a29}{Virtual\+Instrument.\+Is\+Loaded} ()
+\begin{DoxyCompactList}\small\item\em Gets whether or not the instrument has loaded. \end{DoxyCompactList}\item 
+bool \hyperlink{group___v_i_base_pub_func_ga89655451c108a7ad5cb96ab308e33937}{Virtual\+Instrument.\+Is\+Pitch\+Supported} (\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} a\+Pitch)
+\begin{DoxyCompactList}\small\item\em Gets whether or not the instrument can play a specific \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitch}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Functions for other classes (usually the \hyperlink{group___v_i_m}{parent manager}) to get values from the instrument. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___v_i_base_pub_func_gae638c68bd0e79d0b99495be69e50f49d}\label{group___v_i_base_pub_func_gae638c68bd0e79d0b99495be69e50f49d}} 
+\index{Public Functions@{Public Functions}!Get\+Adjusted\+Velocity\+Factor@{Get\+Adjusted\+Velocity\+Factor}}
+\index{Get\+Adjusted\+Velocity\+Factor@{Get\+Adjusted\+Velocity\+Factor}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Get\+Adjusted\+Velocity\+Factor()}{GetAdjustedVelocityFactor()}}
+{\footnotesize\ttfamily float Virtual\+Instrument.\+Get\+Adjusted\+Velocity\+Factor (\begin{DoxyParamCaption}\item[{int}]{a\+Velocity }\end{DoxyParamCaption})}
+
+
+
+Gets the factor by which a note\textquotesingle{}s waveform is scaled in order to account for \hyperlink{group___audio_DefVel}{velocity}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Velocity} & The \hyperlink{group___audio_DefVel}{velocity} for the note from 0 (silent) to 100 (max volume). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A float between 0.\+0 and 1.\+0 where 0.\+0 means that the waveform should be made silent and 1.\+0 means that it should be unaltered.
+\end{DoxyReturn}
+Instruments without \hyperlink{group___audio_DefBID}{Built-\/\+In Dynamics} just divide the given \hyperlink{group___audio_DefVel}{velocity} by 100, but instruments with \hyperlink{group___audio_DefBID}{Built-\/in Dynamics} map the factor to a ratio involving the \hyperlink{group___audio_DefBIDThresh}{Built-\/\+In Dynamics thresholds} so that the volumes for \hyperlink{group___audio_DefVel}{velocities} near a \hyperlink{group___audio_DefBIDThresh}{threshold} don\textquotesingle{}t have significant differences. 
+
+Definition at line 140 of file Virtual\+Instrument.\+cs.
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+On\+Play\+Drum\+Loop\+Event(), Virtual\+Instrument\+Manager.\+On\+Play\+Note\+Event(), and Virtual\+Instrument\+Manager.\+On\+Play\+Song\+Event().
+
+
+\begin{DoxyCode}
+141     \{
+142         \textcolor{keywordtype}{int} dynamicsIndex = 0;
+143         \textcolor{keywordtype}{float} velocityFactor = aVelocity / 100f;
+144 
+145         \textcolor{comment}{// Calculate the velocity multiplier. The multiplier is a percentage that is used to adjust the}
+146         \textcolor{comment}{// levels of the audio data to modify the output volume. }
+147         \textcolor{comment}{// If built-in dynamics are supported, then the velocity multiplier will range from the lower
+       threshold divided by the higher threshold to 1.0.}
+148         \textcolor{keywordflow}{if}( \hyperlink{group___v_i_base_pro_var_gac265f64f759d267ee1e1680f8d387011}{mNumBuiltInDynamics} != 0 )
+149         \{
+150             \textcolor{comment}{// See which built-in dynamics value we need to use. Start at the top threshold and work down.}
+151             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = \hyperlink{group___v_i_base_pro_var_gac265f64f759d267ee1e1680f8d387011}{mNumBuiltInDynamics} - 1; i > -1; i-- )
+152             \{
+153                 \textcolor{keywordflow}{if}( aVelocity <= \hyperlink{group___v_i_base_pro_var_gae3db4264dc2a96e99ea680c6d637e6bf}{mBuiltInDynamicsThresholds}[i] )
+154                 \{
+155                     dynamicsIndex = i;
+156                 \}
+157             \}
+158             \textcolor{comment}{// Calculate the velocity factor.}
+159             \textcolor{keywordtype}{float} inEnd = (float)\hyperlink{group___v_i_base_pro_var_gae3db4264dc2a96e99ea680c6d637e6bf}{mBuiltInDynamicsThresholds}[dynamicsIndex];
+160             \textcolor{keywordtype}{float} outEnd = 1f;
+161             \textcolor{keywordtype}{float} inStart = 0f;
+162             \textcolor{keywordtype}{float} outStart = 0f;
+163             \textcolor{keywordflow}{if}( dynamicsIndex != 0 )
+164             \{
+165                 inStart = (float)\hyperlink{group___v_i_base_pro_var_gae3db4264dc2a96e99ea680c6d637e6bf}{mBuiltInDynamicsThresholds}[dynamicsIndex - 1];
+166                 outStart = (float)\hyperlink{group___v_i_base_pro_var_gae3db4264dc2a96e99ea680c6d637e6bf}{mBuiltInDynamicsThresholds}[dynamicsIndex - 1] /
+       (\textcolor{keywordtype}{float})\hyperlink{group___v_i_base_pro_var_gae3db4264dc2a96e99ea680c6d637e6bf}{mBuiltInDynamicsThresholds}[dynamicsIndex];
+167             \}
+168 
+169             velocityFactor = outStart + ( ( ( outEnd - outStart ) / ( inEnd - inStart ) ) * ( (\textcolor{keywordtype}{float})
+      aVelocity - inStart ) );
+170         \}
+171         \textcolor{comment}{// If built-in dynamics are not supported, then just use the given velocity as a percentage. }
+172         \textcolor{keywordflow}{return} velocityFactor;
+173     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___v_i_base_pub_func_gaf715f7c3bbd2f1a2fa543b2f0684f8a6}\label{group___v_i_base_pub_func_gaf715f7c3bbd2f1a2fa543b2f0684f8a6}} 
+\index{Public Functions@{Public Functions}!Get\+Audio\+Data\+For\+Pitch@{Get\+Audio\+Data\+For\+Pitch}}
+\index{Get\+Audio\+Data\+For\+Pitch@{Get\+Audio\+Data\+For\+Pitch}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Get\+Audio\+Data\+For\+Pitch()}{GetAudioDataForPitch()}}
+{\footnotesize\ttfamily float \mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} Virtual\+Instrument.\+Get\+Audio\+Data\+For\+Pitch (\begin{DoxyParamCaption}\item[{\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH}}]{a\+Pitch }\end{DoxyParamCaption})}
+
+
+
+Gets the raw audio data of each built-\/in dynamics value for a given \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitch}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Pitch} & The \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitch} for which the data is retrieved. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a 2-\/D array of floats where the indices correspond to \mbox{[}\hyperlink{group___audio_DefBID}{Built\+In\+Dynamics\+Index}\mbox{]}\mbox{[}Waveform\+Sample\mbox{]}.
+\end{DoxyReturn}
+The array is retrived by mapping the given \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitch} to the second index of the m\+Audio\+Data member. 
+
+Definition at line 209 of file Virtual\+Instrument.\+cs.
+
+
+
+References Virtual\+Instrument.\+Load\+Audio\+Clip\+For\+Pitch(), Virtual\+Instrument.\+m\+Highest\+Supported\+Pitch, Virtual\+Instrument.\+m\+Lowest\+Supported\+Pitch, Virtual\+Instrument.\+m\+Num\+Built\+In\+Dynamics, and Music.\+Note\+To\+String().
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+Load\+Note\+Output\+Objects(), Virtual\+Instrument\+Manager.\+On\+Play\+Drum\+Loop\+Event(), and Virtual\+Instrument\+Manager.\+On\+Play\+Song\+Event().
+
+
+\begin{DoxyCode}
+210     \{
+211         Assert.IsTrue( (\textcolor{keywordtype}{int})aPitch >= (\textcolor{keywordtype}{int})\hyperlink{group___v_i_base_pro_var_ga3cae52b1bcc0178a8a6b03c7aaf7aac8}{mLowestSupportedPitch} && (\textcolor{keywordtype}{int})aPitch <= (\textcolor{keywordtype}{
+      int})\hyperlink{group___v_i_base_pro_var_ga61fb2c33b53a0f663047779d7ceb18f3}{mHighestSupportedPitch},
+212             \textcolor{stringliteral}{"Tried to load the audio data for the note "} + \hyperlink{class_music}{Music}.
+      \hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( aPitch ) + \textcolor{stringliteral}{" which is not a note that is supported by this instrument!"} );
+213         Assert.IsNotNull( \hyperlink{group___v_i_base_pro_var_ga52e76d9b74408660584676035a92a2c6}{mAudioData}, \textcolor{stringliteral}{"Tried to get data from a non-loaded virtual instrument!"} )
+      ;
+214 
+215         \textcolor{comment}{// If we need to load the clip, then load it.}
+216         \textcolor{keywordflow}{if}( \hyperlink{group___v_i_base_pro_var_ga52e76d9b74408660584676035a92a2c6}{mAudioData}[0][(\textcolor{keywordtype}{int})aPitch] == null )
+217         \{
+218             \hyperlink{group___v_i_base_pro_func_gadbd95083895b09465fbc5b18115a1dbc}{LoadAudioClipForPitch}( aPitch );
+219         \}
+220 
+221         \textcolor{comment}{// Declare the returned array.}
+222         \textcolor{keywordtype}{float}[][] data = null;
+223 
+224         \textcolor{comment}{// If there aren't any built-in dynamics, then use a hard-coded index and copy the data to the
+       array from the audio clip.}
+225         \textcolor{keywordflow}{if}( \hyperlink{group___v_i_base_pro_var_gac265f64f759d267ee1e1680f8d387011}{mNumBuiltInDynamics} == 0 )
+226         \{
+227             data = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[1][];
+228             \textcolor{keywordtype}{int} dataLength = \hyperlink{group___v_i_base_pro_var_ga52e76d9b74408660584676035a92a2c6}{mAudioData}[0][(int)aPitch].Length;
+229             data[0] = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[dataLength];
+230             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < dataLength; i++ )
+231             \{
+232                 data[0][i] = \hyperlink{group___v_i_base_pro_var_ga52e76d9b74408660584676035a92a2c6}{mAudioData}[0][(int)aPitch][i];
+233             \}
+234         \}
+235         \textcolor{comment}{// If there are built-in dynamics, then get the data from the audio clips for each corresponding
+       file.}
+236         \textcolor{keywordflow}{else}
+237         \{
+238             data = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[\hyperlink{group___v_i_base_pro_var_gac265f64f759d267ee1e1680f8d387011}{mNumBuiltInDynamics}][];
+239             \textcolor{keywordtype}{int} dataLength = 0;
+240             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < \hyperlink{group___v_i_base_pro_var_gac265f64f759d267ee1e1680f8d387011}{mNumBuiltInDynamics}; i++ )
+241             \{
+242                 dataLength = \hyperlink{group___v_i_base_pro_var_ga52e76d9b74408660584676035a92a2c6}{mAudioData}[i][(int)aPitch].Length;
+243                 data[i] = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[dataLength];
+244                 \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} j = 0; j < dataLength; j++ )
+245                 \{
+246                     data[i][j] = \hyperlink{group___v_i_base_pro_var_ga52e76d9b74408660584676035a92a2c6}{mAudioData}[i][(int)aPitch][j];
+247                 \}
+248             \}
+249         \}
+250 
+251         \textcolor{keywordflow}{return} data;
+252     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___v_i_base_pub_func_gacddf07c08c3a8154a6934be22f539788}\label{group___v_i_base_pub_func_gacddf07c08c3a8154a6934be22f539788}} 
+\index{Public Functions@{Public Functions}!Get\+Built\+In\+Dynamics\+Threshold\+Index@{Get\+Built\+In\+Dynamics\+Threshold\+Index}}
+\index{Get\+Built\+In\+Dynamics\+Threshold\+Index@{Get\+Built\+In\+Dynamics\+Threshold\+Index}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Get\+Built\+In\+Dynamics\+Threshold\+Index()}{GetBuiltInDynamicsThresholdIndex()}}
+{\footnotesize\ttfamily int Virtual\+Instrument.\+Get\+Built\+In\+Dynamics\+Threshold\+Index (\begin{DoxyParamCaption}\item[{int}]{a\+Velocity }\end{DoxyParamCaption})}
+
+
+
+Gets the index for which sound file to use for a \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitch} at a given \hyperlink{group___audio_DefVel}{velocity}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Velocity} & The given \hyperlink{group___audio_DefVel}{velocity} from 0 (silent) to 100 (max volume). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The index of the sound file to use.
+\end{DoxyReturn}
+For instruments with \hyperlink{group___audio_DefBID}{Built-\/\+In Dynamics} (such as the \hyperlink{class_piano}{Piano}), this function takes a \hyperlink{group___audio_DefVel}{velocity} and returns the index of the sound file to use for playing the sound. If a function does not support \hyperlink{group___audio_DefBID}{Built-\/\+In Dynamics}, this function returns 0.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___audio_DefBIDThresh}{Built-\/\+In Dynamics Thresholds}. 
+\end{DoxySeeAlso}
+
+
+Definition at line 98 of file Virtual\+Instrument.\+cs.
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+On\+Play\+Drum\+Loop\+Event(), Virtual\+Instrument\+Manager.\+On\+Play\+Note\+Event(), and Virtual\+Instrument\+Manager.\+On\+Play\+Song\+Event().
+
+
+\begin{DoxyCode}
+99     \{
+100         \textcolor{comment}{// If there aren't any built-in dynamics, then just return 0.}
+101         \textcolor{keywordflow}{if}( \hyperlink{group___v_i_base_pro_var_gac265f64f759d267ee1e1680f8d387011}{mNumBuiltInDynamics} == 0 )
+102         \{
+103             \textcolor{keywordflow}{return} 0;
+104         \}
+105         \textcolor{comment}{// If there are built-in dynamics, then start from the highest and work down to find}
+106         \textcolor{comment}{// which one to use. }
+107         \textcolor{keywordflow}{else}
+108         \{
+109             \textcolor{keywordtype}{int} dynamicsIndex = 0;
+110             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = \hyperlink{group___v_i_base_pro_var_gac265f64f759d267ee1e1680f8d387011}{mNumBuiltInDynamics} - 1; i > -1; i-- )
+111             \{
+112                 \textcolor{keywordflow}{if}( aVelocity <= \hyperlink{group___v_i_base_pro_var_gae3db4264dc2a96e99ea680c6d637e6bf}{mBuiltInDynamicsThresholds}[i] )
+113                 \{
+114                     dynamicsIndex = i;
+115                 \}
+116             \}
+117             \textcolor{keywordflow}{return} dynamicsIndex;
+118         \}
+119     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___v_i_base_pub_func_gac8fc20c49c1b97b6787ed1b3e0073a7f}\label{group___v_i_base_pub_func_gac8fc20c49c1b97b6787ed1b3e0073a7f}} 
+\index{Public Functions@{Public Functions}!Get\+Built\+In\+Dynamics\+Thresholds@{Get\+Built\+In\+Dynamics\+Thresholds}}
+\index{Get\+Built\+In\+Dynamics\+Thresholds@{Get\+Built\+In\+Dynamics\+Thresholds}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Get\+Built\+In\+Dynamics\+Thresholds()}{GetBuiltInDynamicsThresholds()}}
+{\footnotesize\ttfamily int \mbox{[}$\,$\mbox{]} Virtual\+Instrument.\+Get\+Built\+In\+Dynamics\+Thresholds (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the ranges for which sound file to use for a \hyperlink{group___audio_DefVel}{velocity}. 
+
+\begin{DoxyReturn}{Returns}
+If the instrument supports \hyperlink{group___audio_DefBID}{Built-\/\+In Dynamics}, then return its \hyperlink{group___audio_DefBIDThresh}{thresholds}. Return null otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 125 of file Virtual\+Instrument.\+cs.
+
+
+
+References Virtual\+Instrument.\+m\+Built\+In\+Dynamics\+Thresholds.
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+Load\+Note\+Output\+Objects().
+
+
+\begin{DoxyCode}
+126     \{
+127         \textcolor{keywordflow}{return} \hyperlink{group___v_i_base_pro_var_gae3db4264dc2a96e99ea680c6d637e6bf}{mBuiltInDynamicsThresholds};
+128     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___v_i_base_pub_func_ga859f3e73b1d28051cecf0ecd1c8b10ee}\label{group___v_i_base_pub_func_ga859f3e73b1d28051cecf0ecd1c8b10ee}} 
+\index{Public Functions@{Public Functions}!Get\+Highest\+Supported\+Pitch@{Get\+Highest\+Supported\+Pitch}}
+\index{Get\+Highest\+Supported\+Pitch@{Get\+Highest\+Supported\+Pitch}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Get\+Highest\+Supported\+Pitch()}{GetHighestSupportedPitch()}}
+{\footnotesize\ttfamily \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} Virtual\+Instrument.\+Get\+Highest\+Supported\+Pitch (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the highest \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitch} that this instrument can play. 
+
+\begin{DoxyReturn}{Returns}
+The highest \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitch} that this instrument can play. 
+\end{DoxyReturn}
+
+
+Definition at line 179 of file Virtual\+Instrument.\+cs.
+
+
+
+References Virtual\+Instrument.\+m\+Highest\+Supported\+Pitch.
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+Get\+Highest\+Supported\+Note().
+
+
+\begin{DoxyCode}
+180     \{
+181         \textcolor{keywordflow}{return} \hyperlink{group___v_i_base_pro_var_ga61fb2c33b53a0f663047779d7ceb18f3}{mHighestSupportedPitch};
+182     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___v_i_base_pub_func_gac42b3915bbfec60b83650abd701d0690}\label{group___v_i_base_pub_func_gac42b3915bbfec60b83650abd701d0690}} 
+\index{Public Functions@{Public Functions}!Get\+Lowest\+Supported\+Pitch@{Get\+Lowest\+Supported\+Pitch}}
+\index{Get\+Lowest\+Supported\+Pitch@{Get\+Lowest\+Supported\+Pitch}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Get\+Lowest\+Supported\+Pitch()}{GetLowestSupportedPitch()}}
+{\footnotesize\ttfamily \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} Virtual\+Instrument.\+Get\+Lowest\+Supported\+Pitch (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the lowest \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitch} that this instrument can play. 
+
+\begin{DoxyReturn}{Returns}
+The lowest \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitch} supported by the instrument. 
+\end{DoxyReturn}
+
+
+Definition at line 188 of file Virtual\+Instrument.\+cs.
+
+
+
+References Virtual\+Instrument.\+m\+Lowest\+Supported\+Pitch.
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+Get\+Lowest\+Supported\+Note().
+
+
+\begin{DoxyCode}
+189     \{
+190         \textcolor{keywordflow}{return} \hyperlink{group___v_i_base_pro_var_ga3cae52b1bcc0178a8a6b03c7aaf7aac8}{mLowestSupportedPitch};
+191     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___v_i_base_pub_func_ga6ce5a7b3406269ea433be721d7d11177}\label{group___v_i_base_pub_func_ga6ce5a7b3406269ea433be721d7d11177}} 
+\index{Public Functions@{Public Functions}!Get\+Num\+Of\+Supported\+Pitches@{Get\+Num\+Of\+Supported\+Pitches}}
+\index{Get\+Num\+Of\+Supported\+Pitches@{Get\+Num\+Of\+Supported\+Pitches}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Get\+Num\+Of\+Supported\+Pitches()}{GetNumOfSupportedPitches()}}
+{\footnotesize\ttfamily int Virtual\+Instrument.\+Get\+Num\+Of\+Supported\+Pitches (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the total number of \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitches} that this instrument can play. 
+
+\begin{DoxyReturn}{Returns}
+The total number of \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitches} that the instrument can play. 
+\end{DoxyReturn}
+
+
+Definition at line 197 of file Virtual\+Instrument.\+cs.
+
+
+
+References Virtual\+Instrument.\+m\+Num\+Supported\+Pitches.
+
+
+\begin{DoxyCode}
+198     \{
+199         \textcolor{keywordflow}{return} \hyperlink{group___v_i_base_pro_var_gafc759a16324cf9b3f230bcbf040afcd2}{mNumSupportedPitches};
+200     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___v_i_base_pub_func_gabea22c3ab14c6989b9357da0bf052fbc}\label{group___v_i_base_pub_func_gabea22c3ab14c6989b9357da0bf052fbc}} 
+\index{Public Functions@{Public Functions}!Get\+Sample\+Interval@{Get\+Sample\+Interval}}
+\index{Get\+Sample\+Interval@{Get\+Sample\+Interval}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Get\+Sample\+Interval()}{GetSampleInterval()}}
+{\footnotesize\ttfamily float Virtual\+Instrument.\+Get\+Sample\+Interval (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the time interval between waveform samples for this instrument. 
+
+\begin{DoxyReturn}{Returns}
+The time interval between waveform samples for this instrument 
+\end{DoxyReturn}
+
+
+Definition at line 258 of file Virtual\+Instrument.\+cs.
+
+
+
+References Virtual\+Instrument.\+m\+Sample\+Interval.
+
+
+\begin{DoxyCode}
+259     \{
+260         \textcolor{keywordflow}{return} \hyperlink{group___v_i_base_pro_var_ga20c1d3d25ea666378d72c833d160ae2e}{mSampleInterval};
+261     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___v_i_base_pub_func_ga8be9d452abaf025dc7270c36b3cf379a}\label{group___v_i_base_pub_func_ga8be9d452abaf025dc7270c36b3cf379a}} 
+\index{Public Functions@{Public Functions}!Get\+Sample\+Rate@{Get\+Sample\+Rate}}
+\index{Get\+Sample\+Rate@{Get\+Sample\+Rate}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Get\+Sample\+Rate()}{GetSampleRate()}}
+{\footnotesize\ttfamily int Virtual\+Instrument.\+Get\+Sample\+Rate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the sample rate for the wav files used to create the instrument. 
+
+\begin{DoxyReturn}{Returns}
+The sample rate of the wav files used to create the instrument. 
+\end{DoxyReturn}
+
+
+Definition at line 267 of file Virtual\+Instrument.\+cs.
+
+
+
+References Virtual\+Instrument.\+m\+Sample\+Rate.
+
+
+\begin{DoxyCode}
+268     \{
+269         \textcolor{keywordflow}{return} \hyperlink{group___v_i_base_pro_var_ga80b3d2ff29b27698eea6bcf2f8ddc5d7}{mSampleRate};
+270     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___v_i_base_pub_func_gae8b5ac2e3402dfc50ea43f0e91fd9a29}\label{group___v_i_base_pub_func_gae8b5ac2e3402dfc50ea43f0e91fd9a29}} 
+\index{Public Functions@{Public Functions}!Is\+Loaded@{Is\+Loaded}}
+\index{Is\+Loaded@{Is\+Loaded}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Is\+Loaded()}{IsLoaded()}}
+{\footnotesize\ttfamily bool Virtual\+Instrument.\+Is\+Loaded (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets whether or not the instrument has loaded. 
+
+\begin{DoxyReturn}{Returns}
+True if the instrument has loaded. False otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 276 of file Virtual\+Instrument.\+cs.
+
+
+
+References Virtual\+Instrument.\+m\+Loaded.
+
+
+\begin{DoxyCode}
+277     \{
+278         \textcolor{keywordflow}{return} \hyperlink{group___v_i_base_pro_var_ga8978807d1878db5aae91fbd057c46097}{mLoaded};
+279     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___v_i_base_pub_func_ga89655451c108a7ad5cb96ab308e33937}\label{group___v_i_base_pub_func_ga89655451c108a7ad5cb96ab308e33937}} 
+\index{Public Functions@{Public Functions}!Is\+Pitch\+Supported@{Is\+Pitch\+Supported}}
+\index{Is\+Pitch\+Supported@{Is\+Pitch\+Supported}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Is\+Pitch\+Supported()}{IsPitchSupported()}}
+{\footnotesize\ttfamily bool Virtual\+Instrument.\+Is\+Pitch\+Supported (\begin{DoxyParamCaption}\item[{\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH}}]{a\+Pitch }\end{DoxyParamCaption})}
+
+
+
+Gets whether or not the instrument can play a specific \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitch}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Pitch} & The \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitch} that is being checked. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitch} can be played by the instrument. False otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 286 of file Virtual\+Instrument.\+cs.
+
+
+
+References Virtual\+Instrument.\+m\+Highest\+Supported\+Pitch, and Virtual\+Instrument.\+m\+Lowest\+Supported\+Pitch.
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+On\+Change\+Note\+Range\+Event().
+
+
+\begin{DoxyCode}
+287     \{
+288         \textcolor{keywordflow}{return} ( (\textcolor{keywordtype}{int})aPitch >= (\textcolor{keywordtype}{int})\hyperlink{group___v_i_base_pro_var_ga3cae52b1bcc0178a8a6b03c7aaf7aac8}{mLowestSupportedPitch} && (\textcolor{keywordtype}{int})aPitch <= (\textcolor{keywordtype}{int})
+      \hyperlink{group___v_i_base_pro_var_ga61fb2c33b53a0f663047779d7ceb18f3}{mHighestSupportedPitch} );
+289     \}
+\end{DoxyCode}

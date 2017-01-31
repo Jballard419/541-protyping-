@@ -1,0 +1,325 @@
+\hypertarget{group___event_types}{}\section{Event\+Types}
+\label{group___event_types}\index{Event\+Types@{Event\+Types}}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{group___event_types_class_virtual_instrument_manager_1_1_change_note_range_event}{Virtual\+Instrument\+Manager.\+Change\+Note\+Range\+Event}
+\begin{DoxyCompactList}\small\item\em A type of event that is invoked whenever the range of playable pitches should change.  \hyperlink{group___event_types_class_virtual_instrument_manager_1_1_change_note_range_event}{More...}\end{DoxyCompactList}\item 
+class \hyperlink{group___event_types_class_virtual_instrument_manager_1_1_change_instrument_event}{Virtual\+Instrument\+Manager.\+Change\+Instrument\+Event}
+\begin{DoxyCompactList}\small\item\em A type of event that is invoked whenever a new instrument should be loaded.  \hyperlink{group___event_types_class_virtual_instrument_manager_1_1_change_instrument_event}{More...}\end{DoxyCompactList}\item 
+class \hyperlink{group___event_types_class_virtual_instrument_manager_1_1_drum_kit_loaded_event}{Virtual\+Instrument\+Manager.\+Drum\+Kit\+Loaded\+Event}
+\begin{DoxyCompactList}\small\item\em A type of event that is invoked in order to signal that the drum kit has loaded.  \hyperlink{group___event_types_class_virtual_instrument_manager_1_1_drum_kit_loaded_event}{More...}\end{DoxyCompactList}\item 
+class \hyperlink{group___event_types_class_virtual_instrument_manager_1_1_instrument_loaded_event}{Virtual\+Instrument\+Manager.\+Instrument\+Loaded\+Event}
+\begin{DoxyCompactList}\small\item\em A type of event that is invoked in order to signal that the instrument has loaded.  \hyperlink{group___event_types_class_virtual_instrument_manager_1_1_instrument_loaded_event}{More...}\end{DoxyCompactList}\item 
+class \hyperlink{group___event_types_class_virtual_instrument_manager_1_1_modify_echo_filter_event}{Virtual\+Instrument\+Manager.\+Modify\+Echo\+Filter\+Event}
+\begin{DoxyCompactList}\small\item\em A type of event that is invoked in order to modify the echo filter.  \hyperlink{group___event_types_class_virtual_instrument_manager_1_1_modify_echo_filter_event}{More...}\end{DoxyCompactList}\item 
+class \hyperlink{group___event_types_class_virtual_instrument_manager_1_1_modify_reverb_filter_event}{Virtual\+Instrument\+Manager.\+Modify\+Reverb\+Filter\+Event}
+\begin{DoxyCompactList}\small\item\em A type of event that is invoked in order to modify the reverb filter.  \hyperlink{group___event_types_class_virtual_instrument_manager_1_1_modify_reverb_filter_event}{More...}\end{DoxyCompactList}\item 
+class \hyperlink{group___event_types_class_virtual_instrument_manager_1_1_play_drum_loop_event}{Virtual\+Instrument\+Manager.\+Play\+Drum\+Loop\+Event}
+\begin{DoxyCompactList}\small\item\em A type of event that is invoked in order to play a drum loop.  \hyperlink{group___event_types_class_virtual_instrument_manager_1_1_play_drum_loop_event}{More...}\end{DoxyCompactList}\item 
+class \hyperlink{group___event_types_class_virtual_instrument_manager_1_1_play_note_event}{Virtual\+Instrument\+Manager.\+Play\+Note\+Event}
+\begin{DoxyCompactList}\small\item\em A type of event that is invoked whenever a note should be played.  \hyperlink{group___event_types_class_virtual_instrument_manager_1_1_play_note_event}{More...}\end{DoxyCompactList}\item 
+class \hyperlink{group___event_types_class_virtual_instrument_manager_1_1_play_song_event}{Virtual\+Instrument\+Manager.\+Play\+Song\+Event}
+\begin{DoxyCompactList}\small\item\em A type of event that is invoked in order to play a song.  \hyperlink{group___event_types_class_virtual_instrument_manager_1_1_play_song_event}{More...}\end{DoxyCompactList}\item 
+class \hyperlink{group___event_types_class_virtual_instrument_manager_1_1_release_note_event}{Virtual\+Instrument\+Manager.\+Release\+Note\+Event}
+\begin{DoxyCompactList}\small\item\em A type of event that is invoked whenever a note should fade out as though the key was released.  \hyperlink{group___event_types_class_virtual_instrument_manager_1_1_release_note_event}{More...}\end{DoxyCompactList}\item 
+struct \hyperlink{group___event_types_struct_virtual_instrument_manager_1_1_echo_filter_parameters}{Virtual\+Instrument\+Manager.\+Echo\+Filter\+Parameters}
+\begin{DoxyCompactList}\small\item\em A struct that holds the parameters for the echo filter.  \hyperlink{group___event_types_struct_virtual_instrument_manager_1_1_echo_filter_parameters}{More...}\end{DoxyCompactList}\item 
+struct \hyperlink{group___event_types_struct_virtual_instrument_manager_1_1_reverb_filter_parameters}{Virtual\+Instrument\+Manager.\+Reverb\+Filter\+Parameters}
+\begin{DoxyCompactList}\small\item\em A struct that holds the parameters for the reverb filter.  \hyperlink{group___event_types_struct_virtual_instrument_manager_1_1_reverb_filter_parameters}{More...}\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Class Documentation}
+\index{Virtual\+Instrument\+Manager\+::\+Change\+Note\+Range\+Event@{Virtual\+Instrument\+Manager\+::\+Change\+Note\+Range\+Event}}\label{class_virtual_instrument_manager_1_1_change_note_range_event}
+\Hypertarget{group___event_types_class_virtual_instrument_manager_1_1_change_note_range_event}
+\subsubsection{class Virtual\+Instrument\+Manager\+:\+:Change\+Note\+Range\+Event}
+A type of event that is invoked whenever the range of playable pitches should change. 
+
+The parameter for this type of event is a Music.\+P\+I\+T\+CH which is the lowest pitch of the new range.
+
+\begin{DoxySeeAlso}{See also}
+Music Music\+::\+P\+I\+T\+CH 
+\end{DoxySeeAlso}
+Inheritance diagram for Virtual\+Instrument\+Manager.\+Change\+Note\+Range\+Event\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{group___event_types}
+\end{center}
+\end{figure}
+\index{Virtual\+Instrument\+Manager\+::\+Change\+Instrument\+Event@{Virtual\+Instrument\+Manager\+::\+Change\+Instrument\+Event}}\label{class_virtual_instrument_manager_1_1_change_instrument_event}
+\Hypertarget{group___event_types_class_virtual_instrument_manager_1_1_change_instrument_event}
+\subsubsection{class Virtual\+Instrument\+Manager\+:\+:Change\+Instrument\+Event}
+A type of event that is invoked whenever a new instrument should be loaded. 
+
+The parameter for this type of event is a Music.\+I\+N\+S\+T\+R\+U\+M\+E\+N\+T\+\_\+\+T\+Y\+PE which is the type of instrument that should be loaded.
+
+\begin{DoxySeeAlso}{See also}
+Music Music\+::\+I\+N\+S\+T\+R\+U\+M\+E\+N\+T\+\_\+\+T\+Y\+PE 
+\end{DoxySeeAlso}
+Inheritance diagram for Virtual\+Instrument\+Manager.\+Change\+Instrument\+Event\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{group___event_types}
+\end{center}
+\end{figure}
+\index{Virtual\+Instrument\+Manager\+::\+Drum\+Kit\+Loaded\+Event@{Virtual\+Instrument\+Manager\+::\+Drum\+Kit\+Loaded\+Event}}\label{class_virtual_instrument_manager_1_1_drum_kit_loaded_event}
+\Hypertarget{group___event_types_class_virtual_instrument_manager_1_1_drum_kit_loaded_event}
+\subsubsection{class Virtual\+Instrument\+Manager\+:\+:Drum\+Kit\+Loaded\+Event}
+A type of event that is invoked in order to signal that the drum kit has loaded. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___audio_management_a0bc7c9f776b0d2dae0ccb1f1ee5f2143}{Virtual\+Instrument\+Manager\+::m\+Drum\+Kit} Drum\+Kit Virtual\+Instrument 
+\end{DoxySeeAlso}
+Inheritance diagram for Virtual\+Instrument\+Manager.\+Drum\+Kit\+Loaded\+Event\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{group___event_types}
+\end{center}
+\end{figure}
+\index{Virtual\+Instrument\+Manager\+::\+Instrument\+Loaded\+Event@{Virtual\+Instrument\+Manager\+::\+Instrument\+Loaded\+Event}}\label{class_virtual_instrument_manager_1_1_instrument_loaded_event}
+\Hypertarget{group___event_types_class_virtual_instrument_manager_1_1_instrument_loaded_event}
+\subsubsection{class Virtual\+Instrument\+Manager\+:\+:Instrument\+Loaded\+Event}
+A type of event that is invoked in order to signal that the instrument has loaded. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___audio_management_aed435d1f9be09864846db4322dc21fd1}{Virtual\+Instrument\+Manager\+::m\+Instrument} Virtual\+Instrument 
+\end{DoxySeeAlso}
+Inheritance diagram for Virtual\+Instrument\+Manager.\+Instrument\+Loaded\+Event\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{group___event_types}
+\end{center}
+\end{figure}
+\index{Virtual\+Instrument\+Manager\+::\+Modify\+Echo\+Filter\+Event@{Virtual\+Instrument\+Manager\+::\+Modify\+Echo\+Filter\+Event}}\label{class_virtual_instrument_manager_1_1_modify_echo_filter_event}
+\Hypertarget{group___event_types_class_virtual_instrument_manager_1_1_modify_echo_filter_event}
+\subsubsection{class Virtual\+Instrument\+Manager\+:\+:Modify\+Echo\+Filter\+Event}
+A type of event that is invoked in order to modify the echo filter. 
+
+The parameter for this type of event is an \hyperlink{group___event_types_struct_virtual_instrument_manager_1_1_echo_filter_parameters}{Echo\+Filter\+Parameters} struct.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___event_types_struct_virtual_instrument_manager_1_1_echo_filter_parameters}{Virtual\+Instrument\+Manager\+::\+Echo\+Filter\+Parameters} 
+\end{DoxySeeAlso}
+Inheritance diagram for Virtual\+Instrument\+Manager.\+Modify\+Echo\+Filter\+Event\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{group___event_types}
+\end{center}
+\end{figure}
+\index{Virtual\+Instrument\+Manager\+::\+Modify\+Reverb\+Filter\+Event@{Virtual\+Instrument\+Manager\+::\+Modify\+Reverb\+Filter\+Event}}\label{class_virtual_instrument_manager_1_1_modify_reverb_filter_event}
+\Hypertarget{group___event_types_class_virtual_instrument_manager_1_1_modify_reverb_filter_event}
+\subsubsection{class Virtual\+Instrument\+Manager\+:\+:Modify\+Reverb\+Filter\+Event}
+A type of event that is invoked in order to modify the reverb filter. 
+
+The parameter for this type of event is an \hyperlink{group___event_types_struct_virtual_instrument_manager_1_1_reverb_filter_parameters}{Reverb\+Filter\+Parameters} struct.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___event_types_struct_virtual_instrument_manager_1_1_reverb_filter_parameters}{Virtual\+Instrument\+Manager\+::\+Reverb\+Filter\+Parameters} 
+\end{DoxySeeAlso}
+Inheritance diagram for Virtual\+Instrument\+Manager.\+Modify\+Reverb\+Filter\+Event\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{group___event_types}
+\end{center}
+\end{figure}
+\index{Virtual\+Instrument\+Manager\+::\+Play\+Drum\+Loop\+Event@{Virtual\+Instrument\+Manager\+::\+Play\+Drum\+Loop\+Event}}\label{class_virtual_instrument_manager_1_1_play_drum_loop_event}
+\Hypertarget{group___event_types_class_virtual_instrument_manager_1_1_play_drum_loop_event}
+\subsubsection{class Virtual\+Instrument\+Manager\+:\+:Play\+Drum\+Loop\+Event}
+A type of event that is invoked in order to play a drum loop. 
+
+The parameter for this type of event is a Song with the Song\+::\+Song\+Type\+::\+Drum\+Loop. The song can be obtained from the Song\+Manager\+Class, which the \hyperlink{group___audio_management_class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} holds a reference to with \hyperlink{group___audio_management_a33dae94932c10c66db76a0eebec76b01}{Virtual\+Instrument\+Manager\+::\+Song\+Manager}.
+
+\begin{DoxySeeAlso}{See also}
+Song Song\+::\+Song\+Type Song\+Manager\+Class \hyperlink{group___audio_management_a33dae94932c10c66db76a0eebec76b01}{Virtual\+Instrument\+Manager\+::\+Song\+Manager} 
+\end{DoxySeeAlso}
+Inheritance diagram for Virtual\+Instrument\+Manager.\+Play\+Drum\+Loop\+Event\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{group___event_types}
+\end{center}
+\end{figure}
+\index{Virtual\+Instrument\+Manager\+::\+Play\+Note\+Event@{Virtual\+Instrument\+Manager\+::\+Play\+Note\+Event}}\label{class_virtual_instrument_manager_1_1_play_note_event}
+\Hypertarget{group___event_types_class_virtual_instrument_manager_1_1_play_note_event}
+\subsubsection{class Virtual\+Instrument\+Manager\+:\+:Play\+Note\+Event}
+A type of event that is invoked whenever a note should be played. 
+
+The parameters for this type of event are a Music.\+P\+I\+T\+CH which is the pitch of the note to play and an integer which is the velocity at which to play it.
+
+\begin{DoxySeeAlso}{See also}
+Music Music\+::\+P\+I\+T\+CH 
+\end{DoxySeeAlso}
+Inheritance diagram for Virtual\+Instrument\+Manager.\+Play\+Note\+Event\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{group___event_types}
+\end{center}
+\end{figure}
+\index{Virtual\+Instrument\+Manager\+::\+Play\+Song\+Event@{Virtual\+Instrument\+Manager\+::\+Play\+Song\+Event}}\label{class_virtual_instrument_manager_1_1_play_song_event}
+\Hypertarget{group___event_types_class_virtual_instrument_manager_1_1_play_song_event}
+\subsubsection{class Virtual\+Instrument\+Manager\+:\+:Play\+Song\+Event}
+A type of event that is invoked in order to play a song. 
+
+The parameter for this type of event is a Song. The song can be obtained from the Song\+Manager\+Class, which the \hyperlink{group___audio_management_class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} holds a reference to with \hyperlink{group___audio_management_a33dae94932c10c66db76a0eebec76b01}{Virtual\+Instrument\+Manager\+::\+Song\+Manager}.
+
+\begin{DoxySeeAlso}{See also}
+Song Song\+Manager\+Class \hyperlink{group___audio_management_a33dae94932c10c66db76a0eebec76b01}{Virtual\+Instrument\+Manager\+::\+Song\+Manager} 
+\end{DoxySeeAlso}
+Inheritance diagram for Virtual\+Instrument\+Manager.\+Play\+Song\+Event\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{group___event_types}
+\end{center}
+\end{figure}
+\index{Virtual\+Instrument\+Manager\+::\+Release\+Note\+Event@{Virtual\+Instrument\+Manager\+::\+Release\+Note\+Event}}\label{class_virtual_instrument_manager_1_1_release_note_event}
+\Hypertarget{group___event_types_class_virtual_instrument_manager_1_1_release_note_event}
+\subsubsection{class Virtual\+Instrument\+Manager\+:\+:Release\+Note\+Event}
+A type of event that is invoked whenever a note should fade out as though the key was released. 
+
+The parameter for this type of event is a Music.\+P\+I\+T\+CH which is the pitch of the note that was released.
+
+\begin{DoxySeeAlso}{See also}
+Music Music\+::\+P\+I\+T\+CH 
+\end{DoxySeeAlso}
+Inheritance diagram for Virtual\+Instrument\+Manager.\+Release\+Note\+Event\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{group___event_types}
+\end{center}
+\end{figure}
+\index{Virtual\+Instrument\+Manager\+::\+Echo\+Filter\+Parameters@{Virtual\+Instrument\+Manager\+::\+Echo\+Filter\+Parameters}}\label{struct_virtual_instrument_manager_1_1_echo_filter_parameters}
+\Hypertarget{group___event_types_struct_virtual_instrument_manager_1_1_echo_filter_parameters}
+\subsubsection{struct Virtual\+Instrument\+Manager\+:\+:Echo\+Filter\+Parameters}
+A struct that holds the parameters for the echo filter. 
+
+The parameters other than Active are used only if Active is true. If Active is false, then a set of parameters is used that negates the filter. \begin{DoxyFields}{Class Members}
+\mbox{\Hypertarget{group___event_types_adbed98a4cc0e2688edabbadfba58a18b}\label{group___event_types_adbed98a4cc0e2688edabbadfba58a18b}} 
+bool&
+Active&
+\\
+\hline
+
+\mbox{\Hypertarget{group___event_types_a7e529eb3e4de120daabef80608dcde27}\label{group___event_types_a7e529eb3e4de120daabef80608dcde27}} 
+float&
+Decay&
+\\
+\hline
+
+\mbox{\Hypertarget{group___event_types_a2594ca005d747a272e4aa411bef21f6e}\label{group___event_types_a2594ca005d747a272e4aa411bef21f6e}} 
+float&
+Delay&
+\\
+\hline
+
+\mbox{\Hypertarget{group___event_types_ab192892df9a03c86b8ce93be434f75be}\label{group___event_types_ab192892df9a03c86b8ce93be434f75be}} 
+float&
+DryMix&
+\\
+\hline
+
+\mbox{\Hypertarget{group___event_types_a654d4a14431e8c8758f3f58a97d1e61f}\label{group___event_types_a654d4a14431e8c8758f3f58a97d1e61f}} 
+float&
+WetMix&
+\\
+\hline
+
+\end{DoxyFields}
+\index{Virtual\+Instrument\+Manager\+::\+Reverb\+Filter\+Parameters@{Virtual\+Instrument\+Manager\+::\+Reverb\+Filter\+Parameters}}\label{struct_virtual_instrument_manager_1_1_reverb_filter_parameters}
+\Hypertarget{group___event_types_struct_virtual_instrument_manager_1_1_reverb_filter_parameters}
+\subsubsection{struct Virtual\+Instrument\+Manager\+:\+:Reverb\+Filter\+Parameters}
+A struct that holds the parameters for the reverb filter. 
+
+The parameters other than Active are used only if Active is true. If Active is false, then a set of parameters is used that negates the filter. \begin{DoxyFields}{Class Members}
+\mbox{\Hypertarget{group___event_types_a5696ae11db74364234cfa3a1b392478b}\label{group___event_types_a5696ae11db74364234cfa3a1b392478b}} 
+bool&
+Active&
+\\
+\hline
+
+\mbox{\Hypertarget{group___event_types_af0b0548c6e50ca27a9c7c431536de226}\label{group___event_types_af0b0548c6e50ca27a9c7c431536de226}} 
+float&
+DecayHFRatio&
+\\
+\hline
+
+\mbox{\Hypertarget{group___event_types_a0d4f06f9eb253847d91976cf4e890f94}\label{group___event_types_a0d4f06f9eb253847d91976cf4e890f94}} 
+float&
+DecayTime&
+\\
+\hline
+
+\mbox{\Hypertarget{group___event_types_a50712c619ef5aa8a29743071932f97cf}\label{group___event_types_a50712c619ef5aa8a29743071932f97cf}} 
+float&
+Density&
+\\
+\hline
+
+\mbox{\Hypertarget{group___event_types_a7f0df133bca26a8df749cb4c8a0c2fde}\label{group___event_types_a7f0df133bca26a8df749cb4c8a0c2fde}} 
+float&
+Diffusion&
+\\
+\hline
+
+\mbox{\Hypertarget{group___event_types_a7bd1b1132e241d4326e9391ab8725a14}\label{group___event_types_a7bd1b1132e241d4326e9391ab8725a14}} 
+float&
+DryLevel&
+\\
+\hline
+
+\mbox{\Hypertarget{group___event_types_aef76135465fe5a51b9cdfb0a4c6d7b8e}\label{group___event_types_aef76135465fe5a51b9cdfb0a4c6d7b8e}} 
+float&
+HFReference&
+\\
+\hline
+
+\mbox{\Hypertarget{group___event_types_a7b3168d519f1c20dac8e7c017e421d58}\label{group___event_types_a7b3168d519f1c20dac8e7c017e421d58}} 
+float&
+LFReference&
+\\
+\hline
+
+\mbox{\Hypertarget{group___event_types_aca80ad03bd9dce72578cba5c10878f97}\label{group___event_types_aca80ad03bd9dce72578cba5c10878f97}} 
+float&
+ReflectDelay&
+\\
+\hline
+
+\mbox{\Hypertarget{group___event_types_a6a97ac76aa1503956201878b0517bab7}\label{group___event_types_a6a97ac76aa1503956201878b0517bab7}} 
+float&
+Reflections&
+\\
+\hline
+
+\mbox{\Hypertarget{group___event_types_a4db1acfd33ea8f9ab20e936d6cd0c6af}\label{group___event_types_a4db1acfd33ea8f9ab20e936d6cd0c6af}} 
+float&
+Reverb&
+\\
+\hline
+
+\mbox{\Hypertarget{group___event_types_a64f9dcc29c7c75651feb2d10b8494c41}\label{group___event_types_a64f9dcc29c7c75651feb2d10b8494c41}} 
+float&
+ReverbDelay&
+\\
+\hline
+
+\mbox{\Hypertarget{group___event_types_aa95fd8e568f09b14452030ada4e3e6b5}\label{group___event_types_aa95fd8e568f09b14452030ada4e3e6b5}} 
+float&
+Room&
+\\
+\hline
+
+\mbox{\Hypertarget{group___event_types_aa1313c71d899da694ed67ef322a817e4}\label{group___event_types_aa1313c71d899da694ed67ef322a817e4}} 
+float&
+RoomHF&
+\\
+\hline
+
+\mbox{\Hypertarget{group___event_types_a34e15a2268f1d64e57898c553e47fdfe}\label{group___event_types_a34e15a2268f1d64e57898c553e47fdfe}} 
+float&
+RoomLF&
+\\
+\hline
+
+\end{DoxyFields}

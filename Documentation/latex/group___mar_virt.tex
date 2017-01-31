@@ -1,0 +1,101 @@
+\hypertarget{group___mar_virt}{}\section{Implementations of Pure Virtual Functions}
+\label{group___mar_virt}\index{Implementations of Pure Virtual Functions@{Implementations of Pure Virtual Functions}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+override void \hyperlink{group___mar_virt_ga293d829cb8571c21452c23e90968b2d8}{Marimba.\+Initialize\+Built\+In\+Dynamics} ()
+\begin{DoxyCompactList}\small\item\em Initializes values related to the \hyperlink{group___audio_DefBID}{Built-\/\+In Dynamics} for this instrument. \end{DoxyCompactList}\item 
+override void \hyperlink{group___mar_virt_gae57d9737fd07708dc7e13e74ee777878}{Marimba.\+Create\+Filenames} ()
+\begin{DoxyCompactList}\small\item\em Creates the filenames of the W\+AV files used to create the \hyperlink{class_marimba}{Marimba}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+These are functions from the \hyperlink{}{base class} that are given implementations specific to the \hyperlink{class_marimba}{Marimba}. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___mar_virt_gae57d9737fd07708dc7e13e74ee777878}\label{group___mar_virt_gae57d9737fd07708dc7e13e74ee777878}} 
+\index{Implementations of Pure Virtual Functions@{Implementations of Pure Virtual Functions}!Create\+Filenames@{Create\+Filenames}}
+\index{Create\+Filenames@{Create\+Filenames}!Implementations of Pure Virtual Functions@{Implementations of Pure Virtual Functions}}
+\subsubsection{\texorpdfstring{Create\+Filenames()}{CreateFilenames()}}
+{\footnotesize\ttfamily override void Marimba.\+Create\+Filenames (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Creates the filenames of the W\+AV files used to create the \hyperlink{class_marimba}{Marimba}. 
+
+The files are stored in \char`\"{}\+Audio/\+Virtual\+Instrument/\+Marimba/\+Samples\char`\"{}. 
+
+Reimplemented from \hyperlink{group___v_i_base_virt_func_gaacfc9521214176292bfb9665556fb991}{Virtual\+Instrument}.
+
+
+
+Definition at line 79 of file Marimba.\+cs.
+
+
+
+References Virtual\+Instrument.\+m\+Filenames, Virtual\+Instrument.\+m\+Filepath, Virtual\+Instrument.\+m\+Highest\+Supported\+Pitch, Virtual\+Instrument.\+m\+Lowest\+Supported\+Pitch, Virtual\+Instrument.\+m\+Num\+Files, and Music.\+Note\+To\+String().
+
+
+
+Referenced by Marimba.\+Marimba().
+
+
+\begin{DoxyCode}
+80     \{
+81         \textcolor{comment}{// Set the base filepath and number of files.}
+82         \hyperlink{group___v_i_base_pro_var_gac428224be859933d720a9c533fdb5643}{mFilepath} = \textcolor{stringliteral}{"Audio/VirtualInstrument/Marimba/Samples/"};
+83         \hyperlink{group___v_i_base_pro_var_ga9a602db8c9833ce75d95dd453c27d341}{mNumFiles} = 61;
+84 
+85         \textcolor{comment}{// Initialize the array of filenames.}
+86         \hyperlink{group___v_i_base_pro_var_gab2add474ca506357688b5dd08cac4cb5}{mFilenames} = \textcolor{keyword}{new} \textcolor{keywordtype}{string}[\hyperlink{group___v_i_base_pro_var_ga9a602db8c9833ce75d95dd453c27d341}{mNumFiles}];
+87 
+88         \textcolor{comment}{// Iterate through each dynamics value and create filenames for each supported note.}
+89         \textcolor{keywordtype}{int} index = 0;
+90         \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = (\textcolor{keywordtype}{int})\hyperlink{group___v_i_base_pro_var_ga3cae52b1bcc0178a8a6b03c7aaf7aac8}{mLowestSupportedPitch}; i <= (int)
+      \hyperlink{group___v_i_base_pro_var_ga61fb2c33b53a0f663047779d7ceb18f3}{mHighestSupportedPitch}; i++ )
+91         \{
+92             \hyperlink{group___v_i_base_pro_var_gab2add474ca506357688b5dd08cac4cb5}{mFilenames}[index] = \hyperlink{group___v_i_base_pro_var_gac428224be859933d720a9c533fdb5643}{mFilepath} + \hyperlink{class_music}{Music}.
+      \hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( i );
+93             index++;
+94         \}
+95     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___mar_virt_ga293d829cb8571c21452c23e90968b2d8}\label{group___mar_virt_ga293d829cb8571c21452c23e90968b2d8}} 
+\index{Implementations of Pure Virtual Functions@{Implementations of Pure Virtual Functions}!Initialize\+Built\+In\+Dynamics@{Initialize\+Built\+In\+Dynamics}}
+\index{Initialize\+Built\+In\+Dynamics@{Initialize\+Built\+In\+Dynamics}!Implementations of Pure Virtual Functions@{Implementations of Pure Virtual Functions}}
+\subsubsection{\texorpdfstring{Initialize\+Built\+In\+Dynamics()}{InitializeBuiltInDynamics()}}
+{\footnotesize\ttfamily override void Marimba.\+Initialize\+Built\+In\+Dynamics (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Initializes values related to the \hyperlink{group___audio_DefBID}{Built-\/\+In Dynamics} for this instrument. 
+
+There aren\textquotesingle{}t built-\/in dynamics for the marimba, so the dynamics and thresholds are set to null. 
+
+Reimplemented from \hyperlink{group___v_i_base_virt_func_ga995456c03ee54543b285188c51c29a07}{Virtual\+Instrument}.
+
+
+
+Definition at line 62 of file Marimba.\+cs.
+
+
+
+References Virtual\+Instrument.\+m\+Audio\+Data, Music.\+M\+A\+X\+\_\+\+S\+U\+P\+P\+O\+R\+T\+E\+D\+\_\+\+N\+O\+T\+ES, Virtual\+Instrument.\+m\+Built\+In\+Dynamics, Virtual\+Instrument.\+m\+Built\+In\+Dynamics\+Thresholds, and Virtual\+Instrument.\+m\+Num\+Built\+In\+Dynamics.
+
+
+
+Referenced by Marimba.\+Marimba().
+
+
+\begin{DoxyCode}
+63     \{
+64         \textcolor{comment}{// There are no built-in dynamics for the marimba.}
+65         \hyperlink{group___v_i_base_pro_var_gac265f64f759d267ee1e1680f8d387011}{mNumBuiltInDynamics} = 0;
+66         \hyperlink{group___v_i_base_pro_var_ga87961e72f25fbc2256b614a394aa6f13}{mBuiltInDynamics} = null;
+67         \hyperlink{group___v_i_base_pro_var_gae3db4264dc2a96e99ea680c6d637e6bf}{mBuiltInDynamicsThresholds} = null;
+68 
+69         \textcolor{comment}{// Allocate the audio data container.}
+70         \hyperlink{group___v_i_base_pro_var_ga52e76d9b74408660584676035a92a2c6}{mAudioData} = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[1][][];
+71         \hyperlink{group___v_i_base_pro_var_ga52e76d9b74408660584676035a92a2c6}{mAudioData}[0] = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[\hyperlink{class_music}{Music}.\hyperlink{group___music_constants_gaaf07da909a12e9fec0e43b70864f27b7}{MAX\_SUPPORTED\_NOTES}][];
+72     \}
+\end{DoxyCode}

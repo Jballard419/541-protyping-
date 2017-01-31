@@ -1,0 +1,122 @@
+\hypertarget{class_song_creation}{}\section{Song\+Creation Class Reference}
+\label{class_song_creation}\index{Song\+Creation@{Song\+Creation}}
+
+
+A script that handles all of the Song\+Creation\+Interface.  
+
+
+Inheritance diagram for Song\+Creation\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_song_creation}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_song_creation_1_1_pitch_selection_container}{Pitch\+Selection\+Container}
+\item 
+class \hyperlink{class_song_creation_1_1_song_creation_selection_container}{Song\+Creation\+Selection\+Container}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___s_c_handlers_ga867d521ac1d7184636c40dad3ebd43b0}{On\+B\+P\+M\+Change} (float a\+B\+PM)
+\begin{DoxyCompactList}\small\item\em Handles a change in the song\textquotesingle{}s default B\+PM. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c_handlers_ga70f2fdac755a6b62f48afd96f2446d71}{On\+Create\+Note} ()
+\begin{DoxyCompactList}\small\item\em Creates a new note in the song. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c_handlers_ga0e93e30073bd61526f8ac1431cc4d2b6}{On\+Edit\+Event} (\hyperlink{class_s_c___note_display_panel}{S\+C\+\_\+\+Note\+Display\+Panel} a\+Panel)
+\begin{DoxyCompactList}\small\item\em Handles when a note panel is selected for editing. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c_handlers_gadcf6d627fa8dc06d04c27512ce59dd85}{On\+Modify\+Note} ()
+\item 
+void \hyperlink{group___s_c_handlers_gab333656dbc41fbebb320a30c48501370}{On\+Play\+Song} ()
+\item 
+void \hyperlink{group___s_c_handlers_ga485d615c895cddde720b719b64ab4245}{On\+Remove\+Note} (int a\+Index)
+\item 
+void \hyperlink{group___s_c_handlers_ga3fac289dfb9e67d94afbeb0dfdb22f48}{On\+Save\+Song} ()
+\begin{DoxyCompactList}\small\item\em Saves the song to a file. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c_handlers_ga929912496540563f4ec02295a0d333c6}{On\+Velocity\+Change} (float a\+Velocity)
+\item 
+void \hyperlink{group___s_c_handlers_gae631852736624d333cc26e1ae9d14871}{Unload\+Song\+Creation\+Interface} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___s_c_unity_ga0130f42289ace34cb59f70eedc858757}{Awake} ()
+\begin{DoxyCompactList}\small\item\em Initializes the \hyperlink{group___doc_s_c}{Song Creation Interface} by getting references to all of the modules within the scene. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c_handlers_ga77a56bedfce632cf7c341f8fefc02b9a}{On\+Load\+Song\+Button\+Clicked} ()
+\begin{DoxyCompactList}\small\item\em Handles the \hyperlink{group___s_c_priv_var_ga0e016451dff405f570bf530586fb36fa}{Load Song button} being clicked by loading the a song selection dialog. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c_handlers_ga309a4dafb5a81353c6a83bd12ef6a249}{On\+Load\+Song} (\hyperlink{class_song}{Song} a\+Song)
+\begin{DoxyCompactList}\small\item\em Loads a \hyperlink{class_song}{Song} into the \hyperlink{group___doc_s_c}{Song Creation Interface}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{class_song_creation_a1e30986ba2a7d3329425b160d54b3dc7}{L\+O\+A\+D\+\_\+\+S\+O\+N\+G\+\_\+\+D\+I\+A\+L\+O\+G\+\_\+\+P\+A\+TH} = \char`\"{}Audio/Prefabs/\hyperlink{class_song_creation}{Song\+Creation}/Load\+Song\+Dialog\+Prefab\char`\"{}
+\begin{DoxyCompactList}\small\item\em The path to load the \hyperlink{}{Load Song Dialog}\textquotesingle{}s prefab. \end{DoxyCompactList}\item 
+bool \hyperlink{group___s_c_priv_var_ga5aec1c6ae4159b96ce466ee6b1da3371}{m\+Editing} = false
+\begin{DoxyCompactList}\small\item\em Whether or not a note is being modified. \end{DoxyCompactList}\item 
+Button \hyperlink{group___s_c_priv_var_gacc018689b7f6508762958c3796a68937}{m\+A\+T\+I\+Button} = null
+\begin{DoxyCompactList}\small\item\em The button to reload the audio testing interface. \end{DoxyCompactList}\item 
+Button \hyperlink{group___s_c_priv_var_ga0e016451dff405f570bf530586fb36fa}{m\+Load\+Song\+Button} = null
+\begin{DoxyCompactList}\small\item\em The button to load a song. \end{DoxyCompactList}\item 
+Button \hyperlink{group___s_c_priv_var_ga488ce0727c77abe7c84989241f4e55b4}{m\+New\+Note\+Button} = null
+\begin{DoxyCompactList}\small\item\em The button to add a new note with the chosen values. \end{DoxyCompactList}\item 
+Button \hyperlink{group___s_c_priv_var_ga8afebf9e2e92619f9ef9cfe5410a143a}{m\+Play\+Song\+Button} = null
+\begin{DoxyCompactList}\small\item\em The button to play the song. \end{DoxyCompactList}\item 
+Button \hyperlink{group___s_c_priv_var_ga89e82b9c8af6b34d7e0ec37c81f2f674}{m\+Reset\+Pitches\+Button} = null
+\begin{DoxyCompactList}\small\item\em The button to reset the pitch selections. \end{DoxyCompactList}\item 
+Button \hyperlink{group___s_c_priv_var_ga8bcdbe4c52da2e90edf9afffb35b48d3}{m\+Save\+Song\+Button} = null
+\begin{DoxyCompactList}\small\item\em The button to save the song to a file. \end{DoxyCompactList}\item 
+Input\+Field \hyperlink{group___s_c_priv_var_ga768474e1f768bfcce7010995020b09f3}{m\+Song\+Name\+Input\+Field} = null
+\begin{DoxyCompactList}\small\item\em The input field to name the song. \end{DoxyCompactList}\item 
+\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{Music.\+N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH} \hyperlink{group___s_c_priv_var_ga220707a4bf66dc6fee4e7bc9b7f2ed60}{m\+Last\+Length} = \hyperlink{group___music_enums_ggaf11b5f079adbb21c800b9eca1c5c3cbdab50339a10e1de285ac99d4c3990b8693}{Music.\+N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+T\+H.\+N\+O\+NE}
+\begin{DoxyCompactList}\small\item\em The length used to create the last note. Used for special handling of drum loops. \end{DoxyCompactList}\item 
+\hyperlink{class_note_display_container}{Note\+Display\+Container} \hyperlink{group___s_c_priv_var_ga19cefeb7077126193c7f60d07dfdf32c}{m\+Note\+Display} = null
+\begin{DoxyCompactList}\small\item\em The container to show the notes for the song. \end{DoxyCompactList}\item 
+\hyperlink{class_s_c___note_display_panel}{S\+C\+\_\+\+Note\+Display\+Panel} \hyperlink{group___s_c_priv_var_ga0f5cfc2d0492190ded3fbda5b43b45e4}{m\+Edit\+Panel} = null
+\begin{DoxyCompactList}\small\item\em The panel that was selected to be edited. \end{DoxyCompactList}\item 
+\hyperlink{class_song_creation_1_1_pitch_selection_container}{Pitch\+Selection\+Container} \hyperlink{group___s_c_priv_var_ga3f1c71d8cabe505745220d728c6f97bc}{m\+Drum\+Selector} = null
+\begin{DoxyCompactList}\small\item\em The container for choosing drums. \end{DoxyCompactList}\item 
+\hyperlink{class_song_creation_1_1_pitch_selection_container}{Pitch\+Selection\+Container} \hyperlink{group___s_c_priv_var_gac32e68713b2b504807f52acef445df1c}{m\+Pitch\+Selector} = null
+\begin{DoxyCompactList}\small\item\em The container for choosing pitches. \end{DoxyCompactList}\item 
+Slider \hyperlink{group___s_c_priv_var_ga6f751fe7fc31196eeec490cdbc679baa}{m\+B\+P\+M\+Slider} = null
+\begin{DoxyCompactList}\small\item\em The slider for the B\+PM of the song. \end{DoxyCompactList}\item 
+Slider \hyperlink{group___s_c_priv_var_ga0738678367556ebb69df6e73213f616d}{m\+Velocity\+Slider} = null
+\begin{DoxyCompactList}\small\item\em The slider for the velocity of the new note. \end{DoxyCompactList}\item 
+\hyperlink{class_song}{Song} \hyperlink{group___s_c_priv_var_ga9554e9b3758d1cc1e841a5f7d8aa9f56}{m\+Song} = null
+\begin{DoxyCompactList}\small\item\em The song being created. \end{DoxyCompactList}\item 
+\hyperlink{class_song_creation_1_1_song_creation_selection_container}{Song\+Creation\+Selection\+Container} \hyperlink{group___s_c_priv_var_ga370237b50bc11a581fc963cdd8ffd4ea}{m\+Length\+Panel} = null
+\begin{DoxyCompactList}\small\item\em The panel to choose a length for the new note. \end{DoxyCompactList}\item 
+\hyperlink{class_song_creation_1_1_song_creation_selection_container}{Song\+Creation\+Selection\+Container} \hyperlink{group___s_c_priv_var_gafeeda8ab122f574c6fff94814234334c}{m\+Offset\+Panel} = null
+\begin{DoxyCompactList}\small\item\em The panel to choose an offset for the new note. \end{DoxyCompactList}\item 
+\hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} \hyperlink{group___s_c_priv_var_ga1bad472098eec4194c5b18e7b3ccfd94}{m\+V\+IM} = null
+\begin{DoxyCompactList}\small\item\em The virtual instrument manager. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A script that handles all of the Song\+Creation\+Interface. 
+
+Definition at line 13 of file Song\+Creation.\+cs.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_song_creation_a1e30986ba2a7d3329425b160d54b3dc7}\label{class_song_creation_a1e30986ba2a7d3329425b160d54b3dc7}} 
+\index{Song\+Creation@{Song\+Creation}!L\+O\+A\+D\+\_\+\+S\+O\+N\+G\+\_\+\+D\+I\+A\+L\+O\+G\+\_\+\+P\+A\+TH@{L\+O\+A\+D\+\_\+\+S\+O\+N\+G\+\_\+\+D\+I\+A\+L\+O\+G\+\_\+\+P\+A\+TH}}
+\index{L\+O\+A\+D\+\_\+\+S\+O\+N\+G\+\_\+\+D\+I\+A\+L\+O\+G\+\_\+\+P\+A\+TH@{L\+O\+A\+D\+\_\+\+S\+O\+N\+G\+\_\+\+D\+I\+A\+L\+O\+G\+\_\+\+P\+A\+TH}!Song\+Creation@{Song\+Creation}}
+\subsubsection{\texorpdfstring{L\+O\+A\+D\+\_\+\+S\+O\+N\+G\+\_\+\+D\+I\+A\+L\+O\+G\+\_\+\+P\+A\+TH}{LOAD\_SONG\_DIALOG\_PATH}}
+{\footnotesize\ttfamily string Song\+Creation.\+L\+O\+A\+D\+\_\+\+S\+O\+N\+G\+\_\+\+D\+I\+A\+L\+O\+G\+\_\+\+P\+A\+TH = \char`\"{}Audio/Prefabs/\hyperlink{class_song_creation}{Song\+Creation}/Load\+Song\+Dialog\+Prefab\char`\"{}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The path to load the \hyperlink{}{Load Song Dialog}\textquotesingle{}s prefab. 
+
+
+
+Definition at line 20 of file Song\+Creation.\+cs.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+V\+R\+Piano\+Project/\+Assets/\+Scripts/\+Audio/\+Testing/\hyperlink{_song_creation_8cs}{Song\+Creation.\+cs}\end{DoxyCompactItemize}

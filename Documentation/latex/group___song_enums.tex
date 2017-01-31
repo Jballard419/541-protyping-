@@ -1,0 +1,59 @@
+\hypertarget{group___song_enums}{}\section{Enums}
+\label{group___song_enums}\index{Enums@{Enums}}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{Song.\+Song\+Type} \{ \hyperlink{group___song_enums_ggae681a1f001333e39fc1cb4fea97bfe1bace2c8aed9c2fa0cfbed56cbda4d8bf07}{Song.\+Song\+Type.\+Empty}, 
+\hyperlink{group___song_enums_ggae681a1f001333e39fc1cb4fea97bfe1bace2f3a5579d231b3b8f8b9e5fc46d361}{Song.\+Song\+Type.\+Melody}, 
+\hyperlink{group___song_enums_ggae681a1f001333e39fc1cb4fea97bfe1ba150deef06b13ddaeac61d0d2699ec61e}{Song.\+Song\+Type.\+Drum\+Loop}, 
+\hyperlink{group___song_enums_ggae681a1f001333e39fc1cb4fea97bfe1ba5130447d9fcb867ce341b3d17b117ced}{Song.\+Song\+Type.\+Combined\+Melody\+And\+Percussion}
+ \}\begin{DoxyCompactList}\small\item\em The possible types of songs. \end{DoxyCompactList}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Enums used to specify attributes of the \hyperlink{class_song}{Song}. 
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}\label{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}} 
+\index{Enums@{Enums}!Song\+Type@{Song\+Type}}
+\index{Song\+Type@{Song\+Type}!Enums@{Enums}}
+\subsubsection{\texorpdfstring{Song\+Type}{SongType}}
+{\footnotesize\ttfamily enum \hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{Song.\+Song\+Type}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+The possible types of songs. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Empty@{Empty}!Enums@{Enums}}\index{Enums@{Enums}!Empty@{Empty}}}\mbox{\Hypertarget{group___song_enums_ggae681a1f001333e39fc1cb4fea97bfe1bace2c8aed9c2fa0cfbed56cbda4d8bf07}\label{group___song_enums_ggae681a1f001333e39fc1cb4fea97bfe1bace2c8aed9c2fa0cfbed56cbda4d8bf07}} 
+Empty&An empty \hyperlink{class_song}{Song}. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Melody@{Melody}!Enums@{Enums}}\index{Enums@{Enums}!Melody@{Melody}}}\mbox{\Hypertarget{group___song_enums_ggae681a1f001333e39fc1cb4fea97bfe1bace2f3a5579d231b3b8f8b9e5fc46d361}\label{group___song_enums_ggae681a1f001333e39fc1cb4fea97bfe1bace2f3a5579d231b3b8f8b9e5fc46d361}} 
+Melody&A \hyperlink{class_song}{Song} that contains only \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitches}. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Drum\+Loop@{Drum\+Loop}!Enums@{Enums}}\index{Enums@{Enums}!Drum\+Loop@{Drum\+Loop}}}\mbox{\Hypertarget{group___song_enums_ggae681a1f001333e39fc1cb4fea97bfe1ba150deef06b13ddaeac61d0d2699ec61e}\label{group___song_enums_ggae681a1f001333e39fc1cb4fea97bfe1ba150deef06b13ddaeac61d0d2699ec61e}} 
+Drum\+Loop&A \hyperlink{class_song}{Song} that contains only \hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{drums}. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Combined\+Melody\+And\+Percussion@{Combined\+Melody\+And\+Percussion}!Enums@{Enums}}\index{Enums@{Enums}!Combined\+Melody\+And\+Percussion@{Combined\+Melody\+And\+Percussion}}}\mbox{\Hypertarget{group___song_enums_ggae681a1f001333e39fc1cb4fea97bfe1ba5130447d9fcb867ce341b3d17b117ced}\label{group___song_enums_ggae681a1f001333e39fc1cb4fea97bfe1ba5130447d9fcb867ce341b3d17b117ced}} 
+Combined\+Melody\+And\+Percussion&A song that contains both \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitches} and \hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{drums}. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 40 of file Song.\+cs.
+
+
+\begin{DoxyCode}
+41     \{
+42         Empty, \textcolor{comment}{//!< An empty Song. }
+43 \textcolor{comment}{}        Melody, \textcolor{comment}{//!< A Song that contains only @link Music::PITCH pitches@endlink.}
+44 \textcolor{comment}{}        DrumLoop, \textcolor{comment}{//!< A Song that contains only @link Music::DRUM drums@endlink.}
+45 \textcolor{comment}{}        CombinedMelodyAndPercussion \textcolor{comment}{//!< A song that contains both @link Music::PITCH pitches@endlink and
+       @link Music::DRUM drums@endlink.}
+46 \textcolor{comment}{}    \}
+\end{DoxyCode}

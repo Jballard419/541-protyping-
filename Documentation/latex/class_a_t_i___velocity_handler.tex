@@ -1,0 +1,434 @@
+\hypertarget{class_a_t_i___velocity_handler}{}\section{A\+T\+I\+\_\+\+Velocity\+Handler Class Reference}
+\label{class_a_t_i___velocity_handler}\index{A\+T\+I\+\_\+\+Velocity\+Handler@{A\+T\+I\+\_\+\+Velocity\+Handler}}
+Inheritance diagram for A\+T\+I\+\_\+\+Velocity\+Handler\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_a_t_i___velocity_handler}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_a_t_i___velocity_handler_a1091248299687641294f363aa32de0f0}{On\+Randomize\+Velocity\+Switch} (bool a\+Switch)
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override void \hyperlink{class_a_t_i___velocity_handler_a6e1fd3ceb35873a09e138bebd0c323fd}{Handle\+Highest\+Random\+Velocity\+Change} (bool a\+End\+Drag)
+\item 
+override void \hyperlink{class_a_t_i___velocity_handler_a17b6e0de9e45dfb9dba1ea4f2c0a122c}{Handle\+Lowest\+Random\+Velocity\+Change} (bool a\+End\+Drag)
+\item 
+override void \hyperlink{class_a_t_i___velocity_handler_a5b00635239f4f10aaefc5898a8f1b975}{Handle\+Musical\+Typing\+Key\+Velocity\+Change} (int a\+Slider\+Index)
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+new void \hyperlink{class_a_t_i___velocity_handler_a76342d6f2b240a3007b20b9539e4c7a6}{Start} ()
+\item 
+void \hyperlink{class_a_t_i___velocity_handler_aa5766a74ea02f8e1d789a3863ce5867b}{Update} ()
+\item 
+void \hyperlink{class_a_t_i___velocity_handler_aa1a10281dafc6666677e4255ad663dde}{Randomize\+Key\+Velocities} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{[}$\,$\mbox{]} \hyperlink{class_a_t_i___velocity_handler_a95a1abb133981ac42dce424f0f94d562}{keys}
+\item 
+\hyperlink{class_a_t_i_1_1_slider_trigger}{A\+T\+I.\+Slider\+Trigger} \hyperlink{class_a_t_i___velocity_handler_aae4118883cf2e5489ef483f220e48e45}{m\+Highest\+Random\+Slider\+Trigger} = null
+\item 
+\hyperlink{class_a_t_i_1_1_slider_trigger}{A\+T\+I.\+Slider\+Trigger} \hyperlink{class_a_t_i___velocity_handler_a13d55e2f5670e3f1eb78645a75aa1bce}{m\+Lowest\+Random\+Slider\+Trigger} = null
+\item 
+bool \hyperlink{class_a_t_i___velocity_handler_aa6f4ac16382d37eb2c66fb358ac87301}{m\+Randomize} = false
+\item 
+Slider \hyperlink{class_a_t_i___velocity_handler_aba4ceb157ad404a47cedb3583e81d194}{m\+Lowest\+Random\+Slider} = null
+\item 
+Slider \hyperlink{class_a_t_i___velocity_handler_aec243511d869243292e215a24e87f192}{m\+Highest\+Random\+Slider} = null
+\item 
+Sprite \mbox{[}$\,$\mbox{]} \hyperlink{class_a_t_i___velocity_handler_a7e2452c41bbcdd313afb2e53fac4a975}{m\+Sprites} = null
+\item 
+Text \mbox{[}$\,$\mbox{]} \hyperlink{class_a_t_i___velocity_handler_ad8c048670a748ece6b2f8bbf287e7674}{m\+Text} = null
+\item 
+Toggle \hyperlink{class_a_t_i___velocity_handler_a6ca709a10f8b2eb0f1141c589e7f9742}{m\+Random\+Toggle} = null
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 16 of file A\+T\+I\+\_\+\+Velocity\+Handler.\+cs.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_a_t_i___velocity_handler_a6e1fd3ceb35873a09e138bebd0c323fd}\label{class_a_t_i___velocity_handler_a6e1fd3ceb35873a09e138bebd0c323fd}} 
+\index{A\+T\+I\+\_\+\+Velocity\+Handler@{A\+T\+I\+\_\+\+Velocity\+Handler}!Handle\+Highest\+Random\+Velocity\+Change@{Handle\+Highest\+Random\+Velocity\+Change}}
+\index{Handle\+Highest\+Random\+Velocity\+Change@{Handle\+Highest\+Random\+Velocity\+Change}!A\+T\+I\+\_\+\+Velocity\+Handler@{A\+T\+I\+\_\+\+Velocity\+Handler}}
+\subsubsection{\texorpdfstring{Handle\+Highest\+Random\+Velocity\+Change()}{HandleHighestRandomVelocityChange()}}
+{\footnotesize\ttfamily override void A\+T\+I\+\_\+\+Velocity\+Handler.\+Handle\+Highest\+Random\+Velocity\+Change (\begin{DoxyParamCaption}\item[{bool}]{a\+End\+Drag }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{class_a_t_i_1_1_slider_handler_a827fab40da8ee6e777cbed4b5a9ae712}{A\+T\+I.\+Slider\+Handler}.
+
+
+
+Definition at line 124 of file A\+T\+I\+\_\+\+Velocity\+Handler.\+cs.
+
+
+
+References Randomize\+Key\+Velocities().
+
+
+\begin{DoxyCode}
+125     \{
+126         \textcolor{comment}{// Set the text and update the lowest random velocity slider's max value.}
+127         \hyperlink{class_a_t_i___velocity_handler_aec243511d869243292e215a24e87f192}{mHighestRandomSlider}.transform.GetChild( 4 ).GetComponent<Text>().text = \textcolor{stringliteral}{"
+      Highest: "} + \hyperlink{class_a_t_i___velocity_handler_aec243511d869243292e215a24e87f192}{mHighestRandomSlider}.value.ToString();
+128         \hyperlink{class_a_t_i___velocity_handler_aba4ceb157ad404a47cedb3583e81d194}{mLowestRandomSlider}.maxValue = \hyperlink{class_a_t_i___velocity_handler_aec243511d869243292e215a24e87f192}{mHighestRandomSlider}.value;
+129 
+130         \textcolor{comment}{// If the value is set, then randomize the velocities for each key.}
+131         \textcolor{keywordflow}{if}( aEndDrag && \hyperlink{class_a_t_i___velocity_handler_aa6f4ac16382d37eb2c66fb358ac87301}{mRandomize} )
+132         \{
+133             \hyperlink{class_a_t_i___velocity_handler_aa1a10281dafc6666677e4255ad663dde}{RandomizeKeyVelocities}();
+134         \}
+135     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i___velocity_handler_a17b6e0de9e45dfb9dba1ea4f2c0a122c}\label{class_a_t_i___velocity_handler_a17b6e0de9e45dfb9dba1ea4f2c0a122c}} 
+\index{A\+T\+I\+\_\+\+Velocity\+Handler@{A\+T\+I\+\_\+\+Velocity\+Handler}!Handle\+Lowest\+Random\+Velocity\+Change@{Handle\+Lowest\+Random\+Velocity\+Change}}
+\index{Handle\+Lowest\+Random\+Velocity\+Change@{Handle\+Lowest\+Random\+Velocity\+Change}!A\+T\+I\+\_\+\+Velocity\+Handler@{A\+T\+I\+\_\+\+Velocity\+Handler}}
+\subsubsection{\texorpdfstring{Handle\+Lowest\+Random\+Velocity\+Change()}{HandleLowestRandomVelocityChange()}}
+{\footnotesize\ttfamily override void A\+T\+I\+\_\+\+Velocity\+Handler.\+Handle\+Lowest\+Random\+Velocity\+Change (\begin{DoxyParamCaption}\item[{bool}]{a\+End\+Drag }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{class_a_t_i_1_1_slider_handler_a710b59b6e8bf059af76477a930572d9e}{A\+T\+I.\+Slider\+Handler}.
+
+
+
+Definition at line 139 of file A\+T\+I\+\_\+\+Velocity\+Handler.\+cs.
+
+
+
+References Randomize\+Key\+Velocities().
+
+
+\begin{DoxyCode}
+140     \{
+141         \textcolor{comment}{// Set the text and update the highest random velocity slider's min value.}
+142         \hyperlink{class_a_t_i___velocity_handler_aba4ceb157ad404a47cedb3583e81d194}{mLowestRandomSlider}.transform.GetChild( 4 ).GetComponent<Text>().text = \textcolor{stringliteral}{"Lowest:
+       "} + \hyperlink{class_a_t_i___velocity_handler_aba4ceb157ad404a47cedb3583e81d194}{mLowestRandomSlider}.value.ToString();
+143         \hyperlink{class_a_t_i___velocity_handler_aec243511d869243292e215a24e87f192}{mHighestRandomSlider}.minValue = \hyperlink{class_a_t_i___velocity_handler_aba4ceb157ad404a47cedb3583e81d194}{mLowestRandomSlider}.value;
+144 
+145         \textcolor{comment}{// If the value is set, then randomize the velocities for each key.}
+146         \textcolor{keywordflow}{if}( aEndDrag && \hyperlink{class_a_t_i___velocity_handler_aa6f4ac16382d37eb2c66fb358ac87301}{mRandomize} )
+147         \{
+148             \hyperlink{class_a_t_i___velocity_handler_aa1a10281dafc6666677e4255ad663dde}{RandomizeKeyVelocities}();
+149         \}
+150     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i___velocity_handler_a5b00635239f4f10aaefc5898a8f1b975}\label{class_a_t_i___velocity_handler_a5b00635239f4f10aaefc5898a8f1b975}} 
+\index{A\+T\+I\+\_\+\+Velocity\+Handler@{A\+T\+I\+\_\+\+Velocity\+Handler}!Handle\+Musical\+Typing\+Key\+Velocity\+Change@{Handle\+Musical\+Typing\+Key\+Velocity\+Change}}
+\index{Handle\+Musical\+Typing\+Key\+Velocity\+Change@{Handle\+Musical\+Typing\+Key\+Velocity\+Change}!A\+T\+I\+\_\+\+Velocity\+Handler@{A\+T\+I\+\_\+\+Velocity\+Handler}}
+\subsubsection{\texorpdfstring{Handle\+Musical\+Typing\+Key\+Velocity\+Change()}{HandleMusicalTypingKeyVelocityChange()}}
+{\footnotesize\ttfamily override void A\+T\+I\+\_\+\+Velocity\+Handler.\+Handle\+Musical\+Typing\+Key\+Velocity\+Change (\begin{DoxyParamCaption}\item[{int}]{a\+Slider\+Index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{class_a_t_i_1_1_slider_handler_ac82219a0a69f17025d9484f9e45cca80}{A\+T\+I.\+Slider\+Handler}.
+
+
+
+Definition at line 154 of file A\+T\+I\+\_\+\+Velocity\+Handler.\+cs.
+
+
+
+References Virtual\+Instrument\+Manager.\+Get\+Musical\+Typing\+Handler(), A\+T\+I.\+Slider\+Handler.\+m\+Sliders, A\+T\+I.\+Slider\+Handler.\+m\+V\+IM, and Musical\+Typing\+Handler.\+Set\+Key\+Velocity().
+
+
+\begin{DoxyCode}
+155     \{
+156         \textcolor{comment}{// Change the text and pass the value to the virtual instrument manager.}
+157         \hyperlink{class_a_t_i___velocity_handler_ad8c048670a748ece6b2f8bbf287e7674}{mText}[aSliderIndex].text = \hyperlink{class_a_t_i___velocity_handler_a95a1abb133981ac42dce424f0f94d562}{keys}[aSliderIndex] + \hyperlink{class_a_t_i_1_1_slider_handler_a038a487fbd701cb786e77c210830be76}{mSliders}[aSliderIndex].value.
+      ToString();
+158         \hyperlink{class_a_t_i_1_1_slider_handler_a5d19b4fb92b71c25a667defdda60213f}{mVIM}.\hyperlink{group___v_i_m_pub_func_gae6701458a23a3f14db90501f871d4d0d}{GetMusicalTypingHandler}().\hyperlink{group___mus_typ_pub_func_ga02f86b46bb63dc751b669035b7aa5ce0}{SetKeyVelocity}( 
+      aSliderIndex, (\textcolor{keywordtype}{int})\hyperlink{class_a_t_i_1_1_slider_handler_a038a487fbd701cb786e77c210830be76}{mSliders}[aSliderIndex].value );
+159     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i___velocity_handler_a1091248299687641294f363aa32de0f0}\label{class_a_t_i___velocity_handler_a1091248299687641294f363aa32de0f0}} 
+\index{A\+T\+I\+\_\+\+Velocity\+Handler@{A\+T\+I\+\_\+\+Velocity\+Handler}!On\+Randomize\+Velocity\+Switch@{On\+Randomize\+Velocity\+Switch}}
+\index{On\+Randomize\+Velocity\+Switch@{On\+Randomize\+Velocity\+Switch}!A\+T\+I\+\_\+\+Velocity\+Handler@{A\+T\+I\+\_\+\+Velocity\+Handler}}
+\subsubsection{\texorpdfstring{On\+Randomize\+Velocity\+Switch()}{OnRandomizeVelocitySwitch()}}
+{\footnotesize\ttfamily void A\+T\+I\+\_\+\+Velocity\+Handler.\+On\+Randomize\+Velocity\+Switch (\begin{DoxyParamCaption}\item[{bool}]{a\+Switch }\end{DoxyParamCaption})}
+
+
+
+Definition at line 163 of file A\+T\+I\+\_\+\+Velocity\+Handler.\+cs.
+
+
+
+References Randomize\+Key\+Velocities().
+
+
+
+Referenced by Start().
+
+
+\begin{DoxyCode}
+164     \{
+165         \textcolor{keywordflow}{if}( aSwitch )
+166         \{
+167             \textcolor{comment}{// If the switch has been turned on, update the image and text and randomize the musical typing}
+168             \textcolor{comment}{// key velocities.}
+169             \hyperlink{class_a_t_i___velocity_handler_aa6f4ac16382d37eb2c66fb358ac87301}{mRandomize} = \textcolor{keyword}{true};
+170             \hyperlink{class_a_t_i___velocity_handler_a6ca709a10f8b2eb0f1141c589e7f9742}{mRandomToggle}.transform.GetChild( 1 ).GetComponent<Image>().sprite = 
+      \hyperlink{class_a_t_i___velocity_handler_a7e2452c41bbcdd313afb2e53fac4a975}{mSprites}[1];
+171             \hyperlink{class_a_t_i___velocity_handler_a6ca709a10f8b2eb0f1141c589e7f9742}{mRandomToggle}.transform.GetChild( 2 ).GetComponent<Text>().text = \textcolor{stringliteral}{"Randomize
+       Velocities:\(\backslash\)nOn"};
+172             \hyperlink{class_a_t_i___velocity_handler_aa1a10281dafc6666677e4255ad663dde}{RandomizeKeyVelocities}();
+173         \}
+174         \textcolor{keywordflow}{else}
+175         \{
+176             \textcolor{comment}{// If the switch has been turned off, then update the image and the text.}
+177             \hyperlink{class_a_t_i___velocity_handler_a6ca709a10f8b2eb0f1141c589e7f9742}{mRandomToggle}.transform.GetChild( 1 ).GetComponent<Image>().sprite = 
+      \hyperlink{class_a_t_i___velocity_handler_a7e2452c41bbcdd313afb2e53fac4a975}{mSprites}[0];
+178             \hyperlink{class_a_t_i___velocity_handler_a6ca709a10f8b2eb0f1141c589e7f9742}{mRandomToggle}.transform.GetChild( 2 ).GetComponent<Text>().text = \textcolor{stringliteral}{"Randomize
+       Velocities:\(\backslash\)nOff"};
+179             \hyperlink{class_a_t_i___velocity_handler_aa6f4ac16382d37eb2c66fb358ac87301}{mRandomize} = \textcolor{keyword}{false};
+180         \}
+181     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i___velocity_handler_aa1a10281dafc6666677e4255ad663dde}\label{class_a_t_i___velocity_handler_aa1a10281dafc6666677e4255ad663dde}} 
+\index{A\+T\+I\+\_\+\+Velocity\+Handler@{A\+T\+I\+\_\+\+Velocity\+Handler}!Randomize\+Key\+Velocities@{Randomize\+Key\+Velocities}}
+\index{Randomize\+Key\+Velocities@{Randomize\+Key\+Velocities}!A\+T\+I\+\_\+\+Velocity\+Handler@{A\+T\+I\+\_\+\+Velocity\+Handler}}
+\subsubsection{\texorpdfstring{Randomize\+Key\+Velocities()}{RandomizeKeyVelocities()}}
+{\footnotesize\ttfamily void A\+T\+I\+\_\+\+Velocity\+Handler.\+Randomize\+Key\+Velocities (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 111 of file A\+T\+I\+\_\+\+Velocity\+Handler.\+cs.
+
+
+
+References Virtual\+Instrument\+Manager.\+Get\+Musical\+Typing\+Handler(), m\+Randomize, A\+T\+I.\+Slider\+Handler.\+m\+V\+IM, Musical\+Typing\+Handler.\+Randomize\+Velocities, and Musical\+Typing\+Handler.\+Set\+Random\+Velocity\+Range().
+
+
+
+Referenced by Handle\+Highest\+Random\+Velocity\+Change(), Handle\+Lowest\+Random\+Velocity\+Change(), and On\+Randomize\+Velocity\+Switch().
+
+
+\begin{DoxyCode}
+112     \{
+113         \hyperlink{class_a_t_i___velocity_handler_aa6f4ac16382d37eb2c66fb358ac87301}{mRandomize} = \hyperlink{class_a_t_i___velocity_handler_a6ca709a10f8b2eb0f1141c589e7f9742}{mRandomToggle}.enabled;
+114         \hyperlink{class_a_t_i_1_1_slider_handler_a5d19b4fb92b71c25a667defdda60213f}{mVIM}.\hyperlink{group___v_i_m_pub_func_gae6701458a23a3f14db90501f871d4d0d}{GetMusicalTypingHandler}().
+      \hyperlink{group___mus_typ_pub_var_gad09f6f673034d9cd95f699838c9518d5}{RandomizeVelocities} = \hyperlink{class_a_t_i___velocity_handler_aa6f4ac16382d37eb2c66fb358ac87301}{mRandomize};
+115         \hyperlink{class_a_t_i_1_1_slider_handler_a5d19b4fb92b71c25a667defdda60213f}{mVIM}.\hyperlink{group___v_i_m_pub_func_gae6701458a23a3f14db90501f871d4d0d}{GetMusicalTypingHandler}().
+      \hyperlink{group___mus_typ_pub_func_gaf6ba35e3a081cff62fa963ed32d218c8}{SetRandomVelocityRange}( (\textcolor{keywordtype}{int})\hyperlink{class_a_t_i___velocity_handler_aba4ceb157ad404a47cedb3583e81d194}{mLowestRandomSlider}.value, (\textcolor{keywordtype}{int})
+      \hyperlink{class_a_t_i___velocity_handler_aec243511d869243292e215a24e87f192}{mHighestRandomSlider}.value );
+116     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i___velocity_handler_a76342d6f2b240a3007b20b9539e4c7a6}\label{class_a_t_i___velocity_handler_a76342d6f2b240a3007b20b9539e4c7a6}} 
+\index{A\+T\+I\+\_\+\+Velocity\+Handler@{A\+T\+I\+\_\+\+Velocity\+Handler}!Start@{Start}}
+\index{Start@{Start}!A\+T\+I\+\_\+\+Velocity\+Handler@{A\+T\+I\+\_\+\+Velocity\+Handler}}
+\subsubsection{\texorpdfstring{Start()}{Start()}}
+{\footnotesize\ttfamily new void A\+T\+I\+\_\+\+Velocity\+Handler.\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 46 of file A\+T\+I\+\_\+\+Velocity\+Handler.\+cs.
+
+
+
+References m\+Highest\+Random\+Slider\+Trigger, m\+Lowest\+Random\+Slider\+Trigger, A\+T\+I.\+Slider\+Handler.\+m\+Num\+Sliders, A\+T\+I.\+Slider\+Handler.\+m\+Sliders, A\+T\+I.\+Slider\+Handler.\+m\+Slider\+Triggers, On\+Randomize\+Velocity\+Switch(), A\+T\+I.\+Slider\+Trigger.\+Set\+Handler(), and A\+T\+I.\+Slider\+Trigger.\+Set\+Type().
+
+
+\begin{DoxyCode}
+47     \{
+48 
+49 \textcolor{preprocessor}{#if DEBUG && DEBUG\_MUSICAL\_TYPING}
+50 
+51         \textcolor{comment}{// Call the ATI.SliderHandler start function.}
+52         base.Start();
+53 
+54         \textcolor{comment}{// Set the images for the randomize musical typing velocities switch.}
+55         \hyperlink{class_a_t_i___velocity_handler_a7e2452c41bbcdd313afb2e53fac4a975}{mSprites} = \textcolor{keyword}{new} Sprite[2];
+56         \hyperlink{class_a_t_i___velocity_handler_a7e2452c41bbcdd313afb2e53fac4a975}{mSprites}[0] = Resources.Load<Sprite>( \textcolor{stringliteral}{"Audio/Images/off\_button"} );
+57         \hyperlink{class_a_t_i___velocity_handler_a7e2452c41bbcdd313afb2e53fac4a975}{mSprites}[1] = Resources.Load<Sprite>( \textcolor{stringliteral}{"Audio/Images/on\_button"} );
+58 
+59         \textcolor{comment}{// Set the toggle switch for randomizing musical typing velocities}
+60         \hyperlink{class_a_t_i___velocity_handler_a6ca709a10f8b2eb0f1141c589e7f9742}{mRandomToggle} = gameObject.transform.GetChild( 0 ).GetComponent<Toggle>();
+61         mRandomToggle.onValueChanged.AddListener( \hyperlink{class_a_t_i___velocity_handler_a1091248299687641294f363aa32de0f0}{OnRandomizeVelocitySwitch} );
+62 
+63         \textcolor{comment}{// Set the lowest random value slider.}
+64         \hyperlink{class_a_t_i___velocity_handler_aba4ceb157ad404a47cedb3583e81d194}{mLowestRandomSlider} = gameObject.transform.GetChild( 1 ).GetComponent<Slider>();
+65         \hyperlink{class_a_t_i___velocity_handler_a13d55e2f5670e3f1eb78645a75aa1bce}{mLowestRandomSliderTrigger} = 
+      \hyperlink{class_a_t_i___velocity_handler_aba4ceb157ad404a47cedb3583e81d194}{mLowestRandomSlider}.gameObject.AddComponent<\hyperlink{class_a_t_i}{ATI}.
+      \hyperlink{class_a_t_i_1_1_slider_trigger}{SliderTrigger}>();
+66         mLowestRandomSliderTrigger.\hyperlink{class_a_t_i_1_1_slider_trigger_a258f79d013266d0c82a5382525adcdef}{SetHandler}( \textcolor{keyword}{this} );
+67         mLowestRandomSliderTrigger.SetType( \hyperlink{class_a_t_i}{ATI}.\hyperlink{class_a_t_i_ac4c6056a99cbd16ff0d292d33b038b9b}{SliderType}.LowestRandomKeyVelocity );
+68 
+69         \textcolor{comment}{// Set the highest random value slider.}
+70         \hyperlink{class_a_t_i___velocity_handler_aec243511d869243292e215a24e87f192}{mHighestRandomSlider} = gameObject.transform.GetChild( 2 ).GetComponent<Slider>(
+      );
+71         \hyperlink{class_a_t_i___velocity_handler_aae4118883cf2e5489ef483f220e48e45}{mHighestRandomSliderTrigger} = 
+      \hyperlink{class_a_t_i___velocity_handler_aec243511d869243292e215a24e87f192}{mHighestRandomSlider}.gameObject.AddComponent<\hyperlink{class_a_t_i}{ATI}.
+      \hyperlink{class_a_t_i_1_1_slider_trigger}{SliderTrigger}>();
+72         mHighestRandomSliderTrigger.\hyperlink{class_a_t_i_1_1_slider_trigger_a258f79d013266d0c82a5382525adcdef}{SetHandler}( \textcolor{keyword}{this} );
+73         mHighestRandomSliderTrigger.SetType( \hyperlink{class_a_t_i}{ATI}.\hyperlink{class_a_t_i_ac4c6056a99cbd16ff0d292d33b038b9b}{SliderType}.HighestRandomKeyVelocity );
+74 
+75         \textcolor{comment}{// Initialize the sliders, their text, and their triggers.}
+76         \hyperlink{class_a_t_i_1_1_slider_handler_ac762fad2fb523da79188668dde4488ec}{mNumSliders} = 19;
+77         \hyperlink{class_a_t_i_1_1_slider_handler_a038a487fbd701cb786e77c210830be76}{mSliders} = \textcolor{keyword}{new} Slider[\hyperlink{class_a_t_i_1_1_slider_handler_ac762fad2fb523da79188668dde4488ec}{mNumSliders}];
+78         \hyperlink{class_a_t_i___velocity_handler_ad8c048670a748ece6b2f8bbf287e7674}{mText} = \textcolor{keyword}{new} Text[\hyperlink{class_a_t_i_1_1_slider_handler_ac762fad2fb523da79188668dde4488ec}{mNumSliders}];
+79         \hyperlink{class_a_t_i_1_1_slider_handler_a20208bc52a906cf87aa9df8e5fb2c636}{mSliderTriggers} = \textcolor{keyword}{new} \hyperlink{class_a_t_i}{ATI}.\hyperlink{class_a_t_i_1_1_slider_trigger}{SliderTrigger}[
+      \hyperlink{class_a_t_i_1_1_slider_handler_ac762fad2fb523da79188668dde4488ec}{mNumSliders}];
+80 
+81         \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < \hyperlink{class_a_t_i_1_1_slider_handler_ac762fad2fb523da79188668dde4488ec}{mNumSliders}; i++ )
+82         \{
+83             \textcolor{comment}{// For each slider, put it in the array and add the slider trigger.}
+84             \hyperlink{class_a_t_i_1_1_slider_handler_a038a487fbd701cb786e77c210830be76}{mSliders}[i] = gameObject.transform.GetChild( i + 3 ).GetComponent<Slider>();
+85             \hyperlink{class_a_t_i_1_1_slider_handler_a20208bc52a906cf87aa9df8e5fb2c636}{mSliderTriggers}[i] = \hyperlink{class_a_t_i_1_1_slider_handler_a038a487fbd701cb786e77c210830be76}{mSliders}[i].gameObject.AddComponent<
+      \hyperlink{class_a_t_i}{ATI}.\hyperlink{class_a_t_i_1_1_slider_trigger}{SliderTrigger}>();
+86             mSliderTriggers[i].\hyperlink{class_a_t_i_1_1_slider_trigger_a90347192aede3444d468ed2ab0d97f6c}{SetType}( \hyperlink{class_a_t_i}{ATI}.\hyperlink{class_a_t_i_ac4c6056a99cbd16ff0d292d33b038b9b}{SliderType}.MusicalTypingKeyVelocity );
+87             mSliderTriggers[i].SetHandler( \textcolor{keyword}{this} );
+88 
+89             \textcolor{comment}{// For each text, put it in the array and set its value}
+90             \hyperlink{class_a_t_i___velocity_handler_ad8c048670a748ece6b2f8bbf287e7674}{mText}[i] = \hyperlink{class_a_t_i_1_1_slider_handler_a038a487fbd701cb786e77c210830be76}{mSliders}[i].gameObject.transform.GetChild( 4 ).GetComponent<Text>();
+91             \hyperlink{class_a_t_i___velocity_handler_ad8c048670a748ece6b2f8bbf287e7674}{mText}[i].text = \hyperlink{class_a_t_i___velocity_handler_a95a1abb133981ac42dce424f0f94d562}{keys}[i] + \textcolor{stringliteral}{"100"};
+92         \}
+93 \textcolor{preprocessor}{#endif}
+94 
+95     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i___velocity_handler_aa5766a74ea02f8e1d789a3863ce5867b}\label{class_a_t_i___velocity_handler_aa5766a74ea02f8e1d789a3863ce5867b}} 
+\index{A\+T\+I\+\_\+\+Velocity\+Handler@{A\+T\+I\+\_\+\+Velocity\+Handler}!Update@{Update}}
+\index{Update@{Update}!A\+T\+I\+\_\+\+Velocity\+Handler@{A\+T\+I\+\_\+\+Velocity\+Handler}}
+\subsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily void A\+T\+I\+\_\+\+Velocity\+Handler.\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 99 of file A\+T\+I\+\_\+\+Velocity\+Handler.\+cs.
+
+
+\begin{DoxyCode}
+100     \{
+101 
+102     \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_a_t_i___velocity_handler_a95a1abb133981ac42dce424f0f94d562}\label{class_a_t_i___velocity_handler_a95a1abb133981ac42dce424f0f94d562}} 
+\index{A\+T\+I\+\_\+\+Velocity\+Handler@{A\+T\+I\+\_\+\+Velocity\+Handler}!keys@{keys}}
+\index{keys@{keys}!A\+T\+I\+\_\+\+Velocity\+Handler@{A\+T\+I\+\_\+\+Velocity\+Handler}}
+\subsubsection{\texorpdfstring{keys}{keys}}
+{\footnotesize\ttfamily string \mbox{[}$\,$\mbox{]} A\+T\+I\+\_\+\+Velocity\+Handler.\+keys\hspace{0.3cm}{\ttfamily [private]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+=
+        \{ \textcolor{stringliteral}{"a: "}, \textcolor{stringliteral}{"w: "}, \textcolor{stringliteral}{"s: "}, \textcolor{stringliteral}{"e: "}, \textcolor{stringliteral}{"d: "}, \textcolor{stringliteral}{"f: "}, \textcolor{stringliteral}{"t: "}, \textcolor{stringliteral}{"g: "}, \textcolor{stringliteral}{"y: "}, \textcolor{stringliteral}{"h: "}, \textcolor{stringliteral}{"u: "}, \textcolor{stringliteral}{"j: "}, \textcolor{stringliteral}{"k: "}, \textcolor{stringliteral}{"o: "},
+       \textcolor{stringliteral}{"l: "}, \textcolor{stringliteral}{"p: "}, \textcolor{stringliteral}{";: "}, \textcolor{stringliteral}{"': "}, \textcolor{stringliteral}{"]: "} \}
+\end{DoxyCode}
+
+
+Definition at line 24 of file A\+T\+I\+\_\+\+Velocity\+Handler.\+cs.
+
+\mbox{\Hypertarget{class_a_t_i___velocity_handler_aec243511d869243292e215a24e87f192}\label{class_a_t_i___velocity_handler_aec243511d869243292e215a24e87f192}} 
+\index{A\+T\+I\+\_\+\+Velocity\+Handler@{A\+T\+I\+\_\+\+Velocity\+Handler}!m\+Highest\+Random\+Slider@{m\+Highest\+Random\+Slider}}
+\index{m\+Highest\+Random\+Slider@{m\+Highest\+Random\+Slider}!A\+T\+I\+\_\+\+Velocity\+Handler@{A\+T\+I\+\_\+\+Velocity\+Handler}}
+\subsubsection{\texorpdfstring{m\+Highest\+Random\+Slider}{mHighestRandomSlider}}
+{\footnotesize\ttfamily Slider A\+T\+I\+\_\+\+Velocity\+Handler.\+m\+Highest\+Random\+Slider = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 34 of file A\+T\+I\+\_\+\+Velocity\+Handler.\+cs.
+
+\mbox{\Hypertarget{class_a_t_i___velocity_handler_aae4118883cf2e5489ef483f220e48e45}\label{class_a_t_i___velocity_handler_aae4118883cf2e5489ef483f220e48e45}} 
+\index{A\+T\+I\+\_\+\+Velocity\+Handler@{A\+T\+I\+\_\+\+Velocity\+Handler}!m\+Highest\+Random\+Slider\+Trigger@{m\+Highest\+Random\+Slider\+Trigger}}
+\index{m\+Highest\+Random\+Slider\+Trigger@{m\+Highest\+Random\+Slider\+Trigger}!A\+T\+I\+\_\+\+Velocity\+Handler@{A\+T\+I\+\_\+\+Velocity\+Handler}}
+\subsubsection{\texorpdfstring{m\+Highest\+Random\+Slider\+Trigger}{mHighestRandomSliderTrigger}}
+{\footnotesize\ttfamily \hyperlink{class_a_t_i_1_1_slider_trigger}{A\+T\+I.\+Slider\+Trigger} A\+T\+I\+\_\+\+Velocity\+Handler.\+m\+Highest\+Random\+Slider\+Trigger = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 30 of file A\+T\+I\+\_\+\+Velocity\+Handler.\+cs.
+
+
+
+Referenced by Start().
+
+\mbox{\Hypertarget{class_a_t_i___velocity_handler_aba4ceb157ad404a47cedb3583e81d194}\label{class_a_t_i___velocity_handler_aba4ceb157ad404a47cedb3583e81d194}} 
+\index{A\+T\+I\+\_\+\+Velocity\+Handler@{A\+T\+I\+\_\+\+Velocity\+Handler}!m\+Lowest\+Random\+Slider@{m\+Lowest\+Random\+Slider}}
+\index{m\+Lowest\+Random\+Slider@{m\+Lowest\+Random\+Slider}!A\+T\+I\+\_\+\+Velocity\+Handler@{A\+T\+I\+\_\+\+Velocity\+Handler}}
+\subsubsection{\texorpdfstring{m\+Lowest\+Random\+Slider}{mLowestRandomSlider}}
+{\footnotesize\ttfamily Slider A\+T\+I\+\_\+\+Velocity\+Handler.\+m\+Lowest\+Random\+Slider = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 33 of file A\+T\+I\+\_\+\+Velocity\+Handler.\+cs.
+
+\mbox{\Hypertarget{class_a_t_i___velocity_handler_a13d55e2f5670e3f1eb78645a75aa1bce}\label{class_a_t_i___velocity_handler_a13d55e2f5670e3f1eb78645a75aa1bce}} 
+\index{A\+T\+I\+\_\+\+Velocity\+Handler@{A\+T\+I\+\_\+\+Velocity\+Handler}!m\+Lowest\+Random\+Slider\+Trigger@{m\+Lowest\+Random\+Slider\+Trigger}}
+\index{m\+Lowest\+Random\+Slider\+Trigger@{m\+Lowest\+Random\+Slider\+Trigger}!A\+T\+I\+\_\+\+Velocity\+Handler@{A\+T\+I\+\_\+\+Velocity\+Handler}}
+\subsubsection{\texorpdfstring{m\+Lowest\+Random\+Slider\+Trigger}{mLowestRandomSliderTrigger}}
+{\footnotesize\ttfamily \hyperlink{class_a_t_i_1_1_slider_trigger}{A\+T\+I.\+Slider\+Trigger} A\+T\+I\+\_\+\+Velocity\+Handler.\+m\+Lowest\+Random\+Slider\+Trigger = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 31 of file A\+T\+I\+\_\+\+Velocity\+Handler.\+cs.
+
+
+
+Referenced by Start().
+
+\mbox{\Hypertarget{class_a_t_i___velocity_handler_aa6f4ac16382d37eb2c66fb358ac87301}\label{class_a_t_i___velocity_handler_aa6f4ac16382d37eb2c66fb358ac87301}} 
+\index{A\+T\+I\+\_\+\+Velocity\+Handler@{A\+T\+I\+\_\+\+Velocity\+Handler}!m\+Randomize@{m\+Randomize}}
+\index{m\+Randomize@{m\+Randomize}!A\+T\+I\+\_\+\+Velocity\+Handler@{A\+T\+I\+\_\+\+Velocity\+Handler}}
+\subsubsection{\texorpdfstring{m\+Randomize}{mRandomize}}
+{\footnotesize\ttfamily bool A\+T\+I\+\_\+\+Velocity\+Handler.\+m\+Randomize = false\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 32 of file A\+T\+I\+\_\+\+Velocity\+Handler.\+cs.
+
+
+
+Referenced by Randomize\+Key\+Velocities().
+
+\mbox{\Hypertarget{class_a_t_i___velocity_handler_a6ca709a10f8b2eb0f1141c589e7f9742}\label{class_a_t_i___velocity_handler_a6ca709a10f8b2eb0f1141c589e7f9742}} 
+\index{A\+T\+I\+\_\+\+Velocity\+Handler@{A\+T\+I\+\_\+\+Velocity\+Handler}!m\+Random\+Toggle@{m\+Random\+Toggle}}
+\index{m\+Random\+Toggle@{m\+Random\+Toggle}!A\+T\+I\+\_\+\+Velocity\+Handler@{A\+T\+I\+\_\+\+Velocity\+Handler}}
+\subsubsection{\texorpdfstring{m\+Random\+Toggle}{mRandomToggle}}
+{\footnotesize\ttfamily Toggle A\+T\+I\+\_\+\+Velocity\+Handler.\+m\+Random\+Toggle = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 37 of file A\+T\+I\+\_\+\+Velocity\+Handler.\+cs.
+
+\mbox{\Hypertarget{class_a_t_i___velocity_handler_a7e2452c41bbcdd313afb2e53fac4a975}\label{class_a_t_i___velocity_handler_a7e2452c41bbcdd313afb2e53fac4a975}} 
+\index{A\+T\+I\+\_\+\+Velocity\+Handler@{A\+T\+I\+\_\+\+Velocity\+Handler}!m\+Sprites@{m\+Sprites}}
+\index{m\+Sprites@{m\+Sprites}!A\+T\+I\+\_\+\+Velocity\+Handler@{A\+T\+I\+\_\+\+Velocity\+Handler}}
+\subsubsection{\texorpdfstring{m\+Sprites}{mSprites}}
+{\footnotesize\ttfamily Sprite \mbox{[}$\,$\mbox{]} A\+T\+I\+\_\+\+Velocity\+Handler.\+m\+Sprites = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 35 of file A\+T\+I\+\_\+\+Velocity\+Handler.\+cs.
+
+\mbox{\Hypertarget{class_a_t_i___velocity_handler_ad8c048670a748ece6b2f8bbf287e7674}\label{class_a_t_i___velocity_handler_ad8c048670a748ece6b2f8bbf287e7674}} 
+\index{A\+T\+I\+\_\+\+Velocity\+Handler@{A\+T\+I\+\_\+\+Velocity\+Handler}!m\+Text@{m\+Text}}
+\index{m\+Text@{m\+Text}!A\+T\+I\+\_\+\+Velocity\+Handler@{A\+T\+I\+\_\+\+Velocity\+Handler}}
+\subsubsection{\texorpdfstring{m\+Text}{mText}}
+{\footnotesize\ttfamily Text \mbox{[}$\,$\mbox{]} A\+T\+I\+\_\+\+Velocity\+Handler.\+m\+Text = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 36 of file A\+T\+I\+\_\+\+Velocity\+Handler.\+cs.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Documents/\+School Documents/2017\+Spring/\+E\+E\+C\+S542/\+V\+R\+Piano\+Project/\+Assets/\+Scripts/\+Audio/\+Testing/\hyperlink{_a_t_i___velocity_handler_8cs}{A\+T\+I\+\_\+\+Velocity\+Handler.\+cs}\end{DoxyCompactItemize}

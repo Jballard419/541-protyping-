@@ -1,0 +1,790 @@
+\hypertarget{group___doc_s_c_m}{}\section{Song Creation Manager}
+\label{group___doc_s_c_m}\index{Song Creation Manager@{Song Creation Manager}}
+
+
+A script that manages all of the \hyperlink{group___doc_s_c}{Song Creation Interface}.  
+
+
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___s_c_m_const}{Constants}
+\item 
+\hyperlink{group___s_c_m_handlers}{Event Handlers}
+\item 
+\hyperlink{group___s_c_m_nest_class}{Nested Classes}
+\item 
+\hyperlink{group___s_c_m_priv_var}{Private Variables}
+\item 
+\hyperlink{group___s_c_m_unity}{Unity Functions}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A script that manages all of the \hyperlink{group___doc_s_c}{Song Creation Interface}. 
+
+\hypertarget{group___doc_s_c_m_DocSCMInfo}{}\subsection{Information}\label{group___doc_s_c_m_DocSCMInfo}
+This class is the central hub for all of the \hyperlink{group___doc_s_c}{Song Creation Interface}. It connects each modules within the interface to each other and uses them to create a \hyperlink{class_song}{Song}.\hypertarget{group___doc_s_c_m_DocSCMConst}{}\subsection{Constants}\label{group___doc_s_c_m_DocSCMConst}
+These are paths to the prefabs that are used in the \hyperlink{group___doc_s_c}{Song Creation Interface}. ~\newline
+ \hyperlink{group___s_c_m_const}{More details}.\hypertarget{group___doc_s_c_m_DocSCMPrivVar}{}\subsection{Private Variables}\label{group___doc_s_c_m_DocSCMPrivVar}
+These are variables that are used internally by the \hyperlink{class_song_creation_manager}{Song\+Creation\+Manager} ~\newline
+ \hyperlink{group___s_c_m_priv_var}{More details}.\hypertarget{group___doc_s_c_m_DocSCMUnity}{}\subsection{Unity Functions}\label{group___doc_s_c_m_DocSCMUnity}
+These are functions called automatically by Unity. ~\newline
+ \hyperlink{group___s_c_m_unity}{More details}.\hypertarget{group___doc_s_c_m_DocSCMHandlers}{}\subsection{Event Handlers}\label{group___doc_s_c_m_DocSCMHandlers}
+These are functions called by the \hyperlink{class_song_creation_manager}{Song\+Creation\+Manager} to handle events. ~\newline
+ \hyperlink{group___s_c_m_handlers}{More details}.\hypertarget{group___doc_s_c_m_DocSCMCode}{}\subsection{Code}\label{group___doc_s_c_m_DocSCMCode}
+
+\begin{DoxyCodeInclude}
+1 \textcolor{preprocessor}{#if SONG\_CREATION\_ENABLED}
+2 
+3 \textcolor{keyword}{using} \hyperlink{namespace_system}{System}.Collections;
+4 \textcolor{keyword}{using} \hyperlink{namespace_system}{System}.Collections.Generic;
+5 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine};
+6 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine}.Assertions;
+7 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine}.EventSystems;
+8 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine}.SceneManagement;
+9 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine}.UI;
+10 \textcolor{comment}{}
+11 \textcolor{comment}{/**}
+12 \textcolor{comment}{ * @class SongCreationManager}
+13 \textcolor{comment}{ * @brief A script that manages all of the @link DocSC Song Creation Interface@endlink.}
+14 \textcolor{comment}{ * }
+15 \textcolor{comment}{ * This class is the central hub for all of the @link DocSC Song Creation Interface@endlink.}
+16 \textcolor{comment}{ * It connects each modules within the interface to each other and uses them to }
+17 \textcolor{comment}{ * create a Song.}
+18 \textcolor{comment}{*/}
+19 \textcolor{keyword}{public} \textcolor{keyword}{class }\hyperlink{class_song_creation_manager}{SongCreationManager} : MonoBehaviour
+20 \{
+21     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+22 \textcolor{comment}{    * @defgroup SCMConst Constants}
+23 \textcolor{comment}{    * @ingroup DocSCM}
+24 \textcolor{comment}{    * These are paths to the prefabs that are used in the @link DocSC Song Creation Interface@endlink.}
+25 \textcolor{comment}{    * @\{}
+26 \textcolor{comment}{    *****************************************************************************/}
+27     \textcolor{keyword}{private} \textcolor{keywordtype}{string} LOAD\_SONG\_DIALOG\_PATH = \textcolor{stringliteral}{"Audio/Prefabs/SongCreation/LoadSongDialogPrefab"}; \textcolor{comment}{//!< The path
+       to load the @link DocSC\_LSD Load Song Dialog@endlink's prefab.}
+28 \textcolor{comment}{}
+29     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+30 \textcolor{comment}{    * @\}}
+31 \textcolor{comment}{    * @defgroup SCMNestClass Nested Classes}
+32 \textcolor{comment}{    * @ingroup DocSCM}
+33 \textcolor{comment}{    * These are classes that are nested inside of the SongCreationManager. They are used only within the
+       @link DocSC Song Creation Interface@endlink.}
+34 \textcolor{comment}{    * @\{}
+35 \textcolor{comment}{    *****************************************************************************/}
+36     
+37     \textcolor{comment}{//---------------------------------------------------------------------------- }
+38     \textcolor{comment}{// Class that handles selecting a note length/offset.}
+39     \textcolor{comment}{//----------------------------------------------------------------------------}
+40     \textcolor{keyword}{private} \textcolor{keyword}{class }SongCreationSelectionContainer : MonoBehaviour
+41     \{
+42         \textcolor{comment}{//---------------------------------------------------------------------------- }
+43         \textcolor{comment}{// Nested class that uses this class as a handler.}
+44         \textcolor{comment}{//---------------------------------------------------------------------------- }
+45         \textcolor{keyword}{private} \textcolor{keyword}{class }SongCreationSelectionTrigger : MonoBehaviour
+46         \{
+47             \textcolor{comment}{//---------------------------------------------------------------------------- }
+48             \textcolor{comment}{// Private Variables}
+49             \textcolor{comment}{//---------------------------------------------------------------------------- }
+50             \textcolor{keyword}{private} \textcolor{keywordtype}{bool} mSelected = \textcolor{keyword}{false}; \textcolor{comment}{// Whether or not this object is selected.}
+51             \textcolor{keyword}{private} SongCreationSelectionContainer mContainer = null; \textcolor{comment}{// The parent container.}
+52             \textcolor{keyword}{private} Toggle mToggle = null; \textcolor{comment}{// The associated toggle switch.}
+53 
+54             \textcolor{comment}{//---------------------------------------------------------------------------- }
+55             \textcolor{comment}{// Unity Functions}
+56             \textcolor{comment}{//---------------------------------------------------------------------------- }
+57             \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{group___s_c_m_nest_class_ae7264acac3310f5db50df38467734c06}{Awake}()
+58             \{
+59                 \textcolor{comment}{// Get the toggle and set its listener}
+60                 mToggle = gameObject.GetComponent<Toggle>();
+61                 mToggle.onValueChanged.AddListener( \hyperlink{group___s_c_m_nest_class_a6477d6c5056af7998063e90e282b67ae}{OnSelected} );
+62             \}
+63 
+64             \textcolor{comment}{//---------------------------------------------------------------------------- }
+65             \textcolor{comment}{// Public Functions}
+66             \textcolor{comment}{//---------------------------------------------------------------------------- }
+67 
+68             \textcolor{comment}{// Sets the parent container}
+69             \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___s_c_m_nest_class_a29f496763424eb274f35cd29330583ac}{SetContainer}( SongCreationSelectionContainer aContainer )
+70             \{
+71                 mContainer = aContainer;
+72             \}
+73 
+74             \textcolor{comment}{// Sets whether or not the object is selected.}
+75             \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___s_c_m_nest_class_a0d65cd109a370034f580d63e823725b9}{SetSelected}( \textcolor{keywordtype}{bool} aSelected )
+76             \{
+77                 mSelected = aSelected;
+78 
+79                 \textcolor{comment}{// Change the color to indicate that this is or isn't the selected object}
+80                 \hyperlink{group___s_c_m_nest_class_a26bd7667a86c8dc85429a5e4798dd30a}{ChangeColor}();
+81 
+82                 \textcolor{comment}{// Set the value of the toggle.}
+83                 mToggle.onValueChanged.RemoveListener( \hyperlink{group___s_c_m_nest_class_a6477d6c5056af7998063e90e282b67ae}{OnSelected} );
+84                 mToggle.isOn = aSelected;
+85                 mToggle.onValueChanged.AddListener( \hyperlink{group___s_c_m_nest_class_a6477d6c5056af7998063e90e282b67ae}{OnSelected} );
+86             \}
+87 
+88             \textcolor{comment}{//---------------------------------------------------------------------------- }
+89             \textcolor{comment}{// Private Functions}
+90             \textcolor{comment}{//---------------------------------------------------------------------------- }
+91 
+92             \textcolor{comment}{// Changes color to show whether or not this object is selected.}
+93             \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{group___s_c_m_nest_class_a26bd7667a86c8dc85429a5e4798dd30a}{ChangeColor}()
+94             \{
+95                 \textcolor{keywordflow}{if}( mSelected )
+96                 \{
+97                     mToggle.transform.GetChild( 0 ).GetComponent<Image>().color = \textcolor{keyword}{new} Color32( 255, 255, 25
+      5, 118 );
+98 
+99                 \}
+100                 \textcolor{keywordflow}{else}
+101                 \{
+102                     mToggle.transform.GetChild( 0 ).GetComponent<Image>().color = \textcolor{keyword}{new} Color32( 255, 255, 25
+      5, 255 );
+103                 \}
+104             \}
+105 
+106             \textcolor{comment}{//---------------------------------------------------------------------------- }
+107             \textcolor{comment}{// Event Handlers}
+108             \textcolor{comment}{//---------------------------------------------------------------------------- }
+109 
+110             \textcolor{comment}{// Handles the object being selected or unselected.}
+111             \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___s_c_m_nest_class_a6477d6c5056af7998063e90e282b67ae}{OnSelected}( \textcolor{keywordtype}{bool} aSelected )
+112             \{
+113                 \textcolor{comment}{// If this object is now selected, then change the color and send it to the handler.}
+114                 \textcolor{keywordflow}{if}( aSelected )
+115                 \{
+116                     mSelected = aSelected;
+117                     \hyperlink{group___s_c_m_nest_class_a26bd7667a86c8dc85429a5e4798dd30a}{ChangeColor}();
+118                     mContainer.HandleToggle( \textcolor{keyword}{this} );
+119                 \}
+120                 \textcolor{comment}{// This object can not be unselected by clicking on it. Set the value back to selected.}
+121                 \textcolor{keywordflow}{else}
+122                 \{
+123                     mToggle.onValueChanged.RemoveListener( \hyperlink{group___s_c_m_nest_class_a6477d6c5056af7998063e90e282b67ae}{OnSelected} );
+124                     mToggle.isOn = \textcolor{keyword}{true};
+125                     mToggle.onValueChanged.AddListener( \hyperlink{group___s_c_m_nest_class_a6477d6c5056af7998063e90e282b67ae}{OnSelected} );
+126                 \}
+127 
+128             \}
+129         \}
+130 
+131         \textcolor{comment}{//---------------------------------------------------------------------------- }
+132         \textcolor{comment}{// Private Variables}
+133         \textcolor{comment}{//----------------------------------------------------------------------------}
+134         \textcolor{keyword}{private} \textcolor{keywordtype}{int} mSelectedIndex = 0; \textcolor{comment}{// The index of the current selection}
+135         \textcolor{keyword}{private} SongCreationSelectionTrigger[] mTriggers = null; \textcolor{comment}{// The triggers that pass a selection
+       event to this handler.}
+136 
+137 
+138         \textcolor{comment}{//---------------------------------------------------------------------------- }
+139         \textcolor{comment}{// Unity Functions}
+140         \textcolor{comment}{//----------------------------------------------------------------------------}
+141         \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{group___s_c_m_nest_class_ae7264acac3310f5db50df38467734c06}{Awake}()
+142         \{
+143             \textcolor{comment}{// Set up the triggers.}
+144             mTriggers = \textcolor{keyword}{new} SongCreationSelectionTrigger[13];
+145             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < 13; i++ )
+146             \{
+147                 mTriggers[i] = gameObject.transform.GetChild( i + 1 ).gameObject.AddComponent<
+      SongCreationSelectionTrigger>();
+148                 mTriggers[i].SetContainer( \textcolor{keyword}{this} );
+149                 mTriggers[i].SetSelected( \textcolor{keyword}{false} );
+150             \}
+151 
+152             \textcolor{comment}{// Set the default selection (Quarter note).}
+153             mTriggers[12].SetSelected( \textcolor{keyword}{true} );
+154             mSelectedIndex = 12;
+155         \}
+156 
+157         \textcolor{comment}{//---------------------------------------------------------------------------- }
+158         \textcolor{comment}{// Public Functions}
+159         \textcolor{comment}{//----------------------------------------------------------------------------}
+160 
+161         \textcolor{comment}{// Gets the current selection.}
+162         \textcolor{keyword}{public} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH} \hyperlink{group___s_c_m_nest_class_ae73f2b2c2f567ecaf6ce10f85c30956a}{GetSelected}()
+163         \{
+164             \textcolor{keywordflow}{return} (\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH})\hyperlink{group___s_c_m_nest_class_a1684b25b3eb0e87f189996de22bf9792}{mSelectedIndex};
+165         \}
+166 
+167         \textcolor{comment}{// Sets the current selection.}
+168         \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___s_c_m_nest_class_a0d65cd109a370034f580d63e823725b9}{SetSelected}( \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH} aSelection )
+169         \{
+170             \textcolor{comment}{// Update the private variable.}
+171             mSelectedIndex = (int)aSelection;
+172 
+173             \textcolor{comment}{// Update the child objects.}
+174             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < 13; i++ )
+175             \{
+176                 \textcolor{keywordflow}{if}( i != mSelectedIndex )
+177                 \{
+178                     mTriggers[i].SetSelected( \textcolor{keyword}{false} );
+179                 \}
+180                 \textcolor{keywordflow}{else}
+181                 \{
+182                     mTriggers[i].SetSelected( \textcolor{keyword}{true} );
+183                 \}
+184             \}
+185         \}
+186 
+187         \textcolor{comment}{//---------------------------------------------------------------------------- }
+188         \textcolor{comment}{// Event Handlers}
+189         \textcolor{comment}{//----------------------------------------------------------------------------}
+190 
+191         \textcolor{comment}{// Handles a new selection.}
+192         \textcolor{comment}{// IN: aTrigger The trigger that is now the new selection.}
+193         \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{group___s_c_m_nest_class_a534fec983fb7e5a7f948513672aa64b4}{HandleToggle}( SongCreationSelectionTrigger aTrigger )
+194         \{
+195             \textcolor{comment}{// Set all other triggers to unselected.}
+196             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < 13; i++ )
+197             \{
+198                 \textcolor{keywordflow}{if}( mTriggers[i] != aTrigger )
+199                 \{
+200                     mTriggers[i].SetSelected( \textcolor{keyword}{false} );
+201                 \}
+202 
+203                 \textcolor{comment}{// Update the current selection.}
+204                 \textcolor{keywordflow}{else}
+205                 \{
+206                     mSelectedIndex = i;
+207                 \}
+208             \}
+209         \}
+210     \}
+211 
+212     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+213 \textcolor{comment}{    * @\}}
+214 \textcolor{comment}{    * @defgroup SCMPrivVar Private Variables}
+215 \textcolor{comment}{    * @ingroup DocSCM}
+216 \textcolor{comment}{    * These are variables that are used internally by the SongCreationManager}
+217 \textcolor{comment}{    * @\{}
+218 \textcolor{comment}{    ******************************************************************************/}
+219     \textcolor{keyword}{private} \textcolor{keywordtype}{bool} mEditing = \textcolor{keyword}{false}; \textcolor{comment}{//!< Whether or not a note is being modified.}
+220 \textcolor{comment}{}    \textcolor{keyword}{private} Button mATIButton = null; \textcolor{comment}{//!< The button to reload the audio testing interface.}
+221 \textcolor{comment}{}    \textcolor{keyword}{private} Button mLoadSongButton = null; \textcolor{comment}{//!< The button to load a song.}
+222 \textcolor{comment}{}    \textcolor{keyword}{private} Button mNewNoteButton = null; \textcolor{comment}{//!< The button to add a new note with the chosen values.}
+223 \textcolor{comment}{}    \textcolor{keyword}{private} Button mPlaySongButton = null; \textcolor{comment}{//!< The button to play the song. }
+224 \textcolor{comment}{}    \textcolor{keyword}{private} Button mResetPitchesButton = null; \textcolor{comment}{//!< The button to reset the pitch selections.}
+225 \textcolor{comment}{}    \textcolor{keyword}{private} Button mSaveSongButton = null; \textcolor{comment}{//!< The button to save the song to a file.}
+226 \textcolor{comment}{}    \textcolor{keyword}{private} InputField mSongNameInputField = null; \textcolor{comment}{//!< The input field to name the song.}
+227 \textcolor{comment}{}    \textcolor{keyword}{private} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH} \hyperlink{group___s_c_m_priv_var_gaa137adb1c99e9ee59adcfbf7d0cf6249}{mLastLength} = \hyperlink{class_music}{Music}.
+      \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.NONE; \textcolor{comment}{//!< The length used to create the last note. Used for special handling of
+       drum loops.}
+228 \textcolor{comment}{}    \textcolor{keyword}{private} \hyperlink{class_s_c___note_display_container}{SC\_NoteDisplayContainer} mNoteDisplay = null; \textcolor{comment}{//!< The container to show
+       the notes for the song.}
+229 \textcolor{comment}{}    \textcolor{keyword}{private} \hyperlink{class_s_c___note_display_panel}{SC\_NoteDisplayPanel} mEditPanel = null; \textcolor{comment}{//!< The panel that was selected to
+       be edited.}
+230 \textcolor{comment}{}    \textcolor{keyword}{private} \hyperlink{class_s_c___pitch_selection_container}{SC\_PitchSelectionContainer} mDrumSelector = null; \textcolor{comment}{//!< The container
+       for choosing drums.}
+231 \textcolor{comment}{}    \textcolor{keyword}{private} \hyperlink{class_s_c___pitch_selection_container}{SC\_PitchSelectionContainer} mPitchSelector = null; \textcolor{comment}{//!< The container
+       for choosing pitches.}
+232 \textcolor{comment}{}    \textcolor{keyword}{private} Slider mBPMSlider = null; \textcolor{comment}{//!< The slider for the BPM of the song.}
+233 \textcolor{comment}{}    \textcolor{keyword}{private} Slider mVelocitySlider = null; \textcolor{comment}{//!< The slider for the velocity of the new note.}
+234 \textcolor{comment}{}    \textcolor{keyword}{private} \hyperlink{class_song}{Song} mSong = null; \textcolor{comment}{//!< The song being created.}
+235 \textcolor{comment}{}    \textcolor{keyword}{private} SongCreationSelectionContainer mLengthPanel = null; \textcolor{comment}{//!< The panel to choose a length for the
+       new note.}
+236 \textcolor{comment}{}    \textcolor{keyword}{private} SongCreationSelectionContainer mOffsetPanel = null; \textcolor{comment}{//!< The panel to choose an offset for the
+       new note.}
+237 \textcolor{comment}{}    \textcolor{keyword}{private} \hyperlink{class_virtual_instrument_manager}{VirtualInstrumentManager} mVIM = null; \textcolor{comment}{//!< The virtual instrument
+       manager}
+238 \textcolor{comment}{}
+239     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+240 \textcolor{comment}{    * @\}}
+241 \textcolor{comment}{    * @defgroup SCMUnity Unity Functions}
+242 \textcolor{comment}{    * @ingroup DocSCM}
+243 \textcolor{comment}{    * These are functions called automatically by Unity.}
+244 \textcolor{comment}{    * @\{}
+245 \textcolor{comment}{    ******************************************************************************/}
+246 \textcolor{comment}{}
+247 \textcolor{comment}{    /**}
+248 \textcolor{comment}{     * @brief Initializes the @link DocSC Song Creation Interface@endlink by getting references to all of
+       the modules within the scene.}
+249 \textcolor{comment}{    */}
+250     \textcolor{keywordtype}{void} \hyperlink{group___s_c_m_nest_class_ae7264acac3310f5db50df38467734c06}{Awake}()
+251     \{
+252         \textcolor{comment}{// Initialize the song.}
+253         mSong = \textcolor{keyword}{new} \hyperlink{class_song}{Song}();
+254 
+255         \textcolor{comment}{// Get the virtual instrument manager.}
+256         mVIM = GameObject.Find( \textcolor{stringliteral}{"VirtualInstrumentManager"} ).GetComponent<
+      \hyperlink{class_virtual_instrument_manager}{VirtualInstrumentManager}>();
+257 
+258         \textcolor{comment}{// Set up the container for showing the song's notes.}
+259         mNoteDisplay = gameObject.transform.GetChild( 1 ).GetChild( 0 ).GetChild( 0 ).gameObject.
+      AddComponent<\hyperlink{class_s_c___note_display_container}{SC\_NoteDisplayContainer}>();
+260 
+261         \textcolor{comment}{// Set up the container for selecting pitches.}
+262         mPitchSelector = gameObject.transform.GetChild( 2 ).GetChild( 0 ).GetChild( 0 ).gameObject.
+      AddComponent<\hyperlink{class_s_c___pitch_selection_container}{SC\_PitchSelectionContainer}>();
+263         mPitchSelector.SetUpAsPitchSelector();
+264 
+265         \textcolor{comment}{// Set up the panels for choosing a note's length and offset.}
+266         mLengthPanel = gameObject.transform.GetChild( 3 ).gameObject.AddComponent<
+      SongCreationSelectionContainer>();
+267         mLengthPanel.SetSelected( \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.Q );
+268         mOffsetPanel = gameObject.transform.GetChild( 4 ).gameObject.AddComponent<
+      SongCreationSelectionContainer>();
+269 
+270         \textcolor{comment}{// Set up the slider for the note's velocity.}
+271         mVelocitySlider = gameObject.transform.GetChild( 5 ).GetChild( 0 ).GetComponent<Slider>();
+272         mVelocitySlider.onValueChanged.AddListener( \hyperlink{group___s_c_m_handlers_ga45e79bb31be34e3e2cc47bd6a6563b40}{OnVelocityChange} );
+273 
+274         \textcolor{comment}{// Set up the slider for the song's default BPM.}
+275         mBPMSlider = gameObject.transform.GetChild( 5 ).GetChild( 1 ).GetComponent<Slider>();
+276         mBPMSlider.onValueChanged.AddListener( \hyperlink{group___s_c_m_handlers_gae5930497314c77bd9c52c083b2f3e82e}{OnBPMChange} );
+277 
+278         \textcolor{comment}{// Set up the input field for naming the song.        }
+279         mSongNameInputField = gameObject.transform.GetChild( 6 ).gameObject.GetComponent<InputField>();
+280         mSongNameInputField.onEndEdit.AddListener( mSong.\hyperlink{group___song_pub_func_gacb01510cf72657fc7c64bb6ba00c2c56}{SetName} );
+281 
+282         \textcolor{comment}{// Set up the buttons.}
+283         mNewNoteButton = gameObject.transform.GetChild( 7 ).gameObject.GetComponent<Button>();
+284         mNewNoteButton.onClick.AddListener( \hyperlink{group___s_c_m_handlers_gaed512eb78e060a40616e6e31ce029440}{OnCreateNote} );
+285         mResetPitchesButton = gameObject.transform.GetChild( 8 ).GetComponent<Button>();
+286         mResetPitchesButton.onClick.AddListener( mPitchSelector.ResetPitches );
+287         mSaveSongButton = gameObject.transform.GetChild( 9 ).gameObject.GetComponent<Button>();
+288         mSaveSongButton.onClick.AddListener( \hyperlink{group___s_c_m_handlers_gafd5e9f72e7a15cb77994c59fbbf8b769}{OnSaveSong} );
+289         mPlaySongButton = gameObject.transform.GetChild( 10 ).GetComponent<Button>();
+290         mPlaySongButton.onClick.AddListener( \hyperlink{group___s_c_m_handlers_gafb394a0b00c8f9c0959d901faf9131c7}{OnPlaySong} );
+291         mATIButton = gameObject.transform.GetChild( 11 ).GetComponent<Button>();
+292         mATIButton.onClick.AddListener( \hyperlink{group___s_c_m_handlers_gac39b0d849c680dda1e047c3e7d848b51}{UnloadSongCreationInterface} );
+293         mLoadSongButton = transform.GetChild( 13 ).GetComponent<Button>();
+294         mLoadSongButton.onClick.AddListener( \hyperlink{group___s_c_m_handlers_ga1747d021ddb36a8c2c172315d6fbb3a8}{OnLoadSongButtonClicked} );
+295 
+296         \textcolor{comment}{// Set up the drum selector.}
+297         mDrumSelector = gameObject.transform.GetChild( 12 ).GetChild( 0 ).GetChild( 0 ).gameObject.
+      AddComponent<\hyperlink{class_s_c___pitch_selection_container}{SC\_PitchSelectionContainer}>();
+298         mDrumSelector.\hyperlink{group___s_c___p_s_c_pub_func_ga08a0a4943359eb7f28c64aaf4cbc233c}{SetUpAsDrumSelector}();
+299     \}
+300 
+301     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+302 \textcolor{comment}{    * @\}}
+303 \textcolor{comment}{    * @defgroup SCMHandlers Event Handlers}
+304 \textcolor{comment}{    * @ingroup DocSCM}
+305 \textcolor{comment}{    * These are functions called by the SongCreationManager to handle events.}
+306 \textcolor{comment}{    * @\{}
+307 \textcolor{comment}{    ******************************************************************************/}
+308 \textcolor{comment}{}
+309 \textcolor{comment}{    /**}
+310 \textcolor{comment}{     * @brief Handles a change in the song's default BPM.}
+311 \textcolor{comment}{     * @param[in] aBPM The new default BPM.}
+312 \textcolor{comment}{     * }
+313 \textcolor{comment}{     * Gets the value from the @link SongCreationManager::mBPMSlider BPM slider@endlink }
+314 \textcolor{comment}{     * and @link Song::SetBPM sends it@endlink to the @link SongCreationManager::mSong Song@endlink.}
+315 \textcolor{comment}{     * }
+316 \textcolor{comment}{     * @see SongCreationManager::mBPMSlider}
+317 \textcolor{comment}{    */}
+318     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___s_c_m_handlers_gae5930497314c77bd9c52c083b2f3e82e}{OnBPMChange}( \textcolor{keywordtype}{float} aBPM )
+319     \{
+320         \textcolor{comment}{// Update the BPM slider's label.}
+321         mBPMSlider.transform.GetChild( 3 ).GetComponent<Text>().text = \textcolor{stringliteral}{"Default BPM: "} + aBPM.ToString();
+322 
+323         \textcolor{comment}{// Update the song.}
+324         mSong.\hyperlink{group___song_pub_func_gaa65bbba1af7192edff7e0f848029013b}{SetBPM}( (\textcolor{keywordtype}{int})aBPM );
+325     \}
+326 \textcolor{comment}{}
+327 \textcolor{comment}{    /**}
+328 \textcolor{comment}{     * @brief Creates a new note in the song.}
+329 \textcolor{comment}{     * }
+330 \textcolor{comment}{     * Gets the currently selected values from the modules in the scene uses them}
+331 \textcolor{comment}{     * to @link Music::CreateNote create@endlink a new @link Music::CombinedNote note@endlink.}
+332 \textcolor{comment}{     * }
+333 \textcolor{comment}{     * The function won't do anything if no @link SongCreationManager::mPitchSelector pitches@endlink}
+334 \textcolor{comment}{     * or @link SongCreationManager::mDrumSelector drums@endlink are selected.}
+335 \textcolor{comment}{     * }
+336 \textcolor{comment}{     * @see SongCreationManager::mNewNoteButton}
+337 \textcolor{comment}{    */}
+338     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___s_c_m_handlers_gaed512eb78e060a40616e6e31ce029440}{OnCreateNote}()
+339     \{
+340         \textcolor{comment}{// Sanity check.}
+341         \textcolor{keywordflow}{if}( mEditing )
+342         \{
+343             Assert.IsFalse( !mEditing, \textcolor{stringliteral}{"Tried to create a note in the song creation interface when we
+       should have been editing one!"} );
+344             \textcolor{keywordflow}{return};
+345         \}
+346 
+347         \textcolor{comment}{// Get the selected pitches}
+348         \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}[] pitches = mPitchSelector.GetSelectedPitches();
+349 
+350         \textcolor{comment}{// Get the selected drums.}
+351         \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}[] drums = mDrumSelector.\hyperlink{group___s_c___p_s_c_pub_func_ga05750cc6e1199f1522f8b87d6579dc34}{GetSelectedPitches}();
+352 
+353         \textcolor{comment}{// Make sure that some pitches or drums are actually selected.}
+354         \textcolor{keywordflow}{if}( pitches != null || drums != null )
+355         \{
+356             \textcolor{comment}{// Get the offset and velocity.}
+357             \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH} length = \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.NONE;
+358             \hyperlink{group___s_c_m_priv_var_gaa137adb1c99e9ee59adcfbf7d0cf6249}{mLastLength} = mLengthPanel.GetSelected();
+359             \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH} offset = mOffsetPanel.GetSelected();
+360             \textcolor{keywordtype}{int} pitchVelocity = 0;
+361             \textcolor{keywordtype}{int} drumVelocity = 0;
+362 
+363             \textcolor{comment}{// If the song doesn't have any notes, then set the offset of the first note to none.}
+364             \textcolor{keywordflow}{if}( mSong.\hyperlink{group___song_pub_func_gad124d0af146885327f8ac455bc013b63}{GetNumNotes}() == 0 )
+365             \{
+366                 offset = \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.NONE;
+367             \}
+368 
+369             \textcolor{comment}{// Convert the selected pitches from the drum selector into actual drum hits.}
+370             \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}[] Hits = null;
+371             \textcolor{keywordflow}{if}( drums != null )
+372             \{
+373                 Hits = \textcolor{keyword}{new} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}[drums.Length];
+374                 \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < drums.Length; i++ )
+375                 \{
+376                     Hits[i] = (\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM})drums[i];
+377                 \}
+378             \}
+379 
+380 
+381             \textcolor{comment}{// Update the velocity/length for the pitches and drums if needed.}
+382             \textcolor{keywordflow}{if}( pitches != null )
+383             \{
+384                 pitchVelocity = (int)mVelocitySlider.value;
+385                 length = mLengthPanel.GetSelected();
+386             \}
+387 
+388             \textcolor{keywordflow}{if}( drums != null )
+389             \{
+390                 drumVelocity = (int)mVelocitySlider.value;
+391             \}
+392 
+393 
+394             \textcolor{comment}{// Add the note to the song.}
+395             mSong.\hyperlink{group___song_pub_func_gab7c8fe4dc29f5ae7b7728c583fe51f7e}{AddNote}( \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_gaaf74885e43eb623f64f961985fadcd08}{CreateNote}( pitchVelocity, length, pitches, 
+      drumVelocity, Hits, offset ) );
+396 
+397             \textcolor{comment}{// Add the note to the note display.}
+398             mNoteDisplay.AddNote( pitchVelocity, length, pitches, drumVelocity, Hits, offset );
+399 
+400             \textcolor{comment}{// Reset the pitches.}
+401             mPitchSelector.ResetPitches();
+402             mDrumSelector.\hyperlink{group___s_c___p_s_c_pub_func_ga678ef561c5418e4bf43a5f9ed753f0f0}{ResetPitches}();
+403 
+404             \textcolor{comment}{// Update the selection of the offset panel since most cases will use the previous length.}
+405             mOffsetPanel.SetSelected( mLengthPanel.GetSelected() );
+406         \}
+407     \}
+408 \textcolor{comment}{}
+409 \textcolor{comment}{    /**}
+410 \textcolor{comment}{     * @brief Handles when a note panel is selected for editing.}
+411 \textcolor{comment}{     * @param[in] aPanel The panel representing the note that we're editing.}
+412 \textcolor{comment}{     * }
+413 \textcolor{comment}{     * @see SongCreationManager::OnModifyNote}
+414 \textcolor{comment}{    */}
+415     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___s_c_m_handlers_gacb552a4f02b22d7c10a8420eb1431201}{OnEditEvent}( \hyperlink{class_s_c___note_display_panel}{SC\_NoteDisplayPanel} aPanel )
+416     \{
+417         \textcolor{comment}{// Handle the case where we begin editing a note.}
+418         \textcolor{keywordflow}{if}( mEditPanel == null || mEditPanel != aPanel )
+419         \{
+420             \textcolor{comment}{// Handle switching from editing one panel to editing a different one.}
+421             \textcolor{keywordflow}{if}( mEditPanel != null )
+422             \{
+423                 \textcolor{comment}{// Stop editing the current note/note panel.}
+424                 mEditPanel.\hyperlink{group___s_c___n_d_p_unity_ga92d0f078c4efd6c207173a10e31b5065}{StopEditing}();
+425 
+426                 \textcolor{comment}{// Change the note/note panel being edited to the new one.}
+427                 mEditPanel = aPanel;
+428             \}
+429             \textcolor{comment}{// Handle when we start editing a panel.}
+430             \textcolor{keywordflow}{else}
+431             \{
+432                 \textcolor{comment}{// Update the new note button to be a modify note button.}
+433                 mNewNoteButton.transform.GetChild( 0 ).GetComponent<Text>().text = \textcolor{stringliteral}{"Modify Note"};
+434                 mNewNoteButton.onClick.RemoveListener( \hyperlink{group___s_c_m_handlers_gaed512eb78e060a40616e6e31ce029440}{OnCreateNote} );
+435                 mNewNoteButton.onClick.AddListener( \hyperlink{group___s_c_m_handlers_gaf12d6326ad2175a51f688504372be784}{OnModifyNote} );
+436 
+437                 \textcolor{comment}{// Set the variables related to editing a note.}
+438                 mEditPanel = aPanel;
+439                 mEditing = \textcolor{keyword}{true};
+440             \}
+441 
+442             \textcolor{comment}{// Get the note being modified.}
+443             \hyperlink{class_music}{Music}.\hyperlink{group___music_structs_struct_music_1_1_combined_note}{CombinedNote} noteBeingModified = mSong.
+      \hyperlink{group___song_pub_func_ga485c83c9278103fed23c532bba1252f0}{GetNote}( aPanel.\hyperlink{group___s_c___n_d_p_unity_ga8beef050026ade4ba4ccb574c414d24e}{GetNoteIndex}() );
+444 
+445             \textcolor{comment}{// Set the pitch selector to have the pitches from the note.}
+446             mPitchSelector.SetPitches( noteBeingModified.MusicalNote.Pitches );
+447 
+448             \textcolor{comment}{// Set the drum selector to have the drums from the note.}
+449             \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}[] drumsAsPitches = null;
+450             \textcolor{keywordflow}{if}( noteBeingModified.Drums.Hits != null )
+451             \{
+452                 drumsAsPitches = \textcolor{keyword}{new} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}[noteBeingModified.Drums.Hits.Length];
+453                 \textcolor{keywordtype}{int} index = 0;
+454                 \textcolor{keywordflow}{foreach}( \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM} drum in noteBeingModified.Drums.Hits )
+455                 \{
+456                     drumsAsPitches[index] = (\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH})drum;
+457                     index++;
+458                 \}
+459             \}
+460             mDrumSelector.\hyperlink{group___s_c___p_s_c_pub_func_ga0b85aab924084ebb49be4f64ad6f81e5}{SetPitches}( drumsAsPitches );
+461             mLengthPanel.SetSelected( noteBeingModified.MusicalNote.Length );
+462             mOffsetPanel.SetSelected( noteBeingModified.OffsetFromPrevNote );
+463             mVelocitySlider.value = Mathf.Max( noteBeingModified.Drums.Velocity, noteBeingModified.
+      MusicalNote.Velocity );
+464         \}
+465         \textcolor{comment}{// Handle the case where we're editing a note/note panel and it calls this }
+466         \textcolor{comment}{// event while it's being edited. This means that the edit should be cancelled.}
+467         \textcolor{keywordflow}{else}
+468         \{
+469             \textcolor{comment}{// Change the new note button back to its original state.}
+470             mNewNoteButton.transform.GetChild( 0 ).GetComponent<Text>().text = \textcolor{stringliteral}{"Insert Note"};
+471             mNewNoteButton.onClick.RemoveListener( \hyperlink{group___s_c_m_handlers_gaf12d6326ad2175a51f688504372be784}{OnModifyNote} );
+472             mNewNoteButton.onClick.AddListener( \hyperlink{group___s_c_m_handlers_gaed512eb78e060a40616e6e31ce029440}{OnCreateNote} );
+473 
+474             \textcolor{comment}{// Mark that the panel is no longer being edited.}
+475             mEditPanel.\hyperlink{group___s_c___n_d_p_unity_ga92d0f078c4efd6c207173a10e31b5065}{StopEditing}();
+476 
+477             \textcolor{comment}{// Reset the variables related to editing a note.}
+478             mLengthPanel.SetSelected( \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.Q );
+479             mOffsetPanel.SetSelected( \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.NONE );
+480             mVelocitySlider.value = 100;
+481             mPitchSelector.ResetPitches();
+482             mDrumSelector.\hyperlink{group___s_c___p_s_c_pub_func_ga678ef561c5418e4bf43a5f9ed753f0f0}{ResetPitches}();
+483             mEditPanel = null;
+484             mEditing = \textcolor{keyword}{false};
+485         \}
+486     \}
+487 \textcolor{comment}{}
+488 \textcolor{comment}{    /**}
+489 \textcolor{comment}{     * @brief Handles the @link SongCreationManager::mLoadSongButton Load Song button@endlink being clicked
+       by loading the @link DocSC\_LSD Load Song Dialog@endlink.}
+490 \textcolor{comment}{    */}
+491     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{group___s_c_m_handlers_ga1747d021ddb36a8c2c172315d6fbb3a8}{OnLoadSongButtonClicked}()
+492     \{
+493         \textcolor{comment}{// Load prefab.}
+494         GameObject dialogObject = Instantiate( Resources.Load<GameObject>( LOAD\_SONG\_DIALOG\_PATH ) );
+495         Assert.IsNotNull( dialogObject, \textcolor{stringliteral}{"Could not load the SC\_LoadSongDialog!"} );
+496 
+497         \textcolor{comment}{// Get the dialog component.}
+498         \hyperlink{class_s_c___load_song_dialog}{SC\_LoadSongDialog} dialog = dialogObject.GetComponent<
+      \hyperlink{class_s_c___load_song_dialog}{SC\_LoadSongDialog}>();
+499 
+500         \textcolor{comment}{// Put the dialog at the right place in the hierarchy.}
+501         dialog.transform.SetParent( transform );
+502 
+503         \textcolor{comment}{// Add the listener.}
+504         dialog.\hyperlink{group___s_c___l_s_d_events_ga48d606b2c8291fee822dcc2b14ddcecc}{SongSelected}.AddListener( \hyperlink{group___s_c_m_handlers_gae3791e700c2e12f1dd705c4b951ec260}{OnLoadSong} );
+505     \}
+506 \textcolor{comment}{}
+507 \textcolor{comment}{    /**}
+508 \textcolor{comment}{     * @brief Loads a Song into the @link DocSC Song Creation Interface@endlink.}
+509 \textcolor{comment}{     * @param[in] aSong The song to load.}
+510 \textcolor{comment}{     * }
+511 \textcolor{comment}{     * @see LoadSongDialog}
+512 \textcolor{comment}{    */}
+513     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{group___s_c_m_handlers_gae3791e700c2e12f1dd705c4b951ec260}{OnLoadSong}( \hyperlink{class_song}{Song} aSong )
+514     \{
+515         \textcolor{comment}{// Set mSong}
+516         mSong = aSong;
+517 
+518         \textcolor{comment}{// Clear the notes.}
+519         mNoteDisplay.ClearNotes();
+520 
+521         \textcolor{comment}{// Add the notes of the song to the Note Display Panel.}
+522         List<\hyperlink{class_music}{Music}.\hyperlink{group___music_structs_struct_music_1_1_combined_note}{CombinedNote}> notes = mSong.\hyperlink{group___song_pub_func_ga842675b7691fca074ee394031afc7675}{GetAllNotes}();
+523         \textcolor{keywordflow}{foreach}( \hyperlink{class_music}{Music}.\hyperlink{group___music_structs_struct_music_1_1_combined_note}{CombinedNote} note in notes )
+524         \{
+525             mNoteDisplay.AddNote( note.MusicalNote.Velocity, note.MusicalNote.Length, note.MusicalNote.
+      Pitches, note.Drums.Velocity,
+526                 note.Drums.Hits, note.OffsetFromPrevNote );
+527         \}
+528     \}
+529 \textcolor{comment}{}
+530 \textcolor{comment}{    /**}
+531 \textcolor{comment}{     * @brief Modifies a @link Music::CombinedNote note@endlink in the Song.}
+532 \textcolor{comment}{     * }
+533 \textcolor{comment}{     * @see Song::ReplaceNote}
+534 \textcolor{comment}{    */}
+535     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___s_c_m_handlers_gaf12d6326ad2175a51f688504372be784}{OnModifyNote}()
+536     \{
+537         \textcolor{comment}{// Make sure that we're actually editing a note.}
+538         \textcolor{keywordflow}{if}( mEditing )
+539         \{
+540             \textcolor{comment}{// Sanity check.}
+541             \textcolor{keywordflow}{if}( mEditPanel == null )
+542             \{
+543                 Assert.IsNotNull( mEditPanel, \textcolor{stringliteral}{"Tried to modify a note, but the note panel in the song
+       creator was null!"} );
+544                 \textcolor{keywordflow}{return};
+545             \}
+546 
+547             \textcolor{comment}{// Get the pitches }
+548             \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}[] pitches = mPitchSelector.GetSelectedPitches();
+549 
+550             \textcolor{comment}{// Get the drums}
+551             \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}[] drums = mDrumSelector.\hyperlink{group___s_c___p_s_c_pub_func_ga05750cc6e1199f1522f8b87d6579dc34}{GetSelectedPitches}();
+552 
+553             \textcolor{comment}{// Make sure that some pitches or drums are actually selected.}
+554             \textcolor{keywordflow}{if}( pitches != null || drums != null )
+555             \{
+556                 \textcolor{comment}{// Get the index of the note in the song and the images for the length/offset.}
+557                 \textcolor{keywordtype}{int} index = mEditPanel.\hyperlink{group___s_c___n_d_p_unity_ga8beef050026ade4ba4ccb574c414d24e}{GetNoteIndex}();
+558                 Sprite[] images = mNoteDisplay.GetSprites();
+559 
+560                 \textcolor{comment}{// Convert the selected pitches from the drum selector into actual drum hits.}
+561                 \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}[] Hits = null;
+562                 \textcolor{keywordflow}{if}( drums != null )
+563                 \{
+564                     Hits = \textcolor{keyword}{new} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}[drums.Length];
+565                     \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < drums.Length; i++ )
+566                     \{
+567                         Hits[i] = (\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM})drums[i];
+568                     \}
+569                 \}
+570 
+571                 \textcolor{comment}{// Set the values of the note struct.}
+572                 \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH} length = \hyperlink{class_music}{Music}.
+      \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.NONE;
+573                 \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH} offset = mOffsetPanel.GetSelected();
+574                 \textcolor{keywordtype}{int} pitchVelocity = 0;
+575                 \textcolor{keywordtype}{int} drumVelocity = 0;
+576 
+577                 \textcolor{comment}{// Update the velocity for the pitches and drums if needed.}
+578                 \textcolor{keywordflow}{if}( pitches != null )
+579                 \{
+580                     pitchVelocity = (int)mVelocitySlider.value;
+581                     length = mLengthPanel.GetSelected();
+582                 \}
+583 
+584                 \textcolor{keywordflow}{if}( drums != null )
+585                 \{
+586                     drumVelocity = (int)mVelocitySlider.value;
+587                 \}
+588 
+589                 \textcolor{comment}{// Replace the note in the song with the modified note.}
+590                 mSong.\hyperlink{group___song_pub_func_ga326d61c75339080057a02c6decb0cde3}{ReplaceNote}( \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_gaaf74885e43eb623f64f961985fadcd08}{CreateNote}( pitchVelocity, length, 
+      pitches, drumVelocity, Hits, offset ), index );
+591 
+592                 \textcolor{comment}{// Get the string of pitches for the modified note.}
+593                 \textcolor{keywordtype}{string} pitchString = \textcolor{stringliteral}{"None"};
+594                 \textcolor{keywordflow}{if}( pitches != null )
+595                 \{
+596                     pitchString = \textcolor{stringliteral}{""};
+597                     \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < pitches.Length; i++ )
+598                     \{
+599                         \textcolor{keywordflow}{if}( pitches[i] == \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.REST )
+600                         \{
+601                             pitchString += \textcolor{stringliteral}{"Rest "};
+602                         \}
+603                         \textcolor{keywordflow}{else}
+604                         \{
+605                             pitchString += ( \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( pitches[i] ) + \textcolor{stringliteral}{" "} );
+606                         \}
+607                     \}
+608                 \}
+609 
+610                 \textcolor{comment}{// Get the string of drums for the modified note.}
+611                 \textcolor{keywordtype}{string} drumString = \textcolor{stringliteral}{"None"};
+612                 \textcolor{keywordflow}{if}( Hits != null )
+613                 \{
+614                     drumString = \textcolor{stringliteral}{""};
+615                     \textcolor{keywordflow}{foreach}( \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM} drum in Hits )
+616                     \{
+617                         drumString += \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_gaf5f64ebe9a7e036e07f283e41f26d22b}{DrumToString}( drum ) + \textcolor{stringliteral}{" "};
+618                     \}
+619                 \}
+620 
+621                 \textcolor{comment}{// Update the panel representing the note.}
+622                 mEditPanel.\hyperlink{group___s_c___n_d_p_unity_gae14b5564be204df7699b95186d83f69f}{SetDrums}( drumString );
+623                 mEditPanel.\hyperlink{group___s_c___n_d_p_unity_gad9bf776f0c51cf6170faccf9fc4ac7e0}{SetPitches}( pitchString );
+624                 mEditPanel.\hyperlink{group___s_c___n_d_p_unity_ga1a1c4b8111463ec3e134d17fe5064a54}{SetLengthImage}( images[(\textcolor{keywordtype}{int})length] );
+625                 mEditPanel.\hyperlink{group___s_c___n_d_p_unity_gaa0a517d1359cd1ed109a130bd52763f1}{SetOffsetImage}( images[(\textcolor{keywordtype}{int})offset] );
+626                 mEditPanel.\hyperlink{group___s_c___n_d_p_unity_ga8ff7588e8c3f59a03842feaff92f97e9}{SetOffset}( offset );
+627                 mEditPanel.\hyperlink{group___s_c___n_d_p_unity_ga8a2fef715606caa884c7b490850fb9b7}{SetVelocity}( mVelocitySlider.value.ToString() );
+628 
+629                 \textcolor{comment}{// Mark that the panel is no longer being edited.}
+630                 mEditPanel.\hyperlink{group___s_c___n_d_p_unity_ga92d0f078c4efd6c207173a10e31b5065}{StopEditing}();
+631 
+632                 \textcolor{comment}{// Update the new note button so that it shows that we're no longer editing a note.}
+633                 mNewNoteButton.transform.GetChild( 0 ).GetComponent<Text>().text = \textcolor{stringliteral}{"Insert Note"};
+634                 mNewNoteButton.onClick.RemoveListener( \hyperlink{group___s_c_m_handlers_gaf12d6326ad2175a51f688504372be784}{OnModifyNote} );
+635                 mNewNoteButton.onClick.AddListener( \hyperlink{group___s_c_m_handlers_gaed512eb78e060a40616e6e31ce029440}{OnCreateNote} );
+636 
+637                 \textcolor{comment}{// Reset the variables related to editing a note.}
+638                 mEditPanel = null;
+639                 mEditing = \textcolor{keyword}{false};
+640 
+641                 \textcolor{comment}{// Reset the pitch selections.}
+642                 mPitchSelector.ResetPitches();
+643                 mDrumSelector.\hyperlink{group___s_c___p_s_c_pub_func_ga678ef561c5418e4bf43a5f9ed753f0f0}{ResetPitches}();
+644             \}
+645         \}
+646     \}
+647 \textcolor{comment}{}
+648 \textcolor{comment}{    /**}
+649 \textcolor{comment}{     * @brief Plays the Song being created.}
+650 \textcolor{comment}{     * }
+651 \textcolor{comment}{     * @see VirtualInstrumentManager::PlaySongEvent}
+652 \textcolor{comment}{    */}
+653     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___s_c_m_handlers_gafb394a0b00c8f9c0959d901faf9131c7}{OnPlaySong}()
+654     \{
+655         mVIM.\hyperlink{group___v_i_m_events_gae450bdba9c513ab4e43f69def50fa84d}{PlaySong}.Invoke( mSong );
+656     \}
+657 \textcolor{comment}{}
+658 \textcolor{comment}{    /**}
+659 \textcolor{comment}{     * @brief Removes a @link Music::CombinedNote note@endlink from the Song being created.}
+660 \textcolor{comment}{     * @param[in] aIndex The index of the @link Music::CombinedNote note to remove@endlink in the Song
+       being created.}
+661 \textcolor{comment}{     * }
+662 \textcolor{comment}{     * @see Song::OnRemoveNote}
+663 \textcolor{comment}{    */}
+664     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___s_c_m_handlers_ga1f1e9a15a6c339282fb94085d4862605}{OnRemoveNote}( \textcolor{keywordtype}{int} aIndex )
+665     \{
+666         \textcolor{keywordflow}{if}( mSong.\hyperlink{group___song_pub_func_gad124d0af146885327f8ac455bc013b63}{GetNumNotes}() > 0 )
+667         \{
+668             mSong.\hyperlink{group___song_pub_func_ga856634e047b8c35160958c3aa53d6b28}{RemoveNote}( aIndex );
+669         \}
+670     \}
+671 \textcolor{comment}{}
+672 \textcolor{comment}{    /**}
+673 \textcolor{comment}{     * @brief Saves the Song to a file}
+674 \textcolor{comment}{     * }
+675 \textcolor{comment}{     * This function adds the song to the @link VirtualInstrumentManager::SongManager Song Manager@endlink
+       and also saves the Song.}
+676 \textcolor{comment}{     * to a file.}
+677 \textcolor{comment}{     * }
+678 \textcolor{comment}{     * @see Song::WriteSongToFile}
+679 \textcolor{comment}{    */}
+680     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___s_c_m_handlers_gafd5e9f72e7a15cb77994c59fbbf8b769}{OnSaveSong}()
+681     \{
+682         \textcolor{comment}{// Special handling to make drum loops loop properly. The first hit has an initial offset}
+683         \textcolor{comment}{// equal to the length used to create the last note.}
+684         \textcolor{keywordflow}{if}( mSong.\hyperlink{group___song_pub_func_gabae5b5d8f727b2d9da7867a99347f86b}{GetSongType}() == \hyperlink{class_song}{Song}.\hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{SongType}.DrumLoop )
+685         \{
+686             \hyperlink{class_music}{Music}.\hyperlink{group___music_structs_struct_music_1_1_combined_note}{CombinedNote} firstNote = mSong.\hyperlink{group___song_pub_func_ga842675b7691fca074ee394031afc7675}{GetAllNotes}()[0];
+687             firstNote.OffsetFromPrevNote = \hyperlink{group___s_c_m_priv_var_gaa137adb1c99e9ee59adcfbf7d0cf6249}{mLastLength};
+688             mSong.\hyperlink{group___song_pub_func_ga326d61c75339080057a02c6decb0cde3}{ReplaceNote}( firstNote, 0 );
+689         \}
+690         mVIM.\hyperlink{group___v_i_m_pub_ga33dae94932c10c66db76a0eebec76b01}{SongManager}.\hyperlink{group___s_m_pub_func_ga1a228cb2a64e55448ccf9d1d618f05b7}{AddSong}( mSong );
+691         mSong.\hyperlink{group___song_pub_func_ga70b0f6021c3b0590c561a88e3d1e5c2f}{WriteSongToFile}();
+692     \}
+693 \textcolor{comment}{}
+694 \textcolor{comment}{    /** }
+695 \textcolor{comment}{     * @brief Handles a change in the @link DefVel velocity@endlink for a @link Music::CombinedNote
+       note@endlink in the Song being created.}
+696 \textcolor{comment}{     * @param[in] aVelocity The new @link DefVel velocity@endlink.}
+697 \textcolor{comment}{     * }
+698 \textcolor{comment}{     * @see SongCreationManager::mVelocitySlider}
+699 \textcolor{comment}{    */}
+700     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___s_c_m_handlers_ga45e79bb31be34e3e2cc47bd6a6563b40}{OnVelocityChange}( \textcolor{keywordtype}{float} aVelocity )
+701     \{
+702         \textcolor{comment}{// Update the text of the velocity slider's label.}
+703         mVelocitySlider.transform.GetChild( 3 ).GetComponent<Text>().text = \textcolor{stringliteral}{"Velocity: "} + aVelocity.
+      ToString();
+704     \}
+705 \textcolor{comment}{}
+706 \textcolor{comment}{    /**}
+707 \textcolor{comment}{     * @brief Goes back to the AudioTestingInterface scene.}
+708 \textcolor{comment}{    */}
+709     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___s_c_m_handlers_gac39b0d849c680dda1e047c3e7d848b51}{UnloadSongCreationInterface}()
+710     \{
+711         SceneManager.UnloadSceneAsync( \textcolor{stringliteral}{"SongCreationInterfaceScene"} );
+712     \}\textcolor{comment}{}
+713 \textcolor{comment}{    /** @\} */}
+714 \}
+715 \textcolor{preprocessor}{#endif}
+\end{DoxyCodeInclude}
+ 

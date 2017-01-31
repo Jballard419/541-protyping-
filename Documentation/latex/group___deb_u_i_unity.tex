@@ -1,0 +1,43 @@
+\hypertarget{group___deb_u_i_unity}{}\section{Unity Functions}
+\label{group___deb_u_i_unity}\index{Unity Functions@{Unity Functions}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___deb_u_i_unity_ga1369ce8825b055ee93722b2626a06d1e}{Debug\+U\+I.\+Awake} ()
+\begin{DoxyCompactList}\small\item\em Initializes the behavior for the button that loads the Audio Testing Interface. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+These are functions that are called automatically by Unity. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___deb_u_i_unity_ga1369ce8825b055ee93722b2626a06d1e}\label{group___deb_u_i_unity_ga1369ce8825b055ee93722b2626a06d1e}} 
+\index{Unity Functions@{Unity Functions}!Awake@{Awake}}
+\index{Awake@{Awake}!Unity Functions@{Unity Functions}}
+\subsubsection{\texorpdfstring{Awake()}{Awake()}}
+{\footnotesize\ttfamily void Debug\+U\+I.\+Awake (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Initializes the behavior for the button that loads the Audio Testing Interface. 
+
+
+
+Definition at line 33 of file Debug\+U\+I.\+cs.
+
+
+
+References Debug\+U\+I.\+On\+Go\+To\+A\+T\+I\+Button\+Clicked().
+
+
+\begin{DoxyCode}
+34     \{
+35         \textcolor{comment}{// Get the button to load the Audio Testing Interface.}
+36         \hyperlink{group___deb_u_i_priv_var_gaf9bf8d3b03e88b32bf6a567cd95dfafb}{mGoToATIButton} = transform.GetChild( 1 ).GetComponent<Button>();
+37         Assert.IsNotNull( \hyperlink{group___deb_u_i_priv_var_gaf9bf8d3b03e88b32bf6a567cd95dfafb}{mGoToATIButton}, \textcolor{stringliteral}{"Could not find the button to go to the Audio
+       Testing Interface!"} );
+38 
+39         \textcolor{comment}{// Add the listener for the button to load the Audio Testing Interface.}
+40         \hyperlink{group___deb_u_i_priv_var_gaf9bf8d3b03e88b32bf6a567cd95dfafb}{mGoToATIButton}.onClick.AddListener( \hyperlink{group___deb_u_i_handlers_ga16e95ec9c2c6cc4cecf06e54e316f00c}{OnGoToATIButtonClicked} );
+41     \}
+\end{DoxyCode}

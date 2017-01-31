@@ -1,0 +1,334 @@
+\hypertarget{group___doc_s_c___m_d_p}{}\section{Measure Display Panel}
+\label{group___doc_s_c___m_d_p}\index{Measure Display Panel@{Measure Display Panel}}
+
+
+Class that handles a specific measure of the \hyperlink{class_song}{Song} that is being created.  
+
+
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___s_c___m_d_p_const}{Constants}
+\item 
+\hyperlink{group___s_c___m_d_p_handlers}{Event Handlers}
+\item 
+\hyperlink{group___s_c___m_d_p_priv_var}{Private Variables}
+\item 
+\hyperlink{group___s_c___m_d_p_pub_func}{Public Functions}
+\item 
+\hyperlink{group___s_c___m_d_p_unity}{Unity Functions}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class that handles a specific measure of the \hyperlink{class_song}{Song} that is being created. 
+
+\hypertarget{group___doc_s_c___m_d_p_DocSC_MDPInfo}{}\subsection{Information}\label{group___doc_s_c___m_d_p_DocSC_MDPInfo}
+This class allows for showing specific measures of the \hyperlink{class_song}{Song} at a time in order to cut down on clutter.\hypertarget{group___doc_s_c___m_d_p_DocSC_MDPConst}{}\subsection{Constants}\label{group___doc_s_c___m_d_p_DocSC_MDPConst}
+Constants used by the \hyperlink{class_s_c___measure_display_panel}{S\+C\+\_\+\+Measure\+Display\+Panel}. ~\newline
+ \hyperlink{group___s_c___m_d_p_const}{More details}.\hypertarget{group___doc_s_c___m_d_p_DocSC_MDPPrivVar}{}\subsection{Private Variables}\label{group___doc_s_c___m_d_p_DocSC_MDPPrivVar}
+Variables used internally by the \hyperlink{class_s_c___measure_display_panel}{S\+C\+\_\+\+Measure\+Display\+Panel}. ~\newline
+ \hyperlink{group___s_c___m_d_p_priv_var}{More details}.\hypertarget{group___doc_s_c___m_d_p_DocSC_MDPUnity}{}\subsection{Unity Functions}\label{group___doc_s_c___m_d_p_DocSC_MDPUnity}
+Functions called automatically by Unity. ~\newline
+ \hyperlink{group___s_c___m_d_p_unity}{More details}.\hypertarget{group___doc_s_c___m_d_p_DocSC_MDPPubFunc}{}\subsection{Public Functions}\label{group___doc_s_c___m_d_p_DocSC_MDPPubFunc}
+Functions for other classes to interact with the \hyperlink{class_s_c___measure_display_panel}{S\+C\+\_\+\+Measure\+Display\+Panel}. ~\newline
+ \hyperlink{group___s_c___m_d_p_pub_func}{More details}.\hypertarget{group___doc_s_c___m_d_p_DocSC_MDPHandlers}{}\subsection{Event Handlers}\label{group___doc_s_c___m_d_p_DocSC_MDPHandlers}
+Functions called by the \hyperlink{class_s_c___measure_display_panel}{S\+C\+\_\+\+Measure\+Display\+Panel} in order to handle events. ~\newline
+ \hyperlink{group___s_c___m_d_p_handlers}{More details}.\hypertarget{group___doc_s_c___m_d_p_DocSC_MDPCode}{}\subsection{Code}\label{group___doc_s_c___m_d_p_DocSC_MDPCode}
+
+\begin{DoxyCodeInclude}
+1 \textcolor{preprocessor}{#if SONG\_CREATION\_ENABLED}
+2 
+3 \textcolor{keyword}{using} \hyperlink{namespace_system}{System}.Collections;
+4 \textcolor{keyword}{using} \hyperlink{namespace_system}{System}.Collections.Generic;
+5 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine};
+6 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine}.Assertions;
+7 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine}.EventSystems;
+8 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine}.SceneManagement;
+9 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine}.UI;
+10 \textcolor{comment}{}
+11 \textcolor{comment}{/**}
+12 \textcolor{comment}{ * @class SC\_MeasureDisplayPanel}
+13 \textcolor{comment}{ * @brief Class that handles a specific measure of the Song that is being created.}
+14 \textcolor{comment}{ * }
+15 \textcolor{comment}{ * This class allows for showing specific measures of the Song at a time}
+16 \textcolor{comment}{ * in order to cut down on clutter.}
+17 \textcolor{comment}{*/}
+18 \textcolor{keyword}{public} \textcolor{keyword}{class }\hyperlink{class_s_c___measure_display_panel}{SC\_MeasureDisplayPanel} : MonoBehaviour
+19 \{
+20     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+21 \textcolor{comment}{    * @defgroup SC\_MDPConst Constants}
+22 \textcolor{comment}{    * @ingroup DocSC\_MDP}
+23 \textcolor{comment}{    * Constants used by the SC\_MeasureDisplayPanel.}
+24 \textcolor{comment}{    * @\{}
+25 \textcolor{comment}{    *****************************************************************************/}
+26     \textcolor{keyword}{private} \textcolor{keywordtype}{string} NOTE\_DISPLAY\_PANEL\_PATH = \textcolor{stringliteral}{"Audio/Prefabs/SongCreation/NoteDisplayPanelPrefab"}; \textcolor{comment}{//!< The
+       path to load the @link DocSC\_NDP SC\_NoteDisplayPanel@endlink's prefab.}
+27 \textcolor{comment}{}
+28     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+29 \textcolor{comment}{    * @\}}
+30 \textcolor{comment}{    * @defgroup SC\_MDPPrivVar Private Variables}
+31 \textcolor{comment}{    * @ingroup DocSC\_MDP}
+32 \textcolor{comment}{    * Variables used internally by the SC\_MeasureDisplayPanel.}
+33 \textcolor{comment}{    * @\{}
+34 \textcolor{comment}{    *****************************************************************************/}
+35     \textcolor{keyword}{private} \textcolor{keywordtype}{float} mPercentageUsed = 0f; \textcolor{comment}{//!< The percentage of the measure used.}
+36 \textcolor{comment}{}    \textcolor{keyword}{private} List<SC\_NoteDisplayPanel> mNotes = null; \textcolor{comment}{//!< The notes in the measure.}
+37 \textcolor{comment}{}    \textcolor{keyword}{private} \hyperlink{class_s_c___note_display_container}{SC\_NoteDisplayContainer} mParent = null; \textcolor{comment}{//!< The parent container }
+38 \textcolor{comment}{}    \textcolor{keyword}{private} Toggle mShowMeasureToggle = null; \textcolor{comment}{//!< The toggle switch for showing this measure.}
+39 \textcolor{comment}{}
+40     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+41 \textcolor{comment}{    * @\}}
+42 \textcolor{comment}{    * @defgroup SC\_MDPUnity Unity Functions}
+43 \textcolor{comment}{    * @ingroup DocSC\_MDP}
+44 \textcolor{comment}{    * Functions called automatically by Unity.}
+45 \textcolor{comment}{    * @\{}
+46 \textcolor{comment}{    *****************************************************************************/}
+47 \textcolor{comment}{}
+48 \textcolor{comment}{    /**}
+49 \textcolor{comment}{     * @brief Initializes the SC\_MeasureDisplayPanel}
+50 \textcolor{comment}{    */}
+51     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{group___s_c___m_d_p_unity_gafe9062b7be241c5febf7b493bb6002f9}{Awake}()
+52     \{
+53         \textcolor{comment}{// Set the toggle.}
+54         mShowMeasureToggle = gameObject.transform.GetChild( 0 ).GetComponent<Toggle>();
+55         mShowMeasureToggle.onValueChanged.AddListener( \hyperlink{group___s_c___m_d_p_handlers_ga31c72fee5ddd5ae7b057b2f265341263}{OnShowToggle} );
+56 
+57         \textcolor{comment}{// Set up the list of note display panels.}
+58         mNotes = \textcolor{keyword}{new} List<SC\_NoteDisplayPanel>();
+59     \}
+60 
+61     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+62 \textcolor{comment}{    * @\}}
+63 \textcolor{comment}{    * @defgroup SC\_MDPPubFunc Public Functions}
+64 \textcolor{comment}{    * @ingroup DocSC\_MDP}
+65 \textcolor{comment}{    * Functions for other classes to interact with the SC\_MeasureDisplayPanel.}
+66 \textcolor{comment}{    * @\{}
+67 \textcolor{comment}{    *****************************************************************************/}
+68 \textcolor{comment}{}
+69 \textcolor{comment}{    /**}
+70 \textcolor{comment}{     * @brief Adds a @link Music::CombinedNote note@endlink to the @link SC\_MeasureDisplayPanel::mNotes
+       list of notes managed by this panel@endlink. }
+71 \textcolor{comment}{     * @param[in] aNoteIndex The index of the @link Music::CombinedNote note@endlink in the overall Song.}
+72 \textcolor{comment}{     * @param[in] aMelodyVelocity The @link DefVel velocity@endlink of the @link Music::MelodyNote
+       pitches@endlink in the @link Music::CombinedNote note@endlink.}
+73 \textcolor{comment}{     * @param[in] aLength The @link Music::NOTE\_LENGTH length@endlink of the @link Music::CombinedNote
+       note@endlink.}
+74 \textcolor{comment}{     * @param[in] aPitches The @link Music::PITCH pitches@endlink in the @link Music::CombinedNote
+       note@endlink.}
+75 \textcolor{comment}{     * @param[in] aDrumVelocity The @link DefVel velocity@endlink of the @link Music::PercussionNote
+       drums@endlink in the @link Music::CombinedNote note@endlink.}
+76 \textcolor{comment}{     * @param[in] aDrumHits The @link Music::DRUM drums@endlink that are hit for this @link
+       Music::CombinedNote note@endlink.}
+77 \textcolor{comment}{     * @param[in] aOffsetFromPrevNote The @link Music::CombinedNote.OffsetFromPrevNote offset from the
+       previous note@endlink.}
+78 \textcolor{comment}{     * }
+79 \textcolor{comment}{     * This function also creates the @link DocSC\_NDP SC\_NoteDisplayPanel object@endlink for the @link
+       Music::CombinedNote note@endlink.}
+80 \textcolor{comment}{    */}
+81     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___s_c___m_d_p_pub_func_gadce2fd2e70d867b38c98305e2392b3df}{AddNote}( \textcolor{keywordtype}{int} aNoteIndex, \textcolor{keywordtype}{int} aMelodyVelocity, \hyperlink{class_music}{Music}.
+      \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH} aLength, \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}[] aPitches,
+82         \textcolor{keywordtype}{int} aDrumVelocity, \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}[] aDrumHits, \hyperlink{class_music}{Music}.
+      \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH} aOffsetFromPrevNote )
+83     \{
+84         \textcolor{comment}{// Declare variables to help create the note.}
+85         Sprite[] sprites = mParent.\hyperlink{group___s_c___n_d_c_pub_func_ga3cdbb1068cd6511112c564fc636c56ca}{GetSprites}();
+86         \textcolor{keywordtype}{string} pitches = \textcolor{stringliteral}{"None"};
+87         \textcolor{keywordtype}{string} drums = \textcolor{stringliteral}{"None"};
+88 
+89 
+90         \textcolor{comment}{// Calculate the percentage used up in the measure.}
+91         \textcolor{keywordtype}{float} newPercentage = mPercentageUsed + \hyperlink{class_music}{Music}.
+      \hyperlink{group___music_stat_func_ga91e290b48ad2289493ba4421308abe49}{GetNoteLengthRelativeToMeasure}( aOffsetFromPrevNote, 
+      \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_gac95af323eef7511543c799154e1c29fd}{TIME\_SIGNATURE\_4\_4}() );
+92 
+93         \textcolor{comment}{// If there is no more room in the measure for this note, then send it back to the parent.}
+94         \textcolor{keywordflow}{if}( newPercentage >= 1f )
+95         \{
+96             mParent.\hyperlink{group___s_c___n_d_c_handlers_ga40c5a3b59608c559ab96ad0338c5e042}{HandleFullMeasure}( \textcolor{keyword}{this}, newPercentage - mPercentageUsed, 
+      aMelodyVelocity, aLength, aPitches, aDrumVelocity, aDrumHits, aOffsetFromPrevNote );
+97         \}
+98 
+99         \textcolor{comment}{// If there is more room, then create the new panel and add it to this measure.}
+100         \textcolor{keywordflow}{else}
+101         \{
+102             \textcolor{comment}{// Update the percentage used.}
+103             mPercentageUsed = newPercentage;
+104 
+105             \textcolor{comment}{// Create a SC\_NoteDisplayPanel}
+106             GameObject clone = null;
+107             clone = Instantiate( Resources.Load<GameObject>( NOTE\_DISPLAY\_PANEL\_PATH ) );
+108             Assert.IsNotNull( clone, \textcolor{stringliteral}{"Could not load SC\_NoteDisplayPanel prefab!"} );
+109 
+110             \textcolor{comment}{// Set the values for the note's transform.}
+111             clone.transform.SetParent( transform.parent );
+112             clone.transform.localScale = Vector3.one;
+113 
+114             \textcolor{comment}{// Set the pitch string if needed.}
+115             \textcolor{keywordflow}{if}( aPitches != null )
+116             \{
+117                 pitches = \textcolor{stringliteral}{""};
+118                 \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < aPitches.Length; i++ )
+119                 \{
+120                     \textcolor{keywordflow}{if}( aPitches[i] == \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.REST )
+121                     \{
+122                         pitches += \textcolor{stringliteral}{"Rest "};
+123                     \}
+124                     \textcolor{keywordflow}{else}
+125                     \{
+126                         pitches += ( \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( aPitches[i] ) + \textcolor{stringliteral}{" "} );
+127                     \}
+128                 \}
+129             \}
+130 
+131             \textcolor{comment}{// Set the drum string if needed.}
+132             \textcolor{keywordflow}{if}( aDrumHits != null )
+133             \{
+134                 drums = \textcolor{stringliteral}{""};
+135                 \textcolor{keywordflow}{foreach}( \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM} drum in aDrumHits )
+136                 \{
+137                     drums += \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_gaf5f64ebe9a7e036e07f283e41f26d22b}{DrumToString}( drum ) + \textcolor{stringliteral}{" "};
+138                 \}
+139             \}
+140 
+141             \textcolor{comment}{// Initialize the cloned panel.}
+142             \hyperlink{class_s_c___note_display_panel}{SC\_NoteDisplayPanel} newPanel = clone.AddComponent<
+      \hyperlink{class_s_c___note_display_panel}{SC\_NoteDisplayPanel}>();
+143             newPanel.\hyperlink{group___s_c___n_d_p_unity_gae14b5564be204df7699b95186d83f69f}{SetDrums}( drums );
+144             newPanel.\hyperlink{group___s_c___n_d_p_unity_gad9bf776f0c51cf6170faccf9fc4ac7e0}{SetPitches}( pitches );
+145             newPanel.\hyperlink{group___s_c___n_d_p_unity_ga1a1c4b8111463ec3e134d17fe5064a54}{SetLengthImage}( sprites[(\textcolor{keywordtype}{int})aLength] );
+146             newPanel.\hyperlink{group___s_c___n_d_p_unity_gaa0a517d1359cd1ed109a130bd52763f1}{SetOffsetImage}( sprites[(\textcolor{keywordtype}{int})aOffsetFromPrevNote] );
+147             newPanel.\hyperlink{group___s_c___n_d_p_unity_ga8ff7588e8c3f59a03842feaff92f97e9}{SetOffset}( aOffsetFromPrevNote );
+148             newPanel.\hyperlink{group___s_c___n_d_p_unity_ga8a2fef715606caa884c7b490850fb9b7}{SetVelocity}( aMelodyVelocity.ToString() );
+149             newPanel.\hyperlink{group___s_c___n_d_p_unity_gae642b50484b9c7fb2bd3b201aeef726c}{SetParentContainer}( \textcolor{keyword}{this} );
+150             newPanel.\hyperlink{group___s_c___n_d_p_unity_gaf3160e3686e44e7718768242438ea1cc}{SetNoteIndex}( aNoteIndex );
+151 
+152             \textcolor{comment}{// Add the panel to the list.}
+153             mNotes.Add( newPanel );
+154         \}
+155     \}
+156 \textcolor{comment}{}
+157 \textcolor{comment}{    /**}
+158 \textcolor{comment}{     * @brief Clears the notes in the measure and self-destructs}
+159 \textcolor{comment}{    */}
+160     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___s_c___m_d_p_pub_func_ga5c4379bcb1309f70b7406eb6523c6179}{ClearMeasure}()
+161     \{
+162         \textcolor{keywordflow}{foreach}( \hyperlink{class_s_c___note_display_panel}{SC\_NoteDisplayPanel} note \textcolor{keywordflow}{in} mNotes )
+163         \{
+164             DestroyImmediate( note.gameObject, \textcolor{keyword}{false} );
+165         \}
+166         DestroyImmediate( gameObject, \textcolor{keyword}{false} );
+167     \}
+168 \textcolor{comment}{}
+169 \textcolor{comment}{    /**}
+170 \textcolor{comment}{     * @brief Sets the @link DocSC\_NDC parent container@endlink.}
+171 \textcolor{comment}{     * @param[in] aParent The @link DocSC\_NDC parent container@endlink.}
+172 \textcolor{comment}{    */}
+173     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___s_c___m_d_p_pub_func_ga334c177603c25d6206b7c7b639281b07}{SetParentContainer}( \hyperlink{class_s_c___note_display_container}{SC\_NoteDisplayContainer} 
+      aParent )
+174     \{
+175         \textcolor{comment}{// Set the parent.}
+176         mParent = aParent;
+177     \}
+178 \textcolor{comment}{}
+179 \textcolor{comment}{    /**}
+180 \textcolor{comment}{     * @brief Sets the percentage of the measure that is filled.}
+181 \textcolor{comment}{     * @param[in] aPercent How full the measure is.}
+182 \textcolor{comment}{     * }
+183 \textcolor{comment}{     * @see Song::GetNoteLengthRelativeToMeasure}
+184 \textcolor{comment}{    */}
+185     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___s_c___m_d_p_pub_func_gab8a32b1ba282d441cb1325d29f53dd1c}{SetPercentageUsed}( \textcolor{keywordtype}{float} aPercent )
+186     \{
+187         mPercentageUsed = aPercent;
+188     \}
+189 \textcolor{comment}{}
+190 \textcolor{comment}{    /**}
+191 \textcolor{comment}{     * @brief Sets whether or not the measure should be shown.}
+192 \textcolor{comment}{     * @param[in] aShowMeasure True if the measure should be shown. False otherwise.}
+193 \textcolor{comment}{    */}
+194     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___s_c___m_d_p_pub_func_ga6512fa5010bcecd85f7e8542cea91310}{SetToggle}( \textcolor{keywordtype}{bool} aShowMeasure )
+195     \{
+196         \textcolor{comment}{// Show/Hide the notes in the measure depending on the given bool.}
+197         \textcolor{keywordflow}{foreach}( \hyperlink{class_s_c___note_display_panel}{SC\_NoteDisplayPanel} note \textcolor{keywordflow}{in} mNotes )
+198         \{
+199             note.gameObject.SetActive( aShowMeasure );
+200         \}
+201 
+202         \textcolor{comment}{// Update the toggle value.}
+203         mShowMeasureToggle.onValueChanged.RemoveListener( \hyperlink{group___s_c___m_d_p_handlers_ga31c72fee5ddd5ae7b057b2f265341263}{OnShowToggle} );
+204         mShowMeasureToggle.isOn = aShowMeasure;
+205         mShowMeasureToggle.onValueChanged.AddListener( \hyperlink{group___s_c___m_d_p_handlers_ga31c72fee5ddd5ae7b057b2f265341263}{OnShowToggle} );
+206     \}
+207 
+208     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+209 \textcolor{comment}{    * @\}}
+210 \textcolor{comment}{    * @defgroup SC\_MDPHandlers Event Handlers}
+211 \textcolor{comment}{    * @ingroup DocSC\_MDP}
+212 \textcolor{comment}{    * Functions called by the SC\_MeasureDisplayPanel in order to handle events.}
+213 \textcolor{comment}{    * @\{}
+214 \textcolor{comment}{    *****************************************************************************/}
+215 \textcolor{comment}{}
+216 \textcolor{comment}{    /**}
+217 \textcolor{comment}{     * @brief Handles showing the measure or hiding it. }
+218 \textcolor{comment}{     * @param[in] aShowMeasure True if the measure should be shown. False otherwise.}
+219 \textcolor{comment}{     * }
+220 \textcolor{comment}{     * This just passes it from the @link SC\_MeasureDisplayPanel::mShowMeasureToggle toggle switch@endlink }
+221 \textcolor{comment}{     * to the @link SC\_NoteDisplayContainer::HandleMeasureToggled parent's handling function@endlink.}
+222 \textcolor{comment}{    */}
+223     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___s_c___m_d_p_handlers_ga31c72fee5ddd5ae7b057b2f265341263}{OnShowToggle}( \textcolor{keywordtype}{bool} aShowMeasure )
+224     \{
+225         mParent.\hyperlink{group___s_c___n_d_c_handlers_ga458d57203645be514d3626211044b584}{HandleMeasureToggled}( \textcolor{keyword}{this} );
+226     \}
+227 \textcolor{comment}{}
+228 \textcolor{comment}{    /**}
+229 \textcolor{comment}{     * @brief Removes a @link Music::CombinedNote note@endlink.}
+230 \textcolor{comment}{     * @param[in] aNoteDisplayPanel The panel displaying the note to be removed.}
+231 \textcolor{comment}{    */} 
+232     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___s_c___m_d_p_handlers_gab48fa7fe4d7d4b29a3b0567be2b29849}{OnRemoveNote}( \hyperlink{class_s_c___note_display_panel}{SC\_NoteDisplayPanel} aNoteDisplayPanel )
+233     \{
+234         \textcolor{comment}{// If there is more than one note in the measure, then just remove it from the measure.}
+235         \textcolor{keywordflow}{if}( mNotes.Count > 1 )
+236         \{
+237             \textcolor{comment}{// Find the note.}
+238             \textcolor{keywordtype}{bool} found = \textcolor{keyword}{false};
+239             \textcolor{keywordtype}{int} index = 0;
+240             \textcolor{keywordflow}{while}( !found && index < mNotes.Count )
+241             \{
+242                 \textcolor{keywordflow}{if}( aNoteDisplayPanel == mNotes[index] )
+243                 \{
+244                     found = \textcolor{keyword}{true};
+245                 \}
+246                 \textcolor{keywordflow}{else}
+247                 \{
+248                     index++;
+249                 \}
+250             \}
+251             \hyperlink{class_s_c___note_display_panel}{SC\_NoteDisplayPanel} temp = mNotes[index];
+252 
+253             \textcolor{comment}{// Remove the note from the list.}
+254             mNotes.RemoveAt( index );
+255 
+256             \textcolor{comment}{// Update the percentage used.}
+257             mPercentageUsed -= \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_ga91e290b48ad2289493ba4421308abe49}{GetNoteLengthRelativeToMeasure}( 
+      temp.\hyperlink{group___s_c___n_d_p_unity_ga371654221730812200062322c8a3e750}{GetOffset}(), \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_gac95af323eef7511543c799154e1c29fd}{TIME\_SIGNATURE\_4\_4}() );
+258 
+259             \textcolor{comment}{// Destroy the note object.}
+260             DestroyImmediate( temp.gameObject, \textcolor{keyword}{false} );
+261 
+262         \}
+263         \textcolor{comment}{// If there aren't any notes left, then handle this measure being deleted.}
+264         \textcolor{keywordflow}{else}
+265         \{
+266             \hyperlink{class_s_c___note_display_panel}{SC\_NoteDisplayPanel} temp = mNotes[0];
+267             mNotes.Clear();
+268             DestroyImmediate( temp.gameObject, \textcolor{keyword}{false} );
+269             mParent.\hyperlink{group___s_c___n_d_c_handlers_ga40ffb2c779af43930924348c265c9e09}{HandleMeasureDeleted}( \textcolor{keyword}{this} );
+270         \}
+271         mParent.\hyperlink{group___s_c___n_d_c_handlers_ga6dbbf12e55681d13f43e489dd4a100dc}{OnRemoveNote}();
+272     \}\textcolor{comment}{}
+273 \textcolor{comment}{    /** @\} */}
+274 \}
+275 
+276 \textcolor{preprocessor}{#endif}
+\end{DoxyCodeInclude}
+ 

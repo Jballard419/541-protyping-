@@ -1,0 +1,362 @@
+\hypertarget{group___doc_s_c___p_s_c}{}\section{Pitch Selection Container}
+\label{group___doc_s_c___p_s_c}\index{Pitch Selection Container@{Pitch Selection Container}}
+
+
+C\# Class that contains the \hyperlink{group___doc_s_c___p_s_t}{pitch and drum selections} for a \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note} in the \hyperlink{group___doc_s_c}{Song Creation Interface}.  
+
+
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___s_c___p_s_c_handlers}{Event Handlers}
+\item 
+\hyperlink{group___s_c___p_s_c_priv_var}{Private Variables}
+\item 
+\hyperlink{group___s_c___p_s_c_pub_func}{Public Functions}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+C\# Class that contains the \hyperlink{group___doc_s_c___p_s_t}{pitch and drum selections} for a \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note} in the \hyperlink{group___doc_s_c}{Song Creation Interface}. 
+
+\hypertarget{group___doc_s_c___p_s_c_DocSC_PSCInfo}{}\subsection{Information}\label{group___doc_s_c___p_s_c_DocSC_PSCInfo}
+Though called a "Pitch Selection Container", this class is also used for selecting \hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{drums}. The \hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{drums} and \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitches} are typecast to integer in the \hyperlink{group___s_c___p_s_c_priv_var_ga5a8a5c31158f6af7f0c17d4fd03c5641}{list of selected pitches} anyway, so there is not much of a difference in how each are handled by this class.\hypertarget{group___doc_s_c___p_s_c_DocSC_PSCTerminology}{}\subsection{Terminology}\label{group___doc_s_c___p_s_c_DocSC_PSCTerminology}
+\hypertarget{group___doc_s_c___p_s_c_DocSC_PSCRest}{}\subsubsection{Rest Note}\label{group___doc_s_c___p_s_c_DocSC_PSCRest}
+In the context of the Pitch Selection Container, a rest note is a note that contains no sound, but is used for spacing \hyperlink{group___music_structs_struct_music_1_1_combined_note}{notes}. If the \hyperlink{group___s_c___p_s_c_priv_var_gae4378d4e0b53501eb0f55b8af38a5a8c}{rest toggle} is turned on, then all \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitches} are unset so that no sound plays. ~\newline
+ The \hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da50780f47f6839d47d60bc4555ee00c3f}{rest note pitch} is the last value of the \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitch enum}.\hypertarget{group___doc_s_c___p_s_c_DocSC_PSCPrivVar}{}\subsection{Private Variables}\label{group___doc_s_c___p_s_c_DocSC_PSCPrivVar}
+Variables used internally by the \hyperlink{class_s_c___pitch_selection_container}{S\+C\+\_\+\+Pitch\+Selection\+Container} ~\newline
+ \hyperlink{group___s_c___p_s_c_priv_var}{More details}.\hypertarget{group___doc_s_c___p_s_c_DocSC_PSCPubFunc}{}\subsection{Public Functions}\label{group___doc_s_c___p_s_c_DocSC_PSCPubFunc}
+Functions for other classes to interact with the \hyperlink{class_s_c___pitch_selection_container}{S\+C\+\_\+\+Pitch\+Selection\+Container} ~\newline
+ \hyperlink{group___s_c___p_s_c_pub_func}{More details}.\hypertarget{group___doc_s_c___p_s_c_DocSC_PSCHandlers}{}\subsection{Event Handlers}\label{group___doc_s_c___p_s_c_DocSC_PSCHandlers}
+Functions called by the \hyperlink{class_s_c___pitch_selection_container}{S\+C\+\_\+\+Pitch\+Selection\+Container} in response to events. ~\newline
+ \hyperlink{group___s_c___p_s_c_handlers}{More details}.\hypertarget{group___doc_s_c___p_s_c_DocSC_PSCCode}{}\subsection{Code}\label{group___doc_s_c___p_s_c_DocSC_PSCCode}
+
+\begin{DoxyCodeInclude}
+1 \textcolor{preprocessor}{#if SONG\_CREATION\_ENABLED}
+2 
+3 \textcolor{keyword}{using} \hyperlink{namespace_system}{System}.Collections;
+4 \textcolor{keyword}{using} \hyperlink{namespace_system}{System}.Collections.Generic;
+5 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine};
+6 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine}.Assertions;
+7 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine}.EventSystems;
+8 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine}.SceneManagement;
+9 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine}.UI;
+10 \textcolor{comment}{}
+11 \textcolor{comment}{/**}
+12 \textcolor{comment}{ * @class SC\_PitchSelectionContainer }
+13 \textcolor{comment}{ * @brief C# Class that contains the @link DocSC\_PST pitch and drum selections@endlink for a @link
+       Music::CombinedNote note@endlink in the @link DocSC Song Creation Interface@endlink.}
+14 \textcolor{comment}{ * }
+15 \textcolor{comment}{ * Though called a \(\backslash\)"Pitch Selection Container\(\backslash\)", this class is also used for selecting}
+16 \textcolor{comment}{ * @link Music::DRUM drums@endlink. The @link Music::DRUM drums@endlink and @link Music::PITCH
+       pitches@endlink }
+17 \textcolor{comment}{ * are typecast to integer in the @link SC\_PitchSelectionContainer::mSelectedPitches list of selected}
+18 \textcolor{comment}{ * pitches@endlink anyway, so there is not much of a difference in how each are handled by this class. }
+19 \textcolor{comment}{*/}
+20 \textcolor{keyword}{public} \textcolor{keyword}{class }\hyperlink{class_s_c___pitch_selection_container}{SC\_PitchSelectionContainer} : MonoBehaviour
+21 \{
+22 
+23     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+24 \textcolor{comment}{     * @defgroup SC\_PSCPrivVar Private Variables}
+25 \textcolor{comment}{     * @ingroup DocSC\_PSC}
+26 \textcolor{comment}{     * Variables used internally by the SC\_PitchSelectionContainer}
+27 \textcolor{comment}{     * @\{}
+28 \textcolor{comment}{    *****************************************************************************/}
+29     \textcolor{keyword}{private} \textcolor{keywordtype}{bool} mRestNote = \textcolor{keyword}{false}; \textcolor{comment}{//!< Is this note currently set to be a rest note?}
+30 \textcolor{comment}{}    \textcolor{keyword}{private} List<int> mSelectedPitches = null; \textcolor{comment}{//!< The selected @link Music::PITCH pitches@endlink or
+       @link Music::DRUM drums@endlink}
+31 \textcolor{comment}{}    \textcolor{keyword}{private} \hyperlink{class_s_c___pitch_selection_trigger}{SC\_PitchSelectionTrigger}[] mPitchSelectionTriggers = null; \textcolor{comment}{//!< The
+       @link DocSC\_PST triggers@endlink that fire off an event when a @link Music::PITCH pitch@endlink or @link
+       Music::DRUM drum@endlink is selected.}
+32 \textcolor{comment}{}    \textcolor{keyword}{private} Toggle mRest = null; \textcolor{comment}{//!< The toggle switch for setting the @link Music::CombinedNote
+       note@endlink as a @link DocSC\_PSCRest rest note@endlink.}
+33 \textcolor{comment}{}    \textcolor{keyword}{private} Toggle[] mPitches = null; \textcolor{comment}{//!< The toggle switches for each @link Music::PITCH
+       pitch@endlink/@link Music::DRUM drum@endlink.}
+34 \textcolor{comment}{}
+35     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+36 \textcolor{comment}{     * @\}}
+37 \textcolor{comment}{     * @defgroup SC\_PSCPubFunc Public Functions}
+38 \textcolor{comment}{     * @ingroup DocSC\_PSC}
+39 \textcolor{comment}{     * Functions for other classes to interact with the SC\_PitchSelectionContainer}
+40 \textcolor{comment}{     * @\{}
+41 \textcolor{comment}{    *****************************************************************************/}
+42 \textcolor{comment}{}
+43 \textcolor{comment}{    /**}
+44 \textcolor{comment}{     * @brief Gets the currently selected @link Music::PITCH pitches@endlink/@link Music::DRUM
+       drums@endlink.}
+45 \textcolor{comment}{     * @return The currently selected @link Music::PITCH pitches@endlink/@link Music::DRUM drums@endlink.}
+46 \textcolor{comment}{    */}
+47     \textcolor{keyword}{public} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}[] \hyperlink{group___s_c___p_s_c_pub_func_ga05750cc6e1199f1522f8b87d6579dc34}{GetSelectedPitches}()
+48     \{
+49         \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}[] returned = null;
+50 
+51         \textcolor{comment}{// If we're currently a rest note, return the rest pitch}
+52         \textcolor{keywordflow}{if}( mRestNote )
+53         \{
+54             returned = \textcolor{keyword}{new} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}[1];
+55             returned[0] = \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.REST;
+56         \}
+57         \textcolor{comment}{// If there aren't any pitches selected, then return null.}
+58         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}( mSelectedPitches.Count == 0 )
+59         \{
+60             \textcolor{keywordflow}{return} null;
+61         \}
+62         \textcolor{comment}{// If we're not currently a rest note and some pitches are selected, then return all of the
+       selected pitches.}
+63         \textcolor{keywordflow}{else}
+64         \{
+65             \textcolor{keywordtype}{int} index = 0;
+66             returned = \textcolor{keyword}{new} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}[mSelectedPitches.Count];
+67             \textcolor{keywordflow}{foreach}( \textcolor{keywordtype}{int} pitch \textcolor{keywordflow}{in} mSelectedPitches )
+68             \{
+69                 returned[index] = (\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH})mSelectedPitches[index];
+70                 index++;
+71             \}
+72         \}
+73         \textcolor{keywordflow}{return} returned;
+74     \}
+75 \textcolor{comment}{}
+76 \textcolor{comment}{    /**}
+77 \textcolor{comment}{     * @brief Resets the selected selected @link Music::PITCH pitches@endlink/@link Music::DRUM
+       drums@endlink.}
+78 \textcolor{comment}{    */}
+79     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___s_c___p_s_c_pub_func_ga678ef561c5418e4bf43a5f9ed753f0f0}{ResetPitches}()
+80     \{
+81         \textcolor{comment}{// Reset the child objects.}
+82         \textcolor{keywordflow}{foreach}( \textcolor{keywordtype}{int} pitch \textcolor{keywordflow}{in} mSelectedPitches )
+83         \{
+84             mPitchSelectionTriggers[pitch].\hyperlink{group___s_c___p_s_t_pub_func_ga267db9aed38ba33ad44c26c84a1757df}{SetSelection}( \textcolor{keyword}{false} );
+85         \}
+86 
+87         \textcolor{comment}{// Update the rest note pitch.}
+88         mRestNote = \textcolor{keyword}{false};
+89 
+90 
+91         \textcolor{comment}{// Clear the list.}
+92         mSelectedPitches.Clear();
+93     \}
+94 \textcolor{comment}{}
+95 \textcolor{comment}{    /**}
+96 \textcolor{comment}{     * @brief Sets the selected @link Music::PITCH pitches@endlink/@link Music::DRUM drums@endlink}
+97 \textcolor{comment}{     * @param[in] aPitches The @link Music::PITCH pitches@endlink/@link Music::DRUM drums@endlink that
+       should be selected.}
+98 \textcolor{comment}{    */}
+99     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___s_c___p_s_c_pub_func_ga0b85aab924084ebb49be4f64ad6f81e5}{SetPitches}( \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}[] aPitches )
+100     \{
+101         \textcolor{comment}{// Reset the pitches.}
+102         \hyperlink{group___s_c___p_s_c_pub_func_ga678ef561c5418e4bf43a5f9ed753f0f0}{ResetPitches}();
+103 
+104         \textcolor{comment}{// Make sure that there are pitches to set.}
+105         \textcolor{keywordflow}{if}( aPitches != null )
+106         \{
+107             \textcolor{comment}{// Set the pitches}
+108             \textcolor{keywordflow}{foreach}( \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH} pitch in aPitches )
+109             \{
+110                 \textcolor{keywordflow}{if}( pitch != \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.REST )
+111                 \{
+112                     mPitchSelectionTriggers[(int)pitch].SetSelection( \textcolor{keyword}{true} );
+113                     mSelectedPitches.Add( (\textcolor{keywordtype}{int})pitch );
+114                 \}
+115                 \textcolor{keywordflow}{else}
+116                 \{
+117                     mRestNote = \textcolor{keyword}{true};
+118                     mRest.isOn = \textcolor{keyword}{true};
+119                 \}
+120             \}
+121         \}
+122     \}
+123 
+124 \textcolor{comment}{}
+125 \textcolor{comment}{    /**}
+126 \textcolor{comment}{     * @brief Sets up this selection container as a selector for @link Music::DRUM drums@endlink.}
+127 \textcolor{comment}{     * }
+128 \textcolor{comment}{     * The only difference is the ability to set the selected @link Music::PITCH pitch@endlink as a}
+129 \textcolor{comment}{     * @link DocSC\_PSCRest rest note@endlink, the number of @link SC\_PitchSelectionContainer::mPitches
+       toggle switches@endlink,}
+130 \textcolor{comment}{     * their text, and the number of @link SC\_PitchSelectionContainer::mPitchSelectionTriggers
+       triggers@endlink.}
+131 \textcolor{comment}{    */}
+132     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___s_c___p_s_c_pub_func_ga08a0a4943359eb7f28c64aaf4cbc233c}{SetUpAsDrumSelector}()
+133     \{
+134         \textcolor{comment}{// Create the list of selected pitches, the array of toggle switches, and the array of triggers.}
+135         mSelectedPitches = \textcolor{keyword}{new} List<int>();
+136         mPitches = \textcolor{keyword}{new} Toggle[\hyperlink{class_music}{Music}.\hyperlink{group___music_constants_gabce1a1ac5b9b6355af6bd7fb3868467a}{MAX\_SUPPORTED\_DRUMS}];
+137         mPitchSelectionTriggers = \textcolor{keyword}{new} \hyperlink{class_s_c___pitch_selection_trigger}{SC\_PitchSelectionTrigger}[
+      \hyperlink{class_music}{Music}.\hyperlink{group___music_constants_gabce1a1ac5b9b6355af6bd7fb3868467a}{MAX\_SUPPORTED\_DRUMS}];
+138 
+139         \textcolor{comment}{// Get the first toggle switch and set its text}
+140         mPitches[0] = gameObject.transform.GetChild( 0 ).GetComponent<Toggle>();
+141         mPitches[0].transform.GetChild( 1 ).GetComponent<Text>().text = \textcolor{stringliteral}{"KICK\_1"};
+142 
+143         \textcolor{comment}{// Set up the first pitch selection trigger.}
+144         mPitchSelectionTriggers[0] = mPitches[0].gameObject.AddComponent<
+      \hyperlink{class_s_c___pitch_selection_trigger}{SC\_PitchSelectionTrigger}>();
+145         mPitchSelectionTriggers[0].\hyperlink{group___s_c___p_s_t_pub_func_ga0b334518dbdac5874adf9436cd2c7fed}{SetHandler}( \textcolor{keyword}{this} );
+146         mPitchSelectionTriggers[0].SetIndex( 0 );
+147         mPitchSelectionTriggers[0].SetSelection( \textcolor{keyword}{false} );
+148 
+149         \textcolor{comment}{// Clone the first pitch object and modify it for each drum.}
+150         \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 1; i < \hyperlink{class_music}{Music}.\hyperlink{group___music_constants_gabce1a1ac5b9b6355af6bd7fb3868467a}{MAX\_SUPPORTED\_DRUMS}; i++ )
+151         \{
+152             \textcolor{comment}{// Copy the first drum and set its parent.}
+153             mPitches[i] = Instantiate( mPitches[0] ).GetComponent<Toggle>();
+154             mPitches[i].transform.SetParent( gameObject.transform );
+155 
+156             \textcolor{comment}{// Set the copy's text}
+157             mPitches[i].transform.GetChild( 1 ).GetComponent<Text>().text = 
+      \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_gaf5f64ebe9a7e036e07f283e41f26d22b}{DrumToString}( i );
+158 
+159             \textcolor{comment}{// Set up the clone's SC\_PitchSelectionTrigger.}
+160             mPitchSelectionTriggers[i] = mPitches[i].GetComponent<
+      \hyperlink{class_s_c___pitch_selection_trigger}{SC\_PitchSelectionTrigger}>();
+161             mPitchSelectionTriggers[i].\hyperlink{group___s_c___p_s_t_pub_func_ga0b4edbf9719a384aa5cf8d29d1065696}{SetIndex}( i );
+162             mPitchSelectionTriggers[i].SetHandler( \textcolor{keyword}{this} );
+163 
+164         \}
+165 
+166         \textcolor{comment}{// Make sure that everything is sized appropriately.}
+167         mPitches[0].transform.localScale = mPitches[1].transform.localScale;
+168     \}
+169 \textcolor{comment}{}
+170 \textcolor{comment}{    /**}
+171 \textcolor{comment}{     * @brief Sets up this selection container as a selector for @link Music::PITCH pitches@endlink.}
+172 \textcolor{comment}{     * }
+173 \textcolor{comment}{     * The only difference is the ability to set the selected @link Music::PITCH pitch@endlink as a}
+174 \textcolor{comment}{     * @link DocSC\_PSCRest rest note@endlink, the number of @link SC\_PitchSelectionContainer::mPitches
+       toggle switches@endlink,}
+175 \textcolor{comment}{     * their text, and the number of @link SC\_PitchSelectionContainer::mPitchSelectionTriggers
+       triggers@endlink.}
+176 \textcolor{comment}{    */}
+177     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___s_c___p_s_c_pub_func_gaf6e9338cfe7202df9787304e49afa24d}{SetUpAsPitchSelector}()
+178     \{
+179         \textcolor{comment}{// Create the list of selected pitches, the array of toggle switches, and the array of triggers.}
+180         mSelectedPitches = \textcolor{keyword}{new} List<int>();
+181         mPitches = \textcolor{keyword}{new} Toggle[\hyperlink{class_music}{Music}.\hyperlink{group___music_constants_gaaf07da909a12e9fec0e43b70864f27b7}{MAX\_SUPPORTED\_NOTES} + 1];
+182         mPitchSelectionTriggers = \textcolor{keyword}{new} \hyperlink{class_s_c___pitch_selection_trigger}{SC\_PitchSelectionTrigger}[
+      \hyperlink{class_music}{Music}.\hyperlink{group___music_constants_gaaf07da909a12e9fec0e43b70864f27b7}{MAX\_SUPPORTED\_NOTES} + 1];
+183 
+184         \textcolor{comment}{// Get the first toggle switch and set its text}
+185         mPitches[0] = gameObject.transform.GetChild( 0 ).GetComponent<Toggle>();
+186         mPitches[0].transform.GetChild( 1 ).GetComponent<Text>().text = \textcolor{stringliteral}{"C0"};
+187 
+188         \textcolor{comment}{// Set up the first pitch selection trigger.}
+189         mPitchSelectionTriggers[0] = mPitches[0].gameObject.AddComponent<
+      \hyperlink{class_s_c___pitch_selection_trigger}{SC\_PitchSelectionTrigger}>();
+190         mPitchSelectionTriggers[0].\hyperlink{group___s_c___p_s_t_pub_func_ga0b334518dbdac5874adf9436cd2c7fed}{SetHandler}( \textcolor{keyword}{this} );
+191         mPitchSelectionTriggers[0].SetIndex( 0 );
+192         mPitchSelectionTriggers[0].SetSelection( \textcolor{keyword}{false} );
+193 
+194         \textcolor{comment}{// Clone the first pitch object and modify it for each pitch.}
+195         \textcolor{keywordtype}{string} temp = null;
+196         \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 1; i < \hyperlink{class_music}{Music}.\hyperlink{group___music_constants_gaaf07da909a12e9fec0e43b70864f27b7}{MAX\_SUPPORTED\_NOTES}; i++ )
+197         \{
+198             \textcolor{comment}{// Copy the first pitch and set its parent.}
+199             mPitches[i] = Instantiate( mPitches[0] ).GetComponent<Toggle>();
+200             mPitches[i].transform.SetParent( gameObject.transform );
+201 
+202             \textcolor{comment}{// Set the copy's text.}
+203             temp = \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( i );
+204             \textcolor{keywordflow}{if}( temp.Contains( \textcolor{stringliteral}{"S"} ) )
+205             \{
+206                 \textcolor{keywordtype}{char}[] tempArray = temp.ToCharArray();
+207                 tempArray[1] = \textcolor{charliteral}{'#'};
+208                 temp = \textcolor{keyword}{new} string( tempArray );
+209             \}
+210             mPitches[i].transform.GetChild( 1 ).GetComponent<Text>().text = temp;
+211 
+212             \textcolor{comment}{// Set up the clone's SC\_PitchSelectionTrigger.}
+213             mPitchSelectionTriggers[i] = mPitches[i].GetComponent<
+      \hyperlink{class_s_c___pitch_selection_trigger}{SC\_PitchSelectionTrigger}>();
+214             mPitchSelectionTriggers[i].\hyperlink{group___s_c___p_s_t_pub_func_ga0b4edbf9719a384aa5cf8d29d1065696}{SetIndex}( i );
+215             mPitchSelectionTriggers[i].SetHandler( \textcolor{keyword}{this} );
+216 
+217         \}
+218 
+219         \textcolor{comment}{// Make sure that everything is sized appropriately.}
+220         mPitches[0].transform.localScale = mPitches[1].transform.localScale;
+221 
+222         \textcolor{comment}{// Create the rest note selection.}
+223         mRest = Instantiate( mPitches[0] ).GetComponent<Toggle>();
+224         DestroyImmediate( mRest.GetComponent<\hyperlink{class_s_c___pitch_selection_trigger}{SC\_PitchSelectionTrigger}>(), \textcolor{keyword}{false} );
+225         mRest.transform.SetParent( gameObject.transform );
+226         mRest.onValueChanged.AddListener( \hyperlink{group___s_c___p_s_c_handlers_ga8715b5976fdae2c56e05a60832553864}{OnRestToggle} );
+227         mRest.transform.GetChild( 1 ).GetComponent<Text>().text = \textcolor{stringliteral}{"Rest"};
+228         mRest.transform.localScale = mPitches[1].transform.localScale;
+229     \}
+230 
+231     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+232 \textcolor{comment}{     * @\}}
+233 \textcolor{comment}{     * @defgroup SC\_PSCHandlers Event Handlers}
+234 \textcolor{comment}{     * @ingroup DocSC\_PSC}
+235 \textcolor{comment}{     * Functions called by the SC\_PitchSelectionContainer in response to events.}
+236 \textcolor{comment}{     * @\{}
+237 \textcolor{comment}{    *****************************************************************************/}
+238 \textcolor{comment}{}
+239 \textcolor{comment}{    /**}
+240 \textcolor{comment}{     * Handles @link SC\_PitchSelectionTrigger::OnPitchSelected a pitch being selected@endlink.}
+241 \textcolor{comment}{     * @param[in] aSelected True if the @link Music::PITCH pitch@endlink/@link Music::DRUM drum@endlink is
+       selected. False otherwise.}
+242 \textcolor{comment}{     * @param[in] aIndex The index of the @link DocSC\_PST trigger@endlink that was selected/unselected.}
+243 \textcolor{comment}{    */}
+244     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___s_c___p_s_c_handlers_gaa2afa8167100515d412cf751d9334f0c}{HandlePitchSelection}( \textcolor{keywordtype}{bool} aSelected, \textcolor{keywordtype}{int} aIndex )
+245     \{
+246         \textcolor{comment}{// If this pitch was selected and the note is note currently set to be a rest note,}
+247         \textcolor{comment}{// then add it to the list.}
+248         \textcolor{keywordflow}{if}( aSelected && !mRestNote )
+249         \{
+250             mSelectedPitches.Add( aIndex );
+251             \textcolor{keywordflow}{foreach}( \textcolor{keywordtype}{int} pitch \textcolor{keywordflow}{in} mSelectedPitches )
+252             \{
+253                 Debug.Log( \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( pitch ) );
+254             \}
+255 
+256         \}
+257         \textcolor{comment}{// If the pitch was unselected and the note is not currently set to be a rest note, }
+258         \textcolor{comment}{// then remove it from the list.}
+259         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}( !mRestNote )
+260         \{
+261             mSelectedPitches.Remove( aIndex );
+262             \textcolor{keywordflow}{foreach}( \textcolor{keywordtype}{int} pitch \textcolor{keywordflow}{in} mSelectedPitches )
+263             \{
+264                 Debug.Log( \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( pitch ) );
+265             \}
+266         \}
+267         \textcolor{comment}{// If the pitch was selected and we are currently set to be a rest note, then unselect the note.}
+268         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}( aSelected && mRestNote )
+269         \{
+270             mPitchSelectionTriggers[aIndex].SetSelection( \textcolor{keyword}{false} );
+271         \}
+272     \}
+273 \textcolor{comment}{}
+274 \textcolor{comment}{    /**}
+275 \textcolor{comment}{     * @brief Handles switching between this @link Music::CombinedNote note@endlink being a @link
+       DocSC\_PSCRest rest note@endlink or not.}
+276 \textcolor{comment}{     * @param[in] aIsRestNote True if the @link Music::CombinedNote note@endlink is a @link DocSC\_PSCRest
+       rest note@endlink. False otherwise.}
+277 \textcolor{comment}{    */}
+278     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___s_c___p_s_c_handlers_ga8715b5976fdae2c56e05a60832553864}{OnRestToggle}( \textcolor{keywordtype}{bool} aIsRestNote )
+279     \{
+280         mRestNote = aIsRestNote;
+281 
+282         \textcolor{comment}{// If this note is now a rest note, then make sure that no other pitches are selected.}
+283         \textcolor{keywordflow}{if}( mRestNote )
+284         \{
+285             \textcolor{keywordflow}{foreach}( \textcolor{keywordtype}{int} pitch \textcolor{keywordflow}{in} mSelectedPitches )
+286             \{
+287                 mPitchSelectionTriggers[pitch].SetSelection( \textcolor{keyword}{false} );
+288             \}
+289         \}
+290         \textcolor{comment}{// If this note is no longer a rest note, then restore the selected pitches.}
+291         \textcolor{keywordflow}{else}
+292         \{
+293             \textcolor{keywordflow}{foreach}( \textcolor{keywordtype}{int} pitch \textcolor{keywordflow}{in} mSelectedPitches )
+294             \{
+295                 mPitchSelectionTriggers[pitch].SetSelection( \textcolor{keyword}{true} );
+296             \}
+297         \}
+298     \}\textcolor{comment}{}
+299 \textcolor{comment}{    /** @\} */}
+300 \}
+301 \textcolor{preprocessor}{#endif}
+\end{DoxyCodeInclude}
+ 

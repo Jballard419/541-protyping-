@@ -1,0 +1,421 @@
+\hypertarget{class_note_display_container}{}\section{Note\+Display\+Container Class Reference}
+\label{class_note_display_container}\index{Note\+Display\+Container@{Note\+Display\+Container}}
+Inheritance diagram for Note\+Display\+Container\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_note_display_container}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_note_display_container_aa108ddf1c59c22600eb47b6ccc831573}{Add\+Note} (int a\+Melody\+Velocity, \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{Music.\+N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH} a\+Length, \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH}\mbox{[}$\,$\mbox{]} a\+Pitches, int a\+Drum\+Velocity, \hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{Music.\+D\+R\+UM}\mbox{[}$\,$\mbox{]} a\+Drum\+Hits, \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{Music.\+N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH} a\+Offset\+From\+Prev\+Note)
+\item 
+void \hyperlink{class_note_display_container_abcbda84772a6e66780b0f21928edf853}{Clear\+Notes} ()
+\begin{DoxyCompactList}\small\item\em Clears all of the notes. \end{DoxyCompactList}\item 
+\hyperlink{class_s_c___measure_display_panel}{S\+C\+\_\+\+Measure\+Display\+Panel} \hyperlink{class_note_display_container_aa61de8a22ca340125208074a49c67478}{Get\+Current\+Measure\+Object} ()
+\item 
+Sprite \mbox{[}$\,$\mbox{]} \hyperlink{class_note_display_container_a71bea931f237005ffb04e33baef71bef}{Get\+Sprites} ()
+\item 
+void \hyperlink{class_note_display_container_a4d29c459fb7475f9daa86322307c3cd2}{Handle\+Full\+Measure} (\hyperlink{class_s_c___measure_display_panel}{S\+C\+\_\+\+Measure\+Display\+Panel} a\+Full\+Measure, float a\+Spillover, int a\+Melody\+Velocity, \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{Music.\+N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH} a\+Length, \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH}\mbox{[}$\,$\mbox{]} a\+Pitches, int a\+Drum\+Velocity, \hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{Music.\+D\+R\+UM}\mbox{[}$\,$\mbox{]} a\+Drum\+Hits, \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{Music.\+N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH} a\+Offset\+From\+Prev\+Note)
+\item 
+void \hyperlink{class_note_display_container_a77cacb7c234490ae5ddb1f3979ecf9bc}{Handle\+Measure\+Deleted} (\hyperlink{class_s_c___measure_display_panel}{S\+C\+\_\+\+Measure\+Display\+Panel} a\+Measure)
+\item 
+void \hyperlink{class_note_display_container_a54dc5bb2f6850037473ec82efe632716}{Handle\+Measure\+Toggled} (\hyperlink{class_s_c___measure_display_panel}{S\+C\+\_\+\+Measure\+Display\+Panel} a\+Measure)
+\item 
+void \hyperlink{class_note_display_container_a400c6151d074c2cb1f116ff589ce13b8}{On\+Remove\+Note} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_note_display_container_a17c4d7438b40d9e530f853d3ea4d8075}{Awake} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const string \hyperlink{class_note_display_container_a50e30949ce455a140c4c2a317ac0406e}{M\+E\+A\+S\+U\+R\+E\+\_\+\+P\+A\+N\+E\+L\+\_\+\+P\+R\+E\+F\+A\+B\+\_\+\+P\+A\+TH} = \char`\"{}Audio/Prefabs/Song\+Creation/Measure\+Panel\+Prefab\char`\"{}
+\item 
+int \hyperlink{class_note_display_container_a31be4fc67033a1dcb210819e0e90d7e6}{m\+Num\+Notes} = 0
+\item 
+int \hyperlink{class_note_display_container_a79a97c9e0f45ba4242b66d6ec317d020}{m\+Current\+Measure} = -\/1
+\item 
+List$<$ \hyperlink{class_s_c___measure_display_panel}{S\+C\+\_\+\+Measure\+Display\+Panel} $>$ \hyperlink{class_note_display_container_ae5ca6e7ea4ab2baaab9ff649bf25c0d6}{m\+Measures} = null
+\item 
+Sprite \mbox{[}$\,$\mbox{]} \hyperlink{class_note_display_container_a2816b590b588d86780ae622b3df403ee}{m\+Sprites} = null
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 12 of file Note\+Display\+Container.\+cs.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_note_display_container_aa108ddf1c59c22600eb47b6ccc831573}\label{class_note_display_container_aa108ddf1c59c22600eb47b6ccc831573}} 
+\index{Note\+Display\+Container@{Note\+Display\+Container}!Add\+Note@{Add\+Note}}
+\index{Add\+Note@{Add\+Note}!Note\+Display\+Container@{Note\+Display\+Container}}
+\subsubsection{\texorpdfstring{Add\+Note()}{AddNote()}}
+{\footnotesize\ttfamily void Note\+Display\+Container.\+Add\+Note (\begin{DoxyParamCaption}\item[{int}]{a\+Melody\+Velocity,  }\item[{\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{Music.\+N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH}}]{a\+Length,  }\item[{\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} \mbox{[}$\,$\mbox{]}}]{a\+Pitches,  }\item[{int}]{a\+Drum\+Velocity,  }\item[{\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{Music.\+D\+R\+UM} \mbox{[}$\,$\mbox{]}}]{a\+Drum\+Hits,  }\item[{\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{Music.\+N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH}}]{a\+Offset\+From\+Prev\+Note }\end{DoxyParamCaption})}
+
+
+
+Definition at line 54 of file Note\+Display\+Container.\+cs.
+
+
+
+References m\+Current\+Measure.
+
+
+
+Referenced by Song\+Creation\+Manager.\+On\+Create\+Note(), and Song\+Creation\+Manager.\+On\+Load\+Song().
+
+
+\begin{DoxyCode}
+55     \{
+56         \textcolor{comment}{// Create a measure if none are present.}
+57         \textcolor{keywordflow}{if}( \hyperlink{class_note_display_container_a79a97c9e0f45ba4242b66d6ec317d020}{mCurrentMeasure} == -1 )
+58         \{
+59             GameObject newMeasure = Instantiate( Resources.Load<GameObject>( 
+      \hyperlink{class_note_display_container_a50e30949ce455a140c4c2a317ac0406e}{MEASURE\_PANEL\_PREFAB\_PATH} ) );
+60             Assert.IsNotNull( newMeasure, \textcolor{stringliteral}{"Could not load the MeasurePanel prefab!"} );
+61 
+62             \textcolor{comment}{// Add the measure panel to the list.}
+63             \hyperlink{class_note_display_container_ae5ca6e7ea4ab2baaab9ff649bf25c0d6}{mMeasures}.Add( newMeasure.AddComponent<
+      \hyperlink{class_s_c___measure_display_panel}{SC\_MeasureDisplayPanel}>() );
+64 
+65             \textcolor{comment}{// Increase the current measure.}
+66             \hyperlink{class_note_display_container_a79a97c9e0f45ba4242b66d6ec317d020}{mCurrentMeasure}++;
+67 
+68             \textcolor{comment}{// Set the values for the new measure toggle.}
+69             \hyperlink{class_note_display_container_ae5ca6e7ea4ab2baaab9ff649bf25c0d6}{mMeasures}[\hyperlink{class_note_display_container_a79a97c9e0f45ba4242b66d6ec317d020}{mCurrentMeasure}].transform.GetChild( 0 ).GetChild( 1 ).
+      GetComponent<Text>().text = \textcolor{stringliteral}{"Measure "} + ( \hyperlink{class_note_display_container_a79a97c9e0f45ba4242b66d6ec317d020}{mCurrentMeasure} + 1 ).ToString();
+70             \hyperlink{class_note_display_container_ae5ca6e7ea4ab2baaab9ff649bf25c0d6}{mMeasures}[\hyperlink{class_note_display_container_a79a97c9e0f45ba4242b66d6ec317d020}{mCurrentMeasure}].transform.SetParent( gameObject.transform );
+71             \hyperlink{class_note_display_container_ae5ca6e7ea4ab2baaab9ff649bf25c0d6}{mMeasures}[\hyperlink{class_note_display_container_a79a97c9e0f45ba4242b66d6ec317d020}{mCurrentMeasure}].SetParentContainer( \textcolor{keyword}{this} );
+72             \hyperlink{class_note_display_container_ae5ca6e7ea4ab2baaab9ff649bf25c0d6}{mMeasures}[\hyperlink{class_note_display_container_a79a97c9e0f45ba4242b66d6ec317d020}{mCurrentMeasure}].transform.localScale = Vector3.one;
+73             \hyperlink{class_note_display_container_ae5ca6e7ea4ab2baaab9ff649bf25c0d6}{mMeasures}[\hyperlink{class_note_display_container_a79a97c9e0f45ba4242b66d6ec317d020}{mCurrentMeasure}].SetToggle( \textcolor{keyword}{true} );
+74         \}
+75         \hyperlink{class_note_display_container_ae5ca6e7ea4ab2baaab9ff649bf25c0d6}{mMeasures}[\hyperlink{class_note_display_container_a79a97c9e0f45ba4242b66d6ec317d020}{mCurrentMeasure}].AddNote( \hyperlink{class_note_display_container_a31be4fc67033a1dcb210819e0e90d7e6}{mNumNotes}, aMelodyVelocity, 
+      aLength, aPitches, aDrumVelocity, aDrumHits, aOffsetFromPrevNote );
+76         \hyperlink{class_note_display_container_a31be4fc67033a1dcb210819e0e90d7e6}{mNumNotes}++;
+77     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_note_display_container_a17c4d7438b40d9e530f853d3ea4d8075}\label{class_note_display_container_a17c4d7438b40d9e530f853d3ea4d8075}} 
+\index{Note\+Display\+Container@{Note\+Display\+Container}!Awake@{Awake}}
+\index{Awake@{Awake}!Note\+Display\+Container@{Note\+Display\+Container}}
+\subsubsection{\texorpdfstring{Awake()}{Awake()}}
+{\footnotesize\ttfamily void Note\+Display\+Container.\+Awake (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 27 of file Note\+Display\+Container.\+cs.
+
+
+\begin{DoxyCode}
+28     \{
+29         \textcolor{comment}{// Set up the measures.}
+30         \hyperlink{class_note_display_container_ae5ca6e7ea4ab2baaab9ff649bf25c0d6}{mMeasures} = \textcolor{keyword}{new} List<SC\_MeasureDisplayPanel>();
+31 
+32         \textcolor{comment}{// Load the note length/offset images}
+33         \hyperlink{class_note_display_container_a2816b590b588d86780ae622b3df403ee}{mSprites} = \textcolor{keyword}{new} Sprite[13];
+34         mSprites[0] = Resources.Load<Sprite>( \textcolor{stringliteral}{"Audio/Images/32nd"} );
+35         mSprites[1] = Resources.Load<Sprite>( \textcolor{stringliteral}{"Audio/Images/dotted32nd"} );
+36         mSprites[2] = Resources.Load<Sprite>( \textcolor{stringliteral}{"Audio/Images/16th"} );
+37         mSprites[3] = Resources.Load<Sprite>( \textcolor{stringliteral}{"Audio/Images/dotted16th"} );
+38         mSprites[4] = Resources.Load<Sprite>( \textcolor{stringliteral}{"Audio/Images/eighth"} );
+39         mSprites[5] = Resources.Load<Sprite>( \textcolor{stringliteral}{"Audio/Images/dottedEighth"} );
+40         mSprites[6] = Resources.Load<Sprite>( \textcolor{stringliteral}{"Audio/Images/quarter"} );
+41         mSprites[7] = Resources.Load<Sprite>( \textcolor{stringliteral}{"Audio/Images/dottedQuarter"} );
+42         mSprites[8] = Resources.Load<Sprite>( \textcolor{stringliteral}{"Audio/Images/half"} );
+43         mSprites[9] = Resources.Load<Sprite>( \textcolor{stringliteral}{"Audio/Images/dottedHalf"} );
+44         mSprites[10] = Resources.Load<Sprite>( \textcolor{stringliteral}{"Audio/Images/whole"} );
+45         mSprites[11] = Resources.Load<Sprite>( \textcolor{stringliteral}{"Audio/Images/dottedWhole"} );
+46         mSprites[12] = null;
+47     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_note_display_container_abcbda84772a6e66780b0f21928edf853}\label{class_note_display_container_abcbda84772a6e66780b0f21928edf853}} 
+\index{Note\+Display\+Container@{Note\+Display\+Container}!Clear\+Notes@{Clear\+Notes}}
+\index{Clear\+Notes@{Clear\+Notes}!Note\+Display\+Container@{Note\+Display\+Container}}
+\subsubsection{\texorpdfstring{Clear\+Notes()}{ClearNotes()}}
+{\footnotesize\ttfamily void Note\+Display\+Container.\+Clear\+Notes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Clears all of the notes. 
+
+
+
+Definition at line 82 of file Note\+Display\+Container.\+cs.
+
+
+
+References m\+Current\+Measure.
+
+
+
+Referenced by Song\+Creation\+Manager.\+On\+Load\+Song().
+
+
+\begin{DoxyCode}
+83     \{
+84         \textcolor{keywordflow}{while}( \hyperlink{class_note_display_container_a79a97c9e0f45ba4242b66d6ec317d020}{mCurrentMeasure} >= 0 )
+85         \{
+86             \hyperlink{class_note_display_container_ae5ca6e7ea4ab2baaab9ff649bf25c0d6}{mMeasures}[\hyperlink{class_note_display_container_a79a97c9e0f45ba4242b66d6ec317d020}{mCurrentMeasure}].ClearMeasure();
+87             \hyperlink{class_note_display_container_ae5ca6e7ea4ab2baaab9ff649bf25c0d6}{mMeasures}.RemoveAt( \hyperlink{class_note_display_container_a79a97c9e0f45ba4242b66d6ec317d020}{mCurrentMeasure} );
+88             \hyperlink{class_note_display_container_a79a97c9e0f45ba4242b66d6ec317d020}{mCurrentMeasure}--;
+89         \}
+90         \hyperlink{class_note_display_container_a31be4fc67033a1dcb210819e0e90d7e6}{mNumNotes} = 0;
+91     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_note_display_container_aa61de8a22ca340125208074a49c67478}\label{class_note_display_container_aa61de8a22ca340125208074a49c67478}} 
+\index{Note\+Display\+Container@{Note\+Display\+Container}!Get\+Current\+Measure\+Object@{Get\+Current\+Measure\+Object}}
+\index{Get\+Current\+Measure\+Object@{Get\+Current\+Measure\+Object}!Note\+Display\+Container@{Note\+Display\+Container}}
+\subsubsection{\texorpdfstring{Get\+Current\+Measure\+Object()}{GetCurrentMeasureObject()}}
+{\footnotesize\ttfamily \hyperlink{class_s_c___measure_display_panel}{S\+C\+\_\+\+Measure\+Display\+Panel} Note\+Display\+Container.\+Get\+Current\+Measure\+Object (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 94 of file Note\+Display\+Container.\+cs.
+
+
+
+References m\+Current\+Measure.
+
+
+\begin{DoxyCode}
+95     \{
+96         \textcolor{keywordflow}{return} \hyperlink{class_note_display_container_ae5ca6e7ea4ab2baaab9ff649bf25c0d6}{mMeasures}[\hyperlink{class_note_display_container_a79a97c9e0f45ba4242b66d6ec317d020}{mCurrentMeasure}];
+97     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_note_display_container_a71bea931f237005ffb04e33baef71bef}\label{class_note_display_container_a71bea931f237005ffb04e33baef71bef}} 
+\index{Note\+Display\+Container@{Note\+Display\+Container}!Get\+Sprites@{Get\+Sprites}}
+\index{Get\+Sprites@{Get\+Sprites}!Note\+Display\+Container@{Note\+Display\+Container}}
+\subsubsection{\texorpdfstring{Get\+Sprites()}{GetSprites()}}
+{\footnotesize\ttfamily Sprite \mbox{[}$\,$\mbox{]} Note\+Display\+Container.\+Get\+Sprites (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 100 of file Note\+Display\+Container.\+cs.
+
+
+
+References m\+Sprites.
+
+
+
+Referenced by S\+C\+\_\+\+Measure\+Display\+Panel.\+Add\+Note(), and Song\+Creation\+Manager.\+On\+Modify\+Note().
+
+
+\begin{DoxyCode}
+101     \{
+102         \textcolor{keywordflow}{return} \hyperlink{class_note_display_container_a2816b590b588d86780ae622b3df403ee}{mSprites};
+103     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_note_display_container_a4d29c459fb7475f9daa86322307c3cd2}\label{class_note_display_container_a4d29c459fb7475f9daa86322307c3cd2}} 
+\index{Note\+Display\+Container@{Note\+Display\+Container}!Handle\+Full\+Measure@{Handle\+Full\+Measure}}
+\index{Handle\+Full\+Measure@{Handle\+Full\+Measure}!Note\+Display\+Container@{Note\+Display\+Container}}
+\subsubsection{\texorpdfstring{Handle\+Full\+Measure()}{HandleFullMeasure()}}
+{\footnotesize\ttfamily void Note\+Display\+Container.\+Handle\+Full\+Measure (\begin{DoxyParamCaption}\item[{\hyperlink{class_s_c___measure_display_panel}{S\+C\+\_\+\+Measure\+Display\+Panel}}]{a\+Full\+Measure,  }\item[{float}]{a\+Spillover,  }\item[{int}]{a\+Melody\+Velocity,  }\item[{\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{Music.\+N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH}}]{a\+Length,  }\item[{\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} \mbox{[}$\,$\mbox{]}}]{a\+Pitches,  }\item[{int}]{a\+Drum\+Velocity,  }\item[{\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{Music.\+D\+R\+UM} \mbox{[}$\,$\mbox{]}}]{a\+Drum\+Hits,  }\item[{\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{Music.\+N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH}}]{a\+Offset\+From\+Prev\+Note }\end{DoxyParamCaption})}
+
+
+
+Definition at line 110 of file Note\+Display\+Container.\+cs.
+
+
+
+References Handle\+Measure\+Toggled(), and m\+Current\+Measure.
+
+
+
+Referenced by S\+C\+\_\+\+Measure\+Display\+Panel.\+Add\+Note().
+
+
+\begin{DoxyCode}
+112     \{
+113         \textcolor{comment}{// Create a new measure toggle.}
+114         GameObject clone = Instantiate( Resources.Load<GameObject>( 
+      \hyperlink{class_note_display_container_a50e30949ce455a140c4c2a317ac0406e}{MEASURE\_PANEL\_PREFAB\_PATH} ) );
+115         Assert.IsNotNull( clone, \textcolor{stringliteral}{"Could not load the MeasurePanel prefab!"} );
+116 
+117         \textcolor{comment}{// Add the measure panel to the list.}
+118         \hyperlink{class_note_display_container_ae5ca6e7ea4ab2baaab9ff649bf25c0d6}{mMeasures}.Add( clone.AddComponent<\hyperlink{class_s_c___measure_display_panel}{SC\_MeasureDisplayPanel}>() );
+119 
+120         \textcolor{comment}{// Increase the current measure.}
+121         \hyperlink{class_note_display_container_a79a97c9e0f45ba4242b66d6ec317d020}{mCurrentMeasure}++;
+122 
+123         \textcolor{comment}{// Set the values for the new measure toggle.}
+124         \hyperlink{class_note_display_container_ae5ca6e7ea4ab2baaab9ff649bf25c0d6}{mMeasures}[\hyperlink{class_note_display_container_a79a97c9e0f45ba4242b66d6ec317d020}{mCurrentMeasure}].transform.GetChild( 0 ).GetChild( 1 ).
+      GetComponent<Text>().text = \textcolor{stringliteral}{"Measure "} + ( \hyperlink{class_note_display_container_a79a97c9e0f45ba4242b66d6ec317d020}{mCurrentMeasure} + 1 ).ToString();
+125         \hyperlink{class_note_display_container_ae5ca6e7ea4ab2baaab9ff649bf25c0d6}{mMeasures}[\hyperlink{class_note_display_container_a79a97c9e0f45ba4242b66d6ec317d020}{mCurrentMeasure}].transform.SetParent( gameObject.transform );
+126         \hyperlink{class_note_display_container_ae5ca6e7ea4ab2baaab9ff649bf25c0d6}{mMeasures}[\hyperlink{class_note_display_container_a79a97c9e0f45ba4242b66d6ec317d020}{mCurrentMeasure}].SetParentContainer( \textcolor{keyword}{this} );
+127         \hyperlink{class_note_display_container_ae5ca6e7ea4ab2baaab9ff649bf25c0d6}{mMeasures}[\hyperlink{class_note_display_container_a79a97c9e0f45ba4242b66d6ec317d020}{mCurrentMeasure}].transform.localScale = Vector3.one;
+128         \hyperlink{class_note_display_container_ae5ca6e7ea4ab2baaab9ff649bf25c0d6}{mMeasures}[\hyperlink{class_note_display_container_a79a97c9e0f45ba4242b66d6ec317d020}{mCurrentMeasure}].SetToggle( \textcolor{keyword}{true} );
+129 
+130         \textcolor{comment}{// Handle Spillover from the previous measure.}
+131         \hyperlink{class_note_display_container_ae5ca6e7ea4ab2baaab9ff649bf25c0d6}{mMeasures}[\hyperlink{class_note_display_container_a79a97c9e0f45ba4242b66d6ec317d020}{mCurrentMeasure}].SetPercentageUsed( 0f - aSpillover );
+132 
+133         \textcolor{comment}{// Add the note to the new measure.}
+134         \hyperlink{class_note_display_container_ae5ca6e7ea4ab2baaab9ff649bf25c0d6}{mMeasures}[\hyperlink{class_note_display_container_a79a97c9e0f45ba4242b66d6ec317d020}{mCurrentMeasure}].AddNote( \hyperlink{class_note_display_container_a31be4fc67033a1dcb210819e0e90d7e6}{mNumNotes}, aMelodyVelocity, 
+      aLength, aPitches, aDrumVelocity, aDrumHits, aOffsetFromPrevNote );
+135 
+136         \textcolor{comment}{// Make only the new measure be shown.}
+137         \hyperlink{class_note_display_container_a54dc5bb2f6850037473ec82efe632716}{HandleMeasureToggled}( \hyperlink{class_note_display_container_ae5ca6e7ea4ab2baaab9ff649bf25c0d6}{mMeasures}[
+      \hyperlink{class_note_display_container_a79a97c9e0f45ba4242b66d6ec317d020}{mCurrentMeasure}] );
+138 
+139     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_note_display_container_a77cacb7c234490ae5ddb1f3979ecf9bc}\label{class_note_display_container_a77cacb7c234490ae5ddb1f3979ecf9bc}} 
+\index{Note\+Display\+Container@{Note\+Display\+Container}!Handle\+Measure\+Deleted@{Handle\+Measure\+Deleted}}
+\index{Handle\+Measure\+Deleted@{Handle\+Measure\+Deleted}!Note\+Display\+Container@{Note\+Display\+Container}}
+\subsubsection{\texorpdfstring{Handle\+Measure\+Deleted()}{HandleMeasureDeleted()}}
+{\footnotesize\ttfamily void Note\+Display\+Container.\+Handle\+Measure\+Deleted (\begin{DoxyParamCaption}\item[{\hyperlink{class_s_c___measure_display_panel}{S\+C\+\_\+\+Measure\+Display\+Panel}}]{a\+Measure }\end{DoxyParamCaption})}
+
+
+
+Definition at line 142 of file Note\+Display\+Container.\+cs.
+
+
+
+Referenced by S\+C\+\_\+\+Measure\+Display\+Panel.\+Remove\+Note().
+
+
+\begin{DoxyCode}
+143     \{
+144         \textcolor{comment}{// Find the measure that is deleted.}
+145         \textcolor{keywordtype}{int} index = \hyperlink{class_note_display_container_ae5ca6e7ea4ab2baaab9ff649bf25c0d6}{mMeasures}.IndexOf( aMeasure );
+146         \hyperlink{class_note_display_container_a79a97c9e0f45ba4242b66d6ec317d020}{mCurrentMeasure}--;
+147 
+148         \textcolor{comment}{// Remove the measure and show the previous one if there is one. }
+149         \hyperlink{class_note_display_container_ae5ca6e7ea4ab2baaab9ff649bf25c0d6}{mMeasures}.RemoveAt( index );
+150         \textcolor{keywordflow}{if}( index > 0 )
+151         \{
+152             \hyperlink{class_note_display_container_ae5ca6e7ea4ab2baaab9ff649bf25c0d6}{mMeasures}[index - 1].SetToggle( \textcolor{keyword}{true} );
+153         \}
+154 
+155         \textcolor{comment}{// Delete the measure.}
+156         DestroyImmediate( aMeasure.gameObject, \textcolor{keyword}{false} );
+157     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_note_display_container_a54dc5bb2f6850037473ec82efe632716}\label{class_note_display_container_a54dc5bb2f6850037473ec82efe632716}} 
+\index{Note\+Display\+Container@{Note\+Display\+Container}!Handle\+Measure\+Toggled@{Handle\+Measure\+Toggled}}
+\index{Handle\+Measure\+Toggled@{Handle\+Measure\+Toggled}!Note\+Display\+Container@{Note\+Display\+Container}}
+\subsubsection{\texorpdfstring{Handle\+Measure\+Toggled()}{HandleMeasureToggled()}}
+{\footnotesize\ttfamily void Note\+Display\+Container.\+Handle\+Measure\+Toggled (\begin{DoxyParamCaption}\item[{\hyperlink{class_s_c___measure_display_panel}{S\+C\+\_\+\+Measure\+Display\+Panel}}]{a\+Measure }\end{DoxyParamCaption})}
+
+
+
+Definition at line 160 of file Note\+Display\+Container.\+cs.
+
+
+
+References S\+C\+\_\+\+Measure\+Display\+Panel.\+Set\+Toggle().
+
+
+
+Referenced by Handle\+Full\+Measure(), and S\+C\+\_\+\+Measure\+Display\+Panel.\+On\+Show\+Toggle().
+
+
+\begin{DoxyCode}
+161     \{
+162         \textcolor{comment}{// Set that only the toggled measure should be shown.}
+163         \textcolor{keywordflow}{foreach}( \hyperlink{class_s_c___measure_display_panel}{SC\_MeasureDisplayPanel} measure \textcolor{keywordflow}{in} 
+      \hyperlink{class_note_display_container_ae5ca6e7ea4ab2baaab9ff649bf25c0d6}{mMeasures} )
+164         \{
+165             \textcolor{keywordflow}{if}( aMeasure != measure )
+166             \{
+167                 measure.\hyperlink{class_s_c___measure_display_panel_a6512fa5010bcecd85f7e8542cea91310}{SetToggle}( \textcolor{keyword}{false} );
+168             \}
+169             \textcolor{keywordflow}{else}
+170             \{
+171                 measure.\hyperlink{class_s_c___measure_display_panel_a6512fa5010bcecd85f7e8542cea91310}{SetToggle}( \textcolor{keyword}{true} );
+172             \}
+173         \}
+174     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_note_display_container_a400c6151d074c2cb1f116ff589ce13b8}\label{class_note_display_container_a400c6151d074c2cb1f116ff589ce13b8}} 
+\index{Note\+Display\+Container@{Note\+Display\+Container}!On\+Remove\+Note@{On\+Remove\+Note}}
+\index{On\+Remove\+Note@{On\+Remove\+Note}!Note\+Display\+Container@{Note\+Display\+Container}}
+\subsubsection{\texorpdfstring{On\+Remove\+Note()}{OnRemoveNote()}}
+{\footnotesize\ttfamily void Note\+Display\+Container.\+On\+Remove\+Note (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 177 of file Note\+Display\+Container.\+cs.
+
+
+
+Referenced by S\+C\+\_\+\+Measure\+Display\+Panel.\+Remove\+Note().
+
+
+\begin{DoxyCode}
+178     \{
+179         \hyperlink{class_note_display_container_a31be4fc67033a1dcb210819e0e90d7e6}{mNumNotes}--;
+180     \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_note_display_container_a79a97c9e0f45ba4242b66d6ec317d020}\label{class_note_display_container_a79a97c9e0f45ba4242b66d6ec317d020}} 
+\index{Note\+Display\+Container@{Note\+Display\+Container}!m\+Current\+Measure@{m\+Current\+Measure}}
+\index{m\+Current\+Measure@{m\+Current\+Measure}!Note\+Display\+Container@{Note\+Display\+Container}}
+\subsubsection{\texorpdfstring{m\+Current\+Measure}{mCurrentMeasure}}
+{\footnotesize\ttfamily int Note\+Display\+Container.\+m\+Current\+Measure = -\/1\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 20 of file Note\+Display\+Container.\+cs.
+
+
+
+Referenced by Add\+Note(), Clear\+Notes(), Get\+Current\+Measure\+Object(), and Handle\+Full\+Measure().
+
+\mbox{\Hypertarget{class_note_display_container_a50e30949ce455a140c4c2a317ac0406e}\label{class_note_display_container_a50e30949ce455a140c4c2a317ac0406e}} 
+\index{Note\+Display\+Container@{Note\+Display\+Container}!M\+E\+A\+S\+U\+R\+E\+\_\+\+P\+A\+N\+E\+L\+\_\+\+P\+R\+E\+F\+A\+B\+\_\+\+P\+A\+TH@{M\+E\+A\+S\+U\+R\+E\+\_\+\+P\+A\+N\+E\+L\+\_\+\+P\+R\+E\+F\+A\+B\+\_\+\+P\+A\+TH}}
+\index{M\+E\+A\+S\+U\+R\+E\+\_\+\+P\+A\+N\+E\+L\+\_\+\+P\+R\+E\+F\+A\+B\+\_\+\+P\+A\+TH@{M\+E\+A\+S\+U\+R\+E\+\_\+\+P\+A\+N\+E\+L\+\_\+\+P\+R\+E\+F\+A\+B\+\_\+\+P\+A\+TH}!Note\+Display\+Container@{Note\+Display\+Container}}
+\subsubsection{\texorpdfstring{M\+E\+A\+S\+U\+R\+E\+\_\+\+P\+A\+N\+E\+L\+\_\+\+P\+R\+E\+F\+A\+B\+\_\+\+P\+A\+TH}{MEASURE\_PANEL\_PREFAB\_PATH}}
+{\footnotesize\ttfamily const string Note\+Display\+Container.\+M\+E\+A\+S\+U\+R\+E\+\_\+\+P\+A\+N\+E\+L\+\_\+\+P\+R\+E\+F\+A\+B\+\_\+\+P\+A\+TH = \char`\"{}Audio/Prefabs/Song\+Creation/Measure\+Panel\+Prefab\char`\"{}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 14 of file Note\+Display\+Container.\+cs.
+
+\mbox{\Hypertarget{class_note_display_container_ae5ca6e7ea4ab2baaab9ff649bf25c0d6}\label{class_note_display_container_ae5ca6e7ea4ab2baaab9ff649bf25c0d6}} 
+\index{Note\+Display\+Container@{Note\+Display\+Container}!m\+Measures@{m\+Measures}}
+\index{m\+Measures@{m\+Measures}!Note\+Display\+Container@{Note\+Display\+Container}}
+\subsubsection{\texorpdfstring{m\+Measures}{mMeasures}}
+{\footnotesize\ttfamily List$<$\hyperlink{class_s_c___measure_display_panel}{S\+C\+\_\+\+Measure\+Display\+Panel}$>$ Note\+Display\+Container.\+m\+Measures = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 21 of file Note\+Display\+Container.\+cs.
+
+\mbox{\Hypertarget{class_note_display_container_a31be4fc67033a1dcb210819e0e90d7e6}\label{class_note_display_container_a31be4fc67033a1dcb210819e0e90d7e6}} 
+\index{Note\+Display\+Container@{Note\+Display\+Container}!m\+Num\+Notes@{m\+Num\+Notes}}
+\index{m\+Num\+Notes@{m\+Num\+Notes}!Note\+Display\+Container@{Note\+Display\+Container}}
+\subsubsection{\texorpdfstring{m\+Num\+Notes}{mNumNotes}}
+{\footnotesize\ttfamily int Note\+Display\+Container.\+m\+Num\+Notes = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 19 of file Note\+Display\+Container.\+cs.
+
+\mbox{\Hypertarget{class_note_display_container_a2816b590b588d86780ae622b3df403ee}\label{class_note_display_container_a2816b590b588d86780ae622b3df403ee}} 
+\index{Note\+Display\+Container@{Note\+Display\+Container}!m\+Sprites@{m\+Sprites}}
+\index{m\+Sprites@{m\+Sprites}!Note\+Display\+Container@{Note\+Display\+Container}}
+\subsubsection{\texorpdfstring{m\+Sprites}{mSprites}}
+{\footnotesize\ttfamily Sprite \mbox{[}$\,$\mbox{]} Note\+Display\+Container.\+m\+Sprites = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 22 of file Note\+Display\+Container.\+cs.
+
+
+
+Referenced by Get\+Sprites().
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+V\+R\+Piano\+Project/\+Assets/\+Scripts/\+Audio/\+Song\+Creation/\hyperlink{_note_display_container_8cs}{Note\+Display\+Container.\+cs}\end{DoxyCompactItemize}

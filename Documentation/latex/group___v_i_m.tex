@@ -1,0 +1,1457 @@
+\hypertarget{group___v_i_m}{}\section{Virtual Instrument Manager}
+\label{group___v_i_m}\index{Virtual Instrument Manager@{Virtual Instrument Manager}}
+
+
+The central hub for all audio management.  
+
+
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group__filter_params}{Audio Effect Parameters}
+\item 
+\hyperlink{group___v_i_m_const}{Constants}
+\item 
+\hyperlink{group___v_i_m_coroutines}{Coroutines}
+\item 
+\hyperlink{group___v_i_m_handlers}{Event Handlers}
+\item 
+\hyperlink{group___v_i_m_event_types}{Event Types}
+\item 
+\hyperlink{group___v_i_m_events}{Events}
+\item 
+\hyperlink{group___v_i_m_priv_func}{Private Functions}
+\item 
+\hyperlink{group___v_i_m_priv}{Private Variables}
+\item 
+\hyperlink{group___v_i_m_pub_func}{Public Functions}
+\item 
+\hyperlink{group___v_i_m_pub}{Public Variables}
+\item 
+\hyperlink{group___v_i_m_unity}{Unity Functions}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The central hub for all audio management. 
+
+\hypertarget{group___v_i_m_VIMInfo}{}\subsection{Information}\label{group___v_i_m_VIMInfo}
+The \hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} is a script for a Unity Game\+Object that manages a virtual instrument and its output. Its responsibilities include\+: \begin{DoxyItemize}
+\item Initialization of the audio code \item Serving as the bridge between non-\/audio objects and audio objects. \item Connecting each \hyperlink{class_note_output_object}{Note\+Output\+Object} which handles the output of audio to the \hyperlink{class_virtual_instrument}{Virtual\+Instrument} which holds the audio data. \item Mapping each \hyperlink{class_song}{Song} to audio data from the \hyperlink{class_virtual_instrument}{Virtual\+Instrument} and sending it to the proper \hyperlink{class_note_output_object}{Note\+Output\+Object}. \item Sending parameters for audio effects to the Audio\+Mixer provided by Unity. \item Handling Musical Typing Events. \item Passing data to \hyperlink{group___audio_testing_class_a_t_i___diagnostics}{A\+T\+I\+\_\+\+Diagnostics}.\end{DoxyItemize}
+\hypertarget{group___v_i_m_DocVIMConst}{}\subsection{Constants}\label{group___v_i_m_DocVIMConst}
+These are constants that are used in the initialization of the \hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager}. ~\newline
+ \hyperlink{group___v_i_m_const}{More details.}\hypertarget{group___v_i_m_DocVIMEventTypes}{}\subsection{Event Types}\label{group___v_i_m_DocVIMEventTypes}
+These are classes that inherit from Unity\+Event with varying parameters. They provide a base type for the \hyperlink{group___v_i_m_events}{events } ~\newline
+ \hyperlink{group___v_i_m_event_types}{More details }\hypertarget{group___v_i_m_DocVIMEvents}{}\subsection{Events}\label{group___v_i_m_DocVIMEvents}
+These are the events that are used to iteract with the \hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager}. ~\newline
+ \hyperlink{group___v_i_m_events}{More details }\hypertarget{group___v_i_m_DocVIMEffectParams}{}\subsection{Audio Effect Parameters}\label{group___v_i_m_DocVIMEffectParams}
+These are structs that contain parameters for the audio effects. ~\newline
+ \hyperlink{group__filter_params}{More details}.\hypertarget{group___v_i_m_DocVIMPubVar}{}\subsection{Public Variables}\label{group___v_i_m_DocVIMPubVar}
+These are variables that can be used in classes outside the \hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} ~\newline
+ \hyperlink{group___v_i_m_pub}{More details}.\hypertarget{group___v_i_m_DocVIMPrivVar}{}\subsection{Private Variables}\label{group___v_i_m_DocVIMPrivVar}
+These are variables used internally by the \hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager}. ~\newline
+ \hyperlink{group___v_i_m_priv}{More details}.\hypertarget{group___v_i_m_DocVIMUnity}{}\subsection{Unity Functions}\label{group___v_i_m_DocVIMUnity}
+These are functions that are built-\/in to Unity. Since the \hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} is a Unity Game\+Object, these are called automatically. ~\newline
+ \hyperlink{group___v_i_m_unity}{More details}.\hypertarget{group___v_i_m_DocVIMPubFunc}{}\subsection{Public Functions}\label{group___v_i_m_DocVIMPubFunc}
+These are functions that allow other classes to retrieve information from the \hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} ~\newline
+ \hyperlink{group___v_i_m_pub_func}{More details}.\hypertarget{group___v_i_m_DocVIMCoroutines}{}\subsection{Coroutines}\label{group___v_i_m_DocVIMCoroutines}
+These are functions that are started by the \hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} which allows it to perform other tasks while waiting. ~\newline
+ \hyperlink{group___v_i_m_coroutines}{More details}.\hypertarget{group___v_i_m_DocVIMPrivFunc}{}\subsection{Private Functions}\label{group___v_i_m_DocVIMPrivFunc}
+These are functions that the \hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} uses internally to perform its tasks. ~\newline
+ \hyperlink{group___v_i_m_priv_func}{More details}.\hypertarget{group___v_i_m_DocVIMHandlers}{}\subsection{Event Handlers}\label{group___v_i_m_DocVIMHandlers}
+These are functions that the \hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} uses to handle invoked \hyperlink{group___v_i_m_events}{events } ~\newline
+ \hyperlink{group___v_i_m_handlers}{More details}.\hypertarget{group___v_i_m_DocVIMCode}{}\subsection{Code}\label{group___v_i_m_DocVIMCode}
+
+\begin{DoxyCodeInclude}
+1 \textcolor{keyword}{using} \hyperlink{namespace_system}{System};
+2 \textcolor{keyword}{using} \hyperlink{namespace_system}{System}.Collections;
+3 \textcolor{keyword}{using} \hyperlink{namespace_system}{System}.Collections.Generic;
+4 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine};
+5 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine}.Assertions;
+6 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine}.Audio;
+7 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine}.Events;
+8 
+9 \textcolor{preprocessor}{#if DEBUG}
+10     \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine}.SceneManagement;
+11 \textcolor{preprocessor}{#endif}
+12 \textcolor{comment}{}
+13 \textcolor{comment}{/**}
+14 \textcolor{comment}{ * @class VirtualInstrumentManager}
+15 \textcolor{comment}{ * @brief The central hub for all audio management.}
+16 \textcolor{comment}{ * }
+17 \textcolor{comment}{ * The VirtualInstrumentManager is a script for a Unity GameObject that manages a virtual instrument and
+       its output.}
+18 \textcolor{comment}{ * Its responsibilities include: }
+19 \textcolor{comment}{ *     @li Initialization of the audio code }
+20 \textcolor{comment}{ *     @li Serving as the bridge between non-audio objects and audio objects. }
+21 \textcolor{comment}{ *     @li Connecting each NoteOutputObject which handles the output of audio to the VirtualInstrument
+       which holds the audio data. }
+22 \textcolor{comment}{ *     @li Mapping each Song to audio data from the VirtualInstrument and sending it to the proper
+       NoteOutputObject. }
+23 \textcolor{comment}{ *     @li Sending parameters for audio effects to the AudioMixer provided by Unity. }
+24 \textcolor{comment}{ *     @li Handling Musical Typing Events. }
+25 \textcolor{comment}{ *     @li Passing data to ATI\_Diagnostics. }
+26 \textcolor{comment}{ *     }
+27 \textcolor{comment}{ *     @nosubgrouping}
+28 \textcolor{comment}{*/}
+29 \textcolor{keyword}{public} \textcolor{keyword}{class }\hyperlink{class_virtual_instrument_manager}{VirtualInstrumentManager} : MonoBehaviour
+30 \{
+31     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+32 \textcolor{comment}{    * @defgroup VIMConst Constants}
+33 \textcolor{comment}{    * @ingroup VIM}
+34 \textcolor{comment}{    * These are constants that are used in the initialization of the VirtualInstrumentManager.}
+35 \textcolor{comment}{    *****************************************************************************/}\textcolor{comment}{}
+36 \textcolor{comment}{    /** @\{ */}
+37     \textcolor{keyword}{private} \textcolor{keyword}{const} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH} \hyperlink{group___v_i_m_const_ga0ae09555ae6bc8a04110599510a0d77d}{DEFAULT\_LOWEST\_PITCH} = 
+      \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.C3; \textcolor{comment}{//!< The default lowest loaded pitch.}
+38 \textcolor{comment}{}    \textcolor{keyword}{private} \textcolor{keyword}{const} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH} \hyperlink{group___v_i_m_const_gadb93993bf989a9ac6e95be9e1561a5bb}{DEFAULT\_HIGHEST\_PITCH} = 
+      \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.C5; \textcolor{comment}{//!< The default highest loaded pitch.}
+39 \textcolor{comment}{}    \textcolor{keyword}{private} \textcolor{keyword}{const} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gabfce60192305965558a36e368ebd67c3}{INSTRUMENT\_TYPE} 
+      \hyperlink{group___v_i_m_const_gad74e35b317d6cc0bb57a78117fa430e6}{DEFAULT\_INSTRUMENT\_TYPE} = \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gabfce60192305965558a36e368ebd67c3}{INSTRUMENT\_TYPE}.PIANO; \textcolor{comment}{//!< The
+       default loaded instrument.}
+40 \textcolor{comment}{}\textcolor{comment}{    /** @\} */}
+41 
+42     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+43 \textcolor{comment}{    * @defgroup VIMEventTypes Event Types}
+44 \textcolor{comment}{    * @ingroup VIM}
+45 \textcolor{comment}{    * These are classes that inherit from UnityEvent with varying parameters. They provide a base type for
+       the @link VIMEvents events @endlink}
+46 \textcolor{comment}{    *****************************************************************************/}\textcolor{comment}{}
+47 \textcolor{comment}{    /** @\{ */}
+48 \textcolor{comment}{}
+49 \textcolor{comment}{    /**}
+50 \textcolor{comment}{     * @brief Notifies when the audio is finished. There's no handler for this, but it can be used by other
+       classes who need to be notified.}
+51 \textcolor{comment}{    */}
+52     \textcolor{keyword}{public} \textcolor{keyword}{class }AudioFinishedEvent : UnityEvent
+53     \{
+54     \}
+55 \textcolor{comment}{}
+56 \textcolor{comment}{    /**}
+57 \textcolor{comment}{     * @brief A type of event that is invoked whenever the range of playable pitches should change. }
+58 \textcolor{comment}{     * }
+59 \textcolor{comment}{     * The parameter for this type of event is a Music.PITCH which is the lowest pitch}
+60 \textcolor{comment}{     * of the new range.}
+61 \textcolor{comment}{     * }
+62 \textcolor{comment}{     * @see Music Music::PITCH}
+63 \textcolor{comment}{    */}
+64     \textcolor{keyword}{public} \textcolor{keyword}{class }ChangeNoteRangeEvent : UnityEvent<Music.PITCH>
+65     \{
+66     \}
+67 \textcolor{comment}{}
+68 \textcolor{comment}{    /** }
+69 \textcolor{comment}{     * @brief A type of event that is invoked whenever a new instrument should be loaded. }
+70 \textcolor{comment}{     * }
+71 \textcolor{comment}{     * The parameter for this type of event is a Music.INSTRUMENT\_TYPE which is the }
+72 \textcolor{comment}{     * type of instrument that should be loaded.}
+73 \textcolor{comment}{     * }
+74 \textcolor{comment}{     * @see Music Music::INSTRUMENT\_TYPE}
+75 \textcolor{comment}{    */}
+76     \textcolor{keyword}{public} \textcolor{keyword}{class }ChangeInstrumentEvent : UnityEvent<Music.INSTRUMENT\_TYPE>
+77     \{
+78     \}
+79 \textcolor{comment}{}
+80 \textcolor{comment}{    /** }
+81 \textcolor{comment}{     * @brief A type of event that is invoked in order to signal that the drum kit has loaded. }
+82 \textcolor{comment}{     * @see VirtualInstrumentManager::mDrumKit DrumKit VirtualInstrument}
+83 \textcolor{comment}{    */}
+84     \textcolor{keyword}{public} \textcolor{keyword}{class }DrumKitLoadedEvent : UnityEvent
+85     \{
+86     \}
+87 \textcolor{comment}{}
+88 \textcolor{comment}{    /** }
+89 \textcolor{comment}{     * @brief A type of event that is invoked in order to signal that the instrument has loaded. }
+90 \textcolor{comment}{     * @see VirtualInstrumentManager::mInstrument VirtualInstrument }
+91 \textcolor{comment}{    */}
+92     \textcolor{keyword}{public} \textcolor{keyword}{class }InstrumentLoadedEvent : UnityEvent
+93     \{
+94     \}
+95 \textcolor{comment}{}
+96 \textcolor{comment}{    /** }
+97 \textcolor{comment}{     * @brief A type of event that is invoked in order to modify the echo filter.}
+98 \textcolor{comment}{     * }
+99 \textcolor{comment}{     * The parameter for this type of event is an EchoFilterParameters struct.}
+100 \textcolor{comment}{     *  }
+101 \textcolor{comment}{     * @see VirtualInstrumentManager::EchoFilterParameters  }
+102 \textcolor{comment}{    */}
+103     \textcolor{keyword}{public} \textcolor{keyword}{class }ModifyEchoFilterEvent : UnityEvent<EchoFilterParameters>
+104     \{
+105     \}
+106 \textcolor{comment}{}
+107 \textcolor{comment}{    /** }
+108 \textcolor{comment}{     * @brief A type of event that is invoked in order to modify the reverb filter.}
+109 \textcolor{comment}{     * }
+110 \textcolor{comment}{     * The parameter for this type of event is an ReverbFilterParameters struct.}
+111 \textcolor{comment}{     *  }
+112 \textcolor{comment}{     * @see VirtualInstrumentManager::ReverbFilterParameters}
+113 \textcolor{comment}{    */}
+114     \textcolor{keyword}{public} \textcolor{keyword}{class }ModifyReverbFilterEvent : UnityEvent<ReverbFilterParameters>
+115     \{
+116     \}
+117 \textcolor{comment}{}
+118 \textcolor{comment}{    /** }
+119 \textcolor{comment}{     * @brief A type of event that is invoked in order to pause a drum loop.}
+120 \textcolor{comment}{     *  }
+121 \textcolor{comment}{     * @see Song SongManagerClass NoteOutputObject::PauseAudio}
+122 \textcolor{comment}{    */}
+123     \textcolor{keyword}{public} \textcolor{keyword}{class }PauseDrumLoopEvent : UnityEvent
+124     \{
+125     \}
+126 \textcolor{comment}{}
+127 \textcolor{comment}{    /** }
+128 \textcolor{comment}{     * @brief A type of event that is invoked in order to pause a song.}
+129 \textcolor{comment}{     *  }
+130 \textcolor{comment}{     * @see Song SongManagerClass NoteOutputObject::PauseAudio}
+131 \textcolor{comment}{    */}
+132     \textcolor{keyword}{public} \textcolor{keyword}{class }PauseSongEvent : UnityEvent
+133     \{
+134     \}
+135 \textcolor{comment}{}
+136 \textcolor{comment}{    /** }
+137 \textcolor{comment}{     * @brief A type of event that is invoked in order to play a drum loop.}
+138 \textcolor{comment}{     * }
+139 \textcolor{comment}{     * The parameter for this type of event is a Song with the Song::SongType::DrumLoop. }
+140 \textcolor{comment}{     * The song can be obtained from the SongManagerClass, which the VirtualInstrumentManager holds a}
+141 \textcolor{comment}{     * reference to with VirtualInstrumentManager::SongManager.}
+142 \textcolor{comment}{     *  }
+143 \textcolor{comment}{     * @see Song Song::SongType SongManagerClass VirtualInstrumentManager::SongManager}
+144 \textcolor{comment}{    */}
+145     \textcolor{keyword}{public} \textcolor{keyword}{class }PlayDrumLoopEvent : UnityEvent<Song>
+146     \{
+147     \}
+148 \textcolor{comment}{}
+149 \textcolor{comment}{    /**}
+150 \textcolor{comment}{     * @brief A type of event that is invoked whenever a note should be played. }
+151 \textcolor{comment}{     * }
+152 \textcolor{comment}{     * The parameters for this type of event are a Music.PITCH which is the pitch}
+153 \textcolor{comment}{     * of the note to play and an integer which is the velocity at which to play it.}
+154 \textcolor{comment}{     * }
+155 \textcolor{comment}{     * @see Music Music::PITCH}
+156 \textcolor{comment}{    */}
+157     \textcolor{keyword}{public} \textcolor{keyword}{class }PlayNoteEvent : UnityEvent<Music.PITCH, int>
+158     \{
+159     \}
+160 \textcolor{comment}{}
+161 \textcolor{comment}{    /** }
+162 \textcolor{comment}{     * @brief A type of event that is invoked in order to play a song.}
+163 \textcolor{comment}{     * }
+164 \textcolor{comment}{     * The parameter for this type of event is a Song. The song can be obtained}
+165 \textcolor{comment}{     * from the SongManagerClass, which the VirtualInstrumentManager holds a}
+166 \textcolor{comment}{     * reference to with VirtualInstrumentManager::SongManager.}
+167 \textcolor{comment}{     *  }
+168 \textcolor{comment}{     * @see Song SongManagerClass VirtualInstrumentManager::SongManager}
+169 \textcolor{comment}{    */}
+170     \textcolor{keyword}{public} \textcolor{keyword}{class }PlaySongEvent : UnityEvent<Song>
+171     \{
+172     \}
+173 \textcolor{comment}{}
+174 \textcolor{comment}{    /** }
+175 \textcolor{comment}{     * @brief A type of event that is invoked whenever a note should fade out as though the key was
+       released. }
+176 \textcolor{comment}{     * }
+177 \textcolor{comment}{     * The parameter for this type of event is a Music.PITCH which is the pitch}
+178 \textcolor{comment}{     * of the note that was released.}
+179 \textcolor{comment}{     * }
+180 \textcolor{comment}{     * @see Music Music::PITCH}
+181 \textcolor{comment}{    */}
+182     \textcolor{keyword}{public} \textcolor{keyword}{class }ReleaseNoteEvent : UnityEvent<Music.PITCH>
+183     \{
+184     \}
+185 \textcolor{comment}{}
+186 \textcolor{comment}{    /** }
+187 \textcolor{comment}{     * @brief Resumes a drum loop.}
+188 \textcolor{comment}{     * }
+189 \textcolor{comment}{     * @see Song SongManagerClass NoteOutputObject::ResumeAudio}
+190 \textcolor{comment}{    */}
+191     \textcolor{keyword}{public} \textcolor{keyword}{class }ResumeDrumLoopEvent : UnityEvent
+192     \{
+193     \}
+194 \textcolor{comment}{}
+195 \textcolor{comment}{    /** }
+196 \textcolor{comment}{     * @brief Resumes a song.}
+197 \textcolor{comment}{     * }
+198 \textcolor{comment}{     * @see Song SongManagerClass NoteOutputObject::ResumeAudio}
+199 \textcolor{comment}{    */}
+200     \textcolor{keyword}{public} \textcolor{keyword}{class }ResumeSongEvent : UnityEvent
+201     \{
+202     \}
+203 \textcolor{comment}{}
+204 \textcolor{comment}{    /** }
+205 \textcolor{comment}{     * @brief Stops a drum loop.}
+206 \textcolor{comment}{     * }
+207 \textcolor{comment}{     * @see Song SongManagerClass NoteOutputObject::StopAudio}
+208 \textcolor{comment}{    */}
+209     \textcolor{keyword}{public} \textcolor{keyword}{class }StopDrumLoopEvent : UnityEvent
+210     \{
+211     \}
+212 \textcolor{comment}{}
+213 \textcolor{comment}{    /** }
+214 \textcolor{comment}{     * @brief Stops a song.}
+215 \textcolor{comment}{     * }
+216 \textcolor{comment}{     * @see Song SongManagerClass NoteOutputObject::StopAudio}
+217 \textcolor{comment}{    */}
+218     \textcolor{keyword}{public} \textcolor{keyword}{class }StopSongEvent : UnityEvent
+219     \{
+220     \}
+221 \textcolor{comment}{}
+222 \textcolor{comment}{    /** @\} */}
+223 
+224     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+225 \textcolor{comment}{    * @defgroup filterParams Audio Effect Parameters}
+226 \textcolor{comment}{    * @ingroup VIM}
+227 \textcolor{comment}{    * These are structs that contain parameters for the audio effects.}
+228 \textcolor{comment}{    *****************************************************************************/}\textcolor{comment}{}
+229 \textcolor{comment}{    /** @\{ */}
+230 \textcolor{comment}{}
+231 \textcolor{comment}{    /** }
+232 \textcolor{comment}{     * @struct VirtualInstrumentManager::EchoFilterParameters}
+233 \textcolor{comment}{     * @brief A struct that holds the parameters for the echo filter.}
+234 \textcolor{comment}{     * }
+235 \textcolor{comment}{     * The parameters other than Active are used only if Active is true.}
+236 \textcolor{comment}{     * If Active is false, then a set of parameters is used that negates the filter.}
+237 \textcolor{comment}{    */}
+238     \textcolor{keyword}{public} \textcolor{keyword}{struct }EchoFilterParameters
+239     \{
+240         \textcolor{keyword}{public} \textcolor{keywordtype}{bool} Active;
+241         \textcolor{keyword}{public} \textcolor{keywordtype}{float} Decay;
+242         \textcolor{keyword}{public} \textcolor{keywordtype}{float} Delay;
+243         \textcolor{keyword}{public} \textcolor{keywordtype}{float} DryMix;
+244         \textcolor{keyword}{public} \textcolor{keywordtype}{float} WetMix;
+245     \}
+246 \textcolor{comment}{}
+247 \textcolor{comment}{    /** }
+248 \textcolor{comment}{     * @struct VirtualInstrumentManager::ReverbFilterParameters}
+249 \textcolor{comment}{     * @brief A struct that holds the parameters for the reverb filter.}
+250 \textcolor{comment}{     * }
+251 \textcolor{comment}{     * The parameters other than Active are used only if Active is true.}
+252 \textcolor{comment}{     * If Active is false, then a set of parameters is used that negates the filter.}
+253 \textcolor{comment}{    */}
+254     \textcolor{keyword}{public} \textcolor{keyword}{struct }ReverbFilterParameters
+255     \{
+256         \textcolor{keyword}{public} \textcolor{keywordtype}{bool} Active;
+257         \textcolor{keyword}{public} \textcolor{keywordtype}{float} DryLevel;
+258         \textcolor{keyword}{public} \textcolor{keywordtype}{float} Room;
+259         \textcolor{keyword}{public} \textcolor{keywordtype}{float} RoomHF;
+260         \textcolor{keyword}{public} \textcolor{keywordtype}{float} DecayTime;
+261         \textcolor{keyword}{public} \textcolor{keywordtype}{float} DecayHFRatio;
+262         \textcolor{keyword}{public} \textcolor{keywordtype}{float} Reflections;
+263         \textcolor{keyword}{public} \textcolor{keywordtype}{float} ReflectDelay;
+264         \textcolor{keyword}{public} \textcolor{keywordtype}{float} Reverb;
+265         \textcolor{keyword}{public} \textcolor{keywordtype}{float} ReverbDelay;
+266         \textcolor{keyword}{public} \textcolor{keywordtype}{float} Diffusion;
+267         \textcolor{keyword}{public} \textcolor{keywordtype}{float} Density;
+268         \textcolor{keyword}{public} \textcolor{keywordtype}{float} HFReference;
+269         \textcolor{keyword}{public} \textcolor{keywordtype}{float} RoomLF;
+270         \textcolor{keyword}{public} \textcolor{keywordtype}{float} LFReference;
+271     \}
+272 \textcolor{comment}{}
+273 \textcolor{comment}{    /** @\} */}
+274 
+275 
+276     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+277 \textcolor{comment}{    * @defgroup VIMEvents Events}
+278 \textcolor{comment}{    * @ingroup VIM}
+279 \textcolor{comment}{    * These are the events that are used to iteract with the VirtualInstrumentManager.}
+280 \textcolor{comment}{    *****************************************************************************/}\textcolor{comment}{}
+281 \textcolor{comment}{    /** @\{ */}
+282     \textcolor{keyword}{public} AudioFinishedEvent          \hyperlink{group___v_i_m_events_ga39ffa8215ab5c9ad46c563e2bd87c219}{AudioFinished}; \textcolor{comment}{//!< @see
+       VirtualInstrumentManager::AudioFinishedEvent}
+283 \textcolor{comment}{}    \textcolor{keyword}{public} ChangeNoteRangeEvent        \hyperlink{group___v_i_m_events_gab6fa99d08e8466406835b9fc4ff859f1}{ChangeNoteRange}; \textcolor{comment}{//!< @see
+       VirtualInstrumentManager::ChangeNoteRangeEvent}
+284 \textcolor{comment}{}    \textcolor{keyword}{public} ChangeInstrumentEvent       \hyperlink{group___v_i_m_events_ga1b9f12a73a5418ea5695d38b78c506c4}{ChangeInstrument}; \textcolor{comment}{//!< @see
+       VirtualInstrumentManager::ChangeInstrumentEvent}
+285 \textcolor{comment}{}    \textcolor{keyword}{public} DrumKitLoadedEvent          \hyperlink{group___v_i_m_events_ga2dea060b2fba524166433300113dc281}{DrumKitLoaded}; \textcolor{comment}{//!< @see
+       VirtualInstrumentManager::DrumKitLoadedEvent}
+286 \textcolor{comment}{}    \textcolor{keyword}{public} InstrumentLoadedEvent       \hyperlink{group___v_i_m_events_gad79b789b020d7e4a8c149ec653c0b97f}{InstrumentLoaded}; \textcolor{comment}{//!< @see
+       VirtualInstrumentManager::InstrumentLoadedEvent}
+287 \textcolor{comment}{}    \textcolor{keyword}{public} ModifyEchoFilterEvent       \hyperlink{group___v_i_m_events_ga112ed15f48fd261f1ad71c3c953c0a58}{ModifyEchoFilter}; \textcolor{comment}{//!< @see
+       VirtualInstrumentManager::ModifyEchoFilterEvent}
+288 \textcolor{comment}{}    \textcolor{keyword}{public} ModifyReverbFilterEvent     \hyperlink{group___v_i_m_events_gaadd137e073cb3849f610a46e0d032858}{ModifyReverbFilter}; \textcolor{comment}{//!< @see
+       VirtualInstrumentManager::ModifyReverbFilterEvent}
+289 \textcolor{comment}{}    \textcolor{keyword}{public} PauseDrumLoopEvent          \hyperlink{group___v_i_m_events_ga6de00a430321852cc3c8c4a213d62c70}{PauseDrumLoop}; \textcolor{comment}{//!< @see
+       VirtualInstrumentManager::PauseDrumLoopEvent}
+290 \textcolor{comment}{}    \textcolor{keyword}{public} PauseSongEvent              \hyperlink{group___v_i_m_events_gae2d76fc98161d7a4573628dbd93e7887}{PauseSong}; \textcolor{comment}{//!< @see
+       VirtualInstrumentManager::PauseSongEvent}
+291 \textcolor{comment}{}    \textcolor{keyword}{public} PlayDrumLoopEvent           \hyperlink{group___v_i_m_events_ga5657ff4bcc7de6d240d7092ffd22a6fe}{PlayDrumLoop}; \textcolor{comment}{//!< @see
+       VirtualInstrumentManager::PlayDrumLoopEvent}
+292 \textcolor{comment}{}    \textcolor{keyword}{public} PlayNoteEvent               \hyperlink{group___v_i_m_events_gaa21021c13a8c9d13cbf374d5bf9d68fa}{PlayNote}; \textcolor{comment}{//!< @see VirtualInstrumentManager::PlayNoteEvent}
+293 \textcolor{comment}{}    \textcolor{keyword}{public} PlaySongEvent               \hyperlink{group___v_i_m_events_gae450bdba9c513ab4e43f69def50fa84d}{PlaySong}; \textcolor{comment}{//!< @see VirtualInstrumentManager::PlaySongEvent}
+294 \textcolor{comment}{}    \textcolor{keyword}{public} ReleaseNoteEvent            \hyperlink{group___v_i_m_events_ga3a1726a6366126421434c2c7be5e5678}{ReleaseNote}; \textcolor{comment}{//!< @see
+       VirtualInstrumentManager::ReleaseNoteEvent}
+295 \textcolor{comment}{}    \textcolor{keyword}{public} ResumeDrumLoopEvent         \hyperlink{group___v_i_m_events_ga54db2dc24076cd3cd130e95c2fd5bea0}{ResumeDrumLoop}; \textcolor{comment}{//!< @see
+       VirtualInstrumentManager::ResumeDrumLoopEvent}
+296 \textcolor{comment}{}    \textcolor{keyword}{public} ResumeSongEvent             \hyperlink{group___v_i_m_events_ga01670916ae3917c84a0fb51667f30ab9}{ResumeSong}; \textcolor{comment}{//!< @see
+       VirtualInstrumentManager::ResumeSongEvent}
+297 \textcolor{comment}{}    \textcolor{keyword}{public} StopDrumLoopEvent           \hyperlink{group___v_i_m_events_ga9466995fd3b4a07351a8577042ee8b31}{StopDrumLoop}; \textcolor{comment}{//!< @see
+       VirtualInstrumentManager::StopDrumLoopEvent}
+298 \textcolor{comment}{}    \textcolor{keyword}{public} StopSongEvent               \hyperlink{group___v_i_m_events_gaa9e464629814abf2e4db88e240fac72c}{StopSong}; \textcolor{comment}{//!< @see VirtualInstrumentManager::StopSongEvent}
+299 \textcolor{comment}{}\textcolor{comment}{    /** @\} */}
+300 
+301     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+302 \textcolor{comment}{    * @defgroup VIMPub Public Variables}
+303 \textcolor{comment}{    * @ingroup VIM}
+304 \textcolor{comment}{    * These are variables that can be used in classes outside the VirtualInstrumentManager}
+305 \textcolor{comment}{    *****************************************************************************/}\textcolor{comment}{}
+306 \textcolor{comment}{    /** @\{ */}
+307     \textcolor{keyword}{public} \hyperlink{class_song_manager_class}{SongManagerClass}            \hyperlink{group___v_i_m_pub_ga33dae94932c10c66db76a0eebec76b01}{SongManager}; \textcolor{comment}{//!< The song manager. @see
+       SongManagerClass                 }
+308 \textcolor{comment}{}\textcolor{comment}{                                                    /** @\} */}
+309 
+310     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+311 \textcolor{comment}{    * @defgroup VIMPriv Private Variables}
+312 \textcolor{comment}{    * @ingroup VIM}
+313 \textcolor{comment}{    * These are variables used internally by the VirtualInstrumentManager.}
+314 \textcolor{comment}{    *****************************************************************************/}\textcolor{comment}{}
+315 \textcolor{comment}{    /** @\{ */}
+316 \textcolor{preprocessor}{    #if DEBUG\_AUDIO\_DIAGNOSTICS}
+317         \textcolor{keyword}{private} \hyperlink{group___audio_testing_class_a_t_i___diagnostics}{ATI\_Diagnostics} \hyperlink{group___v_i_m_priv_gafabe4a874fc21f7bcedf431df3b94201}{mDiagnosticsHandler}; \textcolor{comment}{//!< The handler for
+       displaying audio diagnostics.}
+318 \textcolor{comment}{}\textcolor{preprocessor}{    #endif}
+319     \textcolor{keyword}{private} AudioMixer                 \hyperlink{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}{mMixer}; \textcolor{comment}{//!< The audio mixer that all audio output will be
+       routed through.}
+320 \textcolor{comment}{}    \textcolor{keyword}{private} \textcolor{keywordtype}{bool}                       \hyperlink{group___v_i_m_priv_ga983a11920bf16794735cc193c327ac42}{mReady}; \textcolor{comment}{//!< Whether or not the manager is ready to play
+       notes.}
+321 \textcolor{comment}{}    \textcolor{keyword}{private} \textcolor{keywordtype}{int}                        \hyperlink{group___v_i_m_priv_ga0f7e11945763c48057be326b661dfdaf}{mNumActiveNotes}; \textcolor{comment}{//!< The number of currently active
+       notes.}
+322 \textcolor{comment}{}    \textcolor{keyword}{private} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gabfce60192305965558a36e368ebd67c3}{INSTRUMENT\_TYPE}      \hyperlink{group___v_i_m_priv_ga108c350257b3a2080e06cd4a8251f6a4}{mInstrumentType}; \textcolor{comment}{//!< The type of
+       instrument that is currently loaded.}
+323 \textcolor{comment}{}    \textcolor{keyword}{private} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}                \hyperlink{group___v_i_m_priv_ga5e3a5116e0dabb37e0ea21d73ac1567e}{mLowestActiveNote}; \textcolor{comment}{//!< The lowest
+       currently active note.}
+324 \textcolor{comment}{}    \textcolor{keyword}{private} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}                \hyperlink{group___v_i_m_priv_ga73a09a4e4f09c0e5b3871dc9ad6c757e}{mHighestActiveNote}; \textcolor{comment}{//!< The highest
+       currently active note.}
+325 \textcolor{comment}{}    \textcolor{keyword}{private} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}[]              \hyperlink{group___v_i_m_priv_ga5cedf9995d59b416412677e6004b659c}{mActiveNotes}; \textcolor{comment}{//!< An array that holds all of
+       the currently active notes.}
+326 \textcolor{comment}{}\textcolor{preprocessor}{    #if DEBUG\_MUSICAL\_TYPING}
+327         \textcolor{keyword}{private} \hyperlink{class_musical_typing_handler}{MusicalTypingHandler}   mMusicalTypingHandler = null; \textcolor{comment}{//!< The handler
+       for @link MusicalTypingHandler Musical Typing@endlink.}
+328 \textcolor{comment}{}\textcolor{preprocessor}{    #endif}
+329     \textcolor{keyword}{private} \hyperlink{class_note_output_object}{NoteOutputObject}           \hyperlink{group___v_i_m_priv_ga5f71cb71d240042312dcc13b481b068d}{mDrumLoopOutput}; \textcolor{comment}{//!< A
+       NoteOutputObject, but the note is actually a drum loop.}
+330 \textcolor{comment}{}    \textcolor{keyword}{private} \hyperlink{class_note_output_object}{NoteOutputObject}           \hyperlink{group___v_i_m_priv_gaa8d4f5642f5ac4dca4f4178b0052c78d}{mSongOutput}; \textcolor{comment}{//!< A NoteOutputObject, but
+       the note is actually a song.}
+331 \textcolor{comment}{}    \textcolor{keyword}{private} \hyperlink{class_note_output_object}{NoteOutputObject}[]         \hyperlink{group___v_i_m_priv_ga53f837fd01475fa35629a650e7fa00e3}{mOutputs}; \textcolor{comment}{//!< An array that holds the
+       NoteOutputObjects that actually handle sound output.}
+332 \textcolor{comment}{}    \textcolor{keyword}{private} \hyperlink{class_virtual_instrument}{VirtualInstrument}          \hyperlink{group___v_i_m_priv_ga0bc7c9f776b0d2dae0ccb1f1ee5f2143}{mDrumKit}; \textcolor{comment}{//!< A drum kit virtual
+       instrument for drum loops.}
+333 \textcolor{comment}{}    \textcolor{keyword}{private} \hyperlink{class_virtual_instrument}{VirtualInstrument}          \hyperlink{group___v_i_m_priv_gaed435d1f9be09864846db4322dc21fd1}{mInstrument}; \textcolor{comment}{//!< The loaded virtual
+       instrument that this object will manage.}
+334 \textcolor{comment}{}\textcolor{comment}{    /** @\} */}
+335 
+336     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+337 \textcolor{comment}{    * @defgroup VIMUnity Unity Functions}
+338 \textcolor{comment}{    * @ingroup VIM}
+339 \textcolor{comment}{    * These are functions that are built-in to Unity. Since the VirtualInstrumentManager is a Unity
+       GameObject, these are called automatically.}
+340 \textcolor{comment}{    *****************************************************************************/}\textcolor{comment}{}
+341 \textcolor{comment}{    /** @\{ */}
+342 \textcolor{comment}{}
+343 \textcolor{comment}{    /**}
+344 \textcolor{comment}{     * @brief Called when the object is created. Sets the default values, sets up the events, and begins
+       loading the instrument.}
+345 \textcolor{comment}{    */}
+346     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___v_i_m_unity_gab92bac4e22476ffe39fc40f49fbd6ae5}{Awake}()
+347     \{
+348         mReady = \textcolor{keyword}{false};
+349 
+350 \textcolor{preprocessor}{        #if DEBUG\_AUDIO\_DIAGNOSTICS}
+351             \textcolor{comment}{// Set up the audio diagnostics scene}
+352             GameObject diagnosticsContainer = Instantiate( Resources.Load<GameObject>( \textcolor{stringliteral}{"
+      Audio/Prefabs/AudioDiagnosticsPrefab"} ) );
+353             Assert.IsNotNull( diagnosticsContainer, \textcolor{stringliteral}{"Could not load the diagnostics prefab!"} );
+354             mDiagnosticsHandler = diagnosticsContainer.transform.GetChild( 0 ).GetComponent<
+      \hyperlink{group___audio_testing_class_a_t_i___diagnostics}{ATI\_Diagnostics}>();
+355             Assert.IsNotNull( mDiagnosticsHandler, \textcolor{stringliteral}{"Could not get the diagnostics handler!"} );
+356 \textcolor{preprocessor}{        #endif}
+357 
+358 \textcolor{preprocessor}{        #if DEBUG\_MUSICAL\_TYPING}
+359             mMusicalTypingHandler = gameObject.AddComponent<\hyperlink{class_musical_typing_handler}{MusicalTypingHandler}>();
+360             Assert.IsNotNull( mMusicalTypingHandler, \textcolor{stringliteral}{"Could not load Musical Typing!"} );
+361 \textcolor{preprocessor}{        #endif}
+362 
+363         \textcolor{comment}{// Set up the Song Manager.}
+364         SongManager = \textcolor{keyword}{new} \hyperlink{class_song_manager_class}{SongManagerClass}();
+365 
+366         \textcolor{comment}{// Set up the events.}
+367         \hyperlink{group___v_i_m_priv_func_gaa207d18111d38374017c580de4077589}{SetUpEvents}();
+368 
+369         \textcolor{comment}{// Set default values for the member variables.}
+370         \hyperlink{group___v_i_m_priv_func_gaa9e05e51f025afb0ab5cb2a8532c8bba}{SetDefaultValues}();
+371 
+372         \textcolor{comment}{// Begin loading the default virtual instrument which is a piano.}
+373         StartCoroutine( \hyperlink{group___v_i_m_coroutines_gab8082c1cc590771bf57da8b5ae8603d1}{LoadInstrument}( \hyperlink{group___v_i_m_priv_ga108c350257b3a2080e06cd4a8251f6a4}{mInstrumentType}, ( returned ) => \{ 
+      mInstrument = returned; \} ) );
+374         StartCoroutine( \hyperlink{group___v_i_m_coroutines_gaba165ca4757b6c8555914fe6b42b638d}{LoadDrumKit}( ( returned ) => \{ mDrumKit = returned; \} ) );
+375     \}
+376 \textcolor{comment}{}
+377 \textcolor{comment}{    /**}
+378 \textcolor{comment}{     * @brief Destroys the @link VIM Virtual Instrument Manager@endlink.}
+379 \textcolor{comment}{    */}
+380     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{group___v_i_m_unity_ga87f2b8783dc03eac75819c3ace35f880}{OnDestroy}()
+381     \{
+382         \textcolor{comment}{// Destroy everything created by the VIM.}
+383         \textcolor{keywordflow}{if}( mDrumLoopOutput != null )
+384         \{
+385             DestroyImmediate( mDrumLoopOutput.gameObject, \textcolor{keyword}{false} );
+386             mDrumLoopOutput = null;
+387         \}
+388 
+389         \textcolor{keywordflow}{if}( mSongOutput != null )
+390         \{
+391             DestroyImmediate( mSongOutput.gameObject, \textcolor{keyword}{false} );
+392             mSongOutput = null;
+393         \}
+394 
+395         \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < \hyperlink{group___v_i_m_priv_ga0f7e11945763c48057be326b661dfdaf}{mNumActiveNotes}; i++ )
+396         \{
+397             \textcolor{keywordflow}{if}( mOutputs != null && mOutputs[i] != null )
+398             \{
+399                 DestroyImmediate( mOutputs[i].gameObject, \textcolor{keyword}{false} );
+400                 mOutputs[i] = null;
+401             \}
+402         \}
+403         mOutputs = null;
+404 
+405 \textcolor{preprocessor}{        #if DEBUG\_AUDIO\_DIAGNOSTICS}
+406             \textcolor{keywordflow}{if}( mDiagnosticsHandler != null )
+407             \{
+408                 DestroyImmediate( mDiagnosticsHandler.transform.parent.gameObject, \textcolor{keyword}{false} );
+409                 mDiagnosticsHandler = null;
+410             \}
+411 \textcolor{preprocessor}{        #endif}
+412 
+413         \textcolor{comment}{// Clean up}
+414         GC.Collect();
+415         Resources.UnloadUnusedAssets();
+416     \}
+417 \textcolor{comment}{}
+418 \textcolor{comment}{    /** @\} */}
+419 
+420     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+421 \textcolor{comment}{    * @defgroup VIMPubFunc Public Functions}
+422 \textcolor{comment}{    * @ingroup VIM}
+423 \textcolor{comment}{    * These are functions that allow other classes to retrieve information from the
+       VirtualInstrumentManager}
+424 \textcolor{comment}{    *****************************************************************************/}\textcolor{comment}{}
+425 \textcolor{comment}{    /** @\{ */}
+426 \textcolor{comment}{}
+427 \textcolor{comment}{    /**}
+428 \textcolor{comment}{     * @brief Gets the array of active notes.}
+429 \textcolor{comment}{     * @return The array of active notes.}
+430 \textcolor{comment}{     */}
+431     \textcolor{keyword}{public} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}[] \hyperlink{group___v_i_m_pub_func_ga119e0c582106fc9ecc2631e39d71d681}{GetActiveNotes}()
+432     \{
+433         \textcolor{keywordflow}{return} \hyperlink{group___v_i_m_priv_ga5cedf9995d59b416412677e6004b659c}{mActiveNotes};
+434     \}
+435 
+436 \textcolor{preprocessor}{    #if DEBUG\_AUDIO\_DIAGNOSTICS}
+437 \textcolor{comment}{        /** }
+438 \textcolor{comment}{        * @brief Gets the @link ATI\_Diagnostics audio diagnostics handler@endlink.}
+439 \textcolor{comment}{        * @return The @link ATI\_Diagnostics audio diagnostics handler@endlink.}
+440 \textcolor{comment}{        */}
+441         \textcolor{keyword}{public} \hyperlink{group___audio_testing_class_a_t_i___diagnostics}{ATI\_Diagnostics} \hyperlink{group___v_i_m_pub_func_ga7e60bc3c5464d8f34f0d56def675bcc6}{GetDiagnosticsHandler}()
+442         \{
+443             \textcolor{keywordflow}{return} \hyperlink{group___v_i_m_priv_gafabe4a874fc21f7bcedf431df3b94201}{mDiagnosticsHandler};
+444         \}
+445 \textcolor{preprocessor}{    #endif}
+446 \textcolor{comment}{}
+447 \textcolor{comment}{    /**}
+448 \textcolor{comment}{     * @brief Gets the highest active note.}
+449 \textcolor{comment}{    */}
+450     \textcolor{keyword}{public} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH} \hyperlink{group___v_i_m_pub_func_gab58eabfbcdaa60a3a7dbd972df6f57a6}{GetHighestActiveNote}()
+451     \{
+452         \textcolor{keywordflow}{return} \hyperlink{group___v_i_m_priv_ga73a09a4e4f09c0e5b3871dc9ad6c757e}{mHighestActiveNote};
+453     \}
+454 \textcolor{comment}{}
+455 \textcolor{comment}{    /**}
+456 \textcolor{comment}{     * @brief Gets the highest note that is supported by the loaded instrument}
+457 \textcolor{comment}{    */}
+458     \textcolor{keyword}{public} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH} \hyperlink{group___v_i_m_pub_func_ga586d5ed5b0fe832d66c9a99aa160ceee}{GetHighestSupportedNote}()
+459     \{
+460         \textcolor{keywordflow}{return} mInstrument.\hyperlink{group___v_i_base_pub_func_ga859f3e73b1d28051cecf0ecd1c8b10ee}{GetHighestSupportedPitch}();
+461     \}
+462 \textcolor{comment}{}
+463 \textcolor{comment}{    /**}
+464 \textcolor{comment}{     * @brief Gets the loaded VirtualInstrument}
+465 \textcolor{comment}{    */}
+466     \textcolor{keyword}{public} \hyperlink{class_virtual_instrument}{VirtualInstrument} \hyperlink{group___v_i_m_pub_func_gac39a3e411417dc010f0e4fd8f146fbc3}{GetInstrument}()
+467     \{
+468         \textcolor{keywordflow}{return} \hyperlink{group___v_i_m_priv_gaed435d1f9be09864846db4322dc21fd1}{mInstrument};
+469     \}
+470 \textcolor{comment}{}
+471 \textcolor{comment}{    /**}
+472 \textcolor{comment}{     * @brief Gets the lowest active note.}
+473 \textcolor{comment}{    */}
+474     \textcolor{keyword}{public} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH} \hyperlink{group___v_i_m_pub_func_ga09bfbd0756fc8110c877e5b59c104bcd}{GetLowestActiveNote}()
+475     \{
+476         \textcolor{keywordflow}{return} \hyperlink{group___v_i_m_priv_ga5e3a5116e0dabb37e0ea21d73ac1567e}{mLowestActiveNote};
+477     \}
+478 \textcolor{comment}{}
+479 \textcolor{comment}{    /**}
+480 \textcolor{comment}{     * @brief Gets the lowest note that is supported by the loaded instrument.}
+481 \textcolor{comment}{    */}
+482     \textcolor{keyword}{public} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH} \hyperlink{group___v_i_m_pub_func_gaeb152486450d6c6dc50078e1644c4c6a}{GetLowestSupportedNote}()
+483     \{
+484         \textcolor{keywordflow}{return} mInstrument.\hyperlink{group___v_i_base_pub_func_gac42b3915bbfec60b83650abd701d0690}{GetLowestSupportedPitch}();
+485     \}
+486 
+487 \textcolor{preprocessor}{    #if DEBUG\_MUSICAL\_TYPING}
+488 \textcolor{comment}{        /** Gets the @link MusicalTypingHandler Musical Typing Handler@endlink.}
+489 \textcolor{comment}{         * @return The @link MusicalTypingHandler Musical Typing Handler@endlink.}
+490 \textcolor{comment}{        */}
+491         \textcolor{keyword}{public} \hyperlink{class_musical_typing_handler}{MusicalTypingHandler} \hyperlink{group___v_i_m_pub_func_gae6701458a23a3f14db90501f871d4d0d}{GetMusicalTypingHandler}()
+492         \{
+493             \textcolor{keywordflow}{return} \hyperlink{group___v_i_m_priv_gad7b95bd21383d11ea0cbf33d79b78e09}{mMusicalTypingHandler};
+494         \}
+495 \textcolor{preprocessor}{    #endif}
+496 \textcolor{comment}{}
+497 \textcolor{comment}{    /**}
+498 \textcolor{comment}{     * @brief Gets the number of notes that currently can be played}
+499 \textcolor{comment}{    */}
+500     \textcolor{keyword}{public} \textcolor{keywordtype}{int} \hyperlink{group___v_i_m_pub_func_ga3d6c823b1c1083eac8202f6c89e60b48}{GetNumActiveNotes}()
+501     \{
+502         \textcolor{keywordflow}{return} \hyperlink{group___v_i_m_priv_ga0f7e11945763c48057be326b661dfdaf}{mNumActiveNotes};
+503     \}\textcolor{comment}{}
+504 \textcolor{comment}{    /** @\} */}
+505 
+506     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+507 \textcolor{comment}{    * @defgroup VIMPrivFunc Private Functions}
+508 \textcolor{comment}{    * @ingroup VIM}
+509 \textcolor{comment}{    * These are functions that the VirtualInstrumentManager uses internally to perform its tasks.}
+510 \textcolor{comment}{    *****************************************************************************/}\textcolor{comment}{}
+511 \textcolor{comment}{    /** @\{ */}
+512 \textcolor{comment}{}
+513 \textcolor{comment}{    /**}
+514 \textcolor{comment}{     * @brief Loads each NoteOutputObject that is used to output the audio.}
+515 \textcolor{comment}{     * }
+516 \textcolor{comment}{     * This function loads a NoteOutputObject for every currently playable note, and }
+517 \textcolor{comment}{     * uses the loaded VirtualInstrument to set the audio data that they will output.}
+518 \textcolor{comment}{     * }
+519 \textcolor{comment}{     * @see NoteOutputObject}
+520 \textcolor{comment}{    */}
+521     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{group___v_i_m_priv_func_ga8817e32cc5074737b4d9489922b0fcb8}{LoadNoteOutputObjects}()
+522     \{
+523         Assert.IsNotNull( mInstrument, \textcolor{stringliteral}{"Tried to load NoteOutputObjects when the instrument was null!"} );
+524 
+525         \textcolor{keywordflow}{if}( mOutputs == null )
+526         \{
+527             \textcolor{comment}{// Initialize the array of NoteOutputObjects.}
+528             mOutputs = \textcolor{keyword}{new} \hyperlink{class_note_output_object}{NoteOutputObject}[\hyperlink{group___v_i_m_priv_ga0f7e11945763c48057be326b661dfdaf}{mNumActiveNotes}];
+529 
+530             \textcolor{comment}{// For each note, clone a NoteOutputObject.}
+531             GameObject clone = null;
+532             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < \hyperlink{group___v_i_m_priv_ga0f7e11945763c48057be326b661dfdaf}{mNumActiveNotes}; i++ )
+533             \{
+534                 clone = Instantiate( Resources.Load<GameObject>( \textcolor{stringliteral}{"Audio/Prefabs/NoteOutputObjectPrefab"} ) )
+      ;
+535                 clone.transform.position = transform.position;
+536                 mOutputs[i] = clone.GetComponent<\hyperlink{class_note_output_object}{NoteOutputObject}>();
+537                 clone = null;
+538             \}
+539         \}
+540 
+541         \textcolor{comment}{// Set the audio data of the NoteOutputObject and make sure that they don't loop..}
+542         \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < \hyperlink{group___v_i_m_priv_ga0f7e11945763c48057be326b661dfdaf}{mNumActiveNotes}; i++ )
+543         \{
+544             mOutputs[i].gameObject.name = \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( 
+      \hyperlink{group___v_i_m_priv_ga5cedf9995d59b416412677e6004b659c}{mActiveNotes}[i] ) + \textcolor{stringliteral}{"NoteOutputObjectContainer"};
+545             mOutputs[i].\hyperlink{group___n_o_o_pub_func_gaef9ab691f0a2671a62249d853f24162d}{SetAudioData}( mInstrument.
+      \hyperlink{group___v_i_base_pub_func_gaf715f7c3bbd2f1a2fa543b2f0684f8a6}{GetAudioDataForPitch}( \hyperlink{group___v_i_m_priv_ga5cedf9995d59b416412677e6004b659c}{mActiveNotes}[i] ), \hyperlink{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}{mMixer}, mInstrument.
+      \hyperlink{group___v_i_base_pub_func_gac8fc20c49c1b97b6787ed1b3e0073a7f}{GetBuiltInDynamicsThresholds}() );
+546             mOutputs[i].\hyperlink{group___n_o_o_pub_func_ga7b79bbd2c7a68831b322edff140f29d2}{SetLoop}( \textcolor{keyword}{false} );
+547             mOutputs[i].\hyperlink{group___n_o_o_pub_func_gaca261a6f8d95fc7f81bbc3c8108bad58}{SetVIM}( \textcolor{keyword}{this} );
+548         \}
+549 
+550         \textcolor{comment}{// Cleanup.}
+551         GC.Collect();
+552         Resources.UnloadUnusedAssets();
+553 
+554         \textcolor{comment}{// Set that we're ready for note events.}
+555         mReady = \textcolor{keyword}{true};
+556 
+557         Debug.Log( \textcolor{stringliteral}{"NoteOutputObjects are loaded"} );
+558     \}
+559 \textcolor{comment}{}
+560 \textcolor{comment}{    /** }
+561 \textcolor{comment}{     * @brief Sets up the events and adds their listeners. Should only be called from
+       VirtualInstrumentManager::Awake().}
+562 \textcolor{comment}{    */}
+563     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{group___v_i_m_priv_func_gaa207d18111d38374017c580de4077589}{SetUpEvents}()
+564     \{
+565         \textcolor{comment}{// Initialize the events.}
+566         AudioFinished = \textcolor{keyword}{new} AudioFinishedEvent();
+567         ChangeNoteRange = \textcolor{keyword}{new} ChangeNoteRangeEvent();
+568         ChangeInstrument = \textcolor{keyword}{new} ChangeInstrumentEvent();
+569         InstrumentLoaded = \textcolor{keyword}{new} InstrumentLoadedEvent();
+570         ModifyEchoFilter = \textcolor{keyword}{new} ModifyEchoFilterEvent();
+571         ModifyReverbFilter = \textcolor{keyword}{new} ModifyReverbFilterEvent();
+572         PauseDrumLoop = \textcolor{keyword}{new} PauseDrumLoopEvent();
+573         PauseSong = \textcolor{keyword}{new} PauseSongEvent();
+574         PlayDrumLoop = \textcolor{keyword}{new} PlayDrumLoopEvent();
+575         PlayNote = \textcolor{keyword}{new} PlayNoteEvent();
+576         PlaySong = \textcolor{keyword}{new} PlaySongEvent();
+577         ReleaseNote = \textcolor{keyword}{new} ReleaseNoteEvent();
+578         ResumeDrumLoop = \textcolor{keyword}{new} ResumeDrumLoopEvent();
+579         ResumeSong = \textcolor{keyword}{new} ResumeSongEvent();
+580         StopDrumLoop = \textcolor{keyword}{new} StopDrumLoopEvent();
+581         StopSong = \textcolor{keyword}{new} StopSongEvent();
+582 
+583         \textcolor{comment}{// Add their listeners.}
+584         ChangeNoteRange.AddListener( \hyperlink{group___v_i_m_handlers_ga660c766dceebfc830de2cf96686692df}{OnChangeNoteRangeEvent} );
+585         ChangeInstrument.AddListener( \hyperlink{group___v_i_m_handlers_ga8e79286073756c31e08fecd59ce04fa7}{OnChangeInstrumentEvent} );
+586         InstrumentLoaded.AddListener( \hyperlink{group___v_i_m_handlers_gac7d5b65484e450a400e32ab416ebc9f6}{OnInstrumentLoaded} );
+587         ModifyEchoFilter.AddListener( \hyperlink{group___v_i_m_handlers_gae504c6ded8eb68ffb117c207fc25d99d}{OnModifyEchoFilterEvent} );
+588         ModifyReverbFilter.AddListener( \hyperlink{group___v_i_m_handlers_ga2b310217971075b1b2db67d68fbbea5a}{OnModifyReverbFilterEvent} );
+589         PauseDrumLoop.AddListener( \hyperlink{group___v_i_m_handlers_ga30cd7f00fea55becd6d90f0ec737510a}{OnPauseDrumLoopEvent} );
+590         PauseSong.AddListener( \hyperlink{group___v_i_m_handlers_gad052b3cc53b35b25631f9b399be489ae}{OnPauseSongEvent} );
+591         PlayDrumLoop.AddListener( \hyperlink{group___v_i_m_handlers_gae2e2010b9a36ae2409466181ae0b9679}{OnPlayDrumLoopEvent} );
+592         PlayNote.AddListener( \hyperlink{group___v_i_m_handlers_ga80b3821df3b1488a150f6062638f105c}{OnPlayNoteEvent} );
+593         PlaySong.AddListener( \hyperlink{group___v_i_m_handlers_ga7fd877a7d429403abbfd2728aa63c056}{OnPlaySongEvent} );
+594         ReleaseNote.AddListener( \hyperlink{group___v_i_m_handlers_ga0f0a34c251d154131f9ea130a54dc989}{OnReleaseNoteEvent} );
+595         ResumeDrumLoop.AddListener( \hyperlink{group___v_i_m_handlers_ga97e3e73e05a7ab6027f25573712367a2}{OnResumeDrumLoopEvent} );
+596         ResumeSong.AddListener( \hyperlink{group___v_i_m_handlers_gaca3d2c89672fe0eb3d94b3cb2072de59}{OnResumeSongEvent} );
+597         StopDrumLoop.AddListener( \hyperlink{group___v_i_m_handlers_ga9d251d8b2036a3416680ced5d6125d0e}{OnStopDrumLoopEvent} );
+598         StopSong.AddListener( \hyperlink{group___v_i_m_handlers_ga5d9afb7a74107b5c6016555f0bb0a0a8}{OnStopSongEvent} );
+599 
+600 
+601     \}
+602 \textcolor{comment}{}
+603 \textcolor{comment}{    /** }
+604 \textcolor{comment}{     * @brief Sets the default values for the VirtualInstrumentManager. Should only be called from
+       VirtualInstrumentManager::Awake().}
+605 \textcolor{comment}{    */}
+606     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{group___v_i_m_priv_func_gaa9e05e51f025afb0ab5cb2a8532c8bba}{SetDefaultValues}()
+607     \{
+608         mMixer = Resources.Load<AudioMixer>( \textcolor{stringliteral}{"Audio/VirtualInstrument/VirtualInstrumentAudioMixer"} );
+609         Assert.IsNotNull( mMixer, \textcolor{stringliteral}{"Audio mixer was unable to load!"} );
+610 
+611         \textcolor{comment}{// Set the active notes.}
+612         \hyperlink{group___v_i_m_priv_ga5e3a5116e0dabb37e0ea21d73ac1567e}{mLowestActiveNote} = \hyperlink{group___v_i_m_const_ga0ae09555ae6bc8a04110599510a0d77d}{DEFAULT\_LOWEST\_PITCH};
+613         mHighestActiveNote = \hyperlink{group___v_i_m_const_gadb93993bf989a9ac6e95be9e1561a5bb}{DEFAULT\_HIGHEST\_PITCH};
+614         mNumActiveNotes = (int)mHighestActiveNote - (\textcolor{keywordtype}{int})\hyperlink{group___v_i_m_priv_ga5e3a5116e0dabb37e0ea21d73ac1567e}{mLowestActiveNote} + 1;
+615         \hyperlink{group___v_i_m_priv_ga5cedf9995d59b416412677e6004b659c}{mActiveNotes} = \textcolor{keyword}{new} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}[\hyperlink{group___v_i_m_priv_ga0f7e11945763c48057be326b661dfdaf}{mNumActiveNotes}];
+616         \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < \hyperlink{group___v_i_m_priv_ga0f7e11945763c48057be326b661dfdaf}{mNumActiveNotes}; i++ )
+617         \{
+618             \hyperlink{group___v_i_m_priv_ga5cedf9995d59b416412677e6004b659c}{mActiveNotes}[i] = (\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH})( i + (\textcolor{keywordtype}{int})
+      \hyperlink{group___v_i_m_priv_ga5e3a5116e0dabb37e0ea21d73ac1567e}{mLowestActiveNote} );
+619         \}
+620 
+621         \textcolor{comment}{// Set the instrument type}
+622         \hyperlink{group___v_i_m_priv_ga108c350257b3a2080e06cd4a8251f6a4}{mInstrumentType} = \hyperlink{group___v_i_m_const_gad74e35b317d6cc0bb57a78117fa430e6}{DEFAULT\_INSTRUMENT\_TYPE};
+623 
+624         \textcolor{comment}{// Initialize the song and drum loop outputs.}
+625         GameObject songOutputContainer = Instantiate( Resources.Load<GameObject>( \textcolor{stringliteral}{"
+      Audio/Prefabs/NoteOutputObjectPrefab"} ) );
+626         Assert.IsNotNull( songOutputContainer, \textcolor{stringliteral}{"Could not load NoteOutputObject prefab!"} );
+627         songOutputContainer.name = \textcolor{stringliteral}{"Song Output"};
+628         songOutputContainer.transform.position = transform.position;
+629         mSongOutput = songOutputContainer.GetComponent<\hyperlink{class_note_output_object}{NoteOutputObject}>();
+630         mSongOutput.\hyperlink{group___n_o_o_pub_func_ga7b79bbd2c7a68831b322edff140f29d2}{SetLoop}( \textcolor{keyword}{false} );
+631         mSongOutput.\hyperlink{group___n_o_o_pub_func_gaca261a6f8d95fc7f81bbc3c8108bad58}{SetVIM}( \textcolor{keyword}{this} );
+632         mSongOutput.\hyperlink{group___n_o_o_pub_func_gab7bad1b7d462676843be9e0bbfa1c9fb}{ShouldNotifyWhenFinished}( \textcolor{keyword}{true} );
+633 
+634         GameObject drumOutputContainer = Instantiate( Resources.Load<GameObject>( \textcolor{stringliteral}{"
+      Audio/Prefabs/NoteOutputObjectPrefab"} ) );
+635         Assert.IsNotNull( songOutputContainer, \textcolor{stringliteral}{"Could not load NoteOutputObject prefab!"} );
+636         drumOutputContainer.name = \textcolor{stringliteral}{"Drum Loop Output"};
+637         drumOutputContainer.transform.position = transform.position;
+638         mDrumLoopOutput = drumOutputContainer.GetComponent<\hyperlink{class_note_output_object}{NoteOutputObject}>();
+639         mDrumLoopOutput.\hyperlink{group___n_o_o_pub_func_ga7b79bbd2c7a68831b322edff140f29d2}{SetLoop}( \textcolor{keyword}{true} );
+640         mDrumLoopOutput.\hyperlink{group___n_o_o_pub_func_gaca261a6f8d95fc7f81bbc3c8108bad58}{SetVIM}( \textcolor{keyword}{this} );
+641     \}\textcolor{comment}{}
+642 \textcolor{comment}{    /** @\} */}
+643 
+644     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+645 \textcolor{comment}{    * @defgroup VIMCoroutines Coroutines}
+646 \textcolor{comment}{    * @ingroup VIM}
+647 \textcolor{comment}{    * These are functions that are started by the VirtualInstrumentManager which allows it to perform other
+       tasks while waiting.}
+648 \textcolor{comment}{    *****************************************************************************/}\textcolor{comment}{}
+649 \textcolor{comment}{    /** @\{ */}
+650 \textcolor{comment}{}
+651 \textcolor{comment}{    /** }
+652 \textcolor{comment}{     * @brief Coroutine to load the drum kit. }
+653 \textcolor{comment}{     * @param[out] aDrumKitCallback Callback to allow returning the loaded instrument to the calling
+       context.}
+654 \textcolor{comment}{     * }
+655 \textcolor{comment}{     * @see DrumKit Music::INSTRUMENT\_TYPE VirtualInstrumentManager::mDrumKit}
+656 \textcolor{comment}{    */} 
+657     \textcolor{keyword}{private} IEnumerator \hyperlink{group___v_i_m_coroutines_gaba165ca4757b6c8555914fe6b42b638d}{LoadDrumKit}( \hyperlink{namespace_system}{System}.Action<
+      \hyperlink{class_virtual_instrument}{VirtualInstrument}> aDrumKitCallback )
+658     \{
+659         \textcolor{comment}{// Load a new instrument}
+660         \hyperlink{class_virtual_instrument}{VirtualInstrument} returned = \textcolor{keyword}{new} \hyperlink{class_drum_kit}{DrumKit}( \textcolor{keyword}{this} );
+661 
+662         \textcolor{comment}{// Return the loaded instrument and invoke the instrument's LoadEvent.}
+663         aDrumKitCallback( returned );
+664         \textcolor{comment}{//DrumKitLoaded.Invoke();}
+665         yield \textcolor{keywordflow}{return} null;
+666     \}
+667 \textcolor{comment}{}
+668 \textcolor{comment}{    /** }
+669 \textcolor{comment}{     * @brief Coroutine to load an instrument. }
+670 \textcolor{comment}{     * @param[in] aINSTRUMENT\_TYPE The type of instrument to load. }
+671 \textcolor{comment}{     * @param[out] aInstrumentCallback Callback to allow returning the loaded instrument to the calling
+       context.}
+672 \textcolor{comment}{     * }
+673 \textcolor{comment}{     * @see VirtualInstrument Music::INSTRUMENT\_TYPE VirtualInstrumentManager::mInstrument}
+674 \textcolor{comment}{    */}
+675     \textcolor{keyword}{private} IEnumerator \hyperlink{group___v_i_m_coroutines_gab8082c1cc590771bf57da8b5ae8603d1}{LoadInstrument}( \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gabfce60192305965558a36e368ebd67c3}{INSTRUMENT\_TYPE} 
+      aINSTRUMENT\_TYPE, \hyperlink{namespace_system}{System}.Action<\hyperlink{class_virtual_instrument}{VirtualInstrument}> aInstrumentCallback )
+676     \{
+677         \textcolor{comment}{// Load a new instrument}
+678         \hyperlink{class_virtual_instrument}{VirtualInstrument} returned = null;
+679         \textcolor{keywordflow}{switch}( aINSTRUMENT\_TYPE )
+680         \{
+681             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gabfce60192305965558a36e368ebd67c3}{INSTRUMENT\_TYPE}.DRUM\_KIT:
+682                 returned = \textcolor{keyword}{new} \hyperlink{class_drum_kit}{DrumKit}( \textcolor{keyword}{this} );
+683                 \textcolor{keywordflow}{break};
+684             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gabfce60192305965558a36e368ebd67c3}{INSTRUMENT\_TYPE}.MARIMBA:
+685                 returned = \textcolor{keyword}{new} \hyperlink{class_marimba}{Marimba}( \textcolor{keyword}{this} );
+686                 \textcolor{keywordflow}{break};
+687             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gabfce60192305965558a36e368ebd67c3}{INSTRUMENT\_TYPE}.PIANO:
+688             \textcolor{keywordflow}{default}:
+689                 returned = \textcolor{keyword}{new} \hyperlink{class_piano}{Piano}( \textcolor{keyword}{this} );
+690                 \textcolor{keywordflow}{break};
+691         \}
+692 
+693         \textcolor{comment}{// Return the loaded instrument and invoke the instrument's LoadEvent.}
+694         aInstrumentCallback( returned );
+695         InstrumentLoaded.Invoke();
+696         yield \textcolor{keywordflow}{return} null;
+697     \}\textcolor{comment}{}
+698 \textcolor{comment}{    /** @\} */}
+699 
+700     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+701 \textcolor{comment}{    * @defgroup VIMHandlers Event Handlers}
+702 \textcolor{comment}{    * @ingroup VIM}
+703 \textcolor{comment}{    * These are functions that the VirtualInstrumentManager uses to handle invoked @link VIMEvents events
+       @endlink}
+704 \textcolor{comment}{    *****************************************************************************/}\textcolor{comment}{}
+705 \textcolor{comment}{    /** @\{ */}
+706 \textcolor{comment}{}
+707 \textcolor{comment}{    /**}
+708 \textcolor{comment}{     * @brief Called whenever an instrument should be loaded. }
+709 \textcolor{comment}{     * @param[in] aNewInstrumentType The type of instrument that should be loaded}
+710 \textcolor{comment}{     * }
+711 \textcolor{comment}{     * @see Music::INSTRUMENT\_TYPE VirtualInstrumentManager::ChangeInstrumentEvent}
+712 \textcolor{comment}{    */}
+713     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___v_i_m_handlers_ga8e79286073756c31e08fecd59ce04fa7}{OnChangeInstrumentEvent}( \hyperlink{class_music}{Music}.
+      \hyperlink{group___music_enums_gabfce60192305965558a36e368ebd67c3}{INSTRUMENT\_TYPE} aNewInstrumentType )
+714     \{
+715         \textcolor{comment}{// Mark that we're not ready for note events.}
+716         mReady = \textcolor{keyword}{false};
+717         mInstrument = null;
+718 
+719         \textcolor{comment}{// Set the instrument type.}
+720         \hyperlink{group___v_i_m_priv_ga108c350257b3a2080e06cd4a8251f6a4}{mInstrumentType} = aNewInstrumentType;
+721 
+722         \textcolor{comment}{// Handle the difference in active notes for a drum kit vs. a normal instrument.}
+723         \textcolor{keywordflow}{if}( \hyperlink{group___v_i_m_priv_ga108c350257b3a2080e06cd4a8251f6a4}{mInstrumentType} == \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gabfce60192305965558a36e368ebd67c3}{INSTRUMENT\_TYPE}.DRUM\_KIT )
+724         \{
+725             mNumActiveNotes = 18;
+726         \}
+727         \textcolor{keywordflow}{else}
+728         \{
+729             mNumActiveNotes = 24;
+730         \}
+731 
+732         \textcolor{comment}{// Destroy the note output objects.}
+733         \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < mOutputs.Length; i++ )
+734         \{
+735             DestroyImmediate( mOutputs[i], \textcolor{keyword}{false} );
+736         \}
+737 
+738         mOutputs = null;
+739 
+740         \textcolor{comment}{// Set default values for the active notes and be sure to account for drums}
+741         \textcolor{keywordflow}{if}( \hyperlink{group___v_i_m_priv_ga108c350257b3a2080e06cd4a8251f6a4}{mInstrumentType} == \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gabfce60192305965558a36e368ebd67c3}{INSTRUMENT\_TYPE}.DRUM\_KIT )
+742         \{
+743             \hyperlink{group___v_i_m_priv_ga5e3a5116e0dabb37e0ea21d73ac1567e}{mLowestActiveNote} = \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.C0;
+744         \}
+745         \textcolor{keywordflow}{else}
+746         \{
+747             \hyperlink{group___v_i_m_priv_ga5e3a5116e0dabb37e0ea21d73ac1567e}{mLowestActiveNote} = \hyperlink{group___v_i_m_const_ga0ae09555ae6bc8a04110599510a0d77d}{DEFAULT\_LOWEST\_PITCH};
+748         \}
+749         mHighestActiveNote = (\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH})( (\textcolor{keywordtype}{int})\hyperlink{group___v_i_m_priv_ga5e3a5116e0dabb37e0ea21d73ac1567e}{mLowestActiveNote} + 
+      mNumActiveNotes - 1 );
+750         \hyperlink{group___v_i_m_priv_ga5cedf9995d59b416412677e6004b659c}{mActiveNotes} = \textcolor{keyword}{new} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}[\hyperlink{group___v_i_m_priv_ga0f7e11945763c48057be326b661dfdaf}{mNumActiveNotes}];
+751         \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < \hyperlink{group___v_i_m_priv_ga0f7e11945763c48057be326b661dfdaf}{mNumActiveNotes}; i++ )
+752         \{
+753             \hyperlink{group___v_i_m_priv_ga5cedf9995d59b416412677e6004b659c}{mActiveNotes}[i] = (\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH})( i + (\textcolor{keywordtype}{int})
+      \hyperlink{group___v_i_m_priv_ga5e3a5116e0dabb37e0ea21d73ac1567e}{mLowestActiveNote} );
+754         \}
+755 
+756         \textcolor{comment}{// Start a coroutine to load the instrument.}
+757         StartCoroutine( \hyperlink{group___v_i_m_coroutines_gab8082c1cc590771bf57da8b5ae8603d1}{LoadInstrument}( \hyperlink{group___v_i_m_priv_ga108c350257b3a2080e06cd4a8251f6a4}{mInstrumentType}, ( returned ) => \{ 
+      mInstrument = returned; \} ) );
+758     \}
+759 \textcolor{comment}{}
+760 \textcolor{comment}{    /**}
+761 \textcolor{comment}{     * @brief Called whenever the range of active notes should be changed.}
+762 \textcolor{comment}{     * @param[in] aNewLowestPitch The lowest pitch in the new range.}
+763 \textcolor{comment}{     * }
+764 \textcolor{comment}{     * @see Music::PITCH VirtualInstrumentManager::ChangeNoteRangeEvent}
+765 \textcolor{comment}{    */}
+766     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___v_i_m_handlers_ga660c766dceebfc830de2cf96686692df}{OnChangeNoteRangeEvent}( \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH} aNewLowestPitch )
+767     \{
+768         \textcolor{keywordflow}{if}( mReady )
+769         \{
+770             mReady = \textcolor{keyword}{false};
+771 
+772             \textcolor{comment}{// Make sure that we can change to the note range given.}
+773             \textcolor{keywordtype}{int} newHighestIndex = (int)aNewLowestPitch + mNumActiveNotes - 1;
+774             \textcolor{keywordflow}{if}( !mInstrument.\hyperlink{group___v_i_base_pub_func_ga89655451c108a7ad5cb96ab308e33937}{IsPitchSupported}( aNewLowestPitch ) || !mInstrument.
+      \hyperlink{group___v_i_base_pub_func_ga89655451c108a7ad5cb96ab308e33937}{IsPitchSupported}( (\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH})newHighestIndex ) )
+775             \{
+776                 Assert.IsTrue( \textcolor{keyword}{false}, \textcolor{stringliteral}{"Tried to change the note range to include notes that aren't
+       supported by the instrument!"} );
+777                 \textcolor{keywordflow}{return};
+778             \}
+779 
+780             \textcolor{comment}{// Set the active note variables accordingly.}
+781             \hyperlink{group___v_i_m_priv_ga5e3a5116e0dabb37e0ea21d73ac1567e}{mLowestActiveNote} = aNewLowestPitch;
+782             mHighestActiveNote = (\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH})( (\textcolor{keywordtype}{int})aNewLowestPitch + mNumActiveNotes - 1 );
+783             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < \hyperlink{group___v_i_m_priv_ga0f7e11945763c48057be326b661dfdaf}{mNumActiveNotes}; i++ )
+784             \{
+785                 \hyperlink{group___v_i_m_priv_ga5cedf9995d59b416412677e6004b659c}{mActiveNotes}[i] = (\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH})( (\textcolor{keywordtype}{int})aNewLowestPitch + i );
+786             \}
+787 
+788             \textcolor{comment}{// Load the note output objects.}
+789             \hyperlink{group___v_i_m_priv_func_ga8817e32cc5074737b4d9489922b0fcb8}{LoadNoteOutputObjects}();
+790         \}
+791 
+792     \}
+793 \textcolor{comment}{}
+794 \textcolor{comment}{    /**}
+795 \textcolor{comment}{     * @brief Called whenever the instrument has finished loading. It begins loading the NoteOutputObjects.
+       }
+796 \textcolor{comment}{     * }
+797 \textcolor{comment}{     * @see VirtualInstrumentManager::InstrumentLoadedEvent NoteOutputObject}
+798 \textcolor{comment}{    */}
+799     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___v_i_m_handlers_gac7d5b65484e450a400e32ab416ebc9f6}{OnInstrumentLoaded}()
+800     \{
+801         Assert.IsNotNull( mInstrument, \textcolor{stringliteral}{"OnInstrumentLoaded was called, but the instrument was not loaded."} 
+      );
+802 
+803         \hyperlink{group___v_i_m_priv_func_ga8817e32cc5074737b4d9489922b0fcb8}{LoadNoteOutputObjects}();
+804     \}
+805 \textcolor{comment}{}
+806 \textcolor{comment}{    /**}
+807 \textcolor{comment}{     * @brief Called whenever the echo filter should be modified.}
+808 \textcolor{comment}{     * @param[in] aParameters The new parameters of the echo filter}
+809 \textcolor{comment}{     * }
+810 \textcolor{comment}{     * @see VirtualInstrumentManager::ModifyEchoFilterEvent}
+811 \textcolor{comment}{    */}
+812     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___v_i_m_handlers_gae504c6ded8eb68ffb117c207fc25d99d}{OnModifyEchoFilterEvent}( EchoFilterParameters aParameters )
+813     \{
+814         \textcolor{comment}{// If the filter is active and the parameters are valid, then use the new parameters.}
+815         \textcolor{keywordflow}{if}( aParameters.Active )
+816         \{
+817             mMixer.SetFloat( \textcolor{stringliteral}{"echoDelay"}, aParameters.Delay );
+818             mMixer.SetFloat( \textcolor{stringliteral}{"echoDecay"}, aParameters.Decay );
+819             mMixer.SetFloat( \textcolor{stringliteral}{"echoDryMix"}, aParameters.DryMix );
+820             mMixer.SetFloat( \textcolor{stringliteral}{"echoWetMix"}, aParameters.WetMix );
+821         \}
+822         \textcolor{comment}{// If the filter is not active, then set values that negate the filter.}
+823         \textcolor{keywordflow}{else}
+824         \{
+825             mMixer.SetFloat( \textcolor{stringliteral}{"echoDelay"}, 1f );
+826             mMixer.SetFloat( \textcolor{stringliteral}{"echoDecay"}, 0f );
+827             mMixer.SetFloat( \textcolor{stringliteral}{"echoDryMix"}, 100f );
+828             mMixer.SetFloat( \textcolor{stringliteral}{"echoWetMix"}, 0f );
+829         \}
+830     \}
+831 \textcolor{comment}{}
+832 \textcolor{comment}{    /**}
+833 \textcolor{comment}{     * @brief Called whenever the reverb filter should be modified.}
+834 \textcolor{comment}{     * @param[in] aParameters The new parameters of the reverb filter}
+835 \textcolor{comment}{     * }
+836 \textcolor{comment}{     * @see VirtualInstrumentManager::ModifyReverbFilterEvent}
+837 \textcolor{comment}{    */}
+838     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___v_i_m_handlers_ga2b310217971075b1b2db67d68fbbea5a}{OnModifyReverbFilterEvent}( ReverbFilterParameters aParameters )
+839     \{
+840         \textcolor{keywordflow}{if}( aParameters.Active )
+841         \{
+842             mMixer.SetFloat( \textcolor{stringliteral}{"revDryLevel"}, aParameters.DryLevel );
+843             mMixer.SetFloat( \textcolor{stringliteral}{"revRoom"}, aParameters.Room );
+844             mMixer.SetFloat( \textcolor{stringliteral}{"revRoomHF"}, aParameters.RoomHF );
+845             mMixer.SetFloat( \textcolor{stringliteral}{"revDecayTime"}, aParameters.DecayTime );
+846             mMixer.SetFloat( \textcolor{stringliteral}{"revDecayHFRatio"}, aParameters.DecayHFRatio );
+847             mMixer.SetFloat( \textcolor{stringliteral}{"revReflections"}, aParameters.Reflections );
+848             mMixer.SetFloat( \textcolor{stringliteral}{"revReflectDelay"}, aParameters.ReflectDelay );
+849             mMixer.SetFloat( \textcolor{stringliteral}{"revReverb"}, aParameters.Reverb );
+850             mMixer.SetFloat( \textcolor{stringliteral}{"revReverbDelay"}, aParameters.ReverbDelay );
+851             mMixer.SetFloat( \textcolor{stringliteral}{"revDiffusion"}, aParameters.Diffusion );
+852             mMixer.SetFloat( \textcolor{stringliteral}{"revDensity"}, aParameters.Density );
+853             mMixer.SetFloat( \textcolor{stringliteral}{"revHFReference"}, aParameters.HFReference );
+854             mMixer.SetFloat( \textcolor{stringliteral}{"revRoomLF"}, aParameters.RoomLF );
+855             mMixer.SetFloat( \textcolor{stringliteral}{"revLFReference"}, aParameters.LFReference );
+856         \}
+857         \textcolor{keywordflow}{else}
+858         \{
+859             mMixer.SetFloat( \textcolor{stringliteral}{"revDryLevel"}, 0f );
+860             mMixer.SetFloat( \textcolor{stringliteral}{"revRoom"}, -10000f );
+861             mMixer.SetFloat( \textcolor{stringliteral}{"revRoomHF"}, -10000f );
+862             mMixer.SetFloat( \textcolor{stringliteral}{"revDecayTime"}, 0.1f );
+863             mMixer.SetFloat( \textcolor{stringliteral}{"revDecayHFRatio"}, 0.1f );
+864             mMixer.SetFloat( \textcolor{stringliteral}{"revReflections"}, -10000f );
+865             mMixer.SetFloat( \textcolor{stringliteral}{"revReflectDelay"}, -10000f );
+866             mMixer.SetFloat( \textcolor{stringliteral}{"revReverb"}, -10000f );
+867             mMixer.SetFloat( \textcolor{stringliteral}{"revReverbDelay"}, 0f );
+868             mMixer.SetFloat( \textcolor{stringliteral}{"revDiffusion"}, 0f );
+869             mMixer.SetFloat( \textcolor{stringliteral}{"revDensity"}, 0f );
+870             mMixer.SetFloat( \textcolor{stringliteral}{"revHFReference"}, 20f );
+871             mMixer.SetFloat( \textcolor{stringliteral}{"revRoomLF"}, -10000f );
+872             mMixer.SetFloat( \textcolor{stringliteral}{"revLFReference"}, 20f );
+873         \}
+874     \}
+875 \textcolor{comment}{}
+876 \textcolor{comment}{    /**}
+877 \textcolor{comment}{     * @brief Handles pausing a drum loop.}
+878 \textcolor{comment}{    */}
+879     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___v_i_m_handlers_ga30cd7f00fea55becd6d90f0ec737510a}{OnPauseDrumLoopEvent}()
+880     \{
+881         mDrumLoopOutput.\hyperlink{group___n_o_o_pub_func_ga7977bc941f355866c7e4c141a8f7b8bb}{PauseAudio}();
+882     \}
+883 \textcolor{comment}{}
+884 \textcolor{comment}{    /**}
+885 \textcolor{comment}{     * @brief Handles pausing a song.}
+886 \textcolor{comment}{    */}
+887     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___v_i_m_handlers_gad052b3cc53b35b25631f9b399be489ae}{OnPauseSongEvent}()
+888     \{
+889         mSongOutput.\hyperlink{group___n_o_o_pub_func_ga7977bc941f355866c7e4c141a8f7b8bb}{PauseAudio}();
+890     \}
+891 \textcolor{comment}{}
+892 \textcolor{comment}{    /** }
+893 \textcolor{comment}{     * @brief Begins playing a drum loop. It creates an array of audio data from each note of the Song and
+       sends it to the right NoteOutputObject.}
+894 \textcolor{comment}{     * @param[in] aLoop The drum loop to play.}
+895 \textcolor{comment}{     * }
+896 \textcolor{comment}{     * This function begins playing drum loops which are handled differently from other songs. }
+897 \textcolor{comment}{     * Special handling of offsets and the number of waveform samples in the loop is required in}
+898 \textcolor{comment}{     * order to make the loop as seamless as possible.}
+899 \textcolor{comment}{     *  }
+900 \textcolor{comment}{     */}
+901     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___v_i_m_handlers_gae2e2010b9a36ae2409466181ae0b9679}{OnPlayDrumLoopEvent}( \hyperlink{class_song}{Song} aLoop )
+902     \{
+903         \textcolor{comment}{// Get the song's note data.}
+904         \hyperlink{class_song}{Song}.\hyperlink{group___song_structs_struct_song_1_1_combined_note_data}{CombinedNoteData}[] loopNoteData = aLoop.
+      \hyperlink{group___song_pub_func_gae3df1fd5448b7d9cefb0fed4af967985}{GetNoteData}();
+905 
+906         \textcolor{comment}{// Get the number of notes in the loop.}
+907         \textcolor{keywordtype}{int} numNotes = loopNoteData.Length;
+908 
+909         \textcolor{comment}{// Get the number of waveform samples in the loop.}
+910         \textcolor{keywordtype}{int} numSamples = loopNoteData[numNotes - 1].\hyperlink{group___song_structs_a9a0f4830f464d3c7e7f4f156ce490cec}{TotalOffset};
+911 
+912         \textcolor{comment}{// Get the start index for the loop.}
+913         \textcolor{keywordtype}{int} startIndex = loopNoteData[0].TotalOffset;
+914 
+915         \textcolor{comment}{// Allocate a 2-D array for the song's audio data.}
+916         \textcolor{keywordtype}{float}[][] loopAudioData = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[1][];
+917         loopAudioData[0] = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[numSamples];
+918 
+919         \textcolor{comment}{// Make some variables to keep track of the velocity and offset.}
+920         \textcolor{keywordtype}{int} offset = 0;
+921         \textcolor{keywordtype}{int} velocity = 0;
+922         \textcolor{keywordtype}{int} velIndex = 0;
+923         \textcolor{keywordtype}{float} velFactor = 0f;
+924 
+925         \textcolor{comment}{// Iterate through all of the notes.}
+926         \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < numNotes; i++ )
+927         \{
+928             \textcolor{comment}{// In order to loop, the offset for the last note is set to 0.}
+929             \textcolor{keywordflow}{if}( i == numNotes - 1 )
+930             \{
+931                 offset = 0;
+932             \}
+933             \textcolor{keywordflow}{else}
+934             \{
+935                 offset = loopNoteData[i].TotalOffset;
+936             \}
+937             
+938             \textcolor{comment}{// Get the velocity from the note.}
+939             velocity = loopNoteData[i].PercussionData.Velocity;
+940 
+941             \textcolor{comment}{// Get the associated dynamics index and velocity factor.}
+942             velIndex = mDrumKit.\hyperlink{group___v_i_base_pub_func_gacddf07c08c3a8154a6934be22f539788}{GetBuiltInDynamicsThresholdIndex}( velocity 
+      );
+943             velFactor = mDrumKit.\hyperlink{group___v_i_base_pub_func_gae638c68bd0e79d0b99495be69e50f49d}{GetAdjustedVelocityFactor}( velocity );
+944 
+945             \textcolor{comment}{// Add the audio data for all of the drums in the note.}
+946             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} j = 0; j < loopNoteData[i].PercussionData.Hits.Length; j++ )
+947             \{
+948                 \textcolor{comment}{// Get the audio data for the note.}
+949                 \textcolor{keywordtype}{float}[][] drumAudioData = mDrumKit.\hyperlink{group___v_i_base_pub_func_gaf715f7c3bbd2f1a2fa543b2f0684f8a6}{GetAudioDataForPitch}( (
+      \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH})( loopNoteData[i].PercussionData.Hits[j] ) );
+950 
+951                 \textcolor{comment}{// Put all of the samples from the drum's audio data into the song audio data.}
+952                 \textcolor{keywordtype}{int} audioDataIndex = 0;
+953                 \textcolor{keywordtype}{int} loopDataIndex = offset;
+954 
+955                 \textcolor{comment}{// Account for silencing hi-hats if needed.}
+956                 \textcolor{keywordtype}{int} numSamplesUntilNextHiHat = numSamples;
+957                 \textcolor{keywordflow}{if}( loopNoteData[i].PercussionData.Hits[j] == \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}.HIHAT\_O )
+958                 \{
+959                     \textcolor{keywordtype}{int} nextHiHatIndex = i+1;
+960                     \textcolor{keywordtype}{bool} nextHiHatFound = \textcolor{keyword}{false};
+961 
+962                     \textcolor{comment}{// Get the next hi hat hit by iterating through the notes.}
+963                     \textcolor{keywordflow}{while}( nextHiHatIndex != i && !nextHiHatFound )
+964                     \{
+965                         \textcolor{comment}{// Make sure we don't have any index out of bounds errors.}
+966                         \textcolor{keywordflow}{if}( nextHiHatIndex == numNotes )
+967                         \{
+968                             nextHiHatIndex = 0;
+969                         \}
+970 
+971                         \textcolor{comment}{// See if this note has hi-hat hits. Break the loop if so.}
+972                         \textcolor{keywordflow}{if}( loopNoteData[nextHiHatIndex].PercussionData.HasHiHat )
+973                         \{
+974                             nextHiHatFound = \textcolor{keyword}{true};
+975                             numSamplesUntilNextHiHat = loopNoteData[nextHiHatIndex].TotalOffset - 
+      loopNoteData[i].TotalOffset;
+976                             \textcolor{keywordflow}{if}( numSamplesUntilNextHiHat < 0 )
+977                             \{
+978                                 numSamplesUntilNextHiHat = ( -1 * numSamplesUntilNextHiHat ) + ( numSamples
+       - loopNoteData[i].TotalOffset );
+979                             \}
+980                         \}
+981                         \textcolor{keywordflow}{else}
+982                         \{
+983                             \textcolor{comment}{// Go to the next note if this note doesn't have any hi-hat hits.}
+984                             nextHiHatIndex++;
+985                         \}
+986                     \}
+987                 \}
+988 
+989                 \textcolor{comment}{// Put the audio data for the drum into the loop.}
+990                 \textcolor{keywordflow}{while}( audioDataIndex < drumAudioData[velIndex].Length && numSamplesUntilNextHiHat > 0 )
+991                 \{
+992                     loopAudioData[0][loopDataIndex] += ( drumAudioData[velIndex][audioDataIndex] * 
+      velFactor );
+993                     loopDataIndex++;
+994 
+995                     \textcolor{comment}{// Account for bleeding over into the next loop.}
+996                     \textcolor{keywordflow}{if}( loopDataIndex >= numSamples )
+997                     \{
+998                         loopDataIndex = 0;
+999                     \}
+1000 
+1001                     audioDataIndex++;
+1002                     numSamplesUntilNextHiHat--;
+1003                 \}
+1004 
+1005             \}
+1006         \}
+1007 
+1008         \textcolor{comment}{// Set the song output object's audio data and begin playing the song.}
+1009         mDrumLoopOutput.\hyperlink{group___n_o_o_pub_func_gaef9ab691f0a2671a62249d853f24162d}{SetAudioData}( loopAudioData, mMixer, null );
+1010         mDrumLoopOutput.\hyperlink{group___n_o_o_pub_func_ga7b79bbd2c7a68831b322edff140f29d2}{SetLoop}( \textcolor{keyword}{true} );
+1011         mDrumLoopOutput.\hyperlink{group___n_o_o_pub_func_ga2bdaa2787408f353f71ef6c6a18e9285}{BeingPlaying}( 1f, 0, startIndex );
+1012     \}
+1013 \textcolor{comment}{}
+1014 \textcolor{comment}{    /**}
+1015 \textcolor{comment}{     * @brief Called whenever a note should be played. Uses the appropriate NoteOutputObject to play the
+       note.}
+1016 \textcolor{comment}{     * @param[in] aNoteToPlay The pitch of the note to play}
+1017 \textcolor{comment}{     * @param[in] aVelocity The velocity at which to play the pitch.}
+1018 \textcolor{comment}{     * }
+1019 \textcolor{comment}{     * @see VirtualInstrumentManager::PlayNoteEvent Music::PITCH NoteOutputObject::BeginPlaying}
+1020 \textcolor{comment}{    */}
+1021     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___v_i_m_handlers_ga80b3821df3b1488a150f6062638f105c}{OnPlayNoteEvent}( \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH} aNoteToPlay, \textcolor{keywordtype}{int} aVelocity )
+1022     \{
+1023         \textcolor{keywordflow}{if}( mReady )
+1024         \{
+1025             \textcolor{comment}{// Sanity checks.}
+1026             Assert.IsTrue( (\textcolor{keywordtype}{int})aNoteToPlay >= (\textcolor{keywordtype}{int})\hyperlink{group___v_i_m_priv_ga5e3a5116e0dabb37e0ea21d73ac1567e}{mLowestActiveNote} && (\textcolor{keywordtype}{int})aNoteToPlay 
+      <= (\textcolor{keywordtype}{int})mHighestActiveNote,
+1027                 \textcolor{stringliteral}{"Tried to play the note "} + \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( aNoteToPlay ) + \textcolor{stringliteral}{" which is
+       not active!"} );
+1028             Assert.IsTrue( aVelocity <= 100 && aVelocity >= 0,
+1029                 \textcolor{stringliteral}{"Tried to play a note with a velocity of "} + aVelocity.ToString() + \textcolor{stringliteral}{" which is not within
+       the range from 0 to 100!"} );
+1030 
+1031             \textcolor{comment}{// Get the note index.}
+1032             \textcolor{keywordtype}{int} noteIndex = (int)aNoteToPlay - (\textcolor{keywordtype}{int})\hyperlink{group___v_i_m_priv_ga5e3a5116e0dabb37e0ea21d73ac1567e}{mLowestActiveNote};
+1033 
+1034             \textcolor{comment}{// Account for drum kits where we would need to make some outputs silent in some situations.}
+1035             \textcolor{comment}{// Ex: Playing a closed hi-hat should stop an open hi-hat that is still playing.}
+1036             \textcolor{keywordflow}{if}( \hyperlink{group___v_i_m_priv_ga108c350257b3a2080e06cd4a8251f6a4}{mInstrumentType} == \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gabfce60192305965558a36e368ebd67c3}{INSTRUMENT\_TYPE}.DRUM\_KIT )
+1037             \{
+1038                 \textcolor{keywordflow}{switch}( (\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM})aNoteToPlay )
+1039                 \{
+1040                     \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}.HIHAT\_C:
+1041                         mOutputs[(int)\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}.HIHAT\_O].\hyperlink{group___n_o_o_pub_func_ga2bdaa2787408f353f71ef6c6a18e9285}{BeingPlaying}( 0, 0 );
+1042                         mOutputs[(int)\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}.HIHAT\_P].\hyperlink{group___n_o_o_pub_func_ga2bdaa2787408f353f71ef6c6a18e9285}{BeingPlaying}( 0, 0 );
+1043                         \textcolor{keywordflow}{break};
+1044                     \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}.HIHAT\_O:
+1045                         mOutputs[(int)\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}.HIHAT\_C].\hyperlink{group___n_o_o_pub_func_ga2bdaa2787408f353f71ef6c6a18e9285}{BeingPlaying}( 0, 0 );
+1046                         mOutputs[(int)\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}.HIHAT\_P].\hyperlink{group___n_o_o_pub_func_ga2bdaa2787408f353f71ef6c6a18e9285}{BeingPlaying}( 0, 0 );
+1047                         \textcolor{keywordflow}{break};
+1048                     \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}.HIHAT\_P:
+1049                         mOutputs[(int)\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}.HIHAT\_C].\hyperlink{group___n_o_o_pub_func_ga2bdaa2787408f353f71ef6c6a18e9285}{BeingPlaying}( 0, 0 );
+1050                         mOutputs[(int)\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}.HIHAT\_O].\hyperlink{group___n_o_o_pub_func_ga2bdaa2787408f353f71ef6c6a18e9285}{BeingPlaying}( 0, 0 );
+1051                         \textcolor{keywordflow}{break};
+1052                     \textcolor{keywordflow}{default}:
+1053                         \textcolor{keywordflow}{break};
+1054                 \}
+1055             \}
+1056 
+1057             \textcolor{comment}{// Get the built-in dynamics index and the velocity factor.}
+1058             \textcolor{keywordtype}{int} velIndex = mInstrument.\hyperlink{group___v_i_base_pub_func_gacddf07c08c3a8154a6934be22f539788}{GetBuiltInDynamicsThresholdIndex}( 
+      aVelocity );
+1059             \textcolor{keywordtype}{float} velFactor = mInstrument.\hyperlink{group___v_i_base_pub_func_gae638c68bd0e79d0b99495be69e50f49d}{GetAdjustedVelocityFactor}( aVelocity );
+1060 
+1061             \textcolor{comment}{// Begin playing the note.}
+1062             mOutputs[noteIndex].\hyperlink{group___n_o_o_pub_func_ga2bdaa2787408f353f71ef6c6a18e9285}{BeingPlaying}( velFactor, velIndex, 0 );
+1063         \}
+1064 
+1065     \}
+1066 \textcolor{comment}{}
+1067 \textcolor{comment}{    /** }
+1068 \textcolor{comment}{     * @brief Begins playing a song. It creates an array of audio data from each note of the Song and sends
+       it to the right NoteOutputObject.}
+1069 \textcolor{comment}{     * @param[in] aSong The song to play.  }
+1070 \textcolor{comment}{    */}
+1071     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___v_i_m_handlers_ga7fd877a7d429403abbfd2728aa63c056}{OnPlaySongEvent}( \hyperlink{class_song}{Song} aSong )
+1072     \{
+1073         \textcolor{comment}{// Get the song's note data.}
+1074         \hyperlink{class_song}{Song}.\hyperlink{group___song_structs_struct_song_1_1_combined_note_data}{CombinedNoteData}[] songNoteData = aSong.
+      \hyperlink{group___song_pub_func_gae3df1fd5448b7d9cefb0fed4af967985}{GetNoteData}();
+1075 
+1076         \textcolor{comment}{// Get the number of notes in the song.}
+1077         \textcolor{keywordtype}{int} numNotes = songNoteData.Length;
+1078 
+1079         \textcolor{comment}{// Get the total number of samples in the song.}
+1080         \textcolor{keywordtype}{int} numSamples = 0;
+1081 
+1082         \textcolor{keywordflow}{if}( aSong.\hyperlink{group___song_pub_func_gabae5b5d8f727b2d9da7867a99347f86b}{GetSongType}() != \hyperlink{class_song}{Song}.\hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{SongType}.DrumLoop )
+1083         \{
+1084             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < numNotes; i++ )
+1085             \{
+1086                 numSamples = Mathf.Max( ( songNoteData[i].MelodyData.NumSamples + songNoteData[i].
+      TotalOffset ), numSamples );
+1087             \}
+1088         \}
+1089         \textcolor{keywordflow}{else}
+1090         \{
+1091             numSamples = 0;
+1092             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < songNoteData[numNotes - 1].PercussionData.Hits.Length; i++ )
+1093             \{
+1094                 \textcolor{keywordflow}{if}( numSamples < ( songNoteData[numNotes - 1].TotalOffset +
+1095                     mDrumKit.\hyperlink{group___v_i_base_pub_func_gaf715f7c3bbd2f1a2fa543b2f0684f8a6}{GetAudioDataForPitch}( (\hyperlink{class_music}{Music}.
+      \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH})( songNoteData[numNotes - 1].PercussionData.Hits[i] ) )[0].Length ) )
+1096                 \{
+1097                     numSamples = songNoteData[numNotes - 1].\hyperlink{group___song_structs_a9a0f4830f464d3c7e7f4f156ce490cec}{TotalOffset} +
+1098                         mDrumKit.\hyperlink{group___v_i_base_pub_func_gaf715f7c3bbd2f1a2fa543b2f0684f8a6}{GetAudioDataForPitch}( (
+      \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH})( songNoteData[numNotes - 1].PercussionData.Hits[i] ) )[0].Length;
+1099                 \}
+1100             \}
+1101         \}
+1102 
+1103 
+1104         \textcolor{comment}{// Allocate a 2-D array for the song's audio data.}
+1105         \textcolor{keywordtype}{float}[][] songAudioData = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[1][];
+1106         songAudioData[0] = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[numSamples];
+1107 
+1108         \textcolor{comment}{// Make some variables to keep track of the velocity and offset.}
+1109         \textcolor{keywordtype}{int} offset = 0;
+1110         \textcolor{keywordtype}{int} velocity = 0;
+1111         \textcolor{keywordtype}{int} velIndex = 0;
+1112         \textcolor{keywordtype}{float} velFactor = 0f;
+1113 
+1114         \textcolor{comment}{// Iterate through all of the notes.}
+1115         \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < numNotes; i++ )
+1116         \{
+1117             \textcolor{comment}{// If the note is a rest, we don't need to worry its pitches. Otherwise, add the note's
+       pitches.}
+1118             \textcolor{keywordflow}{if}( songNoteData[i].MelodyData.Pitches != null && songNoteData[i].MelodyData.Pitches[0] != 
+      \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.REST )
+1119             \{
+1120                 \textcolor{comment}{// Get the offset and velocity from the note.}
+1121                 offset = songNoteData[i].TotalOffset;
+1122                 velocity = songNoteData[i].MelodyData.Velocity;
+1123 
+1124                 \textcolor{comment}{// Get the associated dynamics index and velocity factor.}
+1125                 velIndex = mInstrument.\hyperlink{group___v_i_base_pub_func_gacddf07c08c3a8154a6934be22f539788}{GetBuiltInDynamicsThresholdIndex}( 
+      velocity );
+1126                 velFactor = mInstrument.\hyperlink{group___v_i_base_pub_func_gae638c68bd0e79d0b99495be69e50f49d}{GetAdjustedVelocityFactor}( velocity );
+1127 
+1128                 \textcolor{comment}{// Add the audio data for all of the pitches in the note.}
+1129                 \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} j = 0; j < songNoteData[i].MelodyData.Pitches.Length; j++ )
+1130                 \{
+1131                     \textcolor{comment}{// Get the audio data for the note.}
+1132                     \textcolor{keywordtype}{float}[][] pitchAudioData = mInstrument.\hyperlink{group___v_i_base_pub_func_gaf715f7c3bbd2f1a2fa543b2f0684f8a6}{GetAudioDataForPitch}( 
+      songNoteData[i].MelodyData.Pitches[j] );
+1133 
+1134                     \textcolor{comment}{// Put all of the samples from the pitch's audio data into the song audio data.}
+1135                     \textcolor{keywordtype}{int} k = 0;
+1136                     \textcolor{keywordflow}{while}( k < songNoteData[i].MelodyData.NumSamples && k < pitchAudioData[velIndex].Length
+       )
+1137                     \{
+1138                         songAudioData[0][k + offset] += ( pitchAudioData[velIndex][k] * velFactor );
+1139                         k++;
+1140                     \}
+1141 
+1142                     \textcolor{comment}{// Adjust for when the note is released.}
+1143                     \textcolor{keywordtype}{float} releaseFactor = velFactor;
+1144                     \textcolor{keywordflow}{while}( k < pitchAudioData[velIndex].Length && k + offset < numSamples && releaseFactor
+       > 0 )
+1145                     \{
+1146                         songAudioData[0][k + offset] += pitchAudioData[velIndex][k] * releaseFactor;
+1147                         releaseFactor -= ( 1f / 22500f );
+1148                         k++;
+1149                     \}
+1150 
+1151                     \textcolor{comment}{// Cleanup}
+1152                     pitchAudioData = null;
+1153                 \}
+1154 
+1155 
+1156             \}
+1157 
+1158             \textcolor{comment}{// If the note has drums, then add them.}
+1159             \textcolor{keywordflow}{if}( songNoteData[i].PercussionData.Hits != null )
+1160             \{
+1161                 \textcolor{comment}{// Get the offset and velocity from the note.}
+1162                 offset = songNoteData[i].TotalOffset;
+1163                 velocity = songNoteData[i].PercussionData.Velocity;
+1164 
+1165                 \textcolor{comment}{// Get the associated dynamics index and velocity factor.}
+1166                 velIndex = mDrumKit.\hyperlink{group___v_i_base_pub_func_gacddf07c08c3a8154a6934be22f539788}{GetBuiltInDynamicsThresholdIndex}( 
+      velocity );
+1167                 velFactor = mDrumKit.\hyperlink{group___v_i_base_pub_func_gae638c68bd0e79d0b99495be69e50f49d}{GetAdjustedVelocityFactor}( velocity );
+1168 
+1169                 \textcolor{comment}{// Add the audio data for all of the drums in the note.}
+1170                 \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} j = 0; j < songNoteData[i].PercussionData.Hits.Length; j++ )
+1171                 \{
+1172                     \textcolor{comment}{// Get the audio data for the note.}
+1173                     \textcolor{keywordtype}{float}[][] drumAudioData = mDrumKit.\hyperlink{group___v_i_base_pub_func_gaf715f7c3bbd2f1a2fa543b2f0684f8a6}{GetAudioDataForPitch}( (
+      \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH})( songNoteData[i].PercussionData.Hits[j] ) );
+1174 
+1175                     \textcolor{comment}{// Put all of the samples from the drum's audio data into the song audio data.}
+1176                     \textcolor{keywordtype}{int} audioDataIndex = 0;
+1177                     \textcolor{keywordtype}{int} drumDataIndex = offset;
+1178 
+1179                     \textcolor{comment}{// Account for silencing hi-hats if needed.}
+1180                     \textcolor{keywordtype}{int} numSamplesUntilNextHiHat = numSamples;
+1181                     \textcolor{keywordflow}{if}( songNoteData[i].PercussionData.Hits[j] == \hyperlink{class_music}{Music}.
+      \hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}.HIHAT\_O )
+1182                     \{
+1183                         \textcolor{keywordtype}{int} nextHiHatIndex = i+1;
+1184                         \textcolor{keywordtype}{bool} nextHiHatFound = \textcolor{keyword}{false};
+1185 
+1186                         \textcolor{comment}{// Get the next hi hat hit by iterating through the notes.}
+1187                         \textcolor{keywordflow}{while}( nextHiHatIndex != i && !nextHiHatFound )
+1188                         \{
+1189                             \textcolor{comment}{// Make sure we don't have any index out of bounds errors.}
+1190                             \textcolor{keywordflow}{if}( nextHiHatIndex == numNotes )
+1191                             \{
+1192                                 nextHiHatIndex = 0;
+1193                             \}
+1194 
+1195                             \textcolor{comment}{// See if this note has hi-hat hits. Break the loop if so.}
+1196                             \textcolor{keywordflow}{if}( songNoteData[nextHiHatIndex].PercussionData.HasHiHat )
+1197                             \{
+1198                                 nextHiHatFound = \textcolor{keyword}{true};
+1199                                 numSamplesUntilNextHiHat = songNoteData[nextHiHatIndex].TotalOffset - 
+      songNoteData[i].TotalOffset;
+1200                                 \textcolor{keywordflow}{if}( numSamplesUntilNextHiHat < 0 )
+1201                                 \{
+1202                                     numSamplesUntilNextHiHat = ( -1 * numSamplesUntilNextHiHat ) + ( 
+      numSamples - songNoteData[i].TotalOffset );
+1203                                 \}
+1204                             \}
+1205                             \textcolor{keywordflow}{else}
+1206                             \{
+1207                                 \textcolor{comment}{// Go to the next note if this note doesn't have any hi-hat hits.}
+1208                                 nextHiHatIndex++;
+1209                             \}
+1210                         \}
+1211                     \}
+1212 
+1213                     \textcolor{comment}{// Put the audio data for the drum into the song.}
+1214                     \textcolor{keywordflow}{while}( audioDataIndex < drumAudioData[velIndex].Length && numSamplesUntilNextHiHat > 0 
+      && drumDataIndex < numSamples )
+1215                     \{
+1216                         songAudioData[0][drumDataIndex] += ( drumAudioData[velIndex][audioDataIndex] * 
+      velFactor );
+1217                         drumDataIndex++;
+1218                         audioDataIndex++;
+1219                         numSamplesUntilNextHiHat--;
+1220                     \}
+1221 
+1222                     \textcolor{comment}{// Cleanup}
+1223                     drumAudioData = null;
+1224                 \}
+1225             \}
+1226         \}
+1227 
+1228         \textcolor{comment}{// Set the song output object's audio data and begin playing the song.}
+1229         mSongOutput.\hyperlink{group___n_o_o_pub_func_gaef9ab691f0a2671a62249d853f24162d}{SetAudioData}( songAudioData, mMixer, null );
+1230         mSongOutput.\hyperlink{group___n_o_o_pub_func_ga2bdaa2787408f353f71ef6c6a18e9285}{BeingPlaying}( 1f, 0 );
+1231 
+1232         \textcolor{comment}{// Cleanup}
+1233         songAudioData = null;
+1234         GC.Collect();
+1235     \}
+1236 \textcolor{comment}{}
+1237 \textcolor{comment}{    /**}
+1238 \textcolor{comment}{     * @brief Called whenever a note should be released. Uses the appropriate NoteOutputObject to release
+       the note.}
+1239 \textcolor{comment}{     * @param[in] aNoteToRelease The pitch of the note to release}
+1240 \textcolor{comment}{     * }
+1241 \textcolor{comment}{     * @see VirtualInstrumentManager::PlayNoteEvent Music::PITCH NoteOutputObject::BeginRelease}
+1242 \textcolor{comment}{    */}
+1243     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___v_i_m_handlers_ga0f0a34c251d154131f9ea130a54dc989}{OnReleaseNoteEvent}( \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH} aNoteToRelease )
+1244     \{
+1245         \textcolor{comment}{// Don't account for note releases for drums.}
+1246         \textcolor{keywordflow}{if}( \hyperlink{group___v_i_m_priv_ga108c350257b3a2080e06cd4a8251f6a4}{mInstrumentType} != \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gabfce60192305965558a36e368ebd67c3}{INSTRUMENT\_TYPE}.DRUM\_KIT )
+1247         \{
+1248             Assert.IsTrue( (\textcolor{keywordtype}{int})aNoteToRelease >= (\textcolor{keywordtype}{int})\hyperlink{group___v_i_m_priv_ga5e3a5116e0dabb37e0ea21d73ac1567e}{mLowestActiveNote} && (\textcolor{keywordtype}{int})
+      aNoteToRelease <= (\textcolor{keywordtype}{int})mHighestActiveNote,
+1249                 \textcolor{stringliteral}{"Tried to fade out the note "} + \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( aNoteToRelease ) + \textcolor{stringliteral}{"
+       which is not active!"} );
+1250             \textcolor{keywordtype}{int} noteIndex = (int)aNoteToRelease - (\textcolor{keywordtype}{int})\hyperlink{group___v_i_m_priv_ga5e3a5116e0dabb37e0ea21d73ac1567e}{mLowestActiveNote};
+1251             mOutputs[noteIndex].\hyperlink{group___n_o_o_pub_func_ga044e62759958d717c7fa4fd1615e2ec1}{BeginRelease}();
+1252         \}
+1253     \}
+1254 \textcolor{comment}{}
+1255 \textcolor{comment}{    /**}
+1256 \textcolor{comment}{     * @brief Handles resuming a drum loop.}
+1257 \textcolor{comment}{    */}
+1258     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___v_i_m_handlers_ga97e3e73e05a7ab6027f25573712367a2}{OnResumeDrumLoopEvent}()
+1259     \{
+1260         mDrumLoopOutput.\hyperlink{group___n_o_o_pub_func_ga2df8edec357dd4123146c9a7e8485ffb}{ResumeAudio}();
+1261     \}
+1262 \textcolor{comment}{}
+1263 \textcolor{comment}{    /**}
+1264 \textcolor{comment}{     * @brief Handles resuming a song.}
+1265 \textcolor{comment}{    */}
+1266     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___v_i_m_handlers_gaca3d2c89672fe0eb3d94b3cb2072de59}{OnResumeSongEvent}()
+1267     \{
+1268         mSongOutput.\hyperlink{group___n_o_o_pub_func_ga2df8edec357dd4123146c9a7e8485ffb}{ResumeAudio}();
+1269     \}
+1270 \textcolor{comment}{}
+1271 \textcolor{comment}{    /**}
+1272 \textcolor{comment}{     * @brief Handles stopping a drum loop.}
+1273 \textcolor{comment}{    */}
+1274     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___v_i_m_handlers_ga9d251d8b2036a3416680ced5d6125d0e}{OnStopDrumLoopEvent}()
+1275     \{
+1276         mDrumLoopOutput.\hyperlink{group___n_o_o_pub_func_gae8a8e5bc027fd0186464a68399a4fecb}{StopAudio}();
+1277     \}
+1278 \textcolor{comment}{}
+1279 \textcolor{comment}{    /**}
+1280 \textcolor{comment}{     * @brief Handles stopping a song.}
+1281 \textcolor{comment}{    */}
+1282     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___v_i_m_handlers_ga5d9afb7a74107b5c6016555f0bb0a0a8}{OnStopSongEvent}()
+1283     \{
+1284         mSongOutput.\hyperlink{group___n_o_o_pub_func_gae8a8e5bc027fd0186464a68399a4fecb}{StopAudio}();
+1285     \}
+1286 
+1287 \textcolor{comment}{}
+1288 \textcolor{comment}{    /** @\} */}
+1289 \}
+\end{DoxyCodeInclude}
+ 

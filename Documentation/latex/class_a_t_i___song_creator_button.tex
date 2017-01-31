@@ -1,0 +1,90 @@
+\hypertarget{class_a_t_i___song_creator_button}{}\section{A\+T\+I\+\_\+\+Song\+Creator\+Button Class Reference}
+\label{class_a_t_i___song_creator_button}\index{A\+T\+I\+\_\+\+Song\+Creator\+Button@{A\+T\+I\+\_\+\+Song\+Creator\+Button}}
+Inheritance diagram for A\+T\+I\+\_\+\+Song\+Creator\+Button\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_a_t_i___song_creator_button}
+\end{center}
+\end{figure}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_a_t_i___song_creator_button_a70e91a092e195182c79f0111dd118f2a}{Start} ()
+\item 
+void \hyperlink{class_a_t_i___song_creator_button_a6c024ae05ba70e847779b7a194611eb5}{Load\+Song\+Creation\+Interface} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Button \hyperlink{class_a_t_i___song_creator_button_af47eac9d1ed3a74d49a511fdbd57ff3e}{Load\+Song\+Creation\+Button} = null
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 16 of file A\+T\+I\+\_\+\+Song\+Creator\+Button.\+cs.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_a_t_i___song_creator_button_a6c024ae05ba70e847779b7a194611eb5}\label{class_a_t_i___song_creator_button_a6c024ae05ba70e847779b7a194611eb5}} 
+\index{A\+T\+I\+\_\+\+Song\+Creator\+Button@{A\+T\+I\+\_\+\+Song\+Creator\+Button}!Load\+Song\+Creation\+Interface@{Load\+Song\+Creation\+Interface}}
+\index{Load\+Song\+Creation\+Interface@{Load\+Song\+Creation\+Interface}!A\+T\+I\+\_\+\+Song\+Creator\+Button@{A\+T\+I\+\_\+\+Song\+Creator\+Button}}
+\subsubsection{\texorpdfstring{Load\+Song\+Creation\+Interface()}{LoadSongCreationInterface()}}
+{\footnotesize\ttfamily void A\+T\+I\+\_\+\+Song\+Creator\+Button.\+Load\+Song\+Creation\+Interface (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 40 of file A\+T\+I\+\_\+\+Song\+Creator\+Button.\+cs.
+
+
+
+Referenced by Start().
+
+
+\begin{DoxyCode}
+41     \{
+42         SceneManager.LoadScene( \textcolor{stringliteral}{"SongCreationInterfaceScene"}, LoadSceneMode.Additive );
+43     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i___song_creator_button_a70e91a092e195182c79f0111dd118f2a}\label{class_a_t_i___song_creator_button_a70e91a092e195182c79f0111dd118f2a}} 
+\index{A\+T\+I\+\_\+\+Song\+Creator\+Button@{A\+T\+I\+\_\+\+Song\+Creator\+Button}!Start@{Start}}
+\index{Start@{Start}!A\+T\+I\+\_\+\+Song\+Creator\+Button@{A\+T\+I\+\_\+\+Song\+Creator\+Button}}
+\subsubsection{\texorpdfstring{Start()}{Start()}}
+{\footnotesize\ttfamily void A\+T\+I\+\_\+\+Song\+Creator\+Button.\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 29 of file A\+T\+I\+\_\+\+Song\+Creator\+Button.\+cs.
+
+
+
+References Load\+Song\+Creation\+Interface().
+
+
+\begin{DoxyCode}
+30     \{
+31         \hyperlink{class_a_t_i___song_creator_button_af47eac9d1ed3a74d49a511fdbd57ff3e}{LoadSongCreationButton} = gameObject.GetComponent<Button>();
+32         \hyperlink{class_a_t_i___song_creator_button_af47eac9d1ed3a74d49a511fdbd57ff3e}{LoadSongCreationButton}.onClick.AddListener( 
+      \hyperlink{class_a_t_i___song_creator_button_a6c024ae05ba70e847779b7a194611eb5}{LoadSongCreationInterface} );
+33     \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_a_t_i___song_creator_button_af47eac9d1ed3a74d49a511fdbd57ff3e}\label{class_a_t_i___song_creator_button_af47eac9d1ed3a74d49a511fdbd57ff3e}} 
+\index{A\+T\+I\+\_\+\+Song\+Creator\+Button@{A\+T\+I\+\_\+\+Song\+Creator\+Button}!Load\+Song\+Creation\+Button@{Load\+Song\+Creation\+Button}}
+\index{Load\+Song\+Creation\+Button@{Load\+Song\+Creation\+Button}!A\+T\+I\+\_\+\+Song\+Creator\+Button@{A\+T\+I\+\_\+\+Song\+Creator\+Button}}
+\subsubsection{\texorpdfstring{Load\+Song\+Creation\+Button}{LoadSongCreationButton}}
+{\footnotesize\ttfamily Button A\+T\+I\+\_\+\+Song\+Creator\+Button.\+Load\+Song\+Creation\+Button = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 22 of file A\+T\+I\+\_\+\+Song\+Creator\+Button.\+cs.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+V\+R\+Piano\+Project/\+Assets/\+Scripts/\+Audio/\+Testing/\hyperlink{_a_t_i___song_creator_button_8cs}{A\+T\+I\+\_\+\+Song\+Creator\+Button.\+cs}\end{DoxyCompactItemize}

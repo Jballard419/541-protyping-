@@ -1,0 +1,107 @@
+\hypertarget{group___a_t_i_buttons_unity}{}\section{Unity Functions}
+\label{group___a_t_i_buttons_unity}\index{Unity Functions@{Unity Functions}}
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___a_t_i_buttons_handlers}{Event Handlers}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___a_t_i_buttons_unity_gaa24ae34a40539dab6595d1713fc77560}{A\+T\+I\+\_\+\+Buttons.\+Awake} ()
+\begin{DoxyCompactList}\small\item\em Gets references to the buttons and adds their listeners. Called when the object is created. \end{DoxyCompactList}\item 
+void \hyperlink{group___a_t_i_buttons_unity_ga1b9e9b75184e9e26309cc14bda37ad8a}{A\+T\+I\+\_\+\+Buttons.\+On\+Load\+Keyboard\+Scene\+Button\+Clicked} ()
+\begin{DoxyCompactList}\small\item\em Loads the song creation interface scene. \end{DoxyCompactList}\item 
+void \hyperlink{group___a_t_i_buttons_unity_ga6f6e66c53a80c3bcd9b7e7238a3b82fd}{A\+T\+I\+\_\+\+Buttons.\+On\+Load\+Song\+Creation\+Button\+Clicked} ()
+\begin{DoxyCompactList}\small\item\em Loads the song creation interface scene. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+These are functions automatically called by Unity. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___a_t_i_buttons_unity_gaa24ae34a40539dab6595d1713fc77560}\label{group___a_t_i_buttons_unity_gaa24ae34a40539dab6595d1713fc77560}} 
+\index{Unity Functions@{Unity Functions}!Awake@{Awake}}
+\index{Awake@{Awake}!Unity Functions@{Unity Functions}}
+\subsubsection{\texorpdfstring{Awake()}{Awake()}}
+{\footnotesize\ttfamily void A\+T\+I\+\_\+\+Buttons.\+Awake (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Gets references to the buttons and adds their listeners. Called when the object is created. 
+
+
+
+Definition at line 35 of file A\+T\+I\+\_\+\+Buttons.\+cs.
+
+
+
+References A\+T\+I\+\_\+\+Buttons.\+On\+Load\+Keyboard\+Scene\+Button\+Clicked(), and A\+T\+I\+\_\+\+Buttons.\+On\+Load\+Song\+Creation\+Button\+Clicked().
+
+
+\begin{DoxyCode}
+36     \{
+37         \textcolor{comment}{// Get the buttons.}
+38         \hyperlink{group___a_t_i_buttons_priv_var_ga8ab732143834bd94387cfd94c59886da}{mLoadSongCreationButton} = transform.GetChild( 0 ).GetComponent<Button>();
+39         Assert.IsNotNull( \hyperlink{group___a_t_i_buttons_priv_var_ga8ab732143834bd94387cfd94c59886da}{mLoadSongCreationButton}, \textcolor{stringliteral}{"Could not find the button to
+       load the Song Creation Interface!"} );
+40 
+41         \hyperlink{group___a_t_i_buttons_priv_var_ga7b2f643a87f99b6a35a2d64330c8a9d4}{mLoadKeyboardSceneButton} = transform.GetChild( 1 ).GetComponent<Button>();
+42         Assert.IsNotNull( \hyperlink{group___a_t_i_buttons_priv_var_ga7b2f643a87f99b6a35a2d64330c8a9d4}{mLoadKeyboardSceneButton}, \textcolor{stringliteral}{"Could not find the button to
+       load the Keyboard scene!"} );
+43 
+44         \textcolor{comment}{// Add the listeners.}
+45         \hyperlink{group___a_t_i_buttons_priv_var_ga8ab732143834bd94387cfd94c59886da}{mLoadSongCreationButton}.onClick.AddListener( 
+      \hyperlink{group___a_t_i_buttons_unity_ga6f6e66c53a80c3bcd9b7e7238a3b82fd}{OnLoadSongCreationButtonClicked} );
+46         \hyperlink{group___a_t_i_buttons_priv_var_ga7b2f643a87f99b6a35a2d64330c8a9d4}{mLoadKeyboardSceneButton}.onClick.AddListener( 
+      \hyperlink{group___a_t_i_buttons_unity_ga1b9e9b75184e9e26309cc14bda37ad8a}{OnLoadKeyboardSceneButtonClicked} );
+47     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___a_t_i_buttons_unity_ga1b9e9b75184e9e26309cc14bda37ad8a}\label{group___a_t_i_buttons_unity_ga1b9e9b75184e9e26309cc14bda37ad8a}} 
+\index{Unity Functions@{Unity Functions}!On\+Load\+Keyboard\+Scene\+Button\+Clicked@{On\+Load\+Keyboard\+Scene\+Button\+Clicked}}
+\index{On\+Load\+Keyboard\+Scene\+Button\+Clicked@{On\+Load\+Keyboard\+Scene\+Button\+Clicked}!Unity Functions@{Unity Functions}}
+\subsubsection{\texorpdfstring{On\+Load\+Keyboard\+Scene\+Button\+Clicked()}{OnLoadKeyboardSceneButtonClicked()}}
+{\footnotesize\ttfamily void A\+T\+I\+\_\+\+Buttons.\+On\+Load\+Keyboard\+Scene\+Button\+Clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Loads the song creation interface scene. 
+
+
+
+Definition at line 60 of file A\+T\+I\+\_\+\+Buttons.\+cs.
+
+
+
+Referenced by A\+T\+I\+\_\+\+Buttons.\+Awake().
+
+
+\begin{DoxyCode}
+61     \{
+62         SceneManager.LoadScene( \textcolor{stringliteral}{"KeyboardScene"}, LoadSceneMode.Single );
+63     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___a_t_i_buttons_unity_ga6f6e66c53a80c3bcd9b7e7238a3b82fd}\label{group___a_t_i_buttons_unity_ga6f6e66c53a80c3bcd9b7e7238a3b82fd}} 
+\index{Unity Functions@{Unity Functions}!On\+Load\+Song\+Creation\+Button\+Clicked@{On\+Load\+Song\+Creation\+Button\+Clicked}}
+\index{On\+Load\+Song\+Creation\+Button\+Clicked@{On\+Load\+Song\+Creation\+Button\+Clicked}!Unity Functions@{Unity Functions}}
+\subsubsection{\texorpdfstring{On\+Load\+Song\+Creation\+Button\+Clicked()}{OnLoadSongCreationButtonClicked()}}
+{\footnotesize\ttfamily void A\+T\+I\+\_\+\+Buttons.\+On\+Load\+Song\+Creation\+Button\+Clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Loads the song creation interface scene. 
+
+
+
+Definition at line 68 of file A\+T\+I\+\_\+\+Buttons.\+cs.
+
+
+
+Referenced by A\+T\+I\+\_\+\+Buttons.\+Awake().
+
+
+\begin{DoxyCode}
+69     \{
+70         SceneManager.LoadScene( \textcolor{stringliteral}{"SongCreationInterfaceScene"}, LoadSceneMode.Additive );
+71     \}
+\end{DoxyCode}

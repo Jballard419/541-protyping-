@@ -1,0 +1,50 @@
+\hypertarget{group___s_c___n_d_c_unity}{}\section{Unity Functions}
+\label{group___s_c___n_d_c_unity}\index{Unity Functions@{Unity Functions}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___s_c___n_d_c_unity_ga6ce4069508f84edd9e13d8fab4c26e09}{S\+C\+\_\+\+Note\+Display\+Container.\+Awake} ()
+\begin{DoxyCompactList}\small\item\em Initializes the \hyperlink{class_s_c___note_display_container}{S\+C\+\_\+\+Note\+Display\+Container}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Functions called automatically by Unity. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___s_c___n_d_c_unity_ga6ce4069508f84edd9e13d8fab4c26e09}\label{group___s_c___n_d_c_unity_ga6ce4069508f84edd9e13d8fab4c26e09}} 
+\index{Unity Functions@{Unity Functions}!Awake@{Awake}}
+\index{Awake@{Awake}!Unity Functions@{Unity Functions}}
+\subsubsection{\texorpdfstring{Awake()}{Awake()}}
+{\footnotesize\ttfamily void S\+C\+\_\+\+Note\+Display\+Container.\+Awake (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Initializes the \hyperlink{class_s_c___note_display_container}{S\+C\+\_\+\+Note\+Display\+Container}. 
+
+
+
+Definition at line 46 of file S\+C\+\_\+\+Note\+Display\+Container.\+cs.
+
+
+\begin{DoxyCode}
+47     \{
+48         \textcolor{comment}{// Set up the measures.}
+49         \hyperlink{group___s_c___n_d_c_priv_var_gaa072fb53f6bd6646bc85f2ebc2a02229}{mMeasures} = \textcolor{keyword}{new} List<SC\_MeasureDisplayPanel>();
+50 
+51         \textcolor{comment}{// Load the note length/offset images}
+52         \hyperlink{group___s_c___n_d_c_priv_var_gac8df613ee0996e999278da2b3f523e34}{mSprites} = \textcolor{keyword}{new} Sprite[13];
+53         mSprites[0] = Resources.Load<Sprite>( \textcolor{stringliteral}{"Audio/Images/32nd"} );
+54         mSprites[1] = Resources.Load<Sprite>( \textcolor{stringliteral}{"Audio/Images/dotted32nd"} );
+55         mSprites[2] = Resources.Load<Sprite>( \textcolor{stringliteral}{"Audio/Images/16th"} );
+56         mSprites[3] = Resources.Load<Sprite>( \textcolor{stringliteral}{"Audio/Images/dotted16th"} );
+57         mSprites[4] = Resources.Load<Sprite>( \textcolor{stringliteral}{"Audio/Images/eighth"} );
+58         mSprites[5] = Resources.Load<Sprite>( \textcolor{stringliteral}{"Audio/Images/dottedEighth"} );
+59         mSprites[6] = Resources.Load<Sprite>( \textcolor{stringliteral}{"Audio/Images/quarter"} );
+60         mSprites[7] = Resources.Load<Sprite>( \textcolor{stringliteral}{"Audio/Images/dottedQuarter"} );
+61         mSprites[8] = Resources.Load<Sprite>( \textcolor{stringliteral}{"Audio/Images/half"} );
+62         mSprites[9] = Resources.Load<Sprite>( \textcolor{stringliteral}{"Audio/Images/dottedHalf"} );
+63         mSprites[10] = Resources.Load<Sprite>( \textcolor{stringliteral}{"Audio/Images/whole"} );
+64         mSprites[11] = Resources.Load<Sprite>( \textcolor{stringliteral}{"Audio/Images/dottedWhole"} );
+65         mSprites[12] = null;
+66     \}
+\end{DoxyCode}

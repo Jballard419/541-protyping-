@@ -1,0 +1,378 @@
+\hypertarget{group___key_contain_event_handlers}{}\section{Event Handlers}
+\label{group___key_contain_event_handlers}\index{Event Handlers@{Event Handlers}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___key_contain_event_handlers_ga5fc6752f438bda64f0f860da0788fc13}{Key\+Container.\+Handle\+Audio\+Toggle} (bool a\+Audio\+Enabled)
+\begin{DoxyCompactList}\small\item\em Allows for other objects to toggle the audio. \end{DoxyCompactList}\item 
+void \hyperlink{group___key_contain_event_handlers_ga05cc2543fd9772b26e27bf4f6247ab47}{Key\+Container.\+Handle\+Black\+Key\+Pressed} (\hyperlink{class_black_key}{Black\+Key} a\+Black\+Key)
+\begin{DoxyCompactList}\small\item\em Handles a black key in the container being pressed. \end{DoxyCompactList}\item 
+void \hyperlink{group___key_contain_event_handlers_ga5a0c5565c5ebc6026b3122f487e51704}{Key\+Container.\+Handle\+Black\+Key\+Released} (\hyperlink{class_black_key}{Black\+Key} a\+Black\+Key)
+\begin{DoxyCompactList}\small\item\em Handles a black key in the container being released. \end{DoxyCompactList}\item 
+void \hyperlink{group___key_contain_event_handlers_ga0d82098e4f886f77a33f9d5ed13fe195}{Key\+Container.\+Handle\+Change\+Note\+Range\+Event} (\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} a\+New\+Lowest\+Pitch)
+\begin{DoxyCompactList}\small\item\em Handles \hyperlink{group___v_i_m_event_types_class_virtual_instrument_manager_1_1_change_note_range_event}{a change in the note range}. \end{DoxyCompactList}\item 
+void \hyperlink{group___key_contain_event_handlers_ga4e2c5e8be389a7514429910e7d61f028}{Key\+Container.\+Handle\+White\+Key\+Pressed} (\hyperlink{class_white_key}{White\+Key} a\+White\+Key)
+\begin{DoxyCompactList}\small\item\em Handles a white key in the container being pressed. \end{DoxyCompactList}\item 
+void \hyperlink{group___key_contain_event_handlers_ga5b98b0105300225fd79638525ad3cb3c}{Key\+Container.\+Handle\+White\+Key\+Released} (\hyperlink{class_white_key}{White\+Key} a\+White\+Key)
+\begin{DoxyCompactList}\small\item\em Handles a white key in the container being released. \end{DoxyCompactList}\item 
+void \hyperlink{group___key_contain_event_handlers_ga894c823059c5268af0954f83c04036ed}{Key\+Container.\+Handle\+Play\+Song\+Event} (\hyperlink{class_song}{Song} a\+Song)
+\begin{DoxyCompactList}\small\item\em Handler for when a song begins playing. \end{DoxyCompactList}\item 
+I\+Enumerator \hyperlink{group___key_contain_event_handlers_gac6b82feca83eaf5e3ce6901088bc552c}{Key\+Container.\+Draw\+Lesson\+Marker} (int a\+Index, float a\+Delay, float a\+Stop)
+\begin{DoxyCompactList}\small\item\em Handles drawing the lesson markers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Functions used internally by the \hyperlink{class_key_container}{Key\+Container} to handle events. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___key_contain_event_handlers_gac6b82feca83eaf5e3ce6901088bc552c}\label{group___key_contain_event_handlers_gac6b82feca83eaf5e3ce6901088bc552c}} 
+\index{Event Handlers@{Event Handlers}!Draw\+Lesson\+Marker@{Draw\+Lesson\+Marker}}
+\index{Draw\+Lesson\+Marker@{Draw\+Lesson\+Marker}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{Draw\+Lesson\+Marker()}{DrawLessonMarker()}}
+{\footnotesize\ttfamily I\+Enumerator Key\+Container.\+Draw\+Lesson\+Marker (\begin{DoxyParamCaption}\item[{int}]{a\+Index,  }\item[{float}]{a\+Delay,  }\item[{float}]{a\+Stop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handles drawing the lesson markers. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Index} & The index of the key the draw the marker on. \\
+\hline
+\mbox{\tt in}  & {\em a\+Delay} & The delay of when to draw the marker. \\
+\hline
+\mbox{\tt in}  & {\em a\+Stop} & How long the marker should be drawn. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 453 of file Key\+Container.\+cs.
+
+
+
+Referenced by Key\+Container.\+Handle\+Play\+Song\+Event().
+
+
+\begin{DoxyCode}
+454     \{
+455         yield \textcolor{keywordflow}{return} \textcolor{keyword}{new} WaitForSeconds( aDelay );
+456         \hyperlink{group___key_contain_priv_var_gaf21490115ecf2b80c1bd382d7469a08c}{mLessonMarkers}[aIndex].SetActive( \textcolor{keyword}{true} );
+457         yield \textcolor{keywordflow}{return} \textcolor{keyword}{new} WaitForSeconds( aStop );
+458         \hyperlink{group___key_contain_priv_var_gaf21490115ecf2b80c1bd382d7469a08c}{mLessonMarkers}[aIndex].SetActive( \textcolor{keyword}{false} );
+459 
+460         yield \textcolor{keywordflow}{return} null;
+461     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___key_contain_event_handlers_ga5fc6752f438bda64f0f860da0788fc13}\label{group___key_contain_event_handlers_ga5fc6752f438bda64f0f860da0788fc13}} 
+\index{Event Handlers@{Event Handlers}!Handle\+Audio\+Toggle@{Handle\+Audio\+Toggle}}
+\index{Handle\+Audio\+Toggle@{Handle\+Audio\+Toggle}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{Handle\+Audio\+Toggle()}{HandleAudioToggle()}}
+{\footnotesize\ttfamily void Key\+Container.\+Handle\+Audio\+Toggle (\begin{DoxyParamCaption}\item[{bool}]{a\+Audio\+Enabled }\end{DoxyParamCaption})}
+
+
+
+Allows for other objects to toggle the audio. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Audio\+Enabled} & Whether or not the audio should be enabled. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 304 of file Key\+Container.\+cs.
+
+
+\begin{DoxyCode}
+305     \{
+306         \hyperlink{group___key_contain_pub_var_ga5dc9b1349f8fafc894c7f739f6780a8c}{EnableAudio} = aAudioEnabled;
+307     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___key_contain_event_handlers_ga05cc2543fd9772b26e27bf4f6247ab47}\label{group___key_contain_event_handlers_ga05cc2543fd9772b26e27bf4f6247ab47}} 
+\index{Event Handlers@{Event Handlers}!Handle\+Black\+Key\+Pressed@{Handle\+Black\+Key\+Pressed}}
+\index{Handle\+Black\+Key\+Pressed@{Handle\+Black\+Key\+Pressed}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{Handle\+Black\+Key\+Pressed()}{HandleBlackKeyPressed()}}
+{\footnotesize\ttfamily void Key\+Container.\+Handle\+Black\+Key\+Pressed (\begin{DoxyParamCaption}\item[{\hyperlink{class_black_key}{Black\+Key}}]{a\+Black\+Key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handles a black key in the container being pressed. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Black\+Key} & The black key that was pressed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 313 of file Key\+Container.\+cs.
+
+
+
+References Virtual\+Instrument\+Manager.\+Get\+Diagnostics\+Handler(), Black\+Key.\+Pitch, Virtual\+Instrument\+Manager.\+Play\+Note, and A\+T\+I\+\_\+\+Diagnostics.\+Set\+Input\+Time.
+
+
+
+Referenced by Key\+Container.\+Load\+Keys().
+
+
+\begin{DoxyCode}
+314     \{
+315         \textcolor{keywordflow}{if}( \hyperlink{group___key_contain_pub_var_ga5dc9b1349f8fafc894c7f739f6780a8c}{EnableAudio} && \hyperlink{group___key_contain_priv_var_ga57ee3824e2f284403bb70ad9c4dfd307}{mVIM} != null )
+316         \{
+317 \textcolor{preprocessor}{            #if DEBUG\_AUDIO\_DIAGNOSTICS}
+318                 \hyperlink{group___key_contain_priv_var_ga57ee3824e2f284403bb70ad9c4dfd307}{mVIM}.\hyperlink{group___v_i_m_pub_func_ga7e60bc3c5464d8f34f0d56def675bcc6}{GetDiagnosticsHandler}().
+      \hyperlink{group___audio_testing_a133561901c2aef535b2f3c098e55b959}{SetInputTime}.Invoke();
+319 \textcolor{preprocessor}{            #endif}
+320 
+321             \hyperlink{group___key_contain_priv_var_ga57ee3824e2f284403bb70ad9c4dfd307}{mVIM}.\hyperlink{group___v_i_m_events_gaa21021c13a8c9d13cbf374d5bf9d68fa}{PlayNote}.Invoke( aBlackKey.\hyperlink{group___black_key_pub_var_gad233c456182c9cef7c01486484940439}{Pitch}, 100 );
+322         \}
+323     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___key_contain_event_handlers_ga5a0c5565c5ebc6026b3122f487e51704}\label{group___key_contain_event_handlers_ga5a0c5565c5ebc6026b3122f487e51704}} 
+\index{Event Handlers@{Event Handlers}!Handle\+Black\+Key\+Released@{Handle\+Black\+Key\+Released}}
+\index{Handle\+Black\+Key\+Released@{Handle\+Black\+Key\+Released}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{Handle\+Black\+Key\+Released()}{HandleBlackKeyReleased()}}
+{\footnotesize\ttfamily void Key\+Container.\+Handle\+Black\+Key\+Released (\begin{DoxyParamCaption}\item[{\hyperlink{class_black_key}{Black\+Key}}]{a\+Black\+Key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handles a black key in the container being released. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Black\+Key} & The black key that was released. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 329 of file Key\+Container.\+cs.
+
+
+
+References Black\+Key.\+Pitch, and Virtual\+Instrument\+Manager.\+Release\+Note.
+
+
+
+Referenced by Key\+Container.\+Load\+Keys().
+
+
+\begin{DoxyCode}
+330     \{
+331         \textcolor{keywordflow}{if}( \hyperlink{group___key_contain_pub_var_ga5dc9b1349f8fafc894c7f739f6780a8c}{EnableAudio} && \hyperlink{group___key_contain_priv_var_ga57ee3824e2f284403bb70ad9c4dfd307}{mVIM} != null )
+332         \{
+333             \hyperlink{group___key_contain_priv_var_ga57ee3824e2f284403bb70ad9c4dfd307}{mVIM}.\hyperlink{group___v_i_m_events_ga3a1726a6366126421434c2c7be5e5678}{ReleaseNote}.Invoke( aBlackKey.\hyperlink{group___black_key_pub_var_gad233c456182c9cef7c01486484940439}{Pitch} );
+334         \}
+335     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___key_contain_event_handlers_ga0d82098e4f886f77a33f9d5ed13fe195}\label{group___key_contain_event_handlers_ga0d82098e4f886f77a33f9d5ed13fe195}} 
+\index{Event Handlers@{Event Handlers}!Handle\+Change\+Note\+Range\+Event@{Handle\+Change\+Note\+Range\+Event}}
+\index{Handle\+Change\+Note\+Range\+Event@{Handle\+Change\+Note\+Range\+Event}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{Handle\+Change\+Note\+Range\+Event()}{HandleChangeNoteRangeEvent()}}
+{\footnotesize\ttfamily void Key\+Container.\+Handle\+Change\+Note\+Range\+Event (\begin{DoxyParamCaption}\item[{\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH}}]{a\+New\+Lowest\+Pitch }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handles \hyperlink{group___v_i_m_event_types_class_virtual_instrument_manager_1_1_change_note_range_event}{a change in the note range}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+New\+Lowest\+Pitch} & The lowest pitch of the new range.\\
+\hline
+\end{DoxyParams}
+Sets the \hyperlink{group___key_contain_priv_var_ga103945a6efe3469191e5253d13fec5be}{represented pitches} and loads a new part of the keyboard for a changed note range. \begin{DoxySeeAlso}{See also}
+\hyperlink{group___v_i_m_event_types_class_virtual_instrument_manager_1_1_change_note_range_event}{Virtual\+Instrument\+Manager\+::\+Change\+Note\+Range\+Event} \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music\+::\+P\+I\+T\+CH} 
+\end{DoxySeeAlso}
+
+
+Definition at line 344 of file Key\+Container.\+cs.
+
+
+
+References Key\+Container.\+Clear\+Keyboard(), Music.\+Is\+Pitch\+A\+Black\+Key(), Key\+Container.\+Load\+Keys(), Key\+Container.\+m\+Represented\+Pitches, and Key\+Container.\+N\+U\+M\+\_\+\+K\+E\+YS.
+
+
+
+Referenced by Key\+Container.\+Update().
+
+
+\begin{DoxyCode}
+345     \{
+346         \textcolor{comment}{// Clear the keyboard.}
+347         \hyperlink{group___key_contain_priv_func_ga679f5ca9d6b1505180e90ee00bbfe616}{ClearKeyboard}();
+348         \hyperlink{group___key_contain_priv_var_ga7a5547a1fe5c40eac487fe6c826c8f9c}{mNumWhiteKeys} = 0;
+349 
+350         \textcolor{comment}{// Update the represented pitches.}
+351         \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < \hyperlink{group___key_contain_const_gaa8fe6473e6396976e52c5793f027380e}{NUM\_KEYS}; i++ )
+352         \{
+353             \hyperlink{group___key_contain_priv_var_ga103945a6efe3469191e5253d13fec5be}{mRepresentedPitches}[i] = (\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH})( i + (\textcolor{keywordtype}{int})aNewLowestPitch )
+      ;
+354             \textcolor{keywordflow}{if}( !\hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_gacc2c1a66df7197225f61c5737f794065}{IsPitchABlackKey}( 
+      \hyperlink{group___key_contain_priv_var_ga103945a6efe3469191e5253d13fec5be}{mRepresentedPitches}[i] ) )
+355             \{
+356                 \hyperlink{group___key_contain_priv_var_ga7a5547a1fe5c40eac487fe6c826c8f9c}{mNumWhiteKeys}++;
+357             \}
+358         \}
+359 
+360         \textcolor{comment}{// Load the keys.}
+361         \hyperlink{group___key_contain_priv_func_ga65f79700f265d2223681ac95981ab4a3}{LoadKeys}();
+362     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___key_contain_event_handlers_ga894c823059c5268af0954f83c04036ed}\label{group___key_contain_event_handlers_ga894c823059c5268af0954f83c04036ed}} 
+\index{Event Handlers@{Event Handlers}!Handle\+Play\+Song\+Event@{Handle\+Play\+Song\+Event}}
+\index{Handle\+Play\+Song\+Event@{Handle\+Play\+Song\+Event}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{Handle\+Play\+Song\+Event()}{HandlePlaySongEvent()}}
+{\footnotesize\ttfamily void Key\+Container.\+Handle\+Play\+Song\+Event (\begin{DoxyParamCaption}\item[{\hyperlink{class_song}{Song}}]{a\+Song }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handler for when a song begins playing. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Song} & The song that began playing. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 396 of file Key\+Container.\+cs.
+
+
+
+References Key\+Container.\+Clear\+Keyboard(), Key\+Container.\+Draw\+Lesson\+Marker(), Song.\+Get\+Highest\+Pitch(), Song.\+Get\+Lowest\+Pitch(), Song.\+Get\+Note\+Data(), Music.\+Is\+Pitch\+A\+Black\+Key(), Key\+Container.\+Load\+Keys(), Key\+Container.\+m\+Represented\+Pitches, and Virtual\+Instrument.\+S\+A\+M\+P\+L\+E\+\_\+\+I\+N\+T\+E\+R\+V\+AL.
+
+
+
+Referenced by Key\+Container.\+Update().
+
+
+\begin{DoxyCode}
+397     \{
+398         \textcolor{comment}{// Keep track of the current key layout.}
+399         \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}[] currentLayout = \hyperlink{group___key_contain_priv_var_ga103945a6efe3469191e5253d13fec5be}{mRepresentedPitches};
+400 
+401         \textcolor{comment}{// Get the highest note in the song.}
+402         \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH} highestPitch = aSong.\hyperlink{group___song_const_gafaa104e8653edf64148260ecd400570f}{GetHighestPitch}();
+403 
+404         \textcolor{comment}{// Get the lowest note in the song.}
+405         \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH} lowestPitch = aSong.\hyperlink{group___song_const_gae4e71c8eb059cc9cf0b77e78971ab326}{GetLowestPitch}();
+406 
+407         \textcolor{comment}{// Get the song data.}
+408         \hyperlink{class_song}{Song}.\hyperlink{group___song_const_struct_song_1_1_combined_note_data}{CombinedNoteData}[] noteData = aSong.\hyperlink{group___song_const_gae3df1fd5448b7d9cefb0fed4af967985}{GetNoteData}();
+409 
+410         \textcolor{comment}{// Clear the keyboard.}
+411         \hyperlink{group___key_contain_priv_func_ga679f5ca9d6b1505180e90ee00bbfe616}{ClearKeyboard}();
+412 
+413         \textcolor{comment}{// Set the range of keys.}
+414         \hyperlink{group___key_contain_priv_var_ga103945a6efe3469191e5253d13fec5be}{mRepresentedPitches} = null;
+415         \textcolor{keywordtype}{int} numPitches = (int)highestPitch - (\textcolor{keywordtype}{int})lowestPitch + 1;
+416         \hyperlink{group___key_contain_priv_var_ga103945a6efe3469191e5253d13fec5be}{mRepresentedPitches} = \textcolor{keyword}{new} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}[numPitches];
+417         \hyperlink{group___key_contain_priv_var_ga7a5547a1fe5c40eac487fe6c826c8f9c}{mNumWhiteKeys} = 0;
+418         \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < numPitches; i++ )
+419         \{
+420             \hyperlink{group___key_contain_priv_var_ga103945a6efe3469191e5253d13fec5be}{mRepresentedPitches}[i] = (\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH})( (\textcolor{keywordtype}{int})lowestPitch + i );
+421             \textcolor{keywordflow}{if}( !\hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_gacc2c1a66df7197225f61c5737f794065}{IsPitchABlackKey}( 
+      \hyperlink{group___key_contain_priv_var_ga103945a6efe3469191e5253d13fec5be}{mRepresentedPitches}[i] ) )
+422             \{
+423                 \hyperlink{group___key_contain_priv_var_ga7a5547a1fe5c40eac487fe6c826c8f9c}{mNumWhiteKeys}++;
+424             \}
+425         \}
+426 
+427         \textcolor{comment}{// Load the proper keys.}
+428         \hyperlink{group___key_contain_priv_func_ga65f79700f265d2223681ac95981ab4a3}{LoadKeys}();
+429 
+430         \textcolor{comment}{// Get the sample interval (seconds between waveform samples.)}
+431         \textcolor{keywordtype}{float} sampInt = \hyperlink{class_virtual_instrument}{VirtualInstrument}.\hyperlink{group___v_i_base_const_ga69a037919b64e1e3e0f2b949b2b6af2c}{SAMPLE\_INTERVAL};
+432 
+433         \textcolor{comment}{// Draw the lesson markers for each pitch.}
+434         \textcolor{keywordflow}{foreach}( \hyperlink{class_song}{Song}.\hyperlink{group___song_const_struct_song_1_1_combined_note_data}{CombinedNoteData} note in noteData )
+435         \{
+436             \textcolor{keywordflow}{if}( note.MelodyData.Pitches != null )
+437             \{
+438                 \textcolor{keywordflow}{foreach}( \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH} pitch in note.MelodyData.Pitches )
+439                 \{
+440                     StartCoroutine( \hyperlink{group___key_contain_event_handlers_gac6b82feca83eaf5e3ce6901088bc552c}{DrawLessonMarker}( (\textcolor{keywordtype}{int})pitch - (\textcolor{keywordtype}{int})lowestPitch, (\textcolor{keywordtype}{float}
+      )note.TotalOffset * sampInt, ( note.MelodyData.NumSamples * sampInt ) - .02f ) );
+441                 \}
+442             \}
+443         \}
+444 
+445     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___key_contain_event_handlers_ga4e2c5e8be389a7514429910e7d61f028}\label{group___key_contain_event_handlers_ga4e2c5e8be389a7514429910e7d61f028}} 
+\index{Event Handlers@{Event Handlers}!Handle\+White\+Key\+Pressed@{Handle\+White\+Key\+Pressed}}
+\index{Handle\+White\+Key\+Pressed@{Handle\+White\+Key\+Pressed}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{Handle\+White\+Key\+Pressed()}{HandleWhiteKeyPressed()}}
+{\footnotesize\ttfamily void Key\+Container.\+Handle\+White\+Key\+Pressed (\begin{DoxyParamCaption}\item[{\hyperlink{class_white_key}{White\+Key}}]{a\+White\+Key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handles a white key in the container being pressed. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+White\+Key} & The white key that was pressed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 368 of file Key\+Container.\+cs.
+
+
+
+References Virtual\+Instrument\+Manager.\+Get\+Diagnostics\+Handler(), White\+Key.\+Pitch, Virtual\+Instrument\+Manager.\+Play\+Note, and A\+T\+I\+\_\+\+Diagnostics.\+Set\+Input\+Time.
+
+
+
+Referenced by Key\+Container.\+Load\+Keys().
+
+
+\begin{DoxyCode}
+369     \{
+370         \textcolor{keywordflow}{if}( \hyperlink{group___key_contain_pub_var_ga5dc9b1349f8fafc894c7f739f6780a8c}{EnableAudio} && \hyperlink{group___key_contain_priv_var_ga57ee3824e2f284403bb70ad9c4dfd307}{mVIM} != null )
+371         \{
+372 \textcolor{preprocessor}{            #if DEBUG\_AUDIO\_DIAGNOSTICS}
+373                 \hyperlink{group___key_contain_priv_var_ga57ee3824e2f284403bb70ad9c4dfd307}{mVIM}.\hyperlink{group___v_i_m_pub_func_ga7e60bc3c5464d8f34f0d56def675bcc6}{GetDiagnosticsHandler}().
+      \hyperlink{group___audio_testing_a133561901c2aef535b2f3c098e55b959}{SetInputTime}.Invoke();
+374 \textcolor{preprocessor}{            #endif}
+375 
+376             \hyperlink{group___key_contain_priv_var_ga57ee3824e2f284403bb70ad9c4dfd307}{mVIM}.\hyperlink{group___v_i_m_events_gaa21021c13a8c9d13cbf374d5bf9d68fa}{PlayNote}.Invoke( aWhiteKey.\hyperlink{group___white_key_pub_var_ga1ddd98b85ba069defc7cf47d25f625f4}{Pitch}, 100 );
+377         \}
+378     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___key_contain_event_handlers_ga5b98b0105300225fd79638525ad3cb3c}\label{group___key_contain_event_handlers_ga5b98b0105300225fd79638525ad3cb3c}} 
+\index{Event Handlers@{Event Handlers}!Handle\+White\+Key\+Released@{Handle\+White\+Key\+Released}}
+\index{Handle\+White\+Key\+Released@{Handle\+White\+Key\+Released}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{Handle\+White\+Key\+Released()}{HandleWhiteKeyReleased()}}
+{\footnotesize\ttfamily void Key\+Container.\+Handle\+White\+Key\+Released (\begin{DoxyParamCaption}\item[{\hyperlink{class_white_key}{White\+Key}}]{a\+White\+Key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handles a white key in the container being released. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+White\+Key} & The white key that was released. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 384 of file Key\+Container.\+cs.
+
+
+
+References White\+Key.\+Pitch, and Virtual\+Instrument\+Manager.\+Release\+Note.
+
+
+
+Referenced by Key\+Container.\+Load\+Keys().
+
+
+\begin{DoxyCode}
+385     \{
+386         \textcolor{keywordflow}{if}( \hyperlink{group___key_contain_pub_var_ga5dc9b1349f8fafc894c7f739f6780a8c}{EnableAudio} && \hyperlink{group___key_contain_priv_var_ga57ee3824e2f284403bb70ad9c4dfd307}{mVIM} != null )
+387         \{
+388             \hyperlink{group___key_contain_priv_var_ga57ee3824e2f284403bb70ad9c4dfd307}{mVIM}.\hyperlink{group___v_i_m_events_ga3a1726a6366126421434c2c7be5e5678}{ReleaseNote}.Invoke( aWhiteKey.\hyperlink{group___white_key_pub_var_ga1ddd98b85ba069defc7cf47d25f625f4}{Pitch} );
+389         \}
+390     \}
+\end{DoxyCode}

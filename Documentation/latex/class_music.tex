@@ -1,0 +1,251 @@
+\hypertarget{class_music}{}\section{Music Class Reference}
+\label{class_music}\index{Music@{Music}}
+
+
+A container for everything related to music such as pitches and note lengths. This class does not need to be initialized to use.  
+
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{group___music_structs_struct_music_1_1_combined_note}{Combined\+Note}
+\begin{DoxyCompactList}\small\item\em A struct that provides an abstract representation of a note that has both drums and melody.  \hyperlink{group___music_structs_struct_music_1_1_combined_note}{More...}\end{DoxyCompactList}\item 
+struct \hyperlink{group___music_structs_struct_music_1_1_melody_note}{Melody\+Note}
+\begin{DoxyCompactList}\small\item\em A struct that provides an abstract representation of a note for a non-\/\+Drum\+Kit \hyperlink{class_virtual_instrument}{Virtual\+Instrument}.  \hyperlink{group___music_structs_struct_music_1_1_melody_note}{More...}\end{DoxyCompactList}\item 
+struct \hyperlink{group___music_structs_struct_music_1_1_percussion_note}{Percussion\+Note}
+\begin{DoxyCompactList}\small\item\em A struct that provides an abstract representation of a note for a \hyperlink{class_drum_kit}{Drum\+Kit}.  \hyperlink{group___music_structs_struct_music_1_1_percussion_note}{More...}\end{DoxyCompactList}\item 
+struct \hyperlink{group___music_structs_struct_music_1_1_time_signature}{Time\+Signature}
+\begin{DoxyCompactList}\small\item\em A struct that represents a time signature.  \hyperlink{group___music_structs_struct_music_1_1_time_signature}{More...}\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{D\+R\+UM} \{ \newline
+\hyperlink{group___music_enums_ggade475b4382c7066d1af13e7c13c029b6a871b243e59015ac599015e9c5f8cfdaa}{D\+R\+U\+M.\+K\+I\+C\+K\+\_\+1}, 
+\hyperlink{group___music_enums_ggade475b4382c7066d1af13e7c13c029b6add8ac581cd99ea05f540393daaba0be5}{D\+R\+U\+M.\+K\+I\+C\+K\+\_\+2}, 
+\hyperlink{group___music_enums_ggade475b4382c7066d1af13e7c13c029b6a30d844bdad6320b2c056a8d37583b178}{D\+R\+U\+M.\+S\+N\+A\+R\+E\+\_\+1}, 
+\hyperlink{group___music_enums_ggade475b4382c7066d1af13e7c13c029b6ac0944af51708424f9ecfcaf6b9ceb40b}{D\+R\+U\+M.\+S\+N\+A\+R\+E\+\_\+\+R\+IM}, 
+\hyperlink{group___music_enums_ggade475b4382c7066d1af13e7c13c029b6adf63db786582e77fbec3d22acfbb2c26}{D\+R\+U\+M.\+S\+N\+A\+R\+E\+\_\+2}, 
+\hyperlink{group___music_enums_ggade475b4382c7066d1af13e7c13c029b6ab169d27f8ff1efb87d58da212b6bc25a}{D\+R\+U\+M.\+L\+O\+W\+T\+O\+M\+\_\+1}, 
+\hyperlink{group___music_enums_ggade475b4382c7066d1af13e7c13c029b6aa19f835d81e001ed1084d75dcf79e9e1}{D\+R\+U\+M.\+H\+I\+H\+A\+T\+\_\+C}, 
+\hyperlink{group___music_enums_ggade475b4382c7066d1af13e7c13c029b6a427f3138018251643177388299d9b3d3}{D\+R\+U\+M.\+L\+O\+W\+T\+O\+M\+\_\+2}, 
+\hyperlink{group___music_enums_ggade475b4382c7066d1af13e7c13c029b6a1f0a3efea7dc89dc7364d7ada15332c7}{D\+R\+U\+M.\+H\+I\+H\+A\+T\+\_\+P}, 
+\hyperlink{group___music_enums_ggade475b4382c7066d1af13e7c13c029b6a7cfe02c9cff874222e8e298e78338181}{D\+R\+U\+M.\+M\+I\+D\+T\+O\+M\+\_\+1}, 
+\hyperlink{group___music_enums_ggade475b4382c7066d1af13e7c13c029b6a5da9560603e1755c936289eda0c9d46b}{D\+R\+U\+M.\+H\+I\+H\+A\+T\+\_\+O}, 
+\hyperlink{group___music_enums_ggade475b4382c7066d1af13e7c13c029b6ae24e4cd397daacac51069cb4209d075c}{D\+R\+U\+M.\+M\+I\+D\+T\+O\+M\+\_\+2}, 
+\newline
+\hyperlink{group___music_enums_ggade475b4382c7066d1af13e7c13c029b6a5542bef9b7c7387048a53df9c956815b}{D\+R\+U\+M.\+H\+I\+G\+H\+T\+O\+M\+\_\+1}, 
+\hyperlink{group___music_enums_ggade475b4382c7066d1af13e7c13c029b6a5cc345cd6dde1f871f706f00b8d3389e}{D\+R\+U\+M.\+C\+R\+A\+S\+H\+\_\+1}, 
+\hyperlink{group___music_enums_ggade475b4382c7066d1af13e7c13c029b6aea2fc79b38ff3fc96f9ee77f6a05eb78}{D\+R\+U\+M.\+H\+I\+G\+H\+T\+O\+M\+\_\+2}, 
+\hyperlink{group___music_enums_ggade475b4382c7066d1af13e7c13c029b6a82def663d0a5065e52c86a3d9f462054}{D\+R\+U\+M.\+R\+I\+DE}, 
+\hyperlink{group___music_enums_ggade475b4382c7066d1af13e7c13c029b6ab22cbce9616b64f3a24f5df4b81c178f}{D\+R\+U\+M.\+C\+R\+A\+S\+H\+\_\+2}, 
+\hyperlink{group___music_enums_ggade475b4382c7066d1af13e7c13c029b6a2259a8afe41c9293034e327a24a550bd}{D\+R\+U\+M.\+R\+I\+D\+E\+\_\+\+B\+E\+LL}
+ \}\begin{DoxyCompactList}\small\item\em The possible drums/cymbals that can be played. \end{DoxyCompactList}
+\item 
+enum \hyperlink{group___music_enums_gabfce60192305965558a36e368ebd67c3}{I\+N\+S\+T\+R\+U\+M\+E\+N\+T\+\_\+\+T\+Y\+PE} \{ \hyperlink{group___music_enums_ggabfce60192305965558a36e368ebd67c3aef6dcf375679288e8fe520ec07f29130}{I\+N\+S\+T\+R\+U\+M\+E\+N\+T\+\_\+\+T\+Y\+P\+E.\+P\+I\+A\+NO}, 
+\hyperlink{group___music_enums_ggabfce60192305965558a36e368ebd67c3ae84dbd9f12bf5278bfa76a692e42f50f}{I\+N\+S\+T\+R\+U\+M\+E\+N\+T\+\_\+\+T\+Y\+P\+E.\+M\+A\+R\+I\+M\+BA}, 
+\hyperlink{group___music_enums_ggabfce60192305965558a36e368ebd67c3aceaaf30d57fed4b1c3f4b95c60a76df6}{I\+N\+S\+T\+R\+U\+M\+E\+N\+T\+\_\+\+T\+Y\+P\+E.\+D\+R\+U\+M\+\_\+\+K\+IT}
+ \}\begin{DoxyCompactList}\small\item\em The types of instruments that are currently supported. \end{DoxyCompactList}
+\item 
+enum \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH} \{ \newline
+\hyperlink{group___music_enums_ggaf11b5f079adbb21c800b9eca1c5c3cbdab9ece18c950afbfa6b0fdbfa4ff731d3}{N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+T\+H.\+T}, 
+\hyperlink{group___music_enums_ggaf11b5f079adbb21c800b9eca1c5c3cbda5965eb90b97091e4c04c3e63c8cadc82}{N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+T\+H.\+D\+\_\+T}, 
+\hyperlink{group___music_enums_ggaf11b5f079adbb21c800b9eca1c5c3cbda5dbc98dcc983a70728bd082d1a47546e}{N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+T\+H.\+S}, 
+\hyperlink{group___music_enums_ggaf11b5f079adbb21c800b9eca1c5c3cbda99bc05b985a6557303572f10feeb65e8}{N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+T\+H.\+D\+\_\+S}, 
+\hyperlink{group___music_enums_ggaf11b5f079adbb21c800b9eca1c5c3cbda3a3ea00cfc35332cedf6e5e9a32e94da}{N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+T\+H.\+E}, 
+\hyperlink{group___music_enums_ggaf11b5f079adbb21c800b9eca1c5c3cbdad1045a0cd40aaa2adbfa3492d2a1d8a6}{N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+T\+H.\+D\+\_\+E}, 
+\hyperlink{group___music_enums_ggaf11b5f079adbb21c800b9eca1c5c3cbdaf09564c9ca56850d4cd6b3319e541aee}{N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+T\+H.\+Q}, 
+\hyperlink{group___music_enums_ggaf11b5f079adbb21c800b9eca1c5c3cbda13f258ec288ede9f0f778903d707d8f5}{N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+T\+H.\+D\+\_\+Q}, 
+\hyperlink{group___music_enums_ggaf11b5f079adbb21c800b9eca1c5c3cbdac1d9f50f86825a1a2302ec2449c17196}{N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+T\+H.\+H}, 
+\hyperlink{group___music_enums_ggaf11b5f079adbb21c800b9eca1c5c3cbda4365f24e724bf9109fb51285a7e8d709}{N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+T\+H.\+D\+\_\+H}, 
+\hyperlink{group___music_enums_ggaf11b5f079adbb21c800b9eca1c5c3cbda61e9c06ea9a85a5088a499df6458d276}{N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+T\+H.\+W}, 
+\hyperlink{group___music_enums_ggaf11b5f079adbb21c800b9eca1c5c3cbda65c5afa16a4bd2e074686f5a864f1cf8}{N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+T\+H.\+D\+\_\+W}, 
+\newline
+\hyperlink{group___music_enums_ggaf11b5f079adbb21c800b9eca1c5c3cbdab50339a10e1de285ac99d4c3990b8693}{N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+T\+H.\+N\+O\+NE}
+ \}\begin{DoxyCompactList}\small\item\em Abstract representations of a note\textquotesingle{}s length. \end{DoxyCompactList}
+\item 
+enum \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{P\+I\+T\+CH} \{ \newline
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da9c5959e6f08f10d0edbadf5be1f33c53}{P\+I\+T\+C\+H.\+C0}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da148deee61c02bd1bb71c270396d62b04}{P\+I\+T\+C\+H.\+C\+S0}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da0e3e06c992d1ead056a6861bb46b28a8}{P\+I\+T\+C\+H.\+D0}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da02b462a08c9441274297c5edd4031595}{P\+I\+T\+C\+H.\+D\+S0}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da0e51a87ec173dd9534a056a403c85881}{P\+I\+T\+C\+H.\+E0}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1daee0c8bd6520d8fb37a28c61189d0e821}{P\+I\+T\+C\+H.\+F0}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da1848af1387dd6164523bc6a1e6b3e09b}{P\+I\+T\+C\+H.\+F\+S0}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da22294e216be9e629e37caf9fa0cc5872}{P\+I\+T\+C\+H.\+G0}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da4060fa5b6da9486d34fe421842df5da2}{P\+I\+T\+C\+H.\+G\+S0}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1dad88c146dfafdea37a837778a92415bc2}{P\+I\+T\+C\+H.\+A0}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da60332432d378cfdc1afcbeb6aace0ca0}{P\+I\+T\+C\+H.\+A\+S0}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da4c769c2c9989abb9fa024ab9930270e5}{P\+I\+T\+C\+H.\+B0}, 
+\newline
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da1a2ddc2db4693cfd16d534cde5572cc1}{P\+I\+T\+C\+H.\+C1}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da8ea4c9ac938645ff943aeb7a9c2bc060}{P\+I\+T\+C\+H.\+C\+S1}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da4a4079e06eb2f7ba7a12821c7c58a3f6}{P\+I\+T\+C\+H.\+D1}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da3f30b4c23d5d31403db81c95f79160f9}{P\+I\+T\+C\+H.\+D\+S1}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da48ed5d2db39237d7ae5e829b17581629}{P\+I\+T\+C\+H.\+E1}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1dae1dffc8709f31a4987c8a88334107e89}{P\+I\+T\+C\+H.\+F1}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da7d4883feac2c828238c29cf184665348}{P\+I\+T\+C\+H.\+F\+S1}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1dac0497521d35d66866e3af408094864c3}{P\+I\+T\+C\+H.\+G1}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1dacf301661e1df9727a6c2c6c963c49d55}{P\+I\+T\+C\+H.\+G\+S1}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da27f237e6b7f96587b6202ff3607ad88a}{P\+I\+T\+C\+H.\+A1}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1dacf0ac41ddff111e8299e51e12417f7bf}{P\+I\+T\+C\+H.\+A\+S1}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1dac9512565ef6194ca664dc41ec0de7a53}{P\+I\+T\+C\+H.\+B1}, 
+\newline
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1daf1a543f5a2c5d49bc5dde298fcf716e4}{P\+I\+T\+C\+H.\+C2}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1daaef7a4e1b7e3fe7e4df67684dbffa9e1}{P\+I\+T\+C\+H.\+C\+S2}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1dac4d62b6dcca08e5caf06c01889282859}{P\+I\+T\+C\+H.\+D2}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1dac92b438c6de07b10e6b5ce6dcb9961c9}{P\+I\+T\+C\+H.\+D\+S2}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da560fce20abef5cd3f8e4d13c94669a46}{P\+I\+T\+C\+H.\+E2}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1dafe5c3684dce76cdd9f7f42430868aa74}{P\+I\+T\+C\+H.\+F2}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1daa43bf0ad8387aed475b73432a959e196}{P\+I\+T\+C\+H.\+F\+S2}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1dad24bade136bc8cd77e37395ea94226eb}{P\+I\+T\+C\+H.\+G2}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1dabb7e8732afc60ab2c8d68b9f00890e80}{P\+I\+T\+C\+H.\+G\+S2}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1dac6bdf6f65f3845da9085e9ae5790b494}{P\+I\+T\+C\+H.\+A2}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da59cdaab533f69062f6fbdde53f047c03}{P\+I\+T\+C\+H.\+A\+S2}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1dabbd97b00c539801e32317ab550867ec4}{P\+I\+T\+C\+H.\+B2}, 
+\newline
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da3abe124ecc82bf2c2e22e6058f38c50c}{P\+I\+T\+C\+H.\+C3}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da8c4e56414e26520294c3b571e92e58e4}{P\+I\+T\+C\+H.\+C\+S3}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1daa3deb6e481689f1d3303caecb8a6c401}{P\+I\+T\+C\+H.\+D3}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1daedeca07ff932c4c2713e8a44f508ccad}{P\+I\+T\+C\+H.\+D\+S3}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1dab29bcbb0f188e0093434a5f213285f46}{P\+I\+T\+C\+H.\+E3}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da4b6bf4b531770872d4328ce69bef5627}{P\+I\+T\+C\+H.\+F3}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da2f0912f92c162d890ce3533b79502f07}{P\+I\+T\+C\+H.\+F\+S3}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1dabc75ca3e24efaf835d947dbe27a95c8a}{P\+I\+T\+C\+H.\+G3}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1daf32c267184e725aa6224dcde41d4c1d0}{P\+I\+T\+C\+H.\+G\+S3}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da6593d7b12fd418cdb35bbf438de72f66}{P\+I\+T\+C\+H.\+A3}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da84af1c48f92dad5d3c09a15bba7fa031}{P\+I\+T\+C\+H.\+A\+S3}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da0c4ecd7b59ebc5b9f47974cb9845fd02}{P\+I\+T\+C\+H.\+B3}, 
+\newline
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1dab713e6323a68d3ddabf4855826c50148}{P\+I\+T\+C\+H.\+C4}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da7009daf81333670cd06b8bb2b02054cc}{P\+I\+T\+C\+H.\+C\+S4}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da2521dc256a4368da87585c936b451dd7}{P\+I\+T\+C\+H.\+D4}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1dac55d4e2df1d19210fbdd680fc8fc0514}{P\+I\+T\+C\+H.\+D\+S4}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da2157d56d6aff208ae90c869526290656}{P\+I\+T\+C\+H.\+E4}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1dae7e0e72401a9f2718ed0f39f2861d702}{P\+I\+T\+C\+H.\+F4}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1dac7563ad14d40eeac3c26dafbcde433ba}{P\+I\+T\+C\+H.\+F\+S4}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1daa0190496ceaf3dc7c2ae9373dd7317b3}{P\+I\+T\+C\+H.\+G4}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da325073f41de00ab190d47b8df6325be8}{P\+I\+T\+C\+H.\+G\+S4}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da0c2f3adf2a48bab3adb470f4da57f3d0}{P\+I\+T\+C\+H.\+A4}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1dabdaf742f838289e05321b1fa286422d0}{P\+I\+T\+C\+H.\+A\+S4}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1dad5d4cc7b09d1843517acc9361f8f665e}{P\+I\+T\+C\+H.\+B4}, 
+\newline
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1dafea813d4ddba3c46cf8b8e664b92cdaa}{P\+I\+T\+C\+H.\+C5}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da1c61feff957ecc2d50e499cbe076094c}{P\+I\+T\+C\+H.\+C\+S5}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1daea8ea3bfaa27cf4c2f61470447c87eea}{P\+I\+T\+C\+H.\+D5}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1daf4c42599b320e80a2369cf2e936f9a00}{P\+I\+T\+C\+H.\+D\+S5}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1daf9f2d672039ed5d04839b769ad71e1b0}{P\+I\+T\+C\+H.\+E5}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da37f438df6a6d5ba4c17ef8ca58562f00}{P\+I\+T\+C\+H.\+F5}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1dad741bad45d81192cb392578e11f664f4}{P\+I\+T\+C\+H.\+F\+S5}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da94d310c7d04458fde088caf8ed27c9b1}{P\+I\+T\+C\+H.\+G5}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1daf20083fbdd6a86836486ddb8dddc7112}{P\+I\+T\+C\+H.\+G\+S5}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1dac6f2f93133905f75da4b02ccc19ab66a}{P\+I\+T\+C\+H.\+A5}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1dafa8d1f5bc25b8bdc966ebdac61dc6d1e}{P\+I\+T\+C\+H.\+A\+S5}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da2a1ab298edf0162a3305e599b47cbeee}{P\+I\+T\+C\+H.\+B5}, 
+\newline
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da7e8b9f5cab4a8fe24fad9fe4b7452702}{P\+I\+T\+C\+H.\+C6}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da23a479980ee23dd9d391279593693968}{P\+I\+T\+C\+H.\+C\+S6}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1dae06ae0fa0b466d7a0d9696a11fc3246a}{P\+I\+T\+C\+H.\+D6}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1dadc7bce2cbbad6153805dc357470d3940}{P\+I\+T\+C\+H.\+D\+S6}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da247116319466c7be96c6ac3ab87984cb}{P\+I\+T\+C\+H.\+E6}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da1faf42f2823f184eb2c9f0dffe5d73f2}{P\+I\+T\+C\+H.\+F6}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da954190f1514fe3430c04e0121319beab}{P\+I\+T\+C\+H.\+F\+S6}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da1b2d5bac041ba5c7062079117011b112}{P\+I\+T\+C\+H.\+G6}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da00f8da9df2af1ffb02fc7103b5052924}{P\+I\+T\+C\+H.\+G\+S6}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da0b3d5609ee81e50809b7351e848e4698}{P\+I\+T\+C\+H.\+A6}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1daf99090e197309d436e914d665e5f96d1}{P\+I\+T\+C\+H.\+A\+S6}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da68b1f1cc15d8987eafe633c9488bdc05}{P\+I\+T\+C\+H.\+B6}, 
+\newline
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da517d42f048d2dd422533522c796aaf37}{P\+I\+T\+C\+H.\+C7}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da3aede39405e8dea81500a6fcdc9d2d20}{P\+I\+T\+C\+H.\+C\+S7}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da94f5a64e61ba849a9213f6b6f62b151d}{P\+I\+T\+C\+H.\+D7}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1dad743034473c61c2c4e6188112827f1fc}{P\+I\+T\+C\+H.\+D\+S7}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da4b110604865b013dd13d9ce3f66046f2}{P\+I\+T\+C\+H.\+E7}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da47489eb597b7db34caa24b1fc78fc839}{P\+I\+T\+C\+H.\+F7}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da0ec2bdb1c3badadb9e48b72fbbd5e409}{P\+I\+T\+C\+H.\+F\+S7}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1dabf9175b80455fb4fbcb1db90195065b4}{P\+I\+T\+C\+H.\+G7}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da4e19bdfd398fb7101a74e503394f4b08}{P\+I\+T\+C\+H.\+G\+S7}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1dabe523bdcc111d8113eb54f747d89d4d7}{P\+I\+T\+C\+H.\+A7}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da882d9795122386be404e9b62b3f14443}{P\+I\+T\+C\+H.\+A\+S7}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1dad8498108dd603522047564a8da7be94c}{P\+I\+T\+C\+H.\+B7}, 
+\newline
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da727999d580f3708378e3d903ddfa246d}{P\+I\+T\+C\+H.\+C8}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da90f8c091f33d6eb2cf3554011ebc0b90}{P\+I\+T\+C\+H.\+C\+S8}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1dab1522194d726a396729c3148c2b3a0bd}{P\+I\+T\+C\+H.\+D8}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1dadddb12182c73277255e68382644d7f21}{P\+I\+T\+C\+H.\+D\+S8}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1dab1a82c958451a0a4f0f7373dad43ca67}{P\+I\+T\+C\+H.\+E8}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da4787509ad9f9d747a81a30e9dde3d4a7}{P\+I\+T\+C\+H.\+F8}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da210efd34619a3d3cb2a6d8e92d3ed672}{P\+I\+T\+C\+H.\+F\+S8}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1dae034278428deb1ad937eb98f2ad0217a}{P\+I\+T\+C\+H.\+G8}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da11c95a0a0b2ebb19e3d059d86bc8c204}{P\+I\+T\+C\+H.\+G\+S8}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1dafd301d675be7b677ba979a430a80c010}{P\+I\+T\+C\+H.\+A8}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1dae09a67feedf6e6b834643bcfff1c88ef}{P\+I\+T\+C\+H.\+A\+S8}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1dac897976b22b91e2937555adb85d779fc}{P\+I\+T\+C\+H.\+B8}, 
+\newline
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1daef59a1297ddfd2f632a8b17d124fb366}{P\+I\+T\+C\+H.\+C9}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da2a63f005e7474ef3cac857570a8f28bd}{P\+I\+T\+C\+H.\+C\+S9}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1daadb7bf1cff0c81595de38f51cd60c62c}{P\+I\+T\+C\+H.\+D9}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da5ca2fc68ec4212fb94ea4852ac03cfc1}{P\+I\+T\+C\+H.\+D\+S9}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da87f3796bf2661557bf3cce69ff5a904b}{P\+I\+T\+C\+H.\+E9}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da892a245e287c163080b23db737d3c4c9}{P\+I\+T\+C\+H.\+F9}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da57ce732598bb3aedf5d69183b58dc0db}{P\+I\+T\+C\+H.\+F\+S9}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da5fccbbf0799db891aa3dac708fdcd0cf}{P\+I\+T\+C\+H.\+G9}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1dae0ba733ae8a2cedcd45021a0b8690301}{P\+I\+T\+C\+H.\+G\+S9}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da8650e375ee80b2277a84fc9b85375e36}{P\+I\+T\+C\+H.\+A9}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da86202d073d663f7c391d9ade4a079279}{P\+I\+T\+C\+H.\+A\+S9}, 
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da18fc90be5b8124af983421d29bfc4352}{P\+I\+T\+C\+H.\+B9}, 
+\newline
+\hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da50780f47f6839d47d60bc4555ee00c3f}{P\+I\+T\+C\+H.\+R\+E\+ST}
+ \}\begin{DoxyCompactList}\small\item\em The possible pitches that can be played. The range is from C0 to B9 with an extra entry for a rest note (No pitch). \end{DoxyCompactList}
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{group___music_structs_struct_music_1_1_combined_note}{Combined\+Note} \hyperlink{group___music_stat_func_gaaf74885e43eb623f64f961985fadcd08}{Create\+Note} (int a\+Melody\+Velocity, \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH} a\+Length, \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{P\+I\+T\+CH}\mbox{[}$\,$\mbox{]} a\+Pitches, int a\+Drum\+Velocity, \hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{D\+R\+UM}\mbox{[}$\,$\mbox{]} a\+Drum\+Hits, \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH} a\+Offset\+From\+Prev\+Note)
+\begin{DoxyCompactList}\small\item\em Creates a new \hyperlink{group___music_structs_struct_music_1_1_combined_note}{Combined\+Note} struct from the parameters. \end{DoxyCompactList}\item 
+static string \hyperlink{group___music_stat_func_gaf5f64ebe9a7e036e07f283e41f26d22b}{Drum\+To\+String} (\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{D\+R\+UM} a\+Drum)
+\begin{DoxyCompactList}\small\item\em Returns a string based on the given D\+R\+UM. \end{DoxyCompactList}\item 
+static string \hyperlink{group___music_stat_func_gab74179676b93b41cde2d1cc18af0e788}{Drum\+To\+String} (int a\+Drum\+Index)
+\begin{DoxyCompactList}\small\item\em Overloaded version of \hyperlink{group___music_stat_func_gaf5f64ebe9a7e036e07f283e41f26d22b}{Drum\+To\+String( D\+R\+U\+M )} that takes an integer instead. \end{DoxyCompactList}\item 
+static float \hyperlink{group___music_stat_func_ga91e290b48ad2289493ba4421308abe49}{Get\+Note\+Length\+Relative\+To\+Measure} (\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH} a\+Length, \hyperlink{group___music_structs_struct_music_1_1_time_signature}{Time\+Signature} a\+Time\+Signature)
+\begin{DoxyCompactList}\small\item\em Gets the percentage that a note length takes up in a measure for the given time signature. \end{DoxyCompactList}\item 
+static bool \hyperlink{group___music_stat_func_gacc2c1a66df7197225f61c5737f794065}{Is\+Pitch\+A\+Black\+Key} (int a\+Pitch\+Index)
+\begin{DoxyCompactList}\small\item\em Returns whether or not a note corresponds to a white or black key. \end{DoxyCompactList}\item 
+static bool \hyperlink{group___music_stat_func_ga4c91d4a78702a5c16e833af6585b9e19}{Is\+Pitch\+A\+Black\+Key} (\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{P\+I\+T\+CH} a\+Pitch)
+\begin{DoxyCompactList}\small\item\em Overloaded function that returns whether or not a note corresponds to a white or black key. \end{DoxyCompactList}\item 
+static string \hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{Note\+To\+String} (\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{P\+I\+T\+CH} a\+Note\+Value)
+\begin{DoxyCompactList}\small\item\em Gives a string representing a P\+I\+T\+CH. \end{DoxyCompactList}\item 
+static string \hyperlink{group___music_stat_func_ga03f793951dcfe199532c9596cb539022}{Note\+To\+String} (int a\+Note\+Value)
+\begin{DoxyCompactList}\small\item\em Overloaded function that gives a string representing a pitch. This function takes an integer instead of a P\+I\+T\+CH. \end{DoxyCompactList}\item 
+static \hyperlink{group___music_structs_struct_music_1_1_time_signature}{Time\+Signature} \hyperlink{group___music_stat_func_gac95af323eef7511543c799154e1c29fd}{T\+I\+M\+E\+\_\+\+S\+I\+G\+N\+A\+T\+U\+R\+E\+\_\+4\+\_\+4} ()
+\begin{DoxyCompactList}\small\item\em Returns a 4/4 time signature. \end{DoxyCompactList}\item 
+static \hyperlink{group___music_structs_struct_music_1_1_time_signature}{Time\+Signature} \hyperlink{group___music_stat_func_ga0392e239cbd45a23e5f76f88d0b4c152}{T\+I\+M\+E\+\_\+\+S\+I\+G\+N\+A\+T\+U\+R\+E\+\_\+3\+\_\+4} ()
+\begin{DoxyCompactList}\small\item\em Returns a 3/4 time signature. \end{DoxyCompactList}\item 
+static \hyperlink{group___music_structs_struct_music_1_1_time_signature}{Time\+Signature} \hyperlink{group___music_stat_func_gabfda54cf40e32a4299de5a2fde753347}{T\+I\+M\+E\+\_\+\+S\+I\+G\+N\+A\+T\+U\+R\+E\+\_\+6\+\_\+8} ()
+\begin{DoxyCompactList}\small\item\em Returns a 6/8 time signature. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static string \mbox{[}$\,$\mbox{]} \hyperlink{group___music_constants_ga1381281d147886a2cf3584ab0c7a67d6}{D\+R\+U\+M\+\_\+\+S\+T\+R\+I\+NG}
+\begin{DoxyCompactList}\small\item\em An array of strings that represent the name of each type of drum. \end{DoxyCompactList}\item 
+static string \mbox{[}$\,$\mbox{]} \hyperlink{group___music_constants_ga0f6eb5ac330d374c6b5021a0ba11c2bc}{P\+I\+T\+C\+H\+\_\+\+S\+T\+R\+I\+NG} = \{ \char`\"{}C\char`\"{}, \char`\"{}CS\char`\"{}, \char`\"{}D\char`\"{}, \char`\"{}DS\char`\"{}, \char`\"{}E\char`\"{}, \char`\"{}F\char`\"{}, \char`\"{}FS\char`\"{}, \char`\"{}G\char`\"{}, \char`\"{}GS\char`\"{}, \char`\"{}A\char`\"{}, \char`\"{}AS\char`\"{}, \char`\"{}B\char`\"{} \}
+\begin{DoxyCompactList}\small\item\em An array of strings that represent each pitch in an octave. \end{DoxyCompactList}\item 
+static short \hyperlink{group___music_constants_gab346f7d8791bf021799da7786cde44c1}{N\+U\+M\+\_\+\+N\+O\+T\+E\+S\+\_\+\+I\+N\+\_\+\+O\+C\+T\+A\+VE} = 12
+\begin{DoxyCompactList}\small\item\em The number of notes in an octave. \end{DoxyCompactList}\item 
+static int \hyperlink{group___music_constants_gaaf07da909a12e9fec0e43b70864f27b7}{M\+A\+X\+\_\+\+S\+U\+P\+P\+O\+R\+T\+E\+D\+\_\+\+N\+O\+T\+ES} = 120
+\begin{DoxyCompactList}\small\item\em The maximum number of pitches that a \hyperlink{class_virtual_instrument}{Virtual\+Instrument} could support. \end{DoxyCompactList}\item 
+static int \hyperlink{group___music_constants_gabce1a1ac5b9b6355af6bd7fb3868467a}{M\+A\+X\+\_\+\+S\+U\+P\+P\+O\+R\+T\+E\+D\+\_\+\+D\+R\+U\+MS} = 18
+\begin{DoxyCompactList}\small\item\em The maximum number of drums that a \hyperlink{class_drum_kit}{Drum\+Kit} could support. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A container for everything related to music such as pitches and note lengths. This class does not need to be initialized to use. 
+
+This class provides structs, enums, constants, and static functions related to abstract representations of music. \char`\"{}\+Abstract representation\char`\"{} meaning that this class only deals with the musical notation side of things rather than the audio data. For examples, note length from this class would be given as something like a quarter note rather than a number of waveform samples. 
+
+Definition at line 18 of file Music.\+cs.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Documents/\+School Documents/2017\+Spring/\+E\+E\+C\+S542/\+V\+R\+Piano\+Project/\+Assets/\+Scripts/\+Audio/\+Music/\hyperlink{_music_8cs}{Music.\+cs}\end{DoxyCompactItemize}

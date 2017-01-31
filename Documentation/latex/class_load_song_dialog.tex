@@ -1,0 +1,59 @@
+\hypertarget{class_load_song_dialog}{}\section{Load\+Song\+Dialog Class Reference}
+\label{class_load_song_dialog}\index{Load\+Song\+Dialog@{Load\+Song\+Dialog}}
+
+
+A dialog that loads a song into the \hyperlink{group___doc_s_c}{Song Creation Interface}.  
+
+
+Inheritance diagram for Load\+Song\+Dialog\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_load_song_dialog}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{group___s_c___l_s_d_event_types_class_load_song_dialog_1_1_song_selected_event}{Song\+Selected\+Event}
+\begin{DoxyCompactList}\small\item\em A type of event that is invoked when a song is selected to be loaded.  \hyperlink{group___s_c___l_s_d_event_types_class_load_song_dialog_1_1_song_selected_event}{More...}\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___s_c___l_s_d_event_types_class_load_song_dialog_1_1_song_selected_event}{Song\+Selected\+Event} \hyperlink{group___s_c___l_s_d_event_ga20438ab6e4feb9616a99faee6504e86c}{Song\+Selected}
+\begin{DoxyCompactList}\small\item\em The event that is invoked when a song is selected. No handler for this event in this class. It\textquotesingle{}s meant to notify other classes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___s_c___l_s_d_unity_ga84a200b08f9e504feff7fb0580753097}{Awake} ()
+\begin{DoxyCompactList}\small\item\em Initializes the \hyperlink{class_load_song_dialog}{Load\+Song\+Dialog} by getting references to its components. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c___l_s_d_handlers_gaee199e632420eac43fb6c35388d3fd69}{Get\+Selected\+Song} (int a\+Index)
+\begin{DoxyCompactList}\small\item\em Gets the selected \hyperlink{class_song}{Song} from the \hyperlink{class_song_manager_class}{song manager}. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c___l_s_d_handlers_ga4e0ea30af2357e80922f0ada2b2c82b0}{On\+Cancel\+Button\+Clicked} ()
+\begin{DoxyCompactList}\small\item\em Handles the \hyperlink{group___s_c___l_s_d_priv_var_ga80d9f1687c8636fa476961057a31453f}{Cancel button} being clicked with self-\/destruction. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c___l_s_d_handlers_ga362157bd83ce545da96f464a23b7ec73}{On\+Load\+Button\+Clicked} ()
+\begin{DoxyCompactList}\small\item\em Handles the \hyperlink{group___s_c___l_s_d_priv_var_ga9957d4b958eff0baad80c6f787e0cb66}{Load button} being clicked by invoking the \hyperlink{group___s_c___l_s_d_event_types_class_load_song_dialog_1_1_song_selected_event}{Song\+Selected\+Event} and destroying itself. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Button \hyperlink{group___s_c___l_s_d_priv_var_ga80d9f1687c8636fa476961057a31453f}{m\+Cancel\+Button} = null
+\begin{DoxyCompactList}\small\item\em The button to cancel loading a song. \end{DoxyCompactList}\item 
+Button \hyperlink{group___s_c___l_s_d_priv_var_ga9957d4b958eff0baad80c6f787e0cb66}{m\+Load\+Button} = null
+\begin{DoxyCompactList}\small\item\em The button to load the selected song. \end{DoxyCompactList}\item 
+Dropdown \hyperlink{group___s_c___l_s_d_priv_var_ga8ac0ecbb68748b24638f916b02077a22}{m\+Song\+Selection\+Menu} = null
+\begin{DoxyCompactList}\small\item\em The dropdown menu to select a song to load. \end{DoxyCompactList}\item 
+\hyperlink{class_song}{Song} \hyperlink{group___s_c___l_s_d_priv_var_ga7c4bedd9eecf070d22bd344601379076}{m\+Selected\+Song} = null
+\begin{DoxyCompactList}\small\item\em The currently selected song. \end{DoxyCompactList}\item 
+\hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} \hyperlink{group___s_c___l_s_d_priv_var_ga170dc79611647c9bff33b4d36dddaa6a}{m\+V\+IM} = null
+\begin{DoxyCompactList}\small\item\em The \hyperlink{group___v_i_m}{Virtual Instrument Manager}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A dialog that loads a song into the \hyperlink{group___doc_s_c}{Song Creation Interface}. 
+
+Definition at line 12 of file Load\+Song\+Dialog.\+cs.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+V\+R\+Piano\+Project/\+Assets/\+Scripts/\+Audio/\+Testing/\hyperlink{_load_song_dialog_8cs}{Load\+Song\+Dialog.\+cs}\end{DoxyCompactItemize}

@@ -1,0 +1,83 @@
+\hypertarget{group___mus_typ_pub_func}{}\section{Musical Typing Public Functions}
+\label{group___mus_typ_pub_func}\index{Musical Typing Public Functions@{Musical Typing Public Functions}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___mus_typ_pub_func_ga02f86b46bb63dc751b669035b7aa5ce0}{Musical\+Typing\+Handler.\+Set\+Key\+Velocity} (int a\+Key\+Index, int a\+Key\+Velocity)
+\begin{DoxyCompactList}\small\item\em Sets the velocity used when a specific key on the computer keyboard generates a musical typing event. \end{DoxyCompactList}\item 
+void \hyperlink{group___mus_typ_pub_func_gaf6ba35e3a081cff62fa963ed32d218c8}{Musical\+Typing\+Handler.\+Set\+Random\+Velocity\+Range} (int a\+Lowest\+Velocity, int a\+Highest\+Velocity)
+\begin{DoxyCompactList}\small\item\em Sets the range used for randomizing Musical Typing velocities. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Functions used by other classes to set detailed options for \hyperlink{group___mus_typ}{Musical Typing}. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___mus_typ_pub_func_ga02f86b46bb63dc751b669035b7aa5ce0}\label{group___mus_typ_pub_func_ga02f86b46bb63dc751b669035b7aa5ce0}} 
+\index{Musical Typing Public Functions@{Musical Typing Public Functions}!Set\+Key\+Velocity@{Set\+Key\+Velocity}}
+\index{Set\+Key\+Velocity@{Set\+Key\+Velocity}!Musical Typing Public Functions@{Musical Typing Public Functions}}
+\subsubsection{\texorpdfstring{Set\+Key\+Velocity()}{SetKeyVelocity()}}
+{\footnotesize\ttfamily void Musical\+Typing\+Handler.\+Set\+Key\+Velocity (\begin{DoxyParamCaption}\item[{int}]{a\+Key\+Index,  }\item[{int}]{a\+Key\+Velocity }\end{DoxyParamCaption})}
+
+
+
+Sets the velocity used when a specific key on the computer keyboard generates a musical typing event. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Key\+Index} & The index of the key whose Musical Typing velocity is being modified. \\
+\hline
+\mbox{\tt in}  & {\em a\+Key\+Velocity} & The new velocity for the key. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 125 of file Musical\+Typing\+Handler.\+cs.
+
+
+
+Referenced by A\+T\+I\+\_\+\+Velocity\+Handler.\+Handle\+Musical\+Typing\+Key\+Velocity\+Change().
+
+
+\begin{DoxyCode}
+126     \{
+127         Assert.IsTrue( aKeyIndex >= 0 && aKeyIndex < 19, \textcolor{stringliteral}{"Tried to change the Musical Typing velocity for a
+       non-existent key!"} );
+128         Assert.IsTrue( aKeyVelocity >= 0 && aKeyVelocity <= 100, \textcolor{stringliteral}{"Gave a velocity of "} + aKeyVelocity.
+      ToString() + \textcolor{stringliteral}{", but the range is 0-100!"} );
+129 
+130         \hyperlink{group___mus_typ_priv_var_ga4836c9fe1805279497f421a29879bf5a}{mKeyVelocities}[aKeyIndex] = aKeyVelocity;
+131     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___mus_typ_pub_func_gaf6ba35e3a081cff62fa963ed32d218c8}\label{group___mus_typ_pub_func_gaf6ba35e3a081cff62fa963ed32d218c8}} 
+\index{Musical Typing Public Functions@{Musical Typing Public Functions}!Set\+Random\+Velocity\+Range@{Set\+Random\+Velocity\+Range}}
+\index{Set\+Random\+Velocity\+Range@{Set\+Random\+Velocity\+Range}!Musical Typing Public Functions@{Musical Typing Public Functions}}
+\subsubsection{\texorpdfstring{Set\+Random\+Velocity\+Range()}{SetRandomVelocityRange()}}
+{\footnotesize\ttfamily void Musical\+Typing\+Handler.\+Set\+Random\+Velocity\+Range (\begin{DoxyParamCaption}\item[{int}]{a\+Lowest\+Velocity,  }\item[{int}]{a\+Highest\+Velocity }\end{DoxyParamCaption})}
+
+
+
+Sets the range used for randomizing Musical Typing velocities. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Lowest\+Velocity} & The lowest velocity of the range. \\
+\hline
+\mbox{\tt in}  & {\em a\+Highest\+Velocity} & The highest velocity of the range. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 138 of file Musical\+Typing\+Handler.\+cs.
+
+
+
+Referenced by A\+T\+I\+\_\+\+Velocity\+Handler.\+Randomize\+Key\+Velocities().
+
+
+\begin{DoxyCode}
+139     \{
+140         \hyperlink{group___mus_typ_priv_var_ga15df83911d88e77e46726ff5642d04e6}{mRandomVelocityRange}[0] = aLowestVelocity;
+141         \hyperlink{group___mus_typ_priv_var_ga15df83911d88e77e46726ff5642d04e6}{mRandomVelocityRange}[1] = aHighestVelocity;
+142     \}
+\end{DoxyCode}

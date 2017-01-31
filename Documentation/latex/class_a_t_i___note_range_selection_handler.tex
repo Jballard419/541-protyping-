@@ -1,0 +1,162 @@
+\hypertarget{class_a_t_i___note_range_selection_handler}{}\section{A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler Class Reference}
+\label{class_a_t_i___note_range_selection_handler}\index{A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler@{A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler}}
+Inheritance diagram for A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_a_t_i___note_range_selection_handler}
+\end{center}
+\end{figure}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override void \hyperlink{class_a_t_i___note_range_selection_handler_a87e90cac12626a0cb547d6e40c6e8260}{Handle\+Note\+Range\+Change} (bool a\+End\+Drag)
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+new void \hyperlink{class_a_t_i___note_range_selection_handler_a0840b64bb232377676cdb9cef62349f4}{Start} ()
+\item 
+void \hyperlink{class_a_t_i___note_range_selection_handler_ad1368483644433a2e1149790664676e8}{Update} ()
+\item 
+void \hyperlink{class_a_t_i___note_range_selection_handler_a4063aee2ca06e3fbe11f4cd899b5581f}{Handle\+Instrument\+Loaded} ()
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 15 of file A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler.\+cs.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_a_t_i___note_range_selection_handler_a4063aee2ca06e3fbe11f4cd899b5581f}\label{class_a_t_i___note_range_selection_handler_a4063aee2ca06e3fbe11f4cd899b5581f}} 
+\index{A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler@{A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler}!Handle\+Instrument\+Loaded@{Handle\+Instrument\+Loaded}}
+\index{Handle\+Instrument\+Loaded@{Handle\+Instrument\+Loaded}!A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler@{A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler}}
+\subsubsection{\texorpdfstring{Handle\+Instrument\+Loaded()}{HandleInstrumentLoaded()}}
+{\footnotesize\ttfamily void A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler.\+Handle\+Instrument\+Loaded (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 69 of file A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler.\+cs.
+
+
+
+References Virtual\+Instrument\+Manager.\+Get\+Highest\+Supported\+Note(), Virtual\+Instrument\+Manager.\+Get\+Lowest\+Active\+Note(), Virtual\+Instrument\+Manager.\+Get\+Lowest\+Supported\+Note(), Virtual\+Instrument\+Manager.\+Get\+Num\+Active\+Notes(), A\+T\+I.\+Slider\+Handler.\+m\+Sliders, A\+T\+I.\+Slider\+Handler.\+m\+V\+IM, and Music.\+Note\+To\+String().
+
+
+
+Referenced by Start().
+
+
+\begin{DoxyCode}
+70     \{
+71         \textcolor{comment}{// Update the slider.}
+72         \hyperlink{class_a_t_i_1_1_slider_handler_a038a487fbd701cb786e77c210830be76}{mSliders}[0].minValue = (float)\hyperlink{class_a_t_i_1_1_slider_handler_a5d19b4fb92b71c25a667defdda60213f}{mVIM}.\hyperlink{group___v_i_m_pub_func_gaeb152486450d6c6dc50078e1644c4c6a}{GetLowestSupportedNote}();
+73         \hyperlink{class_a_t_i_1_1_slider_handler_a038a487fbd701cb786e77c210830be76}{mSliders}[0].maxValue = (float)( \hyperlink{class_a_t_i_1_1_slider_handler_a5d19b4fb92b71c25a667defdda60213f}{mVIM}.\hyperlink{group___v_i_m_pub_func_ga586d5ed5b0fe832d66c9a99aa160ceee}{GetHighestSupportedNote}() -
+       \hyperlink{class_a_t_i_1_1_slider_handler_a5d19b4fb92b71c25a667defdda60213f}{mVIM}.\hyperlink{group___v_i_m_pub_func_ga3d6c823b1c1083eac8202f6c89e60b48}{GetNumActiveNotes}() + 1 );
+74         \hyperlink{class_a_t_i_1_1_slider_handler_a038a487fbd701cb786e77c210830be76}{mSliders}[0].value = (float)\hyperlink{class_a_t_i_1_1_slider_handler_a5d19b4fb92b71c25a667defdda60213f}{mVIM}.\hyperlink{group___v_i_m_pub_func_ga09bfbd0756fc8110c877e5b59c104bcd}{GetLowestActiveNote}();
+75 
+76 
+77 
+78         \textcolor{comment}{// Update the slider text.}
+79         \textcolor{comment}{// Set the text.}
+80         gameObject.transform.GetChild( 3 ).GetComponent<Text>().text = \textcolor{stringliteral}{"Range: "} + 
+      \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( (\textcolor{keywordtype}{int})\hyperlink{class_a_t_i_1_1_slider_handler_a038a487fbd701cb786e77c210830be76}{mSliders}[0].value )
+81             + \textcolor{stringliteral}{" to "} + \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( (\textcolor{keywordtype}{int})mSliders[0].value + 
+      \hyperlink{class_a_t_i_1_1_slider_handler_a5d19b4fb92b71c25a667defdda60213f}{mVIM}.\hyperlink{group___v_i_m_pub_func_ga3d6c823b1c1083eac8202f6c89e60b48}{GetNumActiveNotes}() - 1 );
+82     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i___note_range_selection_handler_a87e90cac12626a0cb547d6e40c6e8260}\label{class_a_t_i___note_range_selection_handler_a87e90cac12626a0cb547d6e40c6e8260}} 
+\index{A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler@{A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler}!Handle\+Note\+Range\+Change@{Handle\+Note\+Range\+Change}}
+\index{Handle\+Note\+Range\+Change@{Handle\+Note\+Range\+Change}!A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler@{A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler}}
+\subsubsection{\texorpdfstring{Handle\+Note\+Range\+Change()}{HandleNoteRangeChange()}}
+{\footnotesize\ttfamily override void A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler.\+Handle\+Note\+Range\+Change (\begin{DoxyParamCaption}\item[{bool}]{a\+End\+Drag }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{class_a_t_i_1_1_slider_handler_a4d3915be92feddd4c45027a71c3a338c}{A\+T\+I.\+Slider\+Handler}.
+
+
+
+Definition at line 56 of file A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler.\+cs.
+
+
+
+References Virtual\+Instrument\+Manager.\+Change\+Note\+Range, Virtual\+Instrument\+Manager.\+Get\+Num\+Active\+Notes(), A\+T\+I.\+Slider\+Handler.\+m\+Sliders, A\+T\+I.\+Slider\+Handler.\+m\+V\+IM, and Music.\+Note\+To\+String().
+
+
+\begin{DoxyCode}
+57     \{
+58         \textcolor{comment}{// Set the text.}
+59         gameObject.transform.GetChild( 3 ).GetComponent<Text>().text = \textcolor{stringliteral}{"Range: "} + 
+      \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( (\textcolor{keywordtype}{int})\hyperlink{class_a_t_i_1_1_slider_handler_a038a487fbd701cb786e77c210830be76}{mSliders}[0].value )
+60             + \textcolor{stringliteral}{" to "} + \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( (\textcolor{keywordtype}{int})mSliders[0].value + 
+      \hyperlink{class_a_t_i_1_1_slider_handler_a5d19b4fb92b71c25a667defdda60213f}{mVIM}.\hyperlink{group___v_i_m_pub_func_ga3d6c823b1c1083eac8202f6c89e60b48}{GetNumActiveNotes}() - 1 );
+61 
+62         \textcolor{comment}{// If the value has been set, then invoke the virtual instrument manager's ChangeNoteRange event.}
+63         \textcolor{keywordflow}{if}( aEndDrag )
+64         \{
+65             \hyperlink{class_a_t_i_1_1_slider_handler_a5d19b4fb92b71c25a667defdda60213f}{mVIM}.\hyperlink{group___v_i_m_events_gab6fa99d08e8466406835b9fc4ff859f1}{ChangeNoteRange}.Invoke( (\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH})mSliders[0].value );
+66         \}
+67     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i___note_range_selection_handler_a0840b64bb232377676cdb9cef62349f4}\label{class_a_t_i___note_range_selection_handler_a0840b64bb232377676cdb9cef62349f4}} 
+\index{A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler@{A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler}!Start@{Start}}
+\index{Start@{Start}!A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler@{A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler}}
+\subsubsection{\texorpdfstring{Start()}{Start()}}
+{\footnotesize\ttfamily new void A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler.\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 23 of file A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler.\+cs.
+
+
+
+References Handle\+Instrument\+Loaded(), Virtual\+Instrument\+Manager.\+Instrument\+Loaded, A\+T\+I.\+Slider\+Handler.\+m\+Sliders, A\+T\+I.\+Slider\+Handler.\+m\+V\+IM, and A\+T\+I.\+Slider\+Trigger.\+Set\+Handler().
+
+
+\begin{DoxyCode}
+24     \{
+25 
+26 \textcolor{preprocessor}{#if DEBUG && DEBUG\_MUSICAL\_TYPING}
+27 
+28         \textcolor{comment}{// Call the base start function.}
+29         base.Start();
+30 
+31         \textcolor{comment}{// Get the slider and set up its trigger}
+32         \hyperlink{class_a_t_i}{ATI}.\hyperlink{class_a_t_i_1_1_slider_trigger}{SliderTrigger} st = null;
+33         \hyperlink{class_a_t_i_1_1_slider_handler_a038a487fbd701cb786e77c210830be76}{mSliders} = \textcolor{keyword}{new} Slider[1];
+34         \hyperlink{class_a_t_i_1_1_slider_handler_a038a487fbd701cb786e77c210830be76}{mSliders}[0] = gameObject.transform.GetComponent<Slider>();
+35         st = \hyperlink{class_a_t_i_1_1_slider_handler_a038a487fbd701cb786e77c210830be76}{mSliders}[0].gameObject.AddComponent<\hyperlink{class_a_t_i}{ATI}.\hyperlink{class_a_t_i_1_1_slider_trigger}{SliderTrigger}>();
+36         st.\hyperlink{class_a_t_i_1_1_slider_trigger_a258f79d013266d0c82a5382525adcdef}{SetHandler}( \textcolor{keyword}{this} );
+37         st.SetType( \hyperlink{class_a_t_i}{ATI}.\hyperlink{class_a_t_i_ac4c6056a99cbd16ff0d292d33b038b9b}{SliderType}.NoteRange );
+38 
+39         \hyperlink{class_a_t_i_1_1_slider_handler_a5d19b4fb92b71c25a667defdda60213f}{mVIM}.\hyperlink{group___v_i_m_events_gad79b789b020d7e4a8c149ec653c0b97f}{InstrumentLoaded}.AddListener( 
+      \hyperlink{class_a_t_i___note_range_selection_handler_a4063aee2ca06e3fbe11f4cd899b5581f}{HandleInstrumentLoaded} );
+40 \textcolor{preprocessor}{#endif}
+41 
+42     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i___note_range_selection_handler_ad1368483644433a2e1149790664676e8}\label{class_a_t_i___note_range_selection_handler_ad1368483644433a2e1149790664676e8}} 
+\index{A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler@{A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler}!Update@{Update}}
+\index{Update@{Update}!A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler@{A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler}}
+\subsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily void A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler.\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 45 of file A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler.\+cs.
+
+
+\begin{DoxyCode}
+46     \{
+47 
+48     \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Documents/\+School Documents/2017\+Spring/\+E\+E\+C\+S542/\+V\+R\+Piano\+Project/\+Assets/\+Scripts/\+Audio/\+Testing/\hyperlink{_a_t_i___note_range_selection_handler_8cs}{A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler.\+cs}\end{DoxyCompactItemize}

@@ -1,0 +1,108 @@
+\hypertarget{group___doc_a_t_i_buttons}{}\section{Buttons}
+\label{group___doc_a_t_i_buttons}\index{Buttons@{Buttons}}
+
+
+Handler for buttons on the Audio Testing Interface.  
+
+
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___a_t_i_buttons_priv_var}{Private Variables}
+\item 
+\hyperlink{group___a_t_i_buttons_unity}{Unity Functions}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Handler for buttons on the Audio Testing Interface. 
+
+\hypertarget{group___doc_a_t_i_buttons_DocATIButtonsPrivVar}{}\subsection{Private Variables}\label{group___doc_a_t_i_buttons_DocATIButtonsPrivVar}
+These are references to the buttons. ~\newline
+ \hyperlink{group___a_t_i_buttons_priv_var}{More details}.\hypertarget{group___doc_a_t_i_buttons_DocATIButtonsUnity}{}\subsection{Unity Functions}\label{group___doc_a_t_i_buttons_DocATIButtonsUnity}
+These are functions automatically called by Unity. ~\newline
+ \hyperlink{group___a_t_i_buttons_unity}{More details}.\hypertarget{group___doc_a_t_i_buttons_DocATIButtonsHandlers}{}\subsection{Event Handlers}\label{group___doc_a_t_i_buttons_DocATIButtonsHandlers}
+These are functions used by \hyperlink{class_a_t_i___buttons}{A\+T\+I\+\_\+\+Buttons} to handle the buttons being clicked. ~\newline
+ \hyperlink{group___a_t_i_buttons_handlers}{More details}.\hypertarget{group___doc_a_t_i_buttons_DocATIButtonsCode}{}\subsection{Code}\label{group___doc_a_t_i_buttons_DocATIButtonsCode}
+
+\begin{DoxyCodeInclude}
+1 \textcolor{keyword}{using} \hyperlink{namespace_system}{System}.Collections;
+2 \textcolor{keyword}{using} \hyperlink{namespace_system}{System}.Collections.Generic;
+3 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine};
+4 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine}.Assertions;
+5 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine}.SceneManagement;
+6 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine}.UI;
+7 \textcolor{comment}{}
+8 \textcolor{comment}{/**}
+9 \textcolor{comment}{ * @class ATI\_Buttons}
+10 \textcolor{comment}{ * @brief Handler for buttons on the Audio Testing Interface.}
+11 \textcolor{comment}{*/}
+12 \textcolor{keyword}{public} \textcolor{keyword}{class }\hyperlink{class_a_t_i___buttons}{ATI\_Buttons} : MonoBehaviour
+13 \{
+14 
+15     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+16 \textcolor{comment}{    * @defgroup ATIButtonsPrivVar Private Variables}
+17 \textcolor{comment}{    * @ingroup DocATIButtons}
+18 \textcolor{comment}{    * These are references to the buttons.}
+19 \textcolor{comment}{    * @\{}
+20 \textcolor{comment}{    ****************************************************************************/}
+21     \textcolor{keyword}{private} Button      mLoadSongCreationButton = null; \textcolor{comment}{//!< The button that loads the song creation
+       interface when clicked.}
+22 \textcolor{comment}{}    \textcolor{keyword}{private} Button      mLoadKeyboardSceneButton = null; \textcolor{comment}{//!< The button that loads the keyboard scene.}
+23 \textcolor{comment}{}
+24     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+25 \textcolor{comment}{    * @\}}
+26 \textcolor{comment}{    * @defgroup ATIButtonsUnity Unity Functions}
+27 \textcolor{comment}{    * @ingroup DocATIButtons}
+28 \textcolor{comment}{    * These are functions automatically called by Unity.}
+29 \textcolor{comment}{    * @\{}
+30 \textcolor{comment}{    ****************************************************************************/}
+31 \textcolor{comment}{}
+32 \textcolor{comment}{    /**}
+33 \textcolor{comment}{     * @brief Gets references to the buttons and adds their listeners. Called when the object is created.}
+34 \textcolor{comment}{    */}
+35     \textcolor{keywordtype}{void} \hyperlink{group___a_t_i_buttons_unity_gaa24ae34a40539dab6595d1713fc77560}{Awake}()
+36     \{
+37         \textcolor{comment}{// Get the buttons.}
+38         mLoadSongCreationButton = transform.GetChild( 0 ).GetComponent<Button>();
+39         Assert.IsNotNull( mLoadSongCreationButton, \textcolor{stringliteral}{"Could not find the button to load the Song Creation
+       Interface!"} );
+40 
+41         mLoadKeyboardSceneButton = transform.GetChild( 1 ).GetComponent<Button>();
+42         Assert.IsNotNull( mLoadKeyboardSceneButton, \textcolor{stringliteral}{"Could not find the button to load the Keyboard scene!"}
+       );
+43 
+44         \textcolor{comment}{// Add the listeners.}
+45         mLoadSongCreationButton.onClick.AddListener( 
+      \hyperlink{group___a_t_i_buttons_unity_ga6f6e66c53a80c3bcd9b7e7238a3b82fd}{OnLoadSongCreationButtonClicked} );
+46         mLoadKeyboardSceneButton.onClick.AddListener( 
+      \hyperlink{group___a_t_i_buttons_unity_ga1b9e9b75184e9e26309cc14bda37ad8a}{OnLoadKeyboardSceneButtonClicked} );
+47     \}
+48 
+49     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+50 \textcolor{comment}{    * @\{}
+51 \textcolor{comment}{    * @defgroup ATIButtonsHandlers Event Handlers}
+52 \textcolor{comment}{    * @ingroup DocATIButtons}
+53 \textcolor{comment}{    * These are functions used by ATI\_Buttons to handle the buttons being clicked.}
+54 \textcolor{comment}{    * @\}}
+55 \textcolor{comment}{    ****************************************************************************/}
+56 \textcolor{comment}{}
+57 \textcolor{comment}{    /**}
+58 \textcolor{comment}{    * @brief Loads the song creation interface scene.}
+59 \textcolor{comment}{    */}
+60     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{group___a_t_i_buttons_unity_ga1b9e9b75184e9e26309cc14bda37ad8a}{OnLoadKeyboardSceneButtonClicked}()
+61     \{
+62         SceneManager.LoadScene( \textcolor{stringliteral}{"KeyboardScene"}, LoadSceneMode.Single );
+63     \}
+64 \textcolor{comment}{}
+65 \textcolor{comment}{    /**}
+66 \textcolor{comment}{     * @brief Loads the song creation interface scene.}
+67 \textcolor{comment}{    */}
+68     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{group___a_t_i_buttons_unity_ga6f6e66c53a80c3bcd9b7e7238a3b82fd}{OnLoadSongCreationButtonClicked}()
+69     \{
+70         SceneManager.LoadScene( \textcolor{stringliteral}{"SongCreationInterfaceScene"}, LoadSceneMode.Additive );
+71     \}\textcolor{comment}{}
+72 \textcolor{comment}{    /** @\} */}
+73 \}
+\end{DoxyCodeInclude}
+ 

@@ -1,0 +1,818 @@
+\hypertarget{group___v_i_base}{}\section{Virtual\+Instrument}
+\label{group___v_i_base}\index{Virtual\+Instrument@{Virtual\+Instrument}}
+
+
+The base class that all types of \hyperlink{group___v_i}{Virtual Instruments} implement.  
+
+
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___v_i_base_const}{Constants}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The base class that all types of \hyperlink{group___v_i}{Virtual Instruments} implement. 
+
+\hypertarget{group___v_i_base_DocVIBaseInfo}{}\subsection{Information}\label{group___v_i_base_DocVIBaseInfo}
+The base \hyperlink{class_virtual_instrument}{Virtual\+Instrument} class performs tasks such as retrieving raw audio data from wav files and note mapping. This is a C\# class rather than a Unity-\/specific class, so it is not attached to any Game\+Object itself. This is because it should only interact with the \hyperlink{group___v_i_m}{Virtual Instrument Manager}, and other classes should go through the \hyperlink{group___v_i_m}{manager} to get information about the instrument. This hiding of information is done for ease of using the audio code with other parts of the program by making all interactions with the audio go through a common hub.
+
+~\newline
+ This class is meant to be the base class for implementing specific instruments. It is not meant to be used by itself as anything other than a container that is checked at runtime. Also, every \hyperlink{group___v_i}{Virtual Instrument} is meant to be used as-\/is, so there is no modification that can be done on this class by other classes that do not inherit it.\hypertarget{group___v_i_base_DocVIBaseConst}{}\subsection{Constants}\label{group___v_i_base_DocVIBaseConst}
+Constants used in order to set attributes of the \hyperlink{group___v_i}{Virtual Instrument}. ~\newline
+ \hyperlink{group___v_i_base_const}{More details}.\hypertarget{group___v_i_base_DocVIBaseProVar}{}\subsection{Protected Variables}\label{group___v_i_base_DocVIBaseProVar}
+Variables that will be implemented by subclasses. ~\newline
+ \hyperlink{group___v_i_base_pro_var}{More details}.\hypertarget{group___v_i_base_DocVIBaseConstruct}{}\subsection{Constructors}\label{group___v_i_base_DocVIBaseConstruct}
+Constructors to create the \hyperlink{class_virtual_instrument}{Virtual Instrument}. ~\newline
+ \hyperlink{group___v_i_base_construct}{More details}.\hypertarget{group___v_i_base_DocVIBasePubFunc}{}\subsection{Public Functions}\label{group___v_i_base_DocVIBasePubFunc}
+Functions for other classes (usually the \hyperlink{group___v_i_m}{parent manager}) to get values from the instrument. ~\newline
+ \hyperlink{group___v_i_base_pub_func}{More details}.\hypertarget{group___v_i_base_DocVIBaseProFunc}{}\subsection{Protected Functions}\label{group___v_i_base_DocVIBaseProFunc}
+Functions that are used by the subclasses. ~\newline
+ \hyperlink{group___v_i_base_pro_func}{More details}.\hypertarget{group___v_i_base_DocVIBasePrivFunc}{}\subsection{Private Functions}\label{group___v_i_base_DocVIBasePrivFunc}
+Functions common to all types of instruments. ~\newline
+ \hyperlink{group___v_i_base_priv_func}{More details}.\hypertarget{group___v_i_base_DocVIBaseVirtFunc}{}\subsection{Pure Virtual Functions}\label{group___v_i_base_DocVIBaseVirtFunc}
+Functions that subclasses are required to implement. ~\newline
+ \hyperlink{group___v_i_base_virt_func}{More details}.\hypertarget{group___v_i_base_DocVICode}{}\subsection{Code}\label{group___v_i_base_DocVICode}
+
+\begin{DoxyCodeInclude}
+1 \textcolor{keyword}{using} \hyperlink{namespace_system}{System};
+2 \textcolor{keyword}{using} \hyperlink{namespace_system}{System}.Collections;
+3 \textcolor{keyword}{using} \hyperlink{namespace_system}{System}.Collections.Generic;
+4 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine};
+5 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine}.Assertions;
+6 \textcolor{comment}{}
+7 \textcolor{comment}{/**}
+8 \textcolor{comment}{ * @class VirtualInstrument}
+9 \textcolor{comment}{ * @brief A base class that contains generic functions and values relating to @link VI Virtual
+       Instruments@endlink.}
+10 \textcolor{comment}{ * }
+11 \textcolor{comment}{ * The base VirtualInstrument class performs tasks such as retrieving raw audio data from }
+12 \textcolor{comment}{ * wav files and note mapping. This is a C# class rather than a Unity-specific class, so it}
+13 \textcolor{comment}{ * is not attached to any GameObject itself. This is because it should only interact with the}
+14 \textcolor{comment}{ * @link VIM Virtual Instrument Manager@endlink, and other classes should go through the }
+15 \textcolor{comment}{ * @link VIM manager@endlink to get information about the instrument. This hiding of information}
+16 \textcolor{comment}{ * is done for ease of using the audio code with other parts of the program by making all interactions}
+17 \textcolor{comment}{ * with the audio go through a common hub.}
+18 \textcolor{comment}{ * }
+19 \textcolor{comment}{ * @n This class is meant to be the base class for implementing specific instruments. It is not}
+20 \textcolor{comment}{ * meant to be used by itself as anything other than a container that is checked at runtime.}
+21 \textcolor{comment}{ * Also, every @link VI Virtual Instrument@endlink is meant to be used as-is, so there }
+22 \textcolor{comment}{ * is no modification that can be done on this class by other classes that do not inherit it.}
+23 \textcolor{comment}{ * }
+24 \textcolor{comment}{ * @nosubgrouping}
+25 \textcolor{comment}{ */}
+26 \textcolor{keyword}{public} \textcolor{keyword}{class }\hyperlink{class_virtual_instrument}{VirtualInstrument}
+27 \{
+28     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+29 \textcolor{comment}{     * @defgroup VIBaseConst Constants}
+30 \textcolor{comment}{     * @ingroup VIBase}
+31 \textcolor{comment}{     * Constants used in order to set attributes of the @link VI Virtual Instrument@endlink.}
+32 \textcolor{comment}{     * @\{}
+33 \textcolor{comment}{    *****************************************************************************/}
+34     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{float} SAMPLE\_INTERVAL = 1.1337e-5f; \textcolor{comment}{//!< The number of seconds between waveform samples.}
+35 \textcolor{comment}{}    \textcolor{keyword}{private} \textcolor{keyword}{const} \textcolor{keywordtype}{float} NORMALIZED\_PEAK = -.1f; \textcolor{comment}{//!< The peak of the waveform after it's normalized.}
+36 \textcolor{comment}{}
+37     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+38 \textcolor{comment}{     * @defgroup VIBaseProVar Protected Variables}
+39 \textcolor{comment}{     * @ingroup VIBase}
+40 \textcolor{comment}{     * Variables that will be implemented by subclasses.}
+41 \textcolor{comment}{     * @\{}
+42 \textcolor{comment}{    *****************************************************************************/}
+43     \textcolor{keyword}{protected} \textcolor{keywordtype}{bool}                               \hyperlink{group___v_i_base_pro_var_ga47dbd8aa02ab32b8f802adfd2d3d81de}{mIsDrum}; \textcolor{comment}{//!< Whether or not the virtual instrument
+       is a @link DrumKit drum kit@endlink. }
+44 \textcolor{comment}{}    \textcolor{keyword}{protected} \textcolor{keywordtype}{bool}                               \hyperlink{group___v_i_base_pro_var_ga8978807d1878db5aae91fbd057c46097}{mLoaded}; \textcolor{comment}{//!< Whether or not the virtual instrument
+       is loaded.}
+45 \textcolor{comment}{}    \textcolor{keyword}{protected} \textcolor{keywordtype}{float}                              \hyperlink{group___v_i_base_pro_var_ga20c1d3d25ea666378d72c833d160ae2e}{mSampleInterval}; \textcolor{comment}{//!< The waveform sample
+       interval of the virtual instrument}
+46 \textcolor{comment}{}    \textcolor{keyword}{protected} \textcolor{keywordtype}{float}[][][]                        \hyperlink{group___v_i_base_pro_var_ga52e76d9b74408660584676035a92a2c6}{mAudioData}; \textcolor{comment}{//!< The waveform samples of the
+       virtual instrument. The indices are mapped according to [@link DefBID BuiltInDynamicsIndex@endlink][@link
+       Music::PITCH Pitch@endlink][WaveformSample].}
+47 \textcolor{comment}{}    \textcolor{keyword}{protected} \textcolor{keywordtype}{int}                                \hyperlink{group___v_i_base_pro_var_ga9a602db8c9833ce75d95dd453c27d341}{mNumFiles}; \textcolor{comment}{//!< The number of sample files}
+48 \textcolor{comment}{}    \textcolor{keyword}{protected} \textcolor{keywordtype}{int}                                \hyperlink{group___v_i_base_pro_var_gac265f64f759d267ee1e1680f8d387011}{mNumBuiltInDynamics}; \textcolor{comment}{//!< The number of
+       @link DefBID Built-in Dynamics@endlink.}
+49 \textcolor{comment}{}    \textcolor{keyword}{protected} \textcolor{keywordtype}{int}                                \hyperlink{group___v_i_base_pro_var_gafc759a16324cf9b3f230bcbf040afcd2}{mNumSupportedPitches}; \textcolor{comment}{//!< The number
+       of @link Music::PITCH pitches@endlink supported by the instrument.}
+50 \textcolor{comment}{}    \textcolor{keyword}{protected} \textcolor{keywordtype}{int}                                \hyperlink{group___v_i_base_pro_var_ga80b3d2ff29b27698eea6bcf2f8ddc5d7}{mSampleRate}; \textcolor{comment}{//!< The sample rate of the
+       virtual instrument}
+51 \textcolor{comment}{}    \textcolor{keyword}{protected} \textcolor{keywordtype}{int}[]                              \hyperlink{group___v_i_base_pro_var_gae3db4264dc2a96e99ea680c6d637e6bf}{mBuiltInDynamicsThresholds}; \textcolor{comment}{//!<
+       The @link DefBIDThresh thresholds@endlink for when to use a specific sound file}
+52 \textcolor{comment}{}    \textcolor{keyword}{protected} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}                        \hyperlink{group___v_i_base_pro_var_ga3cae52b1bcc0178a8a6b03c7aaf7aac8}{mLowestSupportedPitch}; \textcolor{comment}{//!<
+       The lowest supported @link Music::PITCH pitch@endlink of the instrument}
+53 \textcolor{comment}{}    \textcolor{keyword}{protected} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}                        
+      \hyperlink{group___v_i_base_pro_var_ga61fb2c33b53a0f663047779d7ceb18f3}{mHighestSupportedPitch}; \textcolor{comment}{//!< The highest supported @link Music::PITCH pitch@endlink
+       of the instrument}
+54 \textcolor{comment}{}    \textcolor{keyword}{protected} \textcolor{keywordtype}{string}                             \hyperlink{group___v_i_base_pro_var_gac428224be859933d720a9c533fdb5643}{mFilepath}; \textcolor{comment}{//!< The base filepath for the
+       samples.}
+55 \textcolor{comment}{}    \textcolor{keyword}{protected} \textcolor{keywordtype}{string}[]                           \hyperlink{group___v_i_base_pro_var_gab2add474ca506357688b5dd08cac4cb5}{mFilenames}; \textcolor{comment}{//!< An array of filenames for the
+       samples.}
+56 \textcolor{comment}{}    \textcolor{keyword}{protected} \textcolor{keywordtype}{string}[]                           \hyperlink{group___v_i_base_pro_var_ga87961e72f25fbc2256b614a394aa6f13}{mBuiltInDynamics}; \textcolor{comment}{//!< The names of the
+       @link DefBID Built-In Dynamics@endlink.}
+57 \textcolor{comment}{}    \textcolor{keyword}{protected} \hyperlink{class_virtual_instrument_manager}{VirtualInstrumentManager}           \hyperlink{group___v_i_base_pro_var_gae4a87a656d9448cfea28215a6b9c3840}{mParent}; \textcolor{comment}{//!< The @link VIM
+       manager@endlink for this instrument}
+58 \textcolor{comment}{}
+59     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+60 \textcolor{comment}{     * @\}}
+61 \textcolor{comment}{     * @defgroup VIBaseConstruct Constructors}
+62 \textcolor{comment}{     * @ingroup VIBase}
+63 \textcolor{comment}{     * Constructors to create the @link VirtualInstrument Virtual Instrument@endlink.}
+64 \textcolor{comment}{     * @\{}
+65 \textcolor{comment}{    *****************************************************************************/}
+66 \textcolor{comment}{}
+67 \textcolor{comment}{    /**}
+68 \textcolor{comment}{     * @brief Generic constructor. Sets default values and values that are common to all @link VI Virtual
+       Instruments@endlink. }
+69 \textcolor{comment}{     * @param[in] aParent The parent @link VIM manager@endlink for this instrument.}
+70 \textcolor{comment}{     *  }
+71 \textcolor{comment}{     * Specific @link VI Virtual Instruments@endlink (such as the Piano) have their own constructor that is
+       more}
+72 \textcolor{comment}{     * specialized, but this will be called for each child class as well. }
+73 \textcolor{comment}{     */}
+74     \textcolor{keyword}{public} \hyperlink{group___v_i_base_construct_ga7b438b5f812fa0d3a6e91d74a3c261c9}{VirtualInstrument}( \hyperlink{class_virtual_instrument_manager}{VirtualInstrumentManager} aParent )
+75     \{
+76         mParent = aParent;
+77     \}
+78 
+79     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+80 \textcolor{comment}{     * @\}}
+81 \textcolor{comment}{     * @defgroup VIBasePubFunc Public Functions}
+82 \textcolor{comment}{     * @ingroup VIBase}
+83 \textcolor{comment}{     * Functions for other classes (usually the @link VIM parent manager@endlink) to get values from the
+       instrument.}
+84 \textcolor{comment}{     * @\{}
+85 \textcolor{comment}{     ****************************************************************************/}
+86 \textcolor{comment}{}
+87 \textcolor{comment}{    /** }
+88 \textcolor{comment}{     * @brief Gets the index for which sound file to use for a @link Music::PITCH pitch@endlink at a given
+       @link DefVel velocity@endlink.}
+89 \textcolor{comment}{     * @param[in] aVelocity The given @link DefVel velocity@endlink from 0 (silent) to 100 (max volume).}
+90 \textcolor{comment}{     * @return The index of the sound file to use.}
+91 \textcolor{comment}{     * }
+92 \textcolor{comment}{     * For instruments with @link DefBID Built-In Dynamics@endlink (such as the Piano), this function takes
+       a @link DefVel velocity@endlink}
+93 \textcolor{comment}{     * and returns the index of the sound file to use for playing the sound. }
+94 \textcolor{comment}{     * If a function does not support @link DefBID Built-In Dynamics@endlink, this function returns 0.}
+95 \textcolor{comment}{     * }
+96 \textcolor{comment}{     * @see @link DefBIDThresh Built-In Dynamics Thresholds@endlink.}
+97 \textcolor{comment}{     *  */}
+98     \textcolor{keyword}{public} \textcolor{keywordtype}{int} \hyperlink{group___v_i_base_pub_func_gacddf07c08c3a8154a6934be22f539788}{GetBuiltInDynamicsThresholdIndex}( \textcolor{keywordtype}{int} aVelocity )
+99     \{
+100         \textcolor{comment}{// If there aren't any built-in dynamics, then just return 0.}
+101         \textcolor{keywordflow}{if}( mNumBuiltInDynamics == 0 )
+102         \{
+103             \textcolor{keywordflow}{return} 0;
+104         \}
+105         \textcolor{comment}{// If there are built-in dynamics, then start from the highest and work down to find}
+106         \textcolor{comment}{// which one to use. }
+107         \textcolor{keywordflow}{else}
+108         \{
+109             \textcolor{keywordtype}{int} dynamicsIndex = 0;
+110             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = mNumBuiltInDynamics - 1; i > -1; i-- )
+111             \{
+112                 \textcolor{keywordflow}{if}( aVelocity <= mBuiltInDynamicsThresholds[i] )
+113                 \{
+114                     dynamicsIndex = i;
+115                 \}
+116             \}
+117             \textcolor{keywordflow}{return} dynamicsIndex;
+118         \}
+119     \}
+120 \textcolor{comment}{}
+121 \textcolor{comment}{    /**}
+122 \textcolor{comment}{     * @brief Gets the ranges for which sound file to use for a @link DefVel velocity@endlink. }
+123 \textcolor{comment}{     * @return If the instrument supports @link DefBID Built-In Dynamics@endlink, then return its @link
+       DefBIDThresh thresholds@endlink. Return null otherwise.}
+124 \textcolor{comment}{     */}
+125     \textcolor{keyword}{public} \textcolor{keywordtype}{int}[] \hyperlink{group___v_i_base_pub_func_gac8fc20c49c1b97b6787ed1b3e0073a7f}{GetBuiltInDynamicsThresholds}()
+126     \{
+127         \textcolor{keywordflow}{return} \hyperlink{group___v_i_base_pro_var_gae3db4264dc2a96e99ea680c6d637e6bf}{mBuiltInDynamicsThresholds};
+128     \}
+129 
+130 \textcolor{comment}{}
+131 \textcolor{comment}{    /**}
+132 \textcolor{comment}{     * @brief Gets the factor by which a note's waveform is scaled in order to account for @link DefVel
+       velocity@endlink.}
+133 \textcolor{comment}{     * @param[in] aVelocity The @link DefVel velocity@endlink for the note from 0 (silent) to 100 (max
+       volume).}
+134 \textcolor{comment}{     * @return A float between 0.0 and 1.0 where 0.0 means that the waveform should be made silent and 1.0
+       means that it should be unaltered.}
+135 \textcolor{comment}{     * }
+136 \textcolor{comment}{     * Instruments without @link DefBID Built-In Dynamics@endlink just divide the given @link DefVel
+       velocity@endlink by 100, but instruments}
+137 \textcolor{comment}{     * with @link DefBID Built-in Dynamics@endlink map the factor to a ratio involving the @link
+       DefBIDThresh Built-In Dynamics thresholds@endlink}
+138 \textcolor{comment}{     * so that the volumes for @link DefVel velocities@endlink near a @link DefBIDThresh threshold@endlink
+       don't have significant differences.}
+139 \textcolor{comment}{     */}
+140     \textcolor{keyword}{public} \textcolor{keywordtype}{float} \hyperlink{group___v_i_base_pub_func_gae638c68bd0e79d0b99495be69e50f49d}{GetAdjustedVelocityFactor}( \textcolor{keywordtype}{int} aVelocity )
+141     \{
+142         \textcolor{keywordtype}{int} dynamicsIndex = 0;
+143         \textcolor{keywordtype}{float} velocityFactor = aVelocity / 100f;
+144 
+145         \textcolor{comment}{// Calculate the velocity multiplier. The multiplier is a percentage that is used to adjust the}
+146         \textcolor{comment}{// levels of the audio data to modify the output volume. }
+147         \textcolor{comment}{// If built-in dynamics are supported, then the velocity multiplier will range from the lower
+       threshold divided by the higher threshold to 1.0.}
+148         \textcolor{keywordflow}{if}( mNumBuiltInDynamics != 0 )
+149         \{
+150             \textcolor{comment}{// See which built-in dynamics value we need to use. Start at the top threshold and work down.}
+151             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = mNumBuiltInDynamics - 1; i > -1; i-- )
+152             \{
+153                 \textcolor{keywordflow}{if}( aVelocity <= mBuiltInDynamicsThresholds[i] )
+154                 \{
+155                     dynamicsIndex = i;
+156                 \}
+157             \}
+158             \textcolor{comment}{// Calculate the velocity factor.}
+159             \textcolor{keywordtype}{float} inEnd = (float)mBuiltInDynamicsThresholds[dynamicsIndex];
+160             \textcolor{keywordtype}{float} outEnd = 1f;
+161             \textcolor{keywordtype}{float} inStart = 0f;
+162             \textcolor{keywordtype}{float} outStart = 0f;
+163             \textcolor{keywordflow}{if}( dynamicsIndex != 0 )
+164             \{
+165                 inStart = (float)mBuiltInDynamicsThresholds[dynamicsIndex - 1];
+166                 outStart = (float)mBuiltInDynamicsThresholds[dynamicsIndex - 1] / (\textcolor{keywordtype}{float})
+      mBuiltInDynamicsThresholds[dynamicsIndex];
+167             \}
+168 
+169             velocityFactor = outStart + ( ( ( outEnd - outStart ) / ( inEnd - inStart ) ) * ( (\textcolor{keywordtype}{float})
+      aVelocity - inStart ) );
+170         \}
+171         \textcolor{comment}{// If built-in dynamics are not supported, then just use the given velocity as a percentage. }
+172         \textcolor{keywordflow}{return} velocityFactor;
+173     \}
+174 \textcolor{comment}{}
+175 \textcolor{comment}{    /**}
+176 \textcolor{comment}{     * @brief Gets the highest @link Music::PITCH pitch@endlink that this instrument can play.}
+177 \textcolor{comment}{     * @return The highest @link Music::PITCH pitch@endlink that this instrument can play.}
+178 \textcolor{comment}{     */}
+179     \textcolor{keyword}{public} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH} \hyperlink{group___v_i_base_pub_func_ga859f3e73b1d28051cecf0ecd1c8b10ee}{GetHighestSupportedPitch}()
+180     \{
+181         \textcolor{keywordflow}{return} \hyperlink{group___v_i_base_pro_var_ga61fb2c33b53a0f663047779d7ceb18f3}{mHighestSupportedPitch};
+182     \}
+183 \textcolor{comment}{}
+184 \textcolor{comment}{    /**}
+185 \textcolor{comment}{     * @brief Gets the lowest @link Music::PITCH pitch@endlink that this instrument can play.}
+186 \textcolor{comment}{     * @return The lowest @link Music::PITCH pitch@endlink supported by the instrument.}
+187 \textcolor{comment}{     */}
+188     \textcolor{keyword}{public} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH} \hyperlink{group___v_i_base_pub_func_gac42b3915bbfec60b83650abd701d0690}{GetLowestSupportedPitch}()
+189     \{
+190         \textcolor{keywordflow}{return} \hyperlink{group___v_i_base_pro_var_ga3cae52b1bcc0178a8a6b03c7aaf7aac8}{mLowestSupportedPitch};
+191     \}
+192 \textcolor{comment}{}
+193 \textcolor{comment}{    /**}
+194 \textcolor{comment}{     * @brief Gets the total number of @link Music::PITCH pitches@endlink that this instrument can play.}
+195 \textcolor{comment}{     * @return The total number of @link Music::PITCH pitches@endlink that the instrument can play.}
+196 \textcolor{comment}{     */}
+197     \textcolor{keyword}{public} \textcolor{keywordtype}{int} \hyperlink{group___v_i_base_pub_func_ga6ce5a7b3406269ea433be721d7d11177}{GetNumOfSupportedPitches}()
+198     \{
+199         \textcolor{keywordflow}{return} \hyperlink{group___v_i_base_pro_var_gafc759a16324cf9b3f230bcbf040afcd2}{mNumSupportedPitches};
+200     \}
+201 \textcolor{comment}{}
+202 \textcolor{comment}{    /** }
+203 \textcolor{comment}{     * @brief Gets the raw audio data of each built-in dynamics value for a given @link Music::PITCH
+       pitch@endlink. }
+204 \textcolor{comment}{     * @param[in] aPitch The @link Music::PITCH pitch@endlink for which the data is retrieved.}
+205 \textcolor{comment}{     * @return a 2-D array of floats where the indices correspond to [@link DefBID
+       BuiltInDynamicsIndex@endlink][WaveformSample]. }
+206 \textcolor{comment}{     * }
+207 \textcolor{comment}{     * The array is retrived by mapping the given @link Music::PITCH pitch@endlink to the second index of
+       the mAudioData member.}
+208 \textcolor{comment}{     */}
+209     \textcolor{keyword}{public} \textcolor{keywordtype}{float}[][] \hyperlink{group___v_i_base_pub_func_gaf715f7c3bbd2f1a2fa543b2f0684f8a6}{GetAudioDataForPitch}( \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH} aPitch )
+210     \{
+211         Assert.IsTrue( (\textcolor{keywordtype}{int})aPitch >= (\textcolor{keywordtype}{int})\hyperlink{group___v_i_base_pro_var_ga3cae52b1bcc0178a8a6b03c7aaf7aac8}{mLowestSupportedPitch} && (\textcolor{keywordtype}{int})aPitch <= (\textcolor{keywordtype}{
+      int})mHighestSupportedPitch,
+212             \textcolor{stringliteral}{"Tried to load the audio data for the note "} + \hyperlink{class_music}{Music}.
+      \hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( aPitch ) + \textcolor{stringliteral}{" which is not a note that is supported by this instrument!"} );
+213         Assert.IsNotNull( mAudioData, \textcolor{stringliteral}{"Tried to get data from a non-loaded virtual instrument!"} );
+214 
+215         \textcolor{comment}{// If we need to load the clip, then load it.}
+216         \textcolor{keywordflow}{if}( mAudioData[0][(\textcolor{keywordtype}{int})aPitch] == null )
+217         \{
+218             \hyperlink{group___v_i_base_pro_func_gadbd95083895b09465fbc5b18115a1dbc}{LoadAudioClipForPitch}( aPitch );
+219         \}
+220 
+221         \textcolor{comment}{// Declare the returned array.}
+222         \textcolor{keywordtype}{float}[][] data = null;
+223 
+224         \textcolor{comment}{// If there aren't any built-in dynamics, then use a hard-coded index and copy the data to the
+       array from the audio clip.}
+225         \textcolor{keywordflow}{if}( mNumBuiltInDynamics == 0 )
+226         \{
+227             data = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[1][];
+228             \textcolor{keywordtype}{int} dataLength = mAudioData[0][(int)aPitch].Length;
+229             data[0] = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[dataLength];
+230             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < dataLength; i++ )
+231             \{
+232                 data[0][i] = mAudioData[0][(int)aPitch][i];
+233             \}
+234         \}
+235         \textcolor{comment}{// If there are built-in dynamics, then get the data from the audio clips for each corresponding
+       file.}
+236         \textcolor{keywordflow}{else}
+237         \{
+238             data = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[\hyperlink{group___v_i_base_pro_var_gac265f64f759d267ee1e1680f8d387011}{mNumBuiltInDynamics}][];
+239             \textcolor{keywordtype}{int} dataLength = 0;
+240             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < \hyperlink{group___v_i_base_pro_var_gac265f64f759d267ee1e1680f8d387011}{mNumBuiltInDynamics}; i++ )
+241             \{
+242                 dataLength = mAudioData[i][(int)aPitch].Length;
+243                 data[i] = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[dataLength];
+244                 \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} j = 0; j < dataLength; j++ )
+245                 \{
+246                     data[i][j] = mAudioData[i][(int)aPitch][j];
+247                 \}
+248             \}
+249         \}
+250 
+251         \textcolor{keywordflow}{return} data;
+252     \}
+253 \textcolor{comment}{}
+254 \textcolor{comment}{    /**}
+255 \textcolor{comment}{     * @brief Gets the time interval between waveform samples for this instrument}
+256 \textcolor{comment}{     * @return The time interval between waveform samples for this instrument}
+257 \textcolor{comment}{     */}
+258     \textcolor{keyword}{public} \textcolor{keywordtype}{float} \hyperlink{group___v_i_base_pub_func_gabea22c3ab14c6989b9357da0bf052fbc}{GetSampleInterval}()
+259     \{
+260         \textcolor{keywordflow}{return} \hyperlink{group___v_i_base_pro_var_ga20c1d3d25ea666378d72c833d160ae2e}{mSampleInterval};
+261     \}
+262 \textcolor{comment}{}
+263 \textcolor{comment}{    /**}
+264 \textcolor{comment}{     * @brief Gets the sample rate for the wav files used to create the instrument.}
+265 \textcolor{comment}{     * @return The sample rate of the wav files used to create the instrument.}
+266 \textcolor{comment}{     */}
+267     \textcolor{keyword}{public} \textcolor{keywordtype}{int} \hyperlink{group___v_i_base_pub_func_ga8be9d452abaf025dc7270c36b3cf379a}{GetSampleRate}()
+268     \{
+269         \textcolor{keywordflow}{return} \hyperlink{group___v_i_base_pro_var_ga80b3d2ff29b27698eea6bcf2f8ddc5d7}{mSampleRate};
+270     \}
+271 \textcolor{comment}{}
+272 \textcolor{comment}{    /**}
+273 \textcolor{comment}{     * @brief Gets whether or not the instrument has loaded.}
+274 \textcolor{comment}{     * @return True if the instrument has loaded. False otherwise.}
+275 \textcolor{comment}{     */}
+276     \textcolor{keyword}{public} \textcolor{keywordtype}{bool} \hyperlink{group___v_i_base_pub_func_gae8b5ac2e3402dfc50ea43f0e91fd9a29}{IsLoaded}()
+277     \{
+278         \textcolor{keywordflow}{return} \hyperlink{group___v_i_base_pro_var_ga8978807d1878db5aae91fbd057c46097}{mLoaded};
+279     \}
+280 \textcolor{comment}{}
+281 \textcolor{comment}{    /**}
+282 \textcolor{comment}{     * @brief Gets whether or not the instrument can play a specific @link Music::PITCH pitch@endlink.}
+283 \textcolor{comment}{     * @param[in] aPitch The @link Music::PITCH pitch@endlink that is being checked.}
+284 \textcolor{comment}{     * @return True if the @link Music::PITCH pitch@endlink can be played by the instrument. False
+       otherwise.}
+285 \textcolor{comment}{     */}
+286     \textcolor{keyword}{public} \textcolor{keywordtype}{bool} \hyperlink{group___v_i_base_pub_func_ga89655451c108a7ad5cb96ab308e33937}{IsPitchSupported}( \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH} aPitch )
+287     \{
+288         \textcolor{keywordflow}{return} ( (\textcolor{keywordtype}{int})aPitch >= (\textcolor{keywordtype}{int})\hyperlink{group___v_i_base_pro_var_ga3cae52b1bcc0178a8a6b03c7aaf7aac8}{mLowestSupportedPitch} && (\textcolor{keywordtype}{int})aPitch <= (\textcolor{keywordtype}{int})
+      mHighestSupportedPitch );
+289     \}
+290 
+291     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+292 \textcolor{comment}{     * @\}}
+293 \textcolor{comment}{     * @defgroup VIBaseProFunc Protected Functions}
+294 \textcolor{comment}{     * @ingroup VIBase}
+295 \textcolor{comment}{     * Functions that are used by the subclasses.}
+296 \textcolor{comment}{     * @\{}
+297 \textcolor{comment}{     ****************************************************************************/}
+298 
+299 \textcolor{comment}{}
+300 \textcolor{comment}{    /** }
+301 \textcolor{comment}{     * @brief Loads all the audio clips associated with a pitch.}
+302 \textcolor{comment}{     * @param[in] aPitch The pitch to load the audio clips for.}
+303 \textcolor{comment}{    */}   
+304     \textcolor{keyword}{protected} \textcolor{keywordtype}{void} \hyperlink{group___v_i_base_pro_func_gadbd95083895b09465fbc5b18115a1dbc}{LoadAudioClipForPitch}( \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH} aPitch )
+305     \{
+306         Assert.IsTrue( aPitch >= \hyperlink{group___v_i_base_pro_var_ga3cae52b1bcc0178a8a6b03c7aaf7aac8}{mLowestSupportedPitch} && aPitch <= 
+      mHighestSupportedPitch,
+307             \textcolor{stringliteral}{"Tried to load the pitch "} + \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( aPitch ) + \textcolor{stringliteral}{", but that's out
+       of the instrument's range from "} +
+308             \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( \hyperlink{group___v_i_base_pro_var_ga3cae52b1bcc0178a8a6b03c7aaf7aac8}{mLowestSupportedPitch} ) + \textcolor{stringliteral}{" to "} + 
+      \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( mHighestSupportedPitch ) );
+309 
+310         \textcolor{comment}{// Get the file index.}
+311         \textcolor{keywordtype}{int} fileIndex = (int)aPitch - (\textcolor{keywordtype}{int})\hyperlink{group___v_i_base_pro_var_ga3cae52b1bcc0178a8a6b03c7aaf7aac8}{mLowestSupportedPitch};
+312         
+313         \textcolor{comment}{// Get the audio clips for the pitch.}
+314         AudioClip[] clips = null;
+315 
+316         \textcolor{comment}{// If Built-In Dynamics are not supported, then just get the one clip.}
+317         \textcolor{keywordflow}{if}( mNumBuiltInDynamics == 0 )
+318         \{
+319             \textcolor{comment}{// Get the audio file.}
+320             clips = \textcolor{keyword}{new} AudioClip[1];
+321             clips[0] = Resources.Load<AudioClip>( mFilenames[fileIndex] );
+322             Assert.IsNotNull( clips[0], \textcolor{stringliteral}{"Failed to load audioclip from file "} + mFilenames[fileIndex] );
+323 
+324             \textcolor{comment}{// Load the audio data.}
+325             clips[0].LoadAudioData();
+326 
+327             \textcolor{comment}{// Normalize the clip.}
+328             \hyperlink{group___v_i_base_priv_func_gaecd4f9ead08a03be878b2085055a975c}{NormalizeAudioClipsForPitch}( aPitch, clips );
+329         \}
+330         \textcolor{comment}{// If Built-In Dynamics are supported, then get all of the associated clips.}
+331         \textcolor{keywordflow}{else}
+332         \{
+333             \textcolor{comment}{// Allocate space for the clips.}
+334             clips = \textcolor{keyword}{new} AudioClip[\hyperlink{group___v_i_base_pro_var_gac265f64f759d267ee1e1680f8d387011}{mNumBuiltInDynamics}];
+335 
+336             \textcolor{comment}{// Load the clips.}
+337             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < \hyperlink{group___v_i_base_pro_var_gac265f64f759d267ee1e1680f8d387011}{mNumBuiltInDynamics}; i++ )
+338             \{
+339                 \textcolor{comment}{// Load the wav file.}
+340                 clips[i] = Resources.Load<AudioClip>( mFilenames[fileIndex] );
+341                 Assert.IsNotNull( clips[0], \textcolor{stringliteral}{"Failed to load audioclip from file "} + mFilenames[fileIndex] )
+      ;
+342 
+343                 \textcolor{comment}{// Load the audio data into the AudioClip.}
+344                 clips[i].LoadAudioData();
+345 
+346                 \textcolor{comment}{// Go to the next file.}
+347                 fileIndex += \hyperlink{group___v_i_base_pro_var_gafc759a16324cf9b3f230bcbf040afcd2}{mNumSupportedPitches};
+348             \}
+349 
+350             \textcolor{comment}{// Normalize the clips.}
+351             \hyperlink{group___v_i_base_priv_func_gaecd4f9ead08a03be878b2085055a975c}{NormalizeAudioClipsForPitch}( aPitch, clips );
+352         \}
+353 
+354         \textcolor{comment}{// Clean up.}
+355         clips = null;
+356         Resources.UnloadUnusedAssets();
+357         GC.Collect();
+358     \}
+359 \textcolor{comment}{}
+360 \textcolor{comment}{    /**}
+361 \textcolor{comment}{    * @brief Loads the audio clips for the instrument. VirtualInstrument::CreateFilenames must be called
+       prior to this function in order to actually find the files. }
+362 \textcolor{comment}{    * }
+363 \textcolor{comment}{    * This function handles the loading of the audio clips, getting their audio data, and passing the audio
+       data to}
+364 \textcolor{comment}{    * VirtualInstrument::NormalizeAudioClips().}
+365 \textcolor{comment}{    */}
+366     \textcolor{keyword}{protected} \textcolor{keywordtype}{void} \hyperlink{group___v_i_base_pro_func_ga873242f52d077ca4305b0b69a0100b55}{LoadAudioClips}()
+367     \{
+368         \textcolor{comment}{// Initialize index variables so that all of the files can be iterated through and appropriately }
+369         \textcolor{comment}{// assigned to an array of audio clips. }
+370         \textcolor{keywordtype}{int} index = (int)\hyperlink{group___v_i_base_pro_var_ga3cae52b1bcc0178a8a6b03c7aaf7aac8}{mLowestSupportedPitch};
+371         \textcolor{keywordtype}{int} fileIndex = 0;
+372         AudioClip[][] audioClips = null;
+373         \textcolor{comment}{// If there aren't any built-in dynamics, then use a hard-coded index of 0 for the outer array.}
+374         \textcolor{keywordflow}{if}( mNumBuiltInDynamics == 0 )
+375         \{
+376             \textcolor{comment}{// Initialize the array of audio clips. In order to account for instruments differing in the
+       range of notes }
+377             \textcolor{comment}{// that they support, the inner audio clip array is set to have an element for every possible
+       note. Unsupported}
+378             \textcolor{comment}{// notes will have null audio clips at their indices. Drum kits will not have to worry about
+       this.   }
+379             audioClips = \textcolor{keyword}{new} AudioClip[1][];
+380 
+381             \textcolor{keywordflow}{if}( mIsDrum )
+382             \{
+383                 audioClips[0] = \textcolor{keyword}{new} AudioClip[\hyperlink{class_music}{Music}.\hyperlink{group___music_constants_gabce1a1ac5b9b6355af6bd7fb3868467a}{MAX\_SUPPORTED\_DRUMS}];
+384             \}
+385             \textcolor{keywordflow}{else}
+386             \{
+387                 audioClips[0] = \textcolor{keyword}{new} AudioClip[\hyperlink{class_music}{Music}.\hyperlink{group___music_constants_gaaf07da909a12e9fec0e43b70864f27b7}{MAX\_SUPPORTED\_NOTES}];
+388             \}
+389 
+390 
+391             \textcolor{comment}{// The indices of the loaded audio clips are mapped to their corresponding note. }
+392             \textcolor{keywordflow}{while}( index <= (\textcolor{keywordtype}{int})\hyperlink{group___v_i_base_pro_var_ga61fb2c33b53a0f663047779d7ceb18f3}{mHighestSupportedPitch} )
+393             \{
+394                 \textcolor{comment}{// Load the audio clip into the audio clip array.}
+395                 audioClips[0][index] = Resources.Load<AudioClip>( mFilenames[fileIndex] );
+396                 Assert.IsNotNull( audioClips[0][index], \textcolor{stringliteral}{"Failed to load audioclip from file "} + mFilenames[
+      fileIndex] );
+397 
+398                 \textcolor{comment}{// Load the audio data for the audio clip}
+399                 audioClips[0][index].LoadAudioData();
+400 
+401                 \textcolor{comment}{// Increment the index variables.}
+402                 index++;
+403                 fileIndex++;
+404                 Assert.IsTrue( fileIndex <= mNumFiles, \textcolor{stringliteral}{"Tried to load more files than were available.
+       Recheck how many files are availabled for the virtual instrument"} );
+405             \}
+406         \}
+407         \textcolor{comment}{// If built-in dynamics are available for this instrument, then load audio clips for each built-in
+       dynamics value.}
+408         \textcolor{keywordflow}{else}
+409         \{
+410             \textcolor{comment}{// Initializ the outer array of audio clips}
+411             audioClips = \textcolor{keyword}{new} AudioClip[\hyperlink{group___v_i_base_pro_var_gac265f64f759d267ee1e1680f8d387011}{mNumBuiltInDynamics}][];
+412 
+413             \textcolor{comment}{// Iterate through each outer array.}
+414             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < \hyperlink{group___v_i_base_pro_var_gac265f64f759d267ee1e1680f8d387011}{mNumBuiltInDynamics}; i++ )
+415             \{
+416                 \textcolor{comment}{// Initialize the inner array of audio clips. In order to account for instruments differing
+       in the range of notes }
+417                 \textcolor{comment}{// that they support, the inner audio clip array is set to have an element for every
+       possible note. Unsupported}
+418                 \textcolor{comment}{// notes will have null audio clips at their indices. Drum kits will not have to worry
+       about this.}
+419 
+420                 \textcolor{keywordflow}{if}( mIsDrum )
+421                 \{
+422                     audioClips[i] = \textcolor{keyword}{new} AudioClip[\hyperlink{class_music}{Music}.\hyperlink{group___music_constants_gabce1a1ac5b9b6355af6bd7fb3868467a}{MAX\_SUPPORTED\_DRUMS}];
+423                 \}
+424                 \textcolor{keywordflow}{else}
+425                 \{
+426                     audioClips[i] = \textcolor{keyword}{new} AudioClip[\hyperlink{class_music}{Music}.\hyperlink{group___music_constants_gaaf07da909a12e9fec0e43b70864f27b7}{MAX\_SUPPORTED\_NOTES}];
+427 
+428                 \}
+429 
+430                 \textcolor{comment}{// The indices of the loaded audio clips are mapped to their corresponding note. }
+431                 \textcolor{keywordflow}{while}( index <= (\textcolor{keywordtype}{int})mHighestSupportedPitch )
+432                 \{
+433                     \textcolor{comment}{// Load the audio clip into the audio clip array.}
+434                     audioClips[i][index] = Resources.Load<AudioClip>( mFilenames[fileIndex] );
+435                     Assert.IsNotNull( audioClips[0][index], \textcolor{stringliteral}{"Failed to load audioclip from file "} + 
+      mFilenames[fileIndex] );
+436 
+437                     \textcolor{comment}{// Load the audio data for the audio clip}
+438                     audioClips[i][index].LoadAudioData();
+439 
+440                     \textcolor{comment}{// Increment the index variables.}
+441                     index++;
+442                     fileIndex++;
+443                     Assert.IsTrue( fileIndex <= mNumFiles, \textcolor{stringliteral}{"Tried to load more files than were available.
+       Recheck how many files are availabled for the piano virtual instrument"} );
+444                 \}
+445                 \textcolor{comment}{// Reset the note index when going to the next outer array. }
+446                 index = (int)\hyperlink{group___v_i_base_pro_var_ga3cae52b1bcc0178a8a6b03c7aaf7aac8}{mLowestSupportedPitch};
+447             \}
+448         \}
+449         \textcolor{comment}{// Normalize the audio clips.}
+450         \hyperlink{group___v_i_base_priv_func_ga0262de8cfb1e671b01ba76de2e9d140a}{NormalizeAudioClips}( audioClips );
+451 
+452         \textcolor{comment}{// Get rid of unused assets.}
+453         audioClips = null;
+454         Resources.UnloadUnusedAssets();
+455         GC.Collect();
+456     \}
+457 
+458     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+459 \textcolor{comment}{     * @\}}
+460 \textcolor{comment}{     * @defgroup VIBasePrivFunc Private Functions}
+461 \textcolor{comment}{     * @ingroup VIBase}
+462 \textcolor{comment}{     * Functions common to all types of instruments.}
+463 \textcolor{comment}{     * @\{}
+464 \textcolor{comment}{     ****************************************************************************/}
+465 \textcolor{comment}{}
+466 \textcolor{comment}{    /**}
+467 \textcolor{comment}{     * @brief Normalizes the data from the audio clips and puts them in the mAudioData member variable.}
+468 \textcolor{comment}{     * @param[in] aPitch The pitch that corresponds to the audio clips.}
+469 \textcolor{comment}{     * @param[in] aClips The clips to normalize.}
+470 \textcolor{comment}{     * }
+471 \textcolor{comment}{     * This function makes it so that the waveforms of the samples used for the instrument}
+472 \textcolor{comment}{     * have a peak of -0.1. If @link DefBID Built-In Dynamics@endlink are supported, then the peak is
+       multiplied}
+473 \textcolor{comment}{     * by a ratio of the @link DefBIDThresh Built-In Dynamics thresholds@endlink. }
+474 \textcolor{comment}{     * For example, waveforms that are used for @link DefVel velocities@endlink from 50-75 would have a
+       peak }
+475 \textcolor{comment}{     * that is 75% of the peak of the waveforms used for @link DefVel velocities@endlink from 76-100. }
+476 \textcolor{comment}{    */}
+477     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{group___v_i_base_priv_func_gaecd4f9ead08a03be878b2085055a975c}{NormalizeAudioClipsForPitch}( \hyperlink{class_music}{Music}.
+      \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH} aPitch, AudioClip[] aClips )
+478     \{
+479         \textcolor{comment}{// Make some temp variables for iterating through the data in the clips.}
+480         \textcolor{keywordtype}{float} max = 0f;
+481         \textcolor{keywordtype}{float}[] dataFromClip = null;
+482         \textcolor{keywordtype}{int} clipLength = 0;
+483         \textcolor{keywordtype}{int} pitchIndex = (int)aPitch;
+484 
+485         \textcolor{comment}{// If the instrument doesn't support Built-In Dynamics, then the array is actually just one clip.}
+486         \textcolor{keywordflow}{if}( mNumBuiltInDynamics == 0 )
+487         \{
+488             \textcolor{comment}{// Get the length of the clip.}
+489             clipLength = aClips[0].samples;
+490 
+491             \textcolor{comment}{// Get the data of the clip}
+492             dataFromClip = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[clipLength];
+493             aClips[0].GetData( dataFromClip, 0 );
+494 
+495             \textcolor{comment}{// Allocate a place in the audio data container.}
+496             mAudioData[0][pitchIndex] = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[clipLength];
+497 
+498             \textcolor{comment}{// Get the max value of this clip's data.}
+499             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < clipLength; i++ )
+500             \{
+501                 \textcolor{keywordflow}{if}( Mathf.Abs( dataFromClip[i] ) > max )
+502                 \{
+503                     max = Mathf.Abs( dataFromClip[i] );
+504                 \}
+505             \}
+506 
+507             \textcolor{comment}{// Set the normalize factor.}
+508             \textcolor{keywordtype}{float} normalizeFactor = NORMALIZED\_PEAK / max;
+509 
+510             \textcolor{comment}{// Normalize the clip and put it in the audio data container}
+511             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < clipLength; i++ )
+512             \{
+513                 mAudioData[0][pitchIndex][i] = dataFromClip[i] * normalizeFactor;
+514             \}
+515         \}
+516         \textcolor{comment}{// If the instrument does support Built-In Dynamics, then we need to iterate through each}
+517         \textcolor{comment}{// file associated with the clip.}
+518         \textcolor{keywordflow}{else}
+519         \{
+520             \textcolor{comment}{// Set up the normalized peaks for each Built-In Dynamic.}
+521             \textcolor{keywordtype}{float}[] normalizedPeaks = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[\hyperlink{group___v_i_base_pro_var_gac265f64f759d267ee1e1680f8d387011}{mNumBuiltInDynamics}];
+522             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < \hyperlink{group___v_i_base_pro_var_gac265f64f759d267ee1e1680f8d387011}{mNumBuiltInDynamics}; i++ )
+523             \{
+524                 normalizedPeaks[i] = NORMALIZED\_PEAK * ( (float)mBuiltInDynamicsThresholds[i] / (\textcolor{keywordtype}{float})
+      mBuiltInDynamicsThresholds[mNumBuiltInDynamics - 1] );
+525             \}
+526 
+527             \textcolor{comment}{// Iterate through each clip associated with the pitch.}
+528             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < \hyperlink{group___v_i_base_pro_var_gac265f64f759d267ee1e1680f8d387011}{mNumBuiltInDynamics}; i++ )
+529             \{
+530                 \textcolor{comment}{// Get the length of the clip data. }
+531                 clipLength = aClips[i].samples;
+532 
+533                 \textcolor{comment}{// Initialize the clip's spot in the audio data container.}
+534                 mAudioData[i][pitchIndex] = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[clipLength];
+535 
+536                 \textcolor{comment}{// Get the clip's data}
+537                 dataFromClip = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[clipLength];
+538                 aClips[i].GetData( dataFromClip, 0 );
+539 
+540                 \textcolor{comment}{// Get the max value of the clip data.}
+541                 \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} j = 0; j < clipLength; j++ )
+542                 \{
+543                     \textcolor{keywordflow}{if}( Mathf.Abs( dataFromClip[j] ) > max )
+544                     \{
+545                         max = Mathf.Abs( dataFromClip[j] );
+546                     \}
+547                 \}
+548 
+549                 \textcolor{comment}{// Get the normalize factor for this clip.}
+550                 \textcolor{keywordtype}{float} normalizeFactor = normalizedPeaks[i] / max;
+551 
+552                 \textcolor{comment}{// Normalize the clip and put the normalized data into the audio data array.}
+553                 \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} j = 0; j < clipLength; j++ )
+554                 \{
+555                     mAudioData[i][pitchIndex][j] = dataFromClip[j] * normalizeFactor;
+556                 \}
+557 
+558                 \textcolor{comment}{// Reset the max value for the next clip.}
+559                 max = 0f;
+560             \}
+561         \}
+562     \}
+563 \textcolor{comment}{}
+564 \textcolor{comment}{    /**}
+565 \textcolor{comment}{     * @brief Normalizes the data from the audio clips and puts them in the mAudioData member variable.}
+566 \textcolor{comment}{     * @param[in] aAudioClips The audio clips that were loaded for this instrument.}
+567 \textcolor{comment}{     * }
+568 \textcolor{comment}{     * This function makes it so that the waveforms of the samples used for the instrument}
+569 \textcolor{comment}{     * have a peak of -0.1. If @link DefBID Built-In Dynamics@endlink are supported, then the peak is
+       multiplied}
+570 \textcolor{comment}{     * by a ratio of the @link DefBIDThresh Built-In Dynamics thresholds@endlink. }
+571 \textcolor{comment}{     * For example, waveforms that are used for @link DefVel velocities@endlink from 50-75 would have a
+       peak }
+572 \textcolor{comment}{     * that is 75% of the peak of the waveforms used for @link DefVel velocities@endlink from 76-100. }
+573 \textcolor{comment}{     */}
+574     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{group___v_i_base_priv_func_ga0262de8cfb1e671b01ba76de2e9d140a}{NormalizeAudioClips}( AudioClip[][] aAudioClips )
+575     \{
+576         \textcolor{keywordtype}{float} max = 0f;
+577         \textcolor{keywordtype}{float}[] temp = null;
+578         \textcolor{keywordtype}{int} dataLength = 0;
+579 
+580         \textcolor{comment}{// Iterate through every audio clip.}
+581         \textcolor{keywordflow}{if}( mNumBuiltInDynamics != 0 )
+582         \{
+583             \textcolor{comment}{// Initialize the audio data 3-D array.}
+584             mAudioData = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[\hyperlink{group___v_i_base_pro_var_gac265f64f759d267ee1e1680f8d387011}{mNumBuiltInDynamics}][][];
+585 
+586             \textcolor{comment}{// Set up the normalized peaks for each Built-In Dynamic.}
+587             \textcolor{keywordtype}{float}[] normalizedPeaks = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[\hyperlink{group___v_i_base_pro_var_gac265f64f759d267ee1e1680f8d387011}{mNumBuiltInDynamics}];
+588             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < \hyperlink{group___v_i_base_pro_var_gac265f64f759d267ee1e1680f8d387011}{mNumBuiltInDynamics}; i++ )
+589             \{
+590                 normalizedPeaks[i] = NORMALIZED\_PEAK * ( (float)mBuiltInDynamicsThresholds[i] / (\textcolor{keywordtype}{float})
+      mBuiltInDynamicsThresholds[mNumBuiltInDynamics - 1] );
+591             \}
+592 
+593             \textcolor{comment}{// Normalize all of the clips}
+594             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < \hyperlink{group___v_i_base_pro_var_gac265f64f759d267ee1e1680f8d387011}{mNumBuiltInDynamics}; i++ )
+595             \{
+596                 \textcolor{comment}{// Initialize the interior 2-D array of the audio data and account for drums.}
+597                 \textcolor{keywordflow}{if}( mIsDrum )
+598                 \{
+599                     mAudioData[i] = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[\hyperlink{class_music}{Music}.\hyperlink{group___music_constants_gabce1a1ac5b9b6355af6bd7fb3868467a}{MAX\_SUPPORTED\_DRUMS}][];
+600                 \}
+601                 \textcolor{keywordflow}{else}
+602                 \{
+603                     mAudioData[i] = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[\hyperlink{class_music}{Music}.\hyperlink{group___music_constants_gaaf07da909a12e9fec0e43b70864f27b7}{MAX\_SUPPORTED\_NOTES}][];
+604                 \}
+605 
+606                 \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} j = (\textcolor{keywordtype}{int})\hyperlink{group___v_i_base_pro_var_ga3cae52b1bcc0178a8a6b03c7aaf7aac8}{mLowestSupportedPitch}; j <= (int)
+      mHighestSupportedPitch; j++ )
+607                 \{
+608                     \textcolor{comment}{// Get the length of the clip data and initialize the inner audio data array. }
+609                     dataLength = aAudioClips[i][j].samples;
+610                     mAudioData[i][j] = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[dataLength];
+611 
+612                     \textcolor{comment}{// Get this clip's data}
+613                     temp = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[dataLength];
+614                     aAudioClips[i][j].GetData( temp, 0 );
+615 
+616                     \textcolor{comment}{// Get the max value of the clip data.}
+617                     \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} k = 0; k < dataLength; k++ )
+618                     \{
+619                         \textcolor{keywordflow}{if}( Mathf.Abs( temp[k] ) > max )
+620                         \{
+621                             max = Mathf.Abs( temp[k] );
+622                         \}
+623                     \}
+624 
+625                     \textcolor{comment}{// Get the normalize factor for this clip.}
+626                     \textcolor{keywordtype}{float} normalizeFactor = normalizedPeaks[i] / max;
+627 
+628                     \textcolor{comment}{// Normalize the clip and put the normalized data into the audio data array.}
+629                     \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} k = 0; k < dataLength; k++ )
+630                     \{
+631                         mAudioData[i][j][k] = temp[k] * normalizeFactor;
+632                     \}
+633 
+634                     \textcolor{comment}{// Reset the max value for the next clip.}
+635                     max = 0f;
+636                 \}
+637             \}
+638         \}
+639         \textcolor{comment}{// Iterate through every audio clip.}
+640         \textcolor{keywordflow}{else}
+641         \{
+642             \textcolor{comment}{// Allocate the audio data 3-D array and its interior 2-D array.}
+643             mAudioData = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[1][][];
+644 
+645             \textcolor{comment}{// Account for drums when allocating the 2-D array.}
+646             \textcolor{keywordflow}{if}( mIsDrum )
+647             \{
+648                 mAudioData[0] = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[\hyperlink{class_music}{Music}.\hyperlink{group___music_constants_gabce1a1ac5b9b6355af6bd7fb3868467a}{MAX\_SUPPORTED\_DRUMS}][];
+649             \}
+650             \textcolor{keywordflow}{else}
+651             \{
+652                 mAudioData[0] = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[\hyperlink{class_music}{Music}.\hyperlink{group___music_constants_gaaf07da909a12e9fec0e43b70864f27b7}{MAX\_SUPPORTED\_NOTES}][];
+653             \}
+654 
+655             \textcolor{comment}{// Set the normalized peak.}
+656             \textcolor{keywordtype}{float} normalizedPeak = -.1f;
+657 
+658             \textcolor{comment}{// Normalize all of the audio clips.}
+659             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = (\textcolor{keywordtype}{int})\hyperlink{group___v_i_base_pro_var_ga3cae52b1bcc0178a8a6b03c7aaf7aac8}{mLowestSupportedPitch}; i <= (int)mHighestSupportedPitch;
+       i++ )
+660             \{
+661                 dataLength = aAudioClips[0][i].samples;
+662                 mAudioData[0][i] = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[dataLength];
+663 
+664                 \textcolor{comment}{// Get the clip data}
+665                 temp = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[dataLength];
+666                 aAudioClips[0][i].GetData( temp, 0 );
+667 
+668                 \textcolor{comment}{// Get the max value of this clip's data.}
+669                 \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} j = 0; j < dataLength; j++ )
+670                 \{
+671                     \textcolor{keywordflow}{if}( Mathf.Abs( temp[j] ) > max )
+672                     \{
+673                         max = Mathf.Abs( temp[j] );
+674                     \}
+675                 \}
+676 
+677                 \textcolor{comment}{// Set the normalize factor.}
+678                 \textcolor{keywordtype}{float} normalizeFactor = normalizedPeak / max;
+679 
+680                 \textcolor{comment}{// Normalize the clip.}
+681                 \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} j = 0; j < aAudioClips[0][i].samples; j++ )
+682                 \{
+683                     mAudioData[0][i][j] = temp[j] * normalizeFactor;
+684                 \}
+685 
+686                 \textcolor{comment}{// Reset the max value for the next clip.}
+687                 max = 0f;
+688             \}
+689         \}
+690     \}
+691 
+692     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+693 \textcolor{comment}{     * @\}}
+694 \textcolor{comment}{     * @defgroup VIBaseVirtFunc Pure Virtual Functions}
+695 \textcolor{comment}{     * @ingroup VIBase}
+696 \textcolor{comment}{     * Functions that subclasses are required to implement.}
+697 \textcolor{comment}{     * @\{}
+698 \textcolor{comment}{     ****************************************************************************/}
+699 \textcolor{comment}{}
+700 \textcolor{comment}{    /**}
+701 \textcolor{comment}{     * @brief Creates the filenames for the sample files. }
+702 \textcolor{comment}{     */}
+703     \textcolor{keyword}{protected} \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \hyperlink{group___v_i_base_virt_func_gaacfc9521214176292bfb9665556fb991}{CreateFilenames}() \{ \}
+704 \textcolor{comment}{}
+705 \textcolor{comment}{    /**}
+706 \textcolor{comment}{     * @brief Initializes variables related to @link DefBID Built-In Dynamics@endlink}
+707 \textcolor{comment}{     */}
+708     \textcolor{keyword}{protected} \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \hyperlink{group___v_i_base_virt_func_ga995456c03ee54543b285188c51c29a07}{InitializeBuiltInDynamics}() \{ \}
+709 \textcolor{comment}{}
+710 \textcolor{comment}{    /** @\} */}
+711 \}
+\end{DoxyCodeInclude}
+ 

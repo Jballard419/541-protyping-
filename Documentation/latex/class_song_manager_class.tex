@@ -1,0 +1,78 @@
+\hypertarget{class_song_manager_class}{}\section{Song\+Manager\+Class Class Reference}
+\label{class_song_manager_class}\index{Song\+Manager\+Class@{Song\+Manager\+Class}}
+
+
+C\# class that handles loading and playing Songs.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___s_m_construct_gacd94623c6402ad7c7af2f725265d0e4d}{Song\+Manager\+Class} ()
+\begin{DoxyCompactList}\small\item\em Initializes the \hyperlink{class_song_manager_class}{Song\+Manager\+Class} by creating its lists of songs. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_m_pub_func_ga1a228cb2a64e55448ccf9d1d618f05b7}{Add\+Song} (\hyperlink{class_song}{Song} a\+Song)
+\begin{DoxyCompactList}\small\item\em Adds a \hyperlink{class_song}{Song} to the Song\+Manager. \end{DoxyCompactList}\item 
+List$<$ string $>$ \hyperlink{group___s_m_pub_func_ga87bd14c75666b13bd02510c5b7080784}{Get\+Combined\+Song\+Names} ()
+\begin{DoxyCompactList}\small\item\em Gets the names of the loaded \hyperlink{group___song_group_DocSongCombined}{songs that have both percussion and melody}. \end{DoxyCompactList}\item 
+List$<$ \hyperlink{class_song}{Song} $>$ \hyperlink{group___s_m_pub_func_ga413595693011bd6021dfd6eb941bf0e6}{Get\+Combined\+Songs} ()
+\begin{DoxyCompactList}\small\item\em Gets the loaded \hyperlink{group___song_group_DocSongCombined}{songs that have both percussion and melody}. \end{DoxyCompactList}\item 
+List$<$ string $>$ \hyperlink{group___s_m_pub_func_ga90e0aeb3117c5db6c667a23252bf45f6}{Get\+Drum\+Loop\+Names} ()
+\begin{DoxyCompactList}\small\item\em Gets the names of the loaded \hyperlink{group___song_group_DocSongDrumLoop}{drum loops}. \end{DoxyCompactList}\item 
+List$<$ \hyperlink{class_song}{Song} $>$ \hyperlink{group___s_m_pub_func_ga354a675f296f9a733ad6d76fea7429dd}{Get\+Drum\+Loops} ()
+\begin{DoxyCompactList}\small\item\em Gets the loaded \hyperlink{group___song_group_DocSongDrumLoop}{drum loops}. \end{DoxyCompactList}\item 
+List$<$ string $>$ \hyperlink{group___s_m_pub_func_ga59df8468ac771fc8eb1a5f2025e6c5a8}{Get\+Melody\+Names} ()
+\begin{DoxyCompactList}\small\item\em Gets the names of the loaded \hyperlink{group___song_group_DocSongMelody}{melodies}. \end{DoxyCompactList}\item 
+List$<$ \hyperlink{class_song}{Song} $>$ \hyperlink{group___s_m_pub_func_ga7d46ab1949725dd7c3c00ac3975916fe}{Get\+Melodies} ()
+\begin{DoxyCompactList}\small\item\em Gets the loaded \hyperlink{group___song_group_DocSongMelody}{melodies}. \end{DoxyCompactList}\item 
+int \hyperlink{group___s_m_pub_func_gac41e94dbaa3f2db83a6d86466526f76c}{Get\+Number\+Of\+Combined\+Songs} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of loaded Songs that \hyperlink{group___song_group_DocSongCombined}{have both drums and melody}. \end{DoxyCompactList}\item 
+int \hyperlink{group___s_m_pub_func_ga97d32492e08ca62787088888e78589b7}{Get\+Number\+Of\+Drum\+Loops} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of loaded \hyperlink{group___song_group_DocSongDrumLoop}{drum loops}. \end{DoxyCompactList}\item 
+int \hyperlink{group___s_m_pub_func_gae1d2222909f1d9a1f761591c7154f42c}{Get\+Number\+Of\+Melodies} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of loaded \hyperlink{group___song_group_DocSongMelody}{melodies}. \end{DoxyCompactList}\item 
+\hyperlink{class_song}{Song} \hyperlink{group___s_m_pub_func_gafe818c55bd858c52c95a2fa7a566006a}{Get\+Song\+By\+Name} (string a\+Song\+Name)
+\begin{DoxyCompactList}\small\item\em Gets a specific \hyperlink{class_song}{Song}. \end{DoxyCompactList}\item 
+List$<$ string $>$ \hyperlink{group___s_m_pub_func_ga2a9455a763e35cfb6b242a82f7d797ae}{Get\+Song\+Names} ()
+\begin{DoxyCompactList}\small\item\em Gets the names of the loaded Songs. \end{DoxyCompactList}\item 
+List$<$ \hyperlink{class_song}{Song} $>$ \hyperlink{group___s_m_pub_func_ga3bf6a6d42a7c5e94cc85ba10eb9e6edb}{Get\+Songs} ()
+\begin{DoxyCompactList}\small\item\em Gets all of the Songs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___s_m_priv_func_ga73d6d3b38a160fd73b63b786b9cd384a}{Load\+Songs} ()
+\begin{DoxyCompactList}\small\item\em Loads Songs in the folder \char`\"{}\+A\+P\+P\+\_\+\+P\+A\+T\+H/\+Streaming\+Assets/\+Audio/\+Songs/\char`\"{}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Dictionary$<$ string, \hyperlink{class_song}{Song} $>$ \hyperlink{group___s_m_priv_var_gaf6b4ff41b8da95d10ad3db62df111faa}{m\+Combined\+Songs} = null
+\begin{DoxyCompactList}\small\item\em The loaded songs that \hyperlink{group___song_group_DocSongCombined}{have both percussion and melody}. \end{DoxyCompactList}\item 
+Dictionary$<$ string, \hyperlink{class_song}{Song} $>$ \hyperlink{group___s_m_priv_var_ga84f25335035755448d11acb9287360f2}{m\+Drum\+Loops} = null
+\begin{DoxyCompactList}\small\item\em The loaded \hyperlink{group___song_group_DocSongDrumLoop}{drum loops}. \end{DoxyCompactList}\item 
+Dictionary$<$ string, \hyperlink{class_song}{Song} $>$ \hyperlink{group___s_m_priv_var_ga935e80f645d0546003f7df8443b79242}{m\+Melodies} = null
+\begin{DoxyCompactList}\small\item\em The loaded \hyperlink{group___song_group_DocSongMelody}{melodies}. \end{DoxyCompactList}\item 
+int \hyperlink{group___s_m_priv_var_gae423c7b9efd0e2ef721820318200e5f9}{m\+Num\+Combined\+Songs} = 0
+\begin{DoxyCompactList}\small\item\em The number of loaded songs that \hyperlink{group___song_group_DocSongCombined}{have both percussion and melody}. \end{DoxyCompactList}\item 
+int \hyperlink{group___s_m_priv_var_ga0ea9b6c8343a9b2cbe0eb375edaef247}{m\+Num\+Drum\+Loops} = 0
+\begin{DoxyCompactList}\small\item\em The number of loaded \hyperlink{group___song_group_DocSongDrumLoop}{drum loops}. \end{DoxyCompactList}\item 
+int \hyperlink{group___s_m_priv_var_ga58ea3b4f794b9e444eece384ae6e8197}{m\+Num\+Melodies} = 0
+\begin{DoxyCompactList}\small\item\em The number of loaded \hyperlink{group___song_group_DocSongMelody}{melodies}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+C\# class that handles loading and playing Songs. 
+
+\begin{DoxyNote}{Note}
+Meant to only be used as a child of the \hyperlink{group___v_i_m}{Virtual Instrument Manager}.
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___v_i_m_pub_ga33dae94932c10c66db76a0eebec76b01}{Virtual\+Instrument\+Manager\+::\+Song\+Manager} 
+\end{DoxySeeAlso}
+
+
+Definition at line 15 of file Song\+Manager\+Class.\+cs.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Documents/\+School Documents/2017\+Spring/\+E\+E\+C\+S542/\+V\+R\+Piano\+Project/\+Assets/\+Scripts/\+Audio/\+Song\+Management/\hyperlink{_song_manager_class_8cs}{Song\+Manager\+Class.\+cs}\end{DoxyCompactItemize}

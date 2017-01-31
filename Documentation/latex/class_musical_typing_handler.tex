@@ -1,0 +1,72 @@
+\hypertarget{class_musical_typing_handler}{}\section{Musical\+Typing\+Handler Class Reference}
+\label{class_musical_typing_handler}\index{Musical\+Typing\+Handler@{Musical\+Typing\+Handler}}
+
+
+Allows for testing the audio with the computer keyboard.  
+
+
+Inheritance diagram for Musical\+Typing\+Handler\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_musical_typing_handler}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___mus_typ_pub_func_ga02f86b46bb63dc751b669035b7aa5ce0}{Set\+Key\+Velocity} (int a\+Key\+Index, int a\+Key\+Velocity)
+\begin{DoxyCompactList}\small\item\em Sets the velocity used when a specific key on the computer keyboard generates a musical typing event. \end{DoxyCompactList}\item 
+void \hyperlink{group___mus_typ_pub_func_gaf6ba35e3a081cff62fa963ed32d218c8}{Set\+Random\+Velocity\+Range} (int a\+Lowest\+Velocity, int a\+Highest\+Velocity)
+\begin{DoxyCompactList}\small\item\em Sets the range used for randomizing Musical Typing velocities. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{group___mus_typ_pub_var_ga09a764161d537b31fac1a64ee5d39625}{Musical\+Typing\+Enabled} = true
+\begin{DoxyCompactList}\small\item\em Is musical typing enabled? Default is true when the preprocessor flag is set. \end{DoxyCompactList}\item 
+bool \hyperlink{group___mus_typ_pub_var_gad09f6f673034d9cd95f699838c9518d5}{Randomize\+Velocities} = false
+\begin{DoxyCompactList}\small\item\em Should the velocities used for simulating a Note\+Play\+Event be randomized? Default is false. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___mus_typ_unity_ga2935e4d4209f57f19ea242968c861f3f}{Awake} ()
+\begin{DoxyCompactList}\small\item\em Initializes the \hyperlink{class_musical_typing_handler}{Musical\+Typing\+Handler} by getting the parent \hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} and calling Set\+Musical\+Typing\+Variables. \end{DoxyCompactList}\item 
+void \hyperlink{group___mus_typ_unity_ga13a20522cf119917cb41e21051122977}{On\+G\+UI} ()
+\begin{DoxyCompactList}\small\item\em Called whenever there is a G\+UI event. Used to see if the event is supposed to start a Musical Typing Event. \end{DoxyCompactList}\item 
+void \hyperlink{group___mus_typ_priv_func_ga5db8ab750574dbc31279827ea5cc501e}{Set\+Musical\+Typing\+Variables} ()
+\begin{DoxyCompactList}\small\item\em Sets the default values for musical typing. \end{DoxyCompactList}\item 
+void \hyperlink{group___mus_typ_handlers_ga391a3d207136b7eb0e734e289b520188}{On\+Musical\+Typing\+Event} (Event a\+Key\+Event)
+\begin{DoxyCompactList}\small\item\em Handler for Musical Typing Events. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___audio_testing_class_a_t_i___diagnostics}{A\+T\+I\+\_\+\+Diagnostics} \hyperlink{group___mus_typ_priv_var_gaaeabcb1c6445b0ff93059036cc4ec1f4}{m\+Diagnostics\+Handler} = null
+\begin{DoxyCompactList}\small\item\em The handler for audio diagnostics display. \end{DoxyCompactList}\item 
+bool \mbox{[}$\,$\mbox{]} \hyperlink{group___mus_typ_priv_var_gaede8bc4123f7bfe514816593fdfbec67}{m\+Pressed\+Keys} = null
+\begin{DoxyCompactList}\small\item\em The keys that are currently pressed. \end{DoxyCompactList}\item 
+int \mbox{[}$\,$\mbox{]} \hyperlink{group___mus_typ_priv_var_ga4836c9fe1805279497f421a29879bf5a}{m\+Key\+Velocities}
+\begin{DoxyCompactList}\small\item\em The velocities that will be used whenever musical typing simulates a note event. \end{DoxyCompactList}\item 
+int \mbox{[}$\,$\mbox{]} \hyperlink{group___mus_typ_priv_var_ga15df83911d88e77e46726ff5642d04e6}{m\+Random\+Velocity\+Range}
+\begin{DoxyCompactList}\small\item\em The range used to randomize Musical Typing velocities. Default is 0 to 100. \end{DoxyCompactList}\item 
+\hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} \hyperlink{group___mus_typ_priv_var_ga63b2c5e1f9b1320a6b435a9018759444}{m\+V\+IM} = null
+\begin{DoxyCompactList}\small\item\em The parent \hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static int \hyperlink{group___mus_typ_const_ga1a5182f5dda1cd3a5b400911a3f4cb69}{D\+E\+B\+U\+G\+\_\+num\+Musical\+Typing\+Keys} = 19
+\begin{DoxyCompactList}\small\item\em The number of Musical Typing keys. \end{DoxyCompactList}\item 
+static Key\+Code \mbox{[}$\,$\mbox{]} \hyperlink{group___mus_typ_const_gad8b9000a0b6c93d23310f54d07dd0b90}{D\+E\+B\+U\+G\+\_\+musical\+Typing\+Keys}
+\begin{DoxyCompactList}\small\item\em The keys that are used for musical typing. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Allows for testing the audio with the computer keyboard. 
+
+Musical Typing allows for using a computer keyboard to debug sound output by triggering note events for a 19-\/note range whenever specific keys on the keyboard are pressed/released. The velocities for each key can be set with D\+E\+B\+U\+G\+\_\+\+Set\+Musical\+Typing\+Key\+Velocity(). The keys that are used are (in this order) a, w, s, e, d, f, t, g, y, h, u, j, k, o, l, p, ;, \textquotesingle{}, and \mbox{]} 
+
+Definition at line 19 of file Musical\+Typing\+Handler.\+cs.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Documents/\+School Documents/2017\+Spring/\+E\+E\+C\+S542/\+V\+R\+Piano\+Project/\+Assets/\+Scripts/\+Audio/\+Testing/\hyperlink{_musical_typing_handler_8cs}{Musical\+Typing\+Handler.\+cs}\end{DoxyCompactItemize}

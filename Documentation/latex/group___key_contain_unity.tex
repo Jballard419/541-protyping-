@@ -1,0 +1,111 @@
+\hypertarget{group___key_contain_unity}{}\section{Unity Functions}
+\label{group___key_contain_unity}\index{Unity Functions@{Unity Functions}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___key_contain_unity_ga9e307b409b1e07b2be51a21afe5d7379}{Key\+Container.\+Awake} ()
+\begin{DoxyCompactList}\small\item\em Initializes the \hyperlink{class_key_container}{Key\+Container} and loads each key. \end{DoxyCompactList}\item 
+void \hyperlink{group___key_contain_unity_gae0e513a4ef9fd25c1e0f5f3bc53d9b5c}{Key\+Container.\+Update} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Built-\/in Unity functions that are automatically called. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___key_contain_unity_ga9e307b409b1e07b2be51a21afe5d7379}\label{group___key_contain_unity_ga9e307b409b1e07b2be51a21afe5d7379}} 
+\index{Unity Functions@{Unity Functions}!Awake@{Awake}}
+\index{Awake@{Awake}!Unity Functions@{Unity Functions}}
+\subsubsection{\texorpdfstring{Awake()}{Awake()}}
+{\footnotesize\ttfamily void Key\+Container.\+Awake (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Initializes the \hyperlink{class_key_container}{Key\+Container} and loads each key. 
+
+
+
+Definition at line 64 of file Key\+Container.\+cs.
+
+
+
+References Key\+Container.\+B\+L\+A\+C\+K\+\_\+\+K\+E\+Y\+\_\+\+P\+A\+TH, Music.\+Is\+Pitch\+A\+Black\+Key(), Key\+Container.\+Load\+Keys(), Key\+Container.\+m\+Represented\+Pitches, Key\+Container.\+N\+U\+M\+\_\+\+K\+E\+YS, and Key\+Container.\+W\+H\+I\+T\+E\+\_\+\+K\+E\+Y\+\_\+\+P\+A\+TH.
+
+
+\begin{DoxyCode}
+65     \{
+66         \textcolor{comment}{// Initialize the represented pitches. Default is from C3 to C5.}
+67         \hyperlink{group___key_contain_priv_var_ga103945a6efe3469191e5253d13fec5be}{mRepresentedPitches} = \textcolor{keyword}{new} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}[
+      \hyperlink{group___key_contain_const_gaa8fe6473e6396976e52c5793f027380e}{NUM\_KEYS}];
+68         \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < \hyperlink{group___key_contain_const_gaa8fe6473e6396976e52c5793f027380e}{NUM\_KEYS}; i++ )
+69         \{
+70             \hyperlink{group___key_contain_priv_var_ga103945a6efe3469191e5253d13fec5be}{mRepresentedPitches}[i] = (\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH})( (\textcolor{keywordtype}{int})
+      \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.C3 + i );
+71             \textcolor{keywordflow}{if}( !\hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_gacc2c1a66df7197225f61c5737f794065}{IsPitchABlackKey}( 
+      \hyperlink{group___key_contain_priv_var_ga103945a6efe3469191e5253d13fec5be}{mRepresentedPitches}[i] ) )
+72             \{
+73                 \hyperlink{group___key_contain_priv_var_ga7a5547a1fe5c40eac487fe6c826c8f9c}{mNumWhiteKeys}++;
+74             \}
+75         \}
+76 
+77         \textcolor{comment}{// Get the width of each key.}
+78         \hyperlink{group___key_contain_priv_var_gae5b8787a5242834f99ad8072e7ea6004}{mWhiteKeyWidth} = Resources.Load<GameObject>( 
+      \hyperlink{group___key_contain_const_ga8ce7e53d5c067095ee26b96fcc522584}{WHITE\_KEY\_PATH} ).GetComponent<Renderer>().bounds.size.z;
+79         \hyperlink{group___key_contain_priv_var_gae5b8787a5242834f99ad8072e7ea6004}{mWhiteKeyWidth} += ( \hyperlink{group___key_contain_priv_var_gae5b8787a5242834f99ad8072e7ea6004}{mWhiteKeyWidth} / 10f );
+80         \hyperlink{group___key_contain_priv_var_ga6461d765c3904e6a3031558d7385be25}{mBlackKeyWidth} = Resources.Load<GameObject>( 
+      \hyperlink{group___key_contain_const_gac968b0d398c545a13abad255d8287825}{BLACK\_KEY\_PATH} ).GetComponent<Renderer>().bounds.size.z;
+81         Debug.Log( \textcolor{stringliteral}{"White key width: "} + \hyperlink{group___key_contain_priv_var_gae5b8787a5242834f99ad8072e7ea6004}{mWhiteKeyWidth}.ToString() );
+82         Debug.Log( \textcolor{stringliteral}{"Black key width: "} + \hyperlink{group___key_contain_priv_var_ga6461d765c3904e6a3031558d7385be25}{mBlackKeyWidth}.ToString() );
+83 
+84         \textcolor{comment}{// Load the keys.}
+85         \hyperlink{group___key_contain_priv_func_ga65f79700f265d2223681ac95981ab4a3}{LoadKeys}();      
+86     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___key_contain_unity_gae0e513a4ef9fd25c1e0f5f3bc53d9b5c}\label{group___key_contain_unity_gae0e513a4ef9fd25c1e0f5f3bc53d9b5c}} 
+\index{Unity Functions@{Unity Functions}!Update@{Update}}
+\index{Update@{Update}!Unity Functions@{Unity Functions}}
+\subsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily void Key\+Container.\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 89 of file Key\+Container.\+cs.
+
+
+
+References Virtual\+Instrument\+Manager.\+Change\+Note\+Range, Virtual\+Instrument\+Manager.\+Get\+Musical\+Typing\+Handler(), Key\+Container.\+Handle\+Change\+Note\+Range\+Event(), Key\+Container.\+Handle\+Play\+Song\+Event(), Musical\+Typing\+Handler.\+Musical\+Typing\+Enabled, and Virtual\+Instrument\+Manager.\+Play\+Song.
+
+
+\begin{DoxyCode}
+90     \{
+91         \textcolor{comment}{// See if we need to load the audio.}
+92         \textcolor{keywordflow}{if}( \hyperlink{group___key_contain_priv_var_ga57ee3824e2f284403bb70ad9c4dfd307}{mVIM} == null && \hyperlink{group___key_contain_pub_var_ga5dc9b1349f8fafc894c7f739f6780a8c}{EnableAudio} )
+93         \{
+94             \textcolor{comment}{// Load the prefab}
+95             GameObject temp = Instantiate( Resources.Load<GameObject>( \hyperlink{group___key_contain_const_ga8dc749271ab095b5759129459bcb647a}{VIM\_PATH} ) );
+96             Assert.IsNotNull( temp, \textcolor{stringliteral}{"Failed to load VirtualInstrumentManagerPrefab!"} );
+97 
+98             \textcolor{comment}{// Get the VIM from the prefab.}
+99             temp.name = \textcolor{stringliteral}{"VirtualInstrumentManager"};
+100             \hyperlink{group___key_contain_priv_var_ga57ee3824e2f284403bb70ad9c4dfd307}{mVIM} = temp.GetComponent<\hyperlink{class_virtual_instrument_manager}{VirtualInstrumentManager}>();
+101             Assert.IsNotNull( \hyperlink{group___key_contain_priv_var_ga57ee3824e2f284403bb70ad9c4dfd307}{mVIM}, \textcolor{stringliteral}{"Failed to get the VirtualInstrumentManager component!"} );
+102 
+103             \textcolor{comment}{// Add the listener for note range changes.}
+104             \hyperlink{group___key_contain_priv_var_ga57ee3824e2f284403bb70ad9c4dfd307}{mVIM}.\hyperlink{group___v_i_m_events_gab6fa99d08e8466406835b9fc4ff859f1}{ChangeNoteRange}.AddListener( 
+      \hyperlink{group___key_contain_handlers_ga0d82098e4f886f77a33f9d5ed13fe195}{HandleChangeNoteRangeEvent} );
+105             \hyperlink{group___key_contain_priv_var_ga57ee3824e2f284403bb70ad9c4dfd307}{mVIM}.\hyperlink{group___v_i_m_events_gae450bdba9c513ab4e43f69def50fa84d}{PlaySong}.AddListener( \hyperlink{group___key_contain_handlers_ga894c823059c5268af0954f83c04036ed}{HandlePlaySongEvent} );
+106 
+107 \textcolor{preprocessor}{            #if DEBUG\_MUSICAL\_TYPING}
+108                 \textcolor{comment}{// Disable Musical Typing}
+109                 \hyperlink{group___key_contain_priv_var_ga57ee3824e2f284403bb70ad9c4dfd307}{mVIM}.\hyperlink{group___v_i_m_pub_func_gae6701458a23a3f14db90501f871d4d0d}{GetMusicalTypingHandler}().
+      \hyperlink{group___mus_typ_pub_var_ga09a764161d537b31fac1a64ee5d39625}{MusicalTypingEnabled} = \textcolor{keyword}{false};
+110 \textcolor{preprocessor}{            #endif}
+111         \}
+112         \textcolor{comment}{// See if we need to unload the audio.}
+113         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}( !\hyperlink{group___key_contain_pub_var_ga5dc9b1349f8fafc894c7f739f6780a8c}{EnableAudio} && \hyperlink{group___key_contain_priv_var_ga57ee3824e2f284403bb70ad9c4dfd307}{mVIM} != null )
+114         \{
+115             DestroyImmediate( \hyperlink{group___key_contain_priv_var_ga57ee3824e2f284403bb70ad9c4dfd307}{mVIM}.gameObject, \textcolor{keyword}{false} );
+116             \hyperlink{group___key_contain_priv_var_ga57ee3824e2f284403bb70ad9c4dfd307}{mVIM} = null;
+117         \}
+118     \}
+\end{DoxyCode}

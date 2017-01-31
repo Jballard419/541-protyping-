@@ -1,0 +1,118 @@
+\hypertarget{class_virtual_instrument}{}\section{Virtual\+Instrument Class Reference}
+\label{class_virtual_instrument}\index{Virtual\+Instrument@{Virtual\+Instrument}}
+
+
+A base class that contains generic functions and values relating to \hyperlink{group___v_i}{Virtual Instruments}.  
+
+
+Inheritance diagram for Virtual\+Instrument\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_virtual_instrument}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___v_i_base_construct_ga7b438b5f812fa0d3a6e91d74a3c261c9}{Virtual\+Instrument} (\hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} a\+Parent)
+\begin{DoxyCompactList}\small\item\em Generic constructor. Sets default values and values that are common to all \hyperlink{group___v_i}{Virtual Instruments}. \end{DoxyCompactList}\item 
+int \hyperlink{group___v_i_base_pub_func_gacddf07c08c3a8154a6934be22f539788}{Get\+Built\+In\+Dynamics\+Threshold\+Index} (int a\+Velocity)
+\begin{DoxyCompactList}\small\item\em Gets the index for which sound file to use for a \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitch} at a given \hyperlink{group___audio_DefVel}{velocity}. \end{DoxyCompactList}\item 
+int \mbox{[}$\,$\mbox{]} \hyperlink{group___v_i_base_pub_func_gac8fc20c49c1b97b6787ed1b3e0073a7f}{Get\+Built\+In\+Dynamics\+Thresholds} ()
+\begin{DoxyCompactList}\small\item\em Gets the ranges for which sound file to use for a \hyperlink{group___audio_DefVel}{velocity}. \end{DoxyCompactList}\item 
+float \hyperlink{group___v_i_base_pub_func_gae638c68bd0e79d0b99495be69e50f49d}{Get\+Adjusted\+Velocity\+Factor} (int a\+Velocity)
+\begin{DoxyCompactList}\small\item\em Gets the factor by which a note\textquotesingle{}s waveform is scaled in order to account for \hyperlink{group___audio_DefVel}{velocity}. \end{DoxyCompactList}\item 
+\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} \hyperlink{group___v_i_base_pub_func_ga859f3e73b1d28051cecf0ecd1c8b10ee}{Get\+Highest\+Supported\+Pitch} ()
+\begin{DoxyCompactList}\small\item\em Gets the highest \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitch} that this instrument can play. \end{DoxyCompactList}\item 
+\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} \hyperlink{group___v_i_base_pub_func_gac42b3915bbfec60b83650abd701d0690}{Get\+Lowest\+Supported\+Pitch} ()
+\begin{DoxyCompactList}\small\item\em Gets the lowest \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitch} that this instrument can play. \end{DoxyCompactList}\item 
+int \hyperlink{group___v_i_base_pub_func_ga6ce5a7b3406269ea433be721d7d11177}{Get\+Num\+Of\+Supported\+Pitches} ()
+\begin{DoxyCompactList}\small\item\em Gets the total number of \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitches} that this instrument can play. \end{DoxyCompactList}\item 
+float \mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} \hyperlink{group___v_i_base_pub_func_gaf715f7c3bbd2f1a2fa543b2f0684f8a6}{Get\+Audio\+Data\+For\+Pitch} (\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} a\+Pitch)
+\begin{DoxyCompactList}\small\item\em Gets the raw audio data of each built-\/in dynamics value for a given \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitch}. \end{DoxyCompactList}\item 
+float \hyperlink{group___v_i_base_pub_func_gabea22c3ab14c6989b9357da0bf052fbc}{Get\+Sample\+Interval} ()
+\begin{DoxyCompactList}\small\item\em Gets the time interval between waveform samples for this instrument. \end{DoxyCompactList}\item 
+int \hyperlink{group___v_i_base_pub_func_ga8be9d452abaf025dc7270c36b3cf379a}{Get\+Sample\+Rate} ()
+\begin{DoxyCompactList}\small\item\em Gets the sample rate for the wav files used to create the instrument. \end{DoxyCompactList}\item 
+bool \hyperlink{group___v_i_base_pub_func_gae8b5ac2e3402dfc50ea43f0e91fd9a29}{Is\+Loaded} ()
+\begin{DoxyCompactList}\small\item\em Gets whether or not the instrument has loaded. \end{DoxyCompactList}\item 
+bool \hyperlink{group___v_i_base_pub_func_ga89655451c108a7ad5cb96ab308e33937}{Is\+Pitch\+Supported} (\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} a\+Pitch)
+\begin{DoxyCompactList}\small\item\em Gets whether or not the instrument can play a specific \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitch}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static float \hyperlink{group___v_i_base_const_ga69a037919b64e1e3e0f2b949b2b6af2c}{S\+A\+M\+P\+L\+E\+\_\+\+I\+N\+T\+E\+R\+V\+AL} = 1.\+1337e-\/5f
+\begin{DoxyCompactList}\small\item\em The number of seconds between waveform samples. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___v_i_base_pro_func_gadbd95083895b09465fbc5b18115a1dbc}{Load\+Audio\+Clip\+For\+Pitch} (\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} a\+Pitch)
+\begin{DoxyCompactList}\small\item\em Loads all the audio clips associated with a pitch. \end{DoxyCompactList}\item 
+void \hyperlink{group___v_i_base_pro_func_ga873242f52d077ca4305b0b69a0100b55}{Load\+Audio\+Clips} ()
+\begin{DoxyCompactList}\small\item\em Loads the audio clips for the instrument. \hyperlink{group___v_i_base_virt_func_gaacfc9521214176292bfb9665556fb991}{Virtual\+Instrument\+::\+Create\+Filenames} must be called prior to this function in order to actually find the files. \end{DoxyCompactList}\item 
+virtual void \hyperlink{group___v_i_base_virt_func_gaacfc9521214176292bfb9665556fb991}{Create\+Filenames} ()
+\begin{DoxyCompactList}\small\item\em Creates the filenames for the sample files. \end{DoxyCompactList}\item 
+virtual void \hyperlink{group___v_i_base_virt_func_ga995456c03ee54543b285188c51c29a07}{Initialize\+Built\+In\+Dynamics} ()
+\begin{DoxyCompactList}\small\item\em Initializes variables related to \hyperlink{group___audio_DefBID}{Built-\/\+In Dynamics}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{group___v_i_base_pro_var_ga47dbd8aa02ab32b8f802adfd2d3d81de}{m\+Is\+Drum}
+\begin{DoxyCompactList}\small\item\em Whether or not the virtual instrument is a \hyperlink{class_drum_kit}{drum kit}. \end{DoxyCompactList}\item 
+bool \hyperlink{group___v_i_base_pro_var_ga8978807d1878db5aae91fbd057c46097}{m\+Loaded}
+\begin{DoxyCompactList}\small\item\em Whether or not the virtual instrument is loaded. \end{DoxyCompactList}\item 
+float \hyperlink{group___v_i_base_pro_var_ga20c1d3d25ea666378d72c833d160ae2e}{m\+Sample\+Interval}
+\begin{DoxyCompactList}\small\item\em The waveform sample interval of the virtual instrument. \end{DoxyCompactList}\item 
+float \mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} \hyperlink{group___v_i_base_pro_var_ga52e76d9b74408660584676035a92a2c6}{m\+Audio\+Data}
+\begin{DoxyCompactList}\small\item\em The waveform samples of the virtual instrument. The indices are mapped according to \mbox{[}\hyperlink{group___audio_DefBID}{Built\+In\+Dynamics\+Index}\mbox{]}\mbox{[}\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Pitch}\mbox{]}\mbox{[}Waveform\+Sample\mbox{]}. \end{DoxyCompactList}\item 
+int \hyperlink{group___v_i_base_pro_var_ga9a602db8c9833ce75d95dd453c27d341}{m\+Num\+Files}
+\begin{DoxyCompactList}\small\item\em The number of sample files. \end{DoxyCompactList}\item 
+int \hyperlink{group___v_i_base_pro_var_gac265f64f759d267ee1e1680f8d387011}{m\+Num\+Built\+In\+Dynamics}
+\begin{DoxyCompactList}\small\item\em The number of \hyperlink{group___audio_DefBID}{Built-\/in Dynamics}. \end{DoxyCompactList}\item 
+int \hyperlink{group___v_i_base_pro_var_gafc759a16324cf9b3f230bcbf040afcd2}{m\+Num\+Supported\+Pitches}
+\begin{DoxyCompactList}\small\item\em The number of \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitches} supported by the instrument. \end{DoxyCompactList}\item 
+int \hyperlink{group___v_i_base_pro_var_ga80b3d2ff29b27698eea6bcf2f8ddc5d7}{m\+Sample\+Rate}
+\begin{DoxyCompactList}\small\item\em The sample rate of the virtual instrument. \end{DoxyCompactList}\item 
+int \mbox{[}$\,$\mbox{]} \hyperlink{group___v_i_base_pro_var_gae3db4264dc2a96e99ea680c6d637e6bf}{m\+Built\+In\+Dynamics\+Thresholds}
+\begin{DoxyCompactList}\small\item\em The \hyperlink{group___audio_DefBIDThresh}{thresholds} for when to use a specific sound file. \end{DoxyCompactList}\item 
+\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} \hyperlink{group___v_i_base_pro_var_ga3cae52b1bcc0178a8a6b03c7aaf7aac8}{m\+Lowest\+Supported\+Pitch}
+\begin{DoxyCompactList}\small\item\em The lowest supported \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitch} of the instrument. \end{DoxyCompactList}\item 
+\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} \hyperlink{group___v_i_base_pro_var_ga61fb2c33b53a0f663047779d7ceb18f3}{m\+Highest\+Supported\+Pitch}
+\begin{DoxyCompactList}\small\item\em The highest supported \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitch} of the instrument. \end{DoxyCompactList}\item 
+string \hyperlink{group___v_i_base_pro_var_gac428224be859933d720a9c533fdb5643}{m\+Filepath}
+\begin{DoxyCompactList}\small\item\em The base filepath for the samples. \end{DoxyCompactList}\item 
+string \mbox{[}$\,$\mbox{]} \hyperlink{group___v_i_base_pro_var_gab2add474ca506357688b5dd08cac4cb5}{m\+Filenames}
+\begin{DoxyCompactList}\small\item\em An array of filenames for the samples. \end{DoxyCompactList}\item 
+string \mbox{[}$\,$\mbox{]} \hyperlink{group___v_i_base_pro_var_ga87961e72f25fbc2256b614a394aa6f13}{m\+Built\+In\+Dynamics}
+\begin{DoxyCompactList}\small\item\em The names of the \hyperlink{group___audio_DefBID}{Built-\/\+In Dynamics}. \end{DoxyCompactList}\item 
+\hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} \hyperlink{group___v_i_base_pro_var_gae4a87a656d9448cfea28215a6b9c3840}{m\+Parent}
+\begin{DoxyCompactList}\small\item\em The \hyperlink{group___v_i_m}{manager} for this instrument. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___v_i_base_priv_func_gaecd4f9ead08a03be878b2085055a975c}{Normalize\+Audio\+Clips\+For\+Pitch} (\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} a\+Pitch, Audio\+Clip\mbox{[}$\,$\mbox{]} a\+Clips)
+\begin{DoxyCompactList}\small\item\em Normalizes the data from the audio clips and puts them in the m\+Audio\+Data member variable. \end{DoxyCompactList}\item 
+void \hyperlink{group___v_i_base_priv_func_ga0262de8cfb1e671b01ba76de2e9d140a}{Normalize\+Audio\+Clips} (Audio\+Clip\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} a\+Audio\+Clips)
+\begin{DoxyCompactList}\small\item\em Normalizes the data from the audio clips and puts them in the m\+Audio\+Data member variable. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const float \hyperlink{group___v_i_base_const_gaf060c000443f92784bd8db8d866d8b2a}{N\+O\+R\+M\+A\+L\+I\+Z\+E\+D\+\_\+\+P\+E\+AK} = -\/.\+1f
+\begin{DoxyCompactList}\small\item\em The peak of the waveform after it\textquotesingle{}s normalized. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A base class that contains generic functions and values relating to \hyperlink{group___v_i}{Virtual Instruments}. 
+
+The base \hyperlink{class_virtual_instrument}{Virtual\+Instrument} class performs tasks such as retrieving raw audio data from wav files and note mapping. This is a C\# class rather than a Unity-\/specific class, so it is not attached to any Game\+Object itself. This is because it should only interact with the \hyperlink{group___v_i_m}{Virtual Instrument Manager}, and other classes should go through the \hyperlink{group___v_i_m}{manager} to get information about the instrument. This hiding of information is done for ease of using the audio code with other parts of the program by making all interactions with the audio go through a common hub.
+
+~\newline
+ This class is meant to be the base class for implementing specific instruments. It is not meant to be used by itself as anything other than a container that is checked at runtime. Also, every \hyperlink{group___v_i}{Virtual Instrument} is meant to be used as-\/is, so there is no modification that can be done on this class by other classes that do not inherit it. 
+
+Definition at line 26 of file Virtual\+Instrument.\+cs.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Documents/\+School Documents/2017\+Spring/\+E\+E\+C\+S542/\+V\+R\+Piano\+Project/\+Assets/\+Scripts/\+Audio/\+Virtual\+Instrument/\hyperlink{_virtual_instrument_8cs}{Virtual\+Instrument.\+cs}\end{DoxyCompactItemize}

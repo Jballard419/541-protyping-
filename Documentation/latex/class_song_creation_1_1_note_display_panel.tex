@@ -1,0 +1,614 @@
+\hypertarget{class_song_creation_1_1_note_display_panel}{}\section{Song\+Creation.\+Note\+Display\+Panel Class Reference}
+\label{class_song_creation_1_1_note_display_panel}\index{Song\+Creation.\+Note\+Display\+Panel@{Song\+Creation.\+Note\+Display\+Panel}}
+Inheritance diagram for Song\+Creation.\+Note\+Display\+Panel\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_song_creation_1_1_note_display_panel}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Sprite \hyperlink{class_song_creation_1_1_note_display_panel_aa53de786e5bd8e0d7b00ad1142cdf9df}{Get\+Length\+Image} ()
+\item 
+\hyperlink{class_song_creation_1_1_measure_display_panel}{Measure\+Display\+Panel} \hyperlink{class_song_creation_1_1_note_display_panel_a9b9552bd8601886993f39540f9378fc4}{Get\+Measure\+Panel} ()
+\item 
+int \hyperlink{class_song_creation_1_1_note_display_panel_ac3736184f5991e2d24e408245dc62cdb}{Get\+Note\+Index} ()
+\item 
+\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{Music.\+N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH} \hyperlink{class_song_creation_1_1_note_display_panel_a804d1fc14c1ca14ebf5b37b122b1faf0}{Get\+Offset} ()
+\item 
+void \hyperlink{class_song_creation_1_1_note_display_panel_a1ab979ae56d06b4680b9d37ed09d40c1}{Set\+Drums} (string a\+Drum\+String)
+\item 
+void \hyperlink{class_song_creation_1_1_note_display_panel_a51376b7beedfd9afdc8574b1ca9f47fa}{Set\+Length\+Image} (Sprite a\+Image)
+\item 
+void \hyperlink{class_song_creation_1_1_note_display_panel_aeeaa559c542f89fcecc4fc46df83fa06}{Set\+Offset} (\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{Music.\+N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH} a\+Offset)
+\item 
+void \hyperlink{class_song_creation_1_1_note_display_panel_a66f6128629d7ced83d0c1803dbfae813}{Set\+Offset\+Image} (Sprite a\+Image)
+\item 
+void \hyperlink{class_song_creation_1_1_note_display_panel_ad1c95108009b17e0fb0368fc35f362a8}{Set\+Parent\+Container} (\hyperlink{class_song_creation_1_1_measure_display_panel}{Measure\+Display\+Panel} a\+Parent)
+\item 
+void \hyperlink{class_song_creation_1_1_note_display_panel_a7247d36ccbd7449be872432bf1ad7781}{Set\+Note\+Index} (int a\+Index)
+\item 
+void \hyperlink{class_song_creation_1_1_note_display_panel_a0f00b32c3c5d6c1bf80e8896388e2099}{Set\+Pitches} (string a\+Pitch\+String)
+\item 
+void \hyperlink{class_song_creation_1_1_note_display_panel_afcaffdbcc0458ee580b8c8d1373683d7}{Set\+Velocity} (string a\+Velocity\+String)
+\item 
+void \hyperlink{class_song_creation_1_1_note_display_panel_a75afc179723dc73d1f7715808f453dd1}{Stop\+Editing} ()
+\item 
+void \hyperlink{class_song_creation_1_1_note_display_panel_a496b2c412d05d2816dd733eeef4caa61}{On\+Remove\+Button\+Clicked} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_song_creation_1_1_note_display_panel_a2f5eee7e81aa047949e69be9f0877a67}{Awake} ()
+\item 
+void \hyperlink{class_song_creation_1_1_note_display_panel_a56b230f3141d57f1c11dd342b352eaa3}{Trigger\+Edit\+Event} (Pointer\+Event\+Data data)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Button \hyperlink{class_song_creation_1_1_note_display_panel_a3e533974552d5c029c1de67b6bd1c2da}{m\+Remove\+Note\+Button} = null
+\item 
+Event\+Trigger \hyperlink{class_song_creation_1_1_note_display_panel_af2efb7939acf869e9a4e18ea31baa4e2}{m\+Edit\+Trigger} = null
+\item 
+Image \hyperlink{class_song_creation_1_1_note_display_panel_a88560efe222dafc26795c508bcf5b5a2}{m\+Length\+Image} = null
+\item 
+Image \hyperlink{class_song_creation_1_1_note_display_panel_a9a63fa0205fec1d90c093ad4174aed00}{m\+Offset\+Image} = null
+\item 
+int \hyperlink{class_song_creation_1_1_note_display_panel_a383f4e592812c12028e0ff3f7aec0980}{m\+Note\+Index} = 0
+\item 
+\hyperlink{class_song_creation_1_1_measure_display_panel}{Measure\+Display\+Panel} \hyperlink{class_song_creation_1_1_note_display_panel_aa0d0186ce889ffd63cfe7587f48463c9}{m\+Parent} = null
+\item 
+\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{Music.\+N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH} \hyperlink{class_song_creation_1_1_note_display_panel_ae1943fcafd54133bbc3e387cc49473b8}{m\+Offset} = \hyperlink{group___music_enums_ggaf11b5f079adbb21c800b9eca1c5c3cbdab50339a10e1de285ac99d4c3990b8693}{Music.\+N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+T\+H.\+N\+O\+NE}
+\item 
+\hyperlink{class_song_creation}{Song\+Creation} \hyperlink{class_song_creation_1_1_note_display_panel_ab11cc1ad87541ada65b36e010d9c56c3}{m\+Song\+Creation\+Handler} = null
+\item 
+Text \hyperlink{class_song_creation_1_1_note_display_panel_a7a6d14026ca347c32b2842d5c9dc54e9}{m\+Drums} = null
+\item 
+Text \hyperlink{class_song_creation_1_1_note_display_panel_a1bab51528899c56a7944e7d19ec3d8bb}{m\+Pitches} = null
+\item 
+Text \hyperlink{class_song_creation_1_1_note_display_panel_a3e9bb032c809e27c4ce277c532e4ff66}{m\+Velocity} = null
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 27 of file Song\+Creation.\+cs.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_song_creation_1_1_note_display_panel_a2f5eee7e81aa047949e69be9f0877a67}\label{class_song_creation_1_1_note_display_panel_a2f5eee7e81aa047949e69be9f0877a67}} 
+\index{Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}!Awake@{Awake}}
+\index{Awake@{Awake}!Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}}
+\subsubsection{\texorpdfstring{Awake()}{Awake()}}
+{\footnotesize\ttfamily void Song\+Creation.\+Note\+Display\+Panel.\+Awake (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 49 of file Song\+Creation.\+cs.
+
+
+
+References Song\+Creation.\+Note\+Display\+Panel.\+On\+Remove\+Button\+Clicked(), and Song\+Creation.\+Note\+Display\+Panel.\+Trigger\+Edit\+Event().
+
+
+\begin{DoxyCode}
+50         \{
+51             \textcolor{comment}{// Set the private variables.}
+52             \hyperlink{class_song_creation_1_1_note_display_panel_ab11cc1ad87541ada65b36e010d9c56c3}{mSongCreationHandler} = GameObject.Find( \textcolor{stringliteral}{"SongCreationCanvas"} ).GetComponent
+      <\hyperlink{class_song_creation}{SongCreation}>();
+53 
+54             \textcolor{comment}{// Set up the OnClick trigger.}
+55             \hyperlink{class_song_creation_1_1_note_display_panel_af2efb7939acf869e9a4e18ea31baa4e2}{mEditTrigger} = gameObject.AddComponent<EventTrigger>();
+56             EventTrigger.Entry click = \textcolor{keyword}{new} EventTrigger.Entry();
+57             click.eventID = EventTriggerType.PointerClick;
+58             click.callback.AddListener( ( data ) => \{ \hyperlink{class_song_creation_1_1_note_display_panel_a56b230f3141d57f1c11dd342b352eaa3}{TriggerEditEvent}( (PointerEventData)
+      data ); \} );
+59             mEditTrigger.triggers.Add( click );
+60 
+61             \textcolor{comment}{// Setup the children objects.}
+62             \hyperlink{class_song_creation_1_1_note_display_panel_a88560efe222dafc26795c508bcf5b5a2}{mLengthImage} = gameObject.transform.GetChild( 3 ).GetChild( 1 ).GetComponent<Image>
+      ();
+63             \hyperlink{class_song_creation_1_1_note_display_panel_a9a63fa0205fec1d90c093ad4174aed00}{mOffsetImage} = gameObject.transform.GetChild( 2 ).GetChild( 1 ).GetComponent<Image>
+      ();
+64             \hyperlink{class_song_creation_1_1_note_display_panel_a1bab51528899c56a7944e7d19ec3d8bb}{mPitches} = gameObject.transform.GetChild( 1 ).GetChild( 0 ).GetComponent<Text>();
+65             \hyperlink{class_song_creation_1_1_note_display_panel_a3e9bb032c809e27c4ce277c532e4ff66}{mVelocity} = gameObject.transform.GetChild( 4 ).GetChild( 0 ).GetComponent<Text>();
+66             \hyperlink{class_song_creation_1_1_note_display_panel_a3e533974552d5c029c1de67b6bd1c2da}{mRemoveNoteButton} = gameObject.transform.GetChild( 0 ).gameObject.GetComponent
+      <Button>();
+67             mRemoveNoteButton.onClick.AddListener( \hyperlink{class_song_creation_1_1_note_display_panel_a496b2c412d05d2816dd733eeef4caa61}{OnRemoveButtonClicked} );
+68             \hyperlink{class_song_creation_1_1_note_display_panel_a7a6d14026ca347c32b2842d5c9dc54e9}{mDrums} = gameObject.transform.GetChild( 5 ).GetChild( 0 ).GetComponent<Text>();
+69         \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_song_creation_1_1_note_display_panel_aa53de786e5bd8e0d7b00ad1142cdf9df}\label{class_song_creation_1_1_note_display_panel_aa53de786e5bd8e0d7b00ad1142cdf9df}} 
+\index{Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}!Get\+Length\+Image@{Get\+Length\+Image}}
+\index{Get\+Length\+Image@{Get\+Length\+Image}!Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}}
+\subsubsection{\texorpdfstring{Get\+Length\+Image()}{GetLengthImage()}}
+{\footnotesize\ttfamily Sprite Song\+Creation.\+Note\+Display\+Panel.\+Get\+Length\+Image (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 76 of file Song\+Creation.\+cs.
+
+
+\begin{DoxyCode}
+77         \{
+78             \textcolor{keywordflow}{return} \hyperlink{class_song_creation_1_1_note_display_panel_a88560efe222dafc26795c508bcf5b5a2}{mLengthImage}.sprite;
+79         \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_song_creation_1_1_note_display_panel_a9b9552bd8601886993f39540f9378fc4}\label{class_song_creation_1_1_note_display_panel_a9b9552bd8601886993f39540f9378fc4}} 
+\index{Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}!Get\+Measure\+Panel@{Get\+Measure\+Panel}}
+\index{Get\+Measure\+Panel@{Get\+Measure\+Panel}!Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}}
+\subsubsection{\texorpdfstring{Get\+Measure\+Panel()}{GetMeasurePanel()}}
+{\footnotesize\ttfamily \hyperlink{class_song_creation_1_1_measure_display_panel}{Measure\+Display\+Panel} Song\+Creation.\+Note\+Display\+Panel.\+Get\+Measure\+Panel (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 82 of file Song\+Creation.\+cs.
+
+
+
+References Song\+Creation.\+Note\+Display\+Panel.\+m\+Parent.
+
+
+\begin{DoxyCode}
+83         \{
+84             \textcolor{keywordflow}{return} \hyperlink{class_song_creation_1_1_note_display_panel_aa0d0186ce889ffd63cfe7587f48463c9}{mParent};
+85         \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_song_creation_1_1_note_display_panel_ac3736184f5991e2d24e408245dc62cdb}\label{class_song_creation_1_1_note_display_panel_ac3736184f5991e2d24e408245dc62cdb}} 
+\index{Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}!Get\+Note\+Index@{Get\+Note\+Index}}
+\index{Get\+Note\+Index@{Get\+Note\+Index}!Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}}
+\subsubsection{\texorpdfstring{Get\+Note\+Index()}{GetNoteIndex()}}
+{\footnotesize\ttfamily int Song\+Creation.\+Note\+Display\+Panel.\+Get\+Note\+Index (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 88 of file Song\+Creation.\+cs.
+
+
+
+References Song\+Creation.\+Note\+Display\+Panel.\+m\+Note\+Index.
+
+
+
+Referenced by Song\+Creation.\+On\+Modify\+Note().
+
+
+\begin{DoxyCode}
+89         \{
+90             \textcolor{keywordflow}{return} \hyperlink{class_song_creation_1_1_note_display_panel_a383f4e592812c12028e0ff3f7aec0980}{mNoteIndex};
+91         \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_song_creation_1_1_note_display_panel_a804d1fc14c1ca14ebf5b37b122b1faf0}\label{class_song_creation_1_1_note_display_panel_a804d1fc14c1ca14ebf5b37b122b1faf0}} 
+\index{Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}!Get\+Offset@{Get\+Offset}}
+\index{Get\+Offset@{Get\+Offset}!Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}}
+\subsubsection{\texorpdfstring{Get\+Offset()}{GetOffset()}}
+{\footnotesize\ttfamily \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{Music.\+N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH} Song\+Creation.\+Note\+Display\+Panel.\+Get\+Offset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 94 of file Song\+Creation.\+cs.
+
+
+
+References Song\+Creation.\+Note\+Display\+Panel.\+m\+Offset.
+
+
+
+Referenced by Song\+Creation.\+Measure\+Display\+Panel.\+Remove\+Note().
+
+
+\begin{DoxyCode}
+95         \{
+96             \textcolor{keywordflow}{return} \hyperlink{class_song_creation_1_1_note_display_panel_ae1943fcafd54133bbc3e387cc49473b8}{mOffset};
+97         \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_song_creation_1_1_note_display_panel_a496b2c412d05d2816dd733eeef4caa61}\label{class_song_creation_1_1_note_display_panel_a496b2c412d05d2816dd733eeef4caa61}} 
+\index{Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}!On\+Remove\+Button\+Clicked@{On\+Remove\+Button\+Clicked}}
+\index{On\+Remove\+Button\+Clicked@{On\+Remove\+Button\+Clicked}!Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}}
+\subsubsection{\texorpdfstring{On\+Remove\+Button\+Clicked()}{OnRemoveButtonClicked()}}
+{\footnotesize\ttfamily void Song\+Creation.\+Note\+Display\+Panel.\+On\+Remove\+Button\+Clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 176 of file Song\+Creation.\+cs.
+
+
+
+References Song\+Creation.\+Note\+Display\+Panel.\+m\+Note\+Index, Song\+Creation.\+On\+Remove\+Note(), Song\+Creation.\+Measure\+Display\+Panel.\+Remove\+Note(), and Song\+Creation.\+Note\+Display\+Panel.\+Set\+Note\+Index().
+
+
+
+Referenced by Song\+Creation.\+Note\+Display\+Panel.\+Awake().
+
+
+\begin{DoxyCode}
+177         \{
+178             \textcolor{comment}{// Set the note index for all notes after this one}
+179             \textcolor{keywordtype}{int} sib = transform.GetSiblingIndex() + 1;
+180             \textcolor{keywordtype}{int} index = \hyperlink{class_song_creation_1_1_note_display_panel_a383f4e592812c12028e0ff3f7aec0980}{mNoteIndex};
+181             \textcolor{keywordflow}{while}( sib < transform.parent.childCount )
+182             \{
+183                 \textcolor{keywordflow}{if}( transform.parent.GetChild( sib ).GetComponent<NoteDisplayPanel>() != null )
+184                 \{
+185                     transform.parent.GetChild( sib ).GetComponent<NoteDisplayPanel>().
+      \hyperlink{class_song_creation_1_1_note_display_panel_a7247d36ccbd7449be872432bf1ad7781}{SetNoteIndex}( index );
+186                     index++;
+187                 \}
+188                 sib++;
+189             \}
+190 
+191             \textcolor{comment}{// Signal that this note display should be removed.}
+192             \hyperlink{class_song_creation_1_1_note_display_panel_aa0d0186ce889ffd63cfe7587f48463c9}{mParent}.\hyperlink{class_song_creation_1_1_measure_display_panel_a56881a6bd83cad971a42aa9f9955a0ee}{RemoveNote}( \textcolor{keyword}{this} );
+193 
+194             \textcolor{comment}{// Signal that this note should be removed from the song.}
+195             GameObject.Find( \textcolor{stringliteral}{"SongCreationCanvas"} ).GetComponent<\hyperlink{class_song_creation}{SongCreation}>().
+      \hyperlink{class_song_creation_a485d615c895cddde720b719b64ab4245}{OnRemoveNote}( \hyperlink{class_song_creation_1_1_note_display_panel_a383f4e592812c12028e0ff3f7aec0980}{mNoteIndex} );
+196         \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_song_creation_1_1_note_display_panel_a1ab979ae56d06b4680b9d37ed09d40c1}\label{class_song_creation_1_1_note_display_panel_a1ab979ae56d06b4680b9d37ed09d40c1}} 
+\index{Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}!Set\+Drums@{Set\+Drums}}
+\index{Set\+Drums@{Set\+Drums}!Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}}
+\subsubsection{\texorpdfstring{Set\+Drums()}{SetDrums()}}
+{\footnotesize\ttfamily void Song\+Creation.\+Note\+Display\+Panel.\+Set\+Drums (\begin{DoxyParamCaption}\item[{string}]{a\+Drum\+String }\end{DoxyParamCaption})}
+
+
+
+Definition at line 100 of file Song\+Creation.\+cs.
+
+
+
+Referenced by Song\+Creation.\+Measure\+Display\+Panel.\+Add\+Note(), and Song\+Creation.\+On\+Modify\+Note().
+
+
+\begin{DoxyCode}
+101         \{
+102             \hyperlink{class_song_creation_1_1_note_display_panel_a7a6d14026ca347c32b2842d5c9dc54e9}{mDrums}.text = aDrumString;
+103         \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_song_creation_1_1_note_display_panel_a51376b7beedfd9afdc8574b1ca9f47fa}\label{class_song_creation_1_1_note_display_panel_a51376b7beedfd9afdc8574b1ca9f47fa}} 
+\index{Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}!Set\+Length\+Image@{Set\+Length\+Image}}
+\index{Set\+Length\+Image@{Set\+Length\+Image}!Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}}
+\subsubsection{\texorpdfstring{Set\+Length\+Image()}{SetLengthImage()}}
+{\footnotesize\ttfamily void Song\+Creation.\+Note\+Display\+Panel.\+Set\+Length\+Image (\begin{DoxyParamCaption}\item[{Sprite}]{a\+Image }\end{DoxyParamCaption})}
+
+
+
+Definition at line 106 of file Song\+Creation.\+cs.
+
+
+
+Referenced by Song\+Creation.\+Measure\+Display\+Panel.\+Add\+Note(), and Song\+Creation.\+On\+Modify\+Note().
+
+
+\begin{DoxyCode}
+107         \{
+108             \textcolor{keywordflow}{if}( aImage == null )
+109             \{
+110                 \hyperlink{class_song_creation_1_1_note_display_panel_a88560efe222dafc26795c508bcf5b5a2}{mLengthImage}.color = \textcolor{keyword}{new} Color32( 255, 255, 255, 0 );
+111             \}
+112             \textcolor{keywordflow}{else}
+113             \{
+114                 \hyperlink{class_song_creation_1_1_note_display_panel_a88560efe222dafc26795c508bcf5b5a2}{mLengthImage}.sprite = aImage;
+115                 \hyperlink{class_song_creation_1_1_note_display_panel_a88560efe222dafc26795c508bcf5b5a2}{mLengthImage}.color = \textcolor{keyword}{new} Color32( 255, 255, 255, 255 );
+116             \}
+117         \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_song_creation_1_1_note_display_panel_a7247d36ccbd7449be872432bf1ad7781}\label{class_song_creation_1_1_note_display_panel_a7247d36ccbd7449be872432bf1ad7781}} 
+\index{Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}!Set\+Note\+Index@{Set\+Note\+Index}}
+\index{Set\+Note\+Index@{Set\+Note\+Index}!Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}}
+\subsubsection{\texorpdfstring{Set\+Note\+Index()}{SetNoteIndex()}}
+{\footnotesize\ttfamily void Song\+Creation.\+Note\+Display\+Panel.\+Set\+Note\+Index (\begin{DoxyParamCaption}\item[{int}]{a\+Index }\end{DoxyParamCaption})}
+
+
+
+Definition at line 147 of file Song\+Creation.\+cs.
+
+
+
+Referenced by Song\+Creation.\+Measure\+Display\+Panel.\+Add\+Note(), and Song\+Creation.\+Note\+Display\+Panel.\+On\+Remove\+Button\+Clicked().
+
+
+\begin{DoxyCode}
+148         \{
+149             \hyperlink{class_song_creation_1_1_note_display_panel_a383f4e592812c12028e0ff3f7aec0980}{mNoteIndex} = aIndex;
+150         \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_song_creation_1_1_note_display_panel_aeeaa559c542f89fcecc4fc46df83fa06}\label{class_song_creation_1_1_note_display_panel_aeeaa559c542f89fcecc4fc46df83fa06}} 
+\index{Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}!Set\+Offset@{Set\+Offset}}
+\index{Set\+Offset@{Set\+Offset}!Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}}
+\subsubsection{\texorpdfstring{Set\+Offset()}{SetOffset()}}
+{\footnotesize\ttfamily void Song\+Creation.\+Note\+Display\+Panel.\+Set\+Offset (\begin{DoxyParamCaption}\item[{\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{Music.\+N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH}}]{a\+Offset }\end{DoxyParamCaption})}
+
+
+
+Definition at line 120 of file Song\+Creation.\+cs.
+
+
+
+References Song\+Creation.\+Note\+Display\+Panel.\+m\+Offset.
+
+
+
+Referenced by Song\+Creation.\+Measure\+Display\+Panel.\+Add\+Note(), and Song\+Creation.\+On\+Modify\+Note().
+
+
+\begin{DoxyCode}
+121         \{
+122             \hyperlink{class_song_creation_1_1_note_display_panel_ae1943fcafd54133bbc3e387cc49473b8}{mOffset} = aOffset;
+123         \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_song_creation_1_1_note_display_panel_a66f6128629d7ced83d0c1803dbfae813}\label{class_song_creation_1_1_note_display_panel_a66f6128629d7ced83d0c1803dbfae813}} 
+\index{Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}!Set\+Offset\+Image@{Set\+Offset\+Image}}
+\index{Set\+Offset\+Image@{Set\+Offset\+Image}!Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}}
+\subsubsection{\texorpdfstring{Set\+Offset\+Image()}{SetOffsetImage()}}
+{\footnotesize\ttfamily void Song\+Creation.\+Note\+Display\+Panel.\+Set\+Offset\+Image (\begin{DoxyParamCaption}\item[{Sprite}]{a\+Image }\end{DoxyParamCaption})}
+
+
+
+Definition at line 126 of file Song\+Creation.\+cs.
+
+
+
+Referenced by Song\+Creation.\+Measure\+Display\+Panel.\+Add\+Note(), and Song\+Creation.\+On\+Modify\+Note().
+
+
+\begin{DoxyCode}
+127         \{
+128             \textcolor{keywordflow}{if}( aImage == null )
+129             \{
+130                 \hyperlink{class_song_creation_1_1_note_display_panel_a9a63fa0205fec1d90c093ad4174aed00}{mOffsetImage}.color = \textcolor{keyword}{new} Color32( 255, 255, 255, 0 );
+131             \}
+132             \textcolor{keywordflow}{else}
+133             \{
+134                 \hyperlink{class_song_creation_1_1_note_display_panel_a9a63fa0205fec1d90c093ad4174aed00}{mOffsetImage}.sprite = aImage;
+135                 \hyperlink{class_song_creation_1_1_note_display_panel_a9a63fa0205fec1d90c093ad4174aed00}{mOffsetImage}.color = \textcolor{keyword}{new} Color32( 255, 255, 255, 255 );
+136             \}
+137 
+138         \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_song_creation_1_1_note_display_panel_ad1c95108009b17e0fb0368fc35f362a8}\label{class_song_creation_1_1_note_display_panel_ad1c95108009b17e0fb0368fc35f362a8}} 
+\index{Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}!Set\+Parent\+Container@{Set\+Parent\+Container}}
+\index{Set\+Parent\+Container@{Set\+Parent\+Container}!Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}}
+\subsubsection{\texorpdfstring{Set\+Parent\+Container()}{SetParentContainer()}}
+{\footnotesize\ttfamily void Song\+Creation.\+Note\+Display\+Panel.\+Set\+Parent\+Container (\begin{DoxyParamCaption}\item[{\hyperlink{class_song_creation_1_1_measure_display_panel}{Measure\+Display\+Panel}}]{a\+Parent }\end{DoxyParamCaption})}
+
+
+
+Definition at line 141 of file Song\+Creation.\+cs.
+
+
+
+Referenced by Song\+Creation.\+Measure\+Display\+Panel.\+Add\+Note().
+
+
+\begin{DoxyCode}
+142         \{
+143             \hyperlink{class_song_creation_1_1_note_display_panel_aa0d0186ce889ffd63cfe7587f48463c9}{mParent} = aParent;
+144         \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_song_creation_1_1_note_display_panel_a0f00b32c3c5d6c1bf80e8896388e2099}\label{class_song_creation_1_1_note_display_panel_a0f00b32c3c5d6c1bf80e8896388e2099}} 
+\index{Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}!Set\+Pitches@{Set\+Pitches}}
+\index{Set\+Pitches@{Set\+Pitches}!Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}}
+\subsubsection{\texorpdfstring{Set\+Pitches()}{SetPitches()}}
+{\footnotesize\ttfamily void Song\+Creation.\+Note\+Display\+Panel.\+Set\+Pitches (\begin{DoxyParamCaption}\item[{string}]{a\+Pitch\+String }\end{DoxyParamCaption})}
+
+
+
+Definition at line 153 of file Song\+Creation.\+cs.
+
+
+
+Referenced by Song\+Creation.\+Measure\+Display\+Panel.\+Add\+Note(), and Song\+Creation.\+On\+Modify\+Note().
+
+
+\begin{DoxyCode}
+154         \{
+155             \hyperlink{class_song_creation_1_1_note_display_panel_a1bab51528899c56a7944e7d19ec3d8bb}{mPitches}.text = aPitchString;
+156         \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_song_creation_1_1_note_display_panel_afcaffdbcc0458ee580b8c8d1373683d7}\label{class_song_creation_1_1_note_display_panel_afcaffdbcc0458ee580b8c8d1373683d7}} 
+\index{Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}!Set\+Velocity@{Set\+Velocity}}
+\index{Set\+Velocity@{Set\+Velocity}!Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}}
+\subsubsection{\texorpdfstring{Set\+Velocity()}{SetVelocity()}}
+{\footnotesize\ttfamily void Song\+Creation.\+Note\+Display\+Panel.\+Set\+Velocity (\begin{DoxyParamCaption}\item[{string}]{a\+Velocity\+String }\end{DoxyParamCaption})}
+
+
+
+Definition at line 159 of file Song\+Creation.\+cs.
+
+
+
+Referenced by Song\+Creation.\+Measure\+Display\+Panel.\+Add\+Note(), and Song\+Creation.\+On\+Modify\+Note().
+
+
+\begin{DoxyCode}
+160         \{
+161             \hyperlink{class_song_creation_1_1_note_display_panel_a3e9bb032c809e27c4ce277c532e4ff66}{mVelocity}.text = aVelocityString;
+162         \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_song_creation_1_1_note_display_panel_a75afc179723dc73d1f7715808f453dd1}\label{class_song_creation_1_1_note_display_panel_a75afc179723dc73d1f7715808f453dd1}} 
+\index{Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}!Stop\+Editing@{Stop\+Editing}}
+\index{Stop\+Editing@{Stop\+Editing}!Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}}
+\subsubsection{\texorpdfstring{Stop\+Editing()}{StopEditing()}}
+{\footnotesize\ttfamily void Song\+Creation.\+Note\+Display\+Panel.\+Stop\+Editing (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 165 of file Song\+Creation.\+cs.
+
+
+
+Referenced by Song\+Creation.\+On\+Edit\+Event(), and Song\+Creation.\+On\+Modify\+Note().
+
+
+\begin{DoxyCode}
+166         \{
+167             \textcolor{comment}{// Change the panel background color back to its original color.}
+168             gameObject.GetComponent<Image>().color = \textcolor{keyword}{new} Color32( 58, 58, 58, 255 );
+169         \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_song_creation_1_1_note_display_panel_a56b230f3141d57f1c11dd342b352eaa3}\label{class_song_creation_1_1_note_display_panel_a56b230f3141d57f1c11dd342b352eaa3}} 
+\index{Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}!Trigger\+Edit\+Event@{Trigger\+Edit\+Event}}
+\index{Trigger\+Edit\+Event@{Trigger\+Edit\+Event}!Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}}
+\subsubsection{\texorpdfstring{Trigger\+Edit\+Event()}{TriggerEditEvent()}}
+{\footnotesize\ttfamily void Song\+Creation.\+Note\+Display\+Panel.\+Trigger\+Edit\+Event (\begin{DoxyParamCaption}\item[{Pointer\+Event\+Data}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 200 of file Song\+Creation.\+cs.
+
+
+
+References Song\+Creation.\+On\+Edit\+Event().
+
+
+
+Referenced by Song\+Creation.\+Note\+Display\+Panel.\+Awake().
+
+
+\begin{DoxyCode}
+201         \{
+202             \textcolor{keywordflow}{if}( data.button == PointerEventData.InputButton.Left )
+203             \{
+204                 \textcolor{comment}{// Change the color of the background panel to show that we're editing the note that it }
+205                 \textcolor{comment}{// represents.}
+206                 gameObject.GetComponent<Image>().color = \textcolor{keyword}{new} Color32( 116, 116, 116, 255 );
+207 
+208                 \textcolor{comment}{// Send the event to the song creation handler.}
+209                 \hyperlink{class_song_creation_1_1_note_display_panel_ab11cc1ad87541ada65b36e010d9c56c3}{mSongCreationHandler}.\hyperlink{class_song_creation_aa934a527e81454a71b82cd6918476bed}{OnEditEvent}( \textcolor{keyword}{this} );
+210             \}
+211         \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_song_creation_1_1_note_display_panel_a7a6d14026ca347c32b2842d5c9dc54e9}\label{class_song_creation_1_1_note_display_panel_a7a6d14026ca347c32b2842d5c9dc54e9}} 
+\index{Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}!m\+Drums@{m\+Drums}}
+\index{m\+Drums@{m\+Drums}!Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}}
+\subsubsection{\texorpdfstring{m\+Drums}{mDrums}}
+{\footnotesize\ttfamily Text Song\+Creation.\+Note\+Display\+Panel.\+m\+Drums = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 40 of file Song\+Creation.\+cs.
+
+\mbox{\Hypertarget{class_song_creation_1_1_note_display_panel_af2efb7939acf869e9a4e18ea31baa4e2}\label{class_song_creation_1_1_note_display_panel_af2efb7939acf869e9a4e18ea31baa4e2}} 
+\index{Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}!m\+Edit\+Trigger@{m\+Edit\+Trigger}}
+\index{m\+Edit\+Trigger@{m\+Edit\+Trigger}!Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}}
+\subsubsection{\texorpdfstring{m\+Edit\+Trigger}{mEditTrigger}}
+{\footnotesize\ttfamily Event\+Trigger Song\+Creation.\+Note\+Display\+Panel.\+m\+Edit\+Trigger = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 33 of file Song\+Creation.\+cs.
+
+\mbox{\Hypertarget{class_song_creation_1_1_note_display_panel_a88560efe222dafc26795c508bcf5b5a2}\label{class_song_creation_1_1_note_display_panel_a88560efe222dafc26795c508bcf5b5a2}} 
+\index{Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}!m\+Length\+Image@{m\+Length\+Image}}
+\index{m\+Length\+Image@{m\+Length\+Image}!Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}}
+\subsubsection{\texorpdfstring{m\+Length\+Image}{mLengthImage}}
+{\footnotesize\ttfamily Image Song\+Creation.\+Note\+Display\+Panel.\+m\+Length\+Image = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 34 of file Song\+Creation.\+cs.
+
+\mbox{\Hypertarget{class_song_creation_1_1_note_display_panel_a383f4e592812c12028e0ff3f7aec0980}\label{class_song_creation_1_1_note_display_panel_a383f4e592812c12028e0ff3f7aec0980}} 
+\index{Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}!m\+Note\+Index@{m\+Note\+Index}}
+\index{m\+Note\+Index@{m\+Note\+Index}!Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}}
+\subsubsection{\texorpdfstring{m\+Note\+Index}{mNoteIndex}}
+{\footnotesize\ttfamily int Song\+Creation.\+Note\+Display\+Panel.\+m\+Note\+Index = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 36 of file Song\+Creation.\+cs.
+
+
+
+Referenced by Song\+Creation.\+Note\+Display\+Panel.\+Get\+Note\+Index(), and Song\+Creation.\+Note\+Display\+Panel.\+On\+Remove\+Button\+Clicked().
+
+\mbox{\Hypertarget{class_song_creation_1_1_note_display_panel_ae1943fcafd54133bbc3e387cc49473b8}\label{class_song_creation_1_1_note_display_panel_ae1943fcafd54133bbc3e387cc49473b8}} 
+\index{Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}!m\+Offset@{m\+Offset}}
+\index{m\+Offset@{m\+Offset}!Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}}
+\subsubsection{\texorpdfstring{m\+Offset}{mOffset}}
+{\footnotesize\ttfamily \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{Music.\+N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH} Song\+Creation.\+Note\+Display\+Panel.\+m\+Offset = \hyperlink{group___music_enums_ggaf11b5f079adbb21c800b9eca1c5c3cbdab50339a10e1de285ac99d4c3990b8693}{Music.\+N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+T\+H.\+N\+O\+NE}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 38 of file Song\+Creation.\+cs.
+
+
+
+Referenced by Song\+Creation.\+Note\+Display\+Panel.\+Get\+Offset(), and Song\+Creation.\+Note\+Display\+Panel.\+Set\+Offset().
+
+\mbox{\Hypertarget{class_song_creation_1_1_note_display_panel_a9a63fa0205fec1d90c093ad4174aed00}\label{class_song_creation_1_1_note_display_panel_a9a63fa0205fec1d90c093ad4174aed00}} 
+\index{Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}!m\+Offset\+Image@{m\+Offset\+Image}}
+\index{m\+Offset\+Image@{m\+Offset\+Image}!Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}}
+\subsubsection{\texorpdfstring{m\+Offset\+Image}{mOffsetImage}}
+{\footnotesize\ttfamily Image Song\+Creation.\+Note\+Display\+Panel.\+m\+Offset\+Image = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 35 of file Song\+Creation.\+cs.
+
+\mbox{\Hypertarget{class_song_creation_1_1_note_display_panel_aa0d0186ce889ffd63cfe7587f48463c9}\label{class_song_creation_1_1_note_display_panel_aa0d0186ce889ffd63cfe7587f48463c9}} 
+\index{Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}!m\+Parent@{m\+Parent}}
+\index{m\+Parent@{m\+Parent}!Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}}
+\subsubsection{\texorpdfstring{m\+Parent}{mParent}}
+{\footnotesize\ttfamily \hyperlink{class_song_creation_1_1_measure_display_panel}{Measure\+Display\+Panel} Song\+Creation.\+Note\+Display\+Panel.\+m\+Parent = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 37 of file Song\+Creation.\+cs.
+
+
+
+Referenced by Song\+Creation.\+Note\+Display\+Panel.\+Get\+Measure\+Panel().
+
+\mbox{\Hypertarget{class_song_creation_1_1_note_display_panel_a1bab51528899c56a7944e7d19ec3d8bb}\label{class_song_creation_1_1_note_display_panel_a1bab51528899c56a7944e7d19ec3d8bb}} 
+\index{Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}!m\+Pitches@{m\+Pitches}}
+\index{m\+Pitches@{m\+Pitches}!Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}}
+\subsubsection{\texorpdfstring{m\+Pitches}{mPitches}}
+{\footnotesize\ttfamily Text Song\+Creation.\+Note\+Display\+Panel.\+m\+Pitches = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 41 of file Song\+Creation.\+cs.
+
+\mbox{\Hypertarget{class_song_creation_1_1_note_display_panel_a3e533974552d5c029c1de67b6bd1c2da}\label{class_song_creation_1_1_note_display_panel_a3e533974552d5c029c1de67b6bd1c2da}} 
+\index{Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}!m\+Remove\+Note\+Button@{m\+Remove\+Note\+Button}}
+\index{m\+Remove\+Note\+Button@{m\+Remove\+Note\+Button}!Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}}
+\subsubsection{\texorpdfstring{m\+Remove\+Note\+Button}{mRemoveNoteButton}}
+{\footnotesize\ttfamily Button Song\+Creation.\+Note\+Display\+Panel.\+m\+Remove\+Note\+Button = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 32 of file Song\+Creation.\+cs.
+
+\mbox{\Hypertarget{class_song_creation_1_1_note_display_panel_ab11cc1ad87541ada65b36e010d9c56c3}\label{class_song_creation_1_1_note_display_panel_ab11cc1ad87541ada65b36e010d9c56c3}} 
+\index{Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}!m\+Song\+Creation\+Handler@{m\+Song\+Creation\+Handler}}
+\index{m\+Song\+Creation\+Handler@{m\+Song\+Creation\+Handler}!Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}}
+\subsubsection{\texorpdfstring{m\+Song\+Creation\+Handler}{mSongCreationHandler}}
+{\footnotesize\ttfamily \hyperlink{class_song_creation}{Song\+Creation} Song\+Creation.\+Note\+Display\+Panel.\+m\+Song\+Creation\+Handler = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 39 of file Song\+Creation.\+cs.
+
+\mbox{\Hypertarget{class_song_creation_1_1_note_display_panel_a3e9bb032c809e27c4ce277c532e4ff66}\label{class_song_creation_1_1_note_display_panel_a3e9bb032c809e27c4ce277c532e4ff66}} 
+\index{Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}!m\+Velocity@{m\+Velocity}}
+\index{m\+Velocity@{m\+Velocity}!Song\+Creation\+::\+Note\+Display\+Panel@{Song\+Creation\+::\+Note\+Display\+Panel}}
+\subsubsection{\texorpdfstring{m\+Velocity}{mVelocity}}
+{\footnotesize\ttfamily Text Song\+Creation.\+Note\+Display\+Panel.\+m\+Velocity = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 42 of file Song\+Creation.\+cs.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+V\+R\+Piano\+Project/\+Assets/\+Scripts/\+Audio/\+Testing/\hyperlink{_song_creation_8cs}{Song\+Creation.\+cs}\end{DoxyCompactItemize}

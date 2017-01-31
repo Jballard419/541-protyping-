@@ -1,0 +1,79 @@
+\hypertarget{group___song_construct}{}\section{Constructors}
+\label{group___song_construct}\index{Constructors@{Constructors}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___song_construct_gae2e6486a6a2f523b7c81de472d761ff5}{Song.\+Song} ()
+\begin{DoxyCompactList}\small\item\em The default constructor. \end{DoxyCompactList}\item 
+\hyperlink{group___song_construct_ga157b9e8a0ca714707c2bf58bed5ebf4c}{Song.\+Song} (string a\+Song\+File\+Path)
+\begin{DoxyCompactList}\small\item\em A constructor that creates the song by \hyperlink{group___song_priv_func_ga5c8edd8f7ebeab0d93f5619a644c30f5}{loading a file}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Constructors to create a new \hyperlink{class_song}{Song} instance. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___song_construct_gae2e6486a6a2f523b7c81de472d761ff5}\label{group___song_construct_gae2e6486a6a2f523b7c81de472d761ff5}} 
+\index{Constructors@{Constructors}!Song@{Song}}
+\index{Song@{Song}!Constructors@{Constructors}}
+\subsubsection{\texorpdfstring{Song()}{Song()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Song.\+Song (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The default constructor. 
+
+\begin{DoxyReturn}{Returns}
+A new empty \hyperlink{class_song}{Song}. Initializes the \hyperlink{group___song_priv_var_ga674bc904a1f856d485d5fb7fe84bac85}{list of notes} and sets the \hyperlink{group___song_priv_var_ga3341fbbd9c0c58fe6514623e6b6c5a1e}{B\+PM} to 120, the \hyperlink{group___music_structs_struct_music_1_1_time_signature}{time signature} to \hyperlink{group___music_stat_func_gac95af323eef7511543c799154e1c29fd}{4/4} and the \hyperlink{group___song_priv_var_ga6a5e6c1e4aa92939e2b5c1e3d9908df8}{name of the Song} to \char`\"{}\+Untitled\char`\"{}. 
+\end{DoxyReturn}
+
+
+Definition at line 121 of file Song.\+cs.
+
+
+
+References Song.\+m\+Notes, Song.\+m\+Time\+Signature, and Music.\+T\+I\+M\+E\+\_\+\+S\+I\+G\+N\+A\+T\+U\+R\+E\+\_\+4\+\_\+4().
+
+
+\begin{DoxyCode}
+122     \{
+123         \textcolor{comment}{// Set the member variables.}
+124         \hyperlink{group___song_priv_var_ga674bc904a1f856d485d5fb7fe84bac85}{mNotes} = \textcolor{keyword}{new} List<\hyperlink{class_music}{Music}.\hyperlink{group___music_structs_struct_music_1_1_combined_note}{CombinedNote}>();
+125         \hyperlink{group___song_priv_var_ga2b2dcc0e83e49f7303b6a1371877b25e}{mTimeSignature} = \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_gac95af323eef7511543c799154e1c29fd}{TIME\_SIGNATURE\_4\_4}();
+126         \hyperlink{group___song_priv_var_ga3341fbbd9c0c58fe6514623e6b6c5a1e}{mBPM} = 120;
+127         \hyperlink{group___song_priv_var_ga6a5e6c1e4aa92939e2b5c1e3d9908df8}{mName} = \textcolor{stringliteral}{"Untitled"};
+128     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___song_construct_ga157b9e8a0ca714707c2bf58bed5ebf4c}\label{group___song_construct_ga157b9e8a0ca714707c2bf58bed5ebf4c}} 
+\index{Constructors@{Constructors}!Song@{Song}}
+\index{Song@{Song}!Constructors@{Constructors}}
+\subsubsection{\texorpdfstring{Song()}{Song()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Song.\+Song (\begin{DoxyParamCaption}\item[{string}]{a\+Song\+File\+Path }\end{DoxyParamCaption})}
+
+
+
+A constructor that creates the song by \hyperlink{group___song_priv_func_ga5c8edd8f7ebeab0d93f5619a644c30f5}{loading a file}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Song\+File\+Path} & The filepath to the file representing the \hyperlink{class_song}{Song} to load. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new \hyperlink{class_song}{Song} filled with information from the file. 
+\end{DoxyReturn}
+
+
+Definition at line 135 of file Song.\+cs.
+
+
+
+References Song.\+Load\+Song\+From\+File(), and Song.\+m\+Notes.
+
+
+\begin{DoxyCode}
+136     \{
+137         \hyperlink{group___song_priv_var_ga674bc904a1f856d485d5fb7fe84bac85}{mNotes} = \textcolor{keyword}{new} List<\hyperlink{class_music}{Music}.\hyperlink{group___music_structs_struct_music_1_1_combined_note}{CombinedNote}>();
+138         \hyperlink{group___song_priv_func_ga5c8edd8f7ebeab0d93f5619a644c30f5}{LoadSongFromFile}( aSongFilePath );
+139     \}
+\end{DoxyCode}

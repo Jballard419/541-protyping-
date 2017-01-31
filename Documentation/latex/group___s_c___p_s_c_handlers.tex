@@ -1,0 +1,123 @@
+\hypertarget{group___s_c___p_s_c_handlers}{}\section{Event Handlers}
+\label{group___s_c___p_s_c_handlers}\index{Event Handlers@{Event Handlers}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___s_c___p_s_c_handlers_gaa2afa8167100515d412cf751d9334f0c}{S\+C\+\_\+\+Pitch\+Selection\+Container.\+Handle\+Pitch\+Selection} (bool a\+Selected, int a\+Index)
+\item 
+void \hyperlink{group___s_c___p_s_c_handlers_ga8715b5976fdae2c56e05a60832553864}{S\+C\+\_\+\+Pitch\+Selection\+Container.\+On\+Rest\+Toggle} (bool a\+Is\+Rest\+Note)
+\begin{DoxyCompactList}\small\item\em Handles switching between this \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note} being a \hyperlink{group___doc_s_c___p_s_c_DocSC_PSCRest}{rest note} or not. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Functions called by the \hyperlink{class_s_c___pitch_selection_container}{S\+C\+\_\+\+Pitch\+Selection\+Container} in response to events. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___s_c___p_s_c_handlers_gaa2afa8167100515d412cf751d9334f0c}\label{group___s_c___p_s_c_handlers_gaa2afa8167100515d412cf751d9334f0c}} 
+\index{Event Handlers@{Event Handlers}!Handle\+Pitch\+Selection@{Handle\+Pitch\+Selection}}
+\index{Handle\+Pitch\+Selection@{Handle\+Pitch\+Selection}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{Handle\+Pitch\+Selection()}{HandlePitchSelection()}}
+{\footnotesize\ttfamily void S\+C\+\_\+\+Pitch\+Selection\+Container.\+Handle\+Pitch\+Selection (\begin{DoxyParamCaption}\item[{bool}]{a\+Selected,  }\item[{int}]{a\+Index }\end{DoxyParamCaption})}
+
+Handles \hyperlink{group___s_c___p_s_t_handlers_ga5f4ea69eee3ed20cb09d56b7281ce861}{a pitch being selected}. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Selected} & True if the \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitch}/\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{drum} is selected. False otherwise. \\
+\hline
+\mbox{\tt in}  & {\em a\+Index} & The index of the \hyperlink{group___doc_s_c___p_s_t}{trigger} that was selected/unselected. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 244 of file S\+C\+\_\+\+Pitch\+Selection\+Container.\+cs.
+
+
+
+References Music.\+Note\+To\+String(), and S\+C\+\_\+\+Pitch\+Selection\+Trigger.\+Set\+Selection().
+
+
+
+Referenced by S\+C\+\_\+\+Pitch\+Selection\+Trigger.\+On\+Pitch\+Selected().
+
+
+\begin{DoxyCode}
+245     \{
+246         \textcolor{comment}{// If this pitch was selected and the note is note currently set to be a rest note,}
+247         \textcolor{comment}{// then add it to the list.}
+248         \textcolor{keywordflow}{if}( aSelected && !\hyperlink{group___s_c___p_s_c_priv_var_ga6eec175f775c35e2d0eb51dfe6def49f}{mRestNote} )
+249         \{
+250             \hyperlink{group___s_c___p_s_c_priv_var_ga5a8a5c31158f6af7f0c17d4fd03c5641}{mSelectedPitches}.Add( aIndex );
+251             \textcolor{keywordflow}{foreach}( \textcolor{keywordtype}{int} pitch \textcolor{keywordflow}{in} \hyperlink{group___s_c___p_s_c_priv_var_ga5a8a5c31158f6af7f0c17d4fd03c5641}{mSelectedPitches} )
+252             \{
+253                 Debug.Log( \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( pitch ) );
+254             \}
+255 
+256         \}
+257         \textcolor{comment}{// If the pitch was unselected and the note is not currently set to be a rest note, }
+258         \textcolor{comment}{// then remove it from the list.}
+259         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}( !\hyperlink{group___s_c___p_s_c_priv_var_ga6eec175f775c35e2d0eb51dfe6def49f}{mRestNote} )
+260         \{
+261             mSelectedPitches.Remove( aIndex );
+262             \textcolor{keywordflow}{foreach}( \textcolor{keywordtype}{int} pitch \textcolor{keywordflow}{in} mSelectedPitches )
+263             \{
+264                 Debug.Log( \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( pitch ) );
+265             \}
+266         \}
+267         \textcolor{comment}{// If the pitch was selected and we are currently set to be a rest note, then unselect the note.}
+268         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}( aSelected && \hyperlink{group___s_c___p_s_c_priv_var_ga6eec175f775c35e2d0eb51dfe6def49f}{mRestNote} )
+269         \{
+270             \hyperlink{group___s_c___p_s_c_priv_var_ga8431846d376b98bc6de5a872cce2c596}{mPitchSelectionTriggers}[aIndex].\hyperlink{group___s_c___p_s_t_pub_func_ga267db9aed38ba33ad44c26c84a1757df}{SetSelection}( \textcolor{keyword}{false} );
+271         \}
+272     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_c___p_s_c_handlers_ga8715b5976fdae2c56e05a60832553864}\label{group___s_c___p_s_c_handlers_ga8715b5976fdae2c56e05a60832553864}} 
+\index{Event Handlers@{Event Handlers}!On\+Rest\+Toggle@{On\+Rest\+Toggle}}
+\index{On\+Rest\+Toggle@{On\+Rest\+Toggle}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{On\+Rest\+Toggle()}{OnRestToggle()}}
+{\footnotesize\ttfamily void S\+C\+\_\+\+Pitch\+Selection\+Container.\+On\+Rest\+Toggle (\begin{DoxyParamCaption}\item[{bool}]{a\+Is\+Rest\+Note }\end{DoxyParamCaption})}
+
+
+
+Handles switching between this \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note} being a \hyperlink{group___doc_s_c___p_s_c_DocSC_PSCRest}{rest note} or not. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Is\+Rest\+Note} & True if the \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note} is a \hyperlink{group___doc_s_c___p_s_c_DocSC_PSCRest}{rest note}. False otherwise. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 278 of file S\+C\+\_\+\+Pitch\+Selection\+Container.\+cs.
+
+
+
+References S\+C\+\_\+\+Pitch\+Selection\+Trigger.\+Set\+Selection().
+
+
+
+Referenced by S\+C\+\_\+\+Pitch\+Selection\+Container.\+Set\+Up\+As\+Pitch\+Selector().
+
+
+\begin{DoxyCode}
+279     \{
+280         \hyperlink{group___s_c___p_s_c_priv_var_ga6eec175f775c35e2d0eb51dfe6def49f}{mRestNote} = aIsRestNote;
+281 
+282         \textcolor{comment}{// If this note is now a rest note, then make sure that no other pitches are selected.}
+283         \textcolor{keywordflow}{if}( \hyperlink{group___s_c___p_s_c_priv_var_ga6eec175f775c35e2d0eb51dfe6def49f}{mRestNote} )
+284         \{
+285             \textcolor{keywordflow}{foreach}( \textcolor{keywordtype}{int} pitch \textcolor{keywordflow}{in} \hyperlink{group___s_c___p_s_c_priv_var_ga5a8a5c31158f6af7f0c17d4fd03c5641}{mSelectedPitches} )
+286             \{
+287                 \hyperlink{group___s_c___p_s_c_priv_var_ga8431846d376b98bc6de5a872cce2c596}{mPitchSelectionTriggers}[pitch].
+      \hyperlink{group___s_c___p_s_t_pub_func_ga267db9aed38ba33ad44c26c84a1757df}{SetSelection}( \textcolor{keyword}{false} );
+288             \}
+289         \}
+290         \textcolor{comment}{// If this note is no longer a rest note, then restore the selected pitches.}
+291         \textcolor{keywordflow}{else}
+292         \{
+293             \textcolor{keywordflow}{foreach}( \textcolor{keywordtype}{int} pitch \textcolor{keywordflow}{in} mSelectedPitches )
+294             \{
+295                 \hyperlink{group___s_c___p_s_c_priv_var_ga8431846d376b98bc6de5a872cce2c596}{mPitchSelectionTriggers}[pitch].
+      \hyperlink{group___s_c___p_s_t_pub_func_ga267db9aed38ba33ad44c26c84a1757df}{SetSelection}( \textcolor{keyword}{true} );
+296             \}
+297         \}
+298     \}
+\end{DoxyCode}

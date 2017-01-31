@@ -1,0 +1,426 @@
+\hypertarget{group___s_c_m_nest_class}{}\section{Nested Classes}
+\label{group___s_c_m_nest_class}\index{Nested Classes@{Nested Classes}}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{group___s_c_m_nest_class_class_song_creation_manager_1_1_song_creation_selection_container_1_1_song_creation_selection_trigger}{Song\+Creation\+Manager.\+Song\+Creation\+Selection\+Container.\+Song\+Creation\+Selection\+Trigger}
+\item 
+class \hyperlink{group___s_c_m_nest_class_class_song_creation_manager_1_1_song_creation_selection_container}{Song\+Creation\+Manager.\+Song\+Creation\+Selection\+Container}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+These are classes that are nested inside of the \hyperlink{class_song_creation_manager}{Song\+Creation\+Manager}. They are used only within the \hyperlink{group___doc_s_c}{Song Creation Interface}. 
+
+\subsection{Class Documentation}
+\index{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container\+::\+Song\+Creation\+Selection\+Trigger@{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container\+::\+Song\+Creation\+Selection\+Trigger}}\label{class_song_creation_manager_1_1_song_creation_selection_container_1_1_song_creation_selection_trigger}
+\Hypertarget{group___s_c_m_nest_class_class_song_creation_manager_1_1_song_creation_selection_container_1_1_song_creation_selection_trigger}
+\subsubsection{class Song\+Creation\+Manager\+:\+:Song\+Creation\+Selection\+Container\+:\+:Song\+Creation\+Selection\+Trigger}
+
+
+Definition at line 45 of file Song\+Creation\+Manager.\+cs.
+
+Inheritance diagram for Song\+Creation\+Manager.\+Song\+Creation\+Selection\+Container.\+Song\+Creation\+Selection\+Trigger\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{group___s_c_m_nest_class}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___s_c_m_nest_class_a29f496763424eb274f35cd29330583ac}{Set\+Container} (\hyperlink{group___s_c_m_nest_class_class_song_creation_manager_1_1_song_creation_selection_container}{Song\+Creation\+Selection\+Container} a\+Container)
+\item 
+void \hyperlink{group___s_c_m_nest_class_a0d65cd109a370034f580d63e823725b9}{Set\+Selected} (bool a\+Selected)
+\item 
+void \hyperlink{group___s_c_m_nest_class_a6477d6c5056af7998063e90e282b67ae}{On\+Selected} (bool a\+Selected)
+\end{DoxyCompactItemize}
+\subsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___s_c_m_nest_class_ae7264acac3310f5db50df38467734c06}{Awake} ()
+\item 
+void \hyperlink{group___s_c_m_nest_class_a26bd7667a86c8dc85429a5e4798dd30a}{Change\+Color} ()
+\end{DoxyCompactItemize}
+\subsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{group___s_c_m_nest_class_a1a8086defe08acc773bdc9385a9f66d2}{m\+Selected} = false
+\item 
+\hyperlink{group___s_c_m_nest_class_class_song_creation_manager_1_1_song_creation_selection_container}{Song\+Creation\+Selection\+Container} \hyperlink{group___s_c_m_nest_class_aae8ebcbfe18ad8706d11edac54f2da87}{m\+Container} = null
+\item 
+Toggle \hyperlink{group___s_c_m_nest_class_ad548c27e148377da02160715a0aca9ee}{m\+Toggle} = null
+\end{DoxyCompactItemize}
+
+
+\paragraph{Member Function Documentation}
+\mbox{\Hypertarget{group___s_c_m_nest_class_ae7264acac3310f5db50df38467734c06}\label{group___s_c_m_nest_class_ae7264acac3310f5db50df38467734c06}} 
+\index{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container\+::\+Song\+Creation\+Selection\+Trigger@{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container\+::\+Song\+Creation\+Selection\+Trigger}!Awake@{Awake}}
+\index{Awake@{Awake}!Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container\+::\+Song\+Creation\+Selection\+Trigger@{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container\+::\+Song\+Creation\+Selection\+Trigger}}
+\subparagraph{\texorpdfstring{Awake()}{Awake()}}
+{\footnotesize\ttfamily void Song\+Creation\+Manager.\+Song\+Creation\+Selection\+Container.\+Song\+Creation\+Selection\+Trigger.\+Awake (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 57 of file Song\+Creation\+Manager.\+cs.
+
+
+
+References Song\+Creation\+Manager.\+Song\+Creation\+Selection\+Container.\+Song\+Creation\+Selection\+Trigger.\+On\+Selected().
+
+
+\begin{DoxyCode}
+58             \{
+59                 \textcolor{comment}{// Get the toggle and set its listener}
+60                 \hyperlink{group___s_c_m_nest_class_ad548c27e148377da02160715a0aca9ee}{mToggle} = gameObject.GetComponent<Toggle>();
+61                 \hyperlink{group___s_c_m_nest_class_ad548c27e148377da02160715a0aca9ee}{mToggle}.onValueChanged.AddListener( \hyperlink{group___s_c_m_nest_class_a6477d6c5056af7998063e90e282b67ae}{OnSelected} );
+62             \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_c_m_nest_class_a26bd7667a86c8dc85429a5e4798dd30a}\label{group___s_c_m_nest_class_a26bd7667a86c8dc85429a5e4798dd30a}} 
+\index{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container\+::\+Song\+Creation\+Selection\+Trigger@{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container\+::\+Song\+Creation\+Selection\+Trigger}!Change\+Color@{Change\+Color}}
+\index{Change\+Color@{Change\+Color}!Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container\+::\+Song\+Creation\+Selection\+Trigger@{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container\+::\+Song\+Creation\+Selection\+Trigger}}
+\subparagraph{\texorpdfstring{Change\+Color()}{ChangeColor()}}
+{\footnotesize\ttfamily void Song\+Creation\+Manager.\+Song\+Creation\+Selection\+Container.\+Song\+Creation\+Selection\+Trigger.\+Change\+Color (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 93 of file Song\+Creation\+Manager.\+cs.
+
+
+
+Referenced by Song\+Creation\+Manager.\+Song\+Creation\+Selection\+Container.\+Song\+Creation\+Selection\+Trigger.\+On\+Selected(), and Song\+Creation\+Manager.\+Song\+Creation\+Selection\+Container.\+Song\+Creation\+Selection\+Trigger.\+Set\+Selected().
+
+
+\begin{DoxyCode}
+94             \{
+95                 \textcolor{keywordflow}{if}( \hyperlink{group___s_c_m_nest_class_a1a8086defe08acc773bdc9385a9f66d2}{mSelected} )
+96                 \{
+97                     \hyperlink{group___s_c_m_nest_class_ad548c27e148377da02160715a0aca9ee}{mToggle}.transform.GetChild( 0 ).GetComponent<Image>().color = \textcolor{keyword}{new} Color32( 255, 
+      255, 255, 118 );
+98 
+99                 \}
+100                 \textcolor{keywordflow}{else}
+101                 \{
+102                     \hyperlink{group___s_c_m_nest_class_ad548c27e148377da02160715a0aca9ee}{mToggle}.transform.GetChild( 0 ).GetComponent<Image>().color = \textcolor{keyword}{new} Color32( 255, 
+      255, 255, 255 );
+103                 \}
+104             \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_c_m_nest_class_a6477d6c5056af7998063e90e282b67ae}\label{group___s_c_m_nest_class_a6477d6c5056af7998063e90e282b67ae}} 
+\index{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container\+::\+Song\+Creation\+Selection\+Trigger@{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container\+::\+Song\+Creation\+Selection\+Trigger}!On\+Selected@{On\+Selected}}
+\index{On\+Selected@{On\+Selected}!Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container\+::\+Song\+Creation\+Selection\+Trigger@{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container\+::\+Song\+Creation\+Selection\+Trigger}}
+\subparagraph{\texorpdfstring{On\+Selected()}{OnSelected()}}
+{\footnotesize\ttfamily void Song\+Creation\+Manager.\+Song\+Creation\+Selection\+Container.\+Song\+Creation\+Selection\+Trigger.\+On\+Selected (\begin{DoxyParamCaption}\item[{bool}]{a\+Selected }\end{DoxyParamCaption})}
+
+
+
+Definition at line 111 of file Song\+Creation\+Manager.\+cs.
+
+
+
+References Song\+Creation\+Manager.\+Song\+Creation\+Selection\+Container.\+Song\+Creation\+Selection\+Trigger.\+Change\+Color(), and Song\+Creation\+Manager.\+Song\+Creation\+Selection\+Container.\+Handle\+Toggle().
+
+
+
+Referenced by Song\+Creation\+Manager.\+Song\+Creation\+Selection\+Container.\+Song\+Creation\+Selection\+Trigger.\+Awake(), and Song\+Creation\+Manager.\+Song\+Creation\+Selection\+Container.\+Song\+Creation\+Selection\+Trigger.\+Set\+Selected().
+
+
+\begin{DoxyCode}
+112             \{
+113                 \textcolor{comment}{// If this object is now selected, then change the color and send it to the handler.}
+114                 \textcolor{keywordflow}{if}( aSelected )
+115                 \{
+116                     \hyperlink{group___s_c_m_nest_class_a1a8086defe08acc773bdc9385a9f66d2}{mSelected} = aSelected;
+117                     \hyperlink{group___s_c_m_nest_class_a26bd7667a86c8dc85429a5e4798dd30a}{ChangeColor}();
+118                     \hyperlink{group___s_c_m_nest_class_aae8ebcbfe18ad8706d11edac54f2da87}{mContainer}.\hyperlink{group___s_c_m_nest_class_a534fec983fb7e5a7f948513672aa64b4}{HandleToggle}( \textcolor{keyword}{this} );
+119                 \}
+120                 \textcolor{comment}{// This object can not be unselected by clicking on it. Set the value back to selected.}
+121                 \textcolor{keywordflow}{else}
+122                 \{
+123                     \hyperlink{group___s_c_m_nest_class_ad548c27e148377da02160715a0aca9ee}{mToggle}.onValueChanged.RemoveListener( \hyperlink{group___s_c_m_nest_class_a6477d6c5056af7998063e90e282b67ae}{OnSelected} );
+124                     \hyperlink{group___s_c_m_nest_class_ad548c27e148377da02160715a0aca9ee}{mToggle}.isOn = \textcolor{keyword}{true};
+125                     \hyperlink{group___s_c_m_nest_class_ad548c27e148377da02160715a0aca9ee}{mToggle}.onValueChanged.AddListener( \hyperlink{group___s_c_m_nest_class_a6477d6c5056af7998063e90e282b67ae}{OnSelected} );
+126                 \}
+127 
+128             \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_c_m_nest_class_a29f496763424eb274f35cd29330583ac}\label{group___s_c_m_nest_class_a29f496763424eb274f35cd29330583ac}} 
+\index{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container\+::\+Song\+Creation\+Selection\+Trigger@{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container\+::\+Song\+Creation\+Selection\+Trigger}!Set\+Container@{Set\+Container}}
+\index{Set\+Container@{Set\+Container}!Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container\+::\+Song\+Creation\+Selection\+Trigger@{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container\+::\+Song\+Creation\+Selection\+Trigger}}
+\subparagraph{\texorpdfstring{Set\+Container()}{SetContainer()}}
+{\footnotesize\ttfamily void Song\+Creation\+Manager.\+Song\+Creation\+Selection\+Container.\+Song\+Creation\+Selection\+Trigger.\+Set\+Container (\begin{DoxyParamCaption}\item[{\hyperlink{group___s_c_m_nest_class_class_song_creation_manager_1_1_song_creation_selection_container}{Song\+Creation\+Selection\+Container}}]{a\+Container }\end{DoxyParamCaption})}
+
+
+
+Definition at line 69 of file Song\+Creation\+Manager.\+cs.
+
+
+
+Referenced by Song\+Creation\+Manager.\+Song\+Creation\+Selection\+Container.\+Awake().
+
+
+\begin{DoxyCode}
+70             \{
+71                 \hyperlink{group___s_c_m_nest_class_aae8ebcbfe18ad8706d11edac54f2da87}{mContainer} = aContainer;
+72             \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_c_m_nest_class_a0d65cd109a370034f580d63e823725b9}\label{group___s_c_m_nest_class_a0d65cd109a370034f580d63e823725b9}} 
+\index{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container\+::\+Song\+Creation\+Selection\+Trigger@{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container\+::\+Song\+Creation\+Selection\+Trigger}!Set\+Selected@{Set\+Selected}}
+\index{Set\+Selected@{Set\+Selected}!Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container\+::\+Song\+Creation\+Selection\+Trigger@{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container\+::\+Song\+Creation\+Selection\+Trigger}}
+\subparagraph{\texorpdfstring{Set\+Selected()}{SetSelected()}}
+{\footnotesize\ttfamily void Song\+Creation\+Manager.\+Song\+Creation\+Selection\+Container.\+Song\+Creation\+Selection\+Trigger.\+Set\+Selected (\begin{DoxyParamCaption}\item[{bool}]{a\+Selected }\end{DoxyParamCaption})}
+
+
+
+Definition at line 75 of file Song\+Creation\+Manager.\+cs.
+
+
+
+References Song\+Creation\+Manager.\+Song\+Creation\+Selection\+Container.\+Song\+Creation\+Selection\+Trigger.\+Change\+Color(), and Song\+Creation\+Manager.\+Song\+Creation\+Selection\+Container.\+Song\+Creation\+Selection\+Trigger.\+On\+Selected().
+
+
+
+Referenced by Song\+Creation\+Manager.\+Song\+Creation\+Selection\+Container.\+Awake(), Song\+Creation\+Manager.\+Song\+Creation\+Selection\+Container.\+Handle\+Toggle(), and Song\+Creation\+Manager.\+Song\+Creation\+Selection\+Container.\+Set\+Selected().
+
+
+\begin{DoxyCode}
+76             \{
+77                 \hyperlink{group___s_c_m_nest_class_a1a8086defe08acc773bdc9385a9f66d2}{mSelected} = aSelected;
+78 
+79                 \textcolor{comment}{// Change the color to indicate that this is or isn't the selected object}
+80                 \hyperlink{group___s_c_m_nest_class_a26bd7667a86c8dc85429a5e4798dd30a}{ChangeColor}();
+81 
+82                 \textcolor{comment}{// Set the value of the toggle.}
+83                 \hyperlink{group___s_c_m_nest_class_ad548c27e148377da02160715a0aca9ee}{mToggle}.onValueChanged.RemoveListener( \hyperlink{group___s_c_m_nest_class_a6477d6c5056af7998063e90e282b67ae}{OnSelected} );
+84                 \hyperlink{group___s_c_m_nest_class_ad548c27e148377da02160715a0aca9ee}{mToggle}.isOn = aSelected;
+85                 \hyperlink{group___s_c_m_nest_class_ad548c27e148377da02160715a0aca9ee}{mToggle}.onValueChanged.AddListener( \hyperlink{group___s_c_m_nest_class_a6477d6c5056af7998063e90e282b67ae}{OnSelected} );
+86             \}
+\end{DoxyCode}
+
+
+\paragraph{Member Data Documentation}
+\mbox{\Hypertarget{group___s_c_m_nest_class_aae8ebcbfe18ad8706d11edac54f2da87}\label{group___s_c_m_nest_class_aae8ebcbfe18ad8706d11edac54f2da87}} 
+\index{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container\+::\+Song\+Creation\+Selection\+Trigger@{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container\+::\+Song\+Creation\+Selection\+Trigger}!m\+Container@{m\+Container}}
+\index{m\+Container@{m\+Container}!Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container\+::\+Song\+Creation\+Selection\+Trigger@{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container\+::\+Song\+Creation\+Selection\+Trigger}}
+\subparagraph{\texorpdfstring{m\+Container}{mContainer}}
+{\footnotesize\ttfamily \hyperlink{group___s_c_m_nest_class_class_song_creation_manager_1_1_song_creation_selection_container}{Song\+Creation\+Selection\+Container} Song\+Creation\+Manager.\+Song\+Creation\+Selection\+Container.\+Song\+Creation\+Selection\+Trigger.\+m\+Container = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 51 of file Song\+Creation\+Manager.\+cs.
+
+\mbox{\Hypertarget{group___s_c_m_nest_class_a1a8086defe08acc773bdc9385a9f66d2}\label{group___s_c_m_nest_class_a1a8086defe08acc773bdc9385a9f66d2}} 
+\index{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container\+::\+Song\+Creation\+Selection\+Trigger@{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container\+::\+Song\+Creation\+Selection\+Trigger}!m\+Selected@{m\+Selected}}
+\index{m\+Selected@{m\+Selected}!Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container\+::\+Song\+Creation\+Selection\+Trigger@{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container\+::\+Song\+Creation\+Selection\+Trigger}}
+\subparagraph{\texorpdfstring{m\+Selected}{mSelected}}
+{\footnotesize\ttfamily bool Song\+Creation\+Manager.\+Song\+Creation\+Selection\+Container.\+Song\+Creation\+Selection\+Trigger.\+m\+Selected = false\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 50 of file Song\+Creation\+Manager.\+cs.
+
+\mbox{\Hypertarget{group___s_c_m_nest_class_ad548c27e148377da02160715a0aca9ee}\label{group___s_c_m_nest_class_ad548c27e148377da02160715a0aca9ee}} 
+\index{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container\+::\+Song\+Creation\+Selection\+Trigger@{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container\+::\+Song\+Creation\+Selection\+Trigger}!m\+Toggle@{m\+Toggle}}
+\index{m\+Toggle@{m\+Toggle}!Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container\+::\+Song\+Creation\+Selection\+Trigger@{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container\+::\+Song\+Creation\+Selection\+Trigger}}
+\subparagraph{\texorpdfstring{m\+Toggle}{mToggle}}
+{\footnotesize\ttfamily Toggle Song\+Creation\+Manager.\+Song\+Creation\+Selection\+Container.\+Song\+Creation\+Selection\+Trigger.\+m\+Toggle = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 52 of file Song\+Creation\+Manager.\+cs.
+
+\index{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container@{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container}}\label{class_song_creation_manager_1_1_song_creation_selection_container}
+\Hypertarget{group___s_c_m_nest_class_class_song_creation_manager_1_1_song_creation_selection_container}
+\subsubsection{class Song\+Creation\+Manager\+:\+:Song\+Creation\+Selection\+Container}
+
+
+Definition at line 40 of file Song\+Creation\+Manager.\+cs.
+
+Inheritance diagram for Song\+Creation\+Manager.\+Song\+Creation\+Selection\+Container\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{group___s_c_m_nest_class}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{Music.\+N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH} \hyperlink{group___s_c_m_nest_class_ae73f2b2c2f567ecaf6ce10f85c30956a}{Get\+Selected} ()
+\item 
+void \hyperlink{group___s_c_m_nest_class_ab3d74be007528e4e6686f89e8e993b3b}{Set\+Selected} (\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{Music.\+N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH} a\+Selection)
+\end{DoxyCompactItemize}
+\subsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___s_c_m_nest_class_a786a838268b7102ae38c546100c3e6ac}{Awake} ()
+\item 
+void \hyperlink{group___s_c_m_nest_class_a534fec983fb7e5a7f948513672aa64b4}{Handle\+Toggle} (\hyperlink{group___s_c_m_nest_class_class_song_creation_manager_1_1_song_creation_selection_container_1_1_song_creation_selection_trigger}{Song\+Creation\+Selection\+Trigger} a\+Trigger)
+\end{DoxyCompactItemize}
+\subsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{group___s_c_m_nest_class_a1684b25b3eb0e87f189996de22bf9792}{m\+Selected\+Index} = 0
+\item 
+\hyperlink{group___s_c_m_nest_class_class_song_creation_manager_1_1_song_creation_selection_container_1_1_song_creation_selection_trigger}{Song\+Creation\+Selection\+Trigger} \mbox{[}$\,$\mbox{]} \hyperlink{group___s_c_m_nest_class_aeda161975a8a683281b9388b2c905ae8}{m\+Triggers} = null
+\end{DoxyCompactItemize}
+
+
+\paragraph{Member Function Documentation}
+\mbox{\Hypertarget{group___s_c_m_nest_class_a786a838268b7102ae38c546100c3e6ac}\label{group___s_c_m_nest_class_a786a838268b7102ae38c546100c3e6ac}} 
+\index{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container@{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container}!Awake@{Awake}}
+\index{Awake@{Awake}!Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container@{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container}}
+\subparagraph{\texorpdfstring{Awake()}{Awake()}}
+{\footnotesize\ttfamily void Song\+Creation\+Manager.\+Song\+Creation\+Selection\+Container.\+Awake (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 141 of file Song\+Creation\+Manager.\+cs.
+
+
+
+References Song\+Creation\+Manager.\+Song\+Creation\+Selection\+Container.\+Song\+Creation\+Selection\+Trigger.\+Set\+Container(), and Song\+Creation\+Manager.\+Song\+Creation\+Selection\+Container.\+Song\+Creation\+Selection\+Trigger.\+Set\+Selected().
+
+
+\begin{DoxyCode}
+142         \{
+143             \textcolor{comment}{// Set up the triggers.}
+144             \hyperlink{group___s_c_m_nest_class_aeda161975a8a683281b9388b2c905ae8}{mTriggers} = \textcolor{keyword}{new} SongCreationSelectionTrigger[13];
+145             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < 13; i++ )
+146             \{
+147                 \hyperlink{group___s_c_m_nest_class_aeda161975a8a683281b9388b2c905ae8}{mTriggers}[i] = gameObject.transform.GetChild( i + 1 ).gameObject.AddComponent<
+      SongCreationSelectionTrigger>();
+148                 \hyperlink{group___s_c_m_nest_class_aeda161975a8a683281b9388b2c905ae8}{mTriggers}[i].\hyperlink{group___s_c_m_nest_class_a29f496763424eb274f35cd29330583ac}{SetContainer}( \textcolor{keyword}{this} );
+149                 \hyperlink{group___s_c_m_nest_class_aeda161975a8a683281b9388b2c905ae8}{mTriggers}[i].\hyperlink{group___s_c_m_nest_class_a0d65cd109a370034f580d63e823725b9}{SetSelected}( \textcolor{keyword}{false} );
+150             \}
+151 
+152             \textcolor{comment}{// Set the default selection (Quarter note).}
+153             \hyperlink{group___s_c_m_nest_class_aeda161975a8a683281b9388b2c905ae8}{mTriggers}[12].\hyperlink{group___s_c_m_nest_class_a0d65cd109a370034f580d63e823725b9}{SetSelected}( \textcolor{keyword}{true} );
+154             \hyperlink{group___s_c_m_nest_class_a1684b25b3eb0e87f189996de22bf9792}{mSelectedIndex} = 12;
+155         \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_c_m_nest_class_ae73f2b2c2f567ecaf6ce10f85c30956a}\label{group___s_c_m_nest_class_ae73f2b2c2f567ecaf6ce10f85c30956a}} 
+\index{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container@{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container}!Get\+Selected@{Get\+Selected}}
+\index{Get\+Selected@{Get\+Selected}!Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container@{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container}}
+\subparagraph{\texorpdfstring{Get\+Selected()}{GetSelected()}}
+{\footnotesize\ttfamily \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{Music.\+N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH} Song\+Creation\+Manager.\+Song\+Creation\+Selection\+Container.\+Get\+Selected (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 162 of file Song\+Creation\+Manager.\+cs.
+
+
+
+References Song\+Creation\+Manager.\+Song\+Creation\+Selection\+Container.\+m\+Selected\+Index.
+
+
+
+Referenced by Song\+Creation\+Manager.\+On\+Create\+Note(), and Song\+Creation\+Manager.\+On\+Modify\+Note().
+
+
+\begin{DoxyCode}
+163         \{
+164             \textcolor{keywordflow}{return} (\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH})\hyperlink{group___s_c_m_nest_class_a1684b25b3eb0e87f189996de22bf9792}{mSelectedIndex};
+165         \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_c_m_nest_class_a534fec983fb7e5a7f948513672aa64b4}\label{group___s_c_m_nest_class_a534fec983fb7e5a7f948513672aa64b4}} 
+\index{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container@{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container}!Handle\+Toggle@{Handle\+Toggle}}
+\index{Handle\+Toggle@{Handle\+Toggle}!Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container@{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container}}
+\subparagraph{\texorpdfstring{Handle\+Toggle()}{HandleToggle()}}
+{\footnotesize\ttfamily void Song\+Creation\+Manager.\+Song\+Creation\+Selection\+Container.\+Handle\+Toggle (\begin{DoxyParamCaption}\item[{\hyperlink{group___s_c_m_nest_class_class_song_creation_manager_1_1_song_creation_selection_container_1_1_song_creation_selection_trigger}{Song\+Creation\+Selection\+Trigger}}]{a\+Trigger }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 193 of file Song\+Creation\+Manager.\+cs.
+
+
+
+References Song\+Creation\+Manager.\+Song\+Creation\+Selection\+Container.\+Song\+Creation\+Selection\+Trigger.\+Set\+Selected().
+
+
+
+Referenced by Song\+Creation\+Manager.\+Song\+Creation\+Selection\+Container.\+Song\+Creation\+Selection\+Trigger.\+On\+Selected().
+
+
+\begin{DoxyCode}
+194         \{
+195             \textcolor{comment}{// Set all other triggers to unselected.}
+196             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < 13; i++ )
+197             \{
+198                 \textcolor{keywordflow}{if}( \hyperlink{group___s_c_m_nest_class_aeda161975a8a683281b9388b2c905ae8}{mTriggers}[i] != aTrigger )
+199                 \{
+200                     \hyperlink{group___s_c_m_nest_class_aeda161975a8a683281b9388b2c905ae8}{mTriggers}[i].\hyperlink{group___s_c_m_nest_class_a0d65cd109a370034f580d63e823725b9}{SetSelected}( \textcolor{keyword}{false} );
+201                 \}
+202 
+203                 \textcolor{comment}{// Update the current selection.}
+204                 \textcolor{keywordflow}{else}
+205                 \{
+206                     \hyperlink{group___s_c_m_nest_class_a1684b25b3eb0e87f189996de22bf9792}{mSelectedIndex} = i;
+207                 \}
+208             \}
+209         \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_c_m_nest_class_ab3d74be007528e4e6686f89e8e993b3b}\label{group___s_c_m_nest_class_ab3d74be007528e4e6686f89e8e993b3b}} 
+\index{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container@{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container}!Set\+Selected@{Set\+Selected}}
+\index{Set\+Selected@{Set\+Selected}!Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container@{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container}}
+\subparagraph{\texorpdfstring{Set\+Selected()}{SetSelected()}}
+{\footnotesize\ttfamily void Song\+Creation\+Manager.\+Song\+Creation\+Selection\+Container.\+Set\+Selected (\begin{DoxyParamCaption}\item[{\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{Music.\+N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH}}]{a\+Selection }\end{DoxyParamCaption})}
+
+
+
+Definition at line 168 of file Song\+Creation\+Manager.\+cs.
+
+
+
+References Song\+Creation\+Manager.\+Song\+Creation\+Selection\+Container.\+Song\+Creation\+Selection\+Trigger.\+Set\+Selected().
+
+
+
+Referenced by Song\+Creation\+Manager.\+Awake(), Song\+Creation\+Manager.\+On\+Create\+Note(), and Song\+Creation\+Manager.\+On\+Edit\+Event().
+
+
+\begin{DoxyCode}
+169         \{
+170             \textcolor{comment}{// Update the private variable.}
+171             \hyperlink{group___s_c_m_nest_class_a1684b25b3eb0e87f189996de22bf9792}{mSelectedIndex} = (int)aSelection;
+172 
+173             \textcolor{comment}{// Update the child objects.}
+174             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < 13; i++ )
+175             \{
+176                 \textcolor{keywordflow}{if}( i != \hyperlink{group___s_c_m_nest_class_a1684b25b3eb0e87f189996de22bf9792}{mSelectedIndex} )
+177                 \{
+178                     \hyperlink{group___s_c_m_nest_class_aeda161975a8a683281b9388b2c905ae8}{mTriggers}[i].\hyperlink{group___s_c_m_nest_class_a0d65cd109a370034f580d63e823725b9}{SetSelected}( \textcolor{keyword}{false} );
+179                 \}
+180                 \textcolor{keywordflow}{else}
+181                 \{
+182                     \hyperlink{group___s_c_m_nest_class_aeda161975a8a683281b9388b2c905ae8}{mTriggers}[i].\hyperlink{group___s_c_m_nest_class_a0d65cd109a370034f580d63e823725b9}{SetSelected}( \textcolor{keyword}{true} );
+183                 \}
+184             \}
+185         \}
+\end{DoxyCode}
+
+
+\paragraph{Member Data Documentation}
+\mbox{\Hypertarget{group___s_c_m_nest_class_a1684b25b3eb0e87f189996de22bf9792}\label{group___s_c_m_nest_class_a1684b25b3eb0e87f189996de22bf9792}} 
+\index{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container@{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container}!m\+Selected\+Index@{m\+Selected\+Index}}
+\index{m\+Selected\+Index@{m\+Selected\+Index}!Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container@{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container}}
+\subparagraph{\texorpdfstring{m\+Selected\+Index}{mSelectedIndex}}
+{\footnotesize\ttfamily int Song\+Creation\+Manager.\+Song\+Creation\+Selection\+Container.\+m\+Selected\+Index = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 134 of file Song\+Creation\+Manager.\+cs.
+
+
+
+Referenced by Song\+Creation\+Manager.\+Song\+Creation\+Selection\+Container.\+Get\+Selected().
+
+\mbox{\Hypertarget{group___s_c_m_nest_class_aeda161975a8a683281b9388b2c905ae8}\label{group___s_c_m_nest_class_aeda161975a8a683281b9388b2c905ae8}} 
+\index{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container@{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container}!m\+Triggers@{m\+Triggers}}
+\index{m\+Triggers@{m\+Triggers}!Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container@{Song\+Creation\+Manager\+::\+Song\+Creation\+Selection\+Container}}
+\subparagraph{\texorpdfstring{m\+Triggers}{mTriggers}}
+{\footnotesize\ttfamily \hyperlink{group___s_c_m_nest_class_class_song_creation_manager_1_1_song_creation_selection_container_1_1_song_creation_selection_trigger}{Song\+Creation\+Selection\+Trigger} \mbox{[}$\,$\mbox{]} Song\+Creation\+Manager.\+Song\+Creation\+Selection\+Container.\+m\+Triggers = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 135 of file Song\+Creation\+Manager.\+cs.
+

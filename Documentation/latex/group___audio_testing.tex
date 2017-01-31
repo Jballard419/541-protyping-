@@ -1,0 +1,284 @@
+\hypertarget{group___audio_testing}{}\section{Audio Testing}
+\label{group___audio_testing}\index{Audio Testing@{Audio Testing}}
+
+
+Modules for testing/debugging the Audio.  
+
+
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___doc_a_t_i}{Audio Testing Interface}
+\begin{DoxyCompactList}\small\item\em Modules for the interface which is used to test the Audio. \end{DoxyCompactList}\item 
+\hyperlink{group___mus_typ}{Musical Typing}
+\begin{DoxyCompactList}\small\item\em Allows for testing the audio with the computer keyboard. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{group___audio_testing_class_a_t_i___diagnostics}{A\+T\+I\+\_\+\+Diagnostics}
+\begin{DoxyCompactList}\small\item\em Displays audio diagnostic information.  \hyperlink{group___audio_testing_class_a_t_i___diagnostics}{More...}\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Modules for testing/debugging the Audio. 
+
+
+
+\subsection{Class Documentation}
+\index{A\+T\+I\+\_\+\+Diagnostics@{A\+T\+I\+\_\+\+Diagnostics}}\label{class_a_t_i___diagnostics}
+\Hypertarget{group___audio_testing_class_a_t_i___diagnostics}
+\subsubsection{class A\+T\+I\+\_\+\+Diagnostics}
+Displays audio diagnostic information. 
+
+This class handles the A\+T\+I\+\_\+\+Audio\+Diagnostics\+Scene which displays information regarding the audio in order to ensure that everything is working properly. 
+
+Definition at line 23 of file A\+T\+I\+\_\+\+Diagnostics.\+cs.
+
+Inheritance diagram for A\+T\+I\+\_\+\+Diagnostics\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{group___audio_testing}
+\end{center}
+\end{figure}
+\subsubsection*{Events}
+\begin{DoxyCompactItemize}
+\item 
+Unity\+Event \hyperlink{group___audio_testing_a133561901c2aef535b2f3c098e55b959}{Set\+Input\+Time}
+\begin{DoxyCompactList}\small\item\em The event that is invoked when the note event occurs. \end{DoxyCompactList}\item 
+Unity\+Event \hyperlink{group___audio_testing_a6360e6098323b921b4a1b306914d06ef}{Set\+Output\+Time}
+\begin{DoxyCompactList}\small\item\em The event that is invoked when the note output occurs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Private Variables}
+\begin{DoxyCompactItemize}
+\item 
+System.\+Date\+Time \hyperlink{group___audio_testing_a683f09700eab208b7368ebcb82bbd3be}{m\+Input\+Time}
+\begin{DoxyCompactList}\small\item\em A Date\+Time object to keep track of the note\textquotesingle{}s beginning time. \end{DoxyCompactList}\item 
+System.\+Date\+Time \hyperlink{group___audio_testing_a2e6f675a990948db789381f52071e1bf}{m\+Output\+Time}
+\begin{DoxyCompactList}\small\item\em A Date\+Time object to keep track of when the note actually plays. \end{DoxyCompactList}\item 
+Text \hyperlink{group___audio_testing_a8929a6a2ae14ec733b936a72cb0f44a6}{m\+Latency\+Text} = null
+\begin{DoxyCompactList}\small\item\em The text object which displays latency. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Unity Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___audio_testing_a41cd250c9f5eea98dec6f32f49aa727f}{Awake} ()
+\begin{DoxyCompactList}\small\item\em Called when the object is created. Gets the display text and sets up events. \end{DoxyCompactList}\item 
+void \hyperlink{group___audio_testing_a4d131588b33317383ff7430b2917658e}{Update} ()
+\begin{DoxyCompactList}\small\item\em Called every frame. Used to update text. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Event Handlers}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___audio_testing_afcdfad4dc61b1f22a6efcef738897515}{Update\+Input\+Time} ()
+\begin{DoxyCompactList}\small\item\em Update the input time. \end{DoxyCompactList}\item 
+void \hyperlink{group___audio_testing_ac172cf129d078d8b0e979bc17d11c5a0}{Update\+Output\+Time} ()
+\begin{DoxyCompactList}\small\item\em Updates the output time. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\paragraph{Member Function Documentation}
+\mbox{\Hypertarget{group___audio_testing_a41cd250c9f5eea98dec6f32f49aa727f}\label{group___audio_testing_a41cd250c9f5eea98dec6f32f49aa727f}} 
+\index{A\+T\+I\+\_\+\+Diagnostics@{A\+T\+I\+\_\+\+Diagnostics}!Awake@{Awake}}
+\index{Awake@{Awake}!A\+T\+I\+\_\+\+Diagnostics@{A\+T\+I\+\_\+\+Diagnostics}}
+\subparagraph{\texorpdfstring{Awake()}{Awake()}}
+{\footnotesize\ttfamily void A\+T\+I\+\_\+\+Diagnostics.\+Awake (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Called when the object is created. Gets the display text and sets up events. 
+
+
+
+Definition at line 51 of file A\+T\+I\+\_\+\+Diagnostics.\+cs.
+
+
+
+References m\+Input\+Time, m\+Output\+Time, Update\+Input\+Time(), and Update\+Output\+Time().
+
+
+\begin{DoxyCode}
+52     \{
+53         \textcolor{comment}{// Get the text to display latency.}
+54         \hyperlink{group___audio_testing_a8929a6a2ae14ec733b936a72cb0f44a6}{mLatencyText} = transform.GetChild( 0 ).GetComponent<Text>();
+55         \hyperlink{group___audio_testing_a8929a6a2ae14ec733b936a72cb0f44a6}{mLatencyText}.text = \textcolor{stringliteral}{"Latency: N/A"};
+56 
+57         \textcolor{comment}{// Set up the input and output time.}
+58         \hyperlink{group___audio_testing_a683f09700eab208b7368ebcb82bbd3be}{mInputTime} = \hyperlink{namespace_system}{System}.DateTime.Now;
+59         \hyperlink{group___audio_testing_a2e6f675a990948db789381f52071e1bf}{mOutputTime} = \hyperlink{namespace_system}{System}.DateTime.Now;
+60 
+61         \textcolor{comment}{// Set up the events:}
+62         \hyperlink{group___audio_testing_a133561901c2aef535b2f3c098e55b959}{SetInputTime} = \textcolor{keyword}{new} UnityEvent();
+63         \hyperlink{group___audio_testing_a133561901c2aef535b2f3c098e55b959}{SetInputTime}.AddListener( \hyperlink{group___audio_testing_afcdfad4dc61b1f22a6efcef738897515}{UpdateInputTime} );
+64         \hyperlink{group___audio_testing_a6360e6098323b921b4a1b306914d06ef}{SetOutputTime} = \textcolor{keyword}{new} UnityEvent();
+65         \hyperlink{group___audio_testing_a6360e6098323b921b4a1b306914d06ef}{SetOutputTime}.AddListener( \hyperlink{group___audio_testing_ac172cf129d078d8b0e979bc17d11c5a0}{UpdateOutputTime} );
+66     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___audio_testing_a4d131588b33317383ff7430b2917658e}\label{group___audio_testing_a4d131588b33317383ff7430b2917658e}} 
+\index{A\+T\+I\+\_\+\+Diagnostics@{A\+T\+I\+\_\+\+Diagnostics}!Update@{Update}}
+\index{Update@{Update}!A\+T\+I\+\_\+\+Diagnostics@{A\+T\+I\+\_\+\+Diagnostics}}
+\subparagraph{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily void A\+T\+I\+\_\+\+Diagnostics.\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Called every frame. Used to update text. 
+
+
+
+Definition at line 71 of file A\+T\+I\+\_\+\+Diagnostics.\+cs.
+
+
+
+References m\+Input\+Time, and m\+Output\+Time.
+
+
+\begin{DoxyCode}
+72     \{
+73         \textcolor{comment}{// Update the display.}
+74         \hyperlink{group___audio_testing_a8929a6a2ae14ec733b936a72cb0f44a6}{mLatencyText}.text = \textcolor{stringliteral}{"Latency: "} + ( \hyperlink{group___audio_testing_a2e6f675a990948db789381f52071e1bf}{mOutputTime} - 
+      \hyperlink{group___audio_testing_a683f09700eab208b7368ebcb82bbd3be}{mInputTime} ).ToString();
+75     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___audio_testing_afcdfad4dc61b1f22a6efcef738897515}\label{group___audio_testing_afcdfad4dc61b1f22a6efcef738897515}} 
+\index{A\+T\+I\+\_\+\+Diagnostics@{A\+T\+I\+\_\+\+Diagnostics}!Update\+Input\+Time@{Update\+Input\+Time}}
+\index{Update\+Input\+Time@{Update\+Input\+Time}!A\+T\+I\+\_\+\+Diagnostics@{A\+T\+I\+\_\+\+Diagnostics}}
+\subparagraph{\texorpdfstring{Update\+Input\+Time()}{UpdateInputTime()}}
+{\footnotesize\ttfamily void A\+T\+I\+\_\+\+Diagnostics.\+Update\+Input\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Update the input time. 
+
+
+
+Definition at line 86 of file A\+T\+I\+\_\+\+Diagnostics.\+cs.
+
+
+
+References m\+Input\+Time.
+
+
+
+Referenced by Awake().
+
+
+\begin{DoxyCode}
+87     \{
+88         \hyperlink{group___audio_testing_a683f09700eab208b7368ebcb82bbd3be}{mInputTime} = \hyperlink{namespace_system}{System}.DateTime.Now;
+89     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___audio_testing_ac172cf129d078d8b0e979bc17d11c5a0}\label{group___audio_testing_ac172cf129d078d8b0e979bc17d11c5a0}} 
+\index{A\+T\+I\+\_\+\+Diagnostics@{A\+T\+I\+\_\+\+Diagnostics}!Update\+Output\+Time@{Update\+Output\+Time}}
+\index{Update\+Output\+Time@{Update\+Output\+Time}!A\+T\+I\+\_\+\+Diagnostics@{A\+T\+I\+\_\+\+Diagnostics}}
+\subparagraph{\texorpdfstring{Update\+Output\+Time()}{UpdateOutputTime()}}
+{\footnotesize\ttfamily void A\+T\+I\+\_\+\+Diagnostics.\+Update\+Output\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Updates the output time. 
+
+
+
+Definition at line 94 of file A\+T\+I\+\_\+\+Diagnostics.\+cs.
+
+
+
+References m\+Output\+Time.
+
+
+
+Referenced by Awake().
+
+
+\begin{DoxyCode}
+95     \{
+96         \textcolor{comment}{// Get the output time.}
+97         \hyperlink{group___audio_testing_a2e6f675a990948db789381f52071e1bf}{mOutputTime} = \hyperlink{namespace_system}{System}.DateTime.Now;
+98         GC.Collect();
+99     \}
+\end{DoxyCode}
+
+
+\paragraph{Member Data Documentation}
+\mbox{\Hypertarget{group___audio_testing_a683f09700eab208b7368ebcb82bbd3be}\label{group___audio_testing_a683f09700eab208b7368ebcb82bbd3be}} 
+\index{A\+T\+I\+\_\+\+Diagnostics@{A\+T\+I\+\_\+\+Diagnostics}!m\+Input\+Time@{m\+Input\+Time}}
+\index{m\+Input\+Time@{m\+Input\+Time}!A\+T\+I\+\_\+\+Diagnostics@{A\+T\+I\+\_\+\+Diagnostics}}
+\subparagraph{\texorpdfstring{m\+Input\+Time}{mInputTime}}
+{\footnotesize\ttfamily System.\+Date\+Time A\+T\+I\+\_\+\+Diagnostics.\+m\+Input\+Time\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+A Date\+Time object to keep track of the note\textquotesingle{}s beginning time. 
+
+
+
+Definition at line 38 of file A\+T\+I\+\_\+\+Diagnostics.\+cs.
+
+
+
+Referenced by Awake(), Update(), and Update\+Input\+Time().
+
+\mbox{\Hypertarget{group___audio_testing_a8929a6a2ae14ec733b936a72cb0f44a6}\label{group___audio_testing_a8929a6a2ae14ec733b936a72cb0f44a6}} 
+\index{A\+T\+I\+\_\+\+Diagnostics@{A\+T\+I\+\_\+\+Diagnostics}!m\+Latency\+Text@{m\+Latency\+Text}}
+\index{m\+Latency\+Text@{m\+Latency\+Text}!A\+T\+I\+\_\+\+Diagnostics@{A\+T\+I\+\_\+\+Diagnostics}}
+\subparagraph{\texorpdfstring{m\+Latency\+Text}{mLatencyText}}
+{\footnotesize\ttfamily Text A\+T\+I\+\_\+\+Diagnostics.\+m\+Latency\+Text = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The text object which displays latency. 
+
+
+
+Definition at line 40 of file A\+T\+I\+\_\+\+Diagnostics.\+cs.
+
+\mbox{\Hypertarget{group___audio_testing_a2e6f675a990948db789381f52071e1bf}\label{group___audio_testing_a2e6f675a990948db789381f52071e1bf}} 
+\index{A\+T\+I\+\_\+\+Diagnostics@{A\+T\+I\+\_\+\+Diagnostics}!m\+Output\+Time@{m\+Output\+Time}}
+\index{m\+Output\+Time@{m\+Output\+Time}!A\+T\+I\+\_\+\+Diagnostics@{A\+T\+I\+\_\+\+Diagnostics}}
+\subparagraph{\texorpdfstring{m\+Output\+Time}{mOutputTime}}
+{\footnotesize\ttfamily System.\+Date\+Time A\+T\+I\+\_\+\+Diagnostics.\+m\+Output\+Time\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+A Date\+Time object to keep track of when the note actually plays. 
+
+
+
+Definition at line 39 of file A\+T\+I\+\_\+\+Diagnostics.\+cs.
+
+
+
+Referenced by Awake(), Update(), and Update\+Output\+Time().
+
+\mbox{\Hypertarget{group___audio_testing_a133561901c2aef535b2f3c098e55b959}\label{group___audio_testing_a133561901c2aef535b2f3c098e55b959}} 
+\index{A\+T\+I\+\_\+\+Diagnostics@{A\+T\+I\+\_\+\+Diagnostics}!Set\+Input\+Time@{Set\+Input\+Time}}
+\index{Set\+Input\+Time@{Set\+Input\+Time}!A\+T\+I\+\_\+\+Diagnostics@{A\+T\+I\+\_\+\+Diagnostics}}
+\subparagraph{\texorpdfstring{Set\+Input\+Time}{SetInputTime}}
+{\footnotesize\ttfamily Unity\+Event A\+T\+I\+\_\+\+Diagnostics.\+Set\+Input\+Time}
+
+
+
+The event that is invoked when the note event occurs. 
+
+
+
+Definition at line 30 of file A\+T\+I\+\_\+\+Diagnostics.\+cs.
+
+
+
+Referenced by Key\+Container.\+Handle\+Black\+Key\+Pressed(), Key\+Container.\+Handle\+White\+Key\+Pressed(), and Musical\+Typing\+Handler.\+On\+Musical\+Typing\+Event().
+
+\mbox{\Hypertarget{group___audio_testing_a6360e6098323b921b4a1b306914d06ef}\label{group___audio_testing_a6360e6098323b921b4a1b306914d06ef}} 
+\index{A\+T\+I\+\_\+\+Diagnostics@{A\+T\+I\+\_\+\+Diagnostics}!Set\+Output\+Time@{Set\+Output\+Time}}
+\index{Set\+Output\+Time@{Set\+Output\+Time}!A\+T\+I\+\_\+\+Diagnostics@{A\+T\+I\+\_\+\+Diagnostics}}
+\subparagraph{\texorpdfstring{Set\+Output\+Time}{SetOutputTime}}
+{\footnotesize\ttfamily Unity\+Event A\+T\+I\+\_\+\+Diagnostics.\+Set\+Output\+Time}
+
+
+
+The event that is invoked when the note output occurs. 
+
+
+
+Definition at line 31 of file A\+T\+I\+\_\+\+Diagnostics.\+cs.
+
+
+
+Referenced by Note\+Output\+Object.\+On\+Audio\+Filter\+Read().
+

@@ -1,0 +1,1027 @@
+\hypertarget{group___doc_song}{}\section{Song}
+\label{group___doc_song}\index{Song@{Song}}
+
+
+A C\# class that represents a song.  
+
+
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___song_const}{Constants}
+\item 
+\hyperlink{group___song_construct}{Constructors}
+\item 
+\hyperlink{group___song_enums}{Enums}
+\item 
+\hyperlink{group___song_priv_func}{Private Functions}
+\item 
+\hyperlink{group___song_priv_var}{Private Variables}
+\item 
+\hyperlink{group___song_pub_func}{Public Functions}
+\item 
+\hyperlink{group___song_stat_func}{Static Functions}
+\item 
+\hyperlink{group___song_structs}{Structs}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A C\# class that represents a song. 
+
+/$\ast$$\ast$\hypertarget{group___doc_song_DocSongInfo}{}\subsection{Information}\label{group___doc_song_DocSongInfo}
+This class\textquotesingle{}s responsibilities include\+: \begin{DoxyItemize}
+\item Serving as a container for a pre-\/arranged series of \hyperlink{group___music_structs_struct_music_1_1_combined_note}{notes}. \item Converting the \hyperlink{group___music_structs_struct_music_1_1_combined_note}{abstract representions of musical notes} into \hyperlink{group___song_structs_struct_song_1_1_combined_note_data}{a form that relates to the actual waveforms of the audio}. \item Saving and loading copies of itself to/from a file.\end{DoxyItemize}
+\hypertarget{group___doc_song_DocSongConst}{}\subsection{Constants}\label{group___doc_song_DocSongConst}
+Constants used in order to set attributes of the \hyperlink{class_song}{Song}. ~\newline
+ \hyperlink{group___song_const}{More details}.\hypertarget{group___doc_song_DocSongEnums}{}\subsection{Enums}\label{group___doc_song_DocSongEnums}
+Enums used to specify attributes of the \hyperlink{class_song}{Song}. ~\newline
+ \hyperlink{group___song_enums}{More details}.\hypertarget{group___doc_song_DocSongStructs}{}\subsection{Structs}\label{group___doc_song_DocSongStructs}
+Structs for holding data about the \hyperlink{group___music_structs_struct_music_1_1_combined_note}{notes} in the \hyperlink{class_song}{Song} as they relate to audio waveforms. ~\newline
+ \hyperlink{group___song_structs}{More details}.\hypertarget{group___doc_song_DocSongPrivVar}{}\subsection{Private Variables}\label{group___doc_song_DocSongPrivVar}
+Variables that contain information about the \hyperlink{class_song}{Song} and are used internally by the \hyperlink{class_song}{Song}. ~\newline
+ \hyperlink{group___song_priv_var}{More details}.\hypertarget{group___doc_song_DocSongConstruct}{}\subsection{Constructors}\label{group___doc_song_DocSongConstruct}
+Constructors to create a new \hyperlink{class_song}{Song} instance. ~\newline
+ \hyperlink{group___song_construct}{More details}.\hypertarget{group___doc_song_DocSongPubFunc}{}\subsection{Public Functions}\label{group___doc_song_DocSongPubFunc}
+Functions that allow other classes to interact with the \hyperlink{class_song}{Song}. ~\newline
+ \hyperlink{group___song_pub_func}{More details}.\hypertarget{group___doc_song_DocSongPrivFunc}{}\subsection{Private Functions}\label{group___doc_song_DocSongPrivFunc}
+Functions used internally by the \hyperlink{class_song}{Song}. ~\newline
+ \hyperlink{group___song_priv_func}{More details}.\hypertarget{group___doc_song_DocSongStatFunc}{}\subsection{Static Functions}\label{group___doc_song_DocSongStatFunc}
+Functions related to \hyperlink{class_song}{Songs} that can be used without having to have an actual instance of a \hyperlink{class_song}{Song}. ~\newline
+ \hyperlink{group___song_stat_func}{More details}.\hypertarget{group___doc_song_DocSongCode}{}\subsection{Code}\label{group___doc_song_DocSongCode}
+
+\begin{DoxyCodeInclude}
+1 \textcolor{keyword}{using} \hyperlink{namespace_system}{System};
+2 \textcolor{keyword}{using} \hyperlink{namespace_system}{System}.Collections;
+3 \textcolor{keyword}{using} \hyperlink{namespace_system}{System}.Collections.Generic;
+4 \textcolor{keyword}{using} \hyperlink{namespace_system}{System}.IO;
+5 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine};
+6 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine}.Assertions;
+7 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine}.UI;
+8 \textcolor{comment}{}
+9 \textcolor{comment}{/**}
+10 \textcolor{comment}{ * @class Song}
+11 \textcolor{comment}{ * @brief A C# class that represents a song.}
+12 \textcolor{comment}{ * }
+13 \textcolor{comment}{ * This class's responsibilities include:}
+14 \textcolor{comment}{ * @li Serving as a container for a pre-arranged series of @link Music::CombinedNote notes@endlink.}
+15 \textcolor{comment}{ * @li Converting the @link Music::CombinedNote abstract representions of musical notes@endlink into @link
+       Song::CombinedNoteData a form that relates to the actual waveforms of the audio@endlink.}
+16 \textcolor{comment}{ * @li Saving and loading copies of itself to/from a file.}
+17 \textcolor{comment}{*/}
+18 \textcolor{keyword}{public} \textcolor{keyword}{class }\hyperlink{class_song}{Song}
+19 \{
+20     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+21 \textcolor{comment}{     * @defgroup SongConst Constants}
+22 \textcolor{comment}{     * @ingroup DocSong}
+23 \textcolor{comment}{     * Constants used in order to set attributes of the Song.}
+24 \textcolor{comment}{     * @\{}
+25 \textcolor{comment}{    *****************************************************************************/}
+26     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{string} SONG\_FILE\_PATH = Application.streamingAssetsPath + \textcolor{stringliteral}{"/Songs/"}; \textcolor{comment}{//!< The path of the
+       folder that contains Song files.}
+27 \textcolor{comment}{}
+28     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+29 \textcolor{comment}{     * @\}}
+30 \textcolor{comment}{     * @defgroup SongEnums Enums}
+31 \textcolor{comment}{     * @ingroup DocSong}
+32 \textcolor{comment}{     * Enums used to specify attributes of the Song.}
+33 \textcolor{comment}{     * @\{}
+34 \textcolor{comment}{    *****************************************************************************/}
+35 \textcolor{comment}{}
+36 \textcolor{comment}{    /**}
+37 \textcolor{comment}{     * @enum SongType}
+38 \textcolor{comment}{     * @brief The possible types of songs.}
+39 \textcolor{comment}{    */}
+40     \textcolor{keyword}{public} \textcolor{keyword}{enum} \hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{SongType}
+41     \{
+42         Empty, \textcolor{comment}{//!< An empty Song. }
+43 \textcolor{comment}{}        Melody, \textcolor{comment}{//!< A Song that contains only @link Music::PITCH pitches@endlink.}
+44 \textcolor{comment}{}        DrumLoop, \textcolor{comment}{//!< A Song that contains only @link Music::DRUM drums@endlink.}
+45 \textcolor{comment}{}        CombinedMelodyAndPercussion \textcolor{comment}{//!< A song that contains both @link Music::PITCH pitches@endlink and
+       @link Music::DRUM drums@endlink.}
+46 \textcolor{comment}{}    \}
+47 
+48     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+49 \textcolor{comment}{     * @\}}
+50 \textcolor{comment}{     * @defgroup SongStructs Structs}
+51 \textcolor{comment}{     * @ingroup DocSong}
+52 \textcolor{comment}{     * Structs for holding data about the @link Music::CombinedNote notes@endlink in the Song as they
+       relate to audio waveforms.}
+53 \textcolor{comment}{     * @\{}
+54 \textcolor{comment}{    *****************************************************************************/}
+55 \textcolor{comment}{}
+56 \textcolor{comment}{    /**}
+57 \textcolor{comment}{     * @struct Song::PercussionData}
+58 \textcolor{comment}{     * @brief A struct for data related to @link Music::PercussionNote drums@endlink.}
+59 \textcolor{comment}{    */}
+60     \textcolor{keyword}{public} \textcolor{keyword}{struct }PercussionData
+61     \{
+62         \textcolor{keyword}{public} \textcolor{keywordtype}{bool} \hyperlink{group___song_structs_a0487a8cb56e5454ea46c9c42e55033eb}{HasHiHat}; \textcolor{comment}{//!< Whether or not the @link Music::PercussionNote note@endlink
+       contains a hi-hat hit. Used for silencing open hi-hats when a closed/pedal hi-hat hit occurs.  }
+63 \textcolor{comment}{}        \textcolor{keyword}{public} \textcolor{keywordtype}{int} \hyperlink{group___song_structs_ad3e20aaef3edeeb78a01522adb218797}{Velocity}; \textcolor{comment}{//!< The @link DefVel velocity@endlink of the @link
+       Music::PercussionNote.Hits drum hits@endlink in the note.}
+64 \textcolor{comment}{}        \textcolor{keyword}{public} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}[] \hyperlink{group___song_structs_ac8a09dee6f5d73d31bd91e5df71d65ff}{Hits}; \textcolor{comment}{//!< The @link Music::PercussionNote.Hits drum hits@endlink
+       in the note.}
+65 \textcolor{comment}{}    \}
+66 \textcolor{comment}{}
+67 \textcolor{comment}{    /**}
+68 \textcolor{comment}{     * @struct Song::MelodyNoteData}
+69 \textcolor{comment}{     * @brief A struct for data related to @link Music::MelodyNote notes that contain pitches@endlink.}
+70 \textcolor{comment}{    */}
+71     \textcolor{keyword}{public} \textcolor{keyword}{struct }MelodyNoteData
+72     \{
+73         \textcolor{keyword}{public} \textcolor{keywordtype}{int} NumSamples; \textcolor{comment}{//!< The @link Music::MelodyNote.Length length of the note@endlink in terms
+       of the number of waveform samples that should be output. }
+74 \textcolor{comment}{}        \textcolor{keyword}{public} \textcolor{keywordtype}{int} \hyperlink{group___song_structs_ad3e20aaef3edeeb78a01522adb218797}{Velocity}; \textcolor{comment}{//!< The @link DefVel velocity@endlink of the note.}
+75 \textcolor{comment}{}        \textcolor{keyword}{public} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}[] Pitches; \textcolor{comment}{//!< The @link Music::MelodyNote.Pitches pitches@endlink in
+       the note.}
+76 \textcolor{comment}{}    \}
+77 \textcolor{comment}{}
+78 \textcolor{comment}{    /**}
+79 \textcolor{comment}{     * @struct Song::CombinedNoteData}
+80 \textcolor{comment}{     * @brief A struct that contains data for both @link Music::PercussionNote drums@endlink and the @link
+       Music::MelodyNote melody@endlink.}
+81 \textcolor{comment}{    */}
+82     \textcolor{keyword}{public} \textcolor{keyword}{struct }CombinedNoteData
+83     \{
+84         \textcolor{keyword}{public} \textcolor{keywordtype}{int} TotalOffset; \textcolor{comment}{//!< The number of waveform samples before the note should be played.
+       Important: This offset is relative to the song as a whole, not just the previous note like in @link
+       Music::CombinedNote the abstract version of this struct@endlink.}
+85 \textcolor{comment}{}        \textcolor{keyword}{public} MelodyNoteData MelodyData; \textcolor{comment}{//!< The data related to playing @link Music::MelodyNote
+       pitches@endlink.}
+86 \textcolor{comment}{}        \textcolor{keyword}{public} PercussionData PercussionData; \textcolor{comment}{//!< The data related to playing @link Music::PercussionNote
+       drum hits@endlink.}
+87 \textcolor{comment}{}    \}
+88 
+89     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+90 \textcolor{comment}{     * @\}}
+91 \textcolor{comment}{     * @defgroup SongPrivVar Private Variables}
+92 \textcolor{comment}{     * @ingroup DocSong}
+93 \textcolor{comment}{     * Variables that contain information about the Song and are used internally by the Song.}
+94 \textcolor{comment}{     * @\{}
+95 \textcolor{comment}{    *****************************************************************************/}
+96     \textcolor{keyword}{private} \textcolor{keywordtype}{int} mBPM = 120; \textcolor{comment}{//!< The default @link DefBPM BPM@endlink of the Song.}
+97 \textcolor{comment}{}    \textcolor{keyword}{private} \textcolor{keywordtype}{int} \hyperlink{group___song_priv_var_ga3dbce17d96b434d4492280c39cff1778}{mNumDrumNotes}; \textcolor{comment}{//!< The number of @link Music::CombinedNote notes@endlink that
+       have @link Music::PercussionNote drums@endlink.}
+98 \textcolor{comment}{}    \textcolor{keyword}{private} \textcolor{keywordtype}{int} \hyperlink{group___song_priv_var_gaf55b4fd2df0457ba1306a75ac3fdc8b1}{mNumMusicalNotes}; \textcolor{comment}{//!< The number of @link Music::CombinedNote
+       notes@endlink that have @link Music::MelodyNote pitches@endlink.}
+99 \textcolor{comment}{}    \textcolor{keyword}{private} List<\hyperlink{class_music}{Music}.\hyperlink{group___music_structs_struct_music_1_1_combined_note}{CombinedNote}> mNotes = null; \textcolor{comment}{//!< The @link Music::CombinedNote
+       notes@endlink of the Song.}
+100 \textcolor{comment}{}    \textcolor{keyword}{private} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH} \hyperlink{group___song_priv_var_ga2dcd39d9add609e9df56a94057441dcc}{mHighestPitch} = \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.C0; \textcolor{comment}{//!< The highest
+       @link Music::PITCH pitch@endlink in the Song.}
+101 \textcolor{comment}{}    \textcolor{keyword}{private} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH} \hyperlink{group___song_priv_var_ga293976ef4c2050687a81edfbf77b4fc1}{mLowestPitch} = \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.B9; \textcolor{comment}{//!< The lowest
+       @link Music::PITCH pitch@endlink in the Song.}
+102 \textcolor{comment}{}    \textcolor{keyword}{private} \hyperlink{class_music}{Music}.\hyperlink{group___music_structs_struct_music_1_1_time_signature}{TimeSignature} \hyperlink{group___song_priv_var_ga2b2dcc0e83e49f7303b6a1371877b25e}{mTimeSignature}; \textcolor{comment}{//!< The @link
+       Music::TimeSignature time signature@endlink of the Song.}
+103 \textcolor{comment}{}    \textcolor{keyword}{private} \hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{SongType} mType = \hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{SongType}.Empty; \textcolor{comment}{//!< The @link Song::SongType type of
+       song@endlink that this Song is.}
+104 \textcolor{comment}{}    \textcolor{keyword}{private} \textcolor{keywordtype}{string} mName = null; \textcolor{comment}{//!< The name of the Song.}
+105 \textcolor{comment}{}
+106     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+107 \textcolor{comment}{     * @\}}
+108 \textcolor{comment}{     * @defgroup SongConstruct Constructors}
+109 \textcolor{comment}{     * @ingroup DocSong}
+110 \textcolor{comment}{     * Constructors to create a new Song instance.}
+111 \textcolor{comment}{     * @\{}
+112 \textcolor{comment}{    *****************************************************************************/}
+113 \textcolor{comment}{}
+114 \textcolor{comment}{    /**}
+115 \textcolor{comment}{     * @brief The default constructor. }
+116 \textcolor{comment}{     * @return A new empty Song. }
+117 \textcolor{comment}{     * Initializes the @link Song::mNotes list of notes@endlink and sets the @link Song::mBPM BPM@endlink
+       to 120, }
+118 \textcolor{comment}{     * the @link Music::TimeSignature time signature@endlink to @link Music::TIME\_SIGNATURE\_4\_4 4/4@endlink
+       }
+119 \textcolor{comment}{     * and the @link Song::mName name of the Song@endlink to "Untitled".}
+120 \textcolor{comment}{    */}
+121     \textcolor{keyword}{public} \hyperlink{group___song_construct_gae2e6486a6a2f523b7c81de472d761ff5}{Song}()
+122     \{
+123         \textcolor{comment}{// Set the member variables.}
+124         mNotes = \textcolor{keyword}{new} List<\hyperlink{class_music}{Music}.\hyperlink{group___music_structs_struct_music_1_1_combined_note}{CombinedNote}>();
+125         \hyperlink{group___song_priv_var_ga2b2dcc0e83e49f7303b6a1371877b25e}{mTimeSignature} = \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_gac95af323eef7511543c799154e1c29fd}{TIME\_SIGNATURE\_4\_4}();
+126         mBPM = 120;
+127         mName = \textcolor{stringliteral}{"Untitled"};
+128     \}
+129 \textcolor{comment}{}
+130 \textcolor{comment}{    /**}
+131 \textcolor{comment}{     * @brief A constructor that creates the song by @link Song::LoadSongFromFile loading a file@endlink.}
+132 \textcolor{comment}{     * @param[in] aSongFilePath The filepath to the file representing the Song to load.}
+133 \textcolor{comment}{     * @return A new Song filled with information from the file.}
+134 \textcolor{comment}{    */}
+135     \textcolor{keyword}{public} \hyperlink{group___song_construct_gae2e6486a6a2f523b7c81de472d761ff5}{Song}( \textcolor{keywordtype}{string} aSongFilePath )
+136     \{
+137         mNotes = \textcolor{keyword}{new} List<\hyperlink{class_music}{Music}.\hyperlink{group___music_structs_struct_music_1_1_combined_note}{CombinedNote}>();
+138         \hyperlink{group___song_priv_func_ga5c8edd8f7ebeab0d93f5619a644c30f5}{LoadSongFromFile}( aSongFilePath );
+139     \}
+140 
+141     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+142 \textcolor{comment}{     * @\}}
+143 \textcolor{comment}{     * @defgroup SongPubFunc Public Functions}
+144 \textcolor{comment}{     * @ingroup DocSong}
+145 \textcolor{comment}{     * Functions that allow other classes to interact with the Song.}
+146 \textcolor{comment}{     * @\{}
+147 \textcolor{comment}{    *****************************************************************************/}
+148 \textcolor{comment}{}
+149 \textcolor{comment}{    /** }
+150 \textcolor{comment}{     * @brief Adds a @link Music::CombinedNote note@endlink to the Song.}
+151 \textcolor{comment}{     * @param[in] aNewNote The @link Music::CombinedNote note@endlink to add.}
+152 \textcolor{comment}{    */}
+153     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___song_pub_func_gab7c8fe4dc29f5ae7b7728c583fe51f7e}{AddNote}( \hyperlink{class_music}{Music}.\hyperlink{group___music_structs_struct_music_1_1_combined_note}{CombinedNote} aNewNote )
+154     \{
+155         \textcolor{comment}{// Update the number of musical notes in the song if needed.}
+156         \textcolor{keywordflow}{if}( aNewNote.MusicalNote.Pitches != null )
+157         \{
+158             mNumMusicalNotes++;
+159 
+160             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < aNewNote.MusicalNote.Pitches.Length; i++ )
+161             \{
+162                 \textcolor{comment}{// Update the highest pitch.}
+163                 \textcolor{keywordflow}{if}( aNewNote.MusicalNote.Pitches[i] != \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.REST && 
+      \hyperlink{group___song_priv_var_ga2dcd39d9add609e9df56a94057441dcc}{mHighestPitch} < aNewNote.MusicalNote.Pitches[i] )
+164                 \{
+165                     \hyperlink{group___song_priv_var_ga2dcd39d9add609e9df56a94057441dcc}{mHighestPitch} = aNewNote.MusicalNote.Pitches[i];
+166                 \}
+167 
+168                 \textcolor{comment}{// Update the lowest pitch.}
+169                 \textcolor{keywordflow}{if}( aNewNote.MusicalNote.Pitches[i] != \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.REST && 
+      \hyperlink{group___song_priv_var_ga293976ef4c2050687a81edfbf77b4fc1}{mLowestPitch} > aNewNote.MusicalNote.Pitches[i] )
+170                 \{
+171                     \hyperlink{group___song_priv_var_ga293976ef4c2050687a81edfbf77b4fc1}{mLowestPitch} = aNewNote.MusicalNote.Pitches[i];
+172                 \}
+173             \}
+174 
+175         \}
+176 
+177         \textcolor{comment}{// Update the number of notes with drum hits in the song if needed.}
+178         \textcolor{keywordflow}{if}( aNewNote.Drums.Hits != null )
+179         \{
+180             mNumDrumNotes++;
+181         \}
+182 
+183         \textcolor{comment}{// Add the note to the list.}
+184         mNotes.Add( aNewNote );
+185 
+186         \textcolor{comment}{// Update the song type.}
+187         \hyperlink{group___song_priv_func_ga9a1d6eba1576c3631d3c0331196d9ae2}{UpdateSongType}();
+188     \}
+189 \textcolor{comment}{}
+190 \textcolor{comment}{    /**}
+191 \textcolor{comment}{     * @brief Gets the BPM of the song}
+192 \textcolor{comment}{     * @return The BPM of the song as an integer.}
+193 \textcolor{comment}{    */}
+194     \textcolor{keyword}{public} \textcolor{keywordtype}{int} \hyperlink{group___song_pub_func_gaaaf3d27d474713d7d368e3fd4c570be0}{GetBPM}()
+195     \{
+196         \textcolor{keywordflow}{return} \hyperlink{group___song_priv_var_ga3341fbbd9c0c58fe6514623e6b6c5a1e}{mBPM};
+197     \}
+198 \textcolor{comment}{}
+199 \textcolor{comment}{    /** }
+200 \textcolor{comment}{     * @brief Gets the highest pitch in the song.}
+201 \textcolor{comment}{     * @return The highest pitch in the song}
+202 \textcolor{comment}{    */}
+203     \textcolor{keyword}{public} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH} \hyperlink{group___song_pub_func_gafaa104e8653edf64148260ecd400570f}{GetHighestPitch}()
+204     \{
+205         Assert.IsTrue( mType != \hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{SongType}.Empty && mType != \hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{SongType}.DrumLoop,
+206             \textcolor{stringliteral}{"Tried to get information about pitches in a song that had no pitches!"} );
+207 
+208         \textcolor{keywordflow}{return} \hyperlink{group___song_priv_var_ga2dcd39d9add609e9df56a94057441dcc}{mHighestPitch};
+209     \}
+210 \textcolor{comment}{}
+211 \textcolor{comment}{    /** }
+212 \textcolor{comment}{     * @brief Gets the lowest pitch in the song.}
+213 \textcolor{comment}{     * @return The lowest pitch in the song}
+214 \textcolor{comment}{    */}
+215     \textcolor{keyword}{public} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH} \hyperlink{group___song_pub_func_gae4e71c8eb059cc9cf0b77e78971ab326}{GetLowestPitch}()
+216     \{
+217         Assert.IsTrue( mType != \hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{SongType}.Empty && mType != \hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{SongType}.DrumLoop,
+218             \textcolor{stringliteral}{"Tried to get information about pitches in a song that had no pitches!"} );
+219 
+220         \textcolor{keywordflow}{return} \hyperlink{group___song_priv_var_ga293976ef4c2050687a81edfbf77b4fc1}{mLowestPitch};
+221     \}
+222 \textcolor{comment}{}
+223 \textcolor{comment}{    /** }
+224 \textcolor{comment}{     * @brief Gets the name of the song.}
+225 \textcolor{comment}{     * @return The name of the song as a string.}
+226 \textcolor{comment}{    */}
+227     \textcolor{keyword}{public} \textcolor{keywordtype}{string} \hyperlink{group___song_pub_func_ga705c433f2bfb5aede337698144b23c8b}{GetName}()
+228     \{
+229         \textcolor{keywordflow}{return} \hyperlink{group___song_priv_var_ga6a5e6c1e4aa92939e2b5c1e3d9908df8}{mName};
+230     \}
+231 \textcolor{comment}{}
+232 \textcolor{comment}{    /**}
+233 \textcolor{comment}{     * @brief Gets a @link Music::CombinedNote note@endlink in the Song.}
+234 \textcolor{comment}{     * @param[in] aIndex The index of the note in the song.}
+235 \textcolor{comment}{     * @return The note at the specified index in the song. }
+236 \textcolor{comment}{    */}
+237     \textcolor{keyword}{public} \hyperlink{class_music}{Music}.\hyperlink{group___music_structs_struct_music_1_1_combined_note}{CombinedNote} \hyperlink{group___song_pub_func_ga485c83c9278103fed23c532bba1252f0}{GetNote}( \textcolor{keywordtype}{int} aIndex )
+238     \{
+239         Assert.IsTrue( mNotes.Count > 0, \textcolor{stringliteral}{"Tried to get a note from an empty song!"} );
+240         \textcolor{keywordflow}{return} mNotes[aIndex];
+241     \}
+242 \textcolor{comment}{}
+243 \textcolor{comment}{    /**}
+244 \textcolor{comment}{     * @brief Converts the @link Music::CombinedNote notes@endlink in the song to NoteData.}
+245 \textcolor{comment}{     * @return An array of @link Song::CombinedNoteData note data@endlink representing the @link
+       Music::CombinedNote notes@endlink in the Song.}
+246 \textcolor{comment}{     * }
+247 \textcolor{comment}{     * This function is used to convert the Song's @link Music::CombinedNote abstract information@endlink}
+248 \textcolor{comment}{     * which is based around musical notation into @link Song::CombinedNoteData specific
+       information@endlink}
+249 \textcolor{comment}{     * that can be used to map it to audio data and waveform samples.}
+250 \textcolor{comment}{     * }
+251 \textcolor{comment}{     * @see VirtualInstrumentManager::OnPlaySongEvent VirtualInstrumentManager::OnPlayDrumLoopEvent
+       NoteOutputObject::OnAudioFilterRead}
+252 \textcolor{comment}{    */}  
+253     \textcolor{keyword}{public} CombinedNoteData[] \hyperlink{group___song_pub_func_gae3df1fd5448b7d9cefb0fed4af967985}{GetNoteData}()
+254     \{
+255         \textcolor{comment}{// Allocate the returned array.}
+256         CombinedNoteData[] returned = \textcolor{keyword}{new} CombinedNoteData[mNotes.Count];
+257 
+258         \textcolor{comment}{// Set up variables to keep track of a note's number of samples and total offset.}
+259         \textcolor{keywordtype}{int} offset = 0;
+260         \textcolor{keywordtype}{int} numSamp = 0;
+261 
+262         \textcolor{comment}{// Iterate through each note in the list.}
+263         \textcolor{keywordtype}{int} index = 0;
+264         \textcolor{keywordflow}{foreach}( \hyperlink{class_music}{Music}.\hyperlink{group___music_structs_struct_music_1_1_combined_note}{CombinedNote} note in mNotes )
+265         \{
+266             \textcolor{comment}{// Get the number of samples and the total offset for the note.}
+267             numSamp = \hyperlink{group___song_stat_func_ga03712f6defbff25d5a1cd964e4bc3211}{GetNoteLengthInSamples}( mBPM, 44100, note.MusicalNote.Length, 
+      \hyperlink{group___song_priv_var_ga2b2dcc0e83e49f7303b6a1371877b25e}{mTimeSignature} );
+268             offset += \hyperlink{group___song_stat_func_ga03712f6defbff25d5a1cd964e4bc3211}{GetNoteLengthInSamples}( mBPM, 44100, note.OffsetFromPrevNote, 
+      \hyperlink{group___song_priv_var_ga2b2dcc0e83e49f7303b6a1371877b25e}{mTimeSignature} );
+269 
+270             \textcolor{comment}{// Set the values for the NoteData's MelodyData.}
+271             returned[index].MelodyData.NumSamples = numSamp;
+272             returned[index].MelodyData.Pitches = note.MusicalNote.Pitches;
+273             returned[index].MelodyData.Velocity = note.MusicalNote.Velocity;
+274 
+275             \textcolor{comment}{// Set the values for the NoteData's PercussionData.}
+276             returned[index].PercussionData.Velocity = note.Drums.Velocity;
+277             returned[index].PercussionData.Hits = note.Drums.Hits;
+278             returned[index].PercussionData.HasHiHat = note.Drums.HasHiHat;
+279 
+280             \textcolor{comment}{// Set the offset for the NoteData.}
+281             returned[index].TotalOffset = offset;
+282 
+283             \textcolor{comment}{// Go to the next note.}
+284             index++;
+285         \}
+286 
+287         \textcolor{keywordflow}{return} returned;
+288     \}
+289 \textcolor{comment}{}
+290 \textcolor{comment}{    /**}
+291 \textcolor{comment}{     * @brief Returns a list of the @link Music::CombinedNote notes@endlink in the Song.}
+292 \textcolor{comment}{     * @return A list of the @link Music::CombinedNote notes@endlink in the Song.}
+293 \textcolor{comment}{    */}
+294     \textcolor{keyword}{public} List<\hyperlink{class_music}{Music}.\hyperlink{group___music_structs_struct_music_1_1_combined_note}{CombinedNote}> \hyperlink{group___song_pub_func_ga842675b7691fca074ee394031afc7675}{GetAllNotes}()
+295     \{
+296         \textcolor{keywordflow}{return} \hyperlink{group___song_priv_var_ga674bc904a1f856d485d5fb7fe84bac85}{mNotes};
+297     \}
+298 \textcolor{comment}{}
+299 \textcolor{comment}{    /**}
+300 \textcolor{comment}{     * @brief Gets the number of @link Music::CombinedNote notes@endlink in the Song.}
+301 \textcolor{comment}{     * @return The number of @link Music::CombinedNote notes@endlink in the Song.}
+302 \textcolor{comment}{    */}
+303     \textcolor{keyword}{public} \textcolor{keywordtype}{int} \hyperlink{group___song_pub_func_gad124d0af146885327f8ac455bc013b63}{GetNumNotes}()
+304     \{
+305         \textcolor{keywordflow}{return} mNotes.Count;
+306     \}
+307 \textcolor{comment}{}
+308 \textcolor{comment}{    /**}
+309 \textcolor{comment}{     * @brief Gets the @link Song::SongType type of song@endlink that the Song is.}
+310 \textcolor{comment}{     * @return The @link Song::SongType type of song@endlink that the Song is.}
+311 \textcolor{comment}{    */}
+312     \textcolor{keyword}{public} \hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{SongType} \hyperlink{group___song_pub_func_gabae5b5d8f727b2d9da7867a99347f86b}{GetSongType}()
+313     \{
+314         \textcolor{keywordflow}{return} \hyperlink{group___song_priv_var_gaf3b9d0f461522324f897b746311b43c5}{mType};
+315     \}
+316 \textcolor{comment}{}
+317 \textcolor{comment}{    /**}
+318 \textcolor{comment}{     * @brief Gets the @link Music::TimeSignature time signature@endlink of the Song.}
+319 \textcolor{comment}{     * @return The @link Music::TimeSignature time signature@endlink of the Song.}
+320 \textcolor{comment}{    */}
+321     \textcolor{keyword}{public} \hyperlink{class_music}{Music}.\hyperlink{group___music_structs_struct_music_1_1_time_signature}{TimeSignature} \hyperlink{group___song_pub_func_ga26315bb6d554d46e2eba2ac03ee70cc1}{GetTimeSignature}()
+322     \{
+323         \textcolor{keywordflow}{return} \hyperlink{group___song_priv_var_ga2b2dcc0e83e49f7303b6a1371877b25e}{mTimeSignature};
+324     \}
+325 \textcolor{comment}{}
+326 \textcolor{comment}{    /** }
+327 \textcolor{comment}{     * @brief Removes a note from the song.}
+328 \textcolor{comment}{     * @param[in] aIndex The index of the note to remove.}
+329 \textcolor{comment}{    */}
+330     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___song_pub_func_ga856634e047b8c35160958c3aa53d6b28}{RemoveNote}( \textcolor{keywordtype}{int} aIndex )
+331     \{
+332         Assert.IsTrue( aIndex < mNotes.Count,
+333             \textcolor{stringliteral}{"Tried to remove a note at the index "} + aIndex.ToString() + \textcolor{stringliteral}{" from a song with only "} + mNotes
+      .Count.ToString() + \textcolor{stringliteral}{" notes in it!"} );
+334 
+335         \textcolor{comment}{// Get the note to be removed.}
+336         \hyperlink{class_music}{Music}.\hyperlink{group___music_structs_struct_music_1_1_combined_note}{CombinedNote} removedNote = mNotes[aIndex];
+337 
+338         \textcolor{comment}{// Remove the note.}
+339         mNotes.RemoveAt( aIndex );
+340 
+341         \textcolor{comment}{// Update information about the pitches in the song..}
+342         \textcolor{keywordflow}{if}( removedNote.MusicalNote.Pitches != null )
+343         \{
+344             \textcolor{comment}{// Decrease the number of musical notes.}
+345             mNumMusicalNotes--;
+346 
+347             \textcolor{comment}{// See if we need to set a new highest/lowest pitch.}
+348             \textcolor{keywordflow}{foreach}( \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH} pitch in removedNote.MusicalNote.Pitches )
+349             \{
+350                 \textcolor{keywordflow}{if}( pitch != \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.REST && pitch == 
+      \hyperlink{group___song_priv_var_ga2dcd39d9add609e9df56a94057441dcc}{mHighestPitch} )
+351                 \{
+352                     \hyperlink{group___song_priv_var_ga2dcd39d9add609e9df56a94057441dcc}{mHighestPitch} = \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.C0;
+353                     \hyperlink{group___song_priv_func_ga5f837e6b7f576732fa38747caa057621}{SearchForHighestPitch}();
+354                 \}
+355                 \textcolor{keywordflow}{if}( pitch != \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.REST && pitch == \hyperlink{group___song_priv_var_ga293976ef4c2050687a81edfbf77b4fc1}{mLowestPitch} )
+356                 \{
+357                     \hyperlink{group___song_priv_var_ga293976ef4c2050687a81edfbf77b4fc1}{mLowestPitch} = \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.B9;
+358                     \hyperlink{group___song_priv_func_gac2e812c6385529eb7a9be5082c7bde75}{SearchForLowestPitch}();
+359                 \}
+360             \}
+361         \}
+362 
+363         \textcolor{comment}{// Update information about the drums in the song.}
+364         \textcolor{keywordflow}{if}( removedNote.Drums.Hits != null )
+365         \{
+366             mNumDrumNotes--;
+367         \}
+368 
+369         \textcolor{comment}{// Update the song type.}
+370         \hyperlink{group___song_priv_func_ga9a1d6eba1576c3631d3c0331196d9ae2}{UpdateSongType}();
+371 
+372         \textcolor{comment}{// Clean up.}
+373         GC.Collect();
+374         Resources.UnloadUnusedAssets();
+375     \}
+376 \textcolor{comment}{}
+377 \textcolor{comment}{    /**}
+378 \textcolor{comment}{     * @brief Replaces a note at a given index.}
+379 \textcolor{comment}{     * @param[in] aNote The note that will be put into the song at the given index.}
+380 \textcolor{comment}{     * @param[in] aIndex The index of the place to insert the note.}
+381 \textcolor{comment}{    */}
+382     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___song_pub_func_ga326d61c75339080057a02c6decb0cde3}{ReplaceNote}( \hyperlink{class_music}{Music}.\hyperlink{group___music_structs_struct_music_1_1_combined_note}{CombinedNote} aNote, \textcolor{keywordtype}{int} aIndex )
+383     \{
+384         Assert.IsTrue( aIndex < mNotes.Count,
+385              \textcolor{stringliteral}{"Tried to replace a note at the index "} + aIndex.ToString() + \textcolor{stringliteral}{" for a song with only "} + 
+      mNotes.Count.ToString() + \textcolor{stringliteral}{" notes in it!"} );
+386 
+387         \textcolor{comment}{// Get the replaced note.}
+388         \hyperlink{class_music}{Music}.\hyperlink{group___music_structs_struct_music_1_1_combined_note}{CombinedNote} replacedNote = mNotes[aIndex];
+389 
+390         \textcolor{comment}{// Replace the note.}
+391         mNotes[aIndex] = aNote;
+392 
+393         \textcolor{comment}{// See if we need to update the highest/lowest pitch.}
+394         \textcolor{keywordflow}{if}( replacedNote.MusicalNote.Pitches != null )
+395         \{
+396             \textcolor{comment}{// Decrease the number of musical notes.}
+397             mNumMusicalNotes--;
+398 
+399             \textcolor{comment}{// See if we need to set a new highest/lowest pitch.}
+400             \textcolor{keywordflow}{foreach}( \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH} pitch in replacedNote.MusicalNote.Pitches )
+401             \{
+402                 \textcolor{keywordflow}{if}( pitch != \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.REST && pitch == 
+      \hyperlink{group___song_priv_var_ga2dcd39d9add609e9df56a94057441dcc}{mHighestPitch} )
+403                 \{
+404                     \hyperlink{group___song_priv_var_ga2dcd39d9add609e9df56a94057441dcc}{mHighestPitch} = \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.C0;
+405                     \hyperlink{group___song_priv_func_ga5f837e6b7f576732fa38747caa057621}{SearchForHighestPitch}();
+406                 \}
+407                 \textcolor{keywordflow}{if}( pitch != \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.REST && pitch == \hyperlink{group___song_priv_var_ga293976ef4c2050687a81edfbf77b4fc1}{mLowestPitch} )
+408                 \{
+409                     \hyperlink{group___song_priv_var_ga293976ef4c2050687a81edfbf77b4fc1}{mLowestPitch} = \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.B9;
+410                     \hyperlink{group___song_priv_func_gac2e812c6385529eb7a9be5082c7bde75}{SearchForLowestPitch}();
+411                 \}
+412             \}
+413         \}
+414 
+415         \textcolor{comment}{// Account for changes in the number of musical notes and drum notes in the song.}
+416         \textcolor{keywordflow}{if}( replacedNote.MusicalNote.Pitches != null && aNote.MusicalNote.Pitches == null )
+417         \{
+418             mNumMusicalNotes--;
+419         \}
+420         \textcolor{keywordflow}{if}( replacedNote.Drums.Hits != null && aNote.Drums.Hits == null )
+421         \{
+422             mNumDrumNotes--;
+423         \}
+424 
+425         \textcolor{comment}{// Update the song type.}
+426         \hyperlink{group___song_priv_func_ga9a1d6eba1576c3631d3c0331196d9ae2}{UpdateSongType}();
+427     \}
+428 \textcolor{comment}{}
+429 \textcolor{comment}{    /**}
+430 \textcolor{comment}{     * @brief Sets the default @link DefBPM BPM@endlink of the Song.}
+431 \textcolor{comment}{     * @param[in] aBPM The new default @link DefBPM BPM@endlink of the Song.}
+432 \textcolor{comment}{    */}
+433     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___song_pub_func_gaa65bbba1af7192edff7e0f848029013b}{SetBPM}( \textcolor{keywordtype}{int} aBPM )
+434     \{
+435         mBPM = aBPM;
+436     \}
+437 \textcolor{comment}{}
+438 \textcolor{comment}{    /**}
+439 \textcolor{comment}{     * @brief Sets the default @link DefBPM BPM@endlink of the Song.}
+440 \textcolor{comment}{     * @param[in] aBPM The new default @link DefBPM BPM@endlink of the Song.}
+441 \textcolor{comment}{    */}
+442     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___song_pub_func_gaa65bbba1af7192edff7e0f848029013b}{SetBPM}( \textcolor{keywordtype}{float} aBPM )
+443     \{
+444         mBPM = (int)aBPM;
+445     \}
+446 \textcolor{comment}{}
+447 \textcolor{comment}{    /** }
+448 \textcolor{comment}{     * @brief Sets the @link Song::mName name@endlink of the Song.}
+449 \textcolor{comment}{     * @param[in] aSongName The @link Song::mName name@endlink of the Song.}
+450 \textcolor{comment}{    */}
+451     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___song_pub_func_gacb01510cf72657fc7c64bb6ba00c2c56}{SetName}( \textcolor{keywordtype}{string} aSongName )
+452     \{
+453         mName = aSongName;
+454     \}
+455 \textcolor{comment}{}
+456 \textcolor{comment}{    /**}
+457 \textcolor{comment}{     * @brief Sets the @link Music::TimeSignature time signature@endlink of the Song.}
+458 \textcolor{comment}{     * @param[in] aTimeSignature The @link Music::TimeSignature time signature@endlink of the Song.}
+459 \textcolor{comment}{    */}
+460     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___song_pub_func_gaf9f2c7e6f4400f6f9854e68e70a49470}{SetTimeSignature}( \hyperlink{class_music}{Music}.\hyperlink{group___music_structs_struct_music_1_1_time_signature}{TimeSignature} aTimeSignature )
+461     \{
+462         \hyperlink{group___song_priv_var_ga2b2dcc0e83e49f7303b6a1371877b25e}{mTimeSignature}.BeatsPerMeasure = aTimeSignature.BeatsPerMeasure;
+463         \hyperlink{group___song_priv_var_ga2b2dcc0e83e49f7303b6a1371877b25e}{mTimeSignature}.BaseBeat = aTimeSignature.BaseBeat;
+464     \}
+465 \textcolor{comment}{}
+466 \textcolor{comment}{    /** }
+467 \textcolor{comment}{     * @brief Writes the song to a file. The file will be stored in StreamingAssets/Songs/.}
+468 \textcolor{comment}{     * @see @link DocSongFileFormat Song File Format@endlink}
+469 \textcolor{comment}{    */}
+470     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___song_pub_func_ga70b0f6021c3b0590c561a88e3d1e5c2f}{WriteSongToFile}()
+471     \{
+472         \textcolor{comment}{// Set up the filepath.}
+473         \textcolor{keywordtype}{string} filepath = \hyperlink{group___song_const_ga95247572cf734f9e8b35973de4eeb1a4}{SONG\_FILE\_PATH};
+474         \textcolor{keywordflow}{switch}( mType )
+475         \{
+476             \textcolor{keywordflow}{case} \hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{SongType}.DrumLoop:
+477                 filepath += \textcolor{stringliteral}{"DRUMLOOP\_"} + mName + \textcolor{stringliteral}{".song"};
+478                 \textcolor{keywordflow}{break};
+479             \textcolor{keywordflow}{case} \hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{SongType}.Melody:
+480                 filepath += \textcolor{stringliteral}{"MELODY\_"} + mName + \textcolor{stringliteral}{".song"};
+481                 \textcolor{keywordflow}{break};
+482             \textcolor{keywordflow}{case} \hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{SongType}.CombinedMelodyAndPercussion:
+483                 filepath += \textcolor{stringliteral}{"SONG\_"} + mName + \textcolor{stringliteral}{".song"};
+484                 \textcolor{keywordflow}{break};
+485             \textcolor{keywordflow}{default}:
+486                 \textcolor{keywordflow}{break};
+487         \}
+488 
+489         \textcolor{comment}{// Set an array for the contents of the file}
+490         \textcolor{keywordtype}{string}[] contents = \textcolor{keyword}{new} \textcolor{keywordtype}{string}[mNotes.Count + 2];
+491 
+492         \textcolor{comment}{// Put the name of the song in first line to be saved.}
+493         contents[0] = \hyperlink{group___song_priv_var_ga6a5e6c1e4aa92939e2b5c1e3d9908df8}{mName};
+494 
+495         \textcolor{comment}{// Put the song type, default BPM and the time signature values in the second line to be saved.}
+496         contents[1] = ( (int)mType ).ToString() + \textcolor{stringliteral}{";"} + mBPM.ToString() + \textcolor{stringliteral}{";"} +
+497             \hyperlink{group___song_priv_var_ga2b2dcc0e83e49f7303b6a1371877b25e}{mTimeSignature}.BeatsPerMeasure.ToString() + \textcolor{stringliteral}{";"} + ( (int)
+      \hyperlink{group___song_priv_var_ga2b2dcc0e83e49f7303b6a1371877b25e}{mTimeSignature}.BaseBeat ).ToString();
+498 
+499         \textcolor{comment}{// Put all the notes into the lines from line 3 to line [numNotes].  }
+500         \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < mNotes.Count; i++ )
+501         \{
+502             \textcolor{comment}{// Set up the note string.}
+503             contents[i + 2] = \textcolor{stringliteral}{""};
+504 
+505             \textcolor{comment}{// If pitches exist for the song, then add them.}
+506             \textcolor{keywordflow}{if}( mType != \hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{SongType}.DrumLoop )
+507             \{
+508                 \textcolor{comment}{// Add the pitches if they exist for this note.}
+509                 \textcolor{keywordflow}{if}( mNotes[i].MusicalNote.Pitches != null )
+510                 \{
+511                     \textcolor{comment}{// Add the pitches to the string}
+512                     \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} j = 0; j < mNotes[i].MusicalNote.Pitches.Length; j++ )
+513                     \{
+514                         contents[i + 2] += ( (int)mNotes[i].MusicalNote.Pitches[j] ).ToString();
+515 
+516                         \textcolor{comment}{// If this is not the last pitch of the note, then add a comma}
+517                         \textcolor{keywordflow}{if}( j + 1 != mNotes[i].MusicalNote.Pitches.Length )
+518                         \{
+519                             contents[i + 2] += \textcolor{stringliteral}{","};
+520                         \}
+521                         \textcolor{comment}{// If this is the last pitch of the note, then add a bar or a semicolon depending
+       on if there are drums.}
+522                         \textcolor{keywordflow}{else}
+523                         \{
+524                             \textcolor{keywordflow}{if}( mType == \hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{SongType}.CombinedMelodyAndPercussion )
+525                             \{
+526                                 contents[i + 2] += \textcolor{stringliteral}{"|"};
+527                             \}
+528                             \textcolor{keywordflow}{else}
+529                             \{
+530                                 contents[i + 2] += \textcolor{stringliteral}{";"};
+531                             \}
+532                         \}
+533                     \}
+534                 \}
+535                 \textcolor{comment}{// If pitches don't exist for the note, then put null.}
+536                 \textcolor{keywordflow}{else}
+537                 \{
+538                     contents[i + 2] += \textcolor{stringliteral}{"null|"};
+539                 \}
+540             \}
+541 
+542             \textcolor{comment}{// If drums exist for the song, then add them.}
+543             \textcolor{keywordflow}{if}( mType != \hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{SongType}.Melody )
+544             \{
+545                 \textcolor{comment}{// If there are drums for this note, then add them. }
+546                 \textcolor{keywordflow}{if}( mNotes[i].Drums.Hits != null )
+547                 \{
+548                     \textcolor{comment}{// Add the drums to the string}
+549                     \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} j = 0; j < mNotes[i].Drums.Hits.Length; j++ )
+550                     \{
+551                         contents[i + 2] += ( (int)mNotes[i].Drums.Hits[j] ).ToString();
+552 
+553                         \textcolor{comment}{// If this is not the last drum hit of the note, then add a comma}
+554                         \textcolor{keywordflow}{if}( j + 1 != mNotes[i].Drums.Hits.Length )
+555                         \{
+556                             contents[i + 2] += \textcolor{stringliteral}{","};
+557                         \}
+558                         \textcolor{comment}{// If this is the last pitch of the note, then add a semicolon.}
+559                         \textcolor{keywordflow}{else}
+560                         \{
+561                             contents[i + 2] += \textcolor{stringliteral}{";"};
+562                         \}
+563                     \}
+564                 \}
+565             \}
+566 
+567             \textcolor{comment}{// If the song is not a drum loop, then add the note length.}
+568             \textcolor{keywordflow}{if}( mType != \hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{SongType}.DrumLoop )
+569             \{
+570                 contents[i + 2] += ( ( (int)mNotes[i].MusicalNote.Length ).ToString() + \textcolor{stringliteral}{";"} );
+571             \}
+572 
+573             \textcolor{comment}{// Add the offset from the previous note.}
+574             contents[i + 2] += ( ( (int)mNotes[i].OffsetFromPrevNote ).ToString() + \textcolor{stringliteral}{";"} );
+575 
+576             \textcolor{comment}{// If the song is not a drum loop, then add the musical note velocity.}
+577             \textcolor{keywordflow}{if}( mType != \hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{SongType}.DrumLoop )
+578             \{
+579                 contents[i + 2] += mNotes[i].MusicalNote.Velocity.ToString();
+580             \}
+581 
+582             \textcolor{comment}{// Put a bar if both drums and pitches exist for the song.}
+583             \textcolor{keywordflow}{if}( mType == \hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{SongType}.CombinedMelodyAndPercussion )
+584             \{
+585                 contents[i + 2] += \textcolor{stringliteral}{"|"};
+586             \}
+587 
+588             \textcolor{comment}{// If the song has drums, then put the velocity for the drums for this note.}
+589             \textcolor{keywordflow}{if}( mType != \hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{SongType}.Melody )
+590             \{
+591                 contents[i + 2] += mNotes[i].Drums.Velocity;
+592             \}
+593 
+594         \}
+595 
+596         \textcolor{comment}{// Write the contents to the file.}
+597         \hyperlink{namespace_system}{System}.IO.File.WriteAllLines( filepath, contents );
+598     \}
+599 
+600     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+601 \textcolor{comment}{     * @\}}
+602 \textcolor{comment}{     * @defgroup SongPrivFunc Private Functions}
+603 \textcolor{comment}{     * @ingroup DocSong}
+604 \textcolor{comment}{     * Functions used internally by the Song.}
+605 \textcolor{comment}{     * @\{}
+606 \textcolor{comment}{    *****************************************************************************/}
+607 \textcolor{comment}{}
+608 \textcolor{comment}{    /**}
+609 \textcolor{comment}{     * @brief Loads a @link DocSongFileFormat Song file@endlink and uses it to set the values for this
+       Song.  }
+610 \textcolor{comment}{     * @param[in] aSongFilePath The path to the Song file.}
+611 \textcolor{comment}{     * @see @link DocSongFileFormat Song File Format@endlink}
+612 \textcolor{comment}{    */}
+613     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{group___song_priv_func_ga5c8edd8f7ebeab0d93f5619a644c30f5}{LoadSongFromFile}( \textcolor{keywordtype}{string} aSongFilePath )
+614     \{
+615         \textcolor{comment}{// Create some variables for parsing the file.}
+616         \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}[] curNotePitches = null;
+617         \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}[] curNoteDrums = null;
+618         \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH} curNoteLength = \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.NONE;
+619         \textcolor{keywordtype}{int} splitLineIndex = 0;
+620         \textcolor{keywordtype}{int} curNoteMelodyVelocity = 0;
+621         \textcolor{keywordtype}{int} curNoteDrumVelocity = 0;
+622 
+623         \textcolor{comment}{// Open the file stream.}
+624         StreamReader parser = \textcolor{keyword}{new} StreamReader( aSongFilePath );
+625 
+626         \textcolor{comment}{// Get the name of the song}
+627         \textcolor{keywordtype}{string} curLine = parser.ReadLine();
+628         mName = curLine;
+629 
+630         \textcolor{comment}{// Get the song type.}
+631         curLine = parser.ReadLine();
+632         \textcolor{keywordtype}{string}[] splitLine = curLine.Split( \textcolor{charliteral}{';'} );
+633         mType = (\hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{SongType})\textcolor{keywordtype}{int}.Parse( splitLine[0] );
+634 
+635         \textcolor{comment}{// Get the default BPM}
+636         mBPM = \textcolor{keywordtype}{int}.Parse( splitLine[1] );
+637 
+638         \textcolor{comment}{// Get the time signature}
+639         \hyperlink{group___song_priv_var_ga2b2dcc0e83e49f7303b6a1371877b25e}{mTimeSignature}.BeatsPerMeasure = \textcolor{keywordtype}{int}.Parse( splitLine[2] );
+640         \hyperlink{group___song_priv_var_ga2b2dcc0e83e49f7303b6a1371877b25e}{mTimeSignature}.BaseBeat = (\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH})\textcolor{keywordtype}{int}.Parse( splitLine[3] 
+      );
+641 
+642         \textcolor{comment}{// Get the notes of the song.}
+643         curLine = parser.ReadLine();
+644         \textcolor{keywordflow}{while}( curLine != null )
+645         \{
+646             \textcolor{comment}{// Get the line and reset the split line index.}
+647             splitLine = curLine.Split( \textcolor{charliteral}{';'} );
+648             splitLineIndex = 0;
+649 
+650             \textcolor{comment}{// Get the pitches for the note if needed.}
+651             \textcolor{keywordflow}{if}( mType != \hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{SongType}.DrumLoop )
+652             \{
+653                 curNotePitches = \hyperlink{group___song_priv_func_gacf6fee93921e1a5edbc477c0898c357a}{ParsePitches}( splitLine[splitLineIndex] );
+654             \}
+655 
+656             \textcolor{comment}{// Get the drums for the note if needed.}
+657             \textcolor{keywordflow}{if}( mType != \hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{SongType}.Melody )
+658             \{
+659                 curNoteDrums = \hyperlink{group___song_priv_func_gaaa4ca12f0885a34cbfb09bb7a1db178b}{ParseDrums}( splitLine[splitLineIndex] );
+660             \}
+661 
+662             \textcolor{comment}{// Go to the next section of the line.}
+663             splitLineIndex++;
+664 
+665             \textcolor{comment}{// If needed, get the melody note length.}
+666             \textcolor{keywordflow}{if}( mType != \hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{SongType}.DrumLoop )
+667             \{
+668                 curNoteLength = (\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH})\textcolor{keywordtype}{int}.Parse( splitLine[splitLineIndex] );
+669                 splitLineIndex++;
+670             \}
+671 
+672             \textcolor{comment}{// Get the offset from the previous note.}
+673             \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH} offset = (\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH})\textcolor{keywordtype}{int}.Parse( 
+      splitLine[splitLineIndex] );
+674             splitLineIndex++;
+675 
+676             \textcolor{comment}{// Get the velocity/velocities of the note.}
+677             \textcolor{keywordflow}{if}( mType == \hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{SongType}.CombinedMelodyAndPercussion )
+678             \{
+679                 \textcolor{keywordtype}{string}[] velocityString = splitLine[splitLineIndex].Split( \textcolor{charliteral}{'|'} );
+680                 curNoteMelodyVelocity = \textcolor{keywordtype}{int}.Parse( velocityString[0] );
+681                 curNoteDrumVelocity = \textcolor{keywordtype}{int}.Parse( velocityString[1] );
+682             \}
+683             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}( mType == \hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{SongType}.Melody )
+684             \{
+685                 curNoteMelodyVelocity = \textcolor{keywordtype}{int}.Parse( splitLine[splitLineIndex] );
+686             \}
+687             \textcolor{keywordflow}{else}
+688             \{
+689                 curNoteDrumVelocity = \textcolor{keywordtype}{int}.Parse( splitLine[splitLineIndex] );
+690             \}
+691 
+692             \textcolor{comment}{// Add the note.}
+693             \hyperlink{group___song_pub_func_gab7c8fe4dc29f5ae7b7728c583fe51f7e}{AddNote}( \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_gaaf74885e43eb623f64f961985fadcd08}{CreateNote}( curNoteMelodyVelocity, curNoteLength, 
+      curNotePitches, curNoteDrumVelocity, curNoteDrums, offset ) );
+694 
+695             \textcolor{comment}{// Get the next line}
+696             curLine = parser.ReadLine();
+697         \}
+698     \}
+699 \textcolor{comment}{}
+700 \textcolor{comment}{    /** }
+701 \textcolor{comment}{     * @brief Parses the @link Music::DRUM drums@endlink from a string in a @link DocSongFileFormat Song
+       file@endlink.}
+702 \textcolor{comment}{     * @param[in] aStringFromFile The string to parse.}
+703 \textcolor{comment}{     * @see @link DocSongFileFormat Song File Format@endlink}
+704 \textcolor{comment}{    */}
+705     \textcolor{keyword}{private} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}[] \hyperlink{group___song_priv_func_gaaa4ca12f0885a34cbfb09bb7a1db178b}{ParseDrums}( \textcolor{keywordtype}{string} aStringFromFile )
+706     \{
+707         \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}[] parsedDrums = null;
+708 
+709         \textcolor{comment}{// Get the entire string of drums.}
+710         \textcolor{keywordtype}{string} drumString = aStringFromFile;
+711         \textcolor{keywordflow}{if}( mType == \hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{SongType}.CombinedMelodyAndPercussion )
+712         \{
+713             drumString = aStringFromFile.Split( \textcolor{charliteral}{'|'} )[1];
+714         \}
+715 
+716         \textcolor{comment}{// If there are drums for the note, then parse each drum.}
+717         \textcolor{keywordflow}{if}( drumString != \textcolor{stringliteral}{"null"} )
+718         \{
+719             \textcolor{comment}{// Split the string into individual drums.}
+720             \textcolor{keywordtype}{string}[] drums = drumString.Split( \textcolor{charliteral}{','} );
+721 
+722             \textcolor{comment}{// Iterate through each drum and parse it.}
+723             parsedDrums = \textcolor{keyword}{new} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}[drums.Length];
+724             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < drums.Length; i++ )
+725             \{
+726                 parsedDrums[i] = (\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM})\textcolor{keywordtype}{int}.Parse( drums[i] );
+727             \}
+728         \}
+729 
+730         \textcolor{comment}{// Return the parsed drums.}
+731         \textcolor{keywordflow}{return} parsedDrums;
+732     \}
+733 \textcolor{comment}{}
+734 \textcolor{comment}{    /** }
+735 \textcolor{comment}{     * @brief Parses the @link Music::PITCH pitches@endlink from a string in a @link DocSongFileFormat Song
+       file@endlink.}
+736 \textcolor{comment}{     * @param[in] aStringFromFile The string to parse.}
+737 \textcolor{comment}{     * @see @link DocSongFileFormat Song File Format@endlink}
+738 \textcolor{comment}{    */}
+739     \textcolor{keyword}{private} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}[] \hyperlink{group___song_priv_func_gacf6fee93921e1a5edbc477c0898c357a}{ParsePitches}( \textcolor{keywordtype}{string} aStringFromFile )
+740     \{
+741         \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}[] parsedPitches = null;
+742 
+743         \textcolor{comment}{// Get the entire string of pitches.}
+744         \textcolor{keywordtype}{string} pitchString = aStringFromFile;
+745         \textcolor{keywordflow}{if}( mType == \hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{SongType}.CombinedMelodyAndPercussion )
+746         \{
+747             pitchString = aStringFromFile.Split( \textcolor{charliteral}{'|'} )[0];
+748         \}
+749 
+750         \textcolor{comment}{// If there are pitches for the note, then parse each pitch.}
+751         \textcolor{keywordflow}{if}( pitchString != \textcolor{stringliteral}{"null"} )
+752         \{
+753             \textcolor{comment}{// Split the string into individual pitches.}
+754             \textcolor{keywordtype}{string}[] pitches = pitchString.Split( \textcolor{charliteral}{','} );
+755 
+756             \textcolor{comment}{// Iterate through each pitch and parse it.}
+757             parsedPitches = \textcolor{keyword}{new} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}[pitches.Length];
+758             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < pitches.Length; i++ )
+759             \{
+760                 parsedPitches[i] = (\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH})\textcolor{keywordtype}{int}.Parse( pitches[i] );
+761             \}
+762         \}
+763 
+764         \textcolor{comment}{// Return the parsed pitches.}
+765         \textcolor{keywordflow}{return} parsedPitches;
+766     \}
+767 \textcolor{comment}{}
+768 \textcolor{comment}{    /**}
+769 \textcolor{comment}{     * @brief Searches through the notes for the highest pitch. }
+770 \textcolor{comment}{     * }
+771 \textcolor{comment}{     * This function is called when a note that contains the highest}
+772 \textcolor{comment}{     * pitch in the song is removed or replaced. We have to then}
+773 \textcolor{comment}{     * find the new highest pitch in the song.}
+774 \textcolor{comment}{    */}
+775     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{group___song_priv_func_ga5f837e6b7f576732fa38747caa057621}{SearchForHighestPitch}()
+776     \{
+777         \textcolor{comment}{// Look through each note.}
+778         \textcolor{keywordflow}{foreach}( \hyperlink{class_music}{Music}.\hyperlink{group___music_structs_struct_music_1_1_combined_note}{CombinedNote} note in mNotes )
+779         \{
+780             \textcolor{comment}{// If the note has pitches, then see if it has the highest pitch.}
+781             \textcolor{keywordflow}{if}( note.MusicalNote.Pitches != null )
+782             \{
+783                 \textcolor{comment}{// Look through each pitch in the note.}
+784                 \textcolor{keywordflow}{foreach}( \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH} pitch in note.MusicalNote.Pitches )
+785                 \{
+786                     \textcolor{comment}{// Update the highest pitch if needed.}
+787                     \textcolor{keywordflow}{if}( pitch != \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.REST && pitch > 
+      \hyperlink{group___song_priv_var_ga2dcd39d9add609e9df56a94057441dcc}{mHighestPitch} )
+788                     \{
+789                         \hyperlink{group___song_priv_var_ga2dcd39d9add609e9df56a94057441dcc}{mHighestPitch} = pitch;
+790                     \}
+791                 \}
+792             \}
+793         \}
+794     \}
+795 \textcolor{comment}{}
+796 \textcolor{comment}{    /**}
+797 \textcolor{comment}{     * @brief Searches through the notes for the lowest pitch. }
+798 \textcolor{comment}{     * }
+799 \textcolor{comment}{     * This function is called when a note that contains the lowest}
+800 \textcolor{comment}{     * pitch in the song is removed or replaced. We have to then}
+801 \textcolor{comment}{     * find the new lowest pitch in the song.}
+802 \textcolor{comment}{    */}
+803     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{group___song_priv_func_gac2e812c6385529eb7a9be5082c7bde75}{SearchForLowestPitch}()
+804     \{
+805         \textcolor{comment}{// Look through each note.}
+806         \textcolor{keywordflow}{foreach}( \hyperlink{class_music}{Music}.\hyperlink{group___music_structs_struct_music_1_1_combined_note}{CombinedNote} note in mNotes )
+807         \{
+808             \textcolor{comment}{// If the note has pitches, then see if it has the lowest pitch.}
+809             \textcolor{keywordflow}{if}( note.MusicalNote.Pitches != null )
+810             \{
+811                 \textcolor{comment}{// Look through each pitch in the note.}
+812                 \textcolor{keywordflow}{foreach}( \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH} pitch in note.MusicalNote.Pitches )
+813                 \{
+814                     \textcolor{comment}{// Update the lowest pitch if needed.}
+815                     \textcolor{keywordflow}{if}( pitch != \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.REST && pitch < 
+      \hyperlink{group___song_priv_var_ga293976ef4c2050687a81edfbf77b4fc1}{mLowestPitch} )
+816                     \{
+817                         \hyperlink{group___song_priv_var_ga293976ef4c2050687a81edfbf77b4fc1}{mLowestPitch} = pitch;
+818                     \}
+819                 \}
+820             \}
+821         \}
+822     \}
+823 \textcolor{comment}{}
+824 \textcolor{comment}{    /**}
+825 \textcolor{comment}{     * @brief Updates the @link Song::SongType type of song@endlink that the Song is.}
+826 \textcolor{comment}{    */}
+827     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{group___song_priv_func_ga9a1d6eba1576c3631d3c0331196d9ae2}{UpdateSongType}()
+828     \{
+829         \textcolor{keywordflow}{if}( mNumDrumNotes > 0 && mNumMusicalNotes > 0 )
+830         \{
+831             mType = \hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{SongType}.CombinedMelodyAndPercussion;
+832         \}
+833         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}( mNumMusicalNotes > 0 )
+834         \{
+835             mType = \hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{SongType}.Melody;
+836         \}
+837         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}( mNumDrumNotes > 0 )
+838         \{
+839             mType = \hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{SongType}.DrumLoop;
+840         \}
+841         \textcolor{keywordflow}{else}
+842         \{
+843             mType = \hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{SongType}.Empty;
+844         \}
+845     \}
+846 
+847     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+848 \textcolor{comment}{     * @\}}
+849 \textcolor{comment}{     * @defgroup SongStatFunc Static Functions}
+850 \textcolor{comment}{     * @ingroup DocSong}
+851 \textcolor{comment}{     * Functions related to @link Song Songs@endlink that can be used without having to have an actual
+       instance of a Song.}
+852 \textcolor{comment}{     * @\{}
+853 \textcolor{comment}{    *****************************************************************************/}
+854 \textcolor{comment}{}
+855 \textcolor{comment}{    /** }
+856 \textcolor{comment}{     * @brief Gets the number of waveform samples required to accurately represent the @link
+       Music::NOTE\_LENGTH length of a note@endlink for a given @link DefBPM BPM@endlink and @link Music::TimeSignature time
+       signature@endlink.}
+857 \textcolor{comment}{     * @param[in] aBPM The @link DefBPM BPM@endlink that should be accounted for.}
+858 \textcolor{comment}{     * @param[in] aSampleRate The sample rate of the note. Might need to remove since most likely
+       everything's going to have a 44\(\backslash\).1KHz sample rate.}
+859 \textcolor{comment}{     * @param[in] aNoteLength The @link Music::NOTE\_LENGTH note length@endlink that's being converted into
+       a number of waveform samples.}
+860 \textcolor{comment}{     * @param[in] aTimeSignature The @link Music::TimeSignature time signature@endlink that should be
+       accounted for.}
+861 \textcolor{comment}{     * @return The number of waveform samples that represents the given @link Music::NOTE\_LENGTH note
+       length@endlink at the given @link DefBPM BPM@endlink and @link Music::TimeSignature time signature@endlink.}
+862 \textcolor{comment}{     * }
+863 \textcolor{comment}{    */}
+864     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{int} \hyperlink{group___song_stat_func_ga03712f6defbff25d5a1cd964e4bc3211}{GetNoteLengthInSamples}( \textcolor{keywordtype}{int} aBPM, \textcolor{keywordtype}{int} aSampleRate, 
+      \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH} aNoteLength, \hyperlink{class_music}{Music}.\hyperlink{group___music_structs_struct_music_1_1_time_signature}{TimeSignature} aTimeSignature )
+865     \{
+866         \textcolor{comment}{// Initialize variables for calculating the note length.}
+867         \textcolor{keywordtype}{float} beatsPerSecond = (float)aBPM / 60f;
+868 
+869         \textcolor{comment}{// Since the audio data is split into two channels with even indices for the data }
+870         \textcolor{comment}{// in the left channel and odd indices for the data in the right channel, the}
+871         \textcolor{comment}{// actual conversion for number of samples per second is 2 * sample rate.}
+872         \textcolor{keywordtype}{float} numSamplesPerBeat = 2f * ( 1f / beatsPerSecond ) * (\textcolor{keywordtype}{float})aSampleRate;
+873 
+874         \textcolor{comment}{// Calculate the length for various time signatures by relating the base beat to }
+875         \textcolor{comment}{// a quarter note. }
+876         \textcolor{keywordtype}{float} numQuarterNotesPerBeat = 1f;
+877 
+878         \textcolor{comment}{// Right now, only provide support for base beats of 4 and 8.}
+879         \textcolor{keywordflow}{switch}( aTimeSignature.BaseBeat )
+880         \{
+881             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.E:
+882                 numQuarterNotesPerBeat /= 2f;
+883                 \textcolor{keywordflow}{break};
+884             \textcolor{keywordflow}{default}:
+885                 \textcolor{keywordflow}{break};
+886         \}
+887 
+888         \textcolor{comment}{// Calculate the note length in samples.}
+889         \textcolor{keywordflow}{switch}( aNoteLength )
+890         \{
+891             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.T:
+892                 \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})( numSamplesPerBeat / ( 8f * numQuarterNotesPerBeat ) );
+893             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.D\_T:
+894                 \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})( 1.5f * numSamplesPerBeat / ( 8f * numQuarterNotesPerBeat ) );
+895             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.S:
+896                 \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})( numSamplesPerBeat / ( 4f * numQuarterNotesPerBeat ) );
+897             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.D\_S:
+898                 \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})( 1.5f * numSamplesPerBeat / ( 4f * numQuarterNotesPerBeat ) );
+899             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.E:
+900                 \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})( numSamplesPerBeat / ( 2f * numQuarterNotesPerBeat ) );
+901             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.D\_E:
+902                 \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})( 1.5f * numSamplesPerBeat / ( 2f * numQuarterNotesPerBeat ) );
+903             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.Q:
+904                 \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})( numSamplesPerBeat / numQuarterNotesPerBeat );
+905             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.D\_Q:
+906                 \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})( numSamplesPerBeat * ( 1.5f / numQuarterNotesPerBeat ) );
+907             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.H:
+908                 \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})( numSamplesPerBeat * ( 2f / numQuarterNotesPerBeat ) );
+909             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.D\_H:
+910                 \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})( numSamplesPerBeat * ( 3f / numQuarterNotesPerBeat ) );
+911             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.W:
+912                 \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})( numSamplesPerBeat * ( 4f / numQuarterNotesPerBeat ) );
+913             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.D\_W:
+914                 \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})( numSamplesPerBeat * ( 6f / numQuarterNotesPerBeat ) );
+915             \textcolor{keywordflow}{default}:
+916                 \textcolor{keywordflow}{return} 0;
+917         \}
+918     \}\textcolor{comment}{}
+919 \textcolor{comment}{    /** @\} */}
+920 \}
+\end{DoxyCodeInclude}
+ 

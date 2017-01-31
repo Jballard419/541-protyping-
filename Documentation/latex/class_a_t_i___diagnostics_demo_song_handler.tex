@@ -1,0 +1,263 @@
+\hypertarget{class_a_t_i___diagnostics_demo_song_handler}{}\section{A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler Class Reference}
+\label{class_a_t_i___diagnostics_demo_song_handler}\index{A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler@{A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler}}
+Inheritance diagram for A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_a_t_i___diagnostics_demo_song_handler}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_a_t_i___diagnostics_demo_song_handler_aecc26edabf9f923007a18c38a6934a5c}{Load\+Demo\+Song} (int a\+Index)
+\item 
+void \hyperlink{class_a_t_i___diagnostics_demo_song_handler_a860f995ecf2cce11b2a9a3e8fe37237e}{Change\+B\+PM} (float a\+B\+PM)
+\item 
+void \hyperlink{class_a_t_i___diagnostics_demo_song_handler_acb03659027c98d419fc6ff61dbf24356}{On\+Play\+Button\+Clicked} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_a_t_i___diagnostics_demo_song_handler_a86f25504d9704a3f330328c476f890c4}{Start} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Button \hyperlink{class_a_t_i___diagnostics_demo_song_handler_a364615af222e630eaca110b6d2afdec5}{m\+Play\+Button} = null
+\item 
+Dropdown \hyperlink{class_a_t_i___diagnostics_demo_song_handler_a9c44359a719997d03d3ce26afa5609db}{m\+Song\+Selection\+Menu} = null
+\item 
+Slider \hyperlink{class_a_t_i___diagnostics_demo_song_handler_ad501644f4b61fe763b75e5b63aa5badc}{m\+B\+P\+M\+Slider} = null
+\item 
+\hyperlink{class_song}{Song} \hyperlink{class_a_t_i___diagnostics_demo_song_handler_a8d34a075cf131a43db5e81cba4c9ea9d}{m\+Song} = null
+\item 
+Sprite \mbox{[}$\,$\mbox{]} \hyperlink{class_a_t_i___diagnostics_demo_song_handler_a26af0da356a95b5be50bb84647674c84}{m\+Button\+Images} = null
+\begin{DoxyCompactList}\small\item\em The images for the buttons. \end{DoxyCompactList}\item 
+Text \hyperlink{class_a_t_i___diagnostics_demo_song_handler_ada25fecbd1bc9aaf468b3206d62a9193}{m\+B\+P\+M\+Slider\+Text} = null
+\item 
+\hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} \hyperlink{class_a_t_i___diagnostics_demo_song_handler_ac3a2216a6de2023d3dd19caa25de7d6f}{m\+V\+IM} = null
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 16 of file A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler.\+cs.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_a_t_i___diagnostics_demo_song_handler_a860f995ecf2cce11b2a9a3e8fe37237e}\label{class_a_t_i___diagnostics_demo_song_handler_a860f995ecf2cce11b2a9a3e8fe37237e}} 
+\index{A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler@{A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler}!Change\+B\+PM@{Change\+B\+PM}}
+\index{Change\+B\+PM@{Change\+B\+PM}!A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler@{A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler}}
+\subsubsection{\texorpdfstring{Change\+B\+P\+M()}{ChangeBPM()}}
+{\footnotesize\ttfamily void A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler.\+Change\+B\+PM (\begin{DoxyParamCaption}\item[{float}]{a\+B\+PM }\end{DoxyParamCaption})}
+
+
+
+Definition at line 86 of file A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler.\+cs.
+
+
+
+References Song.\+Set\+B\+P\+M().
+
+
+
+Referenced by Start().
+
+
+\begin{DoxyCode}
+87     \{
+88         \textcolor{comment}{// Update the BPM slider's label.}
+89         \hyperlink{class_a_t_i___diagnostics_demo_song_handler_ada25fecbd1bc9aaf468b3206d62a9193}{mBPMSliderText}.text = \textcolor{stringliteral}{"BPM: "} + aBPM.ToString();
+90 
+91         \textcolor{comment}{// Update the loaded song.}
+92         \hyperlink{class_a_t_i___diagnostics_demo_song_handler_a8d34a075cf131a43db5e81cba4c9ea9d}{mSong}.\hyperlink{group___song_pub_func_gaa65bbba1af7192edff7e0f848029013b}{SetBPM}( aBPM );
+93     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i___diagnostics_demo_song_handler_aecc26edabf9f923007a18c38a6934a5c}\label{class_a_t_i___diagnostics_demo_song_handler_aecc26edabf9f923007a18c38a6934a5c}} 
+\index{A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler@{A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler}!Load\+Demo\+Song@{Load\+Demo\+Song}}
+\index{Load\+Demo\+Song@{Load\+Demo\+Song}!A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler@{A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler}}
+\subsubsection{\texorpdfstring{Load\+Demo\+Song()}{LoadDemoSong()}}
+{\footnotesize\ttfamily void A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler.\+Load\+Demo\+Song (\begin{DoxyParamCaption}\item[{int}]{a\+Index }\end{DoxyParamCaption})}
+
+
+
+Definition at line 74 of file A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler.\+cs.
+
+
+
+References Song.\+Get\+B\+P\+M(), Song\+Manager\+Class.\+Get\+Song\+By\+Name(), and Virtual\+Instrument\+Manager.\+Song\+Manager.
+
+
+
+Referenced by Start().
+
+
+\begin{DoxyCode}
+75     \{
+76         \hyperlink{class_a_t_i___diagnostics_demo_song_handler_a8d34a075cf131a43db5e81cba4c9ea9d}{mSong} = null;
+77         \hyperlink{class_a_t_i___diagnostics_demo_song_handler_a8d34a075cf131a43db5e81cba4c9ea9d}{mSong} = \hyperlink{class_a_t_i___diagnostics_demo_song_handler_ac3a2216a6de2023d3dd19caa25de7d6f}{mVIM}.\hyperlink{group___v_i_m_pub_ga33dae94932c10c66db76a0eebec76b01}{SongManager}.\hyperlink{group___s_m_pub_func_gafe818c55bd858c52c95a2fa7a566006a}{GetSongByName}( 
+      \hyperlink{class_a_t_i___diagnostics_demo_song_handler_a9c44359a719997d03d3ce26afa5609db}{mSongSelectionMenu}.options[aIndex].text );
+78         \hyperlink{class_a_t_i___diagnostics_demo_song_handler_ad501644f4b61fe763b75e5b63aa5badc}{mBPMSlider}.value = \hyperlink{class_a_t_i___diagnostics_demo_song_handler_a8d34a075cf131a43db5e81cba4c9ea9d}{mSong}.\hyperlink{group___song_pub_func_gaaaf3d27d474713d7d368e3fd4c570be0}{GetBPM}();
+79     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i___diagnostics_demo_song_handler_acb03659027c98d419fc6ff61dbf24356}\label{class_a_t_i___diagnostics_demo_song_handler_acb03659027c98d419fc6ff61dbf24356}} 
+\index{A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler@{A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler}!On\+Play\+Button\+Clicked@{On\+Play\+Button\+Clicked}}
+\index{On\+Play\+Button\+Clicked@{On\+Play\+Button\+Clicked}!A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler@{A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler}}
+\subsubsection{\texorpdfstring{On\+Play\+Button\+Clicked()}{OnPlayButtonClicked()}}
+{\footnotesize\ttfamily void A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler.\+On\+Play\+Button\+Clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 96 of file A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler.\+cs.
+
+
+
+References Virtual\+Instrument\+Manager.\+Play\+Song.
+
+
+
+Referenced by Start().
+
+
+\begin{DoxyCode}
+97     \{
+98         \hyperlink{class_a_t_i___diagnostics_demo_song_handler_ac3a2216a6de2023d3dd19caa25de7d6f}{mVIM}.\hyperlink{group___v_i_m_events_gae450bdba9c513ab4e43f69def50fa84d}{PlaySong}.Invoke( \hyperlink{class_a_t_i___diagnostics_demo_song_handler_a8d34a075cf131a43db5e81cba4c9ea9d}{mSong} );
+99     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i___diagnostics_demo_song_handler_a86f25504d9704a3f330328c476f890c4}\label{class_a_t_i___diagnostics_demo_song_handler_a86f25504d9704a3f330328c476f890c4}} 
+\index{A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler@{A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler}!Start@{Start}}
+\index{Start@{Start}!A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler@{A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler}}
+\subsubsection{\texorpdfstring{Start()}{Start()}}
+{\footnotesize\ttfamily void A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler.\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 32 of file A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler.\+cs.
+
+
+
+References Change\+B\+P\+M(), Song.\+Get\+B\+P\+M(), Load\+Demo\+Song(), and On\+Play\+Button\+Clicked().
+
+
+\begin{DoxyCode}
+33     \{
+34         \textcolor{comment}{// Get the button images.}
+35         \hyperlink{class_a_t_i___diagnostics_demo_song_handler_a26af0da356a95b5be50bb84647674c84}{mButtonImages} = \textcolor{keyword}{new} Sprite[3];
+36         \hyperlink{class_a_t_i___diagnostics_demo_song_handler_a26af0da356a95b5be50bb84647674c84}{mButtonImages}[0] = Resources.Load<Sprite>( \textcolor{stringliteral}{"Audio/Images/play\_button"} );
+37         \hyperlink{class_a_t_i___diagnostics_demo_song_handler_a26af0da356a95b5be50bb84647674c84}{mButtonImages}[1] = Resources.Load<Sprite>( \textcolor{stringliteral}{"Audio/Images/pause\_button"} );
+38         mButtonImages[2] = Resources.Load<Sprite>( \textcolor{stringliteral}{"Audio/Images/stop\_button"} );
+39 
+40         \textcolor{comment}{// Get the virtual instrument manager.}
+41         \hyperlink{class_a_t_i___diagnostics_demo_song_handler_ac3a2216a6de2023d3dd19caa25de7d6f}{mVIM} = GameObject.Find( \textcolor{stringliteral}{"VirtualInstrumentManager"} ).GetComponent<
+      \hyperlink{class_virtual_instrument_manager}{VirtualInstrumentManager}>();
+42 
+43         \textcolor{comment}{// Set up the selection menu.}
+44         \hyperlink{class_a_t_i___diagnostics_demo_song_handler_a9c44359a719997d03d3ce26afa5609db}{mSongSelectionMenu} = gameObject.GetComponent<Dropdown>();
+45         mSongSelectionMenu.options.Clear();
+46 
+47         mSongSelectionMenu.AddOptions( mVIM.SongManager.GetCombinedSongNames() );
+48         mSongSelectionMenu.AddOptions( mVIM.SongManager.GetMelodyNames() );
+49         mSongSelectionMenu.onValueChanged.AddListener( \hyperlink{class_a_t_i___diagnostics_demo_song_handler_aecc26edabf9f923007a18c38a6934a5c}{LoadDemoSong} );
+50 
+51         \textcolor{comment}{// Load the default demo song.}
+52         \hyperlink{class_a_t_i___diagnostics_demo_song_handler_a8d34a075cf131a43db5e81cba4c9ea9d}{mSong} = mVIM.SongManager.GetSongs()[0];
+53 
+54         \textcolor{comment}{// Set up the play button}
+55         \hyperlink{class_a_t_i___diagnostics_demo_song_handler_a364615af222e630eaca110b6d2afdec5}{mPlayButton} = transform.GetChild( 5 ).GetComponent<Button>();
+56         \hyperlink{class_a_t_i___diagnostics_demo_song_handler_a364615af222e630eaca110b6d2afdec5}{mPlayButton}.onClick.AddListener( \hyperlink{class_a_t_i___diagnostics_demo_song_handler_acb03659027c98d419fc6ff61dbf24356}{OnPlayButtonClicked} );
+57 
+58         \textcolor{comment}{// Set up the BPM slider.}
+59         \hyperlink{class_a_t_i___diagnostics_demo_song_handler_ad501644f4b61fe763b75e5b63aa5badc}{mBPMSlider} = gameObject.transform.GetChild( 4 ).GetComponent<Slider>();
+60         \hyperlink{class_a_t_i___diagnostics_demo_song_handler_ad501644f4b61fe763b75e5b63aa5badc}{mBPMSlider}.value = \hyperlink{class_a_t_i___diagnostics_demo_song_handler_a8d34a075cf131a43db5e81cba4c9ea9d}{mSong}.\hyperlink{group___song_pub_func_gaaaf3d27d474713d7d368e3fd4c570be0}{GetBPM}();
+61         \hyperlink{class_a_t_i___diagnostics_demo_song_handler_ad501644f4b61fe763b75e5b63aa5badc}{mBPMSlider}.onValueChanged.AddListener( \hyperlink{class_a_t_i___diagnostics_demo_song_handler_a860f995ecf2cce11b2a9a3e8fe37237e}{ChangeBPM} );
+62 
+63         \textcolor{comment}{// Set up the BPM slider's label.}
+64         \hyperlink{class_a_t_i___diagnostics_demo_song_handler_ada25fecbd1bc9aaf468b3206d62a9193}{mBPMSliderText} = \hyperlink{class_a_t_i___diagnostics_demo_song_handler_ad501644f4b61fe763b75e5b63aa5badc}{mBPMSlider}.transform.GetChild( 3 ).GetComponent<Text>();
+65         \hyperlink{class_a_t_i___diagnostics_demo_song_handler_ada25fecbd1bc9aaf468b3206d62a9193}{mBPMSliderText}.text = \textcolor{stringliteral}{"BPM: "} + \hyperlink{class_a_t_i___diagnostics_demo_song_handler_a8d34a075cf131a43db5e81cba4c9ea9d}{mSong}.\hyperlink{group___song_pub_func_gaaaf3d27d474713d7d368e3fd4c570be0}{GetBPM}().ToString();
+66 
+67     \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_a_t_i___diagnostics_demo_song_handler_ad501644f4b61fe763b75e5b63aa5badc}\label{class_a_t_i___diagnostics_demo_song_handler_ad501644f4b61fe763b75e5b63aa5badc}} 
+\index{A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler@{A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler}!m\+B\+P\+M\+Slider@{m\+B\+P\+M\+Slider}}
+\index{m\+B\+P\+M\+Slider@{m\+B\+P\+M\+Slider}!A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler@{A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler}}
+\subsubsection{\texorpdfstring{m\+B\+P\+M\+Slider}{mBPMSlider}}
+{\footnotesize\ttfamily Slider A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler.\+m\+B\+P\+M\+Slider = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 23 of file A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler.\+cs.
+
+\mbox{\Hypertarget{class_a_t_i___diagnostics_demo_song_handler_ada25fecbd1bc9aaf468b3206d62a9193}\label{class_a_t_i___diagnostics_demo_song_handler_ada25fecbd1bc9aaf468b3206d62a9193}} 
+\index{A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler@{A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler}!m\+B\+P\+M\+Slider\+Text@{m\+B\+P\+M\+Slider\+Text}}
+\index{m\+B\+P\+M\+Slider\+Text@{m\+B\+P\+M\+Slider\+Text}!A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler@{A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler}}
+\subsubsection{\texorpdfstring{m\+B\+P\+M\+Slider\+Text}{mBPMSliderText}}
+{\footnotesize\ttfamily Text A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler.\+m\+B\+P\+M\+Slider\+Text = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 26 of file A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler.\+cs.
+
+\mbox{\Hypertarget{class_a_t_i___diagnostics_demo_song_handler_a26af0da356a95b5be50bb84647674c84}\label{class_a_t_i___diagnostics_demo_song_handler_a26af0da356a95b5be50bb84647674c84}} 
+\index{A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler@{A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler}!m\+Button\+Images@{m\+Button\+Images}}
+\index{m\+Button\+Images@{m\+Button\+Images}!A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler@{A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler}}
+\subsubsection{\texorpdfstring{m\+Button\+Images}{mButtonImages}}
+{\footnotesize\ttfamily Sprite \mbox{[}$\,$\mbox{]} A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler.\+m\+Button\+Images = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The images for the buttons. 
+
+
+
+Definition at line 25 of file A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler.\+cs.
+
+\mbox{\Hypertarget{class_a_t_i___diagnostics_demo_song_handler_a364615af222e630eaca110b6d2afdec5}\label{class_a_t_i___diagnostics_demo_song_handler_a364615af222e630eaca110b6d2afdec5}} 
+\index{A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler@{A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler}!m\+Play\+Button@{m\+Play\+Button}}
+\index{m\+Play\+Button@{m\+Play\+Button}!A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler@{A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler}}
+\subsubsection{\texorpdfstring{m\+Play\+Button}{mPlayButton}}
+{\footnotesize\ttfamily Button A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler.\+m\+Play\+Button = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 21 of file A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler.\+cs.
+
+\mbox{\Hypertarget{class_a_t_i___diagnostics_demo_song_handler_a8d34a075cf131a43db5e81cba4c9ea9d}\label{class_a_t_i___diagnostics_demo_song_handler_a8d34a075cf131a43db5e81cba4c9ea9d}} 
+\index{A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler@{A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler}!m\+Song@{m\+Song}}
+\index{m\+Song@{m\+Song}!A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler@{A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler}}
+\subsubsection{\texorpdfstring{m\+Song}{mSong}}
+{\footnotesize\ttfamily \hyperlink{class_song}{Song} A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler.\+m\+Song = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 24 of file A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler.\+cs.
+
+\mbox{\Hypertarget{class_a_t_i___diagnostics_demo_song_handler_a9c44359a719997d03d3ce26afa5609db}\label{class_a_t_i___diagnostics_demo_song_handler_a9c44359a719997d03d3ce26afa5609db}} 
+\index{A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler@{A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler}!m\+Song\+Selection\+Menu@{m\+Song\+Selection\+Menu}}
+\index{m\+Song\+Selection\+Menu@{m\+Song\+Selection\+Menu}!A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler@{A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler}}
+\subsubsection{\texorpdfstring{m\+Song\+Selection\+Menu}{mSongSelectionMenu}}
+{\footnotesize\ttfamily Dropdown A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler.\+m\+Song\+Selection\+Menu = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 22 of file A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler.\+cs.
+
+\mbox{\Hypertarget{class_a_t_i___diagnostics_demo_song_handler_ac3a2216a6de2023d3dd19caa25de7d6f}\label{class_a_t_i___diagnostics_demo_song_handler_ac3a2216a6de2023d3dd19caa25de7d6f}} 
+\index{A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler@{A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler}!m\+V\+IM@{m\+V\+IM}}
+\index{m\+V\+IM@{m\+V\+IM}!A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler@{A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler}}
+\subsubsection{\texorpdfstring{m\+V\+IM}{mVIM}}
+{\footnotesize\ttfamily \hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler.\+m\+V\+IM = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 27 of file A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler.\+cs.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Documents/\+School Documents/2017\+Spring/\+E\+E\+C\+S542/\+V\+R\+Piano\+Project/\+Assets/\+Scripts/\+Audio/\+Testing/\hyperlink{_a_t_i___diagnostics_demo_song_handler_8cs}{A\+T\+I\+\_\+\+Diagnostics\+Demo\+Song\+Handler.\+cs}\end{DoxyCompactItemize}

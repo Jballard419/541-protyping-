@@ -1,0 +1,446 @@
+\hypertarget{class_a_t_i___echo_filter_handler}{}\section{A\+T\+I\+\_\+\+Echo\+Filter\+Handler Class Reference}
+\label{class_a_t_i___echo_filter_handler}\index{A\+T\+I\+\_\+\+Echo\+Filter\+Handler@{A\+T\+I\+\_\+\+Echo\+Filter\+Handler}}
+Inheritance diagram for A\+T\+I\+\_\+\+Echo\+Filter\+Handler\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_a_t_i___echo_filter_handler}
+\end{center}
+\end{figure}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override void \hyperlink{class_a_t_i___echo_filter_handler_a55aed0339fe1f3cdbea2b810a2d74cd4}{Set\+Default\+Parameters} ()
+\item 
+override void \hyperlink{class_a_t_i___echo_filter_handler_afacef95c6ac470707d2bd092031efac0}{Send\+Parameters\+To\+V\+IM} ()
+\item 
+override void \hyperlink{class_a_t_i___echo_filter_handler_af759b786ad6e701f816264fefdddb078}{Turn\+On\+Effect} ()
+\item 
+override void \hyperlink{class_a_t_i___echo_filter_handler_aefc1d2ab19273b9606c09eff2db13165}{Turn\+Off\+Effect} ()
+\item 
+override void \hyperlink{class_a_t_i___echo_filter_handler_a280746246e42f85d36f96640a7148705}{Handle\+Decay\+Change} (float a\+Value)
+\item 
+override void \hyperlink{class_a_t_i___echo_filter_handler_a33447b03218ff2945e5f8cea0f8f0d45}{Handle\+Delay\+Change} (float a\+Value)
+\item 
+override void \hyperlink{class_a_t_i___echo_filter_handler_afc69af9ea7789eb655c01c851594716a}{Handle\+Dry\+Mix\+Change} (float a\+Value)
+\item 
+override void \hyperlink{class_a_t_i___echo_filter_handler_aef6df1fd85fb153d232191f1bd4de5f3}{Handle\+Scene\+Load} ()
+\item 
+override void \hyperlink{class_a_t_i___echo_filter_handler_ab64eed11cb12db663a9485bc4bc26fb9}{Handle\+Wet\+Mix\+Change} (float a\+Value)
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+new void \hyperlink{class_a_t_i___echo_filter_handler_a81ac0206d565c1c120dbe9e122474e8e}{Start} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Game\+Object \hyperlink{class_a_t_i___echo_filter_handler_a4e5a10c78852a38c5a6065efdf3f04f8}{m\+Decay\+Container} = null
+\item 
+Game\+Object \hyperlink{class_a_t_i___echo_filter_handler_a5f454ea9d1603937c5ddb4e3e1f7317d}{m\+Delay\+Container} = null
+\item 
+Game\+Object \hyperlink{class_a_t_i___echo_filter_handler_a631c4608453cd55ca976926e6e8e8ff2}{m\+Dry\+Mix\+Container} = null
+\item 
+Game\+Object \hyperlink{class_a_t_i___echo_filter_handler_a571d860b69c4ca4105355d0f1447feb2}{m\+Wet\+Mix\+Container} = null
+\item 
+\hyperlink{group__filter_params_struct_virtual_instrument_manager_1_1_echo_filter_parameters}{Virtual\+Instrument\+Manager.\+Echo\+Filter\+Parameters} \hyperlink{class_a_t_i___echo_filter_handler_afe435170679cf364951083e6f6ffab36}{m\+Params}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 16 of file A\+T\+I\+\_\+\+Echo\+Filter\+Handler.\+cs.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_a_t_i___echo_filter_handler_a280746246e42f85d36f96640a7148705}\label{class_a_t_i___echo_filter_handler_a280746246e42f85d36f96640a7148705}} 
+\index{A\+T\+I\+\_\+\+Echo\+Filter\+Handler@{A\+T\+I\+\_\+\+Echo\+Filter\+Handler}!Handle\+Decay\+Change@{Handle\+Decay\+Change}}
+\index{Handle\+Decay\+Change@{Handle\+Decay\+Change}!A\+T\+I\+\_\+\+Echo\+Filter\+Handler@{A\+T\+I\+\_\+\+Echo\+Filter\+Handler}}
+\subsubsection{\texorpdfstring{Handle\+Decay\+Change()}{HandleDecayChange()}}
+{\footnotesize\ttfamily override void A\+T\+I\+\_\+\+Echo\+Filter\+Handler.\+Handle\+Decay\+Change (\begin{DoxyParamCaption}\item[{float}]{a\+Value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{class_a_t_i_1_1_audio_effect_handler_ae8a88211ac0910dc4b7752667abb2f84}{A\+T\+I.\+Audio\+Effect\+Handler}.
+
+
+
+Definition at line 115 of file A\+T\+I\+\_\+\+Echo\+Filter\+Handler.\+cs.
+
+
+
+References m\+Params, and Send\+Parameters\+To\+V\+I\+M().
+
+
+\begin{DoxyCode}
+116     \{
+117         \hyperlink{class_a_t_i___echo_filter_handler_afe435170679cf364951083e6f6ffab36}{mParams}.Decay = aValue / 100f;
+118         \hyperlink{class_a_t_i___echo_filter_handler_afacef95c6ac470707d2bd092031efac0}{SendParametersToVIM}();
+119     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i___echo_filter_handler_a33447b03218ff2945e5f8cea0f8f0d45}\label{class_a_t_i___echo_filter_handler_a33447b03218ff2945e5f8cea0f8f0d45}} 
+\index{A\+T\+I\+\_\+\+Echo\+Filter\+Handler@{A\+T\+I\+\_\+\+Echo\+Filter\+Handler}!Handle\+Delay\+Change@{Handle\+Delay\+Change}}
+\index{Handle\+Delay\+Change@{Handle\+Delay\+Change}!A\+T\+I\+\_\+\+Echo\+Filter\+Handler@{A\+T\+I\+\_\+\+Echo\+Filter\+Handler}}
+\subsubsection{\texorpdfstring{Handle\+Delay\+Change()}{HandleDelayChange()}}
+{\footnotesize\ttfamily override void A\+T\+I\+\_\+\+Echo\+Filter\+Handler.\+Handle\+Delay\+Change (\begin{DoxyParamCaption}\item[{float}]{a\+Value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{class_a_t_i_1_1_audio_effect_handler_a5371fca4c2e86cecfc264dfc7559b6bd}{A\+T\+I.\+Audio\+Effect\+Handler}.
+
+
+
+Definition at line 123 of file A\+T\+I\+\_\+\+Echo\+Filter\+Handler.\+cs.
+
+
+
+References m\+Params, and Send\+Parameters\+To\+V\+I\+M().
+
+
+\begin{DoxyCode}
+124     \{
+125         \hyperlink{class_a_t_i___echo_filter_handler_afe435170679cf364951083e6f6ffab36}{mParams}.Delay = aValue;
+126         \hyperlink{class_a_t_i___echo_filter_handler_afacef95c6ac470707d2bd092031efac0}{SendParametersToVIM}();
+127     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i___echo_filter_handler_afc69af9ea7789eb655c01c851594716a}\label{class_a_t_i___echo_filter_handler_afc69af9ea7789eb655c01c851594716a}} 
+\index{A\+T\+I\+\_\+\+Echo\+Filter\+Handler@{A\+T\+I\+\_\+\+Echo\+Filter\+Handler}!Handle\+Dry\+Mix\+Change@{Handle\+Dry\+Mix\+Change}}
+\index{Handle\+Dry\+Mix\+Change@{Handle\+Dry\+Mix\+Change}!A\+T\+I\+\_\+\+Echo\+Filter\+Handler@{A\+T\+I\+\_\+\+Echo\+Filter\+Handler}}
+\subsubsection{\texorpdfstring{Handle\+Dry\+Mix\+Change()}{HandleDryMixChange()}}
+{\footnotesize\ttfamily override void A\+T\+I\+\_\+\+Echo\+Filter\+Handler.\+Handle\+Dry\+Mix\+Change (\begin{DoxyParamCaption}\item[{float}]{a\+Value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{class_a_t_i_1_1_audio_effect_handler_a8d83371e2e982373b4eb04198a8514fb}{A\+T\+I.\+Audio\+Effect\+Handler}.
+
+
+
+Definition at line 131 of file A\+T\+I\+\_\+\+Echo\+Filter\+Handler.\+cs.
+
+
+
+References m\+Params, and Send\+Parameters\+To\+V\+I\+M().
+
+
+\begin{DoxyCode}
+132     \{
+133         \hyperlink{class_a_t_i___echo_filter_handler_afe435170679cf364951083e6f6ffab36}{mParams}.DryMix = aValue / 100f;
+134         \hyperlink{class_a_t_i___echo_filter_handler_afacef95c6ac470707d2bd092031efac0}{SendParametersToVIM}();
+135     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i___echo_filter_handler_aef6df1fd85fb153d232191f1bd4de5f3}\label{class_a_t_i___echo_filter_handler_aef6df1fd85fb153d232191f1bd4de5f3}} 
+\index{A\+T\+I\+\_\+\+Echo\+Filter\+Handler@{A\+T\+I\+\_\+\+Echo\+Filter\+Handler}!Handle\+Scene\+Load@{Handle\+Scene\+Load}}
+\index{Handle\+Scene\+Load@{Handle\+Scene\+Load}!A\+T\+I\+\_\+\+Echo\+Filter\+Handler@{A\+T\+I\+\_\+\+Echo\+Filter\+Handler}}
+\subsubsection{\texorpdfstring{Handle\+Scene\+Load()}{HandleSceneLoad()}}
+{\footnotesize\ttfamily override void A\+T\+I\+\_\+\+Echo\+Filter\+Handler.\+Handle\+Scene\+Load (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{class_a_t_i_1_1_audio_effect_handler_aa038c62089df16a01d2749986649db11}{A\+T\+I.\+Audio\+Effect\+Handler}.
+
+
+
+Definition at line 138 of file A\+T\+I\+\_\+\+Echo\+Filter\+Handler.\+cs.
+
+
+
+References A\+T\+I.\+Audio\+Effect\+Handler.\+m\+Param\+Object, m\+Params, A\+T\+I.\+Audio\+Effect\+Handler.\+m\+Triggers, A\+T\+I.\+Audio\+Effect\+Parameter\+Trigger.\+Set\+Handler(), A\+T\+I.\+Audio\+Effect\+Parameter\+Trigger.\+Set\+Range(), A\+T\+I.\+Audio\+Effect\+Parameter\+Trigger.\+Set\+Type(), and A\+T\+I.\+Audio\+Effect\+Parameter\+Trigger.\+Set\+Value().
+
+
+\begin{DoxyCode}
+139     \{
+140         \textcolor{comment}{// Initialize the AudioEffectParameterTrigger array.}
+141         \hyperlink{class_a_t_i_1_1_audio_effect_handler_a1db04dc85daf07d045117d9bc585e944}{mTriggers} = \textcolor{keyword}{new} \hyperlink{class_a_t_i}{ATI}.\hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger}{AudioEffectParameterTrigger}[4];
+142 
+143         \textcolor{comment}{// Get the dry mix parameter object and set its values.}
+144         \hyperlink{class_a_t_i___echo_filter_handler_a631c4608453cd55ca976926e6e8e8ff2}{mDryMixContainer} = \hyperlink{class_a_t_i_1_1_audio_effect_handler_a02ca13686cb3fc7bf152051ec881b0ed}{mParamObject}.transform.GetChild( 0 ).GetChild( 0 ).
+      GetChild( 2 ).gameObject;
+145         \hyperlink{class_a_t_i_1_1_audio_effect_handler_a1db04dc85daf07d045117d9bc585e944}{mTriggers}[0] = \hyperlink{class_a_t_i___echo_filter_handler_a631c4608453cd55ca976926e6e8e8ff2}{mDryMixContainer}.AddComponent<
+      \hyperlink{class_a_t_i}{ATI}.\hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger}{AudioEffectParameterTrigger}>();
+146         \hyperlink{class_a_t_i_1_1_audio_effect_handler_a1db04dc85daf07d045117d9bc585e944}{mTriggers}[0].\hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_a69dc7845ba6454981ce5454ca55b4cb1}{SetHandler}( \textcolor{keyword}{this} );
+147         \hyperlink{class_a_t_i_1_1_audio_effect_handler_a1db04dc85daf07d045117d9bc585e944}{mTriggers}[0].\hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_a12b9e1d13260a5970f5effed71b9a216}{SetType}( \hyperlink{class_a_t_i}{ATI}.\hyperlink{class_a_t_i_a1123d61b8dceb5867a3683e8d2224ee1}{AudioEffectParameterType}.
+      DryMix );
+148         \hyperlink{class_a_t_i_1_1_audio_effect_handler_a1db04dc85daf07d045117d9bc585e944}{mTriggers}[0].\hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_a3b61498abf2b3e3c8cba23e296ff9273}{SetRange}( 0f, 100f );
+149         \hyperlink{class_a_t_i_1_1_audio_effect_handler_a1db04dc85daf07d045117d9bc585e944}{mTriggers}[0].\hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_a07ec3a40faeed18c0d85abb035270292}{SetValue}( \hyperlink{class_a_t_i___echo_filter_handler_afe435170679cf364951083e6f6ffab36}{mParams}.DryMix * 100f );
+150 
+151         \textcolor{comment}{// Get the wet mix parameter object and set its values.}
+152         \hyperlink{class_a_t_i___echo_filter_handler_a571d860b69c4ca4105355d0f1447feb2}{mWetMixContainer} = \hyperlink{class_a_t_i_1_1_audio_effect_handler_a02ca13686cb3fc7bf152051ec881b0ed}{mParamObject}.transform.GetChild( 0 ).GetChild( 0 ).
+      GetChild( 3 ).gameObject;
+153         \hyperlink{class_a_t_i_1_1_audio_effect_handler_a1db04dc85daf07d045117d9bc585e944}{mTriggers}[1] = \hyperlink{class_a_t_i___echo_filter_handler_a571d860b69c4ca4105355d0f1447feb2}{mWetMixContainer}.AddComponent<
+      \hyperlink{class_a_t_i}{ATI}.\hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger}{AudioEffectParameterTrigger}>();
+154         \hyperlink{class_a_t_i_1_1_audio_effect_handler_a1db04dc85daf07d045117d9bc585e944}{mTriggers}[1].\hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_a69dc7845ba6454981ce5454ca55b4cb1}{SetHandler}( \textcolor{keyword}{this} );
+155         \hyperlink{class_a_t_i_1_1_audio_effect_handler_a1db04dc85daf07d045117d9bc585e944}{mTriggers}[1].\hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_a12b9e1d13260a5970f5effed71b9a216}{SetType}( \hyperlink{class_a_t_i}{ATI}.\hyperlink{class_a_t_i_a1123d61b8dceb5867a3683e8d2224ee1}{AudioEffectParameterType}.
+      WetMix );
+156         \hyperlink{class_a_t_i_1_1_audio_effect_handler_a1db04dc85daf07d045117d9bc585e944}{mTriggers}[1].\hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_a3b61498abf2b3e3c8cba23e296ff9273}{SetRange}( 0f, 100f );
+157         \hyperlink{class_a_t_i_1_1_audio_effect_handler_a1db04dc85daf07d045117d9bc585e944}{mTriggers}[1].\hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_a07ec3a40faeed18c0d85abb035270292}{SetValue}( \hyperlink{class_a_t_i___echo_filter_handler_afe435170679cf364951083e6f6ffab36}{mParams}.WetMix * 100f );
+158 
+159         \textcolor{comment}{// Get the delay parameter object and set its values.}
+160         \hyperlink{class_a_t_i___echo_filter_handler_a5f454ea9d1603937c5ddb4e3e1f7317d}{mDelayContainer} = \hyperlink{class_a_t_i_1_1_audio_effect_handler_a02ca13686cb3fc7bf152051ec881b0ed}{mParamObject}.transform.GetChild( 0 ).GetChild( 0 ).
+      GetChild( 0 ).gameObject;
+161         \hyperlink{class_a_t_i_1_1_audio_effect_handler_a1db04dc85daf07d045117d9bc585e944}{mTriggers}[2] = \hyperlink{class_a_t_i___echo_filter_handler_a5f454ea9d1603937c5ddb4e3e1f7317d}{mDelayContainer}.AddComponent<\hyperlink{class_a_t_i}{ATI}.
+      \hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger}{AudioEffectParameterTrigger}>();
+162         \hyperlink{class_a_t_i_1_1_audio_effect_handler_a1db04dc85daf07d045117d9bc585e944}{mTriggers}[2].\hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_a69dc7845ba6454981ce5454ca55b4cb1}{SetHandler}( \textcolor{keyword}{this} );
+163         \hyperlink{class_a_t_i_1_1_audio_effect_handler_a1db04dc85daf07d045117d9bc585e944}{mTriggers}[2].\hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_a12b9e1d13260a5970f5effed71b9a216}{SetType}( \hyperlink{class_a_t_i}{ATI}.\hyperlink{class_a_t_i_a1123d61b8dceb5867a3683e8d2224ee1}{AudioEffectParameterType}.Delay
+       );
+164         \hyperlink{class_a_t_i_1_1_audio_effect_handler_a1db04dc85daf07d045117d9bc585e944}{mTriggers}[2].\hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_a3b61498abf2b3e3c8cba23e296ff9273}{SetRange}( 10f, 5000f );
+165         \hyperlink{class_a_t_i_1_1_audio_effect_handler_a1db04dc85daf07d045117d9bc585e944}{mTriggers}[2].\hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_a07ec3a40faeed18c0d85abb035270292}{SetValue}( \hyperlink{class_a_t_i___echo_filter_handler_afe435170679cf364951083e6f6ffab36}{mParams}.Delay );
+166 
+167         \textcolor{comment}{// Get the decay parameter object and set its values.}
+168         \hyperlink{class_a_t_i___echo_filter_handler_a4e5a10c78852a38c5a6065efdf3f04f8}{mDecayContainer} = \hyperlink{class_a_t_i_1_1_audio_effect_handler_a02ca13686cb3fc7bf152051ec881b0ed}{mParamObject}.transform.GetChild( 0 ).GetChild( 0 ).
+      GetChild( 1 ).gameObject;
+169         \hyperlink{class_a_t_i_1_1_audio_effect_handler_a1db04dc85daf07d045117d9bc585e944}{mTriggers}[3] = \hyperlink{class_a_t_i___echo_filter_handler_a4e5a10c78852a38c5a6065efdf3f04f8}{mDecayContainer}.AddComponent<\hyperlink{class_a_t_i}{ATI}.
+      \hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger}{AudioEffectParameterTrigger}>();
+170         \hyperlink{class_a_t_i_1_1_audio_effect_handler_a1db04dc85daf07d045117d9bc585e944}{mTriggers}[3].\hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_a69dc7845ba6454981ce5454ca55b4cb1}{SetHandler}( \textcolor{keyword}{this} );
+171         \hyperlink{class_a_t_i_1_1_audio_effect_handler_a1db04dc85daf07d045117d9bc585e944}{mTriggers}[3].\hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_a12b9e1d13260a5970f5effed71b9a216}{SetType}( \hyperlink{class_a_t_i}{ATI}.\hyperlink{class_a_t_i_a1123d61b8dceb5867a3683e8d2224ee1}{AudioEffectParameterType}.Decay
+       );
+172         \hyperlink{class_a_t_i_1_1_audio_effect_handler_a1db04dc85daf07d045117d9bc585e944}{mTriggers}[3].\hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_a3b61498abf2b3e3c8cba23e296ff9273}{SetRange}( 0f, 100f );
+173         \hyperlink{class_a_t_i_1_1_audio_effect_handler_a1db04dc85daf07d045117d9bc585e944}{mTriggers}[3].\hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_a07ec3a40faeed18c0d85abb035270292}{SetValue}( \hyperlink{class_a_t_i___echo_filter_handler_afe435170679cf364951083e6f6ffab36}{mParams}.Decay * 100f );
+174     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i___echo_filter_handler_ab64eed11cb12db663a9485bc4bc26fb9}\label{class_a_t_i___echo_filter_handler_ab64eed11cb12db663a9485bc4bc26fb9}} 
+\index{A\+T\+I\+\_\+\+Echo\+Filter\+Handler@{A\+T\+I\+\_\+\+Echo\+Filter\+Handler}!Handle\+Wet\+Mix\+Change@{Handle\+Wet\+Mix\+Change}}
+\index{Handle\+Wet\+Mix\+Change@{Handle\+Wet\+Mix\+Change}!A\+T\+I\+\_\+\+Echo\+Filter\+Handler@{A\+T\+I\+\_\+\+Echo\+Filter\+Handler}}
+\subsubsection{\texorpdfstring{Handle\+Wet\+Mix\+Change()}{HandleWetMixChange()}}
+{\footnotesize\ttfamily override void A\+T\+I\+\_\+\+Echo\+Filter\+Handler.\+Handle\+Wet\+Mix\+Change (\begin{DoxyParamCaption}\item[{float}]{a\+Value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{class_a_t_i_1_1_audio_effect_handler_a630d6f0e674c531ad0c138181609a895}{A\+T\+I.\+Audio\+Effect\+Handler}.
+
+
+
+Definition at line 178 of file A\+T\+I\+\_\+\+Echo\+Filter\+Handler.\+cs.
+
+
+
+References m\+Params, and Send\+Parameters\+To\+V\+I\+M().
+
+
+\begin{DoxyCode}
+179     \{
+180         \hyperlink{class_a_t_i___echo_filter_handler_afe435170679cf364951083e6f6ffab36}{mParams}.WetMix = aValue / 100f;
+181         \hyperlink{class_a_t_i___echo_filter_handler_afacef95c6ac470707d2bd092031efac0}{SendParametersToVIM}();
+182     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i___echo_filter_handler_afacef95c6ac470707d2bd092031efac0}\label{class_a_t_i___echo_filter_handler_afacef95c6ac470707d2bd092031efac0}} 
+\index{A\+T\+I\+\_\+\+Echo\+Filter\+Handler@{A\+T\+I\+\_\+\+Echo\+Filter\+Handler}!Send\+Parameters\+To\+V\+IM@{Send\+Parameters\+To\+V\+IM}}
+\index{Send\+Parameters\+To\+V\+IM@{Send\+Parameters\+To\+V\+IM}!A\+T\+I\+\_\+\+Echo\+Filter\+Handler@{A\+T\+I\+\_\+\+Echo\+Filter\+Handler}}
+\subsubsection{\texorpdfstring{Send\+Parameters\+To\+V\+I\+M()}{SendParametersToVIM()}}
+{\footnotesize\ttfamily override void A\+T\+I\+\_\+\+Echo\+Filter\+Handler.\+Send\+Parameters\+To\+V\+IM (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{class_a_t_i_1_1_audio_effect_handler_aab43cfccb835b9630456eb4590626e6d}{A\+T\+I.\+Audio\+Effect\+Handler}.
+
+
+
+Definition at line 66 of file A\+T\+I\+\_\+\+Echo\+Filter\+Handler.\+cs.
+
+
+
+References Virtual\+Instrument\+Manager.\+Modify\+Echo\+Filter, m\+Params, and A\+T\+I.\+Audio\+Effect\+Handler.\+m\+V\+IM.
+
+
+
+Referenced by Handle\+Decay\+Change(), Handle\+Delay\+Change(), Handle\+Dry\+Mix\+Change(), Handle\+Wet\+Mix\+Change(), Turn\+Off\+Effect(), and Turn\+On\+Effect().
+
+
+\begin{DoxyCode}
+67     \{
+68         \textcolor{comment}{// Invoke the virtual instrument manager's ModifyEchoFilterEvent.}
+69         \hyperlink{class_a_t_i_1_1_audio_effect_handler_a6b5b6149cc376ff0f750ade08ba23bce}{mVIM}.\hyperlink{group___v_i_m_events_ga112ed15f48fd261f1ad71c3c953c0a58}{ModifyEchoFilter}.Invoke( \hyperlink{class_a_t_i___echo_filter_handler_afe435170679cf364951083e6f6ffab36}{mParams} );
+70     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i___echo_filter_handler_a55aed0339fe1f3cdbea2b810a2d74cd4}\label{class_a_t_i___echo_filter_handler_a55aed0339fe1f3cdbea2b810a2d74cd4}} 
+\index{A\+T\+I\+\_\+\+Echo\+Filter\+Handler@{A\+T\+I\+\_\+\+Echo\+Filter\+Handler}!Set\+Default\+Parameters@{Set\+Default\+Parameters}}
+\index{Set\+Default\+Parameters@{Set\+Default\+Parameters}!A\+T\+I\+\_\+\+Echo\+Filter\+Handler@{A\+T\+I\+\_\+\+Echo\+Filter\+Handler}}
+\subsubsection{\texorpdfstring{Set\+Default\+Parameters()}{SetDefaultParameters()}}
+{\footnotesize\ttfamily override void A\+T\+I\+\_\+\+Echo\+Filter\+Handler.\+Set\+Default\+Parameters (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{class_a_t_i_1_1_audio_effect_handler_a9f2b5ce4ce7b2e3a7cca147a87733a77}{A\+T\+I.\+Audio\+Effect\+Handler}.
+
+
+
+Definition at line 55 of file A\+T\+I\+\_\+\+Echo\+Filter\+Handler.\+cs.
+
+
+
+References m\+Params.
+
+
+\begin{DoxyCode}
+56     \{
+57         \textcolor{comment}{// Set the default parameters.}
+58         \hyperlink{class_a_t_i___echo_filter_handler_afe435170679cf364951083e6f6ffab36}{mParams}.Active = \textcolor{keyword}{false};
+59         \hyperlink{class_a_t_i___echo_filter_handler_afe435170679cf364951083e6f6ffab36}{mParams}.Decay = 0.25f;
+60         \hyperlink{class_a_t_i___echo_filter_handler_afe435170679cf364951083e6f6ffab36}{mParams}.Delay = 200f;
+61         \hyperlink{class_a_t_i___echo_filter_handler_afe435170679cf364951083e6f6ffab36}{mParams}.DryMix = 1f;
+62         \hyperlink{class_a_t_i___echo_filter_handler_afe435170679cf364951083e6f6ffab36}{mParams}.WetMix = 1f;
+63     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i___echo_filter_handler_a81ac0206d565c1c120dbe9e122474e8e}\label{class_a_t_i___echo_filter_handler_a81ac0206d565c1c120dbe9e122474e8e}} 
+\index{A\+T\+I\+\_\+\+Echo\+Filter\+Handler@{A\+T\+I\+\_\+\+Echo\+Filter\+Handler}!Start@{Start}}
+\index{Start@{Start}!A\+T\+I\+\_\+\+Echo\+Filter\+Handler@{A\+T\+I\+\_\+\+Echo\+Filter\+Handler}}
+\subsubsection{\texorpdfstring{Start()}{Start()}}
+{\footnotesize\ttfamily new void A\+T\+I\+\_\+\+Echo\+Filter\+Handler.\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 37 of file A\+T\+I\+\_\+\+Echo\+Filter\+Handler.\+cs.
+
+
+
+References A\+T\+I.\+Audio\+Effect\+Handler.\+m\+Param\+Scene\+Name.
+
+
+\begin{DoxyCode}
+38     \{
+39 
+40 \textcolor{preprocessor}{#if DEBUG && DEBUG\_MUSICAL\_TYPING}
+41         \textcolor{comment}{// Call the base start function and set the parameter scene name.}
+42         base.Start();
+43         \hyperlink{class_a_t_i_1_1_audio_effect_handler_a674c38f29ef923e6c9487c2dc991a8b6}{mParamSceneName} = \textcolor{stringliteral}{"EchoFilterParametersScene"};
+44 \textcolor{preprocessor}{#endif}
+45 
+46     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i___echo_filter_handler_aefc1d2ab19273b9606c09eff2db13165}\label{class_a_t_i___echo_filter_handler_aefc1d2ab19273b9606c09eff2db13165}} 
+\index{A\+T\+I\+\_\+\+Echo\+Filter\+Handler@{A\+T\+I\+\_\+\+Echo\+Filter\+Handler}!Turn\+Off\+Effect@{Turn\+Off\+Effect}}
+\index{Turn\+Off\+Effect@{Turn\+Off\+Effect}!A\+T\+I\+\_\+\+Echo\+Filter\+Handler@{A\+T\+I\+\_\+\+Echo\+Filter\+Handler}}
+\subsubsection{\texorpdfstring{Turn\+Off\+Effect()}{TurnOffEffect()}}
+{\footnotesize\ttfamily override void A\+T\+I\+\_\+\+Echo\+Filter\+Handler.\+Turn\+Off\+Effect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{class_a_t_i_1_1_audio_effect_handler_aed35f816dce2a75b857c79ffbb6cc677}{A\+T\+I.\+Audio\+Effect\+Handler}.
+
+
+
+Definition at line 87 of file A\+T\+I\+\_\+\+Echo\+Filter\+Handler.\+cs.
+
+
+
+References A\+T\+I.\+Audio\+Effect\+Handler.\+m\+Button\+Images, A\+T\+I.\+Audio\+Effect\+Handler.\+m\+Enabled, A\+T\+I.\+Audio\+Effect\+Handler.\+m\+Param\+Object, m\+Params, A\+T\+I.\+Audio\+Effect\+Handler.\+m\+Toggle\+Image, A\+T\+I.\+Audio\+Effect\+Handler.\+m\+Triggers, and Send\+Parameters\+To\+V\+I\+M().
+
+
+\begin{DoxyCode}
+88     \{
+89         \textcolor{comment}{// Mark that the effect is no longer enabled in both the parameters}
+90         \textcolor{comment}{// and the member variable.}
+91         \hyperlink{class_a_t_i_1_1_audio_effect_handler_a378c463b827ad6e41d09a4ec2caff351}{mEnabled} = \textcolor{keyword}{false};
+92         \hyperlink{class_a_t_i___echo_filter_handler_afe435170679cf364951083e6f6ffab36}{mParams}.Active = \textcolor{keyword}{false};
+93 
+94         \textcolor{comment}{// Change the button image.}
+95         \hyperlink{class_a_t_i_1_1_audio_effect_handler_aa5bf03976a14594f089aac5681c15a83}{mToggleImage}.sprite = \hyperlink{class_a_t_i_1_1_audio_effect_handler_a6e1cfd5449b82870eacd7404a158c7a7}{mButtonImages}[0];
+96 
+97         \textcolor{comment}{// Set the parameter objects to null.}
+98         \hyperlink{class_a_t_i_1_1_audio_effect_handler_a02ca13686cb3fc7bf152051ec881b0ed}{mParamObject} = null;
+99         \hyperlink{class_a_t_i___echo_filter_handler_a631c4608453cd55ca976926e6e8e8ff2}{mDryMixContainer} = null;
+100         \hyperlink{class_a_t_i___echo_filter_handler_a571d860b69c4ca4105355d0f1447feb2}{mWetMixContainer} = null;
+101         \hyperlink{class_a_t_i_1_1_audio_effect_handler_a1db04dc85daf07d045117d9bc585e944}{mTriggers} = null;
+102         \hyperlink{class_a_t_i___echo_filter_handler_a4e5a10c78852a38c5a6065efdf3f04f8}{mDecayContainer} = null;
+103         \hyperlink{class_a_t_i___echo_filter_handler_a5f454ea9d1603937c5ddb4e3e1f7317d}{mDelayContainer} = null;
+104 
+105         \textcolor{comment}{// Send the parameters to the Virtual Instrument Manager.}
+106         \hyperlink{class_a_t_i___echo_filter_handler_afacef95c6ac470707d2bd092031efac0}{SendParametersToVIM}();
+107     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i___echo_filter_handler_af759b786ad6e701f816264fefdddb078}\label{class_a_t_i___echo_filter_handler_af759b786ad6e701f816264fefdddb078}} 
+\index{A\+T\+I\+\_\+\+Echo\+Filter\+Handler@{A\+T\+I\+\_\+\+Echo\+Filter\+Handler}!Turn\+On\+Effect@{Turn\+On\+Effect}}
+\index{Turn\+On\+Effect@{Turn\+On\+Effect}!A\+T\+I\+\_\+\+Echo\+Filter\+Handler@{A\+T\+I\+\_\+\+Echo\+Filter\+Handler}}
+\subsubsection{\texorpdfstring{Turn\+On\+Effect()}{TurnOnEffect()}}
+{\footnotesize\ttfamily override void A\+T\+I\+\_\+\+Echo\+Filter\+Handler.\+Turn\+On\+Effect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{class_a_t_i_1_1_audio_effect_handler_abccfc2e809d0d6b643704f7391461cd7}{A\+T\+I.\+Audio\+Effect\+Handler}.
+
+
+
+Definition at line 73 of file A\+T\+I\+\_\+\+Echo\+Filter\+Handler.\+cs.
+
+
+
+References A\+T\+I.\+Audio\+Effect\+Handler.\+m\+Button\+Images, A\+T\+I.\+Audio\+Effect\+Handler.\+m\+Enabled, m\+Params, A\+T\+I.\+Audio\+Effect\+Handler.\+m\+Toggle\+Image, and Send\+Parameters\+To\+V\+I\+M().
+
+
+\begin{DoxyCode}
+74     \{
+75         \textcolor{comment}{// Mark that the effect is enabled in both the parameters and the member variable.}
+76         \hyperlink{class_a_t_i_1_1_audio_effect_handler_a378c463b827ad6e41d09a4ec2caff351}{mEnabled} = \textcolor{keyword}{true};
+77         \hyperlink{class_a_t_i___echo_filter_handler_afe435170679cf364951083e6f6ffab36}{mParams}.Active = \textcolor{keyword}{true};
+78 
+79         \textcolor{comment}{// Change the button image.}
+80         \hyperlink{class_a_t_i_1_1_audio_effect_handler_aa5bf03976a14594f089aac5681c15a83}{mToggleImage}.sprite = \hyperlink{class_a_t_i_1_1_audio_effect_handler_a6e1cfd5449b82870eacd7404a158c7a7}{mButtonImages}[1];
+81 
+82         \textcolor{comment}{// Send the parameters to the Virtual Instrument Manager.}
+83         \hyperlink{class_a_t_i___echo_filter_handler_afacef95c6ac470707d2bd092031efac0}{SendParametersToVIM}();
+84     \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_a_t_i___echo_filter_handler_a4e5a10c78852a38c5a6065efdf3f04f8}\label{class_a_t_i___echo_filter_handler_a4e5a10c78852a38c5a6065efdf3f04f8}} 
+\index{A\+T\+I\+\_\+\+Echo\+Filter\+Handler@{A\+T\+I\+\_\+\+Echo\+Filter\+Handler}!m\+Decay\+Container@{m\+Decay\+Container}}
+\index{m\+Decay\+Container@{m\+Decay\+Container}!A\+T\+I\+\_\+\+Echo\+Filter\+Handler@{A\+T\+I\+\_\+\+Echo\+Filter\+Handler}}
+\subsubsection{\texorpdfstring{m\+Decay\+Container}{mDecayContainer}}
+{\footnotesize\ttfamily Game\+Object A\+T\+I\+\_\+\+Echo\+Filter\+Handler.\+m\+Decay\+Container = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 24 of file A\+T\+I\+\_\+\+Echo\+Filter\+Handler.\+cs.
+
+\mbox{\Hypertarget{class_a_t_i___echo_filter_handler_a5f454ea9d1603937c5ddb4e3e1f7317d}\label{class_a_t_i___echo_filter_handler_a5f454ea9d1603937c5ddb4e3e1f7317d}} 
+\index{A\+T\+I\+\_\+\+Echo\+Filter\+Handler@{A\+T\+I\+\_\+\+Echo\+Filter\+Handler}!m\+Delay\+Container@{m\+Delay\+Container}}
+\index{m\+Delay\+Container@{m\+Delay\+Container}!A\+T\+I\+\_\+\+Echo\+Filter\+Handler@{A\+T\+I\+\_\+\+Echo\+Filter\+Handler}}
+\subsubsection{\texorpdfstring{m\+Delay\+Container}{mDelayContainer}}
+{\footnotesize\ttfamily Game\+Object A\+T\+I\+\_\+\+Echo\+Filter\+Handler.\+m\+Delay\+Container = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 25 of file A\+T\+I\+\_\+\+Echo\+Filter\+Handler.\+cs.
+
+\mbox{\Hypertarget{class_a_t_i___echo_filter_handler_a631c4608453cd55ca976926e6e8e8ff2}\label{class_a_t_i___echo_filter_handler_a631c4608453cd55ca976926e6e8e8ff2}} 
+\index{A\+T\+I\+\_\+\+Echo\+Filter\+Handler@{A\+T\+I\+\_\+\+Echo\+Filter\+Handler}!m\+Dry\+Mix\+Container@{m\+Dry\+Mix\+Container}}
+\index{m\+Dry\+Mix\+Container@{m\+Dry\+Mix\+Container}!A\+T\+I\+\_\+\+Echo\+Filter\+Handler@{A\+T\+I\+\_\+\+Echo\+Filter\+Handler}}
+\subsubsection{\texorpdfstring{m\+Dry\+Mix\+Container}{mDryMixContainer}}
+{\footnotesize\ttfamily Game\+Object A\+T\+I\+\_\+\+Echo\+Filter\+Handler.\+m\+Dry\+Mix\+Container = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 26 of file A\+T\+I\+\_\+\+Echo\+Filter\+Handler.\+cs.
+
+\mbox{\Hypertarget{class_a_t_i___echo_filter_handler_afe435170679cf364951083e6f6ffab36}\label{class_a_t_i___echo_filter_handler_afe435170679cf364951083e6f6ffab36}} 
+\index{A\+T\+I\+\_\+\+Echo\+Filter\+Handler@{A\+T\+I\+\_\+\+Echo\+Filter\+Handler}!m\+Params@{m\+Params}}
+\index{m\+Params@{m\+Params}!A\+T\+I\+\_\+\+Echo\+Filter\+Handler@{A\+T\+I\+\_\+\+Echo\+Filter\+Handler}}
+\subsubsection{\texorpdfstring{m\+Params}{mParams}}
+{\footnotesize\ttfamily \hyperlink{group__filter_params_struct_virtual_instrument_manager_1_1_echo_filter_parameters}{Virtual\+Instrument\+Manager.\+Echo\+Filter\+Parameters} A\+T\+I\+\_\+\+Echo\+Filter\+Handler.\+m\+Params\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 28 of file A\+T\+I\+\_\+\+Echo\+Filter\+Handler.\+cs.
+
+
+
+Referenced by Handle\+Decay\+Change(), Handle\+Delay\+Change(), Handle\+Dry\+Mix\+Change(), Handle\+Scene\+Load(), Handle\+Wet\+Mix\+Change(), Send\+Parameters\+To\+V\+I\+M(), Set\+Default\+Parameters(), Turn\+Off\+Effect(), and Turn\+On\+Effect().
+
+\mbox{\Hypertarget{class_a_t_i___echo_filter_handler_a571d860b69c4ca4105355d0f1447feb2}\label{class_a_t_i___echo_filter_handler_a571d860b69c4ca4105355d0f1447feb2}} 
+\index{A\+T\+I\+\_\+\+Echo\+Filter\+Handler@{A\+T\+I\+\_\+\+Echo\+Filter\+Handler}!m\+Wet\+Mix\+Container@{m\+Wet\+Mix\+Container}}
+\index{m\+Wet\+Mix\+Container@{m\+Wet\+Mix\+Container}!A\+T\+I\+\_\+\+Echo\+Filter\+Handler@{A\+T\+I\+\_\+\+Echo\+Filter\+Handler}}
+\subsubsection{\texorpdfstring{m\+Wet\+Mix\+Container}{mWetMixContainer}}
+{\footnotesize\ttfamily Game\+Object A\+T\+I\+\_\+\+Echo\+Filter\+Handler.\+m\+Wet\+Mix\+Container = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 27 of file A\+T\+I\+\_\+\+Echo\+Filter\+Handler.\+cs.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Documents/\+School Documents/2017\+Spring/\+E\+E\+C\+S542/\+V\+R\+Piano\+Project/\+Assets/\+Scripts/\+Audio/\+Testing/\hyperlink{_a_t_i___echo_filter_handler_8cs}{A\+T\+I\+\_\+\+Echo\+Filter\+Handler.\+cs}\end{DoxyCompactItemize}

@@ -6,10 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/AudioTestingInterfaceScenes/AudioTestingInterface.unity
+    path: Assets/Scenes/KeyboardScenes/KeyboardScene.unity
   - enabled: 1
-    path: Assets/Scenes/AudioTestingInterfaceScenes/EchoFilterParametersScene.unity
+    path: Assets/Scenes/AudioScenes/AudioTestingInterfaceScenes/AudioTestingInterface.unity
   - enabled: 1
-    path: Assets/Scenes/AudioTestingInterfaceScenes/ReverbFilterParametersScene.unity
+    path: Assets/Scenes/AudioScenes/AudioTestingInterfaceScenes/EchoFilterParametersScene.unity
   - enabled: 1
-    path: Assets/Scenes/AudioTestingInterfaceScenes/SongCreationInterface.unity
+    path: Assets/Scenes/AudioScenes/AudioTestingInterfaceScenes/ReverbFilterParametersScene.unity
+  - enabled: 1
+    path: Assets/Scenes/AudioScenes/AudioManagementScene.unity
+  - enabled: 1
+    path: Assets/Scenes/AudioScenes/AudioTestingInterfaceScenes/SongCreationInterfaceScene.unity

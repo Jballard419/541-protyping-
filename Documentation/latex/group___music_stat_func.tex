@@ -1,0 +1,477 @@
+\hypertarget{group___music_stat_func}{}\section{Static Functions}
+\label{group___music_stat_func}\index{Static Functions@{Static Functions}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{group___music_structs_struct_music_1_1_combined_note}{Combined\+Note} \hyperlink{group___music_stat_func_gaaf74885e43eb623f64f961985fadcd08}{Music.\+Create\+Note} (int a\+Melody\+Velocity, \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH} a\+Length, \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{P\+I\+T\+CH}\mbox{[}$\,$\mbox{]} a\+Pitches, int a\+Drum\+Velocity, \hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{D\+R\+UM}\mbox{[}$\,$\mbox{]} a\+Drum\+Hits, \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH} a\+Offset\+From\+Prev\+Note)
+\begin{DoxyCompactList}\small\item\em Creates a new \hyperlink{group___music_structs_struct_music_1_1_combined_note}{Combined\+Note} struct from the parameters. \end{DoxyCompactList}\item 
+static string \hyperlink{group___music_stat_func_gaf5f64ebe9a7e036e07f283e41f26d22b}{Music.\+Drum\+To\+String} (\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{D\+R\+UM} a\+Drum)
+\begin{DoxyCompactList}\small\item\em Returns a string based on the given D\+R\+UM. \end{DoxyCompactList}\item 
+static string \hyperlink{group___music_stat_func_gab74179676b93b41cde2d1cc18af0e788}{Music.\+Drum\+To\+String} (int a\+Drum\+Index)
+\begin{DoxyCompactList}\small\item\em Overloaded version of \hyperlink{group___music_stat_func_gaf5f64ebe9a7e036e07f283e41f26d22b}{Drum\+To\+String( D\+R\+U\+M )} that takes an integer instead. \end{DoxyCompactList}\item 
+static float \hyperlink{group___music_stat_func_ga91e290b48ad2289493ba4421308abe49}{Music.\+Get\+Note\+Length\+Relative\+To\+Measure} (\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH} a\+Length, \hyperlink{group___music_structs_struct_music_1_1_time_signature}{Time\+Signature} a\+Time\+Signature)
+\begin{DoxyCompactList}\small\item\em Gets the percentage that a note length takes up in a measure for the given time signature. \end{DoxyCompactList}\item 
+static bool \hyperlink{group___music_stat_func_gacc2c1a66df7197225f61c5737f794065}{Music.\+Is\+Pitch\+A\+Black\+Key} (int a\+Pitch\+Index)
+\begin{DoxyCompactList}\small\item\em Returns whether or not a note corresponds to a white or black key. \end{DoxyCompactList}\item 
+static bool \hyperlink{group___music_stat_func_ga4c91d4a78702a5c16e833af6585b9e19}{Music.\+Is\+Pitch\+A\+Black\+Key} (\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{P\+I\+T\+CH} a\+Pitch)
+\begin{DoxyCompactList}\small\item\em Overloaded function that returns whether or not a note corresponds to a white or black key. \end{DoxyCompactList}\item 
+static string \hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{Music.\+Note\+To\+String} (\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{P\+I\+T\+CH} a\+Note\+Value)
+\begin{DoxyCompactList}\small\item\em Gives a string representing a P\+I\+T\+CH. \end{DoxyCompactList}\item 
+static string \hyperlink{group___music_stat_func_ga03f793951dcfe199532c9596cb539022}{Music.\+Note\+To\+String} (int a\+Note\+Value)
+\begin{DoxyCompactList}\small\item\em Overloaded function that gives a string representing a pitch. This function takes an integer instead of a P\+I\+T\+CH. \end{DoxyCompactList}\item 
+static \hyperlink{group___music_structs_struct_music_1_1_time_signature}{Time\+Signature} \hyperlink{group___music_stat_func_gac95af323eef7511543c799154e1c29fd}{Music.\+T\+I\+M\+E\+\_\+\+S\+I\+G\+N\+A\+T\+U\+R\+E\+\_\+4\+\_\+4} ()
+\begin{DoxyCompactList}\small\item\em Returns a 4/4 time signature. \end{DoxyCompactList}\item 
+static \hyperlink{group___music_structs_struct_music_1_1_time_signature}{Time\+Signature} \hyperlink{group___music_stat_func_ga0392e239cbd45a23e5f76f88d0b4c152}{Music.\+T\+I\+M\+E\+\_\+\+S\+I\+G\+N\+A\+T\+U\+R\+E\+\_\+3\+\_\+4} ()
+\begin{DoxyCompactList}\small\item\em Returns a 3/4 time signature. \end{DoxyCompactList}\item 
+static \hyperlink{group___music_structs_struct_music_1_1_time_signature}{Time\+Signature} \hyperlink{group___music_stat_func_gabfda54cf40e32a4299de5a2fde753347}{Music.\+T\+I\+M\+E\+\_\+\+S\+I\+G\+N\+A\+T\+U\+R\+E\+\_\+6\+\_\+8} ()
+\begin{DoxyCompactList}\small\item\em Returns a 6/8 time signature. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+These are functions that can be used to help utilize the \hyperlink{group___music_enums}{enums} and \hyperlink{group___music_structs}{structs} from the \hyperlink{class_music}{Music} class. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___music_stat_func_gaaf74885e43eb623f64f961985fadcd08}\label{group___music_stat_func_gaaf74885e43eb623f64f961985fadcd08}} 
+\index{Static Functions@{Static Functions}!Create\+Note@{Create\+Note}}
+\index{Create\+Note@{Create\+Note}!Static Functions@{Static Functions}}
+\subsubsection{\texorpdfstring{Create\+Note()}{CreateNote()}}
+{\footnotesize\ttfamily static \hyperlink{group___music_structs_struct_music_1_1_combined_note}{Combined\+Note} Music.\+Create\+Note (\begin{DoxyParamCaption}\item[{int}]{a\+Melody\+Velocity,  }\item[{\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH}}]{a\+Length,  }\item[{\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{P\+I\+T\+CH} \mbox{[}$\,$\mbox{]}}]{a\+Pitches,  }\item[{int}]{a\+Drum\+Velocity,  }\item[{\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{D\+R\+UM} \mbox{[}$\,$\mbox{]}}]{a\+Drum\+Hits,  }\item[{\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH}}]{a\+Offset\+From\+Prev\+Note }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Creates a new \hyperlink{group___music_structs_struct_music_1_1_combined_note}{Combined\+Note} struct from the parameters. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Melody\+Velocity} & The velocity of the \hyperlink{group___music_structs_struct_music_1_1_melody_note}{Melody\+Note} \\
+\hline
+\mbox{\tt in}  & {\em a\+Length} & The length of the \hyperlink{group___music_structs_struct_music_1_1_melody_note}{Melody\+Note} \\
+\hline
+\mbox{\tt in}  & {\em a\+Pitches} & The pitches of the \hyperlink{group___music_structs_struct_music_1_1_melody_note}{Melody\+Note} \\
+\hline
+\mbox{\tt in}  & {\em a\+Drum\+Velocity} & The velocity of the \hyperlink{group___music_structs_struct_music_1_1_percussion_note}{Percussion\+Note} \\
+\hline
+\mbox{\tt in}  & {\em a\+Drum\+Hits} & The hits of the \hyperlink{group___music_structs_struct_music_1_1_percussion_note}{Percussion\+Note} \\
+\hline
+\mbox{\tt in}  & {\em a\+Offset\+From\+Prev\+Note} & The offset from the previous \hyperlink{group___music_structs_struct_music_1_1_combined_note}{Combined\+Note}. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 324 of file Music.\+cs.
+
+
+
+References Music.\+Combined\+Note.\+Drums, Music.\+Percussion\+Note.\+Has\+Hi\+Hat, Music.\+Percussion\+Note.\+Hits, Music.\+Melody\+Note.\+Length, Music.\+Combined\+Note.\+Musical\+Note, Music.\+Combined\+Note.\+Offset\+From\+Prev\+Note, Music.\+Melody\+Note.\+Pitches, Music.\+Melody\+Note.\+Velocity, and Music.\+Percussion\+Note.\+Velocity.
+
+
+
+Referenced by Song.\+Load\+Song\+From\+File(), Song\+Creation\+Manager.\+On\+Create\+Note(), and Song\+Creation\+Manager.\+On\+Modify\+Note().
+
+
+\begin{DoxyCode}
+325     \{
+326         \textcolor{comment}{// Create the new note struct.}
+327         CombinedNote newNote = \textcolor{keyword}{new} CombinedNote();
+328 
+329         \textcolor{comment}{// Set up the melody note.}
+330         newNote.MusicalNote.Velocity = aMelodyVelocity;
+331         newNote.MusicalNote.Length = aLength;
+332         newNote.MusicalNote.Pitches = aPitches;
+333 
+334         \textcolor{comment}{// Set up the percussion note.}
+335         newNote.Drums.Velocity = aDrumVelocity;
+336         newNote.Drums.Hits = aDrumHits;
+337         newNote.Drums.HasHiHat = \textcolor{keyword}{false};
+338         \textcolor{keywordflow}{if}( aDrumHits != null )
+339         \{
+340             \textcolor{comment}{// Check if the new note has any hi hat hits.}
+341             newNote.Drums.HasHiHat = \textcolor{keyword}{false};
+342             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < aDrumHits.Length; i++ )
+343             \{
+344                 \textcolor{keywordflow}{if}( aDrumHits[i] == \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}.HIHAT\_C ||
+345                     aDrumHits[i] == \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}.HIHAT\_O ||
+346                     aDrumHits[i] == \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}.HIHAT\_P )
+347                 \{
+348                     newNote.Drums.HasHiHat = \textcolor{keyword}{true};
+349                 \}
+350             \}
+351         \}
+352 
+353         \textcolor{comment}{// Set the offset.}
+354         newNote.OffsetFromPrevNote = aOffsetFromPrevNote;
+355 
+356         \textcolor{comment}{// Return the new note.}
+357         \textcolor{keywordflow}{return} newNote;
+358     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___music_stat_func_gaf5f64ebe9a7e036e07f283e41f26d22b}\label{group___music_stat_func_gaf5f64ebe9a7e036e07f283e41f26d22b}} 
+\index{Static Functions@{Static Functions}!Drum\+To\+String@{Drum\+To\+String}}
+\index{Drum\+To\+String@{Drum\+To\+String}!Static Functions@{Static Functions}}
+\subsubsection{\texorpdfstring{Drum\+To\+String()}{DrumToString()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily static string Music.\+Drum\+To\+String (\begin{DoxyParamCaption}\item[{\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{D\+R\+UM}}]{a\+Drum }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Returns a string based on the given D\+R\+UM. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Drum} & The given D\+R\+UM\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___music_constants_ga1381281d147886a2cf3584ab0c7a67d6}{D\+R\+U\+M\+\_\+\+S\+T\+R\+I\+NG} 
+\end{DoxySeeAlso}
+
+
+Definition at line 366 of file Music.\+cs.
+
+
+
+Referenced by S\+C\+\_\+\+Measure\+Display\+Panel.\+Add\+Note(), Drum\+Kit.\+Create\+Filenames(), Song\+Creation\+Manager.\+On\+Modify\+Note(), and S\+C\+\_\+\+Pitch\+Selection\+Container.\+Set\+Up\+As\+Drum\+Selector().
+
+
+\begin{DoxyCode}
+367     \{
+368         \textcolor{keywordflow}{return} \hyperlink{group___music_constants_ga1381281d147886a2cf3584ab0c7a67d6}{DRUM\_STRING}[(int)aDrum];
+369     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___music_stat_func_gab74179676b93b41cde2d1cc18af0e788}\label{group___music_stat_func_gab74179676b93b41cde2d1cc18af0e788}} 
+\index{Static Functions@{Static Functions}!Drum\+To\+String@{Drum\+To\+String}}
+\index{Drum\+To\+String@{Drum\+To\+String}!Static Functions@{Static Functions}}
+\subsubsection{\texorpdfstring{Drum\+To\+String()}{DrumToString()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily static string Music.\+Drum\+To\+String (\begin{DoxyParamCaption}\item[{int}]{a\+Drum\+Index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Overloaded version of \hyperlink{group___music_stat_func_gaf5f64ebe9a7e036e07f283e41f26d22b}{Drum\+To\+String( D\+R\+U\+M )} that takes an integer instead. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Drum\+Index} & The index of the drum in the D\+R\+UM enum.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{D\+R\+UM} \hyperlink{group___music_constants_ga1381281d147886a2cf3584ab0c7a67d6}{D\+R\+U\+M\+\_\+\+S\+T\+R\+I\+NG} 
+\end{DoxySeeAlso}
+
+
+Definition at line 377 of file Music.\+cs.
+
+
+\begin{DoxyCode}
+378     \{
+379         \textcolor{keywordflow}{return} \hyperlink{group___music_constants_ga1381281d147886a2cf3584ab0c7a67d6}{DRUM\_STRING}[aDrumIndex];
+380     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___music_stat_func_ga91e290b48ad2289493ba4421308abe49}\label{group___music_stat_func_ga91e290b48ad2289493ba4421308abe49}} 
+\index{Static Functions@{Static Functions}!Get\+Note\+Length\+Relative\+To\+Measure@{Get\+Note\+Length\+Relative\+To\+Measure}}
+\index{Get\+Note\+Length\+Relative\+To\+Measure@{Get\+Note\+Length\+Relative\+To\+Measure}!Static Functions@{Static Functions}}
+\subsubsection{\texorpdfstring{Get\+Note\+Length\+Relative\+To\+Measure()}{GetNoteLengthRelativeToMeasure()}}
+{\footnotesize\ttfamily static float Music.\+Get\+Note\+Length\+Relative\+To\+Measure (\begin{DoxyParamCaption}\item[{\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH}}]{a\+Length,  }\item[{\hyperlink{group___music_structs_struct_music_1_1_time_signature}{Time\+Signature}}]{a\+Time\+Signature }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Gets the percentage that a note length takes up in a measure for the given time signature. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Length} & the given N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH that represents the length of a note. \\
+\hline
+\mbox{\tt in}  & {\em a\+Time\+Signature} & The given \hyperlink{group___music_structs_struct_music_1_1_time_signature}{Time\+Signature} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 387 of file Music.\+cs.
+
+
+
+References Music.\+Time\+Signature.\+Base\+Beat, and Music.\+Time\+Signature.\+Beats\+Per\+Measure.
+
+
+
+Referenced by S\+C\+\_\+\+Measure\+Display\+Panel.\+Add\+Note(), and S\+C\+\_\+\+Measure\+Display\+Panel.\+On\+Remove\+Note().
+
+
+\begin{DoxyCode}
+388     \{
+389         \textcolor{comment}{// Relate everything to quarter notes.}
+390         \textcolor{keywordtype}{float} quarterNoteLength = 1f;
+391 
+392         \textcolor{comment}{// Get the ratio of quarter note to beat.}
+393         \textcolor{keywordflow}{switch}( aTimeSignature.BaseBeat )
+394         \{
+395             \textcolor{keywordflow}{case} \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.E:
+396                 quarterNoteLength *= 2f;
+397                 \textcolor{keywordflow}{break};
+398             \textcolor{keywordflow}{default}:
+399                 \textcolor{keywordflow}{break};
+400 
+401         \}
+402 
+403         \textcolor{comment}{// Get the percentage that a quarter note takes up in the measure.}
+404         quarterNoteLength /= (float)aTimeSignature.BeatsPerMeasure;
+405 
+406         \textcolor{comment}{// Return the percentage that the given note length takes up in a measure.}
+407         \textcolor{keywordflow}{switch}( aLength )
+408         \{
+409             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.T:
+410                 \textcolor{keywordflow}{return} quarterNoteLength / 8f;
+411             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.D\_T:
+412                 \textcolor{keywordflow}{return} 1.5f * quarterNoteLength / 8f;
+413             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.S:
+414                 \textcolor{keywordflow}{return} quarterNoteLength / 4f;
+415             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.D\_S:
+416                 \textcolor{keywordflow}{return} 1.5f * quarterNoteLength / 4f;
+417             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.E:
+418                 \textcolor{keywordflow}{return} quarterNoteLength / 2f;
+419             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.D\_E:
+420                 \textcolor{keywordflow}{return} 1.5f * quarterNoteLength / 2f;
+421             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.Q:
+422                 \textcolor{keywordflow}{return} quarterNoteLength;
+423             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.D\_Q:
+424                 \textcolor{keywordflow}{return} quarterNoteLength * 1.5f;
+425             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.H:
+426                 \textcolor{keywordflow}{return} quarterNoteLength * 2f;
+427             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.D\_H:
+428                 \textcolor{keywordflow}{return} quarterNoteLength * 3f;
+429             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.W:
+430                 \textcolor{keywordflow}{return} quarterNoteLength * 4f;
+431             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.D\_W:
+432                 \textcolor{keywordflow}{return} quarterNoteLength * 6f;
+433             \textcolor{keywordflow}{default}:
+434                 \textcolor{keywordflow}{return} 0;
+435         \}
+436     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___music_stat_func_gacc2c1a66df7197225f61c5737f794065}\label{group___music_stat_func_gacc2c1a66df7197225f61c5737f794065}} 
+\index{Static Functions@{Static Functions}!Is\+Pitch\+A\+Black\+Key@{Is\+Pitch\+A\+Black\+Key}}
+\index{Is\+Pitch\+A\+Black\+Key@{Is\+Pitch\+A\+Black\+Key}!Static Functions@{Static Functions}}
+\subsubsection{\texorpdfstring{Is\+Pitch\+A\+Black\+Key()}{IsPitchABlackKey()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily static bool Music.\+Is\+Pitch\+A\+Black\+Key (\begin{DoxyParamCaption}\item[{int}]{a\+Pitch\+Index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Returns whether or not a note corresponds to a white or black key. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Pitch\+Index} & The index of the \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitch} being checked. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the pitch corresponds to a black key. False otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 443 of file Music.\+cs.
+
+
+
+Referenced by Key\+Container.\+Awake(), Key\+Container.\+Handle\+Change\+Note\+Range\+Event(), Key\+Container.\+Handle\+Play\+Song\+Event(), Music.\+Is\+Pitch\+A\+Black\+Key(), and Key\+Container.\+Load\+Keys().
+
+
+\begin{DoxyCode}
+444     \{
+445         Assert.IsTrue( aPitchIndex >= 0 && aPitchIndex <= \hyperlink{group___music_constants_gaaf07da909a12e9fec0e43b70864f27b7}{MAX\_SUPPORTED\_NOTES}, 
+446             \textcolor{stringliteral}{"Tried to find whether a pitch with index "} + aPitchIndex.ToString() + \textcolor{stringliteral}{" was a black key or
+       not, but the pitch was out of range!"} );
+447         Assert.IsTrue( aPitchIndex < (\textcolor{keywordtype}{int})\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.REST, \textcolor{stringliteral}{"Tried to see whether a rest note was a black
+       key or not!"} );
+448 
+449         \textcolor{comment}{// Get the base pitch (the pitch's place in its octave.)}
+450         \textcolor{keywordtype}{int} basePitch = aPitchIndex % 12;
+451 
+452         \textcolor{comment}{// Check whether the key is a black key or not.}
+453         \textcolor{keywordflow}{if}( basePitch == 1 || basePitch == 3 || basePitch == 6 || basePitch == 8 || basePitch == 10 )
+454         \{
+455             \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+456         \}
+457         \textcolor{keywordflow}{else}
+458         \{
+459             \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+460         \}
+461 
+462     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___music_stat_func_ga4c91d4a78702a5c16e833af6585b9e19}\label{group___music_stat_func_ga4c91d4a78702a5c16e833af6585b9e19}} 
+\index{Static Functions@{Static Functions}!Is\+Pitch\+A\+Black\+Key@{Is\+Pitch\+A\+Black\+Key}}
+\index{Is\+Pitch\+A\+Black\+Key@{Is\+Pitch\+A\+Black\+Key}!Static Functions@{Static Functions}}
+\subsubsection{\texorpdfstring{Is\+Pitch\+A\+Black\+Key()}{IsPitchABlackKey()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily static bool Music.\+Is\+Pitch\+A\+Black\+Key (\begin{DoxyParamCaption}\item[{\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{P\+I\+T\+CH}}]{a\+Pitch }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Overloaded function that returns whether or not a note corresponds to a white or black key. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Pitch} & The pitch being checked. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the pitch corresponds to a black key. False otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 469 of file Music.\+cs.
+
+
+
+References Music.\+Is\+Pitch\+A\+Black\+Key().
+
+
+\begin{DoxyCode}
+470     \{
+471         \textcolor{keywordflow}{return} \hyperlink{group___music_stat_func_gacc2c1a66df7197225f61c5737f794065}{IsPitchABlackKey}( (\textcolor{keywordtype}{int})aPitch );
+472     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}\label{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}} 
+\index{Static Functions@{Static Functions}!Note\+To\+String@{Note\+To\+String}}
+\index{Note\+To\+String@{Note\+To\+String}!Static Functions@{Static Functions}}
+\subsubsection{\texorpdfstring{Note\+To\+String()}{NoteToString()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily static string Music.\+Note\+To\+String (\begin{DoxyParamCaption}\item[{\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{P\+I\+T\+CH}}]{a\+Note\+Value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Gives a string representing a P\+I\+T\+CH. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Note\+Value} & The P\+I\+T\+CH to return a string representation of.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{P\+I\+T\+CH} \hyperlink{group___music_constants_ga0f6eb5ac330d374c6b5021a0ba11c2bc}{P\+I\+T\+C\+H\+\_\+\+S\+T\+R\+I\+NG} 
+\end{DoxySeeAlso}
+
+
+Definition at line 480 of file Music.\+cs.
+
+
+
+Referenced by S\+C\+\_\+\+Measure\+Display\+Panel.\+Add\+Note(), Marimba.\+Create\+Filenames(), Piano.\+Create\+Filenames(), White\+Key.\+Fixed\+Update(), Black\+Key.\+Fixed\+Update(), Virtual\+Instrument.\+Get\+Audio\+Data\+For\+Pitch(), A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler.\+Handle\+Instrument\+Loaded(), A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler.\+Handle\+Note\+Range\+Change(), S\+C\+\_\+\+Pitch\+Selection\+Container.\+Handle\+Pitch\+Selection(), Virtual\+Instrument.\+Load\+Audio\+Clip\+For\+Pitch(), Key\+Container.\+Load\+Keys(), Virtual\+Instrument\+Manager.\+Load\+Note\+Output\+Objects(), Song\+Creation\+Manager.\+On\+Modify\+Note(), Virtual\+Instrument\+Manager.\+On\+Play\+Note\+Event(), Virtual\+Instrument\+Manager.\+On\+Release\+Note\+Event(), and S\+C\+\_\+\+Pitch\+Selection\+Container.\+Set\+Up\+As\+Pitch\+Selector().
+
+
+\begin{DoxyCode}
+481     \{
+482         \textcolor{keywordflow}{return} \hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( (\textcolor{keywordtype}{int})aNoteValue );
+483     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___music_stat_func_ga03f793951dcfe199532c9596cb539022}\label{group___music_stat_func_ga03f793951dcfe199532c9596cb539022}} 
+\index{Static Functions@{Static Functions}!Note\+To\+String@{Note\+To\+String}}
+\index{Note\+To\+String@{Note\+To\+String}!Static Functions@{Static Functions}}
+\subsubsection{\texorpdfstring{Note\+To\+String()}{NoteToString()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily static string Music.\+Note\+To\+String (\begin{DoxyParamCaption}\item[{int}]{a\+Note\+Value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Overloaded function that gives a string representing a pitch. This function takes an integer instead of a P\+I\+T\+CH. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Note\+Value} & The index in the P\+I\+T\+CH enum that corresponds to a pitch to return a string representation of.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{P\+I\+T\+CH} \hyperlink{group___music_constants_ga0f6eb5ac330d374c6b5021a0ba11c2bc}{P\+I\+T\+C\+H\+\_\+\+S\+T\+R\+I\+NG} 
+\end{DoxySeeAlso}
+
+
+Definition at line 491 of file Music.\+cs.
+
+
+\begin{DoxyCode}
+492     \{
+493         \textcolor{keywordtype}{int} pitchIndex = aNoteValue % 12;
+494         \textcolor{keywordtype}{int} octave = aNoteValue / 12;
+495         \textcolor{keywordflow}{return} \hyperlink{group___music_constants_ga0f6eb5ac330d374c6b5021a0ba11c2bc}{PITCH\_STRING}[pitchIndex] + octave.ToString();
+496     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___music_stat_func_ga0392e239cbd45a23e5f76f88d0b4c152}\label{group___music_stat_func_ga0392e239cbd45a23e5f76f88d0b4c152}} 
+\index{Static Functions@{Static Functions}!T\+I\+M\+E\+\_\+\+S\+I\+G\+N\+A\+T\+U\+R\+E\+\_\+3\+\_\+4@{T\+I\+M\+E\+\_\+\+S\+I\+G\+N\+A\+T\+U\+R\+E\+\_\+3\+\_\+4}}
+\index{T\+I\+M\+E\+\_\+\+S\+I\+G\+N\+A\+T\+U\+R\+E\+\_\+3\+\_\+4@{T\+I\+M\+E\+\_\+\+S\+I\+G\+N\+A\+T\+U\+R\+E\+\_\+3\+\_\+4}!Static Functions@{Static Functions}}
+\subsubsection{\texorpdfstring{T\+I\+M\+E\+\_\+\+S\+I\+G\+N\+A\+T\+U\+R\+E\+\_\+3\+\_\+4()}{TIME\_SIGNATURE\_3\_4()}}
+{\footnotesize\ttfamily static \hyperlink{group___music_structs_struct_music_1_1_time_signature}{Time\+Signature} Music.\+T\+I\+M\+E\+\_\+\+S\+I\+G\+N\+A\+T\+U\+R\+E\+\_\+3\+\_\+4 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Returns a 3/4 time signature. 
+
+
+
+Definition at line 512 of file Music.\+cs.
+
+
+
+References Music.\+Time\+Signature.\+Base\+Beat, and Music.\+Time\+Signature.\+Beats\+Per\+Measure.
+
+
+\begin{DoxyCode}
+513     \{
+514         TimeSignature returned;
+515         returned.BeatsPerMeasure = 3;
+516         returned.BaseBeat = \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.Q;
+517         \textcolor{keywordflow}{return} returned;
+518     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___music_stat_func_gac95af323eef7511543c799154e1c29fd}\label{group___music_stat_func_gac95af323eef7511543c799154e1c29fd}} 
+\index{Static Functions@{Static Functions}!T\+I\+M\+E\+\_\+\+S\+I\+G\+N\+A\+T\+U\+R\+E\+\_\+4\+\_\+4@{T\+I\+M\+E\+\_\+\+S\+I\+G\+N\+A\+T\+U\+R\+E\+\_\+4\+\_\+4}}
+\index{T\+I\+M\+E\+\_\+\+S\+I\+G\+N\+A\+T\+U\+R\+E\+\_\+4\+\_\+4@{T\+I\+M\+E\+\_\+\+S\+I\+G\+N\+A\+T\+U\+R\+E\+\_\+4\+\_\+4}!Static Functions@{Static Functions}}
+\subsubsection{\texorpdfstring{T\+I\+M\+E\+\_\+\+S\+I\+G\+N\+A\+T\+U\+R\+E\+\_\+4\+\_\+4()}{TIME\_SIGNATURE\_4\_4()}}
+{\footnotesize\ttfamily static \hyperlink{group___music_structs_struct_music_1_1_time_signature}{Time\+Signature} Music.\+T\+I\+M\+E\+\_\+\+S\+I\+G\+N\+A\+T\+U\+R\+E\+\_\+4\+\_\+4 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Returns a 4/4 time signature. 
+
+
+
+Definition at line 501 of file Music.\+cs.
+
+
+
+References Music.\+Time\+Signature.\+Base\+Beat, and Music.\+Time\+Signature.\+Beats\+Per\+Measure.
+
+
+
+Referenced by S\+C\+\_\+\+Measure\+Display\+Panel.\+Add\+Note(), S\+C\+\_\+\+Measure\+Display\+Panel.\+On\+Remove\+Note(), and Song.\+Song().
+
+
+\begin{DoxyCode}
+502     \{
+503         TimeSignature returned;
+504         returned.BeatsPerMeasure = 4;
+505         returned.BaseBeat = \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.Q;
+506         \textcolor{keywordflow}{return} returned;
+507     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___music_stat_func_gabfda54cf40e32a4299de5a2fde753347}\label{group___music_stat_func_gabfda54cf40e32a4299de5a2fde753347}} 
+\index{Static Functions@{Static Functions}!T\+I\+M\+E\+\_\+\+S\+I\+G\+N\+A\+T\+U\+R\+E\+\_\+6\+\_\+8@{T\+I\+M\+E\+\_\+\+S\+I\+G\+N\+A\+T\+U\+R\+E\+\_\+6\+\_\+8}}
+\index{T\+I\+M\+E\+\_\+\+S\+I\+G\+N\+A\+T\+U\+R\+E\+\_\+6\+\_\+8@{T\+I\+M\+E\+\_\+\+S\+I\+G\+N\+A\+T\+U\+R\+E\+\_\+6\+\_\+8}!Static Functions@{Static Functions}}
+\subsubsection{\texorpdfstring{T\+I\+M\+E\+\_\+\+S\+I\+G\+N\+A\+T\+U\+R\+E\+\_\+6\+\_\+8()}{TIME\_SIGNATURE\_6\_8()}}
+{\footnotesize\ttfamily static \hyperlink{group___music_structs_struct_music_1_1_time_signature}{Time\+Signature} Music.\+T\+I\+M\+E\+\_\+\+S\+I\+G\+N\+A\+T\+U\+R\+E\+\_\+6\+\_\+8 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Returns a 6/8 time signature. 
+
+
+
+Definition at line 523 of file Music.\+cs.
+
+
+
+References Music.\+Time\+Signature.\+Base\+Beat, and Music.\+Time\+Signature.\+Beats\+Per\+Measure.
+
+
+\begin{DoxyCode}
+524     \{
+525         TimeSignature returned;
+526         returned.BeatsPerMeasure = 6;
+527         returned.BaseBeat = \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.E;
+528         \textcolor{keywordflow}{return} returned;
+529     \}
+\end{DoxyCode}

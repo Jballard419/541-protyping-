@@ -1,0 +1,405 @@
+\hypertarget{group___n_o_o_pub_func}{}\section{Public Functions}
+\label{group___n_o_o_pub_func}\index{Public Functions@{Public Functions}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___n_o_o_pub_func_ga2bdaa2787408f353f71ef6c6a18e9285}{Note\+Output\+Object.\+Being\+Playing} (float a\+Velocity\+Factor, int a\+Dynamics\+Index, int a\+Start\+Index=0)
+\begin{DoxyCompactList}\small\item\em Handler for setting the note to be played. Should be called from \hyperlink{group___v_i_m_event_types_class_virtual_instrument_manager_1_1_play_note_event}{the manager\textquotesingle{}s Play\+Note event}. \end{DoxyCompactList}\item 
+void \hyperlink{group___n_o_o_pub_func_ga044e62759958d717c7fa4fd1615e2ec1}{Note\+Output\+Object.\+Begin\+Release} ()
+\begin{DoxyCompactList}\small\item\em Marks that the audio should begin fading out. \end{DoxyCompactList}\item 
+bool \hyperlink{group___n_o_o_pub_func_ga24d76043802c442f571c5c34a854ff86}{Note\+Output\+Object.\+Get\+Loop} ()
+\begin{DoxyCompactList}\small\item\em Gets whether or not the audio should loop. \end{DoxyCompactList}\item 
+void \hyperlink{group___n_o_o_pub_func_ga7977bc941f355866c7e4c141a8f7b8bb}{Note\+Output\+Object.\+Pause\+Audio} ()
+\begin{DoxyCompactList}\small\item\em Pauses the audio. \end{DoxyCompactList}\item 
+void \hyperlink{group___n_o_o_pub_func_ga2df8edec357dd4123146c9a7e8485ffb}{Note\+Output\+Object.\+Resume\+Audio} ()
+\begin{DoxyCompactList}\small\item\em Resumes the audio. \end{DoxyCompactList}\item 
+void \hyperlink{group___n_o_o_pub_func_gaef9ab691f0a2671a62249d853f24162d}{Note\+Output\+Object.\+Set\+Audio\+Data} (float\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} a\+Audio\+Data, Audio\+Mixer a\+Mixer, int\mbox{[}$\,$\mbox{]} a\+Thresholds=null)
+\begin{DoxyCompactList}\small\item\em Sets the audio data for this object. \end{DoxyCompactList}\item 
+void \hyperlink{group___n_o_o_pub_func_ga7b79bbd2c7a68831b322edff140f29d2}{Note\+Output\+Object.\+Set\+Loop} (bool a\+Loop)
+\begin{DoxyCompactList}\small\item\em Sets whether or not the audio should loop. \end{DoxyCompactList}\item 
+void \hyperlink{group___n_o_o_pub_func_gaca261a6f8d95fc7f81bbc3c8108bad58}{Note\+Output\+Object.\+Set\+V\+IM} (\hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} a\+V\+IM)
+\begin{DoxyCompactList}\small\item\em Sets the parent \hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} and sets up diagnostics if needed. \end{DoxyCompactList}\item 
+void \hyperlink{group___n_o_o_pub_func_gab7bad1b7d462676843be9e0bbfa1c9fb}{Note\+Output\+Object.\+Should\+Notify\+When\+Finished} (bool a\+Should\+Notify)
+\begin{DoxyCompactList}\small\item\em Sets whether or not an others should be notified when the audio has finished playing. \end{DoxyCompactList}\item 
+void \hyperlink{group___n_o_o_pub_func_gae8a8e5bc027fd0186464a68399a4fecb}{Note\+Output\+Object.\+Stop\+Audio} ()
+\begin{DoxyCompactList}\small\item\em Stops playing the audio. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+These are functions other classes use to interact with the \hyperlink{class_note_output_object}{Note\+Output\+Object}. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___n_o_o_pub_func_ga044e62759958d717c7fa4fd1615e2ec1}\label{group___n_o_o_pub_func_ga044e62759958d717c7fa4fd1615e2ec1}} 
+\index{Public Functions@{Public Functions}!Begin\+Release@{Begin\+Release}}
+\index{Begin\+Release@{Begin\+Release}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Begin\+Release()}{BeginRelease()}}
+{\footnotesize\ttfamily void Note\+Output\+Object.\+Begin\+Release (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Marks that the audio should begin fading out. 
+
+This should only be called from \hyperlink{group___v_i_m}{the manager\textquotesingle{}s} \hyperlink{group___v_i_m_events_ga3a1726a6366126421434c2c7be5e5678}{release note event}. 
+
+Definition at line 136 of file Note\+Output\+Object.\+cs.
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+On\+Release\+Note\+Event().
+
+
+\begin{DoxyCode}
+137     \{
+138         \textcolor{keywordflow}{if}( \hyperlink{group___n_o_o_priv_var_gaf01d2583555de6a523cdf82808718ca9}{mLoaded} && \hyperlink{group___n_o_o_priv_var_ga4417170b8fa977f05a0b4cd0d16412fd}{mNotePlaying} )
+139         \{
+140             \textcolor{comment}{// Set that the note should fade out. }
+141             \textcolor{comment}{// Actually processing the fade out will be handled by the onAudioFilterRead function.}
+142             \hyperlink{group___n_o_o_priv_var_ga88bfcc80d0cd20c81cd89d19d3231b84}{mNoteRelease} = \textcolor{keyword}{true};
+143         \}
+144     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___n_o_o_pub_func_ga2bdaa2787408f353f71ef6c6a18e9285}\label{group___n_o_o_pub_func_ga2bdaa2787408f353f71ef6c6a18e9285}} 
+\index{Public Functions@{Public Functions}!Being\+Playing@{Being\+Playing}}
+\index{Being\+Playing@{Being\+Playing}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Being\+Playing()}{BeingPlaying()}}
+{\footnotesize\ttfamily void Note\+Output\+Object.\+Being\+Playing (\begin{DoxyParamCaption}\item[{float}]{a\+Velocity\+Factor,  }\item[{int}]{a\+Dynamics\+Index,  }\item[{int}]{a\+Start\+Index = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Handler for setting the note to be played. Should be called from \hyperlink{group___v_i_m_event_types_class_virtual_instrument_manager_1_1_play_note_event}{the manager\textquotesingle{}s Play\+Note event}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Velocity\+Factor} & The adjusted velocity of the note to be played. Ranges from 0 (silent) to 1.\+0 (max volume). \\
+\hline
+\mbox{\tt in}  & {\em a\+Dynamics\+Index} & the index of the built-\/in dynamics. \\
+\hline
+\mbox{\tt in}  & {\em a\+Start\+Index} & Where the note/song/loop should begin playing. Defaults to 0.\\
+\hline
+\end{DoxyParams}
+This function signals to On\+Audio\+Filter\+Read that it should begin playing audio. In order to avoid threading issues, the signalling mechanism functions somewhat like a Moore state machine where it\textquotesingle{}ll have an effect on the next cycle of On\+Audio\+Filter\+Read. 
+
+Definition at line 116 of file Note\+Output\+Object.\+cs.
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+On\+Play\+Drum\+Loop\+Event(), Virtual\+Instrument\+Manager.\+On\+Play\+Note\+Event(), and Virtual\+Instrument\+Manager.\+On\+Play\+Song\+Event().
+
+
+\begin{DoxyCode}
+117     \{
+118         Assert.IsTrue( aVelocityFactor <= 1f, \textcolor{stringliteral}{"NoteOutputObject was given a velocity factor greater than 1!
+      "} );
+119 
+120         \textcolor{keywordflow}{if}( \hyperlink{group___n_o_o_priv_var_gaf01d2583555de6a523cdf82808718ca9}{mLoaded} )
+121         \{
+122             \hyperlink{group___n_o_o_priv_var_gaf3cd650d21c56c25ce988d9f75279278}{mNewNoteVelocityFactor} = aVelocityFactor;
+123             \hyperlink{group___n_o_o_priv_var_ga13de232048b35fc513f8aa3eeef65de0}{mNewNoteDynamicsIndex} = aDynamicsIndex;
+124             \hyperlink{group___n_o_o_priv_var_ga93720712088a4b6f91abe63d6f07a2c2}{mNewNoteStartIndex} = aStartIndex;
+125             \hyperlink{group___n_o_o_priv_var_gac537ec036adf0645dca2f31fbc5b3dec}{mNewNote} = \textcolor{keyword}{true};
+126             \hyperlink{group___n_o_o_priv_var_ga88bfcc80d0cd20c81cd89d19d3231b84}{mNoteRelease} = \textcolor{keyword}{false};
+127             \hyperlink{group___n_o_o_priv_var_ga50fe6047e6a199215fc70b9fc78ac7eb}{mPaused} = \textcolor{keyword}{false};
+128         \}
+129     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___n_o_o_pub_func_ga24d76043802c442f571c5c34a854ff86}\label{group___n_o_o_pub_func_ga24d76043802c442f571c5c34a854ff86}} 
+\index{Public Functions@{Public Functions}!Get\+Loop@{Get\+Loop}}
+\index{Get\+Loop@{Get\+Loop}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Get\+Loop()}{GetLoop()}}
+{\footnotesize\ttfamily bool Note\+Output\+Object.\+Get\+Loop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets whether or not the audio should loop. 
+
+\begin{DoxyReturn}{Returns}
+True if the audio should loop. False otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 150 of file Note\+Output\+Object.\+cs.
+
+
+
+References Note\+Output\+Object.\+m\+Loop.
+
+
+\begin{DoxyCode}
+151     \{
+152         \textcolor{keywordflow}{return} \hyperlink{group___n_o_o_priv_var_gabf1d5013f44773e9fd3e4dbb59d74aeb}{mLoop};
+153     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___n_o_o_pub_func_ga7977bc941f355866c7e4c141a8f7b8bb}\label{group___n_o_o_pub_func_ga7977bc941f355866c7e4c141a8f7b8bb}} 
+\index{Public Functions@{Public Functions}!Pause\+Audio@{Pause\+Audio}}
+\index{Pause\+Audio@{Pause\+Audio}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Pause\+Audio()}{PauseAudio()}}
+{\footnotesize\ttfamily void Note\+Output\+Object.\+Pause\+Audio (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Pauses the audio. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___v_i_m_event_types_class_virtual_instrument_manager_1_1_pause_song_event}{Virtual\+Instrument\+Manager\+::\+Pause\+Song\+Event} \hyperlink{group___v_i_m_event_types_class_virtual_instrument_manager_1_1_pause_drum_loop_event}{Virtual\+Instrument\+Manager\+::\+Pause\+Drum\+Loop\+Event} 
+\end{DoxySeeAlso}
+
+
+Definition at line 160 of file Note\+Output\+Object.\+cs.
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+On\+Pause\+Drum\+Loop\+Event(), and Virtual\+Instrument\+Manager.\+On\+Pause\+Song\+Event().
+
+
+\begin{DoxyCode}
+161     \{
+162         \hyperlink{group___n_o_o_priv_var_ga50fe6047e6a199215fc70b9fc78ac7eb}{mPaused} = \textcolor{keyword}{true};
+163     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___n_o_o_pub_func_ga2df8edec357dd4123146c9a7e8485ffb}\label{group___n_o_o_pub_func_ga2df8edec357dd4123146c9a7e8485ffb}} 
+\index{Public Functions@{Public Functions}!Resume\+Audio@{Resume\+Audio}}
+\index{Resume\+Audio@{Resume\+Audio}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Resume\+Audio()}{ResumeAudio()}}
+{\footnotesize\ttfamily void Note\+Output\+Object.\+Resume\+Audio (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Resumes the audio. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___v_i_m_event_types_class_virtual_instrument_manager_1_1_resume_song_event}{Virtual\+Instrument\+Manager\+::\+Resume\+Song\+Event} \hyperlink{group___v_i_m_event_types_class_virtual_instrument_manager_1_1_resume_drum_loop_event}{Virtual\+Instrument\+Manager\+::\+Resume\+Drum\+Loop\+Event} 
+\end{DoxySeeAlso}
+
+
+Definition at line 170 of file Note\+Output\+Object.\+cs.
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+On\+Resume\+Drum\+Loop\+Event(), and Virtual\+Instrument\+Manager.\+On\+Resume\+Song\+Event().
+
+
+\begin{DoxyCode}
+171     \{
+172         \hyperlink{group___n_o_o_priv_var_ga50fe6047e6a199215fc70b9fc78ac7eb}{mPaused} = \textcolor{keyword}{false};
+173         \hyperlink{group___n_o_o_priv_var_ga4417170b8fa977f05a0b4cd0d16412fd}{mNotePlaying} = \textcolor{keyword}{true};
+174     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___n_o_o_pub_func_gaef9ab691f0a2671a62249d853f24162d}\label{group___n_o_o_pub_func_gaef9ab691f0a2671a62249d853f24162d}} 
+\index{Public Functions@{Public Functions}!Set\+Audio\+Data@{Set\+Audio\+Data}}
+\index{Set\+Audio\+Data@{Set\+Audio\+Data}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Set\+Audio\+Data()}{SetAudioData()}}
+{\footnotesize\ttfamily void Note\+Output\+Object.\+Set\+Audio\+Data (\begin{DoxyParamCaption}\item[{float}]{a\+Audio\+Data\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]},  }\item[{Audio\+Mixer}]{a\+Mixer,  }\item[{int \mbox{[}$\,$\mbox{]}}]{a\+Thresholds = {\ttfamily null} }\end{DoxyParamCaption})}
+
+
+
+Sets the audio data for this object. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Audio\+Data} & The raw audio data for each \hyperlink{group___audio_DefBID}{Built-\/\+In Dynamic} if supported by the instrument. It is just the raw audio data for a single \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music\+::\+P\+I\+T\+CH} otherwise. \\
+\hline
+\mbox{\tt in}  & {\em a\+Mixer} & The audio mixer to route the audio output to. \\
+\hline
+\mbox{\tt in}  & {\em a\+Thresholds} & The \hyperlink{group___audio_DefBIDThresh}{Built-\/\+In Dynamics thresholds} if supported by the instrument. Default is null for instruments that don\textquotesingle{}t support \hyperlink{group___audio_DefBID}{Built-\/\+In Dynamics}. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 182 of file Note\+Output\+Object.\+cs.
+
+
+
+References Note\+Output\+Object.\+m\+Num\+Built\+In\+Dynamics, and Note\+Output\+Object.\+Remove\+Audio\+Data().
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+Load\+Note\+Output\+Objects(), Virtual\+Instrument\+Manager.\+On\+Play\+Drum\+Loop\+Event(), and Virtual\+Instrument\+Manager.\+On\+Play\+Song\+Event().
+
+
+\begin{DoxyCode}
+183     \{
+184         \hyperlink{group___n_o_o_priv_var_gaf01d2583555de6a523cdf82808718ca9}{mLoaded} = \textcolor{keyword}{false};
+185 
+186         \textcolor{keywordflow}{while}( \hyperlink{group___n_o_o_priv_var_ga1efa96121f085b27c7d9e8725f90a336}{mAudioDataBeingUsed} ) ;
+187 
+188         \textcolor{comment}{// Remove any existing audio data.}
+189         \hyperlink{group___n_o_o_priv_func_ga12f593bb5de83dc548eff4617fc687b5}{RemoveAudioData}();
+190 
+191         \textcolor{comment}{// Set the values related to built-in dynamics if necessary. }
+192         \textcolor{keywordflow}{if}( aThresholds != null )
+193         \{
+194             \hyperlink{group___n_o_o_priv_var_ga3cc04564fcc1b1c4597af18e7e4fbc47}{mNumBuiltInDynamics} = aThresholds.Length;
+195             \hyperlink{group___n_o_o_priv_var_ga6a530f5e624caf8087c636df98d7f0b0}{mBuiltInDynamicsThresholds} = \textcolor{keyword}{new} \textcolor{keywordtype}{int}[
+      \hyperlink{group___n_o_o_priv_var_ga3cc04564fcc1b1c4597af18e7e4fbc47}{mNumBuiltInDynamics}];
+196             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < aThresholds.Length; i++ )
+197             \{
+198                 \hyperlink{group___n_o_o_priv_var_ga6a530f5e624caf8087c636df98d7f0b0}{mBuiltInDynamicsThresholds}[i] = aThresholds[i];
+199             \}
+200         \}
+201         \textcolor{keywordflow}{else}
+202         \{
+203             \hyperlink{group___n_o_o_priv_var_ga6a530f5e624caf8087c636df98d7f0b0}{mBuiltInDynamicsThresholds} = null;
+204             \hyperlink{group___n_o_o_priv_var_gaf0c9c2a90b5d73b8ffa0906bc69acdbc}{mDynamicsIndex} = 0;
+205             \hyperlink{group___n_o_o_priv_var_ga3cc04564fcc1b1c4597af18e7e4fbc47}{mNumBuiltInDynamics} = 0;
+206             \hyperlink{group___n_o_o_priv_var_ga5dca97be8d58837ace4ea6f4a972b20a}{mCounter} = 0;
+207         \}
+208 
+209         \textcolor{comment}{// Set the output mixer.}
+210         \hyperlink{group___n_o_o_priv_var_gad5e14a91b348e61166dbf6b6cf13649c}{mSource}.outputAudioMixerGroup = aMixer.FindMatchingGroups( \textcolor{stringliteral}{"Master"} )[0];
+211 
+212         \textcolor{comment}{// Initialize the audio data array and copy the values from the given parameter.}
+213         \textcolor{comment}{// If we don't have to worry about built in dynamics, then use hard-coded indices }
+214         \textcolor{comment}{// for the outer array.}
+215         \textcolor{keywordflow}{if}( \hyperlink{group___n_o_o_priv_var_ga3cc04564fcc1b1c4597af18e7e4fbc47}{mNumBuiltInDynamics} == 0 )
+216         \{
+217             \hyperlink{group___n_o_o_priv_var_ga842eef5bfade070f914b8a551b3bcf43}{mAudioData} = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[1][];
+218             \hyperlink{group___n_o_o_priv_var_ga842eef5bfade070f914b8a551b3bcf43}{mAudioData}[0] = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[aAudioData[0].Length];
+219             \hyperlink{group___n_o_o_priv_var_ga48c676306790f40714072cd6a81a0128}{mEndSampleIndices} = \textcolor{keyword}{new} \textcolor{keywordtype}{int}[1];
+220             \hyperlink{group___n_o_o_priv_var_ga48c676306790f40714072cd6a81a0128}{mEndSampleIndices}[0] = aAudioData[0].Length - 1;
+221             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < aAudioData[0].Length; i++ )
+222             \{
+223                 \hyperlink{group___n_o_o_priv_var_ga842eef5bfade070f914b8a551b3bcf43}{mAudioData}[0][i] = aAudioData[0][i];
+224             \}
+225         \}
+226         \textcolor{comment}{// If there are built in dynamics, then iterate through each one.}
+227         \textcolor{keywordflow}{else}
+228         \{
+229             \hyperlink{group___n_o_o_priv_var_ga842eef5bfade070f914b8a551b3bcf43}{mAudioData} = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[\hyperlink{group___n_o_o_priv_var_ga3cc04564fcc1b1c4597af18e7e4fbc47}{mNumBuiltInDynamics}][];
+230             \hyperlink{group___n_o_o_priv_var_ga48c676306790f40714072cd6a81a0128}{mEndSampleIndices} = \textcolor{keyword}{new} \textcolor{keywordtype}{int}[\hyperlink{group___n_o_o_priv_var_ga3cc04564fcc1b1c4597af18e7e4fbc47}{mNumBuiltInDynamics}];
+231             \textcolor{comment}{// int bufferLength = 0;}
+232             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < \hyperlink{group___n_o_o_priv_var_ga3cc04564fcc1b1c4597af18e7e4fbc47}{mNumBuiltInDynamics}; i++ )
+233             \{
+234                 \hyperlink{group___n_o_o_priv_var_ga842eef5bfade070f914b8a551b3bcf43}{mAudioData}[i] = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[aAudioData[i].Length];
+235                 \hyperlink{group___n_o_o_priv_var_ga48c676306790f40714072cd6a81a0128}{mEndSampleIndices}[i] = aAudioData[i].Length - 1;
+236                 \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} j = 0; j < \hyperlink{group___n_o_o_priv_var_ga842eef5bfade070f914b8a551b3bcf43}{mAudioData}[i].Length; j++ )
+237                 \{
+238                     \hyperlink{group___n_o_o_priv_var_ga842eef5bfade070f914b8a551b3bcf43}{mAudioData}[i][j] = aAudioData[i][j];
+239                 \}
+240             \}
+241         \}
+242 
+243         \textcolor{comment}{// Mark that this object is loaded. }
+244         \hyperlink{group___n_o_o_priv_var_gaf01d2583555de6a523cdf82808718ca9}{mLoaded} = \textcolor{keyword}{true};
+245     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___n_o_o_pub_func_ga7b79bbd2c7a68831b322edff140f29d2}\label{group___n_o_o_pub_func_ga7b79bbd2c7a68831b322edff140f29d2}} 
+\index{Public Functions@{Public Functions}!Set\+Loop@{Set\+Loop}}
+\index{Set\+Loop@{Set\+Loop}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Set\+Loop()}{SetLoop()}}
+{\footnotesize\ttfamily void Note\+Output\+Object.\+Set\+Loop (\begin{DoxyParamCaption}\item[{bool}]{a\+Loop }\end{DoxyParamCaption})}
+
+
+
+Sets whether or not the audio should loop. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Loop} & Whether or not the audio should loop. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 251 of file Note\+Output\+Object.\+cs.
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+Load\+Note\+Output\+Objects(), Virtual\+Instrument\+Manager.\+On\+Play\+Drum\+Loop\+Event(), and Virtual\+Instrument\+Manager.\+Set\+Default\+Values().
+
+
+\begin{DoxyCode}
+252     \{
+253         \hyperlink{group___n_o_o_priv_var_gabf1d5013f44773e9fd3e4dbb59d74aeb}{mLoop} = aLoop;
+254     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___n_o_o_pub_func_gaca261a6f8d95fc7f81bbc3c8108bad58}\label{group___n_o_o_pub_func_gaca261a6f8d95fc7f81bbc3c8108bad58}} 
+\index{Public Functions@{Public Functions}!Set\+V\+IM@{Set\+V\+IM}}
+\index{Set\+V\+IM@{Set\+V\+IM}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Set\+V\+I\+M()}{SetVIM()}}
+{\footnotesize\ttfamily void Note\+Output\+Object.\+Set\+V\+IM (\begin{DoxyParamCaption}\item[{\hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager}}]{a\+V\+IM }\end{DoxyParamCaption})}
+
+
+
+Sets the parent \hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} and sets up diagnostics if needed. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+V\+IM} & The parent \hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager}. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 260 of file Note\+Output\+Object.\+cs.
+
+
+
+References Virtual\+Instrument\+Manager.\+Get\+Diagnostics\+Handler().
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+Load\+Note\+Output\+Objects(), and Virtual\+Instrument\+Manager.\+Set\+Default\+Values().
+
+
+\begin{DoxyCode}
+261     \{
+262         \hyperlink{group___n_o_o_priv_var_ga61394090fddcb90c67bf68f19a5bfb6e}{mVIM} = aVIM;
+263 \textcolor{preprocessor}{        #if DEBUG\_AUDIO\_DIAGNOSTICS}
+264             \hyperlink{group___n_o_o_priv_var_gacd4376d2314caafc831cc049e9ca58d8}{mDiagnosticsHandler} = \hyperlink{group___n_o_o_priv_var_ga61394090fddcb90c67bf68f19a5bfb6e}{mVIM}.
+      \hyperlink{group___v_i_m_pub_func_ga7e60bc3c5464d8f34f0d56def675bcc6}{GetDiagnosticsHandler}();
+265             \hyperlink{group___n_o_o_priv_var_gafa20525b5515ab62d109f44ab45fba21}{mReported} = \textcolor{keyword}{false};
+266 \textcolor{preprocessor}{        #endif}
+267     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___n_o_o_pub_func_gab7bad1b7d462676843be9e0bbfa1c9fb}\label{group___n_o_o_pub_func_gab7bad1b7d462676843be9e0bbfa1c9fb}} 
+\index{Public Functions@{Public Functions}!Should\+Notify\+When\+Finished@{Should\+Notify\+When\+Finished}}
+\index{Should\+Notify\+When\+Finished@{Should\+Notify\+When\+Finished}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Should\+Notify\+When\+Finished()}{ShouldNotifyWhenFinished()}}
+{\footnotesize\ttfamily void Note\+Output\+Object.\+Should\+Notify\+When\+Finished (\begin{DoxyParamCaption}\item[{bool}]{a\+Should\+Notify }\end{DoxyParamCaption})}
+
+
+
+Sets whether or not an others should be notified when the audio has finished playing. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Should\+Notify} & Whether or not others should be notified when the audio has finished playing \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 273 of file Note\+Output\+Object.\+cs.
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+Set\+Default\+Values().
+
+
+\begin{DoxyCode}
+274     \{
+275         \hyperlink{group___n_o_o_priv_var_gaf72dd5943487433966b20b973be1e8b3}{mNotifyWhenFinished} = aShouldNotify;
+276     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___n_o_o_pub_func_gae8a8e5bc027fd0186464a68399a4fecb}\label{group___n_o_o_pub_func_gae8a8e5bc027fd0186464a68399a4fecb}} 
+\index{Public Functions@{Public Functions}!Stop\+Audio@{Stop\+Audio}}
+\index{Stop\+Audio@{Stop\+Audio}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Stop\+Audio()}{StopAudio()}}
+{\footnotesize\ttfamily void Note\+Output\+Object.\+Stop\+Audio (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Stops playing the audio. 
+
+
+
+Definition at line 281 of file Note\+Output\+Object.\+cs.
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+On\+Stop\+Drum\+Loop\+Event(), and Virtual\+Instrument\+Manager.\+On\+Stop\+Song\+Event().
+
+
+\begin{DoxyCode}
+282     \{
+283         \hyperlink{group___n_o_o_priv_var_ga4417170b8fa977f05a0b4cd0d16412fd}{mNotePlaying} = \textcolor{keyword}{false};
+284         \hyperlink{group___n_o_o_priv_var_ga50fe6047e6a199215fc70b9fc78ac7eb}{mPaused} = \textcolor{keyword}{false};
+285     \}
+\end{DoxyCode}

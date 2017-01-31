@@ -1,0 +1,178 @@
+\hypertarget{group___s_c___n_d_c_pub_func}{}\section{Public Functions}
+\label{group___s_c___n_d_c_pub_func}\index{Public Functions@{Public Functions}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___s_c___n_d_c_pub_func_ga43e58800daae0e46bbe1b86d78c2f677}{S\+C\+\_\+\+Note\+Display\+Container.\+Add\+Note} (int a\+Melody\+Velocity, \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{Music.\+N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH} a\+Length, \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH}\mbox{[}$\,$\mbox{]} a\+Pitches, int a\+Drum\+Velocity, \hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{Music.\+D\+R\+UM}\mbox{[}$\,$\mbox{]} a\+Drum\+Hits, \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{Music.\+N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH} a\+Offset\+From\+Prev\+Note)
+\begin{DoxyCompactList}\small\item\em Adds a \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note} to the \hyperlink{group___doc_s_c___m_d_p}{current measure}. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c___n_d_c_pub_func_gaa344983500e83531210ae1c4789182f3}{S\+C\+\_\+\+Note\+Display\+Container.\+Clear\+Notes} ()
+\begin{DoxyCompactList}\small\item\em Clears all of the notes. \end{DoxyCompactList}\item 
+\hyperlink{class_s_c___measure_display_panel}{S\+C\+\_\+\+Measure\+Display\+Panel} \hyperlink{group___s_c___n_d_c_pub_func_ga526a610a4462b164cc91ae7155803ba1}{S\+C\+\_\+\+Note\+Display\+Container.\+Get\+Current\+Measure\+Object} ()
+\begin{DoxyCompactList}\small\item\em Gets the current \hyperlink{group___doc_s_c___m_d_p}{measure}. \end{DoxyCompactList}\item 
+Sprite \mbox{[}$\,$\mbox{]} \hyperlink{group___s_c___n_d_c_pub_func_ga3cdbb1068cd6511112c564fc636c56ca}{S\+C\+\_\+\+Note\+Display\+Container.\+Get\+Sprites} ()
+\begin{DoxyCompactList}\small\item\em Gets the images used to represent a note\textquotesingle{}s \hyperlink{group___music_structs_ac35cd02f5b3c00e3040b51e40e9e6c94}{length}/\hyperlink{group___music_structs_ae281187907aed4c728c7981300dbebaf}{offset}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Functions for other classes to interact with the \hyperlink{class_s_c___note_display_container}{S\+C\+\_\+\+Note\+Display\+Container}. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___s_c___n_d_c_pub_func_ga43e58800daae0e46bbe1b86d78c2f677}\label{group___s_c___n_d_c_pub_func_ga43e58800daae0e46bbe1b86d78c2f677}} 
+\index{Public Functions@{Public Functions}!Add\+Note@{Add\+Note}}
+\index{Add\+Note@{Add\+Note}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Add\+Note()}{AddNote()}}
+{\footnotesize\ttfamily void S\+C\+\_\+\+Note\+Display\+Container.\+Add\+Note (\begin{DoxyParamCaption}\item[{int}]{a\+Melody\+Velocity,  }\item[{\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{Music.\+N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH}}]{a\+Length,  }\item[{\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} \mbox{[}$\,$\mbox{]}}]{a\+Pitches,  }\item[{int}]{a\+Drum\+Velocity,  }\item[{\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{Music.\+D\+R\+UM} \mbox{[}$\,$\mbox{]}}]{a\+Drum\+Hits,  }\item[{\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{Music.\+N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH}}]{a\+Offset\+From\+Prev\+Note }\end{DoxyParamCaption})}
+
+
+
+Adds a \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note} to the \hyperlink{group___doc_s_c___m_d_p}{current measure}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Melody\+Velocity} & The \hyperlink{group___audio_DefVel}{velocity} of the \hyperlink{group___music_structs_struct_music_1_1_melody_note}{pitches} in the \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note}. \\
+\hline
+\mbox{\tt in}  & {\em a\+Length} & The \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{length} of the \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note}. \\
+\hline
+\mbox{\tt in}  & {\em a\+Pitches} & The \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitches} in the \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note}. \\
+\hline
+\mbox{\tt in}  & {\em a\+Drum\+Velocity} & The \hyperlink{group___audio_DefVel}{velocity} of the \hyperlink{group___music_structs_struct_music_1_1_percussion_note}{drums} in the \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note}. \\
+\hline
+\mbox{\tt in}  & {\em a\+Drum\+Hits} & The \hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{drums} that are hit for this \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note}. \\
+\hline
+\mbox{\tt in}  & {\em a\+Offset\+From\+Prev\+Note} & The \hyperlink{group___music_structs_ae281187907aed4c728c7981300dbebaf}{offset from the previous note}.\\
+\hline
+\end{DoxyParams}
+This function just updates the index of the \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note} in the song and \hyperlink{group___s_c___m_d_p_pub_func_gadce2fd2e70d867b38c98305e2392b3df}{sends it to the current measure} for it to handle adding it. 
+
+Definition at line 88 of file S\+C\+\_\+\+Note\+Display\+Container.\+cs.
+
+
+
+References S\+C\+\_\+\+Note\+Display\+Container.\+m\+Current\+Measure.
+
+
+
+Referenced by Song\+Creation\+Manager.\+On\+Create\+Note(), and Song\+Creation\+Manager.\+On\+Load\+Song().
+
+
+\begin{DoxyCode}
+89     \{
+90         \textcolor{comment}{// Create a measure if none are present.}
+91         \textcolor{keywordflow}{if}( \hyperlink{group___s_c___n_d_c_priv_var_ga28ce2bf8358c9f686b5b9e362aa96dff}{mCurrentMeasure} == -1 )
+92         \{
+93             GameObject newMeasure = Instantiate( Resources.Load<GameObject>( 
+      \hyperlink{group___s_c___n_d_c_const_gabc95cd739b62996e8a19f0e9417e5f8e}{MEASURE\_PANEL\_PREFAB\_PATH} ) );
+94             Assert.IsNotNull( newMeasure, \textcolor{stringliteral}{"Could not load the MeasurePanel prefab!"} );
+95 
+96             \textcolor{comment}{// Add the measure panel to the list.}
+97             \hyperlink{group___s_c___n_d_c_priv_var_gaa072fb53f6bd6646bc85f2ebc2a02229}{mMeasures}.Add( newMeasure.AddComponent<
+      \hyperlink{class_s_c___measure_display_panel}{SC\_MeasureDisplayPanel}>() );
+98 
+99             \textcolor{comment}{// Increase the current measure.}
+100             \hyperlink{group___s_c___n_d_c_priv_var_ga28ce2bf8358c9f686b5b9e362aa96dff}{mCurrentMeasure}++;
+101 
+102             \textcolor{comment}{// Set the values for the new measure toggle.}
+103             \hyperlink{group___s_c___n_d_c_priv_var_gaa072fb53f6bd6646bc85f2ebc2a02229}{mMeasures}[\hyperlink{group___s_c___n_d_c_priv_var_ga28ce2bf8358c9f686b5b9e362aa96dff}{mCurrentMeasure}].transform.GetChild( 0 ).GetChild( 1 ).
+      GetComponent<Text>().text = \textcolor{stringliteral}{"Measure "} + ( \hyperlink{group___s_c___n_d_c_priv_var_ga28ce2bf8358c9f686b5b9e362aa96dff}{mCurrentMeasure} + 1 ).ToString();
+104             \hyperlink{group___s_c___n_d_c_priv_var_gaa072fb53f6bd6646bc85f2ebc2a02229}{mMeasures}[\hyperlink{group___s_c___n_d_c_priv_var_ga28ce2bf8358c9f686b5b9e362aa96dff}{mCurrentMeasure}].transform.SetParent( gameObject.transform );
+105             \hyperlink{group___s_c___n_d_c_priv_var_gaa072fb53f6bd6646bc85f2ebc2a02229}{mMeasures}[\hyperlink{group___s_c___n_d_c_priv_var_ga28ce2bf8358c9f686b5b9e362aa96dff}{mCurrentMeasure}].SetParentContainer( \textcolor{keyword}{this} );
+106             \hyperlink{group___s_c___n_d_c_priv_var_gaa072fb53f6bd6646bc85f2ebc2a02229}{mMeasures}[\hyperlink{group___s_c___n_d_c_priv_var_ga28ce2bf8358c9f686b5b9e362aa96dff}{mCurrentMeasure}].transform.localScale = Vector3.one;
+107             \hyperlink{group___s_c___n_d_c_priv_var_gaa072fb53f6bd6646bc85f2ebc2a02229}{mMeasures}[\hyperlink{group___s_c___n_d_c_priv_var_ga28ce2bf8358c9f686b5b9e362aa96dff}{mCurrentMeasure}].SetToggle( \textcolor{keyword}{true} );
+108         \}
+109         \hyperlink{group___s_c___n_d_c_priv_var_gaa072fb53f6bd6646bc85f2ebc2a02229}{mMeasures}[\hyperlink{group___s_c___n_d_c_priv_var_ga28ce2bf8358c9f686b5b9e362aa96dff}{mCurrentMeasure}].AddNote( \hyperlink{group___s_c___n_d_c_priv_var_gae06a4919a63806ed57b2040f41b7ca1b}{mNumNotes}, aMelodyVelocity, 
+      aLength, aPitches, aDrumVelocity, aDrumHits, aOffsetFromPrevNote );
+110         \hyperlink{group___s_c___n_d_c_priv_var_gae06a4919a63806ed57b2040f41b7ca1b}{mNumNotes}++;
+111     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_c___n_d_c_pub_func_gaa344983500e83531210ae1c4789182f3}\label{group___s_c___n_d_c_pub_func_gaa344983500e83531210ae1c4789182f3}} 
+\index{Public Functions@{Public Functions}!Clear\+Notes@{Clear\+Notes}}
+\index{Clear\+Notes@{Clear\+Notes}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Clear\+Notes()}{ClearNotes()}}
+{\footnotesize\ttfamily void S\+C\+\_\+\+Note\+Display\+Container.\+Clear\+Notes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Clears all of the notes. 
+
+
+
+Definition at line 116 of file S\+C\+\_\+\+Note\+Display\+Container.\+cs.
+
+
+
+References S\+C\+\_\+\+Note\+Display\+Container.\+m\+Current\+Measure.
+
+
+
+Referenced by Song\+Creation\+Manager.\+On\+Load\+Song().
+
+
+\begin{DoxyCode}
+117     \{
+118         \textcolor{keywordflow}{while}( \hyperlink{group___s_c___n_d_c_priv_var_ga28ce2bf8358c9f686b5b9e362aa96dff}{mCurrentMeasure} >= 0 )
+119         \{
+120             \hyperlink{group___s_c___n_d_c_priv_var_gaa072fb53f6bd6646bc85f2ebc2a02229}{mMeasures}[\hyperlink{group___s_c___n_d_c_priv_var_ga28ce2bf8358c9f686b5b9e362aa96dff}{mCurrentMeasure}].ClearMeasure();
+121             \hyperlink{group___s_c___n_d_c_priv_var_gaa072fb53f6bd6646bc85f2ebc2a02229}{mMeasures}.RemoveAt( \hyperlink{group___s_c___n_d_c_priv_var_ga28ce2bf8358c9f686b5b9e362aa96dff}{mCurrentMeasure} );
+122             \hyperlink{group___s_c___n_d_c_priv_var_ga28ce2bf8358c9f686b5b9e362aa96dff}{mCurrentMeasure}--;
+123         \}
+124         \hyperlink{group___s_c___n_d_c_priv_var_gae06a4919a63806ed57b2040f41b7ca1b}{mNumNotes} = 0;
+125     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_c___n_d_c_pub_func_ga526a610a4462b164cc91ae7155803ba1}\label{group___s_c___n_d_c_pub_func_ga526a610a4462b164cc91ae7155803ba1}} 
+\index{Public Functions@{Public Functions}!Get\+Current\+Measure\+Object@{Get\+Current\+Measure\+Object}}
+\index{Get\+Current\+Measure\+Object@{Get\+Current\+Measure\+Object}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Get\+Current\+Measure\+Object()}{GetCurrentMeasureObject()}}
+{\footnotesize\ttfamily \hyperlink{class_s_c___measure_display_panel}{S\+C\+\_\+\+Measure\+Display\+Panel} S\+C\+\_\+\+Note\+Display\+Container.\+Get\+Current\+Measure\+Object (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the current \hyperlink{group___doc_s_c___m_d_p}{measure}. 
+
+\begin{DoxyReturn}{Returns}
+The current \hyperlink{group___doc_s_c___m_d_p}{measure}. 
+\end{DoxyReturn}
+
+
+Definition at line 131 of file S\+C\+\_\+\+Note\+Display\+Container.\+cs.
+
+
+
+References S\+C\+\_\+\+Note\+Display\+Container.\+m\+Current\+Measure.
+
+
+\begin{DoxyCode}
+132     \{
+133         \textcolor{keywordflow}{return} \hyperlink{group___s_c___n_d_c_priv_var_gaa072fb53f6bd6646bc85f2ebc2a02229}{mMeasures}[\hyperlink{group___s_c___n_d_c_priv_var_ga28ce2bf8358c9f686b5b9e362aa96dff}{mCurrentMeasure}];
+134     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_c___n_d_c_pub_func_ga3cdbb1068cd6511112c564fc636c56ca}\label{group___s_c___n_d_c_pub_func_ga3cdbb1068cd6511112c564fc636c56ca}} 
+\index{Public Functions@{Public Functions}!Get\+Sprites@{Get\+Sprites}}
+\index{Get\+Sprites@{Get\+Sprites}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Get\+Sprites()}{GetSprites()}}
+{\footnotesize\ttfamily Sprite \mbox{[}$\,$\mbox{]} S\+C\+\_\+\+Note\+Display\+Container.\+Get\+Sprites (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the images used to represent a note\textquotesingle{}s \hyperlink{group___music_structs_ac35cd02f5b3c00e3040b51e40e9e6c94}{length}/\hyperlink{group___music_structs_ae281187907aed4c728c7981300dbebaf}{offset}. 
+
+\begin{DoxyReturn}{Returns}
+The images used to represent a note\textquotesingle{}s \hyperlink{group___music_structs_ac35cd02f5b3c00e3040b51e40e9e6c94}{length}/\hyperlink{group___music_structs_ae281187907aed4c728c7981300dbebaf}{offset}. 
+\end{DoxyReturn}
+
+
+Definition at line 140 of file S\+C\+\_\+\+Note\+Display\+Container.\+cs.
+
+
+
+References S\+C\+\_\+\+Note\+Display\+Container.\+m\+Sprites.
+
+
+
+Referenced by S\+C\+\_\+\+Measure\+Display\+Panel.\+Add\+Note(), and Song\+Creation\+Manager.\+On\+Modify\+Note().
+
+
+\begin{DoxyCode}
+141     \{
+142         \textcolor{keywordflow}{return} \hyperlink{group___s_c___n_d_c_priv_var_gac8df613ee0996e999278da2b3f523e34}{mSprites};
+143     \}
+\end{DoxyCode}

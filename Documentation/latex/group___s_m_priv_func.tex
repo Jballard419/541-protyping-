@@ -1,0 +1,73 @@
+\hypertarget{group___s_m_priv_func}{}\section{Private Functions}
+\label{group___s_m_priv_func}\index{Private Functions@{Private Functions}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___s_m_priv_func_ga73d6d3b38a160fd73b63b786b9cd384a}{Song\+Manager\+Class.\+Load\+Songs} ()
+\begin{DoxyCompactList}\small\item\em Loads Songs in the folder \char`\"{}\+A\+P\+P\+\_\+\+P\+A\+T\+H/\+Streaming\+Assets/\+Audio/\+Songs/\char`\"{}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Functions that are used internally by the \hyperlink{class_song_manager_class}{Song\+Manager\+Class}. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___s_m_priv_func_ga73d6d3b38a160fd73b63b786b9cd384a}\label{group___s_m_priv_func_ga73d6d3b38a160fd73b63b786b9cd384a}} 
+\index{Private Functions@{Private Functions}!Load\+Songs@{Load\+Songs}}
+\index{Load\+Songs@{Load\+Songs}!Private Functions@{Private Functions}}
+\subsubsection{\texorpdfstring{Load\+Songs()}{LoadSongs()}}
+{\footnotesize\ttfamily void Song\+Manager\+Class.\+Load\+Songs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Loads Songs in the folder \char`\"{}\+A\+P\+P\+\_\+\+P\+A\+T\+H/\+Streaming\+Assets/\+Audio/\+Songs/\char`\"{}. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___song_group_DocSongFileFormat}{Song File Format} \hyperlink{group___song_priv_func_ga5c8edd8f7ebeab0d93f5619a644c30f5}{Song\+::\+Load\+Song\+From\+File} 
+\end{DoxySeeAlso}
+
+
+Definition at line 321 of file Song\+Manager\+Class.\+cs.
+
+
+
+References Song.\+Get\+Name(), and Song.\+S\+O\+N\+G\+\_\+\+F\+I\+L\+E\+\_\+\+P\+A\+TH.
+
+
+
+Referenced by Song\+Manager\+Class.\+Song\+Manager\+Class().
+
+
+\begin{DoxyCode}
+322     \{
+323         \textcolor{comment}{// Get the info for the files in the folder.}
+324         DirectoryInfo info = \textcolor{keyword}{new} DirectoryInfo( \hyperlink{class_song}{Song}.\hyperlink{group___song_const_ga95247572cf734f9e8b35973de4eeb1a4}{SONG\_FILE\_PATH} );
+325 
+326         \textcolor{comment}{// Iterate through each file in the folder and load a new song if the filename matches }
+327         \textcolor{comment}{// the format.}
+328         \textcolor{keywordflow}{foreach}( FileInfo file \textcolor{keywordflow}{in} info.GetFiles() )
+329         \{
+330             \textcolor{keywordflow}{if}( file.Name.EndsWith( \textcolor{stringliteral}{".song"} ) )
+331             \{
+332                 \textcolor{comment}{// Load the new song.}
+333                 \hyperlink{class_song}{Song} newSong = \textcolor{keyword}{new} \hyperlink{class_song}{Song}( file.FullName );
+334 
+335                 \textcolor{comment}{// Add the new song to the proper container.}
+336                 \textcolor{keywordflow}{if}( file.Name.StartsWith( \textcolor{stringliteral}{"SONG\_"} ) )
+337                 \{
+338                     \hyperlink{group___s_m_priv_var_gaf6b4ff41b8da95d10ad3db62df111faa}{mCombinedSongs}.Add( newSong.\hyperlink{group___song_pub_func_ga705c433f2bfb5aede337698144b23c8b}{GetName}(), newSong );
+339                     \hyperlink{group___s_m_priv_var_gae423c7b9efd0e2ef721820318200e5f9}{mNumCombinedSongs}++;
+340                 \}
+341                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}( file.Name.StartsWith( \textcolor{stringliteral}{"MELODY\_"} ) )
+342                 \{
+343                     \hyperlink{group___s_m_priv_var_ga935e80f645d0546003f7df8443b79242}{mMelodies}.Add( newSong.\hyperlink{group___song_pub_func_ga705c433f2bfb5aede337698144b23c8b}{GetName}(), newSong );
+344                     \hyperlink{group___s_m_priv_var_ga58ea3b4f794b9e444eece384ae6e8197}{mNumMelodies}++;
+345                 \}
+346                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}( file.Name.StartsWith( \textcolor{stringliteral}{"DRUMLOOP"} ) )
+347                 \{
+348                     \hyperlink{group___s_m_priv_var_ga84f25335035755448d11acb9287360f2}{mDrumLoops}.Add( newSong.\hyperlink{group___song_pub_func_ga705c433f2bfb5aede337698144b23c8b}{GetName}(), newSong );
+349                     \hyperlink{group___s_m_priv_var_ga0ea9b6c8343a9b2cbe0eb375edaef247}{mNumDrumLoops}++;
+350                 \}
+351             \}
+352         \}
+353     \}
+\end{DoxyCode}

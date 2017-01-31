@@ -1,0 +1,343 @@
+\hypertarget{class_a_t_i_1_1_slider_handler}{}\section{A\+T\+I.\+Slider\+Handler Class Reference}
+\label{class_a_t_i_1_1_slider_handler}\index{A\+T\+I.\+Slider\+Handler@{A\+T\+I.\+Slider\+Handler}}
+Inheritance diagram for A\+T\+I.\+Slider\+Handler\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.692308cm]{class_a_t_i_1_1_slider_handler}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_a_t_i_1_1_slider_handler_ad7cd02a45170b1a4af432d1ccc2490ea}{Start} ()
+\item 
+int \hyperlink{class_a_t_i_1_1_slider_handler_ab6c7a9d82c98d87ebbe45c8a032dbd29}{Get\+Slider\+Index} (Slider a\+Slider)
+\item 
+void \hyperlink{class_a_t_i_1_1_slider_handler_a0ef4eeb2a91b744eaaf2453856aded60}{Handle\+Drag} (Slider a\+Slider, \hyperlink{class_a_t_i_ac4c6056a99cbd16ff0d292d33b038b9b}{Slider\+Type} a\+Slider\+Type)
+\item 
+void \hyperlink{class_a_t_i_1_1_slider_handler_ada65f41ef84f50737cece7be16c548f9}{Handle\+Drag\+End} (Slider a\+Slider, \hyperlink{class_a_t_i_ac4c6056a99cbd16ff0d292d33b038b9b}{Slider\+Type} a\+Slider\+Type)
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{class_a_t_i_1_1_slider_handler_ac82219a0a69f17025d9484f9e45cca80}{Handle\+Musical\+Typing\+Key\+Velocity\+Change} (int a\+Slider\+Index)
+\item 
+virtual void \hyperlink{class_a_t_i_1_1_slider_handler_a710b59b6e8bf059af76477a930572d9e}{Handle\+Lowest\+Random\+Velocity\+Change} (bool a\+End\+Drag)
+\item 
+virtual void \hyperlink{class_a_t_i_1_1_slider_handler_a827fab40da8ee6e777cbed4b5a9ae712}{Handle\+Highest\+Random\+Velocity\+Change} (bool a\+End\+Drag)
+\item 
+virtual void \hyperlink{class_a_t_i_1_1_slider_handler_a4d3915be92feddd4c45027a71c3a338c}{Handle\+Note\+Range\+Change} (bool a\+End\+Drag)
+\item 
+virtual void \hyperlink{class_a_t_i_1_1_slider_handler_a51fd8e687677af70535a9332ded83d3b}{Send\+Slider\+Change\+To\+Handler} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{class_a_t_i_1_1_slider_handler_ac762fad2fb523da79188668dde4488ec}{m\+Num\+Sliders}
+\item 
+Slider \mbox{[}$\,$\mbox{]} \hyperlink{class_a_t_i_1_1_slider_handler_a038a487fbd701cb786e77c210830be76}{m\+Sliders}
+\item 
+\hyperlink{class_a_t_i_1_1_slider_trigger}{Slider\+Trigger} \mbox{[}$\,$\mbox{]} \hyperlink{class_a_t_i_1_1_slider_handler_a20208bc52a906cf87aa9df8e5fb2c636}{m\+Slider\+Triggers}
+\item 
+\hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} \hyperlink{class_a_t_i_1_1_slider_handler_a5d19b4fb92b71c25a667defdda60213f}{m\+V\+IM} = null
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 124 of file A\+T\+I.\+cs.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_a_t_i_1_1_slider_handler_ab6c7a9d82c98d87ebbe45c8a032dbd29}\label{class_a_t_i_1_1_slider_handler_ab6c7a9d82c98d87ebbe45c8a032dbd29}} 
+\index{A\+T\+I\+::\+Slider\+Handler@{A\+T\+I\+::\+Slider\+Handler}!Get\+Slider\+Index@{Get\+Slider\+Index}}
+\index{Get\+Slider\+Index@{Get\+Slider\+Index}!A\+T\+I\+::\+Slider\+Handler@{A\+T\+I\+::\+Slider\+Handler}}
+\subsubsection{\texorpdfstring{Get\+Slider\+Index()}{GetSliderIndex()}}
+{\footnotesize\ttfamily int A\+T\+I.\+Slider\+Handler.\+Get\+Slider\+Index (\begin{DoxyParamCaption}\item[{Slider}]{a\+Slider }\end{DoxyParamCaption})}
+
+
+
+Definition at line 150 of file A\+T\+I.\+cs.
+
+
+\begin{DoxyCode}
+151         \{
+152             \textcolor{keywordflow}{if}( \hyperlink{class_a_t_i_1_1_slider_handler_a038a487fbd701cb786e77c210830be76}{mSliders} != null )
+153             \{
+154                 \textcolor{comment}{// If the slider is in the container, then return its index.}
+155                 \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < \hyperlink{class_a_t_i_1_1_slider_handler_ac762fad2fb523da79188668dde4488ec}{mNumSliders}; i++ )
+156                 \{
+157                     \textcolor{keywordflow}{if}( \hyperlink{class_a_t_i_1_1_slider_handler_a038a487fbd701cb786e77c210830be76}{mSliders}[i] == aSlider )
+158                     \{
+159                         \textcolor{keywordflow}{return} i;
+160                     \}
+161                 \}
+162             \}
+163 
+164             \textcolor{comment}{// If the slider is not in the container, then something has gone wrong.}
+165             \textcolor{keywordflow}{else}
+166             \{
+167                 Assert.IsTrue( \textcolor{keyword}{false}, \textcolor{stringliteral}{"Slider Handler tried to handle a slider event, but the handler was
+       uninitialized!"} );
+168             \}
+169 
+170             \textcolor{keywordflow}{return} -1;
+171 
+172         \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i_1_1_slider_handler_a0ef4eeb2a91b744eaaf2453856aded60}\label{class_a_t_i_1_1_slider_handler_a0ef4eeb2a91b744eaaf2453856aded60}} 
+\index{A\+T\+I\+::\+Slider\+Handler@{A\+T\+I\+::\+Slider\+Handler}!Handle\+Drag@{Handle\+Drag}}
+\index{Handle\+Drag@{Handle\+Drag}!A\+T\+I\+::\+Slider\+Handler@{A\+T\+I\+::\+Slider\+Handler}}
+\subsubsection{\texorpdfstring{Handle\+Drag()}{HandleDrag()}}
+{\footnotesize\ttfamily void A\+T\+I.\+Slider\+Handler.\+Handle\+Drag (\begin{DoxyParamCaption}\item[{Slider}]{a\+Slider,  }\item[{\hyperlink{class_a_t_i_ac4c6056a99cbd16ff0d292d33b038b9b}{Slider\+Type}}]{a\+Slider\+Type }\end{DoxyParamCaption})}
+
+
+
+Definition at line 181 of file A\+T\+I.\+cs.
+
+
+
+Referenced by A\+T\+I.\+Slider\+Trigger.\+On\+Drag().
+
+
+\begin{DoxyCode}
+182         \{
+183             \textcolor{comment}{// Call the appropriate function for the slider type.}
+184             \textcolor{keywordflow}{switch}( aSliderType )
+185             \{
+186                 \textcolor{keywordflow}{case} \hyperlink{class_a_t_i_ac4c6056a99cbd16ff0d292d33b038b9b}{SliderType}.MusicalTypingKeyVelocity:
+187                     \hyperlink{class_a_t_i_1_1_slider_handler_ac82219a0a69f17025d9484f9e45cca80}{HandleMusicalTypingKeyVelocityChange}( 
+      \hyperlink{class_a_t_i_1_1_slider_handler_ab6c7a9d82c98d87ebbe45c8a032dbd29}{GetSliderIndex}( aSlider ) );
+188                     \textcolor{keywordflow}{break};
+189                 \textcolor{keywordflow}{case} \hyperlink{class_a_t_i_ac4c6056a99cbd16ff0d292d33b038b9b}{SliderType}.LowestRandomKeyVelocity:
+190                     \hyperlink{class_a_t_i_1_1_slider_handler_a710b59b6e8bf059af76477a930572d9e}{HandleLowestRandomVelocityChange}( \textcolor{keyword}{false} );
+191                     \textcolor{keywordflow}{break};
+192                 \textcolor{keywordflow}{case} \hyperlink{class_a_t_i_ac4c6056a99cbd16ff0d292d33b038b9b}{SliderType}.HighestRandomKeyVelocity:
+193                     \hyperlink{class_a_t_i_1_1_slider_handler_a827fab40da8ee6e777cbed4b5a9ae712}{HandleHighestRandomVelocityChange}( \textcolor{keyword}{false} );
+194                     \textcolor{keywordflow}{break};
+195                 \textcolor{keywordflow}{case} \hyperlink{class_a_t_i_ac4c6056a99cbd16ff0d292d33b038b9b}{SliderType}.NoteRange:
+196                     \hyperlink{class_a_t_i_1_1_slider_handler_a4d3915be92feddd4c45027a71c3a338c}{HandleNoteRangeChange}( \textcolor{keyword}{false} );
+197                     \textcolor{keywordflow}{break};
+198                 \textcolor{keywordflow}{case} \hyperlink{class_a_t_i_ac4c6056a99cbd16ff0d292d33b038b9b}{SliderType}.AudioEffectParameter:
+199                     \hyperlink{class_a_t_i_1_1_slider_handler_a51fd8e687677af70535a9332ded83d3b}{SendSliderChangeToHandler}();
+200                     \textcolor{keywordflow}{break};
+201                 \textcolor{keywordflow}{default}:
+202                     \textcolor{keywordflow}{break};
+203             \}
+204         \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i_1_1_slider_handler_ada65f41ef84f50737cece7be16c548f9}\label{class_a_t_i_1_1_slider_handler_ada65f41ef84f50737cece7be16c548f9}} 
+\index{A\+T\+I\+::\+Slider\+Handler@{A\+T\+I\+::\+Slider\+Handler}!Handle\+Drag\+End@{Handle\+Drag\+End}}
+\index{Handle\+Drag\+End@{Handle\+Drag\+End}!A\+T\+I\+::\+Slider\+Handler@{A\+T\+I\+::\+Slider\+Handler}}
+\subsubsection{\texorpdfstring{Handle\+Drag\+End()}{HandleDragEnd()}}
+{\footnotesize\ttfamily void A\+T\+I.\+Slider\+Handler.\+Handle\+Drag\+End (\begin{DoxyParamCaption}\item[{Slider}]{a\+Slider,  }\item[{\hyperlink{class_a_t_i_ac4c6056a99cbd16ff0d292d33b038b9b}{Slider\+Type}}]{a\+Slider\+Type }\end{DoxyParamCaption})}
+
+
+
+Definition at line 209 of file A\+T\+I.\+cs.
+
+
+
+Referenced by A\+T\+I.\+Slider\+Trigger.\+On\+End\+Drag().
+
+
+\begin{DoxyCode}
+210         \{
+211             \textcolor{comment}{// Call the appropriate function for the slider type.}
+212             \textcolor{keywordflow}{switch}( aSliderType )
+213             \{
+214                 \textcolor{keywordflow}{case} \hyperlink{class_a_t_i_ac4c6056a99cbd16ff0d292d33b038b9b}{SliderType}.MusicalTypingKeyVelocity:
+215                     \hyperlink{class_a_t_i_1_1_slider_handler_ac82219a0a69f17025d9484f9e45cca80}{HandleMusicalTypingKeyVelocityChange}( 
+      \hyperlink{class_a_t_i_1_1_slider_handler_ab6c7a9d82c98d87ebbe45c8a032dbd29}{GetSliderIndex}( aSlider ) );
+216                     \textcolor{keywordflow}{break};
+217                 \textcolor{keywordflow}{case} \hyperlink{class_a_t_i_ac4c6056a99cbd16ff0d292d33b038b9b}{SliderType}.LowestRandomKeyVelocity:
+218                     \hyperlink{class_a_t_i_1_1_slider_handler_a710b59b6e8bf059af76477a930572d9e}{HandleLowestRandomVelocityChange}( \textcolor{keyword}{true} );
+219                     \textcolor{keywordflow}{break};
+220                 \textcolor{keywordflow}{case} \hyperlink{class_a_t_i_ac4c6056a99cbd16ff0d292d33b038b9b}{SliderType}.HighestRandomKeyVelocity:
+221                     \hyperlink{class_a_t_i_1_1_slider_handler_a827fab40da8ee6e777cbed4b5a9ae712}{HandleHighestRandomVelocityChange}( \textcolor{keyword}{true} );
+222                     \textcolor{keywordflow}{break};
+223                 \textcolor{keywordflow}{case} \hyperlink{class_a_t_i_ac4c6056a99cbd16ff0d292d33b038b9b}{SliderType}.NoteRange:
+224                     \hyperlink{class_a_t_i_1_1_slider_handler_a4d3915be92feddd4c45027a71c3a338c}{HandleNoteRangeChange}( \textcolor{keyword}{true} );
+225                     \textcolor{keywordflow}{break};
+226                 \textcolor{keywordflow}{case} \hyperlink{class_a_t_i_ac4c6056a99cbd16ff0d292d33b038b9b}{SliderType}.AudioEffectParameter:
+227                     \hyperlink{class_a_t_i_1_1_slider_handler_a51fd8e687677af70535a9332ded83d3b}{SendSliderChangeToHandler}();
+228                     \textcolor{keywordflow}{break};
+229                 \textcolor{keywordflow}{default}:
+230                     \textcolor{keywordflow}{break};
+231             \}
+232         \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i_1_1_slider_handler_a827fab40da8ee6e777cbed4b5a9ae712}\label{class_a_t_i_1_1_slider_handler_a827fab40da8ee6e777cbed4b5a9ae712}} 
+\index{A\+T\+I\+::\+Slider\+Handler@{A\+T\+I\+::\+Slider\+Handler}!Handle\+Highest\+Random\+Velocity\+Change@{Handle\+Highest\+Random\+Velocity\+Change}}
+\index{Handle\+Highest\+Random\+Velocity\+Change@{Handle\+Highest\+Random\+Velocity\+Change}!A\+T\+I\+::\+Slider\+Handler@{A\+T\+I\+::\+Slider\+Handler}}
+\subsubsection{\texorpdfstring{Handle\+Highest\+Random\+Velocity\+Change()}{HandleHighestRandomVelocityChange()}}
+{\footnotesize\ttfamily virtual void A\+T\+I.\+Slider\+Handler.\+Handle\+Highest\+Random\+Velocity\+Change (\begin{DoxyParamCaption}\item[{bool}]{a\+End\+Drag }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \hyperlink{class_a_t_i___velocity_handler_a6e1fd3ceb35873a09e138bebd0c323fd}{A\+T\+I\+\_\+\+Velocity\+Handler}.
+
+
+
+Definition at line 239 of file A\+T\+I.\+cs.
+
+
+\begin{DoxyCode}
+239 \{ \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i_1_1_slider_handler_a710b59b6e8bf059af76477a930572d9e}\label{class_a_t_i_1_1_slider_handler_a710b59b6e8bf059af76477a930572d9e}} 
+\index{A\+T\+I\+::\+Slider\+Handler@{A\+T\+I\+::\+Slider\+Handler}!Handle\+Lowest\+Random\+Velocity\+Change@{Handle\+Lowest\+Random\+Velocity\+Change}}
+\index{Handle\+Lowest\+Random\+Velocity\+Change@{Handle\+Lowest\+Random\+Velocity\+Change}!A\+T\+I\+::\+Slider\+Handler@{A\+T\+I\+::\+Slider\+Handler}}
+\subsubsection{\texorpdfstring{Handle\+Lowest\+Random\+Velocity\+Change()}{HandleLowestRandomVelocityChange()}}
+{\footnotesize\ttfamily virtual void A\+T\+I.\+Slider\+Handler.\+Handle\+Lowest\+Random\+Velocity\+Change (\begin{DoxyParamCaption}\item[{bool}]{a\+End\+Drag }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \hyperlink{class_a_t_i___velocity_handler_a17b6e0de9e45dfb9dba1ea4f2c0a122c}{A\+T\+I\+\_\+\+Velocity\+Handler}.
+
+
+
+Definition at line 238 of file A\+T\+I.\+cs.
+
+
+\begin{DoxyCode}
+238 \{ \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i_1_1_slider_handler_ac82219a0a69f17025d9484f9e45cca80}\label{class_a_t_i_1_1_slider_handler_ac82219a0a69f17025d9484f9e45cca80}} 
+\index{A\+T\+I\+::\+Slider\+Handler@{A\+T\+I\+::\+Slider\+Handler}!Handle\+Musical\+Typing\+Key\+Velocity\+Change@{Handle\+Musical\+Typing\+Key\+Velocity\+Change}}
+\index{Handle\+Musical\+Typing\+Key\+Velocity\+Change@{Handle\+Musical\+Typing\+Key\+Velocity\+Change}!A\+T\+I\+::\+Slider\+Handler@{A\+T\+I\+::\+Slider\+Handler}}
+\subsubsection{\texorpdfstring{Handle\+Musical\+Typing\+Key\+Velocity\+Change()}{HandleMusicalTypingKeyVelocityChange()}}
+{\footnotesize\ttfamily virtual void A\+T\+I.\+Slider\+Handler.\+Handle\+Musical\+Typing\+Key\+Velocity\+Change (\begin{DoxyParamCaption}\item[{int}]{a\+Slider\+Index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \hyperlink{class_a_t_i___velocity_handler_a5b00635239f4f10aaefc5898a8f1b975}{A\+T\+I\+\_\+\+Velocity\+Handler}.
+
+
+
+Definition at line 237 of file A\+T\+I.\+cs.
+
+
+\begin{DoxyCode}
+237 \{ \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i_1_1_slider_handler_a4d3915be92feddd4c45027a71c3a338c}\label{class_a_t_i_1_1_slider_handler_a4d3915be92feddd4c45027a71c3a338c}} 
+\index{A\+T\+I\+::\+Slider\+Handler@{A\+T\+I\+::\+Slider\+Handler}!Handle\+Note\+Range\+Change@{Handle\+Note\+Range\+Change}}
+\index{Handle\+Note\+Range\+Change@{Handle\+Note\+Range\+Change}!A\+T\+I\+::\+Slider\+Handler@{A\+T\+I\+::\+Slider\+Handler}}
+\subsubsection{\texorpdfstring{Handle\+Note\+Range\+Change()}{HandleNoteRangeChange()}}
+{\footnotesize\ttfamily virtual void A\+T\+I.\+Slider\+Handler.\+Handle\+Note\+Range\+Change (\begin{DoxyParamCaption}\item[{bool}]{a\+End\+Drag }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \hyperlink{class_a_t_i___note_range_selection_handler_a87e90cac12626a0cb547d6e40c6e8260}{A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler}.
+
+
+
+Definition at line 240 of file A\+T\+I.\+cs.
+
+
+\begin{DoxyCode}
+240 \{ \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i_1_1_slider_handler_a51fd8e687677af70535a9332ded83d3b}\label{class_a_t_i_1_1_slider_handler_a51fd8e687677af70535a9332ded83d3b}} 
+\index{A\+T\+I\+::\+Slider\+Handler@{A\+T\+I\+::\+Slider\+Handler}!Send\+Slider\+Change\+To\+Handler@{Send\+Slider\+Change\+To\+Handler}}
+\index{Send\+Slider\+Change\+To\+Handler@{Send\+Slider\+Change\+To\+Handler}!A\+T\+I\+::\+Slider\+Handler@{A\+T\+I\+::\+Slider\+Handler}}
+\subsubsection{\texorpdfstring{Send\+Slider\+Change\+To\+Handler()}{SendSliderChangeToHandler()}}
+{\footnotesize\ttfamily virtual void A\+T\+I.\+Slider\+Handler.\+Send\+Slider\+Change\+To\+Handler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \hyperlink{class_a_t_i_1_1_audio_effect_parameter_trigger_ad1dde7a7b8ca7db2766b4941ef826e76}{A\+T\+I.\+Audio\+Effect\+Parameter\+Trigger}.
+
+
+
+Definition at line 241 of file A\+T\+I.\+cs.
+
+
+\begin{DoxyCode}
+241 \{ \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i_1_1_slider_handler_ad7cd02a45170b1a4af432d1ccc2490ea}\label{class_a_t_i_1_1_slider_handler_ad7cd02a45170b1a4af432d1ccc2490ea}} 
+\index{A\+T\+I\+::\+Slider\+Handler@{A\+T\+I\+::\+Slider\+Handler}!Start@{Start}}
+\index{Start@{Start}!A\+T\+I\+::\+Slider\+Handler@{A\+T\+I\+::\+Slider\+Handler}}
+\subsubsection{\texorpdfstring{Start()}{Start()}}
+{\footnotesize\ttfamily void A\+T\+I.\+Slider\+Handler.\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 137 of file A\+T\+I.\+cs.
+
+
+\begin{DoxyCode}
+138         \{
+139             \textcolor{comment}{// Get the virtual instrument manager.}
+140             \hyperlink{class_a_t_i_1_1_slider_handler_a5d19b4fb92b71c25a667defdda60213f}{mVIM} = GameObject.Find( \textcolor{stringliteral}{"VirtualInstrumentManager"} ).GetComponent<
+      \hyperlink{class_virtual_instrument_manager}{VirtualInstrumentManager}>();
+141         \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_a_t_i_1_1_slider_handler_ac762fad2fb523da79188668dde4488ec}\label{class_a_t_i_1_1_slider_handler_ac762fad2fb523da79188668dde4488ec}} 
+\index{A\+T\+I\+::\+Slider\+Handler@{A\+T\+I\+::\+Slider\+Handler}!m\+Num\+Sliders@{m\+Num\+Sliders}}
+\index{m\+Num\+Sliders@{m\+Num\+Sliders}!A\+T\+I\+::\+Slider\+Handler@{A\+T\+I\+::\+Slider\+Handler}}
+\subsubsection{\texorpdfstring{m\+Num\+Sliders}{mNumSliders}}
+{\footnotesize\ttfamily int A\+T\+I.\+Slider\+Handler.\+m\+Num\+Sliders\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 129 of file A\+T\+I.\+cs.
+
+
+
+Referenced by A\+T\+I\+\_\+\+Velocity\+Handler.\+Start().
+
+\mbox{\Hypertarget{class_a_t_i_1_1_slider_handler_a038a487fbd701cb786e77c210830be76}\label{class_a_t_i_1_1_slider_handler_a038a487fbd701cb786e77c210830be76}} 
+\index{A\+T\+I\+::\+Slider\+Handler@{A\+T\+I\+::\+Slider\+Handler}!m\+Sliders@{m\+Sliders}}
+\index{m\+Sliders@{m\+Sliders}!A\+T\+I\+::\+Slider\+Handler@{A\+T\+I\+::\+Slider\+Handler}}
+\subsubsection{\texorpdfstring{m\+Sliders}{mSliders}}
+{\footnotesize\ttfamily Slider \mbox{[}$\,$\mbox{]} A\+T\+I.\+Slider\+Handler.\+m\+Sliders\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 130 of file A\+T\+I.\+cs.
+
+
+
+Referenced by A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler.\+Handle\+Instrument\+Loaded(), A\+T\+I\+\_\+\+Velocity\+Handler.\+Handle\+Musical\+Typing\+Key\+Velocity\+Change(), A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler.\+Handle\+Note\+Range\+Change(), A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler.\+Start(), and A\+T\+I\+\_\+\+Velocity\+Handler.\+Start().
+
+\mbox{\Hypertarget{class_a_t_i_1_1_slider_handler_a20208bc52a906cf87aa9df8e5fb2c636}\label{class_a_t_i_1_1_slider_handler_a20208bc52a906cf87aa9df8e5fb2c636}} 
+\index{A\+T\+I\+::\+Slider\+Handler@{A\+T\+I\+::\+Slider\+Handler}!m\+Slider\+Triggers@{m\+Slider\+Triggers}}
+\index{m\+Slider\+Triggers@{m\+Slider\+Triggers}!A\+T\+I\+::\+Slider\+Handler@{A\+T\+I\+::\+Slider\+Handler}}
+\subsubsection{\texorpdfstring{m\+Slider\+Triggers}{mSliderTriggers}}
+{\footnotesize\ttfamily \hyperlink{class_a_t_i_1_1_slider_trigger}{Slider\+Trigger} \mbox{[}$\,$\mbox{]} A\+T\+I.\+Slider\+Handler.\+m\+Slider\+Triggers\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 131 of file A\+T\+I.\+cs.
+
+
+
+Referenced by A\+T\+I\+\_\+\+Velocity\+Handler.\+Start().
+
+\mbox{\Hypertarget{class_a_t_i_1_1_slider_handler_a5d19b4fb92b71c25a667defdda60213f}\label{class_a_t_i_1_1_slider_handler_a5d19b4fb92b71c25a667defdda60213f}} 
+\index{A\+T\+I\+::\+Slider\+Handler@{A\+T\+I\+::\+Slider\+Handler}!m\+V\+IM@{m\+V\+IM}}
+\index{m\+V\+IM@{m\+V\+IM}!A\+T\+I\+::\+Slider\+Handler@{A\+T\+I\+::\+Slider\+Handler}}
+\subsubsection{\texorpdfstring{m\+V\+IM}{mVIM}}
+{\footnotesize\ttfamily \hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} A\+T\+I.\+Slider\+Handler.\+m\+V\+IM = null\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 132 of file A\+T\+I.\+cs.
+
+
+
+Referenced by A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler.\+Handle\+Instrument\+Loaded(), A\+T\+I\+\_\+\+Velocity\+Handler.\+Handle\+Musical\+Typing\+Key\+Velocity\+Change(), A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler.\+Handle\+Note\+Range\+Change(), A\+T\+I\+\_\+\+Velocity\+Handler.\+Randomize\+Key\+Velocities(), and A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler.\+Start().
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Documents/\+School Documents/2017\+Spring/\+E\+E\+C\+S542/\+V\+R\+Piano\+Project/\+Assets/\+Scripts/\+Audio/\+Testing/\hyperlink{_a_t_i_8cs}{A\+T\+I.\+cs}\end{DoxyCompactItemize}

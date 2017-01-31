@@ -1,0 +1,60 @@
+\hypertarget{group___n_o_o_unity}{}\section{Unity Functions}
+\label{group___n_o_o_unity}\index{Unity Functions@{Unity Functions}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___n_o_o_unity_ga5c3cd343b7bfe7dec693d2cb69ec3cce}{Note\+Output\+Object.\+Awake} ()
+\begin{DoxyCompactList}\small\item\em Called when the object is created. This function creates an audio source and sets the initial values for each variable. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+These are functions called automatically by Unity. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___n_o_o_unity_ga5c3cd343b7bfe7dec693d2cb69ec3cce}\label{group___n_o_o_unity_ga5c3cd343b7bfe7dec693d2cb69ec3cce}} 
+\index{Unity Functions@{Unity Functions}!Awake@{Awake}}
+\index{Awake@{Awake}!Unity Functions@{Unity Functions}}
+\subsubsection{\texorpdfstring{Awake()}{Awake()}}
+{\footnotesize\ttfamily void Note\+Output\+Object.\+Awake (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Called when the object is created. This function creates an audio source and sets the initial values for each variable. 
+
+
+
+Definition at line 66 of file Note\+Output\+Object.\+cs.
+
+
+\begin{DoxyCode}
+67     \{
+68         \textcolor{comment}{// Set the values of the member variables}
+69         \hyperlink{group___n_o_o_priv_var_ga1efa96121f085b27c7d9e8725f90a336}{mAudioDataBeingUsed} = \textcolor{keyword}{false};
+70         \hyperlink{group___n_o_o_priv_var_gaf01d2583555de6a523cdf82808718ca9}{mLoaded} = \textcolor{keyword}{false};
+71         \hyperlink{group___n_o_o_priv_var_ga5dca97be8d58837ace4ea6f4a972b20a}{mCounter} = 0;
+72         \hyperlink{group___n_o_o_priv_var_ga48c676306790f40714072cd6a81a0128}{mEndSampleIndices} = null;
+73         \hyperlink{group___n_o_o_priv_var_ga842eef5bfade070f914b8a551b3bcf43}{mAudioData} = null;
+74         \hyperlink{group___n_o_o_priv_var_gac537ec036adf0645dca2f31fbc5b3dec}{mNewNote} = \textcolor{keyword}{false};
+75         \hyperlink{group___n_o_o_priv_var_ga1f7a31f1aefc1633f1f435e3438a1efb}{mResume} = \textcolor{keyword}{false};
+76         \hyperlink{group___n_o_o_priv_var_ga3cc04564fcc1b1c4597af18e7e4fbc47}{mNumBuiltInDynamics} = 0;
+77         \hyperlink{group___n_o_o_priv_var_gaf0c9c2a90b5d73b8ffa0906bc69acdbc}{mDynamicsIndex} = 0;
+78         \hyperlink{group___n_o_o_priv_var_ga84df25e871d69746a7c520f3f8b49a27}{mVelocityFactor} = 1f;
+79         \hyperlink{group___n_o_o_priv_var_ga88bfcc80d0cd20c81cd89d19d3231b84}{mNoteRelease} = \textcolor{keyword}{false};
+80         \hyperlink{group___n_o_o_priv_var_gabf1d5013f44773e9fd3e4dbb59d74aeb}{mLoop} = \textcolor{keyword}{false};
+81         \hyperlink{group___n_o_o_priv_var_gaf72dd5943487433966b20b973be1e8b3}{mNotifyWhenFinished} = \textcolor{keyword}{false};
+82 
+83         \textcolor{comment}{// Destroy the audio source if it already exists.}
+84         \hyperlink{group___n_o_o_priv_var_gad5e14a91b348e61166dbf6b6cf13649c}{mSource} = gameObject.GetComponent<AudioSource>();
+85         \textcolor{keywordflow}{if}( \hyperlink{group___n_o_o_priv_var_gad5e14a91b348e61166dbf6b6cf13649c}{mSource} != null )
+86         \{
+87             DestroyImmediate( \hyperlink{group___n_o_o_priv_var_gad5e14a91b348e61166dbf6b6cf13649c}{mSource}, \textcolor{keyword}{false} );
+88         \}
+89 
+90         \textcolor{comment}{// Add a new audio source to this object and set its values.}
+91         \hyperlink{group___n_o_o_priv_var_gad5e14a91b348e61166dbf6b6cf13649c}{mSource} = gameObject.AddComponent<AudioSource>();
+92         \hyperlink{group___n_o_o_priv_var_gad5e14a91b348e61166dbf6b6cf13649c}{mSource}.enabled = \textcolor{keyword}{true};
+93         \hyperlink{group___n_o_o_priv_var_gad5e14a91b348e61166dbf6b6cf13649c}{mSource}.playOnAwake = \textcolor{keyword}{false};
+94         \hyperlink{group___n_o_o_priv_var_gad5e14a91b348e61166dbf6b6cf13649c}{mSource}.minDistance = 0f;
+95         \hyperlink{group___n_o_o_priv_var_gad5e14a91b348e61166dbf6b6cf13649c}{mSource}.maxDistance = 0.01f;
+96     \}
+\end{DoxyCode}

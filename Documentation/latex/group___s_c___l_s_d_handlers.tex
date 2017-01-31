@@ -1,0 +1,100 @@
+\hypertarget{group___s_c___l_s_d_handlers}{}\section{Event Handlers}
+\label{group___s_c___l_s_d_handlers}\index{Event Handlers@{Event Handlers}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___s_c___l_s_d_handlers_gacbe31698637339188fd50ba1a6723eab}{S\+C\+\_\+\+Load\+Song\+Dialog.\+On\+Song\+Selected} (int a\+Index)
+\begin{DoxyCompactList}\small\item\em Gets the selected \hyperlink{class_song}{Song} from the \hyperlink{class_song_manager_class}{song manager}. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c___l_s_d_handlers_gae393a24bbdd4fa1d2b45fa4199fb453a}{S\+C\+\_\+\+Load\+Song\+Dialog.\+On\+Cancel\+Button\+Clicked} ()
+\begin{DoxyCompactList}\small\item\em Handles the \hyperlink{group___s_c___l_s_d_priv_var_ga31e17d7ca1cb32f0ad75ef8c7235873f}{Cancel button} being clicked with self-\/destruction. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c___l_s_d_handlers_gad6ab852f2ac019395482e8c836061639}{S\+C\+\_\+\+Load\+Song\+Dialog.\+On\+Load\+Button\+Clicked} ()
+\begin{DoxyCompactList}\small\item\em Handles the \hyperlink{group___s_c___l_s_d_priv_var_gaa27cfb6231ef826024dd063828efa364}{Load button} being clicked by invoking the \hyperlink{group___s_c___l_s_d_event_types_class_s_c___load_song_dialog_1_1_song_selected_event}{Song\+Selected\+Event} and destroying itself. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+These are functions called by the \hyperlink{class_s_c___load_song_dialog}{S\+C\+\_\+\+Load\+Song\+Dialog} to handle events. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___s_c___l_s_d_handlers_gae393a24bbdd4fa1d2b45fa4199fb453a}\label{group___s_c___l_s_d_handlers_gae393a24bbdd4fa1d2b45fa4199fb453a}} 
+\index{Event Handlers@{Event Handlers}!On\+Cancel\+Button\+Clicked@{On\+Cancel\+Button\+Clicked}}
+\index{On\+Cancel\+Button\+Clicked@{On\+Cancel\+Button\+Clicked}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{On\+Cancel\+Button\+Clicked()}{OnCancelButtonClicked()}}
+{\footnotesize\ttfamily void S\+C\+\_\+\+Load\+Song\+Dialog.\+On\+Cancel\+Button\+Clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handles the \hyperlink{group___s_c___l_s_d_priv_var_ga31e17d7ca1cb32f0ad75ef8c7235873f}{Cancel button} being clicked with self-\/destruction. 
+
+
+
+Definition at line 111 of file S\+C\+\_\+\+Load\+Song\+Dialog.\+cs.
+
+
+
+Referenced by S\+C\+\_\+\+Load\+Song\+Dialog.\+Awake().
+
+
+\begin{DoxyCode}
+112     \{
+113         DestroyImmediate( gameObject, \textcolor{keyword}{false} );
+114     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_c___l_s_d_handlers_gad6ab852f2ac019395482e8c836061639}\label{group___s_c___l_s_d_handlers_gad6ab852f2ac019395482e8c836061639}} 
+\index{Event Handlers@{Event Handlers}!On\+Load\+Button\+Clicked@{On\+Load\+Button\+Clicked}}
+\index{On\+Load\+Button\+Clicked@{On\+Load\+Button\+Clicked}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{On\+Load\+Button\+Clicked()}{OnLoadButtonClicked()}}
+{\footnotesize\ttfamily void S\+C\+\_\+\+Load\+Song\+Dialog.\+On\+Load\+Button\+Clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handles the \hyperlink{group___s_c___l_s_d_priv_var_gaa27cfb6231ef826024dd063828efa364}{Load button} being clicked by invoking the \hyperlink{group___s_c___l_s_d_event_types_class_s_c___load_song_dialog_1_1_song_selected_event}{Song\+Selected\+Event} and destroying itself. 
+
+
+
+Definition at line 119 of file S\+C\+\_\+\+Load\+Song\+Dialog.\+cs.
+
+
+
+Referenced by S\+C\+\_\+\+Load\+Song\+Dialog.\+Awake().
+
+
+\begin{DoxyCode}
+120     \{
+121         \hyperlink{group___s_c___l_s_d_events_ga48d606b2c8291fee822dcc2b14ddcecc}{SongSelected}.Invoke( \hyperlink{group___s_c___l_s_d_priv_var_ga007db4c9493497f21fb518ab676226a4}{mSelectedSong} );
+122         DestroyImmediate( gameObject, \textcolor{keyword}{false} );
+123     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_c___l_s_d_handlers_gacbe31698637339188fd50ba1a6723eab}\label{group___s_c___l_s_d_handlers_gacbe31698637339188fd50ba1a6723eab}} 
+\index{Event Handlers@{Event Handlers}!On\+Song\+Selected@{On\+Song\+Selected}}
+\index{On\+Song\+Selected@{On\+Song\+Selected}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{On\+Song\+Selected()}{OnSongSelected()}}
+{\footnotesize\ttfamily void S\+C\+\_\+\+Load\+Song\+Dialog.\+On\+Song\+Selected (\begin{DoxyParamCaption}\item[{int}]{a\+Index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Gets the selected \hyperlink{class_song}{Song} from the \hyperlink{class_song_manager_class}{song manager}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Index} & The index of the selected song. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 103 of file S\+C\+\_\+\+Load\+Song\+Dialog.\+cs.
+
+
+
+References Song\+Manager\+Class.\+Get\+Song\+By\+Name(), and Virtual\+Instrument\+Manager.\+Song\+Manager.
+
+
+
+Referenced by S\+C\+\_\+\+Load\+Song\+Dialog.\+Awake().
+
+
+\begin{DoxyCode}
+104     \{
+105         \hyperlink{group___s_c___l_s_d_priv_var_ga007db4c9493497f21fb518ab676226a4}{mSelectedSong} = \hyperlink{group___s_c___l_s_d_priv_var_ga6ffbaa999c431dd52e57c242b1b33b49}{mVIM}.\hyperlink{group___v_i_m_pub_ga33dae94932c10c66db76a0eebec76b01}{SongManager}.
+      \hyperlink{group___s_m_pub_func_gafe818c55bd858c52c95a2fa7a566006a}{GetSongByName}( \hyperlink{group___s_c___l_s_d_priv_var_ga93543d4b5bf0c2127cb5489112cc29be}{mSongSelectionMenu}.options[aIndex].text );
+106     \}
+\end{DoxyCode}

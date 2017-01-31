@@ -1,0 +1,64 @@
+\hypertarget{group___s_c___l_s_d_unity}{}\section{Unity Functions}
+\label{group___s_c___l_s_d_unity}\index{Unity Functions@{Unity Functions}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___s_c___l_s_d_unity_ga2fe8760877d7edd380795cac5749be50}{S\+C\+\_\+\+Load\+Song\+Dialog.\+Awake} ()
+\begin{DoxyCompactList}\small\item\em Initializes the \hyperlink{class_s_c___load_song_dialog}{S\+C\+\_\+\+Load\+Song\+Dialog} by getting references to its components. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+These are functions automatically called by Unity 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___s_c___l_s_d_unity_ga2fe8760877d7edd380795cac5749be50}\label{group___s_c___l_s_d_unity_ga2fe8760877d7edd380795cac5749be50}} 
+\index{Unity Functions@{Unity Functions}!Awake@{Awake}}
+\index{Awake@{Awake}!Unity Functions@{Unity Functions}}
+\subsubsection{\texorpdfstring{Awake()}{Awake()}}
+{\footnotesize\ttfamily void S\+C\+\_\+\+Load\+Song\+Dialog.\+Awake (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Initializes the \hyperlink{class_s_c___load_song_dialog}{S\+C\+\_\+\+Load\+Song\+Dialog} by getting references to its components. 
+
+
+
+Definition at line 64 of file S\+C\+\_\+\+Load\+Song\+Dialog.\+cs.
+
+
+
+References Song\+Manager\+Class.\+Get\+Song\+Names(), Song\+Manager\+Class.\+Get\+Songs(), S\+C\+\_\+\+Load\+Song\+Dialog.\+On\+Cancel\+Button\+Clicked(), S\+C\+\_\+\+Load\+Song\+Dialog.\+On\+Load\+Button\+Clicked(), S\+C\+\_\+\+Load\+Song\+Dialog.\+On\+Song\+Selected(), and Virtual\+Instrument\+Manager.\+Song\+Manager.
+
+
+\begin{DoxyCode}
+65     \{
+66         \textcolor{comment}{// Get the virtual instrument manager.}
+67         \hyperlink{group___s_c___l_s_d_priv_var_ga6ffbaa999c431dd52e57c242b1b33b49}{mVIM} = GameObject.Find( \textcolor{stringliteral}{"VirtualInstrumentManager"} ).GetComponent<
+      \hyperlink{class_virtual_instrument_manager}{VirtualInstrumentManager}>();
+68         Assert.IsNotNull( \hyperlink{group___s_c___l_s_d_priv_var_ga6ffbaa999c431dd52e57c242b1b33b49}{mVIM}, \textcolor{stringliteral}{"Could not get a reference to the VirtualInstrumentManager!"} );
+69 
+70         \textcolor{comment}{// Set up the event.}
+71         \hyperlink{group___s_c___l_s_d_events_ga48d606b2c8291fee822dcc2b14ddcecc}{SongSelected} = \textcolor{keyword}{new} SongSelectedEvent();
+72 
+73         \textcolor{comment}{// Set up the selection menu by getting a reference to it and clearing its options. Then, fill its
+       options}
+74         \textcolor{comment}{// with the songs in the SongManager. Also add its listener.}
+75         \hyperlink{group___s_c___l_s_d_priv_var_ga93543d4b5bf0c2127cb5489112cc29be}{mSongSelectionMenu} = transform.GetChild( 1 ).GetChild( 0 ).GetComponent<Dropdown>
+      ();
+76         \hyperlink{group___s_c___l_s_d_priv_var_ga93543d4b5bf0c2127cb5489112cc29be}{mSongSelectionMenu}.options.Clear();
+77         \hyperlink{group___s_c___l_s_d_priv_var_ga93543d4b5bf0c2127cb5489112cc29be}{mSongSelectionMenu}.AddOptions( \hyperlink{group___s_c___l_s_d_priv_var_ga6ffbaa999c431dd52e57c242b1b33b49}{mVIM}.\hyperlink{group___v_i_m_pub_ga33dae94932c10c66db76a0eebec76b01}{SongManager}.
+      \hyperlink{group___s_m_pub_func_ga2a9455a763e35cfb6b242a82f7d797ae}{GetSongNames}() );
+78         \hyperlink{group___s_c___l_s_d_priv_var_ga93543d4b5bf0c2127cb5489112cc29be}{mSongSelectionMenu}.onValueChanged.AddListener( 
+      \hyperlink{group___s_c___l_s_d_handlers_gacbe31698637339188fd50ba1a6723eab}{OnSongSelected} );
+79 
+80         \textcolor{comment}{// Get the default }
+81         \hyperlink{group___s_c___l_s_d_priv_var_ga007db4c9493497f21fb518ab676226a4}{mSelectedSong} = \hyperlink{group___s_c___l_s_d_priv_var_ga6ffbaa999c431dd52e57c242b1b33b49}{mVIM}.\hyperlink{group___v_i_m_pub_ga33dae94932c10c66db76a0eebec76b01}{SongManager}.\hyperlink{group___s_m_pub_func_ga3bf6a6d42a7c5e94cc85ba10eb9e6edb}{GetSongs}()[0];
+82 
+83         \textcolor{comment}{// Set up the buttons.}
+84         \hyperlink{group___s_c___l_s_d_priv_var_gaa27cfb6231ef826024dd063828efa364}{mLoadButton} = transform.GetChild( 1 ).GetChild( 2 ).GetComponent<Button>();
+85         \hyperlink{group___s_c___l_s_d_priv_var_gaa27cfb6231ef826024dd063828efa364}{mLoadButton}.onClick.AddListener( \hyperlink{group___s_c___l_s_d_handlers_gad6ab852f2ac019395482e8c836061639}{OnLoadButtonClicked} );
+86         \hyperlink{group___s_c___l_s_d_priv_var_ga31e17d7ca1cb32f0ad75ef8c7235873f}{mCancelButton} = transform.GetChild( 1 ).GetChild( 1 ).GetComponent<Button>();
+87         \hyperlink{group___s_c___l_s_d_priv_var_ga31e17d7ca1cb32f0ad75ef8c7235873f}{mCancelButton}.onClick.AddListener( \hyperlink{group___s_c___l_s_d_handlers_gae393a24bbdd4fa1d2b45fa4199fb453a}{OnCancelButtonClicked} );
+88 
+89     \}
+\end{DoxyCode}

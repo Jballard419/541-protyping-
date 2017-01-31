@@ -1,0 +1,176 @@
+\hypertarget{group___doc_s_c___l_s_d}{}\section{Load Song Dialog}
+\label{group___doc_s_c___l_s_d}\index{Load Song Dialog@{Load Song Dialog}}
+
+
+A dialog that loads a song into the \hyperlink{group___doc_s_c}{Song Creation Interface}.  
+
+
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___s_c___l_s_d_handlers}{Event Handlers}
+\item 
+\hyperlink{group___s_c___l_s_d_event_types}{Event Types}
+\item 
+\hyperlink{group___s_c___l_s_d_events}{Events}
+\item 
+\hyperlink{group___s_c___l_s_d_priv_var}{Private Variables}
+\item 
+\hyperlink{group___s_c___l_s_d_unity}{Unity Functions}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A dialog that loads a song into the \hyperlink{group___doc_s_c}{Song Creation Interface}. 
+
+\hypertarget{group___doc_s_c___l_s_d_DocSC_LSDInfo}{}\subsection{Information}\label{group___doc_s_c___l_s_d_DocSC_LSDInfo}
+\hypertarget{group___doc_s_c___l_s_d_DocSC_LSDEventTypes}{}\subsection{Event Types}\label{group___doc_s_c___l_s_d_DocSC_LSDEventTypes}
+These are the types of events for the \hyperlink{group___doc_s_c___l_s_d}{dialog to load a song}. ~\newline
+ \hyperlink{group___s_c___l_s_d_event_types}{More details}.\hypertarget{group___doc_s_c___l_s_d_DocSC_LSDEvents}{}\subsection{Events}\label{group___doc_s_c___l_s_d_DocSC_LSDEvents}
+These are the events for the \hyperlink{group___doc_s_c___l_s_d}{dialog to load a song}. ~\newline
+ \hyperlink{group___s_c___l_s_d_events}{More details}.\hypertarget{group___doc_s_c___l_s_d_DocSC_LSDPrivVar}{}\subsection{Private Variables}\label{group___doc_s_c___l_s_d_DocSC_LSDPrivVar}
+These are variables that are used internally by the \hyperlink{group___doc_s_c___l_s_d}{handler for loading a song into the Song Creation Interface}. ~\newline
+ \hyperlink{group___s_c___l_s_d_priv_var}{More details}.\hypertarget{group___doc_s_c___l_s_d_DocSC_LSDUnity}{}\subsection{Unity Functions}\label{group___doc_s_c___l_s_d_DocSC_LSDUnity}
+These are functions automatically called by Unity ~\newline
+ \hyperlink{group___s_c___l_s_d_unity}{More details}.\hypertarget{group___doc_s_c___l_s_d_DocSC_LSDHandlers}{}\subsection{Event Handlers}\label{group___doc_s_c___l_s_d_DocSC_LSDHandlers}
+These are functions called by the \hyperlink{class_s_c___load_song_dialog}{S\+C\+\_\+\+Load\+Song\+Dialog} to handle events. ~\newline
+ \hyperlink{group___s_c___l_s_d_handlers}{More details}.\hypertarget{group___doc_s_c___l_s_d_DocSC_LSDCode}{}\subsection{Code}\label{group___doc_s_c___l_s_d_DocSC_LSDCode}
+
+\begin{DoxyCodeInclude}
+1 \textcolor{preprocessor}{#if SONG\_CREATION\_ENABLED}
+2 
+3 \textcolor{keyword}{using} \hyperlink{namespace_system}{System}.Collections;
+4 \textcolor{keyword}{using} \hyperlink{namespace_system}{System}.Collections.Generic;
+5 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine};
+6 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine}.Assertions;
+7 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine}.Events;
+8 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine}.UI;
+9 \textcolor{comment}{}
+10 \textcolor{comment}{/**}
+11 \textcolor{comment}{ * @class SC\_LoadSongDialog}
+12 \textcolor{comment}{ * @brief A dialog that loads a song into the @link DocSC Song Creation Interface@endlink.}
+13 \textcolor{comment}{*/}
+14 \textcolor{keyword}{public} \textcolor{keyword}{class }\hyperlink{class_s_c___load_song_dialog}{SC\_LoadSongDialog} : MonoBehaviour
+15 \{
+16     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+17 \textcolor{comment}{    * @defgroup SC\_LSDEventTypes Event Types}
+18 \textcolor{comment}{    * @ingroup DocSC\_LSD}
+19 \textcolor{comment}{    * These are the types of events for the @link DocSC\_LSD dialog to load a song@endlink.}
+20 \textcolor{comment}{    * @\{}
+21 \textcolor{comment}{    ******************************************************************************/}
+22 \textcolor{comment}{}
+23 \textcolor{comment}{    /**}
+24 \textcolor{comment}{     * @brief A type of event that is invoked when a song is selected to be loaded.}
+25 \textcolor{comment}{     * }
+26 \textcolor{comment}{     * @see SC\_LoadSongDialog::OnSongSelectedEvent}
+27 \textcolor{comment}{    */}
+28     \textcolor{keyword}{public} \textcolor{keyword}{class }SongSelectedEvent : UnityEvent<Song> \{ \}
+29 
+30     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+31 \textcolor{comment}{    * @\}}
+32 \textcolor{comment}{    * @defgroup SC\_LSDEvents Events}
+33 \textcolor{comment}{    * @ingroup DocSC\_LSD}
+34 \textcolor{comment}{    * These are the events for the @link DocSC\_LSD dialog to load a song@endlink.}
+35 \textcolor{comment}{    * @\{}
+36 \textcolor{comment}{    ******************************************************************************/}
+37     \textcolor{keyword}{public} SongSelectedEvent \hyperlink{group___s_c___l_s_d_events_ga48d606b2c8291fee822dcc2b14ddcecc}{SongSelected}; \textcolor{comment}{//!< The event that is invoked when a song is
+       selected. No handler for this event in this class. It's meant to notify other classes.}
+38 \textcolor{comment}{}
+39     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+40 \textcolor{comment}{    * @\}}
+41 \textcolor{comment}{    * @defgroup SC\_LSDPrivVar Private Variables}
+42 \textcolor{comment}{    * @ingroup DocSC\_LSD}
+43 \textcolor{comment}{    * These are variables that are used internally by the @link DocSC\_LSD handler }
+44 \textcolor{comment}{    * for loading a song into the Song Creation Interface@endlink.}
+45 \textcolor{comment}{    * @\{}
+46 \textcolor{comment}{    ******************************************************************************/}
+47     \textcolor{keyword}{private} Button mCancelButton = null; \textcolor{comment}{//!< The button to cancel loading a song.}
+48 \textcolor{comment}{}    \textcolor{keyword}{private} Button mLoadButton = null; \textcolor{comment}{//!< The button to load the selected song.}
+49 \textcolor{comment}{}    \textcolor{keyword}{private} Dropdown mSongSelectionMenu = null; \textcolor{comment}{//!< The dropdown menu to select a song to load.}
+50 \textcolor{comment}{}    \textcolor{keyword}{private} \hyperlink{class_song}{Song} mSelectedSong = null; \textcolor{comment}{//!< The currently selected song.}
+51 \textcolor{comment}{}    \textcolor{keyword}{private} \hyperlink{class_virtual_instrument_manager}{VirtualInstrumentManager} mVIM = null; \textcolor{comment}{//!< The @link VIM Virtual
+       Instrument Manager@endlink.}
+52 \textcolor{comment}{}
+53     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+54 \textcolor{comment}{    * @\}}
+55 \textcolor{comment}{    * @defgroup SC\_LSDUnity Unity Functions}
+56 \textcolor{comment}{    * @ingroup DocSC\_LSD}
+57 \textcolor{comment}{    * These are functions automatically called by Unity}
+58 \textcolor{comment}{    * @\{}
+59 \textcolor{comment}{    ******************************************************************************/}
+60 \textcolor{comment}{}
+61 \textcolor{comment}{    /** }
+62 \textcolor{comment}{     * @brief Initializes the SC\_LoadSongDialog by getting references to its components.}
+63 \textcolor{comment}{    */}
+64     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{group___s_c___l_s_d_unity_ga2fe8760877d7edd380795cac5749be50}{Awake}()
+65     \{
+66         \textcolor{comment}{// Get the virtual instrument manager.}
+67         mVIM = GameObject.Find( \textcolor{stringliteral}{"VirtualInstrumentManager"} ).GetComponent<
+      \hyperlink{class_virtual_instrument_manager}{VirtualInstrumentManager}>();
+68         Assert.IsNotNull( mVIM, \textcolor{stringliteral}{"Could not get a reference to the VirtualInstrumentManager!"} );
+69 
+70         \textcolor{comment}{// Set up the event.}
+71         SongSelected = \textcolor{keyword}{new} SongSelectedEvent();
+72 
+73         \textcolor{comment}{// Set up the selection menu by getting a reference to it and clearing its options. Then, fill its
+       options}
+74         \textcolor{comment}{// with the songs in the SongManager. Also add its listener.}
+75         mSongSelectionMenu = transform.GetChild( 1 ).GetChild( 0 ).GetComponent<Dropdown>();
+76         mSongSelectionMenu.options.Clear();
+77         mSongSelectionMenu.AddOptions( mVIM.\hyperlink{group___v_i_m_pub_ga33dae94932c10c66db76a0eebec76b01}{SongManager}.\hyperlink{group___s_m_pub_func_ga2a9455a763e35cfb6b242a82f7d797ae}{GetSongNames}() );
+78         mSongSelectionMenu.onValueChanged.AddListener( \hyperlink{group___s_c___l_s_d_handlers_gacbe31698637339188fd50ba1a6723eab}{OnSongSelected} );
+79 
+80         \textcolor{comment}{// Get the default }
+81         mSelectedSong = mVIM.\hyperlink{group___v_i_m_pub_ga33dae94932c10c66db76a0eebec76b01}{SongManager}.\hyperlink{group___s_m_pub_func_ga3bf6a6d42a7c5e94cc85ba10eb9e6edb}{GetSongs}()[0];
+82 
+83         \textcolor{comment}{// Set up the buttons.}
+84         mLoadButton = transform.GetChild( 1 ).GetChild( 2 ).GetComponent<Button>();
+85         mLoadButton.onClick.AddListener( \hyperlink{group___s_c___l_s_d_handlers_gad6ab852f2ac019395482e8c836061639}{OnLoadButtonClicked} );
+86         mCancelButton = transform.GetChild( 1 ).GetChild( 1 ).GetComponent<Button>();
+87         mCancelButton.onClick.AddListener( \hyperlink{group___s_c___l_s_d_handlers_gae393a24bbdd4fa1d2b45fa4199fb453a}{OnCancelButtonClicked} );
+88 
+89     \}
+90 
+91     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+92 \textcolor{comment}{    * @\}}
+93 \textcolor{comment}{    * @defgroup SC\_LSDHandlers Event Handlers}
+94 \textcolor{comment}{    * @ingroup DocSC\_LSD}
+95 \textcolor{comment}{    * These are functions called by the SC\_LoadSongDialog to handle events.}
+96 \textcolor{comment}{    * @\{}
+97 \textcolor{comment}{    ******************************************************************************/}
+98 \textcolor{comment}{}
+99 \textcolor{comment}{    /**}
+100 \textcolor{comment}{     * @brief Gets the selected Song from the @link SongManagerClass song manager@endlink.}
+101 \textcolor{comment}{     * @param[in] aIndex The index of the selected song.}
+102 \textcolor{comment}{    */}
+103     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{group___s_c___l_s_d_handlers_gacbe31698637339188fd50ba1a6723eab}{OnSongSelected}( \textcolor{keywordtype}{int} aIndex )
+104     \{
+105         mSelectedSong = mVIM.\hyperlink{group___v_i_m_pub_ga33dae94932c10c66db76a0eebec76b01}{SongManager}.\hyperlink{group___s_m_pub_func_gafe818c55bd858c52c95a2fa7a566006a}{GetSongByName}( mSongSelectionMenu.options[
+      aIndex].text );
+106     \}
+107 \textcolor{comment}{}
+108 \textcolor{comment}{    /**}
+109 \textcolor{comment}{     * @brief Handles the @link SC\_LoadSongDialog::mCancelButton Cancel button@endlink being clicked with
+       self-destruction.}
+110 \textcolor{comment}{    */}
+111     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{group___s_c___l_s_d_handlers_gae393a24bbdd4fa1d2b45fa4199fb453a}{OnCancelButtonClicked}()
+112     \{
+113         DestroyImmediate( gameObject, \textcolor{keyword}{false} );
+114     \}
+115 \textcolor{comment}{}
+116 \textcolor{comment}{    /**}
+117 \textcolor{comment}{     * @brief Handles the @link SC\_LoadSongDialog::mLoadButton Load button@endlink being clicked by
+       invoking the SongSelectedEvent and destroying itself.}
+118 \textcolor{comment}{    */}
+119     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{group___s_c___l_s_d_handlers_gad6ab852f2ac019395482e8c836061639}{OnLoadButtonClicked}()
+120     \{
+121         SongSelected.Invoke( mSelectedSong );
+122         DestroyImmediate( gameObject, \textcolor{keyword}{false} );
+123     \}
+124 \textcolor{comment}{}
+125 \textcolor{comment}{    /** @\} */}
+126 \}
+127 
+128 \textcolor{preprocessor}{#endif}
+\end{DoxyCodeInclude}
+ 

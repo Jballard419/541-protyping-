@@ -1,0 +1,143 @@
+\hypertarget{group___doc_s_c___p_s_t}{}\section{Pitch Selection Trigger}
+\label{group___doc_s_c___p_s_t}\index{Pitch Selection Trigger@{Pitch Selection Trigger}}
+
+
+Informs the \hyperlink{group___doc_s_c___p_s_c}{parent handler} about a \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitch} or \hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{drum} being selected in the \hyperlink{group___doc_s_c}{Song Creation Interface}.  
+
+
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___s_c___p_s_t_handlers}{Event Handlers}
+\item 
+\hyperlink{group___s_c___p_s_t_priv_var}{Private Variables}
+\item 
+\hyperlink{group___s_c___p_s_t_pub_func}{Public Functions}
+\item 
+\hyperlink{group___s_c___p_s_t_unity}{Unity Functions}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Informs the \hyperlink{group___doc_s_c___p_s_c}{parent handler} about a \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitch} or \hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{drum} being selected in the \hyperlink{group___doc_s_c}{Song Creation Interface}. 
+
+\hypertarget{group___doc_s_c___p_s_t_DocSC_PSTPrivVar}{}\subsection{Private Variables}\label{group___doc_s_c___p_s_t_DocSC_PSTPrivVar}
+These are variables that are used internally by the \hyperlink{class_s_c___pitch_selection_trigger}{S\+C\+\_\+\+Pitch\+Selection\+Trigger} ~\newline
+ \hyperlink{group___s_c___p_s_t_priv_var}{More details}.\hypertarget{group___doc_s_c___p_s_t_DocSC_PSTUnity}{}\subsection{Unity Functions}\label{group___doc_s_c___p_s_t_DocSC_PSTUnity}
+These are functions that are automatically called by Unity. ~\newline
+ \hyperlink{group___s_c___p_s_t_unity}{More details}.\hypertarget{group___doc_s_c___p_s_t_DocSC_PSTPubFunc}{}\subsection{Public Functions}\label{group___doc_s_c___p_s_t_DocSC_PSTPubFunc}
+These are functions that allow other classes to interact with the \hyperlink{class_s_c___pitch_selection_trigger}{S\+C\+\_\+\+Pitch\+Selection\+Trigger}. ~\newline
+ \hyperlink{group___s_c___p_s_t_pub_func}{More details}.\hypertarget{group___doc_s_c___p_s_t_DocSC_PSTHandlers}{}\subsection{Event Handlers}\label{group___doc_s_c___p_s_t_DocSC_PSTHandlers}
+These are functions that are called by the \hyperlink{class_s_c___pitch_selection_trigger}{S\+C\+\_\+\+Pitch\+Selection\+Trigger} in response to events. ~\newline
+ \hyperlink{group___s_c___p_s_t_handlers}{More details}.\hypertarget{group___doc_s_c___p_s_t_DocSC_PSTCode}{}\subsection{Code}\label{group___doc_s_c___p_s_t_DocSC_PSTCode}
+
+\begin{DoxyCodeInclude}
+1 \textcolor{preprocessor}{#if SONG\_CREATION\_ENABLED}
+2 
+3 \textcolor{keyword}{using} \hyperlink{namespace_system}{System}.Collections;
+4 \textcolor{keyword}{using} \hyperlink{namespace_system}{System}.Collections.Generic;
+5 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine};
+6 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine}.Assertions;
+7 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine}.EventSystems;
+8 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine}.SceneManagement;
+9 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine}.UI;
+10 \textcolor{comment}{}
+11 \textcolor{comment}{/**}
+12 \textcolor{comment}{ * @class SC\_PitchSelectionTrigger}
+13 \textcolor{comment}{ * @brief Informs the @link DocSC\_PSC parent handler@endlink about a @link Music::PITCH pitch@endlink or
+       @link Music::DRUM drum@endlink being selected in the @link DocSC Song Creation Interface@endlink.}
+14 \textcolor{comment}{*/}
+15 \textcolor{keyword}{public} \textcolor{keyword}{class }\hyperlink{class_s_c___pitch_selection_trigger}{SC\_PitchSelectionTrigger} : MonoBehaviour
+16 \{
+17     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+18 \textcolor{comment}{    * @defgroup SC\_PSTPrivVar Private Variables}
+19 \textcolor{comment}{    * @ingroup DocSC\_PST}
+20 \textcolor{comment}{    * These are variables that are used internally by the SC\_PitchSelectionTrigger}
+21 \textcolor{comment}{    * @\{}
+22 \textcolor{comment}{    ******************************************************************************/}
+23     \textcolor{keyword}{private} \textcolor{keywordtype}{int} mIndex = -1; \textcolor{comment}{//!< The index of this trigger in @link DocSC\_PSC the parent handler@endlink.}
+24 \textcolor{comment}{}    \textcolor{keyword}{private} \hyperlink{class_s_c___pitch_selection_container}{SC\_PitchSelectionContainer} mHandler = null; \textcolor{comment}{//!< @link DocSC\_PSC The
+       parent handler@endlink.}
+25 \textcolor{comment}{}    \textcolor{keyword}{private} Toggle \hyperlink{group___s_c___p_s_t_priv_var_ga1ecd33f50c82f6ffda81850438907a31}{mToggle}; \textcolor{comment}{//!< The associated toggle switch that indicates whether or not the
+       represented @link Music::PITCH pitch@endlink or @link Music::DRUM drum@endlink is selected.}
+26 \textcolor{comment}{}
+27     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+28 \textcolor{comment}{    * @\}}
+29 \textcolor{comment}{    * @defgroup SC\_PSTUnity Unity Functions}
+30 \textcolor{comment}{    * @ingroup DocSC\_PST}
+31 \textcolor{comment}{    * These are functions that are automatically called by Unity.}
+32 \textcolor{comment}{    * @\{}
+33 \textcolor{comment}{    ******************************************************************************/}
+34 \textcolor{comment}{}
+35 \textcolor{comment}{    /**}
+36 \textcolor{comment}{     * @brief Initializes the SC\_PitchSelectionTrigger by getting a reference to its @link
+       SC\_PitchSelectionTrigger::mToggle toggle switch@endlink.}
+37 \textcolor{comment}{    */}
+38     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{group___s_c___p_s_t_unity_gafa93dcca78e174eb2de6c4ea83b66a39}{Awake}()
+39     \{
+40         \textcolor{comment}{// Get the toggle and add its listener.}
+41         mToggle = gameObject.GetComponent<Toggle>();
+42         mToggle.onValueChanged.AddListener( \hyperlink{group___s_c___p_s_t_handlers_ga5f4ea69eee3ed20cb09d56b7281ce861}{OnPitchSelected} );
+43     \}
+44 
+45     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+46 \textcolor{comment}{    * @\}}
+47 \textcolor{comment}{    * @defgroup SC\_PSTPubFunc Public Functions}
+48 \textcolor{comment}{    * @ingroup DocSC\_PST}
+49 \textcolor{comment}{    * These are functions that allow other classes to interact with the SC\_PitchSelectionTrigger.}
+50 \textcolor{comment}{    * @\{}
+51 \textcolor{comment}{    ******************************************************************************/}
+52 \textcolor{comment}{}
+53 \textcolor{comment}{    /**}
+54 \textcolor{comment}{     * @brief Sets @link DocSC\_PSC the parent handler@endlink.}
+55 \textcolor{comment}{     * @param[in] aHandler @link DocSC\_PSC The parent handler@endlink.}
+56 \textcolor{comment}{    */}
+57     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___s_c___p_s_t_pub_func_ga0b334518dbdac5874adf9436cd2c7fed}{SetHandler}( \hyperlink{class_s_c___pitch_selection_container}{SC\_PitchSelectionContainer} aHandler )
+58     \{
+59         mHandler = aHandler;
+60     \}
+61 \textcolor{comment}{}
+62 \textcolor{comment}{    /**}
+63 \textcolor{comment}{     * @brief Sets the index of this trigger in @link DocSC\_PSC the parent handler@endlink.}
+64 \textcolor{comment}{     * @param[in] aIndex The index of this trigger in @link DocSC\_PSC the parent handler@endlink.}
+65 \textcolor{comment}{    */}
+66     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___s_c___p_s_t_pub_func_ga0b4edbf9719a384aa5cf8d29d1065696}{SetIndex}( \textcolor{keywordtype}{int} aIndex )
+67     \{
+68         mIndex = aIndex;
+69     \}
+70 \textcolor{comment}{}
+71 \textcolor{comment}{    /**}
+72 \textcolor{comment}{     * @brief Sets whether or not this trigger is selected.}
+73 \textcolor{comment}{     * @param[in] aSelected True if the trigger is selected. False otherwise.}
+74 \textcolor{comment}{    */}
+75     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___s_c___p_s_t_pub_func_ga267db9aed38ba33ad44c26c84a1757df}{SetSelection}( \textcolor{keywordtype}{bool} aSelected )
+76     \{
+77         \textcolor{comment}{// Update the toggle switch.}
+78         mToggle.onValueChanged.RemoveListener( \hyperlink{group___s_c___p_s_t_handlers_ga5f4ea69eee3ed20cb09d56b7281ce861}{OnPitchSelected} );
+79         mToggle.isOn = aSelected;
+80         mToggle.onValueChanged.AddListener( \hyperlink{group___s_c___p_s_t_handlers_ga5f4ea69eee3ed20cb09d56b7281ce861}{OnPitchSelected} );
+81     \}
+82 
+83     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+84 \textcolor{comment}{    * @\}}
+85 \textcolor{comment}{    * @defgroup SC\_PSTHandlers Event Handlers}
+86 \textcolor{comment}{    * @ingroup DocSC\_PST}
+87 \textcolor{comment}{    * These are functions that are called by the SC\_PitchSelectionTrigger in response to events.}
+88 \textcolor{comment}{    * @\{}
+89 \textcolor{comment}{    ******************************************************************************/}
+90 \textcolor{comment}{}
+91 \textcolor{comment}{    /**}
+92 \textcolor{comment}{     * @brief Handles when a the trigger is selected via the @link SC\_PitchSelectionTrigger::mToggle
+       associated toggle switch@endlink by @link SC\_PitchSelectionContainer::HandlePitchSelection passing the
+       event@endlink to the @link DocSC\_PSC parent handler@endlink.}
+93 \textcolor{comment}{     * @param[in] aSelected True if the trigger was selected. False otherwise.}
+94 \textcolor{comment}{    */}
+95     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___s_c___p_s_t_handlers_ga5f4ea69eee3ed20cb09d56b7281ce861}{OnPitchSelected}( \textcolor{keywordtype}{bool} aSelected )
+96     \{
+97         mHandler.\hyperlink{group___s_c___p_s_c_handlers_gaa2afa8167100515d412cf751d9334f0c}{HandlePitchSelection}( aSelected, mIndex );
+98     \}\textcolor{comment}{}
+99 \textcolor{comment}{    /** @\} */}
+100 \}
+101 \textcolor{preprocessor}{#endif}
+\end{DoxyCodeInclude}
+ 

@@ -1,0 +1,72 @@
+\hypertarget{class_black_key}{}\section{Black\+Key Class Reference}
+\label{class_black_key}\index{Black\+Key@{Black\+Key}}
+
+
+A script for handling the behavior of a black key on the keyboard.  
+
+
+Inheritance diagram for Black\+Key\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_black_key}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{group___black_key_event_types_class_black_key_1_1_black_key_pressed_event}{Black\+Key\+Pressed\+Event}
+\item 
+class \hyperlink{group___black_key_event_types_class_black_key_1_1_black_key_released_event}{Black\+Key\+Released\+Event}
+\begin{DoxyCompactList}\small\item\em $<$ Used for testing the container. Will probably need to change later.  \hyperlink{group___black_key_event_types_class_black_key_1_1_black_key_released_event}{More...}\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___black_key_pub_func_ga49d807a46e36ba19211be329db1cbd2e}{Set\+Parent\+Container} (\hyperlink{class_key_container}{Key\+Container} a\+Container)
+\begin{DoxyCompactList}\small\item\em Sets the \hyperlink{group___doc_key_contain}{parent container}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___black_key_event_types_class_black_key_1_1_black_key_pressed_event}{Black\+Key\+Pressed\+Event} \hyperlink{group___black_key_events_ga51f1badf49df0c54e31a20ba4b7abd6b}{Black\+Key\+Pressed} = null
+\begin{DoxyCompactList}\small\item\em Used for testing the container. Will probably need to change later. \end{DoxyCompactList}\item 
+\hyperlink{group___black_key_event_types_class_black_key_1_1_black_key_released_event}{Black\+Key\+Released\+Event} \hyperlink{group___black_key_events_ga2710bdaba16dbdb82c0d38f11ce642d8}{Black\+Key\+Released} = null
+\begin{DoxyCompactList}\small\item\em Used for testing the container. Will probably need to change later. \end{DoxyCompactList}\item 
+float \hyperlink{group___black_key_pub_var_ga6fb983b09b3b6f80eab375fcb43010c1}{Velocity}
+\begin{DoxyCompactList}\small\item\em The velocity of the key object. \end{DoxyCompactList}\item 
+\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} \hyperlink{group___black_key_pub_var_gad233c456182c9cef7c01486484940439}{Pitch} = \hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da7009daf81333670cd06b8bb2b02054cc}{Music.\+P\+I\+T\+C\+H.\+C\+S4}
+\begin{DoxyCompactList}\small\item\em The pitch that this key represents. \end{DoxyCompactList}\item 
+string \hyperlink{group___black_key_pub_var_gaa541d3fb6cbb1361d5c062ce7b3c4e29}{Key} = \char`\"{}A\char`\"{}
+\begin{DoxyCompactList}\small\item\em The key that begins pressing the black key. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___black_key_unity_ga6e05fcdf362e52d9a71b4f25ad840b5b}{Awake} ()
+\begin{DoxyCompactList}\small\item\em Called when object is initialized. \end{DoxyCompactList}\item 
+void \hyperlink{group___black_key_unity_ga24ef6b8b614685c5591868b9b23197ed}{Update} ()
+\begin{DoxyCompactList}\small\item\em Called every frame. Used for loading the \hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager}. \end{DoxyCompactList}\item 
+void \hyperlink{group___black_key_unity_gad8926397bba69558f5440eac2c38aff8}{Fixed\+Update} ()
+\begin{DoxyCompactList}\small\item\em Called every physics step. Used for applying force to the Rigid\+Body. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{group___black_key_priv_var_gaf66e1f99786497961efaf5ded22e4977}{m\+Key\+Pressed} = false
+\begin{DoxyCompactList}\small\item\em Has the note started? \end{DoxyCompactList}\item 
+Key\+Code \hyperlink{group___black_key_priv_var_ga2272fa345880793dcd89f7ca942f6685}{m\+Key\+Code}
+\begin{DoxyCompactList}\small\item\em The keycode to check for when testing physics. \end{DoxyCompactList}\item 
+\hyperlink{class_key_container}{Key\+Container} \hyperlink{group___black_key_priv_var_ga11beacc28de4d17e70c4188bfdc2bdf0}{m\+Container} = null
+\begin{DoxyCompactList}\small\item\em The parent \hyperlink{group___doc_key_contain}{container}. \end{DoxyCompactList}\item 
+Rigidbody \hyperlink{group___black_key_priv_var_ga5185c6ea66892bcbe9e83eb615f39566}{m\+Rigid\+Body}
+\begin{DoxyCompactList}\small\item\em The rigidbody representing the key. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A script for handling the behavior of a black key on the keyboard. 
+
+This class defines the behavior for a Unity Game\+Object that represents a black key on the keyboard. 
+
+Definition at line 14 of file Black\+Key.\+cs.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Documents/\+School Documents/2017\+Spring/\+E\+E\+C\+S542/\+V\+R\+Piano\+Project/\+Assets/\+Scripts/\+Physics/\hyperlink{_black_key_8cs}{Black\+Key.\+cs}\end{DoxyCompactItemize}

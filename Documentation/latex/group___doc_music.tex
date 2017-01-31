@@ -1,0 +1,602 @@
+\hypertarget{group___doc_music}{}\section{Music}
+\label{group___doc_music}\index{Music@{Music}}
+
+
+A container for everything related to music such as pitches and note lengths. This class does not need to be initialized to use.  
+
+
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___music_constants}{Constants}
+\item 
+\hyperlink{group___music_enums}{Enums}
+\item 
+\hyperlink{group___music_stat_func}{Static Functions}
+\item 
+\hyperlink{group___music_structs}{Structs}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A container for everything related to music such as pitches and note lengths. This class does not need to be initialized to use. 
+
+\hypertarget{group___doc_music_DocMusicInfo}{}\subsection{Information}\label{group___doc_music_DocMusicInfo}
+This class provides structs, enums, constants, and static functions related to abstract representations of music. \char`\"{}\+Abstract representation\char`\"{} meaning that this class only deals with the musical notation side of things rather than the audio data. For examples, note length from this class would be given as something like a quarter note rather than a number of waveform samples.\hypertarget{group___doc_music_DocMusicConstants}{}\subsection{Constants}\label{group___doc_music_DocMusicConstants}
+These are constants used in the \hyperlink{group___music_stat_func}{static functions below}. ~\newline
+ \hyperlink{group___music_constants}{More details}.\hypertarget{group___doc_music_DocMusicEnums}{}\subsection{Enums}\label{group___doc_music_DocMusicEnums}
+These are enums which help other classes organize anything related to music. Enums are pretty much just integer arrays with unique identifiers instead of indices. They\textquotesingle{}re used to help make code more readable. An example of using an enum would be\+:
+\begin{DoxyCode}
+\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH} newNotePitch = \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.C4; 
+\end{DoxyCode}
+ The actual values of each member of these enums (remember that it\textquotesingle{}s pretty much an array of integers) range from 0 to the number of members minus 1, and these values can be retrieved by typecasting. For example\+: 
+\begin{DoxyCode}
+\textcolor{keywordtype}{int} noteIndex = (int)\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.C4; \textcolor{comment}{// noteIndex now holds the value 48. }
+\end{DoxyCode}
+ note\+Index holds the value 48 because \hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1dab713e6323a68d3ddabf4855826c50148}{C4} is the 49th member of the \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitch enum} which starts from 0. The members values can be typecast to int,float,... and vice-\/versa. For example\+: 
+\begin{DoxyCode}
+\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH} newPitch = (\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH})48; \textcolor{comment}{// newPitch now holds the value Music.PITCH.C4 }
+\end{DoxyCode}
+ ~\newline
+ \hyperlink{group___music_enums}{More details}.\hypertarget{group___doc_music_DocMusicStructs}{}\subsection{Structs}\label{group___doc_music_DocMusicStructs}
+These are structs used to hold abstract representations of \hyperlink{class_music}{Music}. There are three structs for different types of notes (\hyperlink{group___music_structs_struct_music_1_1_melody_note}{melody}, \hyperlink{group___music_structs_struct_music_1_1_percussion_note}{percussion}, and \hyperlink{group___music_structs_struct_music_1_1_combined_note}{both}) and one for representing a \hyperlink{group___music_structs_struct_music_1_1_time_signature}{time signature}. ~\newline
+ \hyperlink{group___music_structs}{More details}.\hypertarget{group___doc_music_DocMusicStatFunc}{}\subsection{Static Functions}\label{group___doc_music_DocMusicStatFunc}
+These are functions that can be used to help utilize the \hyperlink{group___music_enums}{enums} and \hyperlink{group___music_structs}{structs} from the \hyperlink{class_music}{Music} class. ~\newline
+ \hyperlink{group___music_stat_func}{More details}.\hypertarget{group___doc_music_DocMusicCode}{}\subsection{Code}\label{group___doc_music_DocMusicCode}
+
+\begin{DoxyCodeInclude}
+\textcolor{keyword}{using} \hyperlink{namespace_system}{System}.Collections;
+\textcolor{keyword}{using} \hyperlink{namespace_system}{System}.Collections.Generic;
+\textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine};
+\textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine}.Assertions;
+\textcolor{comment}{}
+\textcolor{comment}{/**}
+\textcolor{comment}{ * @class Music}
+\textcolor{comment}{ * @brief A container for everything related to music such as pitches and note lengths. This class does not
+       need to be initialized to use.}
+\textcolor{comment}{ * }
+\textcolor{comment}{ * This class provides structs, enums, constants, and static functions related to }
+\textcolor{comment}{ * abstract representations of music. "Abstract representation" meaning that this class}
+\textcolor{comment}{ * only deals with the musical notation side of things rather than the audio data. }
+\textcolor{comment}{ * For examples, note length from this class would be given as something like a quarter note }
+\textcolor{comment}{ * rather than a number of waveform samples.}
+\textcolor{comment}{ * }
+\textcolor{comment}{ * @nosubgrouping}
+\textcolor{comment}{*/}
+\textcolor{keyword}{public} \textcolor{keyword}{class }\hyperlink{class_music}{Music}
+\{
+
+    \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+\textcolor{comment}{    * @defgroup MusicConstants Constants}
+\textcolor{comment}{    * @ingroup DocMusic}
+\textcolor{comment}{    * These are constants used in the @link MusicStatFunc static functions below@endlink.}
+\textcolor{comment}{    ****************************************************************************/}\textcolor{comment}{}
+\textcolor{comment}{    /** @\{ */}
+    \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{string}[] DRUM\_STRING =
+        \{ \textcolor{stringliteral}{"KICK\_1"}, \textcolor{stringliteral}{"KICK\_2"}, \textcolor{stringliteral}{"SNARE\_1"}, \textcolor{stringliteral}{"SNARE\_RIM"}, \textcolor{stringliteral}{"SNARE\_2"}, \textcolor{stringliteral}{"LOWTOM\_1"},
+        \textcolor{stringliteral}{"HIHAT\_C"}, \textcolor{stringliteral}{"LOWTOM\_2"}, \textcolor{stringliteral}{"HIHAT\_P"}, \textcolor{stringliteral}{"MIDTOM\_1"}, \textcolor{stringliteral}{"HIHAT\_O"}, \textcolor{stringliteral}{"MIDTOM\_2"},
+        \textcolor{stringliteral}{"HIGHTOM\_1"}, \textcolor{stringliteral}{"CRASH\_1"}, \textcolor{stringliteral}{"HIGHTOM\_2"}, \textcolor{stringliteral}{"RIDE"}, \textcolor{stringliteral}{"CRASH\_2"}, \textcolor{stringliteral}{"RIDE\_BELL"} \}; \textcolor{comment}{//!< An array of strings
+       that represent the name of each type of drum.}
+\textcolor{comment}{}    \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{string}[] PITCH\_STRING = \{ \textcolor{stringliteral}{"C"}, \textcolor{stringliteral}{"CS"}, \textcolor{stringliteral}{"D"}, \textcolor{stringliteral}{"DS"}, \textcolor{stringliteral}{"E"}, \textcolor{stringliteral}{"F"}, \textcolor{stringliteral}{"FS"}, \textcolor{stringliteral}{"G"}, \textcolor{stringliteral}{"GS"}, \textcolor{stringliteral}{"A"}, \textcolor{stringliteral}{"AS"}, \textcolor{stringliteral}{"B"}
+       \}; \textcolor{comment}{//!< An array of strings that represent each pitch in an octave.}
+\textcolor{comment}{}    \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{short} NUM\_NOTES\_IN\_OCTAVE = 12; \textcolor{comment}{//!< The number of notes in an octave}
+\textcolor{comment}{}    \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{int} MAX\_SUPPORTED\_NOTES = 120; \textcolor{comment}{//!< The maximum number of pitches that a
+       VirtualInstrument could support.}
+\textcolor{comment}{}    \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{int} MAX\_SUPPORTED\_DRUMS = 18; \textcolor{comment}{//!< The maximum number of drums that a DrumKit could
+       support.}
+\textcolor{comment}{}\textcolor{comment}{    /** @\} */}
+
+    \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+\textcolor{comment}{     * @defgroup MusicEnums Enums}
+\textcolor{comment}{     * @ingroup DocMusic}
+\textcolor{comment}{     * These are enums which help other classes organize anything related to music.}
+\textcolor{comment}{     * Enums are pretty much just integer arrays with unique identifiers instead of indices. They're used
+       to help make code more readable.}
+\textcolor{comment}{     * An example of using an enum would be: @code Music.PITCH newNotePitch = Music.PITCH.C4; @endcode }
+\textcolor{comment}{     * The actual values of each member of these enums (remember that it's pretty much an array of
+       integers)}
+\textcolor{comment}{     * range from 0 to the number of members minus 1, and these values can be retrieved by typecasting.}
+\textcolor{comment}{     * For example: }
+\textcolor{comment}{     * @code int noteIndex = (int)Music.PITCH.C4; // noteIndex now holds the value 48. @endcode }
+\textcolor{comment}{     * noteIndex holds the value 48 because @link Music::PITCH::C4 C4@endlink is the 49th member of the
+       @link Music::PITCH pitch enum@endlink which starts from 0.}
+\textcolor{comment}{     * The members values can be typecast to int,float,... and vice-versa.}
+\textcolor{comment}{     * For example: }
+\textcolor{comment}{     * @code Music.PITCH newPitch = (Music.PITCH)48; // newPitch now holds the value Music.PITCH.C4
+       @endcode}
+\textcolor{comment}{     ****************************************************************************/}\textcolor{comment}{}
+\textcolor{comment}{    /** @\{ */}
+\textcolor{comment}{}
+\textcolor{comment}{    /**}
+\textcolor{comment}{    * @enum DRUM}
+\textcolor{comment}{    * @brief The possible drums/cymbals that can be played}
+\textcolor{comment}{    */}
+    \textcolor{keyword}{public} \textcolor{keyword}{enum} \hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}
+    \{
+        KICK\_1,
+        KICK\_2,
+        SNARE\_1,
+        SNARE\_RIM,
+        SNARE\_2,
+        LOWTOM\_1,
+        HIHAT\_C,
+        LOWTOM\_2,
+        HIHAT\_P,
+        MIDTOM\_1,
+        HIHAT\_O,
+        MIDTOM\_2,
+        HIGHTOM\_1,
+        CRASH\_1,
+        HIGHTOM\_2,
+        RIDE,
+        CRASH\_2,
+        RIDE\_BELL
+    \}
+\textcolor{comment}{}
+\textcolor{comment}{    /**}
+\textcolor{comment}{     * @enum INSTRUMENT\_TYPE}
+\textcolor{comment}{     * }
+\textcolor{comment}{     * @brief The types of instruments that are currently supported.}
+\textcolor{comment}{    */}
+    \textcolor{keyword}{public} \textcolor{keyword}{enum} \hyperlink{group___music_enums_gabfce60192305965558a36e368ebd67c3}{INSTRUMENT\_TYPE}
+    \{
+        PIANO, \textcolor{comment}{//!< A Piano}
+\textcolor{comment}{}        MARIMBA, \textcolor{comment}{//!< A Marimba}
+\textcolor{comment}{}        DRUM\_KIT \textcolor{comment}{//!< A DrumKit}
+\textcolor{comment}{}    \};
+\textcolor{comment}{}
+\textcolor{comment}{    /**}
+\textcolor{comment}{     * @enum NOTE\_LENGTH}
+\textcolor{comment}{     * @brief Abstract representations of a note's length.}
+\textcolor{comment}{     * }
+\textcolor{comment}{     * As of now, we only support 32nd notes up to whole notes and their dotted equivalents.}
+\textcolor{comment}{     * Triplets are not currently supported, but will be in the near future.}
+\textcolor{comment}{    */}
+    \textcolor{keyword}{public} \textcolor{keyword}{enum} \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}
+    \{
+        T, \textcolor{comment}{//!< 32nd note.}
+\textcolor{comment}{}        D\_T, \textcolor{comment}{//!< Dotted 32nd note.}
+\textcolor{comment}{}        S, \textcolor{comment}{//!< 16th note.}
+\textcolor{comment}{}        D\_S, \textcolor{comment}{//!< Dotted 16th note.}
+\textcolor{comment}{}        E, \textcolor{comment}{//!< Eighth note.}
+\textcolor{comment}{}        D\_E, \textcolor{comment}{//!< Dotted eighth note.}
+\textcolor{comment}{}        Q, \textcolor{comment}{//!< Quarter note.}
+\textcolor{comment}{}        D\_Q, \textcolor{comment}{//!< Dotted quarter note.}
+\textcolor{comment}{}        H, \textcolor{comment}{//!< Half note.}
+\textcolor{comment}{}        D\_H, \textcolor{comment}{//!< Dotted half note.}
+\textcolor{comment}{}        W, \textcolor{comment}{//!< Whole note.}
+\textcolor{comment}{}        D\_W, \textcolor{comment}{//!< Dotted whole note.}
+\textcolor{comment}{}        NONE \textcolor{comment}{//!< No length }
+\textcolor{comment}{}    \};
+\textcolor{comment}{}
+\textcolor{comment}{    /** }
+\textcolor{comment}{     * @enum PITCH}
+\textcolor{comment}{     * @brief The possible pitches that can be played. The range is from C0 to B9 with an extra entry for a
+       rest note (No pitch).}
+\textcolor{comment}{     * }
+\textcolor{comment}{     * The base pitches are C, C#, D, D# E, F, F#, G, G#, A, A#, and B. These 12 notes make up an octave.}
+\textcolor{comment}{     * For a pitch C4, the C refers to the base pitch, and the 4 refers to the specific octave. }
+\textcolor{comment}{     * @n For reference, C4 is known as Middle C. }
+\textcolor{comment}{    */}
+    \textcolor{keyword}{public} \textcolor{keyword}{enum} \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}
+    \{
+        C0,
+        CS0,
+        D0,
+        DS0,
+        E0,
+        F0,
+        FS0,
+        G0,
+        GS0,
+        A0,
+        AS0,
+        B0,
+        C1,
+        CS1,
+        D1,
+        DS1,
+        E1,
+        F1,
+        FS1,
+        G1,
+        GS1,
+        A1,
+        AS1,
+        B1,
+        C2,
+        CS2,
+        D2,
+        DS2,
+        E2,
+        F2,
+        FS2,
+        G2,
+        GS2,
+        A2,
+        AS2,
+        B2,
+        C3,
+        CS3,
+        D3,
+        DS3,
+        E3,
+        F3,
+        FS3,
+        G3,
+        GS3,
+        A3,
+        AS3,
+        B3,
+        C4,
+        CS4,
+        D4,
+        DS4,
+        E4,
+        F4,
+        FS4,
+        G4,
+        GS4,
+        A4,
+        AS4,
+        B4,
+        C5,
+        CS5,
+        D5,
+        DS5,
+        E5,
+        F5,
+        FS5,
+        G5,
+        GS5,
+        A5,
+        AS5,
+        B5,
+        C6,
+        CS6,
+        D6,
+        DS6,
+        E6,
+        F6,
+        FS6,
+        G6,
+        GS6,
+        A6,
+        AS6,
+        B6,
+        C7,
+        CS7,
+        D7,
+        DS7,
+        E7,
+        F7,
+        FS7,
+        G7,
+        GS7,
+        A7,
+        AS7,
+        B7,
+        C8,
+        CS8,
+        D8,
+        DS8,
+        E8,
+        F8,
+        FS8,
+        G8,
+        GS8,
+        A8,
+        AS8,
+        B8,
+        C9,
+        CS9,
+        D9,
+        DS9,
+        E9,
+        F9,
+        FS9,
+        G9,
+        GS9,
+        A9,
+        AS9,
+        B9,
+        REST
+    \}\textcolor{comment}{}
+\textcolor{comment}{    /** @\} */}
+
+    \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+\textcolor{comment}{    * @defgroup MusicStructs Structs}
+\textcolor{comment}{    * @ingroup DocMusic}
+\textcolor{comment}{    * These are structs used to hold abstract representations of Music. There are three structs}
+\textcolor{comment}{    * for different types of notes (@link Music::MelodyNote melody@endlink, @link Music::PercussionNote
+       percussion@endlink, }
+\textcolor{comment}{    * and @link Music::CombinedNote both@endlink) and one for representing}
+\textcolor{comment}{    * a @link Music::TimeSignature time signature@endlink.}
+\textcolor{comment}{    ****************************************************************************/}\textcolor{comment}{}
+\textcolor{comment}{    /** @\{ */}
+\textcolor{comment}{}
+\textcolor{comment}{    /**}
+\textcolor{comment}{     * @struct Music::MelodyNote}
+\textcolor{comment}{     * @brief A struct that provides an abstract representation of a note for a non-DrumKit
+       VirtualInstrument.}
+\textcolor{comment}{    */}
+    \textcolor{keyword}{public} \textcolor{keyword}{struct }MelodyNote
+    \{
+        \textcolor{keyword}{public} \textcolor{keywordtype}{int} \hyperlink{group___music_structs_a0c87d54ce8d28ea08fb4a526cb821c20}{Velocity}; \textcolor{comment}{//!< The velocity of the note.}
+\textcolor{comment}{}        \textcolor{keyword}{public} \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}[] \hyperlink{group___music_structs_aab23b49ea9d7961aef5091154ce45946}{Pitches}; \textcolor{comment}{//!< The pitches of the note. @see PITCH}
+\textcolor{comment}{}        \textcolor{keyword}{public} \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH} \hyperlink{group___music_structs_ac35cd02f5b3c00e3040b51e40e9e6c94}{Length}; \textcolor{comment}{//!< The length of the note. @see NOTE\_LENGTH}
+\textcolor{comment}{}    \}
+\textcolor{comment}{}
+\textcolor{comment}{    /**}
+\textcolor{comment}{     * @struct Music::PercussionNote}
+\textcolor{comment}{     * @brief A struct that provides an abstract representation of a note for a DrumKit.}
+\textcolor{comment}{    */}
+    \textcolor{keyword}{public} \textcolor{keyword}{struct }PercussionNote
+    \{
+        \textcolor{keyword}{public} \textcolor{keywordtype}{bool} HasHiHat; \textcolor{comment}{//!< Whether or not the note contains a hi-hat hit. This is used to silence
+       open hi-hat hits when a closed/pedal hit occurs.}
+\textcolor{comment}{}        \textcolor{keyword}{public} \textcolor{keywordtype}{int} \hyperlink{group___music_structs_a0c87d54ce8d28ea08fb4a526cb821c20}{Velocity}; \textcolor{comment}{//!< The velocity of the drum hits.}
+\textcolor{comment}{}        \textcolor{keyword}{public} \hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}[] Hits; \textcolor{comment}{//!< The drums that are hit during this note.}
+\textcolor{comment}{}    \}
+\textcolor{comment}{}
+\textcolor{comment}{    /**}
+\textcolor{comment}{     * @struct Music::CombinedNote}
+\textcolor{comment}{     * @brief A struct that provides an abstract representation of a note that has both drums and melody.}
+\textcolor{comment}{     * }
+\textcolor{comment}{     * This struct combines the Music::MelodyNote and the Music::PercussionNote structs into one complete
+       note.}
+\textcolor{comment}{    */}
+    \textcolor{keyword}{public} \textcolor{keyword}{struct }CombinedNote
+    \{
+        \textcolor{keyword}{public} MelodyNote MusicalNote; \textcolor{comment}{//!< The melody note}
+\textcolor{comment}{}        \textcolor{keyword}{public} PercussionNote Drums; \textcolor{comment}{//!< The drum note.}
+\textcolor{comment}{}        \textcolor{keyword}{public} \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH} OffsetFromPrevNote; \textcolor{comment}{//!< The offset from the previous note.}
+\textcolor{comment}{}    \}
+\textcolor{comment}{}
+\textcolor{comment}{    /** }
+\textcolor{comment}{     * @struct Music::TimeSignature}
+\textcolor{comment}{     * @brief A struct that represents a time signature.}
+\textcolor{comment}{    */}
+    \textcolor{keyword}{public} \textcolor{keyword}{struct }TimeSignature
+    \{
+        \textcolor{keyword}{public} \textcolor{keywordtype}{int} BeatsPerMeasure; \textcolor{comment}{//!< The number of beats per measure (Top part of time signature)}
+\textcolor{comment}{}        \textcolor{keyword}{public} \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH} BaseBeat; \textcolor{comment}{//!< The base beat (Bottom part of time signature). For
+       example, 3/4 would have 3 BeatsPerMeasure and a BaseBeat of NOTE\_LENGTH::Q. }
+\textcolor{comment}{}    \}
+\textcolor{comment}{}
+\textcolor{comment}{    /** @\} */}
+
+    \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+\textcolor{comment}{     * @defgroup MusicStatFunc Static Functions}
+\textcolor{comment}{     * @ingroup DocMusic}
+\textcolor{comment}{     * These are functions that can be used to help utilize the @link MusicEnums enums@endlink}
+\textcolor{comment}{     * and @link MusicStructs structs@endlink from the Music class.}
+\textcolor{comment}{     ****************************************************************************/}\textcolor{comment}{}
+\textcolor{comment}{    /** @\{ */}
+\textcolor{comment}{}
+\textcolor{comment}{    /**}
+\textcolor{comment}{     * @brief Creates a new CombinedNote struct from the parameters.}
+\textcolor{comment}{     * @param[in] aMelodyVelocity The velocity of the MelodyNote}
+\textcolor{comment}{     * @param[in] aLength The length of the MelodyNote}
+\textcolor{comment}{     * @param[in] aPitches The pitches of the MelodyNote}
+\textcolor{comment}{     * @param[in] aDrumVelocity The velocity of the PercussionNote}
+\textcolor{comment}{     * @param[in] aDrumHits The hits of the PercussionNote}
+\textcolor{comment}{     * @param[in] aOffsetFromPrevNote The offset from the previous CombinedNote.}
+\textcolor{comment}{    */}
+    \textcolor{keyword}{public} \textcolor{keyword}{static} CombinedNote \hyperlink{group___music_stat_func_gaaf74885e43eb623f64f961985fadcd08}{CreateNote}( \textcolor{keywordtype}{int} aMelodyVelocity, 
+      \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH} aLength, \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}[] aPitches, \textcolor{keywordtype}{int} aDrumVelocity, \hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}[] aDrumHits, 
+      \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH} aOffsetFromPrevNote )
+    \{
+        \textcolor{comment}{// Create the new note struct.}
+        CombinedNote newNote = \textcolor{keyword}{new} CombinedNote();
+
+        \textcolor{comment}{// Set up the melody note.}
+        newNote.MusicalNote.Velocity = aMelodyVelocity;
+        newNote.MusicalNote.Length = aLength;
+        newNote.MusicalNote.Pitches = aPitches;
+
+        \textcolor{comment}{// Set up the percussion note.}
+        newNote.Drums.Velocity = aDrumVelocity;
+        newNote.Drums.Hits = aDrumHits;
+        newNote.Drums.HasHiHat = \textcolor{keyword}{false};
+        \textcolor{keywordflow}{if}( aDrumHits != null )
+        \{
+            \textcolor{comment}{// Check if the new note has any hi hat hits.}
+            newNote.Drums.HasHiHat = \textcolor{keyword}{false};
+            \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < aDrumHits.Length; i++ )
+            \{
+                \textcolor{keywordflow}{if}( aDrumHits[i] == \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}.HIHAT\_C ||
+                    aDrumHits[i] == \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}.HIHAT\_O ||
+                    aDrumHits[i] == \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}.HIHAT\_P )
+                \{
+                    newNote.Drums.HasHiHat = \textcolor{keyword}{true};
+                \}
+            \}
+        \}
+
+        \textcolor{comment}{// Set the offset.}
+        newNote.OffsetFromPrevNote = aOffsetFromPrevNote;
+
+        \textcolor{comment}{// Return the new note.}
+        \textcolor{keywordflow}{return} newNote;
+    \}
+\textcolor{comment}{}
+\textcolor{comment}{    /**}
+\textcolor{comment}{     * @brief Returns a string based on the given DRUM.}
+\textcolor{comment}{     * @param[in] aDrum The given DRUM}
+\textcolor{comment}{     * }
+\textcolor{comment}{     * @see DRUM\_STRING}
+\textcolor{comment}{    */}
+    \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{string} \hyperlink{group___music_stat_func_gaf5f64ebe9a7e036e07f283e41f26d22b}{DrumToString}( \hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM} aDrum )
+    \{
+        \textcolor{keywordflow}{return} DRUM\_STRING[(int)aDrum];
+    \}
+\textcolor{comment}{}
+\textcolor{comment}{    /**}
+\textcolor{comment}{     * @brief Overloaded version of DrumToString( DRUM ) that takes an integer instead.}
+\textcolor{comment}{     * @param[in] aDrumIndex The index of the drum in the DRUM enum.}
+\textcolor{comment}{     * }
+\textcolor{comment}{     * @see DRUM DRUM\_STRING}
+\textcolor{comment}{    */}
+    \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{string} \hyperlink{group___music_stat_func_gaf5f64ebe9a7e036e07f283e41f26d22b}{DrumToString}( \textcolor{keywordtype}{int} aDrumIndex )
+    \{
+        \textcolor{keywordflow}{return} DRUM\_STRING[aDrumIndex];
+    \}
+\textcolor{comment}{}
+\textcolor{comment}{    /**}
+\textcolor{comment}{     * @brief Gets the percentage that a note length takes up in a measure for the given time signature.}
+\textcolor{comment}{     * @param[in] aLength the given NOTE\_LENGTH that represents the length of a note.}
+\textcolor{comment}{     * @param[in] aTimeSignature The given TimeSignature}
+\textcolor{comment}{    */}
+    \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{float} \hyperlink{group___music_stat_func_ga91e290b48ad2289493ba4421308abe49}{GetNoteLengthRelativeToMeasure}( 
+      \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH} aLength, TimeSignature aTimeSignature )
+    \{
+        \textcolor{comment}{// Relate everything to quarter notes.}
+        \textcolor{keywordtype}{float} quarterNoteLength = 1f;
+
+        \textcolor{comment}{// Get the ratio of quarter note to beat.}
+        \textcolor{keywordflow}{switch}( aTimeSignature.BaseBeat )
+        \{
+            \textcolor{keywordflow}{case} \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.E:
+                quarterNoteLength *= 2f;
+                \textcolor{keywordflow}{break};
+            \textcolor{keywordflow}{default}:
+                \textcolor{keywordflow}{break};
+
+        \}
+
+        \textcolor{comment}{// Get the percentage that a quarter note takes up in the measure.}
+        quarterNoteLength /= (float)aTimeSignature.BeatsPerMeasure;
+
+        \textcolor{comment}{// Return the percentage that the given note length takes up in a measure.}
+        \textcolor{keywordflow}{switch}( aLength )
+        \{
+            \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.T:
+                \textcolor{keywordflow}{return} quarterNoteLength / 8f;
+            \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.D\_T:
+                \textcolor{keywordflow}{return} 1.5f * quarterNoteLength / 8f;
+            \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.S:
+                \textcolor{keywordflow}{return} quarterNoteLength / 4f;
+            \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.D\_S:
+                \textcolor{keywordflow}{return} 1.5f * quarterNoteLength / 4f;
+            \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.E:
+                \textcolor{keywordflow}{return} quarterNoteLength / 2f;
+            \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.D\_E:
+                \textcolor{keywordflow}{return} 1.5f * quarterNoteLength / 2f;
+            \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.Q:
+                \textcolor{keywordflow}{return} quarterNoteLength;
+            \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.D\_Q:
+                \textcolor{keywordflow}{return} quarterNoteLength * 1.5f;
+            \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.H:
+                \textcolor{keywordflow}{return} quarterNoteLength * 2f;
+            \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.D\_H:
+                \textcolor{keywordflow}{return} quarterNoteLength * 3f;
+            \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.W:
+                \textcolor{keywordflow}{return} quarterNoteLength * 4f;
+            \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.D\_W:
+                \textcolor{keywordflow}{return} quarterNoteLength * 6f;
+            \textcolor{keywordflow}{default}:
+                \textcolor{keywordflow}{return} 0;
+        \}
+    \}
+\textcolor{comment}{}
+\textcolor{comment}{    /** }
+\textcolor{comment}{     * @brief Returns whether or not a note corresponds to a white or black key.}
+\textcolor{comment}{     * @param[in] aPitchIndex The index of the @link PITCH pitch@endlink being checked.}
+\textcolor{comment}{     * @return True if the pitch corresponds to a black key. False otherwise.}
+\textcolor{comment}{    */}
+    \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{bool} \hyperlink{group___music_stat_func_gacc2c1a66df7197225f61c5737f794065}{IsPitchABlackKey}( \textcolor{keywordtype}{int} aPitchIndex )
+    \{
+        Assert.IsTrue( aPitchIndex >= 0 && aPitchIndex <= MAX\_SUPPORTED\_NOTES, 
+            \textcolor{stringliteral}{"Tried to find whether a pitch with index "} + aPitchIndex.ToString() + \textcolor{stringliteral}{" was a black key or
+       not, but the pitch was out of range!"} );
+        Assert.IsTrue( aPitchIndex < (\textcolor{keywordtype}{int})\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.REST, \textcolor{stringliteral}{"Tried to see whether a rest note was a black
+       key or not!"} );
+
+        \textcolor{comment}{// Get the base pitch (the pitch's place in its octave.)}
+        \textcolor{keywordtype}{int} basePitch = aPitchIndex % 12;
+
+        \textcolor{comment}{// Check whether the key is a black key or not.}
+        \textcolor{keywordflow}{if}( basePitch == 1 || basePitch == 3 || basePitch == 6 || basePitch == 8 || basePitch == 10 )
+        \{
+            \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+        \}
+        \textcolor{keywordflow}{else}
+        \{
+            \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+        \}
+
+    \}
+\textcolor{comment}{}
+\textcolor{comment}{    /** }
+\textcolor{comment}{     * @brief Overloaded function that returns whether or not a note corresponds to a white or black key.}
+\textcolor{comment}{     * @param[in] aPitch The pitch being checked.}
+\textcolor{comment}{     * @return True if the pitch corresponds to a black key. False otherwise.}
+\textcolor{comment}{    */}
+    \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{bool} \hyperlink{group___music_stat_func_gacc2c1a66df7197225f61c5737f794065}{IsPitchABlackKey}( \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH} aPitch )
+    \{
+        \textcolor{keywordflow}{return} \hyperlink{group___music_stat_func_gacc2c1a66df7197225f61c5737f794065}{IsPitchABlackKey}( (\textcolor{keywordtype}{int})aPitch );
+    \}
+\textcolor{comment}{}
+\textcolor{comment}{    /**}
+\textcolor{comment}{     * @brief Gives a string representing a PITCH.}
+\textcolor{comment}{     * @param[in] aNoteValue The PITCH to return a string representation of.}
+\textcolor{comment}{     * }
+\textcolor{comment}{     * @see PITCH PITCH\_STRING}
+\textcolor{comment}{    */} 
+    \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{string} \hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH} aNoteValue )
+    \{
+        \textcolor{keywordflow}{return} \hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( (\textcolor{keywordtype}{int})aNoteValue );
+    \}
+\textcolor{comment}{}
+\textcolor{comment}{    /**}
+\textcolor{comment}{     * @brief Overloaded function that gives a string representing a pitch. This function takes an integer
+       instead of a PITCH}
+\textcolor{comment}{     * @param[in] aNoteValue The index in the PITCH enum that corresponds to a pitch to return a string
+       representation of.}
+\textcolor{comment}{     * }
+\textcolor{comment}{     * @see PITCH PITCH\_STRING}
+\textcolor{comment}{    */}
+    \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{string} \hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( \textcolor{keywordtype}{int} aNoteValue )
+    \{
+        \textcolor{keywordtype}{int} pitchIndex = aNoteValue % 12;
+        \textcolor{keywordtype}{int} octave = aNoteValue / 12;
+        \textcolor{keywordflow}{return} PITCH\_STRING[pitchIndex] + octave.ToString();
+    \}
+\textcolor{comment}{}
+\textcolor{comment}{    /**}
+\textcolor{comment}{     * @brief Returns a 4/4 time signature.}
+\textcolor{comment}{    */}
+    \textcolor{keyword}{public} \textcolor{keyword}{static} TimeSignature \hyperlink{group___music_stat_func_gac95af323eef7511543c799154e1c29fd}{TIME\_SIGNATURE\_4\_4}()
+    \{
+        TimeSignature returned;
+        returned.BeatsPerMeasure = 4;
+        returned.BaseBeat = \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.Q;
+        \textcolor{keywordflow}{return} returned;
+    \}
+\textcolor{comment}{}
+\textcolor{comment}{    /**}
+\textcolor{comment}{     * @brief Returns a 3/4 time signature.}
+\textcolor{comment}{    */}
+    \textcolor{keyword}{public} \textcolor{keyword}{static} TimeSignature \hyperlink{group___music_stat_func_ga0392e239cbd45a23e5f76f88d0b4c152}{TIME\_SIGNATURE\_3\_4}()
+    \{
+        TimeSignature returned;
+        returned.BeatsPerMeasure = 3;
+        returned.BaseBeat = \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.Q;
+        \textcolor{keywordflow}{return} returned;
+    \}
+\textcolor{comment}{}
+\textcolor{comment}{    /**}
+\textcolor{comment}{     * @brief Returns a 6/8 time signature.}
+\textcolor{comment}{    */}
+    \textcolor{keyword}{public} \textcolor{keyword}{static} TimeSignature \hyperlink{group___music_stat_func_gabfda54cf40e32a4299de5a2fde753347}{TIME\_SIGNATURE\_6\_8}()
+    \{
+        TimeSignature returned;
+        returned.BeatsPerMeasure = 6;
+        returned.BaseBeat = \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.E;
+        \textcolor{keywordflow}{return} returned;
+    \}\textcolor{comment}{}
+\textcolor{comment}{    /** @\} */}
+\}
+\end{DoxyCodeInclude}
+ 

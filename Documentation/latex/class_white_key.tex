@@ -1,0 +1,72 @@
+\hypertarget{class_white_key}{}\section{White\+Key Class Reference}
+\label{class_white_key}\index{White\+Key@{White\+Key}}
+
+
+A script for handling the behavior of a white key on the keyboard.  
+
+
+Inheritance diagram for White\+Key\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_white_key}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{group___white_key_event_types_class_white_key_1_1_white_key_pressed_event}{White\+Key\+Pressed\+Event}
+\item 
+class \hyperlink{group___white_key_event_types_class_white_key_1_1_white_key_released_event}{White\+Key\+Released\+Event}
+\begin{DoxyCompactList}\small\item\em $<$ Used for testing the container. Will probably need to change later.  \hyperlink{group___white_key_event_types_class_white_key_1_1_white_key_released_event}{More...}\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___white_key_pub_func_gab926585e88db73a20431ac93d979b61d}{Set\+Parent\+Container} (\hyperlink{class_key_container}{Key\+Container} a\+Container)
+\begin{DoxyCompactList}\small\item\em Sets the \hyperlink{group___doc_key_contain}{parent container}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___white_key_event_types_class_white_key_1_1_white_key_pressed_event}{White\+Key\+Pressed\+Event} \hyperlink{group___white_key_events_gab84691fc1e9f7b62884589d1813433e2}{White\+Key\+Pressed} = null
+\begin{DoxyCompactList}\small\item\em Used for testing the container. Will probably need to change later. \end{DoxyCompactList}\item 
+\hyperlink{group___white_key_event_types_class_white_key_1_1_white_key_released_event}{White\+Key\+Released\+Event} \hyperlink{group___white_key_events_ga180e88cd7ab95af43231f53469e87830}{White\+Key\+Released} = null
+\begin{DoxyCompactList}\small\item\em Used for testing the container. Will probably need to change later. \end{DoxyCompactList}\item 
+float \hyperlink{group___white_key_pub_var_gacecf2bff47104955b5dae63840443744}{Velocity}
+\begin{DoxyCompactList}\small\item\em The velocity of the key object. \end{DoxyCompactList}\item 
+\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} \hyperlink{group___white_key_pub_var_ga1ddd98b85ba069defc7cf47d25f625f4}{Pitch} = \hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1dab713e6323a68d3ddabf4855826c50148}{Music.\+P\+I\+T\+C\+H.\+C4}
+\begin{DoxyCompactList}\small\item\em The pitch that this key represents. \end{DoxyCompactList}\item 
+string \hyperlink{group___white_key_pub_var_gab24447e9dd54dbb443a0869b954fef66}{Key} = \char`\"{}A\char`\"{}
+\begin{DoxyCompactList}\small\item\em The key that begins pressing the white key. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___white_key_unity_ga92c78e57e0ccc8cf2dec655676698b21}{Awake} ()
+\begin{DoxyCompactList}\small\item\em Called when object is initialized. \end{DoxyCompactList}\item 
+void \hyperlink{group___white_key_unity_ga160cb397de3ab7084247e7fede943cf7}{Update} ()
+\begin{DoxyCompactList}\small\item\em Called every frame. Used for loading the \hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager}. \end{DoxyCompactList}\item 
+void \hyperlink{group___white_key_unity_ga54ddd22238f4a46b2824eacb90430245}{Fixed\+Update} ()
+\begin{DoxyCompactList}\small\item\em Called every physics step. Used for applying torque to the Rigid\+Body. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{group___white_key_priv_var_gae2501ace0af5e1313147504bf61bf3e9}{m\+Key\+Pressed} = false
+\begin{DoxyCompactList}\small\item\em Has the note started? \end{DoxyCompactList}\item 
+Key\+Code \hyperlink{group___white_key_priv_var_gaeb8c5eafd138c45894858554f739eaf7}{m\+Key\+Code}
+\begin{DoxyCompactList}\small\item\em The keycode to check for when testing physics. \end{DoxyCompactList}\item 
+\hyperlink{class_key_container}{Key\+Container} \hyperlink{group___white_key_priv_var_ga033fb0a319b61b61265201046c23e949}{m\+Container} = null
+\begin{DoxyCompactList}\small\item\em The parent \hyperlink{group___doc_key_contain}{container}. \end{DoxyCompactList}\item 
+Rigidbody \hyperlink{group___white_key_priv_var_gadc6bd637ef5229f7519b213f038ca15d}{m\+Rigid\+Body}
+\begin{DoxyCompactList}\small\item\em The rigidbody representing the key. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A script for handling the behavior of a white key on the keyboard. 
+
+This class handles the behavior of a Unity Game\+Object that represents a white key on the keyboard. 
+
+Definition at line 14 of file White\+Key.\+cs.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Documents/\+School Documents/2017\+Spring/\+E\+E\+C\+S542/\+V\+R\+Piano\+Project/\+Assets/\+Scripts/\+Physics/\hyperlink{_white_key_8cs}{White\+Key.\+cs}\end{DoxyCompactItemize}

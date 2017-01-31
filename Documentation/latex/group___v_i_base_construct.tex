@@ -1,0 +1,38 @@
+\hypertarget{group___v_i_base_construct}{}\section{Constructors}
+\label{group___v_i_base_construct}\index{Constructors@{Constructors}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___v_i_base_construct_ga7b438b5f812fa0d3a6e91d74a3c261c9}{Virtual\+Instrument.\+Virtual\+Instrument} (\hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} a\+Parent)
+\begin{DoxyCompactList}\small\item\em Generic constructor. Sets default values and values that are common to all \hyperlink{group___v_i}{Virtual Instruments}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Constructors to create the \hyperlink{class_virtual_instrument}{Virtual Instrument}. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___v_i_base_construct_ga7b438b5f812fa0d3a6e91d74a3c261c9}\label{group___v_i_base_construct_ga7b438b5f812fa0d3a6e91d74a3c261c9}} 
+\index{Constructors@{Constructors}!Virtual\+Instrument@{Virtual\+Instrument}}
+\index{Virtual\+Instrument@{Virtual\+Instrument}!Constructors@{Constructors}}
+\subsubsection{\texorpdfstring{Virtual\+Instrument()}{VirtualInstrument()}}
+{\footnotesize\ttfamily Virtual\+Instrument.\+Virtual\+Instrument (\begin{DoxyParamCaption}\item[{\hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager}}]{a\+Parent }\end{DoxyParamCaption})}
+
+
+
+Generic constructor. Sets default values and values that are common to all \hyperlink{group___v_i}{Virtual Instruments}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Parent} & The parent \hyperlink{group___v_i_m}{manager} for this instrument.\\
+\hline
+\end{DoxyParams}
+Specific \hyperlink{group___v_i}{Virtual Instruments} (such as the \hyperlink{class_piano}{Piano}) have their own constructor that is more specialized, but this will be called for each child class as well. 
+
+Definition at line 74 of file Virtual\+Instrument.\+cs.
+
+
+\begin{DoxyCode}
+75     \{
+76         \hyperlink{group___v_i_base_pro_var_gae4a87a656d9448cfea28215a6b9c3840}{mParent} = aParent;
+77     \}
+\end{DoxyCode}

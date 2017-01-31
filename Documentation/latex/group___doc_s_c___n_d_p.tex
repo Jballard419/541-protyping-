@@ -1,0 +1,325 @@
+\hypertarget{group___doc_s_c___n_d_p}{}\section{Note Display Panel}
+\label{group___doc_s_c___n_d_p}\index{Note Display Panel@{Note Display Panel}}
+
+
+Class that displays a specific \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note} of the \hyperlink{class_song}{Song} that is being created.  
+
+
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___s_c___n_d_p_handlers}{Event Handlers}
+\item 
+\hyperlink{group___s_c___n_d_p_priv_var}{Private Variables}
+\item 
+\hyperlink{group___s_c___n_d_p_unity}{Unity Functions}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class that displays a specific \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note} of the \hyperlink{class_song}{Song} that is being created. 
+
+\hypertarget{group___doc_s_c___n_d_p_intro}{}\subsection{Introduction}\label{group___doc_s_c___n_d_p_intro}
+This class is held in the \hyperlink{group___doc_s_c___n_d_c}{Note Display Container} and managed by the \hyperlink{group___doc_s_c___m_d_p}{measure display panel}.\hypertarget{group___doc_s_c___n_d_p_DocSC_NDPPrivVar}{}\subsection{Private Variables}\label{group___doc_s_c___n_d_p_DocSC_NDPPrivVar}
+Private variables that are used internally by the \hyperlink{class_s_c___note_display_panel}{S\+C\+\_\+\+Note\+Display\+Panel}. ~\newline
+ \hyperlink{group___s_c___n_d_p_priv_var}{More details}.\hypertarget{group___doc_s_c___n_d_p_DocSC_NDPUnity}{}\subsection{Unity Functions}\label{group___doc_s_c___n_d_p_DocSC_NDPUnity}
+Functions that are called automatically by Unity. ~\newline
+ \hyperlink{group___s_c___n_d_p_unity}{More details}.\hypertarget{group___doc_s_c___n_d_p_DocSC_NDPPubFunc}{}\subsection{Public Functions}\label{group___doc_s_c___n_d_p_DocSC_NDPPubFunc}
+Functions that allow for other classes to interact with the \hyperlink{class_s_c___note_display_panel}{S\+C\+\_\+\+Note\+Display\+Panel}. ~\newline
+ \hyperlink{group___s_c___n_d_p_pub_func}{More details}.\hypertarget{group___doc_s_c___n_d_p_DocSC_NDPHandlers}{}\subsection{Event Handlers}\label{group___doc_s_c___n_d_p_DocSC_NDPHandlers}
+Functions that are called to handle events. ~\newline
+ \hyperlink{group___s_c___n_d_p_handlers}{More details}.\hypertarget{group___doc_s_c___n_d_p_DocSC_NDPCode}{}\subsection{Code}\label{group___doc_s_c___n_d_p_DocSC_NDPCode}
+
+\begin{DoxyCodeInclude}
+1 \textcolor{preprocessor}{#if SONG\_CREATION\_ENABLED}
+2 
+3 \textcolor{keyword}{using} \hyperlink{namespace_system}{System}.Collections;
+4 \textcolor{keyword}{using} \hyperlink{namespace_system}{System}.Collections.Generic;
+5 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine};
+6 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine}.Assertions;
+7 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine}.EventSystems;
+8 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine}.SceneManagement;
+9 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine}.UI;
+10 
+11 \textcolor{comment}{}
+12 \textcolor{comment}{/**}
+13 \textcolor{comment}{* @class SC\_NoteDisplayPanel}
+14 \textcolor{comment}{* @brief Class that displays a specific @link Music::CombinedNote note@endlink of the Song that is being
+       created.}
+15 \textcolor{comment}{* }
+16 \textcolor{comment}{* This class is held in the @link DocSC\_NDC Note Display Container@endlink and}
+17 \textcolor{comment}{* managed by the @link DocSC\_MDP measure display panel@endlink.}
+18 \textcolor{comment}{*/}
+19 \textcolor{keyword}{public} \textcolor{keyword}{class }\hyperlink{class_s_c___note_display_panel}{SC\_NoteDisplayPanel} : MonoBehaviour
+20 \{
+21     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+22 \textcolor{comment}{    * @defgroup SC\_NDPPrivVar Private Variables}
+23 \textcolor{comment}{    * @ingroup DocSC\_NDP}
+24 \textcolor{comment}{    * Private variables that are used internally by the SC\_NoteDisplayPanel.}
+25 \textcolor{comment}{    * @\{}
+26 \textcolor{comment}{    *****************************************************************************/}
+27     \textcolor{keyword}{private} Button mRemoveNoteButton = null; \textcolor{comment}{//!< The button to remove this note.}
+28 \textcolor{comment}{}    \textcolor{keyword}{private} EventTrigger mEditTrigger = null; \textcolor{comment}{//!< The edit trigger.}
+29 \textcolor{comment}{}    \textcolor{keyword}{private} Image mLengthImage = null; \textcolor{comment}{//!< The image to show the note's length}
+30 \textcolor{comment}{}    \textcolor{keyword}{private} Image mOffsetImage = null; \textcolor{comment}{//!< The image to show the note's offset from the previous note.}
+31 \textcolor{comment}{}    \textcolor{keyword}{private} \textcolor{keywordtype}{int} mNoteIndex = 0; \textcolor{comment}{//!< The inde of this note.}
+32 \textcolor{comment}{}    \textcolor{keyword}{private} \hyperlink{class_s_c___measure_display_panel}{SC\_MeasureDisplayPanel} mParent = null; \textcolor{comment}{//!< The parent container.}
+33 \textcolor{comment}{}    \textcolor{keyword}{private} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH} \hyperlink{group___s_c___n_d_p_priv_var_ga0a78a2c25da29d944d56d1c8ebb74d03}{mOffset} = \hyperlink{class_music}{Music}.
+      \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.NONE; \textcolor{comment}{//!< The offset.}
+34 \textcolor{comment}{}    \textcolor{keyword}{private} \hyperlink{class_song_creation_manager}{SongCreationManager} mSongCreationHandler = null; \textcolor{comment}{//!< The song creation
+       scene handler.}
+35 \textcolor{comment}{}    \textcolor{keyword}{private} Text mDrums = null; \textcolor{comment}{//!< The text that displays the note's drums.}
+36 \textcolor{comment}{}    \textcolor{keyword}{private} Text mPitches = null; \textcolor{comment}{//!< The text that displays the note's pitches.}
+37 \textcolor{comment}{}    \textcolor{keyword}{private} Text mVelocity = null; \textcolor{comment}{//!< The text that displays the note's velocity.}
+38 \textcolor{comment}{}
+39     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+40 \textcolor{comment}{    * @\}}
+41 \textcolor{comment}{    * @defgroup SC\_NDPUnity Unity Functions}
+42 \textcolor{comment}{    * @ingroup DocSC\_NDP}
+43 \textcolor{comment}{    * Functions that are called automatically by Unity.}
+44 \textcolor{comment}{    * @\{}
+45 \textcolor{comment}{    *****************************************************************************/}
+46 \textcolor{comment}{}
+47 \textcolor{comment}{    /**}
+48 \textcolor{comment}{     * @brief Initializes the SC\_NoteDisplayPanel by getting references to its child objects and adding
+       event handlers.}
+49 \textcolor{comment}{    */}
+50     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{group___s_c___n_d_p_unity_ga131f594d4f9b5887acb0de0a8bb5532a}{Awake}()
+51     \{
+52         \textcolor{comment}{// Set the parent handler.}
+53         mSongCreationHandler = GameObject.Find( \textcolor{stringliteral}{"SongCreationCanvas"} ).GetComponent<
+      \hyperlink{class_song_creation_manager}{SongCreationManager}>();
+54 
+55         \textcolor{comment}{// Set up the OnClick trigger.}
+56         mEditTrigger = gameObject.AddComponent<EventTrigger>();
+57         EventTrigger.Entry click = \textcolor{keyword}{new} EventTrigger.Entry();
+58         click.eventID = EventTriggerType.PointerClick;
+59         click.callback.AddListener( ( data ) => \{ \hyperlink{group___s_c___n_d_p_handlers_ga7b25bcc6b76ae0894ac6eefde417caf1}{TriggerEditEvent}( (PointerEventData)data 
+      ); \} );
+60         mEditTrigger.triggers.Add( click );
+61 
+62         \textcolor{comment}{// Setup the children objects.}
+63         mLengthImage = gameObject.transform.GetChild( 3 ).GetChild( 1 ).GetComponent<Image>();
+64         mOffsetImage = gameObject.transform.GetChild( 2 ).GetChild( 1 ).GetComponent<Image>();
+65         mPitches = gameObject.transform.GetChild( 1 ).GetChild( 0 ).GetComponent<Text>();
+66         mVelocity = gameObject.transform.GetChild( 4 ).GetChild( 0 ).GetComponent<Text>();
+67         mRemoveNoteButton = gameObject.transform.GetChild( 0 ).gameObject.GetComponent<Button>();
+68         mRemoveNoteButton.onClick.AddListener( \hyperlink{group___s_c___n_d_p_handlers_ga0b545f6cd12ce56258842cb1036bceec}{OnRemoveButtonClicked} );
+69         mDrums = gameObject.transform.GetChild( 5 ).GetChild( 0 ).GetComponent<Text>();
+70     \}
+71 
+72     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+73 \textcolor{comment}{    * @defgroup SC\_NDPPubFunc Public Functions}
+74 \textcolor{comment}{    * @ingroup DocSC\_NDP}
+75 \textcolor{comment}{    * Functions that allow for other classes to interact with the SC\_NoteDisplayPanel.}
+76 \textcolor{comment}{    *****************************************************************************/}
+77 \textcolor{comment}{}
+78 \textcolor{comment}{    /**}
+79 \textcolor{comment}{     * @brief Gets the image used to represent the length of the note.}
+80 \textcolor{comment}{     * @return The image used to represent the length of the note.}
+81 \textcolor{comment}{    */}
+82     \textcolor{keyword}{public} Sprite \hyperlink{group___s_c___n_d_p_unity_ga1038892636ae54a79c675287c4bb6fff}{GetLengthImage}()
+83     \{
+84         \textcolor{keywordflow}{return} mLengthImage.sprite;
+85     \}
+86 \textcolor{comment}{}
+87 \textcolor{comment}{    /**}
+88 \textcolor{comment}{     * @brief Gets the measure panel that is managing this panel.}
+89 \textcolor{comment}{     * @return The parent measure panel.}
+90 \textcolor{comment}{    */}
+91     \textcolor{keyword}{public} \hyperlink{class_s_c___measure_display_panel}{SC\_MeasureDisplayPanel} \hyperlink{group___s_c___n_d_p_unity_ga404972fc48a89d678d0c6fa801573814}{GetMeasurePanel}()
+92     \{
+93         \textcolor{keywordflow}{return} \hyperlink{group___s_c___n_d_p_priv_var_ga360017747d9ed8910ddd4b3309477710}{mParent};
+94     \}
+95 \textcolor{comment}{}
+96 \textcolor{comment}{    /**}
+97 \textcolor{comment}{     * @brief Gets the index for this note.}
+98 \textcolor{comment}{     * @return The index of the note in the Song}
+99 \textcolor{comment}{    */}
+100     \textcolor{keyword}{public} \textcolor{keywordtype}{int} \hyperlink{group___s_c___n_d_p_unity_ga8beef050026ade4ba4ccb574c414d24e}{GetNoteIndex}()
+101     \{
+102         \textcolor{keywordflow}{return} \hyperlink{group___s_c___n_d_p_priv_var_ga11933919195aba904a4e8bf95f131e49}{mNoteIndex};
+103     \}
+104 \textcolor{comment}{}
+105 \textcolor{comment}{    /**}
+106 \textcolor{comment}{     * @brief Gets the offset of this note.}
+107 \textcolor{comment}{     * @return The @link Music::NOTE\_LENGTH length of time@endlink between the previous note and this one.}
+108 \textcolor{comment}{    */}
+109     \textcolor{keyword}{public} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH} \hyperlink{group___s_c___n_d_p_unity_ga371654221730812200062322c8a3e750}{GetOffset}()
+110     \{
+111         \textcolor{keywordflow}{return} \hyperlink{group___s_c___n_d_p_priv_var_ga0a78a2c25da29d944d56d1c8ebb74d03}{mOffset};
+112     \}
+113 \textcolor{comment}{}
+114 \textcolor{comment}{    /**}
+115 \textcolor{comment}{     * @brief Sets the drum string for the note.}
+116 \textcolor{comment}{     * @param[in] aDrumString A string representing the drums of the note.}
+117 \textcolor{comment}{    */}
+118     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___s_c___n_d_p_unity_gae14b5564be204df7699b95186d83f69f}{SetDrums}( \textcolor{keywordtype}{string} aDrumString )
+119     \{
+120         mDrums.text = aDrumString;
+121     \}
+122 \textcolor{comment}{}
+123 \textcolor{comment}{    /**}
+124 \textcolor{comment}{     * @brief Sets the image used to represent the @link Music::NOTE\_LENGTH length@endlink of the @link
+       Music::CombinedNote note@endlink.}
+125 \textcolor{comment}{     * @param[in] aImage The image representing the length of the note.}
+126 \textcolor{comment}{    */}
+127     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___s_c___n_d_p_unity_ga1a1c4b8111463ec3e134d17fe5064a54}{SetLengthImage}( Sprite aImage )
+128     \{
+129         \textcolor{keywordflow}{if}( aImage == null )
+130         \{
+131             mLengthImage.color = \textcolor{keyword}{new} Color32( 255, 255, 255, 0 );
+132         \}
+133         \textcolor{keywordflow}{else}
+134         \{
+135             mLengthImage.sprite = aImage;
+136             mLengthImage.color = \textcolor{keyword}{new} Color32( 255, 255, 255, 255 );
+137         \}
+138     \}
+139 \textcolor{comment}{}
+140 \textcolor{comment}{    /**}
+141 \textcolor{comment}{     * @brief Sets the @link Music::CombinedNote::OffsetFromPrevNote offset@endlink of the @link
+       Music::CombinedNote note@endlink being displayed.}
+142 \textcolor{comment}{     * @param[in] aOffset The offset from the previous @link Music::CombinedNote note@endlink.}
+143 \textcolor{comment}{    */}
+144     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___s_c___n_d_p_unity_ga8ff7588e8c3f59a03842feaff92f97e9}{SetOffset}( \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH} aOffset )
+145     \{
+146         \hyperlink{group___s_c___n_d_p_priv_var_ga0a78a2c25da29d944d56d1c8ebb74d03}{mOffset} = aOffset;
+147     \}
+148 \textcolor{comment}{}
+149 \textcolor{comment}{    /**}
+150 \textcolor{comment}{     * @brief Sets the image used to represent the @link Music::CombinedNote::OffsetFromPrevNote
+       offset@endlink of the @link Music::CombinedNote note@endlink being displayed.}
+151 \textcolor{comment}{     * @param[in] aImage The image representing the @link Music::CombinedNote::OffsetFromPrevNote
+       offset@endlink of the @link Music::CombinedNote note@endlink being displayed.}
+152 \textcolor{comment}{    */}
+153     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___s_c___n_d_p_unity_gaa0a517d1359cd1ed109a130bd52763f1}{SetOffsetImage}( Sprite aImage )
+154     \{
+155         \textcolor{keywordflow}{if}( aImage == null )
+156         \{
+157             mOffsetImage.color = \textcolor{keyword}{new} Color32( 255, 255, 255, 0 );
+158         \}
+159         \textcolor{keywordflow}{else}
+160         \{
+161             mOffsetImage.sprite = aImage;
+162             mOffsetImage.color = \textcolor{keyword}{new} Color32( 255, 255, 255, 255 );
+163         \}
+164 
+165     \}
+166 \textcolor{comment}{}
+167 \textcolor{comment}{    /**}
+168 \textcolor{comment}{     * @brief Sets the @link DocSC\_MDP parent container@endlink.}
+169 \textcolor{comment}{     * @param[in] aParent The @link DocSC\_MDP parent container@endlink.}
+170 \textcolor{comment}{     * }
+171 \textcolor{comment}{     * @see MeasureDisplayPanel::mNotes}
+172 \textcolor{comment}{    */}
+173     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___s_c___n_d_p_unity_gae642b50484b9c7fb2bd3b201aeef726c}{SetParentContainer}( \hyperlink{class_s_c___measure_display_panel}{SC\_MeasureDisplayPanel} aParent 
+      )
+174     \{
+175         mParent = aParent;
+176     \}
+177 \textcolor{comment}{}
+178 \textcolor{comment}{    /**}
+179 \textcolor{comment}{     * @brief Sets the index for this @link Music::CombinedNote note@endlink in the Song.}
+180 \textcolor{comment}{     * @param[in] aIndex The index of the @link Music::CombinedNote note@endlink in the Song.}
+181 \textcolor{comment}{    */}
+182     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___s_c___n_d_p_unity_gaf3160e3686e44e7718768242438ea1cc}{SetNoteIndex}( \textcolor{keywordtype}{int} aIndex )
+183     \{
+184         mNoteIndex = aIndex;
+185     \}
+186 \textcolor{comment}{}
+187 \textcolor{comment}{    /**}
+188 \textcolor{comment}{     * @brief Sets the string that represents the @link Music::PITCH pitches@endlink in the @link
+       Music::CombinedNote note@endlink being displayed.}
+189 \textcolor{comment}{     * @param[in] aPitchString The string representing the @link Music::PITCH pitches@endlink in the @link
+       Music::CombinedNote note@endlink being displayed.}
+190 \textcolor{comment}{    */}
+191     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___s_c___n_d_p_unity_gad9bf776f0c51cf6170faccf9fc4ac7e0}{SetPitches}( \textcolor{keywordtype}{string} aPitchString )
+192     \{
+193         mPitches.text = aPitchString;
+194     \}
+195 \textcolor{comment}{}
+196 \textcolor{comment}{    /**}
+197 \textcolor{comment}{     * Sets the string representing the @link DefVel velocity@endlink of the @link Music::CombinedNote
+       note@endlink.}
+198 \textcolor{comment}{     * @param[in] aVelocityString The string representing the @link DefVel velocity@endlink of the @link
+       Music::CombinedNote note@endlink.}
+199 \textcolor{comment}{    */}
+200     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___s_c___n_d_p_unity_ga8a2fef715606caa884c7b490850fb9b7}{SetVelocity}( \textcolor{keywordtype}{string} aVelocityString )
+201     \{
+202         mVelocity.text = aVelocityString;
+203     \}
+204 \textcolor{comment}{}
+205 \textcolor{comment}{    /**}
+206 \textcolor{comment}{     * @brief Sets that we're no longer editing the note that this panel represents.}
+207 \textcolor{comment}{    */}
+208     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___s_c___n_d_p_unity_ga92d0f078c4efd6c207173a10e31b5065}{StopEditing}()
+209     \{
+210         \textcolor{comment}{// Change the panel background color back to its original color.}
+211         gameObject.GetComponent<Image>().color = \textcolor{keyword}{new} Color32( 58, 58, 58, 255 );
+212     \}
+213 
+214     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+215 \textcolor{comment}{    * @\}}
+216 \textcolor{comment}{    * @defgroup SC\_NDPHandlers Event Handlers}
+217 \textcolor{comment}{    * @ingroup DocSC\_NDP}
+218 \textcolor{comment}{    * Functions that are called to handle events.}
+219 \textcolor{comment}{    * @\{}
+220 \textcolor{comment}{    *****************************************************************************/}
+221 \textcolor{comment}{}
+222 \textcolor{comment}{    /**}
+223 \textcolor{comment}{     * @brief Handles when the @link SC\_NoteDisplayPanel::mRemoveNoteButton remove button@endlink is
+       clicked.}
+224 \textcolor{comment}{    */}
+225     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___s_c___n_d_p_handlers_ga0b545f6cd12ce56258842cb1036bceec}{OnRemoveButtonClicked}()
+226     \{
+227         \textcolor{comment}{// Set the note index for all notes after this one}
+228         \textcolor{keywordtype}{int} sib = transform.GetSiblingIndex() + 1;
+229         \textcolor{keywordtype}{int} index = \hyperlink{group___s_c___n_d_p_priv_var_ga11933919195aba904a4e8bf95f131e49}{mNoteIndex};
+230         \textcolor{keywordflow}{while}( sib < transform.parent.childCount )
+231         \{
+232             \textcolor{keywordflow}{if}( transform.parent.GetChild( sib ).GetComponent<
+      \hyperlink{class_s_c___note_display_panel}{SC\_NoteDisplayPanel}>() != null )
+233             \{
+234                 transform.parent.GetChild( sib ).GetComponent<
+      \hyperlink{class_s_c___note_display_panel}{SC\_NoteDisplayPanel}>().\hyperlink{group___s_c___n_d_p_unity_gaf3160e3686e44e7718768242438ea1cc}{SetNoteIndex}( index );
+235                 index++;
+236             \}
+237             sib++;
+238         \}
+239 
+240         \textcolor{comment}{// Signal that this note display should be removed.}
+241         mParent.\hyperlink{group___s_c___m_d_p_handlers_gab48fa7fe4d7d4b29a3b0567be2b29849}{OnRemoveNote}( \textcolor{keyword}{this} );
+242 
+243         \textcolor{comment}{// Signal that this note should be removed from the song.}
+244         GameObject.Find( \textcolor{stringliteral}{"SongCreationCanvas"} ).GetComponent<\hyperlink{class_song_creation_manager}{SongCreationManager}>().
+      OnRemoveNote( mNoteIndex );
+245     \}
+246 \textcolor{comment}{}
+247 \textcolor{comment}{    /** }
+248 \textcolor{comment}{     * @brief Handles clicking on the background panel which means that we're either beginning an edit to
+       this @link Music::CombinedNote note@endlink or cancelling it.}
+249 \textcolor{comment}{     * @param[in] aPointerData The PointerEventData representing the mouse click.}
+250 \textcolor{comment}{    */}
+251     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{group___s_c___n_d_p_handlers_ga7b25bcc6b76ae0894ac6eefde417caf1}{TriggerEditEvent}( PointerEventData aPointerData )
+252     \{
+253         \textcolor{keywordflow}{if}( aPointerData.button == PointerEventData.InputButton.Left )
+254         \{
+255             \textcolor{comment}{// Change the color of the background panel to show that we're editing the note that it }
+256             \textcolor{comment}{// represents.}
+257             gameObject.GetComponent<Image>().color = \textcolor{keyword}{new} Color32( 116, 116, 116, 255 );
+258 
+259             \textcolor{comment}{// Send the event to the song creation handler.}
+260             mSongCreationHandler.\hyperlink{group___s_c_m_handlers_gacb552a4f02b22d7c10a8420eb1431201}{OnEditEvent}( \textcolor{keyword}{this} );
+261         \}
+262     \}\textcolor{comment}{}
+263 \textcolor{comment}{    /** @\} */}
+264 \}
+265  
+266 \textcolor{preprocessor}{#endif}
+267  
+268  
+269  
+270  
+\end{DoxyCodeInclude}
+ 

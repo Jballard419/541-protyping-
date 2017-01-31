@@ -1,0 +1,155 @@
+\hypertarget{group___n_o_o_handlers}{}\section{Event Handlers}
+\label{group___n_o_o_handlers}\index{Event Handlers@{Event Handlers}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___n_o_o_handlers_gaafd22f8a8c8d2cf101a54a4bf92782a5}{Note\+Output\+Object.\+On\+Audio\+Filter\+Read} (float\mbox{[}$\,$\mbox{]} data, int channels)
+\begin{DoxyCompactList}\small\item\em Handler that is called whenever the audio buffer is refilled. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+These are functions that are automatically called when an event is invoked. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___n_o_o_handlers_gaafd22f8a8c8d2cf101a54a4bf92782a5}\label{group___n_o_o_handlers_gaafd22f8a8c8d2cf101a54a4bf92782a5}} 
+\index{Event Handlers@{Event Handlers}!On\+Audio\+Filter\+Read@{On\+Audio\+Filter\+Read}}
+\index{On\+Audio\+Filter\+Read@{On\+Audio\+Filter\+Read}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{On\+Audio\+Filter\+Read()}{OnAudioFilterRead()}}
+{\footnotesize\ttfamily void Note\+Output\+Object.\+On\+Audio\+Filter\+Read (\begin{DoxyParamCaption}\item[{float \mbox{[}$\,$\mbox{]}}]{data,  }\item[{int}]{channels }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handler that is called whenever the audio buffer is refilled. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em data} & The raw audio data that will be played. This will be replaced by the function with a section of the audio data if needed. \\
+\hline
+\mbox{\tt in}  & {\em channels} & The number of channels in the audio data. Not too relevent at this moment.\\
+\hline
+\end{DoxyParams}
+If the audio is playing, then this handler will pass the appropriate section of the raw audio data to the buffer which will cause the sound to actually be played. It also keeps track of the position in the audio data, so that the sections are iterated through. ~\newline
+ This handler is automatically called whenever the buffer needs to be refilled, which is at intervals of $\sim$23ms. 
+
+Definition at line 352 of file Note\+Output\+Object.\+cs.
+
+
+
+References Virtual\+Instrument\+Manager.\+Audio\+Finished, Note\+Output\+Object.\+m\+Counter, Note\+Output\+Object.\+m\+Dynamics\+Index, Note\+Output\+Object.\+m\+New\+Note\+Dynamics\+Index, Note\+Output\+Object.\+m\+New\+Note\+Start\+Index, Note\+Output\+Object.\+m\+New\+Note\+Velocity\+Factor, Note\+Output\+Object.\+m\+Velocity\+Factor, and A\+T\+I\+\_\+\+Diagnostics.\+Set\+Output\+Time.
+
+
+\begin{DoxyCode}
+353     \{
+354         \textcolor{comment}{// Only generate the sound if it's loaded.}
+355         \textcolor{keywordflow}{if}( \hyperlink{group___n_o_o_priv_var_gaf01d2583555de6a523cdf82808718ca9}{mLoaded} )
+356         \{
+357             \hyperlink{group___n_o_o_priv_var_ga1efa96121f085b27c7d9e8725f90a336}{mAudioDataBeingUsed} = \textcolor{keyword}{true};
+358             \textcolor{comment}{// Check for a new note.}
+359             \textcolor{keywordflow}{if}( \hyperlink{group___n_o_o_priv_var_gac537ec036adf0645dca2f31fbc5b3dec}{mNewNote} )
+360             \{
+361                 \textcolor{comment}{// Handle starting a new note by setting the relevant member variables}
+362                 \hyperlink{group___n_o_o_priv_var_ga84df25e871d69746a7c520f3f8b49a27}{mVelocityFactor} = \hyperlink{group___n_o_o_priv_var_gaf3cd650d21c56c25ce988d9f75279278}{mNewNoteVelocityFactor};
+363                 \hyperlink{group___n_o_o_priv_var_gaf0c9c2a90b5d73b8ffa0906bc69acdbc}{mDynamicsIndex} = \hyperlink{group___n_o_o_priv_var_ga13de232048b35fc513f8aa3eeef65de0}{mNewNoteDynamicsIndex};
+364                 \textcolor{keywordflow}{if}( !\hyperlink{group___n_o_o_priv_var_ga1f7a31f1aefc1633f1f435e3438a1efb}{mResume} )
+365                 \{
+366                     \hyperlink{group___n_o_o_priv_var_ga5dca97be8d58837ace4ea6f4a972b20a}{mCounter} = \hyperlink{group___n_o_o_priv_var_ga93720712088a4b6f91abe63d6f07a2c2}{mNewNoteStartIndex};
+367                 \}
+368                 \hyperlink{group___n_o_o_priv_var_gac537ec036adf0645dca2f31fbc5b3dec}{mNewNote} = \textcolor{keyword}{false};
+369                 \hyperlink{group___n_o_o_priv_var_ga88bfcc80d0cd20c81cd89d19d3231b84}{mNoteRelease} = \textcolor{keyword}{false};
+370                 \hyperlink{group___n_o_o_priv_var_ga4417170b8fa977f05a0b4cd0d16412fd}{mNotePlaying} = \textcolor{keyword}{true};
+371                 \hyperlink{group___n_o_o_priv_var_ga1f7a31f1aefc1633f1f435e3438a1efb}{mResume} = \textcolor{keyword}{false};
+372 \textcolor{preprocessor}{                #if DEBUG\_AUDIO\_DIAGNOSTICS}
+373                     \hyperlink{group___n_o_o_priv_var_gafa20525b5515ab62d109f44ab45fba21}{mReported} = \textcolor{keyword}{false};
+374 \textcolor{preprocessor}{                #endif}
+375             \}
+376             \textcolor{comment}{// Check for a note release.}
+377             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}( \hyperlink{group___n_o_o_priv_var_ga88bfcc80d0cd20c81cd89d19d3231b84}{mNoteRelease} )
+378             \{
+379                 \textcolor{comment}{// If the note has been released, then set the velocity factor to }
+380                 \textcolor{comment}{// decrease each time this function is called.}
+381                 \hyperlink{group___n_o_o_priv_var_ga84df25e871d69746a7c520f3f8b49a27}{mVelocityFactor} -= ( 1f / 100f );
+382             \}
+383             \textcolor{comment}{// Check for pausing the audio.}
+384             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}( \hyperlink{group___n_o_o_priv_var_ga50fe6047e6a199215fc70b9fc78ac7eb}{mPaused} )
+385             \{
+386                 \hyperlink{group___n_o_o_priv_var_ga4417170b8fa977f05a0b4cd0d16412fd}{mNotePlaying} = \textcolor{keyword}{false};
+387             \}
+388             \textcolor{keywordflow}{if}( \hyperlink{group___n_o_o_priv_var_ga4417170b8fa977f05a0b4cd0d16412fd}{mNotePlaying} )
+389             \{
+390                 \textcolor{comment}{// If the note hasn't faded out, then play it.}
+391                 \textcolor{keywordflow}{if}( \hyperlink{group___n_o_o_priv_var_ga84df25e871d69746a7c520f3f8b49a27}{mVelocityFactor} > 0 )
+392                 \{
+393                     \textcolor{comment}{// See if we should loop or not.}
+394                     \textcolor{keywordflow}{if}( \hyperlink{group___n_o_o_priv_var_gabf1d5013f44773e9fd3e4dbb59d74aeb}{mLoop} )
+395                     \{
+396                         \textcolor{comment}{// Retrieve the audio data.}
+397                         \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < data.Length; i++ )
+398                         \{
+399                             \textcolor{keywordflow}{if}( \hyperlink{group___n_o_o_priv_var_ga5dca97be8d58837ace4ea6f4a972b20a}{mCounter} == \hyperlink{group___n_o_o_priv_var_ga48c676306790f40714072cd6a81a0128}{mEndSampleIndices}[
+      \hyperlink{group___n_o_o_priv_var_gaf0c9c2a90b5d73b8ffa0906bc69acdbc}{mDynamicsIndex}] )
+400                             \{
+401                                 \hyperlink{group___n_o_o_priv_var_ga5dca97be8d58837ace4ea6f4a972b20a}{mCounter} = 0;
+402                             \}
+403                             data[i] = \hyperlink{group___n_o_o_priv_var_ga842eef5bfade070f914b8a551b3bcf43}{mAudioData}[\hyperlink{group___n_o_o_priv_var_gaf0c9c2a90b5d73b8ffa0906bc69acdbc}{mDynamicsIndex}][
+      \hyperlink{group___n_o_o_priv_var_ga5dca97be8d58837ace4ea6f4a972b20a}{mCounter}] * \hyperlink{group___n_o_o_priv_var_ga84df25e871d69746a7c520f3f8b49a27}{mVelocityFactor};
+404                             \hyperlink{group___n_o_o_priv_var_ga5dca97be8d58837ace4ea6f4a972b20a}{mCounter}++;
+405                         \}
+406                     \}
+407                     \textcolor{comment}{// If we shouldn't loop, then make sure that we stop playing right before the end
+       index.}
+408                     \textcolor{keywordflow}{else}
+409                     \{
+410                         \textcolor{comment}{// If we're currently playing a note then retrieve the audio data. }
+411                         \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < data.Length && ( \hyperlink{group___n_o_o_priv_var_ga5dca97be8d58837ace4ea6f4a972b20a}{mCounter} + i ) < 
+      \hyperlink{group___n_o_o_priv_var_ga48c676306790f40714072cd6a81a0128}{mEndSampleIndices}[\hyperlink{group___n_o_o_priv_var_gaf0c9c2a90b5d73b8ffa0906bc69acdbc}{mDynamicsIndex}]; i++ )
+412                         \{
+413                             data[i] = \hyperlink{group___n_o_o_priv_var_ga842eef5bfade070f914b8a551b3bcf43}{mAudioData}[\hyperlink{group___n_o_o_priv_var_gaf0c9c2a90b5d73b8ffa0906bc69acdbc}{mDynamicsIndex}][
+      \hyperlink{group___n_o_o_priv_var_ga5dca97be8d58837ace4ea6f4a972b20a}{mCounter} + i] * \hyperlink{group___n_o_o_priv_var_ga84df25e871d69746a7c520f3f8b49a27}{mVelocityFactor};
+414                         \}
+415 
+416                         \textcolor{comment}{// If we've reached the end of the audio data, then the note is no longer playing
+       so}
+417                         \textcolor{comment}{// we should reset some variables.}
+418                         \textcolor{keywordflow}{if}( \hyperlink{group___n_o_o_priv_var_ga5dca97be8d58837ace4ea6f4a972b20a}{mCounter} + data.Length >= \hyperlink{group___n_o_o_priv_var_ga48c676306790f40714072cd6a81a0128}{mEndSampleIndices}[
+      \hyperlink{group___n_o_o_priv_var_gaf0c9c2a90b5d73b8ffa0906bc69acdbc}{mDynamicsIndex}] )
+419                         \{
+420                             \textcolor{keywordflow}{if}( \hyperlink{group___n_o_o_priv_var_gaf72dd5943487433966b20b973be1e8b3}{mNotifyWhenFinished} )
+421                             \{
+422                                 \hyperlink{group___n_o_o_priv_var_ga61394090fddcb90c67bf68f19a5bfb6e}{mVIM}.\hyperlink{group___v_i_m_events_ga39ffa8215ab5c9ad46c563e2bd87c219}{AudioFinished}.Invoke();
+423                             \}
+424                             \hyperlink{group___n_o_o_priv_var_ga5dca97be8d58837ace4ea6f4a972b20a}{mCounter} = 0;
+425                             \hyperlink{group___n_o_o_priv_var_ga4417170b8fa977f05a0b4cd0d16412fd}{mNotePlaying} = \textcolor{keyword}{false};
+426                             \hyperlink{group___n_o_o_priv_var_ga88bfcc80d0cd20c81cd89d19d3231b84}{mNoteRelease} = \textcolor{keyword}{false};
+427                         \}
+428                         \textcolor{comment}{// If we haven't reached the end of the audio data yet, then increase the counter.}
+429                         \textcolor{keywordflow}{else}
+430                         \{
+431                             \hyperlink{group___n_o_o_priv_var_ga5dca97be8d58837ace4ea6f4a972b20a}{mCounter} += data.Length;
+432                         \}
+433 
+434 \textcolor{preprocessor}{                        #if DEBUG\_AUDIO\_DIAGNOSTICS}
+435                             \textcolor{comment}{// Notify the diagnostics.}
+436                             \textcolor{keywordflow}{if}( \hyperlink{group___n_o_o_priv_var_gacd4376d2314caafc831cc049e9ca58d8}{mDiagnosticsHandler} != null && !
+      \hyperlink{group___n_o_o_priv_var_gafa20525b5515ab62d109f44ab45fba21}{mReported} )
+437                             \{
+438                                 \hyperlink{group___n_o_o_priv_var_gafa20525b5515ab62d109f44ab45fba21}{mReported} = \textcolor{keyword}{true};
+439                                 \hyperlink{group___n_o_o_priv_var_gacd4376d2314caafc831cc049e9ca58d8}{mDiagnosticsHandler}.
+      \hyperlink{group___audio_testing_a6360e6098323b921b4a1b306914d06ef}{SetOutputTime}.Invoke();
+440                             \}
+441 \textcolor{preprocessor}{                        #endif}
+442                     \}
+443 
+444                 \}
+445                 \textcolor{comment}{// If the note has faded out, then the note is no longer playing so}
+446                 \textcolor{comment}{// we should reset some variables.}
+447                 \textcolor{keywordflow}{else}
+448                 \{
+449                     \hyperlink{group___n_o_o_priv_var_ga5dca97be8d58837ace4ea6f4a972b20a}{mCounter} = 0;
+450                     \hyperlink{group___n_o_o_priv_var_ga4417170b8fa977f05a0b4cd0d16412fd}{mNotePlaying} = \textcolor{keyword}{false};
+451                     \hyperlink{group___n_o_o_priv_var_ga88bfcc80d0cd20c81cd89d19d3231b84}{mNoteRelease} = \textcolor{keyword}{false};
+452                 \}
+453             \}
+454             \hyperlink{group___n_o_o_priv_var_ga1efa96121f085b27c7d9e8725f90a336}{mAudioDataBeingUsed} = \textcolor{keyword}{false};
+455         \}
+456     \}
+\end{DoxyCode}

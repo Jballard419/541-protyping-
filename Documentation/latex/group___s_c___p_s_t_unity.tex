@@ -1,0 +1,39 @@
+\hypertarget{group___s_c___p_s_t_unity}{}\section{Unity Functions}
+\label{group___s_c___p_s_t_unity}\index{Unity Functions@{Unity Functions}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___s_c___p_s_t_unity_gafa93dcca78e174eb2de6c4ea83b66a39}{S\+C\+\_\+\+Pitch\+Selection\+Trigger.\+Awake} ()
+\begin{DoxyCompactList}\small\item\em Initializes the \hyperlink{class_s_c___pitch_selection_trigger}{S\+C\+\_\+\+Pitch\+Selection\+Trigger} by getting a reference to its \hyperlink{group___s_c___p_s_t_priv_var_ga1ecd33f50c82f6ffda81850438907a31}{toggle switch}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+These are functions that are automatically called by Unity. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___s_c___p_s_t_unity_gafa93dcca78e174eb2de6c4ea83b66a39}\label{group___s_c___p_s_t_unity_gafa93dcca78e174eb2de6c4ea83b66a39}} 
+\index{Unity Functions@{Unity Functions}!Awake@{Awake}}
+\index{Awake@{Awake}!Unity Functions@{Unity Functions}}
+\subsubsection{\texorpdfstring{Awake()}{Awake()}}
+{\footnotesize\ttfamily void S\+C\+\_\+\+Pitch\+Selection\+Trigger.\+Awake (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Initializes the \hyperlink{class_s_c___pitch_selection_trigger}{S\+C\+\_\+\+Pitch\+Selection\+Trigger} by getting a reference to its \hyperlink{group___s_c___p_s_t_priv_var_ga1ecd33f50c82f6ffda81850438907a31}{toggle switch}. 
+
+
+
+Definition at line 38 of file S\+C\+\_\+\+Pitch\+Selection\+Trigger.\+cs.
+
+
+
+References S\+C\+\_\+\+Pitch\+Selection\+Trigger.\+On\+Pitch\+Selected().
+
+
+\begin{DoxyCode}
+39     \{
+40         \textcolor{comment}{// Get the toggle and add its listener.}
+41         \hyperlink{group___s_c___p_s_t_priv_var_ga1ecd33f50c82f6ffda81850438907a31}{mToggle} = gameObject.GetComponent<Toggle>();
+42         \hyperlink{group___s_c___p_s_t_priv_var_ga1ecd33f50c82f6ffda81850438907a31}{mToggle}.onValueChanged.AddListener( \hyperlink{group___s_c___p_s_t_handlers_ga5f4ea69eee3ed20cb09d56b7281ce861}{OnPitchSelected} );
+43     \}
+\end{DoxyCode}

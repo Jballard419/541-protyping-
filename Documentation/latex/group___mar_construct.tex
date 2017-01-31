@@ -1,0 +1,62 @@
+\hypertarget{group___mar_construct}{}\section{Constructors}
+\label{group___mar_construct}\index{Constructors@{Constructors}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___mar_construct_ga48c946fe0f78f8905a8e4d063cbc0fa2}{Marimba.\+Marimba} (\hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} a\+Parent)
+\begin{DoxyCompactList}\small\item\em Creates a new \hyperlink{class_marimba}{Marimba} instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+These are functions that create a new instance of a \hyperlink{class_marimba}{Marimba}. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___mar_construct_ga48c946fe0f78f8905a8e4d063cbc0fa2}\label{group___mar_construct_ga48c946fe0f78f8905a8e4d063cbc0fa2}} 
+\index{Constructors@{Constructors}!Marimba@{Marimba}}
+\index{Marimba@{Marimba}!Constructors@{Constructors}}
+\subsubsection{\texorpdfstring{Marimba()}{Marimba()}}
+{\footnotesize\ttfamily Marimba.\+Marimba (\begin{DoxyParamCaption}\item[{\hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager}}]{a\+Parent }\end{DoxyParamCaption})}
+
+
+
+Creates a new \hyperlink{class_marimba}{Marimba} instance. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Parent} & The \hyperlink{group___v_i_m}{Virtual Instrument Manager} that will manage this instrument. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A newly created \hyperlink{class_marimba}{Marimba} \hyperlink{group___v_i}{Virtual Instrument}. 
+\end{DoxyReturn}
+
+
+Definition at line 29 of file Marimba.\+cs.
+
+
+
+References Marimba.\+Create\+Filenames(), Marimba.\+Initialize\+Built\+In\+Dynamics(), Virtual\+Instrument.\+m\+Highest\+Supported\+Pitch, Virtual\+Instrument.\+m\+Is\+Drum, Virtual\+Instrument.\+m\+Loaded, Virtual\+Instrument.\+m\+Lowest\+Supported\+Pitch, Virtual\+Instrument.\+m\+Num\+Supported\+Pitches, Virtual\+Instrument.\+m\+Sample\+Interval, and Virtual\+Instrument.\+m\+Sample\+Rate.
+
+
+\begin{DoxyCode}
+29                                                        : base( aParent )
+30     \{
+31 
+32         \textcolor{comment}{// Set default values}
+33         \hyperlink{group___v_i_base_pro_var_ga47dbd8aa02ab32b8f802adfd2d3d81de}{mIsDrum} = \textcolor{keyword}{false};
+34         \hyperlink{group___v_i_base_pro_var_ga3cae52b1bcc0178a8a6b03c7aaf7aac8}{mLowestSupportedPitch} = \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.C2;
+35         \hyperlink{group___v_i_base_pro_var_ga61fb2c33b53a0f663047779d7ceb18f3}{mHighestSupportedPitch} = \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.C7;
+36         \hyperlink{group___v_i_base_pro_var_gafc759a16324cf9b3f230bcbf040afcd2}{mNumSupportedPitches} = 61;
+37         \hyperlink{group___v_i_base_pro_var_ga80b3d2ff29b27698eea6bcf2f8ddc5d7}{mSampleRate} = 44100;
+38         \hyperlink{group___v_i_base_pro_var_ga20c1d3d25ea666378d72c833d160ae2e}{mSampleInterval} = 1f / \hyperlink{group___v_i_base_pro_var_ga80b3d2ff29b27698eea6bcf2f8ddc5d7}{mSampleRate};
+39 
+40         \textcolor{comment}{// Call functions to set the values relating to built-in dynamics, and create the filenames for
+       each sample.}
+41         \hyperlink{group___mar_virt_func_ga293d829cb8571c21452c23e90968b2d8}{InitializeBuiltInDynamics}();
+42         \hyperlink{group___mar_virt_func_gae57d9737fd07708dc7e13e74ee777878}{CreateFilenames}();
+43 
+44         \textcolor{comment}{// Set that this instrument is loaded.}
+45         \hyperlink{group___v_i_base_pro_var_ga8978807d1878db5aae91fbd057c46097}{mLoaded} = \textcolor{keyword}{true};
+46 
+47     \}
+\end{DoxyCode}

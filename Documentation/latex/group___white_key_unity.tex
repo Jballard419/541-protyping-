@@ -1,0 +1,113 @@
+\hypertarget{group___white_key_unity}{}\section{Unity Functions}
+\label{group___white_key_unity}\index{Unity Functions@{Unity Functions}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___white_key_unity_ga92c78e57e0ccc8cf2dec655676698b21}{White\+Key.\+Awake} ()
+\begin{DoxyCompactList}\small\item\em Called when object is initialized. \end{DoxyCompactList}\item 
+void \hyperlink{group___white_key_unity_ga160cb397de3ab7084247e7fede943cf7}{White\+Key.\+Update} ()
+\begin{DoxyCompactList}\small\item\em Called every frame. Used for loading the \hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager}. \end{DoxyCompactList}\item 
+void \hyperlink{group___white_key_unity_ga54ddd22238f4a46b2824eacb90430245}{White\+Key.\+Fixed\+Update} ()
+\begin{DoxyCompactList}\small\item\em Called every physics step. Used for applying torque to the Rigid\+Body. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Built-\/in Unity functions for creating and updating the \hyperlink{class_white_key}{White\+Key}. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___white_key_unity_ga92c78e57e0ccc8cf2dec655676698b21}\label{group___white_key_unity_ga92c78e57e0ccc8cf2dec655676698b21}} 
+\index{Unity Functions@{Unity Functions}!Awake@{Awake}}
+\index{Awake@{Awake}!Unity Functions@{Unity Functions}}
+\subsubsection{\texorpdfstring{Awake()}{Awake()}}
+{\footnotesize\ttfamily void White\+Key.\+Awake (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Called when object is initialized. 
+
+Sets the key that is used to simulate pressing the object and gets the Rigid\+Body and sets that it shouldn\textquotesingle{}t use gravity. 
+
+Definition at line 75 of file White\+Key.\+cs.
+
+
+\begin{DoxyCode}
+76     \{
+77         \hyperlink{group___white_key_priv_var_gaeb8c5eafd138c45894858554f739eaf7}{mKeyCode} = (KeyCode)\hyperlink{namespace_system}{System}.Enum.Parse( typeof( KeyCode ), 
+      \hyperlink{group___white_key_pub_var_gab24447e9dd54dbb443a0869b954fef66}{Key} );
+78         \hyperlink{group___white_key_priv_var_gadc6bd637ef5229f7519b213f038ca15d}{mRigidBody} = GetComponent<Rigidbody>();
+79         \hyperlink{group___white_key_priv_var_gadc6bd637ef5229f7519b213f038ca15d}{mRigidBody}.useGravity = \textcolor{keyword}{false};
+80         \hyperlink{group___white_key_events_gab84691fc1e9f7b62884589d1813433e2}{WhiteKeyPressed} = \textcolor{keyword}{new} WhiteKeyPressedEvent();
+81         \hyperlink{group___white_key_events_ga180e88cd7ab95af43231f53469e87830}{WhiteKeyReleased} = \textcolor{keyword}{new} WhiteKeyReleasedEvent();
+82     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___white_key_unity_ga54ddd22238f4a46b2824eacb90430245}\label{group___white_key_unity_ga54ddd22238f4a46b2824eacb90430245}} 
+\index{Unity Functions@{Unity Functions}!Fixed\+Update@{Fixed\+Update}}
+\index{Fixed\+Update@{Fixed\+Update}!Unity Functions@{Unity Functions}}
+\subsubsection{\texorpdfstring{Fixed\+Update()}{FixedUpdate()}}
+{\footnotesize\ttfamily void White\+Key.\+Fixed\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Called every physics step. Used for applying torque to the Rigid\+Body. 
+
+Checks if the appropriate key was pressed/released and applies a torque if so. It also calls the functions that send input to the \hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} if needed. 
+
+Definition at line 101 of file White\+Key.\+cs.
+
+
+
+References Music.\+Note\+To\+String(), and White\+Key.\+Pitch.
+
+
+\begin{DoxyCode}
+102     \{
+103         \textcolor{comment}{//float move = Input.GetAxis ("Horizontal");}
+104         Vector3 movement = \textcolor{keyword}{new} Vector3( 0, 0.0f, -1f );
+105         \textcolor{keywordflow}{if}( Input.GetKey( \hyperlink{group___white_key_priv_var_gaeb8c5eafd138c45894858554f739eaf7}{mKeyCode} ) )
+106         \{
+107             \textcolor{comment}{//Debug.Log( key );}
+108             \hyperlink{group___white_key_priv_var_gadc6bd637ef5229f7519b213f038ca15d}{mRigidBody}.AddTorque( movement );
+109 
+110             \textcolor{comment}{// Handle playing the sound if audio is loaded.}
+111             \textcolor{keywordflow}{if}( !\hyperlink{group___white_key_priv_var_gae2501ace0af5e1313147504bf61bf3e9}{mKeyPressed} )
+112             \{
+113                 Debug.Log( \textcolor{stringliteral}{"Key representing "} + \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( 
+      \hyperlink{group___white_key_pub_var_ga1ddd98b85ba069defc7cf47d25f625f4}{Pitch} ) + \textcolor{stringliteral}{" was pressed."} );
+114                 \hyperlink{group___white_key_priv_var_gae2501ace0af5e1313147504bf61bf3e9}{mKeyPressed} = \textcolor{keyword}{true};
+115                 \hyperlink{group___white_key_events_gab84691fc1e9f7b62884589d1813433e2}{WhiteKeyPressed}.Invoke( \textcolor{keyword}{this} );
+116             \}
+117         \}
+118         \textcolor{keywordflow}{else}
+119         \{
+120             \hyperlink{group___white_key_priv_var_gadc6bd637ef5229f7519b213f038ca15d}{mRigidBody}.AddTorque( movement * -1f );
+121 
+122             \textcolor{comment}{// Handle releasing the note if audio is loaded}
+123             \textcolor{keywordflow}{if}( \hyperlink{group___white_key_priv_var_gae2501ace0af5e1313147504bf61bf3e9}{mKeyPressed} )
+124             \{
+125                 Debug.Log( \textcolor{stringliteral}{"Key representing "} + \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( 
+      \hyperlink{group___white_key_pub_var_ga1ddd98b85ba069defc7cf47d25f625f4}{Pitch} ) + \textcolor{stringliteral}{" was released."} );
+126                 \hyperlink{group___white_key_priv_var_gae2501ace0af5e1313147504bf61bf3e9}{mKeyPressed} = \textcolor{keyword}{false};
+127                 \hyperlink{group___white_key_events_ga180e88cd7ab95af43231f53469e87830}{WhiteKeyReleased}.Invoke( \textcolor{keyword}{this} );
+128             \}
+129         \}
+130     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___white_key_unity_ga160cb397de3ab7084247e7fede943cf7}\label{group___white_key_unity_ga160cb397de3ab7084247e7fede943cf7}} 
+\index{Unity Functions@{Unity Functions}!Update@{Update}}
+\index{Update@{Update}!Unity Functions@{Unity Functions}}
+\subsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily void White\+Key.\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Called every frame. Used for loading the \hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager}. 
+
+Checks if audio should be loaded/unloaded and handles the asynchronous scene operation that does so. 
+
+Definition at line 90 of file White\+Key.\+cs.
+
+
+\begin{DoxyCode}
+91     \{
+92     \}
+\end{DoxyCode}

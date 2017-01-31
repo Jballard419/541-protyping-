@@ -1,0 +1,699 @@
+\hypertarget{group___s_c_m_handlers}{}\section{Event Handlers}
+\label{group___s_c_m_handlers}\index{Event Handlers@{Event Handlers}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___s_c_m_handlers_gae5930497314c77bd9c52c083b2f3e82e}{Song\+Creation\+Manager.\+On\+B\+P\+M\+Change} (float a\+B\+PM)
+\begin{DoxyCompactList}\small\item\em Handles a change in the song\textquotesingle{}s default B\+PM. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c_m_handlers_gaed512eb78e060a40616e6e31ce029440}{Song\+Creation\+Manager.\+On\+Create\+Note} ()
+\begin{DoxyCompactList}\small\item\em Creates a new note in the song. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c_m_handlers_gacb552a4f02b22d7c10a8420eb1431201}{Song\+Creation\+Manager.\+On\+Edit\+Event} (\hyperlink{class_s_c___note_display_panel}{S\+C\+\_\+\+Note\+Display\+Panel} a\+Panel)
+\begin{DoxyCompactList}\small\item\em Handles when a note panel is selected for editing. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c_m_handlers_ga1747d021ddb36a8c2c172315d6fbb3a8}{Song\+Creation\+Manager.\+On\+Load\+Song\+Button\+Clicked} ()
+\begin{DoxyCompactList}\small\item\em Handles the \hyperlink{group___s_c_m_priv_var_ga7851ecd194d87e14fa186fc76e154222}{Load Song button} being clicked by loading the \hyperlink{group___doc_s_c___l_s_d}{Load Song Dialog}. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c_m_handlers_gae3791e700c2e12f1dd705c4b951ec260}{Song\+Creation\+Manager.\+On\+Load\+Song} (\hyperlink{class_song}{Song} a\+Song)
+\begin{DoxyCompactList}\small\item\em Loads a \hyperlink{class_song}{Song} into the \hyperlink{group___doc_s_c}{Song Creation Interface}. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c_m_handlers_gaf12d6326ad2175a51f688504372be784}{Song\+Creation\+Manager.\+On\+Modify\+Note} ()
+\begin{DoxyCompactList}\small\item\em Modifies a \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note} in the \hyperlink{class_song}{Song}. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c_m_handlers_gafb394a0b00c8f9c0959d901faf9131c7}{Song\+Creation\+Manager.\+On\+Play\+Song} ()
+\begin{DoxyCompactList}\small\item\em Plays the \hyperlink{class_song}{Song} being created. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c_m_handlers_ga1f1e9a15a6c339282fb94085d4862605}{Song\+Creation\+Manager.\+On\+Remove\+Note} (int a\+Index)
+\begin{DoxyCompactList}\small\item\em Removes a \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note} from the \hyperlink{class_song}{Song} being created. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c_m_handlers_gafd5e9f72e7a15cb77994c59fbbf8b769}{Song\+Creation\+Manager.\+On\+Save\+Song} ()
+\begin{DoxyCompactList}\small\item\em Saves the \hyperlink{class_song}{Song} to a file. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c_m_handlers_ga45e79bb31be34e3e2cc47bd6a6563b40}{Song\+Creation\+Manager.\+On\+Velocity\+Change} (float a\+Velocity)
+\begin{DoxyCompactList}\small\item\em Handles a change in the \hyperlink{group___audio_DefVel}{velocity} for a \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note} in the \hyperlink{class_song}{Song} being created. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c_m_handlers_gac39b0d849c680dda1e047c3e7d848b51}{Song\+Creation\+Manager.\+Unload\+Song\+Creation\+Interface} ()
+\begin{DoxyCompactList}\small\item\em Goes back to the Audio\+Testing\+Interface scene. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+These are functions called by the \hyperlink{class_song_creation_manager}{Song\+Creation\+Manager} to handle events. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___s_c_m_handlers_gae5930497314c77bd9c52c083b2f3e82e}\label{group___s_c_m_handlers_gae5930497314c77bd9c52c083b2f3e82e}} 
+\index{Event Handlers@{Event Handlers}!On\+B\+P\+M\+Change@{On\+B\+P\+M\+Change}}
+\index{On\+B\+P\+M\+Change@{On\+B\+P\+M\+Change}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{On\+B\+P\+M\+Change()}{OnBPMChange()}}
+{\footnotesize\ttfamily void Song\+Creation\+Manager.\+On\+B\+P\+M\+Change (\begin{DoxyParamCaption}\item[{float}]{a\+B\+PM }\end{DoxyParamCaption})}
+
+
+
+Handles a change in the song\textquotesingle{}s default B\+PM. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+B\+PM} & The new default B\+PM.\\
+\hline
+\end{DoxyParams}
+Gets the value from the \hyperlink{group___s_c_m_priv_var_ga87ac3691ad7848394e51442f29d9659d}{B\+PM slider} and \hyperlink{group___song_pub_func_gaa65bbba1af7192edff7e0f848029013b}{sends it} to the \hyperlink{group___s_c_m_priv_var_gabd8329149faef65a689650d951a9abc9}{Song}.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___s_c_m_priv_var_ga87ac3691ad7848394e51442f29d9659d}{Song\+Creation\+Manager\+::m\+B\+P\+M\+Slider} 
+\end{DoxySeeAlso}
+
+
+Definition at line 318 of file Song\+Creation\+Manager.\+cs.
+
+
+
+References Song.\+Set\+B\+P\+M().
+
+
+
+Referenced by Song\+Creation\+Manager.\+Awake().
+
+
+\begin{DoxyCode}
+319     \{
+320         \textcolor{comment}{// Update the BPM slider's label.}
+321         \hyperlink{group___s_c_m_priv_var_ga87ac3691ad7848394e51442f29d9659d}{mBPMSlider}.transform.GetChild( 3 ).GetComponent<Text>().text = \textcolor{stringliteral}{"Default BPM: "} + aBPM.
+      ToString();
+322 
+323         \textcolor{comment}{// Update the song.}
+324         \hyperlink{group___s_c_m_priv_var_gabd8329149faef65a689650d951a9abc9}{mSong}.\hyperlink{group___song_pub_func_gaa65bbba1af7192edff7e0f848029013b}{SetBPM}( (\textcolor{keywordtype}{int})aBPM );
+325     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_c_m_handlers_gaed512eb78e060a40616e6e31ce029440}\label{group___s_c_m_handlers_gaed512eb78e060a40616e6e31ce029440}} 
+\index{Event Handlers@{Event Handlers}!On\+Create\+Note@{On\+Create\+Note}}
+\index{On\+Create\+Note@{On\+Create\+Note}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{On\+Create\+Note()}{OnCreateNote()}}
+{\footnotesize\ttfamily void Song\+Creation\+Manager.\+On\+Create\+Note (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Creates a new note in the song. 
+
+Gets the currently selected values from the modules in the scene uses them to \hyperlink{group___music_stat_func_gaaf74885e43eb623f64f961985fadcd08}{create} a new \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note}.
+
+The function won\textquotesingle{}t do anything if no \hyperlink{group___s_c_m_priv_var_gab84821120cace4099edfb42c52d2af63}{pitches} or \hyperlink{group___s_c_m_priv_var_gac8be873b8259a0ddf76b4fa6d7d2d072}{drums} are selected.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___s_c_m_priv_var_gac17f83788e480bb97160d17bbe69aab3}{Song\+Creation\+Manager\+::m\+New\+Note\+Button} 
+\end{DoxySeeAlso}
+
+
+Definition at line 338 of file Song\+Creation\+Manager.\+cs.
+
+
+
+References S\+C\+\_\+\+Note\+Display\+Container.\+Add\+Note(), Song.\+Add\+Note(), Music.\+Create\+Note(), Song.\+Get\+Num\+Notes(), Song\+Creation\+Manager.\+Song\+Creation\+Selection\+Container.\+Get\+Selected(), S\+C\+\_\+\+Pitch\+Selection\+Container.\+Get\+Selected\+Pitches(), Song\+Creation\+Manager.\+m\+Last\+Length, S\+C\+\_\+\+Pitch\+Selection\+Container.\+Reset\+Pitches(), and Song\+Creation\+Manager.\+Song\+Creation\+Selection\+Container.\+Set\+Selected().
+
+
+
+Referenced by Song\+Creation\+Manager.\+Awake(), Song\+Creation\+Manager.\+On\+Edit\+Event(), and Song\+Creation\+Manager.\+On\+Modify\+Note().
+
+
+\begin{DoxyCode}
+339     \{
+340         \textcolor{comment}{// Sanity check.}
+341         \textcolor{keywordflow}{if}( \hyperlink{group___s_c_m_priv_var_gad2a61787c63fb8770d3c8100adfae9cf}{mEditing} )
+342         \{
+343             Assert.IsFalse( !\hyperlink{group___s_c_m_priv_var_gad2a61787c63fb8770d3c8100adfae9cf}{mEditing}, \textcolor{stringliteral}{"Tried to create a note in the song creation interface when
+       we should have been editing one!"} );
+344             \textcolor{keywordflow}{return};
+345         \}
+346 
+347         \textcolor{comment}{// Get the selected pitches}
+348         \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}[] pitches = \hyperlink{group___s_c_m_priv_var_gab84821120cace4099edfb42c52d2af63}{mPitchSelector}.
+      \hyperlink{group___s_c___p_s_c_pub_func_ga05750cc6e1199f1522f8b87d6579dc34}{GetSelectedPitches}();
+349 
+350         \textcolor{comment}{// Get the selected drums.}
+351         \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}[] drums = \hyperlink{group___s_c_m_priv_var_gac8be873b8259a0ddf76b4fa6d7d2d072}{mDrumSelector}.
+      \hyperlink{group___s_c___p_s_c_pub_func_ga05750cc6e1199f1522f8b87d6579dc34}{GetSelectedPitches}();
+352 
+353         \textcolor{comment}{// Make sure that some pitches or drums are actually selected.}
+354         \textcolor{keywordflow}{if}( pitches != null || drums != null )
+355         \{
+356             \textcolor{comment}{// Get the offset and velocity.}
+357             \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH} length = \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.NONE;
+358             \hyperlink{group___s_c_m_priv_var_gaa137adb1c99e9ee59adcfbf7d0cf6249}{mLastLength} = \hyperlink{group___s_c_m_priv_var_gadb8dedf80fbe474a1c94cdc95d088a6f}{mLengthPanel}.\hyperlink{group___s_c_m_nest_class_ae73f2b2c2f567ecaf6ce10f85c30956a}{GetSelected}();
+359             \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH} offset = \hyperlink{group___s_c_m_priv_var_ga86a44007a4b127d7aa61f75dd34a3409}{mOffsetPanel}.
+      \hyperlink{group___s_c_m_nest_class_ae73f2b2c2f567ecaf6ce10f85c30956a}{GetSelected}();
+360             \textcolor{keywordtype}{int} pitchVelocity = 0;
+361             \textcolor{keywordtype}{int} drumVelocity = 0;
+362 
+363             \textcolor{comment}{// If the song doesn't have any notes, then set the offset of the first note to none.}
+364             \textcolor{keywordflow}{if}( \hyperlink{group___s_c_m_priv_var_gabd8329149faef65a689650d951a9abc9}{mSong}.\hyperlink{group___song_pub_func_gad124d0af146885327f8ac455bc013b63}{GetNumNotes}() == 0 )
+365             \{
+366                 offset = \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.NONE;
+367             \}
+368 
+369             \textcolor{comment}{// Convert the selected pitches from the drum selector into actual drum hits.}
+370             \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}[] Hits = null;
+371             \textcolor{keywordflow}{if}( drums != null )
+372             \{
+373                 Hits = \textcolor{keyword}{new} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}[drums.Length];
+374                 \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < drums.Length; i++ )
+375                 \{
+376                     Hits[i] = (\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM})drums[i];
+377                 \}
+378             \}
+379 
+380 
+381             \textcolor{comment}{// Update the velocity/length for the pitches and drums if needed.}
+382             \textcolor{keywordflow}{if}( pitches != null )
+383             \{
+384                 pitchVelocity = (int)\hyperlink{group___s_c_m_priv_var_ga7316e5e8f15d1574fc6cb4bd739bbf0a}{mVelocitySlider}.value;
+385                 length = \hyperlink{group___s_c_m_priv_var_gadb8dedf80fbe474a1c94cdc95d088a6f}{mLengthPanel}.\hyperlink{group___s_c_m_nest_class_ae73f2b2c2f567ecaf6ce10f85c30956a}{GetSelected}();
+386             \}
+387 
+388             \textcolor{keywordflow}{if}( drums != null )
+389             \{
+390                 drumVelocity = (int)\hyperlink{group___s_c_m_priv_var_ga7316e5e8f15d1574fc6cb4bd739bbf0a}{mVelocitySlider}.value;
+391             \}
+392 
+393 
+394             \textcolor{comment}{// Add the note to the song.}
+395             \hyperlink{group___s_c_m_priv_var_gabd8329149faef65a689650d951a9abc9}{mSong}.\hyperlink{group___song_pub_func_gab7c8fe4dc29f5ae7b7728c583fe51f7e}{AddNote}( \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_gaaf74885e43eb623f64f961985fadcd08}{CreateNote}( pitchVelocity, length, pitches, 
+      drumVelocity, Hits, offset ) );
+396 
+397             \textcolor{comment}{// Add the note to the note display.}
+398             \hyperlink{group___s_c_m_priv_var_ga308f19d1b2020fc625c12dd08ee16b1c}{mNoteDisplay}.\hyperlink{group___s_c___n_d_c_pub_func_ga43e58800daae0e46bbe1b86d78c2f677}{AddNote}( pitchVelocity, length, pitches, drumVelocity, Hits, 
+      offset );
+399 
+400             \textcolor{comment}{// Reset the pitches.}
+401             \hyperlink{group___s_c_m_priv_var_gab84821120cace4099edfb42c52d2af63}{mPitchSelector}.\hyperlink{group___s_c___p_s_c_pub_func_ga678ef561c5418e4bf43a5f9ed753f0f0}{ResetPitches}();
+402             \hyperlink{group___s_c_m_priv_var_gac8be873b8259a0ddf76b4fa6d7d2d072}{mDrumSelector}.\hyperlink{group___s_c___p_s_c_pub_func_ga678ef561c5418e4bf43a5f9ed753f0f0}{ResetPitches}();
+403 
+404             \textcolor{comment}{// Update the selection of the offset panel since most cases will use the previous length.}
+405             \hyperlink{group___s_c_m_priv_var_ga86a44007a4b127d7aa61f75dd34a3409}{mOffsetPanel}.\hyperlink{group___s_c_m_nest_class_ab3d74be007528e4e6686f89e8e993b3b}{SetSelected}( \hyperlink{group___s_c_m_priv_var_gadb8dedf80fbe474a1c94cdc95d088a6f}{mLengthPanel}.
+      \hyperlink{group___s_c_m_nest_class_ae73f2b2c2f567ecaf6ce10f85c30956a}{GetSelected}() );
+406         \}
+407     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_c_m_handlers_gacb552a4f02b22d7c10a8420eb1431201}\label{group___s_c_m_handlers_gacb552a4f02b22d7c10a8420eb1431201}} 
+\index{Event Handlers@{Event Handlers}!On\+Edit\+Event@{On\+Edit\+Event}}
+\index{On\+Edit\+Event@{On\+Edit\+Event}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{On\+Edit\+Event()}{OnEditEvent()}}
+{\footnotesize\ttfamily void Song\+Creation\+Manager.\+On\+Edit\+Event (\begin{DoxyParamCaption}\item[{\hyperlink{class_s_c___note_display_panel}{S\+C\+\_\+\+Note\+Display\+Panel}}]{a\+Panel }\end{DoxyParamCaption})}
+
+
+
+Handles when a note panel is selected for editing. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Panel} & The panel representing the note that we\textquotesingle{}re editing.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___s_c_m_handlers_gaf12d6326ad2175a51f688504372be784}{Song\+Creation\+Manager\+::\+On\+Modify\+Note} 
+\end{DoxySeeAlso}
+
+
+Definition at line 415 of file Song\+Creation\+Manager.\+cs.
+
+
+
+References Song.\+Get\+Note(), S\+C\+\_\+\+Note\+Display\+Panel.\+Get\+Note\+Index(), Song\+Creation\+Manager.\+On\+Create\+Note(), Song\+Creation\+Manager.\+On\+Modify\+Note(), S\+C\+\_\+\+Pitch\+Selection\+Container.\+Reset\+Pitches(), S\+C\+\_\+\+Pitch\+Selection\+Container.\+Set\+Pitches(), Song\+Creation\+Manager.\+Song\+Creation\+Selection\+Container.\+Set\+Selected(), and S\+C\+\_\+\+Note\+Display\+Panel.\+Stop\+Editing().
+
+
+
+Referenced by S\+C\+\_\+\+Note\+Display\+Panel.\+Trigger\+Edit\+Event().
+
+
+\begin{DoxyCode}
+416     \{
+417         \textcolor{comment}{// Handle the case where we begin editing a note.}
+418         \textcolor{keywordflow}{if}( \hyperlink{group___s_c_m_priv_var_gad063b650cf7112be19edaf1a2033ea4d}{mEditPanel} == null || \hyperlink{group___s_c_m_priv_var_gad063b650cf7112be19edaf1a2033ea4d}{mEditPanel} != aPanel )
+419         \{
+420             \textcolor{comment}{// Handle switching from editing one panel to editing a different one.}
+421             \textcolor{keywordflow}{if}( \hyperlink{group___s_c_m_priv_var_gad063b650cf7112be19edaf1a2033ea4d}{mEditPanel} != null )
+422             \{
+423                 \textcolor{comment}{// Stop editing the current note/note panel.}
+424                 \hyperlink{group___s_c_m_priv_var_gad063b650cf7112be19edaf1a2033ea4d}{mEditPanel}.\hyperlink{group___s_c___n_d_p_unity_ga92d0f078c4efd6c207173a10e31b5065}{StopEditing}();
+425 
+426                 \textcolor{comment}{// Change the note/note panel being edited to the new one.}
+427                 \hyperlink{group___s_c_m_priv_var_gad063b650cf7112be19edaf1a2033ea4d}{mEditPanel} = aPanel;
+428             \}
+429             \textcolor{comment}{// Handle when we start editing a panel.}
+430             \textcolor{keywordflow}{else}
+431             \{
+432                 \textcolor{comment}{// Update the new note button to be a modify note button.}
+433                 \hyperlink{group___s_c_m_priv_var_gac17f83788e480bb97160d17bbe69aab3}{mNewNoteButton}.transform.GetChild( 0 ).GetComponent<Text>().text = \textcolor{stringliteral}{"Modify
+       Note"};
+434                 \hyperlink{group___s_c_m_priv_var_gac17f83788e480bb97160d17bbe69aab3}{mNewNoteButton}.onClick.RemoveListener( 
+      \hyperlink{group___s_c_m_handlers_gaed512eb78e060a40616e6e31ce029440}{OnCreateNote} );
+435                 \hyperlink{group___s_c_m_priv_var_gac17f83788e480bb97160d17bbe69aab3}{mNewNoteButton}.onClick.AddListener( \hyperlink{group___s_c_m_handlers_gaf12d6326ad2175a51f688504372be784}{OnModifyNote} );
+436 
+437                 \textcolor{comment}{// Set the variables related to editing a note.}
+438                 \hyperlink{group___s_c_m_priv_var_gad063b650cf7112be19edaf1a2033ea4d}{mEditPanel} = aPanel;
+439                 \hyperlink{group___s_c_m_priv_var_gad2a61787c63fb8770d3c8100adfae9cf}{mEditing} = \textcolor{keyword}{true};
+440             \}
+441 
+442             \textcolor{comment}{// Get the note being modified.}
+443             \hyperlink{class_music}{Music}.\hyperlink{group___music_structs_struct_music_1_1_combined_note}{CombinedNote} noteBeingModified = \hyperlink{group___s_c_m_priv_var_gabd8329149faef65a689650d951a9abc9}{mSong}.
+      \hyperlink{group___song_pub_func_ga485c83c9278103fed23c532bba1252f0}{GetNote}( aPanel.\hyperlink{group___s_c___n_d_p_unity_ga8beef050026ade4ba4ccb574c414d24e}{GetNoteIndex}() );
+444 
+445             \textcolor{comment}{// Set the pitch selector to have the pitches from the note.}
+446             \hyperlink{group___s_c_m_priv_var_gab84821120cace4099edfb42c52d2af63}{mPitchSelector}.\hyperlink{group___s_c___p_s_c_pub_func_ga0b85aab924084ebb49be4f64ad6f81e5}{SetPitches}( noteBeingModified.MusicalNote.Pitches );
+447 
+448             \textcolor{comment}{// Set the drum selector to have the drums from the note.}
+449             \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}[] drumsAsPitches = null;
+450             \textcolor{keywordflow}{if}( noteBeingModified.Drums.Hits != null )
+451             \{
+452                 drumsAsPitches = \textcolor{keyword}{new} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}[noteBeingModified.Drums.Hits.Length];
+453                 \textcolor{keywordtype}{int} index = 0;
+454                 \textcolor{keywordflow}{foreach}( \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM} drum in noteBeingModified.Drums.Hits )
+455                 \{
+456                     drumsAsPitches[index] = (\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH})drum;
+457                     index++;
+458                 \}
+459             \}
+460             \hyperlink{group___s_c_m_priv_var_gac8be873b8259a0ddf76b4fa6d7d2d072}{mDrumSelector}.\hyperlink{group___s_c___p_s_c_pub_func_ga0b85aab924084ebb49be4f64ad6f81e5}{SetPitches}( drumsAsPitches );
+461             \hyperlink{group___s_c_m_priv_var_gadb8dedf80fbe474a1c94cdc95d088a6f}{mLengthPanel}.\hyperlink{group___s_c_m_nest_class_ab3d74be007528e4e6686f89e8e993b3b}{SetSelected}( noteBeingModified.MusicalNote.Length );
+462             \hyperlink{group___s_c_m_priv_var_ga86a44007a4b127d7aa61f75dd34a3409}{mOffsetPanel}.\hyperlink{group___s_c_m_nest_class_ab3d74be007528e4e6686f89e8e993b3b}{SetSelected}( noteBeingModified.OffsetFromPrevNote );
+463             \hyperlink{group___s_c_m_priv_var_ga7316e5e8f15d1574fc6cb4bd739bbf0a}{mVelocitySlider}.value = Mathf.Max( noteBeingModified.Drums.Velocity, 
+      noteBeingModified.MusicalNote.Velocity );
+464         \}
+465         \textcolor{comment}{// Handle the case where we're editing a note/note panel and it calls this }
+466         \textcolor{comment}{// event while it's being edited. This means that the edit should be cancelled.}
+467         \textcolor{keywordflow}{else}
+468         \{
+469             \textcolor{comment}{// Change the new note button back to its original state.}
+470             \hyperlink{group___s_c_m_priv_var_gac17f83788e480bb97160d17bbe69aab3}{mNewNoteButton}.transform.GetChild( 0 ).GetComponent<Text>().text = \textcolor{stringliteral}{"Insert Note"};
+471             \hyperlink{group___s_c_m_priv_var_gac17f83788e480bb97160d17bbe69aab3}{mNewNoteButton}.onClick.RemoveListener( \hyperlink{group___s_c_m_handlers_gaf12d6326ad2175a51f688504372be784}{OnModifyNote} );
+472             \hyperlink{group___s_c_m_priv_var_gac17f83788e480bb97160d17bbe69aab3}{mNewNoteButton}.onClick.AddListener( \hyperlink{group___s_c_m_handlers_gaed512eb78e060a40616e6e31ce029440}{OnCreateNote} );
+473 
+474             \textcolor{comment}{// Mark that the panel is no longer being edited.}
+475             \hyperlink{group___s_c_m_priv_var_gad063b650cf7112be19edaf1a2033ea4d}{mEditPanel}.\hyperlink{group___s_c___n_d_p_unity_ga92d0f078c4efd6c207173a10e31b5065}{StopEditing}();
+476 
+477             \textcolor{comment}{// Reset the variables related to editing a note.}
+478             \hyperlink{group___s_c_m_priv_var_gadb8dedf80fbe474a1c94cdc95d088a6f}{mLengthPanel}.\hyperlink{group___s_c_m_nest_class_ab3d74be007528e4e6686f89e8e993b3b}{SetSelected}( \hyperlink{class_music}{Music}.
+      \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.Q );
+479             \hyperlink{group___s_c_m_priv_var_ga86a44007a4b127d7aa61f75dd34a3409}{mOffsetPanel}.\hyperlink{group___s_c_m_nest_class_ab3d74be007528e4e6686f89e8e993b3b}{SetSelected}( \hyperlink{class_music}{Music}.
+      \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.NONE );
+480             \hyperlink{group___s_c_m_priv_var_ga7316e5e8f15d1574fc6cb4bd739bbf0a}{mVelocitySlider}.value = 100;
+481             \hyperlink{group___s_c_m_priv_var_gab84821120cace4099edfb42c52d2af63}{mPitchSelector}.\hyperlink{group___s_c___p_s_c_pub_func_ga678ef561c5418e4bf43a5f9ed753f0f0}{ResetPitches}();
+482             \hyperlink{group___s_c_m_priv_var_gac8be873b8259a0ddf76b4fa6d7d2d072}{mDrumSelector}.\hyperlink{group___s_c___p_s_c_pub_func_ga678ef561c5418e4bf43a5f9ed753f0f0}{ResetPitches}();
+483             \hyperlink{group___s_c_m_priv_var_gad063b650cf7112be19edaf1a2033ea4d}{mEditPanel} = null;
+484             \hyperlink{group___s_c_m_priv_var_gad2a61787c63fb8770d3c8100adfae9cf}{mEditing} = \textcolor{keyword}{false};
+485         \}
+486     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_c_m_handlers_gae3791e700c2e12f1dd705c4b951ec260}\label{group___s_c_m_handlers_gae3791e700c2e12f1dd705c4b951ec260}} 
+\index{Event Handlers@{Event Handlers}!On\+Load\+Song@{On\+Load\+Song}}
+\index{On\+Load\+Song@{On\+Load\+Song}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{On\+Load\+Song()}{OnLoadSong()}}
+{\footnotesize\ttfamily void Song\+Creation\+Manager.\+On\+Load\+Song (\begin{DoxyParamCaption}\item[{\hyperlink{class_song}{Song}}]{a\+Song }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Loads a \hyperlink{class_song}{Song} into the \hyperlink{group___doc_s_c}{Song Creation Interface}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Song} & The song to load.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+Load\+Song\+Dialog 
+\end{DoxySeeAlso}
+
+
+Definition at line 513 of file Song\+Creation\+Manager.\+cs.
+
+
+
+References S\+C\+\_\+\+Note\+Display\+Container.\+Add\+Note(), S\+C\+\_\+\+Note\+Display\+Container.\+Clear\+Notes(), and Song.\+Get\+All\+Notes().
+
+
+
+Referenced by Song\+Creation\+Manager.\+On\+Load\+Song\+Button\+Clicked().
+
+
+\begin{DoxyCode}
+514     \{
+515         \textcolor{comment}{// Set mSong}
+516         \hyperlink{group___s_c_m_priv_var_gabd8329149faef65a689650d951a9abc9}{mSong} = aSong;
+517 
+518         \textcolor{comment}{// Clear the notes.}
+519         \hyperlink{group___s_c_m_priv_var_ga308f19d1b2020fc625c12dd08ee16b1c}{mNoteDisplay}.\hyperlink{group___s_c___n_d_c_pub_func_gaa344983500e83531210ae1c4789182f3}{ClearNotes}();
+520 
+521         \textcolor{comment}{// Add the notes of the song to the Note Display Panel.}
+522         List<\hyperlink{class_music}{Music}.\hyperlink{group___music_structs_struct_music_1_1_combined_note}{CombinedNote}> notes = \hyperlink{group___s_c_m_priv_var_gabd8329149faef65a689650d951a9abc9}{mSong}.\hyperlink{group___song_pub_func_ga842675b7691fca074ee394031afc7675}{GetAllNotes}();
+523         \textcolor{keywordflow}{foreach}( \hyperlink{class_music}{Music}.\hyperlink{group___music_structs_struct_music_1_1_combined_note}{CombinedNote} note in notes )
+524         \{
+525             \hyperlink{group___s_c_m_priv_var_ga308f19d1b2020fc625c12dd08ee16b1c}{mNoteDisplay}.\hyperlink{group___s_c___n_d_c_pub_func_ga43e58800daae0e46bbe1b86d78c2f677}{AddNote}( note.MusicalNote.Velocity, note.MusicalNote.Length, 
+      note.MusicalNote.Pitches, note.Drums.Velocity,
+526                 note.Drums.Hits, note.OffsetFromPrevNote );
+527         \}
+528     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_c_m_handlers_ga1747d021ddb36a8c2c172315d6fbb3a8}\label{group___s_c_m_handlers_ga1747d021ddb36a8c2c172315d6fbb3a8}} 
+\index{Event Handlers@{Event Handlers}!On\+Load\+Song\+Button\+Clicked@{On\+Load\+Song\+Button\+Clicked}}
+\index{On\+Load\+Song\+Button\+Clicked@{On\+Load\+Song\+Button\+Clicked}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{On\+Load\+Song\+Button\+Clicked()}{OnLoadSongButtonClicked()}}
+{\footnotesize\ttfamily void Song\+Creation\+Manager.\+On\+Load\+Song\+Button\+Clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handles the \hyperlink{group___s_c_m_priv_var_ga7851ecd194d87e14fa186fc76e154222}{Load Song button} being clicked by loading the \hyperlink{group___doc_s_c___l_s_d}{Load Song Dialog}. 
+
+
+
+Definition at line 491 of file Song\+Creation\+Manager.\+cs.
+
+
+
+References Song\+Creation\+Manager.\+On\+Load\+Song(), and S\+C\+\_\+\+Load\+Song\+Dialog.\+Song\+Selected.
+
+
+
+Referenced by Song\+Creation\+Manager.\+Awake().
+
+
+\begin{DoxyCode}
+492     \{
+493         \textcolor{comment}{// Load prefab.}
+494         GameObject dialogObject = Instantiate( Resources.Load<GameObject>( 
+      \hyperlink{group___s_c_m_const_ga821945ef78c5b9411d7861b42407591e}{LOAD\_SONG\_DIALOG\_PATH} ) );
+495         Assert.IsNotNull( dialogObject, \textcolor{stringliteral}{"Could not load the SC\_LoadSongDialog!"} );
+496 
+497         \textcolor{comment}{// Get the dialog component.}
+498         \hyperlink{class_s_c___load_song_dialog}{SC\_LoadSongDialog} dialog = dialogObject.GetComponent<
+      \hyperlink{class_s_c___load_song_dialog}{SC\_LoadSongDialog}>();
+499 
+500         \textcolor{comment}{// Put the dialog at the right place in the hierarchy.}
+501         dialog.transform.SetParent( transform );
+502 
+503         \textcolor{comment}{// Add the listener.}
+504         dialog.\hyperlink{group___s_c___l_s_d_events_ga48d606b2c8291fee822dcc2b14ddcecc}{SongSelected}.AddListener( \hyperlink{group___s_c_m_handlers_gae3791e700c2e12f1dd705c4b951ec260}{OnLoadSong} );
+505     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_c_m_handlers_gaf12d6326ad2175a51f688504372be784}\label{group___s_c_m_handlers_gaf12d6326ad2175a51f688504372be784}} 
+\index{Event Handlers@{Event Handlers}!On\+Modify\+Note@{On\+Modify\+Note}}
+\index{On\+Modify\+Note@{On\+Modify\+Note}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{On\+Modify\+Note()}{OnModifyNote()}}
+{\footnotesize\ttfamily void Song\+Creation\+Manager.\+On\+Modify\+Note (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Modifies a \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note} in the \hyperlink{class_song}{Song}. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___song_pub_func_ga326d61c75339080057a02c6decb0cde3}{Song\+::\+Replace\+Note} 
+\end{DoxySeeAlso}
+
+
+Definition at line 535 of file Song\+Creation\+Manager.\+cs.
+
+
+
+References Music.\+Create\+Note(), Music.\+Drum\+To\+String(), S\+C\+\_\+\+Note\+Display\+Panel.\+Get\+Note\+Index(), Song\+Creation\+Manager.\+Song\+Creation\+Selection\+Container.\+Get\+Selected(), S\+C\+\_\+\+Pitch\+Selection\+Container.\+Get\+Selected\+Pitches(), S\+C\+\_\+\+Note\+Display\+Container.\+Get\+Sprites(), Music.\+Note\+To\+String(), Song\+Creation\+Manager.\+On\+Create\+Note(), Song.\+Replace\+Note(), S\+C\+\_\+\+Pitch\+Selection\+Container.\+Reset\+Pitches(), S\+C\+\_\+\+Note\+Display\+Panel.\+Set\+Drums(), S\+C\+\_\+\+Note\+Display\+Panel.\+Set\+Length\+Image(), S\+C\+\_\+\+Note\+Display\+Panel.\+Set\+Offset(), S\+C\+\_\+\+Note\+Display\+Panel.\+Set\+Offset\+Image(), S\+C\+\_\+\+Note\+Display\+Panel.\+Set\+Pitches(), S\+C\+\_\+\+Note\+Display\+Panel.\+Set\+Velocity(), and S\+C\+\_\+\+Note\+Display\+Panel.\+Stop\+Editing().
+
+
+
+Referenced by Song\+Creation\+Manager.\+On\+Edit\+Event().
+
+
+\begin{DoxyCode}
+536     \{
+537         \textcolor{comment}{// Make sure that we're actually editing a note.}
+538         \textcolor{keywordflow}{if}( \hyperlink{group___s_c_m_priv_var_gad2a61787c63fb8770d3c8100adfae9cf}{mEditing} )
+539         \{
+540             \textcolor{comment}{// Sanity check.}
+541             \textcolor{keywordflow}{if}( \hyperlink{group___s_c_m_priv_var_gad063b650cf7112be19edaf1a2033ea4d}{mEditPanel} == null )
+542             \{
+543                 Assert.IsNotNull( \hyperlink{group___s_c_m_priv_var_gad063b650cf7112be19edaf1a2033ea4d}{mEditPanel}, \textcolor{stringliteral}{"Tried to modify a note, but the note panel in the
+       song creator was null!"} );
+544                 \textcolor{keywordflow}{return};
+545             \}
+546 
+547             \textcolor{comment}{// Get the pitches }
+548             \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}[] pitches = \hyperlink{group___s_c_m_priv_var_gab84821120cace4099edfb42c52d2af63}{mPitchSelector}.
+      \hyperlink{group___s_c___p_s_c_pub_func_ga05750cc6e1199f1522f8b87d6579dc34}{GetSelectedPitches}();
+549 
+550             \textcolor{comment}{// Get the drums}
+551             \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}[] drums = \hyperlink{group___s_c_m_priv_var_gac8be873b8259a0ddf76b4fa6d7d2d072}{mDrumSelector}.
+      \hyperlink{group___s_c___p_s_c_pub_func_ga05750cc6e1199f1522f8b87d6579dc34}{GetSelectedPitches}();
+552 
+553             \textcolor{comment}{// Make sure that some pitches or drums are actually selected.}
+554             \textcolor{keywordflow}{if}( pitches != null || drums != null )
+555             \{
+556                 \textcolor{comment}{// Get the index of the note in the song and the images for the length/offset.}
+557                 \textcolor{keywordtype}{int} index = \hyperlink{group___s_c_m_priv_var_gad063b650cf7112be19edaf1a2033ea4d}{mEditPanel}.\hyperlink{group___s_c___n_d_p_unity_ga8beef050026ade4ba4ccb574c414d24e}{GetNoteIndex}();
+558                 Sprite[] images = \hyperlink{group___s_c_m_priv_var_ga308f19d1b2020fc625c12dd08ee16b1c}{mNoteDisplay}.\hyperlink{group___s_c___n_d_c_pub_func_ga3cdbb1068cd6511112c564fc636c56ca}{GetSprites}();
+559 
+560                 \textcolor{comment}{// Convert the selected pitches from the drum selector into actual drum hits.}
+561                 \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}[] Hits = null;
+562                 \textcolor{keywordflow}{if}( drums != null )
+563                 \{
+564                     Hits = \textcolor{keyword}{new} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}[drums.Length];
+565                     \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < drums.Length; i++ )
+566                     \{
+567                         Hits[i] = (\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM})drums[i];
+568                     \}
+569                 \}
+570 
+571                 \textcolor{comment}{// Set the values of the note struct.}
+572                 \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH} length = \hyperlink{class_music}{Music}.
+      \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.NONE;
+573                 \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH} offset = \hyperlink{group___s_c_m_priv_var_ga86a44007a4b127d7aa61f75dd34a3409}{mOffsetPanel}.
+      \hyperlink{group___s_c_m_nest_class_ae73f2b2c2f567ecaf6ce10f85c30956a}{GetSelected}();
+574                 \textcolor{keywordtype}{int} pitchVelocity = 0;
+575                 \textcolor{keywordtype}{int} drumVelocity = 0;
+576 
+577                 \textcolor{comment}{// Update the velocity for the pitches and drums if needed.}
+578                 \textcolor{keywordflow}{if}( pitches != null )
+579                 \{
+580                     pitchVelocity = (int)\hyperlink{group___s_c_m_priv_var_ga7316e5e8f15d1574fc6cb4bd739bbf0a}{mVelocitySlider}.value;
+581                     length = \hyperlink{group___s_c_m_priv_var_gadb8dedf80fbe474a1c94cdc95d088a6f}{mLengthPanel}.\hyperlink{group___s_c_m_nest_class_ae73f2b2c2f567ecaf6ce10f85c30956a}{GetSelected}();
+582                 \}
+583 
+584                 \textcolor{keywordflow}{if}( drums != null )
+585                 \{
+586                     drumVelocity = (int)\hyperlink{group___s_c_m_priv_var_ga7316e5e8f15d1574fc6cb4bd739bbf0a}{mVelocitySlider}.value;
+587                 \}
+588 
+589                 \textcolor{comment}{// Replace the note in the song with the modified note.}
+590                 \hyperlink{group___s_c_m_priv_var_gabd8329149faef65a689650d951a9abc9}{mSong}.\hyperlink{group___song_pub_func_ga326d61c75339080057a02c6decb0cde3}{ReplaceNote}( \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_gaaf74885e43eb623f64f961985fadcd08}{CreateNote}( pitchVelocity, length, 
+      pitches, drumVelocity, Hits, offset ), index );
+591 
+592                 \textcolor{comment}{// Get the string of pitches for the modified note.}
+593                 \textcolor{keywordtype}{string} pitchString = \textcolor{stringliteral}{"None"};
+594                 \textcolor{keywordflow}{if}( pitches != null )
+595                 \{
+596                     pitchString = \textcolor{stringliteral}{""};
+597                     \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < pitches.Length; i++ )
+598                     \{
+599                         \textcolor{keywordflow}{if}( pitches[i] == \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.REST )
+600                         \{
+601                             pitchString += \textcolor{stringliteral}{"Rest "};
+602                         \}
+603                         \textcolor{keywordflow}{else}
+604                         \{
+605                             pitchString += ( \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( pitches[i] ) + \textcolor{stringliteral}{" "} );
+606                         \}
+607                     \}
+608                 \}
+609 
+610                 \textcolor{comment}{// Get the string of drums for the modified note.}
+611                 \textcolor{keywordtype}{string} drumString = \textcolor{stringliteral}{"None"};
+612                 \textcolor{keywordflow}{if}( Hits != null )
+613                 \{
+614                     drumString = \textcolor{stringliteral}{""};
+615                     \textcolor{keywordflow}{foreach}( \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM} drum in Hits )
+616                     \{
+617                         drumString += \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_gaf5f64ebe9a7e036e07f283e41f26d22b}{DrumToString}( drum ) + \textcolor{stringliteral}{" "};
+618                     \}
+619                 \}
+620 
+621                 \textcolor{comment}{// Update the panel representing the note.}
+622                 \hyperlink{group___s_c_m_priv_var_gad063b650cf7112be19edaf1a2033ea4d}{mEditPanel}.\hyperlink{group___s_c___n_d_p_unity_gae14b5564be204df7699b95186d83f69f}{SetDrums}( drumString );
+623                 \hyperlink{group___s_c_m_priv_var_gad063b650cf7112be19edaf1a2033ea4d}{mEditPanel}.\hyperlink{group___s_c___n_d_p_unity_gad9bf776f0c51cf6170faccf9fc4ac7e0}{SetPitches}( pitchString );
+624                 \hyperlink{group___s_c_m_priv_var_gad063b650cf7112be19edaf1a2033ea4d}{mEditPanel}.\hyperlink{group___s_c___n_d_p_unity_ga1a1c4b8111463ec3e134d17fe5064a54}{SetLengthImage}( images[(\textcolor{keywordtype}{int})length] );
+625                 \hyperlink{group___s_c_m_priv_var_gad063b650cf7112be19edaf1a2033ea4d}{mEditPanel}.\hyperlink{group___s_c___n_d_p_unity_gaa0a517d1359cd1ed109a130bd52763f1}{SetOffsetImage}( images[(\textcolor{keywordtype}{int})offset] );
+626                 \hyperlink{group___s_c_m_priv_var_gad063b650cf7112be19edaf1a2033ea4d}{mEditPanel}.\hyperlink{group___s_c___n_d_p_unity_ga8ff7588e8c3f59a03842feaff92f97e9}{SetOffset}( offset );
+627                 \hyperlink{group___s_c_m_priv_var_gad063b650cf7112be19edaf1a2033ea4d}{mEditPanel}.\hyperlink{group___s_c___n_d_p_unity_ga8a2fef715606caa884c7b490850fb9b7}{SetVelocity}( \hyperlink{group___s_c_m_priv_var_ga7316e5e8f15d1574fc6cb4bd739bbf0a}{mVelocitySlider}.value.ToString(
+      ) );
+628 
+629                 \textcolor{comment}{// Mark that the panel is no longer being edited.}
+630                 \hyperlink{group___s_c_m_priv_var_gad063b650cf7112be19edaf1a2033ea4d}{mEditPanel}.\hyperlink{group___s_c___n_d_p_unity_ga92d0f078c4efd6c207173a10e31b5065}{StopEditing}();
+631 
+632                 \textcolor{comment}{// Update the new note button so that it shows that we're no longer editing a note.}
+633                 \hyperlink{group___s_c_m_priv_var_gac17f83788e480bb97160d17bbe69aab3}{mNewNoteButton}.transform.GetChild( 0 ).GetComponent<Text>().text = \textcolor{stringliteral}{"Insert
+       Note"};
+634                 \hyperlink{group___s_c_m_priv_var_gac17f83788e480bb97160d17bbe69aab3}{mNewNoteButton}.onClick.RemoveListener( 
+      \hyperlink{group___s_c_m_handlers_gaf12d6326ad2175a51f688504372be784}{OnModifyNote} );
+635                 \hyperlink{group___s_c_m_priv_var_gac17f83788e480bb97160d17bbe69aab3}{mNewNoteButton}.onClick.AddListener( \hyperlink{group___s_c_m_handlers_gaed512eb78e060a40616e6e31ce029440}{OnCreateNote} );
+636 
+637                 \textcolor{comment}{// Reset the variables related to editing a note.}
+638                 \hyperlink{group___s_c_m_priv_var_gad063b650cf7112be19edaf1a2033ea4d}{mEditPanel} = null;
+639                 \hyperlink{group___s_c_m_priv_var_gad2a61787c63fb8770d3c8100adfae9cf}{mEditing} = \textcolor{keyword}{false};
+640 
+641                 \textcolor{comment}{// Reset the pitch selections.}
+642                 \hyperlink{group___s_c_m_priv_var_gab84821120cace4099edfb42c52d2af63}{mPitchSelector}.\hyperlink{group___s_c___p_s_c_pub_func_ga678ef561c5418e4bf43a5f9ed753f0f0}{ResetPitches}();
+643                 \hyperlink{group___s_c_m_priv_var_gac8be873b8259a0ddf76b4fa6d7d2d072}{mDrumSelector}.\hyperlink{group___s_c___p_s_c_pub_func_ga678ef561c5418e4bf43a5f9ed753f0f0}{ResetPitches}();
+644             \}
+645         \}
+646     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_c_m_handlers_gafb394a0b00c8f9c0959d901faf9131c7}\label{group___s_c_m_handlers_gafb394a0b00c8f9c0959d901faf9131c7}} 
+\index{Event Handlers@{Event Handlers}!On\+Play\+Song@{On\+Play\+Song}}
+\index{On\+Play\+Song@{On\+Play\+Song}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{On\+Play\+Song()}{OnPlaySong()}}
+{\footnotesize\ttfamily void Song\+Creation\+Manager.\+On\+Play\+Song (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Plays the \hyperlink{class_song}{Song} being created. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___v_i_m_event_types_class_virtual_instrument_manager_1_1_play_song_event}{Virtual\+Instrument\+Manager\+::\+Play\+Song\+Event} 
+\end{DoxySeeAlso}
+
+
+Definition at line 653 of file Song\+Creation\+Manager.\+cs.
+
+
+
+References Virtual\+Instrument\+Manager.\+Play\+Song.
+
+
+
+Referenced by Song\+Creation\+Manager.\+Awake().
+
+
+\begin{DoxyCode}
+654     \{
+655         \hyperlink{group___s_c_m_priv_var_ga7822ac42d20a4577db66808f000decfb}{mVIM}.\hyperlink{group___v_i_m_events_gae450bdba9c513ab4e43f69def50fa84d}{PlaySong}.Invoke( \hyperlink{group___s_c_m_priv_var_gabd8329149faef65a689650d951a9abc9}{mSong} );
+656     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_c_m_handlers_ga1f1e9a15a6c339282fb94085d4862605}\label{group___s_c_m_handlers_ga1f1e9a15a6c339282fb94085d4862605}} 
+\index{Event Handlers@{Event Handlers}!On\+Remove\+Note@{On\+Remove\+Note}}
+\index{On\+Remove\+Note@{On\+Remove\+Note}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{On\+Remove\+Note()}{OnRemoveNote()}}
+{\footnotesize\ttfamily void Song\+Creation\+Manager.\+On\+Remove\+Note (\begin{DoxyParamCaption}\item[{int}]{a\+Index }\end{DoxyParamCaption})}
+
+
+
+Removes a \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note} from the \hyperlink{class_song}{Song} being created. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Index} & The index of the \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note to remove} in the \hyperlink{class_song}{Song} being created.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+Song\+::\+On\+Remove\+Note 
+\end{DoxySeeAlso}
+
+
+Definition at line 664 of file Song\+Creation\+Manager.\+cs.
+
+
+
+References Song.\+Get\+Num\+Notes(), and Song.\+Remove\+Note().
+
+
+\begin{DoxyCode}
+665     \{
+666         \textcolor{keywordflow}{if}( \hyperlink{group___s_c_m_priv_var_gabd8329149faef65a689650d951a9abc9}{mSong}.\hyperlink{group___song_pub_func_gad124d0af146885327f8ac455bc013b63}{GetNumNotes}() > 0 )
+667         \{
+668             \hyperlink{group___s_c_m_priv_var_gabd8329149faef65a689650d951a9abc9}{mSong}.\hyperlink{group___song_pub_func_ga856634e047b8c35160958c3aa53d6b28}{RemoveNote}( aIndex );
+669         \}
+670     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_c_m_handlers_gafd5e9f72e7a15cb77994c59fbbf8b769}\label{group___s_c_m_handlers_gafd5e9f72e7a15cb77994c59fbbf8b769}} 
+\index{Event Handlers@{Event Handlers}!On\+Save\+Song@{On\+Save\+Song}}
+\index{On\+Save\+Song@{On\+Save\+Song}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{On\+Save\+Song()}{OnSaveSong()}}
+{\footnotesize\ttfamily void Song\+Creation\+Manager.\+On\+Save\+Song (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Saves the \hyperlink{class_song}{Song} to a file. 
+
+This function adds the song to the \hyperlink{group___v_i_m_pub_ga33dae94932c10c66db76a0eebec76b01}{Song Manager} and also saves the \hyperlink{class_song}{Song}. to a file.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___song_pub_func_ga70b0f6021c3b0590c561a88e3d1e5c2f}{Song\+::\+Write\+Song\+To\+File} 
+\end{DoxySeeAlso}
+
+
+Definition at line 680 of file Song\+Creation\+Manager.\+cs.
+
+
+
+References Song\+Manager\+Class.\+Add\+Song(), Song.\+Get\+All\+Notes(), Song.\+Get\+Song\+Type(), Song\+Creation\+Manager.\+m\+Last\+Length, Song.\+Replace\+Note(), Virtual\+Instrument\+Manager.\+Song\+Manager, and Song.\+Write\+Song\+To\+File().
+
+
+
+Referenced by Song\+Creation\+Manager.\+Awake().
+
+
+\begin{DoxyCode}
+681     \{
+682         \textcolor{comment}{// Special handling to make drum loops loop properly. The first hit has an initial offset}
+683         \textcolor{comment}{// equal to the length used to create the last note.}
+684         \textcolor{keywordflow}{if}( \hyperlink{group___s_c_m_priv_var_gabd8329149faef65a689650d951a9abc9}{mSong}.\hyperlink{group___song_pub_func_gabae5b5d8f727b2d9da7867a99347f86b}{GetSongType}() == \hyperlink{class_song}{Song}.\hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{SongType}.DrumLoop )
+685         \{
+686             \hyperlink{class_music}{Music}.\hyperlink{group___music_structs_struct_music_1_1_combined_note}{CombinedNote} firstNote = \hyperlink{group___s_c_m_priv_var_gabd8329149faef65a689650d951a9abc9}{mSong}.
+      \hyperlink{group___song_pub_func_ga842675b7691fca074ee394031afc7675}{GetAllNotes}()[0];
+687             firstNote.OffsetFromPrevNote = \hyperlink{group___s_c_m_priv_var_gaa137adb1c99e9ee59adcfbf7d0cf6249}{mLastLength};
+688             \hyperlink{group___s_c_m_priv_var_gabd8329149faef65a689650d951a9abc9}{mSong}.\hyperlink{group___song_pub_func_ga326d61c75339080057a02c6decb0cde3}{ReplaceNote}( firstNote, 0 );
+689         \}
+690         \hyperlink{group___s_c_m_priv_var_ga7822ac42d20a4577db66808f000decfb}{mVIM}.\hyperlink{group___v_i_m_pub_ga33dae94932c10c66db76a0eebec76b01}{SongManager}.\hyperlink{group___s_m_pub_func_ga1a228cb2a64e55448ccf9d1d618f05b7}{AddSong}( \hyperlink{group___s_c_m_priv_var_gabd8329149faef65a689650d951a9abc9}{mSong} );
+691         \hyperlink{group___s_c_m_priv_var_gabd8329149faef65a689650d951a9abc9}{mSong}.\hyperlink{group___song_pub_func_ga70b0f6021c3b0590c561a88e3d1e5c2f}{WriteSongToFile}();
+692     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_c_m_handlers_ga45e79bb31be34e3e2cc47bd6a6563b40}\label{group___s_c_m_handlers_ga45e79bb31be34e3e2cc47bd6a6563b40}} 
+\index{Event Handlers@{Event Handlers}!On\+Velocity\+Change@{On\+Velocity\+Change}}
+\index{On\+Velocity\+Change@{On\+Velocity\+Change}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{On\+Velocity\+Change()}{OnVelocityChange()}}
+{\footnotesize\ttfamily void Song\+Creation\+Manager.\+On\+Velocity\+Change (\begin{DoxyParamCaption}\item[{float}]{a\+Velocity }\end{DoxyParamCaption})}
+
+
+
+Handles a change in the \hyperlink{group___audio_DefVel}{velocity} for a \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note} in the \hyperlink{class_song}{Song} being created. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Velocity} & The new \hyperlink{group___audio_DefVel}{velocity}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___s_c_m_priv_var_ga7316e5e8f15d1574fc6cb4bd739bbf0a}{Song\+Creation\+Manager\+::m\+Velocity\+Slider} 
+\end{DoxySeeAlso}
+
+
+Definition at line 700 of file Song\+Creation\+Manager.\+cs.
+
+
+
+Referenced by Song\+Creation\+Manager.\+Awake().
+
+
+\begin{DoxyCode}
+701     \{
+702         \textcolor{comment}{// Update the text of the velocity slider's label.}
+703         \hyperlink{group___s_c_m_priv_var_ga7316e5e8f15d1574fc6cb4bd739bbf0a}{mVelocitySlider}.transform.GetChild( 3 ).GetComponent<Text>().text = \textcolor{stringliteral}{"Velocity: "} + 
+      aVelocity.ToString();
+704     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_c_m_handlers_gac39b0d849c680dda1e047c3e7d848b51}\label{group___s_c_m_handlers_gac39b0d849c680dda1e047c3e7d848b51}} 
+\index{Event Handlers@{Event Handlers}!Unload\+Song\+Creation\+Interface@{Unload\+Song\+Creation\+Interface}}
+\index{Unload\+Song\+Creation\+Interface@{Unload\+Song\+Creation\+Interface}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{Unload\+Song\+Creation\+Interface()}{UnloadSongCreationInterface()}}
+{\footnotesize\ttfamily void Song\+Creation\+Manager.\+Unload\+Song\+Creation\+Interface (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Goes back to the Audio\+Testing\+Interface scene. 
+
+
+
+Definition at line 709 of file Song\+Creation\+Manager.\+cs.
+
+
+
+Referenced by Song\+Creation\+Manager.\+Awake().
+
+
+\begin{DoxyCode}
+710     \{
+711         SceneManager.UnloadSceneAsync( \textcolor{stringliteral}{"SongCreationInterfaceScene"} );
+712     \}
+\end{DoxyCode}

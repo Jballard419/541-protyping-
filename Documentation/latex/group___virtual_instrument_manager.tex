@@ -1,0 +1,904 @@
+\hypertarget{group___virtual_instrument_manager}{}\section{Virtual Instrument Manager}
+\label{group___virtual_instrument_manager}\index{Virtual Instrument Manager@{Virtual Instrument Manager}}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager}{Virtual\+Instrument\+Manager}
+\item 
+struct \hyperlink{group___virtual_instrument_manager_struct_virtual_instrument_manager_1_1_reverb_filter_parameters}{Virtual\+Instrument\+Manager.\+Reverb\+Filter\+Parameters}
+\begin{DoxyCompactList}\small\item\em A struct that holds the parameters for the reverb filter.  \hyperlink{group___virtual_instrument_manager_struct_virtual_instrument_manager_1_1_reverb_filter_parameters}{More...}\end{DoxyCompactList}\item 
+struct \hyperlink{group___virtual_instrument_manager_struct_virtual_instrument_manager_1_1_echo_filter_parameters}{Virtual\+Instrument\+Manager.\+Echo\+Filter\+Parameters}
+\begin{DoxyCompactList}\small\item\em A struct that holds the parameters for the echo filter.  \hyperlink{group___virtual_instrument_manager_struct_virtual_instrument_manager_1_1_echo_filter_parameters}{More...}\end{DoxyCompactList}\item 
+class \hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_release_note_event}{Virtual\+Instrument\+Manager.\+Release\+Note\+Event}
+\begin{DoxyCompactList}\small\item\em A type of event that is invoked whenever a note should fade out as though the key was released.  \hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_release_note_event}{More...}\end{DoxyCompactList}\item 
+class \hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_play_song_event}{Virtual\+Instrument\+Manager.\+Play\+Song\+Event}
+\begin{DoxyCompactList}\small\item\em A type of event that is invoked in order to play a song.  \hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_play_song_event}{More...}\end{DoxyCompactList}\item 
+class \hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_play_note_event}{Virtual\+Instrument\+Manager.\+Play\+Note\+Event}
+\begin{DoxyCompactList}\small\item\em A type of event that is invoked whenever a note should be played.  \hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_play_note_event}{More...}\end{DoxyCompactList}\item 
+class \hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_play_drum_loop_event}{Virtual\+Instrument\+Manager.\+Play\+Drum\+Loop\+Event}
+\begin{DoxyCompactList}\small\item\em A type of event that is invoked in order to play a drum loop.  \hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_play_drum_loop_event}{More...}\end{DoxyCompactList}\item 
+class \hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_modify_reverb_filter_event}{Virtual\+Instrument\+Manager.\+Modify\+Reverb\+Filter\+Event}
+\begin{DoxyCompactList}\small\item\em A type of event that is invoked in order to modify the reverb filter.  \hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_modify_reverb_filter_event}{More...}\end{DoxyCompactList}\item 
+class \hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_modify_echo_filter_event}{Virtual\+Instrument\+Manager.\+Modify\+Echo\+Filter\+Event}
+\begin{DoxyCompactList}\small\item\em A type of event that is invoked in order to modify the echo filter.  \hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_modify_echo_filter_event}{More...}\end{DoxyCompactList}\item 
+class \hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_instrument_loaded_event}{Virtual\+Instrument\+Manager.\+Instrument\+Loaded\+Event}
+\begin{DoxyCompactList}\small\item\em A type of event that is invoked in order to signal that the instrument has loaded.  \hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_instrument_loaded_event}{More...}\end{DoxyCompactList}\item 
+class \hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_drum_kit_loaded_event}{Virtual\+Instrument\+Manager.\+Drum\+Kit\+Loaded\+Event}
+\begin{DoxyCompactList}\small\item\em A type of event that is invoked in order to signal that the drum kit has loaded.  \hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_drum_kit_loaded_event}{More...}\end{DoxyCompactList}\item 
+class \hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_change_instrument_event}{Virtual\+Instrument\+Manager.\+Change\+Instrument\+Event}
+\begin{DoxyCompactList}\small\item\em A type of event that is invoked whenever a new instrument should be loaded.  \hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_change_instrument_event}{More...}\end{DoxyCompactList}\item 
+class \hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_change_note_range_event}{Virtual\+Instrument\+Manager.\+Change\+Note\+Range\+Event}
+\begin{DoxyCompactList}\small\item\em A type of event that is invoked whenever the range of playable pitches should change.  \hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_change_note_range_event}{More...}\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Constants}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group___virtual_instrument_manager_ga064b6f85a7d2a4b2f552ba80c50f14db}\label{group___virtual_instrument_manager_ga064b6f85a7d2a4b2f552ba80c50f14db}} 
+static Music.\+P\+I\+T\+CH \hyperlink{group___virtual_instrument_manager_ga064b6f85a7d2a4b2f552ba80c50f14db}{Virtual\+Instrument\+Manager.\+D\+E\+F\+A\+U\+L\+T\+\_\+\+L\+O\+W\+E\+S\+T\+\_\+\+P\+I\+T\+CH} = Music.\+P\+I\+T\+C\+H.\+C4
+\begin{DoxyCompactList}\small\item\em The default lowest loaded pitch. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___virtual_instrument_manager_gafa0e722faa150594582d492e4c6c38c4}\label{group___virtual_instrument_manager_gafa0e722faa150594582d492e4c6c38c4}} 
+static Music.\+P\+I\+T\+CH \hyperlink{group___virtual_instrument_manager_gafa0e722faa150594582d492e4c6c38c4}{Virtual\+Instrument\+Manager.\+D\+E\+F\+A\+U\+L\+T\+\_\+\+H\+I\+G\+H\+E\+S\+T\+\_\+\+P\+I\+T\+CH} = Music.\+P\+I\+T\+C\+H.\+B5
+\begin{DoxyCompactList}\small\item\em The default highest loaded pitch. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___virtual_instrument_manager_ga92242f6a12951829414db205a5b3702c}\label{group___virtual_instrument_manager_ga92242f6a12951829414db205a5b3702c}} 
+static Music.\+I\+N\+S\+T\+R\+U\+M\+E\+N\+T\+\_\+\+T\+Y\+PE \hyperlink{group___virtual_instrument_manager_ga92242f6a12951829414db205a5b3702c}{Virtual\+Instrument\+Manager.\+D\+E\+F\+A\+U\+L\+T\+\_\+\+I\+N\+S\+T\+R\+U\+M\+E\+N\+T\+\_\+\+T\+Y\+PE} = Music.\+I\+N\+S\+T\+R\+U\+M\+E\+N\+T\+\_\+\+T\+Y\+P\+E.\+P\+I\+A\+NO
+\begin{DoxyCompactList}\small\item\em The default loaded instrument. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hypertarget{VirtualInstrumentManager}{}\subsubsection{Virtual Instrument Manager}\label{VirtualInstrumentManager}
+\hypertarget{group___virtual_instrument_manager_Intro}{}\subsection{Introduction}\label{group___virtual_instrument_manager_Intro}
+This class is a script for a Unity Game\+Object that manages a virtual instrument and its output. Its responsibilities include\+: \begin{DoxyItemize}
+\item Initialization of the audio code \item Serving as the bridge between non-\/audio objects and audio objects. \item Connecting each Note\+Output\+Object which handles the output of audio to the Virtual\+Instrument which holds the audio data. \item Mapping each Song to audio data from the Virtual\+Instrument and sending it to the proper Note\+Output\+Object. \item Sending parameters for audio effects to the Audio\+Mixer provided by Unity. \item Handling Musical Typing Events. \item Passing data to A\+T\+I\+\_\+\+Diagnostics. \end{DoxyItemize}
+\hypertarget{VirtualInstrumentManager.cs_Constants}{}\subsection{Constants}\label{VirtualInstrumentManager.cs_Constants}
+
+
+\subsection{Class Documentation}
+\index{Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}}\label{class_virtual_instrument_manager}
+\Hypertarget{group___virtual_instrument_manager_class_virtual_instrument_manager}
+\subsubsection{class Virtual\+Instrument\+Manager}
+Inheritance diagram for Virtual\+Instrument\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{group___virtual_instrument_manager}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{Indent}\textbf{ Public Functions}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group___virtual_instrument_manager_ab58eabfbcdaa60a3a7dbd972df6f57a6}\label{group___virtual_instrument_manager_ab58eabfbcdaa60a3a7dbd972df6f57a6}} 
+Music.\+P\+I\+T\+CH \hyperlink{group___virtual_instrument_manager_ab58eabfbcdaa60a3a7dbd972df6f57a6}{Get\+Highest\+Active\+Note} ()
+\begin{DoxyCompactList}\small\item\em Gets the highest active note. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___virtual_instrument_manager_a586d5ed5b0fe832d66c9a99aa160ceee}\label{group___virtual_instrument_manager_a586d5ed5b0fe832d66c9a99aa160ceee}} 
+Music.\+P\+I\+T\+CH \hyperlink{group___virtual_instrument_manager_a586d5ed5b0fe832d66c9a99aa160ceee}{Get\+Highest\+Supported\+Note} ()
+\begin{DoxyCompactList}\small\item\em Gets the highest note that is supported by the loaded instrument. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___virtual_instrument_manager_ac39a3e411417dc010f0e4fd8f146fbc3}\label{group___virtual_instrument_manager_ac39a3e411417dc010f0e4fd8f146fbc3}} 
+Virtual\+Instrument \hyperlink{group___virtual_instrument_manager_ac39a3e411417dc010f0e4fd8f146fbc3}{Get\+Instrument} ()
+\begin{DoxyCompactList}\small\item\em Gets the loaded Virtual\+Instrument. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___virtual_instrument_manager_a09bfbd0756fc8110c877e5b59c104bcd}\label{group___virtual_instrument_manager_a09bfbd0756fc8110c877e5b59c104bcd}} 
+Music.\+P\+I\+T\+CH \hyperlink{group___virtual_instrument_manager_a09bfbd0756fc8110c877e5b59c104bcd}{Get\+Lowest\+Active\+Note} ()
+\begin{DoxyCompactList}\small\item\em Gets the lowest active note. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___virtual_instrument_manager_aeb152486450d6c6dc50078e1644c4c6a}\label{group___virtual_instrument_manager_aeb152486450d6c6dc50078e1644c4c6a}} 
+Music.\+P\+I\+T\+CH \hyperlink{group___virtual_instrument_manager_aeb152486450d6c6dc50078e1644c4c6a}{Get\+Lowest\+Supported\+Note} ()
+\begin{DoxyCompactList}\small\item\em Gets the lowest note that is supported by the loaded instrument. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___virtual_instrument_manager_a3d6c823b1c1083eac8202f6c89e60b48}\label{group___virtual_instrument_manager_a3d6c823b1c1083eac8202f6c89e60b48}} 
+int \hyperlink{group___virtual_instrument_manager_a3d6c823b1c1083eac8202f6c89e60b48}{Get\+Num\+Active\+Notes} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of notes that currently can be played. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Musical Typing Public Functions}\par
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___audio_testing_gaf956ccb63ebd16934459735ef2acc320}{D\+E\+B\+U\+G\+\_\+\+Set\+Musical\+Typing\+Key\+Velocity} (int a\+Key\+Index, int a\+Key\+Velocity)
+\begin{DoxyCompactList}\small\item\em Sets the velocity used when a specific key on the computer keyboard generates a musical typing event. \end{DoxyCompactList}\item 
+void \hyperlink{group___audio_testing_ga8449cd75fecbc3226fff694fdae6d496}{D\+E\+B\+U\+G\+\_\+\+Set\+Random\+Velocity\+Range} (int a\+Lowest\+Velocity, int a\+Highest\+Velocity)
+\begin{DoxyCompactList}\small\item\em Sets the range used for randomizing Musical Typing velocities. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsubsection*{Public Attributes}
+\begin{Indent}\textbf{ Events}\par
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_change_note_range_event}{Change\+Note\+Range\+Event} \hyperlink{group___virtual_instrument_manager_ab6fa99d08e8466406835b9fc4ff859f1}{Change\+Note\+Range}
+\item 
+\hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_change_instrument_event}{Change\+Instrument\+Event} \hyperlink{group___virtual_instrument_manager_a1b9f12a73a5418ea5695d38b78c506c4}{Change\+Instrument}
+\item 
+\hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_drum_kit_loaded_event}{Drum\+Kit\+Loaded\+Event} \hyperlink{group___virtual_instrument_manager_a2dea060b2fba524166433300113dc281}{Drum\+Kit\+Loaded}
+\item 
+\hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_instrument_loaded_event}{Instrument\+Loaded\+Event} \hyperlink{group___virtual_instrument_manager_ad79b789b020d7e4a8c149ec653c0b97f}{Instrument\+Loaded}
+\item 
+\hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_modify_echo_filter_event}{Modify\+Echo\+Filter\+Event} \hyperlink{group___virtual_instrument_manager_a112ed15f48fd261f1ad71c3c953c0a58}{Modify\+Echo\+Filter}
+\item 
+\hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_modify_reverb_filter_event}{Modify\+Reverb\+Filter\+Event} \hyperlink{group___virtual_instrument_manager_aadd137e073cb3849f610a46e0d032858}{Modify\+Reverb\+Filter}
+\item 
+\hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_play_drum_loop_event}{Play\+Drum\+Loop\+Event} \hyperlink{group___virtual_instrument_manager_a5657ff4bcc7de6d240d7092ffd22a6fe}{Play\+Drum\+Loop}
+\item 
+\hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_play_note_event}{Play\+Note\+Event} \hyperlink{group___virtual_instrument_manager_aa21021c13a8c9d13cbf374d5bf9d68fa}{Play\+Note}
+\item 
+\hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_play_song_event}{Play\+Song\+Event} \hyperlink{group___virtual_instrument_manager_ae450bdba9c513ab4e43f69def50fa84d}{Play\+Song}
+\item 
+\hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_release_note_event}{Release\+Note\+Event} \hyperlink{group___virtual_instrument_manager_a3a1726a6366126421434c2c7be5e5678}{Release\+Note}
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Variables}\par
+\begin{DoxyCompactItemize}
+\item 
+Song\+Manager\+Class \hyperlink{group___virtual_instrument_manager_a33dae94932c10c66db76a0eebec76b01}{Song\+Manager}
+\begin{DoxyCompactList}\small\item\em The song manager. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Musical Typing Public Variables}\par
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{group___audio_testing_ga89a9071345f0b3c3c3496e0959e6627b}{D\+E\+B\+U\+G\+\_\+\+Musical\+Typing\+Enabled} = true
+\begin{DoxyCompactList}\small\item\em Is musical typing enabled? Default is true when the preprocessor flag is set. \end{DoxyCompactList}\item 
+bool \hyperlink{group___audio_testing_ga96506a2d62073319d65380f86ff0d5bb}{D\+E\+B\+U\+G\+\_\+\+Randomize\+Velocities} = false
+\begin{DoxyCompactList}\small\item\em Should the velocities used for simulating a Note\+Play\+Event be randomized? Default is false. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsubsection*{Private Member Functions}
+\begin{Indent}\textbf{ Private Functions}\par
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___virtual_instrument_manager_a8817e32cc5074737b4d9489922b0fcb8}{Load\+Note\+Output\+Objects} ()
+\begin{DoxyCompactList}\small\item\em Loads each Note\+Output\+Object that is used to output the audio. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___virtual_instrument_manager_aa207d18111d38374017c580de4077589}\label{group___virtual_instrument_manager_aa207d18111d38374017c580de4077589}} 
+void \hyperlink{group___virtual_instrument_manager_aa207d18111d38374017c580de4077589}{Set\+Up\+Events} ()
+\begin{DoxyCompactList}\small\item\em Sets up the events and adds their listeners. Should only be called from \hyperlink{group___virtual_instrument_manager_ab92bac4e22476ffe39fc40f49fbd6ae5}{Virtual\+Instrument\+Manager\+::\+Awake()}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___virtual_instrument_manager_aa9e05e51f025afb0ab5cb2a8532c8bba}\label{group___virtual_instrument_manager_aa9e05e51f025afb0ab5cb2a8532c8bba}} 
+void \hyperlink{group___virtual_instrument_manager_aa9e05e51f025afb0ab5cb2a8532c8bba}{Set\+Default\+Values} ()
+\begin{DoxyCompactList}\small\item\em Sets the default values for the \hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager}{Virtual\+Instrument\+Manager}. Should only be called from \hyperlink{group___virtual_instrument_manager_ab92bac4e22476ffe39fc40f49fbd6ae5}{Virtual\+Instrument\+Manager\+::\+Awake()}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Coroutines}\par
+\begin{DoxyCompactItemize}
+\item 
+I\+Enumerator \hyperlink{group___virtual_instrument_manager_aba165ca4757b6c8555914fe6b42b638d}{Load\+Drum\+Kit} (System.\+Action$<$ Virtual\+Instrument $>$ a\+Drum\+Kit\+Callback)
+\begin{DoxyCompactList}\small\item\em Coroutine to load the drum kit. \end{DoxyCompactList}\item 
+I\+Enumerator \hyperlink{group___virtual_instrument_manager_ab8082c1cc590771bf57da8b5ae8603d1}{Load\+Instrument} (Music.\+I\+N\+S\+T\+R\+U\+M\+E\+N\+T\+\_\+\+T\+Y\+PE a\+I\+N\+S\+T\+R\+U\+M\+E\+N\+T\+\_\+\+T\+Y\+PE, System.\+Action$<$ Virtual\+Instrument $>$ a\+Instrument\+Callback)
+\begin{DoxyCompactList}\small\item\em Coroutine to load an instrument. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Audio Diagnostics Functions}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group___virtual_instrument_manager_a3d7a09ee882f5d4d1f1e2ba2b2a7f65d}\label{group___virtual_instrument_manager_a3d7a09ee882f5d4d1f1e2ba2b2a7f65d}} 
+void \hyperlink{group___virtual_instrument_manager_a3d7a09ee882f5d4d1f1e2ba2b2a7f65d}{Set\+Up\+Diagnostics} ()
+\begin{DoxyCompactList}\small\item\em Sets up the audio diagnostics by loading the diagnostics scene. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Musical Typing Private Functions}\par
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___audio_testing_gaa89d7c493c1101b1efd6662c94598d32}{D\+E\+B\+U\+G\+\_\+\+Set\+Musical\+Typing\+Variables} ()
+\begin{DoxyCompactList}\small\item\em Sets the default values for musical typing. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Musical Typing Event Handlers}\par
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___audio_testing_ga3a8d2d91b97d0541c8a509e5785e9bdf}{D\+E\+B\+U\+G\+\_\+\+Handle\+Musical\+Typing\+Event} (Event a\+Key\+Event)
+\begin{DoxyCompactList}\small\item\em Handler for Musical Typing Events. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsubsection*{Private Attributes}
+\begin{Indent}\textbf{ Private Variables}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group___virtual_instrument_manager_a08c8db1bb89f4ab1e28451dd93d6b99c}\label{group___virtual_instrument_manager_a08c8db1bb89f4ab1e28451dd93d6b99c}} 
+Audio\+Mixer \hyperlink{group___virtual_instrument_manager_a08c8db1bb89f4ab1e28451dd93d6b99c}{m\+Mixer}
+\begin{DoxyCompactList}\small\item\em The audio mixer that all audio output will be routed through. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___virtual_instrument_manager_a983a11920bf16794735cc193c327ac42}\label{group___virtual_instrument_manager_a983a11920bf16794735cc193c327ac42}} 
+bool \hyperlink{group___virtual_instrument_manager_a983a11920bf16794735cc193c327ac42}{m\+Ready}
+\begin{DoxyCompactList}\small\item\em Whether or not the manager is ready to play notes. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___virtual_instrument_manager_a0f7e11945763c48057be326b661dfdaf}\label{group___virtual_instrument_manager_a0f7e11945763c48057be326b661dfdaf}} 
+int \hyperlink{group___virtual_instrument_manager_a0f7e11945763c48057be326b661dfdaf}{m\+Num\+Active\+Notes}
+\begin{DoxyCompactList}\small\item\em The number of currently active notes. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___virtual_instrument_manager_a108c350257b3a2080e06cd4a8251f6a4}\label{group___virtual_instrument_manager_a108c350257b3a2080e06cd4a8251f6a4}} 
+Music.\+I\+N\+S\+T\+R\+U\+M\+E\+N\+T\+\_\+\+T\+Y\+PE \hyperlink{group___virtual_instrument_manager_a108c350257b3a2080e06cd4a8251f6a4}{m\+Instrument\+Type}
+\begin{DoxyCompactList}\small\item\em The type of instrument that is currently loaded. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___virtual_instrument_manager_a5e3a5116e0dabb37e0ea21d73ac1567e}\label{group___virtual_instrument_manager_a5e3a5116e0dabb37e0ea21d73ac1567e}} 
+Music.\+P\+I\+T\+CH \hyperlink{group___virtual_instrument_manager_a5e3a5116e0dabb37e0ea21d73ac1567e}{m\+Lowest\+Active\+Note}
+\begin{DoxyCompactList}\small\item\em The lowest currently active note. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___virtual_instrument_manager_a73a09a4e4f09c0e5b3871dc9ad6c757e}\label{group___virtual_instrument_manager_a73a09a4e4f09c0e5b3871dc9ad6c757e}} 
+Music.\+P\+I\+T\+CH \hyperlink{group___virtual_instrument_manager_a73a09a4e4f09c0e5b3871dc9ad6c757e}{m\+Highest\+Active\+Note}
+\begin{DoxyCompactList}\small\item\em The highest currently active note. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___virtual_instrument_manager_a5cedf9995d59b416412677e6004b659c}\label{group___virtual_instrument_manager_a5cedf9995d59b416412677e6004b659c}} 
+Music.\+P\+I\+T\+CH \mbox{[}$\,$\mbox{]} \hyperlink{group___virtual_instrument_manager_a5cedf9995d59b416412677e6004b659c}{m\+Active\+Notes}
+\begin{DoxyCompactList}\small\item\em An array that holds all of the currently active notes. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___virtual_instrument_manager_a5f71cb71d240042312dcc13b481b068d}\label{group___virtual_instrument_manager_a5f71cb71d240042312dcc13b481b068d}} 
+Note\+Output\+Object \hyperlink{group___virtual_instrument_manager_a5f71cb71d240042312dcc13b481b068d}{m\+Drum\+Loop\+Output}
+\begin{DoxyCompactList}\small\item\em A Note\+Output\+Object, but the note is actually a drum loop. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___virtual_instrument_manager_aa8d4f5642f5ac4dca4f4178b0052c78d}\label{group___virtual_instrument_manager_aa8d4f5642f5ac4dca4f4178b0052c78d}} 
+Note\+Output\+Object \hyperlink{group___virtual_instrument_manager_aa8d4f5642f5ac4dca4f4178b0052c78d}{m\+Song\+Output}
+\begin{DoxyCompactList}\small\item\em A Note\+Output\+Object, but the note is actually a song. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___virtual_instrument_manager_a53f837fd01475fa35629a650e7fa00e3}\label{group___virtual_instrument_manager_a53f837fd01475fa35629a650e7fa00e3}} 
+Note\+Output\+Object \mbox{[}$\,$\mbox{]} \hyperlink{group___virtual_instrument_manager_a53f837fd01475fa35629a650e7fa00e3}{m\+Outputs}
+\begin{DoxyCompactList}\small\item\em An array that holds the Note\+Output\+Objects that actually handle sound output. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___virtual_instrument_manager_a0bc7c9f776b0d2dae0ccb1f1ee5f2143}\label{group___virtual_instrument_manager_a0bc7c9f776b0d2dae0ccb1f1ee5f2143}} 
+Virtual\+Instrument \hyperlink{group___virtual_instrument_manager_a0bc7c9f776b0d2dae0ccb1f1ee5f2143}{m\+Drum\+Kit}
+\begin{DoxyCompactList}\small\item\em A drum kit virtual instrument for drum loops. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___virtual_instrument_manager_aed435d1f9be09864846db4322dc21fd1}\label{group___virtual_instrument_manager_aed435d1f9be09864846db4322dc21fd1}} 
+Virtual\+Instrument \hyperlink{group___virtual_instrument_manager_aed435d1f9be09864846db4322dc21fd1}{m\+Instrument}
+\begin{DoxyCompactList}\small\item\em The loaded virtual instrument that this object will manage. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Audio Diagnostics Variables}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group___virtual_instrument_manager_a90c209c382663b4689a1a72f98b23d41}\label{group___virtual_instrument_manager_a90c209c382663b4689a1a72f98b23d41}} 
+Async\+Operation \hyperlink{group___virtual_instrument_manager_a90c209c382663b4689a1a72f98b23d41}{m\+Load\+Diagnostics\+Scene} = null
+\begin{DoxyCompactList}\small\item\em The operation to load the diagnostics scene. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___virtual_instrument_manager_a61670e91d1470a1d9a57829ac35688f1}\label{group___virtual_instrument_manager_a61670e91d1470a1d9a57829ac35688f1}} 
+A\+T\+I\+\_\+\+Diagnostics \hyperlink{group___virtual_instrument_manager_a61670e91d1470a1d9a57829ac35688f1}{m\+Diagnostics} = null
+\begin{DoxyCompactList}\small\item\em The handler for the diagnostics scene. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Musical Typing Private Variables}\par
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{[}$\,$\mbox{]} \hyperlink{group___audio_testing_ga8b2a043e6f3bfd5e019b2016ba39a0d0}{D\+E\+B\+U\+G\+\_\+key\+Velocities}
+\begin{DoxyCompactList}\small\item\em The velocities that will be used whenever musical typing simulates a note event. \end{DoxyCompactList}\item 
+bool \mbox{[}$\,$\mbox{]} \hyperlink{group___audio_testing_gab5331debd3f5b0bde90200b5ac989a18}{D\+E\+B\+U\+G\+\_\+pressed\+Keys}
+\begin{DoxyCompactList}\small\item\em The keys that are currently pressed. \end{DoxyCompactList}\item 
+int \mbox{[}$\,$\mbox{]} \hyperlink{group___audio_testing_gac9475fee2b2b0fd7c25c6258d28b8039}{D\+E\+B\+U\+G\+\_\+random\+Velocity\+Range}
+\begin{DoxyCompactList}\small\item\em The range used to randomize Musical Typing velocities. Default is 0 to 100. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsubsection*{Static Private Attributes}
+\begin{Indent}\textbf{ Constants}\par
+\begin{DoxyCompactItemize}
+\item 
+static Music.\+P\+I\+T\+CH \hyperlink{group___virtual_instrument_manager_ga064b6f85a7d2a4b2f552ba80c50f14db}{D\+E\+F\+A\+U\+L\+T\+\_\+\+L\+O\+W\+E\+S\+T\+\_\+\+P\+I\+T\+CH} = Music.\+P\+I\+T\+C\+H.\+C4
+\begin{DoxyCompactList}\small\item\em The default lowest loaded pitch. \end{DoxyCompactList}\item 
+static Music.\+P\+I\+T\+CH \hyperlink{group___virtual_instrument_manager_gafa0e722faa150594582d492e4c6c38c4}{D\+E\+F\+A\+U\+L\+T\+\_\+\+H\+I\+G\+H\+E\+S\+T\+\_\+\+P\+I\+T\+CH} = Music.\+P\+I\+T\+C\+H.\+B5
+\begin{DoxyCompactList}\small\item\em The default highest loaded pitch. \end{DoxyCompactList}\item 
+static Music.\+I\+N\+S\+T\+R\+U\+M\+E\+N\+T\+\_\+\+T\+Y\+PE \hyperlink{group___virtual_instrument_manager_ga92242f6a12951829414db205a5b3702c}{D\+E\+F\+A\+U\+L\+T\+\_\+\+I\+N\+S\+T\+R\+U\+M\+E\+N\+T\+\_\+\+T\+Y\+PE} = Music.\+I\+N\+S\+T\+R\+U\+M\+E\+N\+T\+\_\+\+T\+Y\+P\+E.\+P\+I\+A\+NO
+\begin{DoxyCompactList}\small\item\em The default loaded instrument. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Musical Typing Constants}\par
+\begin{DoxyCompactItemize}
+\item 
+static int \hyperlink{group___audio_testing_gac1164fc3a43ae37e49515da8c5072f50}{D\+E\+B\+U\+G\+\_\+num\+Musical\+Typing\+Keys} = 19
+\begin{DoxyCompactList}\small\item\em The number of Musical Typing keys. \end{DoxyCompactList}\item 
+static Key\+Code \mbox{[}$\,$\mbox{]} \hyperlink{group___audio_testing_ga6618f779b7c99fe994365d608ce563a2}{D\+E\+B\+U\+G\+\_\+musical\+Typing\+Keys}
+\begin{DoxyCompactList}\small\item\em The keys that are used for musical typing. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsubsection*{Unity Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group___virtual_instrument_manager_ab92bac4e22476ffe39fc40f49fbd6ae5}\label{group___virtual_instrument_manager_ab92bac4e22476ffe39fc40f49fbd6ae5}} 
+void \hyperlink{group___virtual_instrument_manager_ab92bac4e22476ffe39fc40f49fbd6ae5}{Awake} ()
+\begin{DoxyCompactList}\small\item\em Called when the object is created. Sets the default values, sets up the events, and begins loading the instrument. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___virtual_instrument_manager_ac10dc6a13185a6ab7c658a6f96b02998}\label{group___virtual_instrument_manager_ac10dc6a13185a6ab7c658a6f96b02998}} 
+void \hyperlink{group___virtual_instrument_manager_ac10dc6a13185a6ab7c658a6f96b02998}{Update} ()
+\begin{DoxyCompactList}\small\item\em Called every frame. Sees if diagnostics handling needs to be set up and does it if so. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Event Handlers}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___virtual_instrument_manager_a8e79286073756c31e08fecd59ce04fa7}{On\+Change\+Instrument\+Event} (Music.\+I\+N\+S\+T\+R\+U\+M\+E\+N\+T\+\_\+\+T\+Y\+PE a\+New\+Instrument\+Type)
+\begin{DoxyCompactList}\small\item\em Called whenever an instrument should be loaded. \end{DoxyCompactList}\item 
+void \hyperlink{group___virtual_instrument_manager_a660c766dceebfc830de2cf96686692df}{On\+Change\+Note\+Range\+Event} (Music.\+P\+I\+T\+CH a\+New\+Lowest\+Pitch)
+\begin{DoxyCompactList}\small\item\em Called whenever the range of active notes should be changed. \end{DoxyCompactList}\item 
+void \hyperlink{group___virtual_instrument_manager_ac7d5b65484e450a400e32ab416ebc9f6}{On\+Instrument\+Loaded} ()
+\begin{DoxyCompactList}\small\item\em Called whenever the instrument has finished loading. It begins loading the Note\+Output\+Objects. \end{DoxyCompactList}\item 
+void \hyperlink{group___virtual_instrument_manager_ae504c6ded8eb68ffb117c207fc25d99d}{On\+Modify\+Echo\+Filter\+Event} (\hyperlink{group___virtual_instrument_manager_struct_virtual_instrument_manager_1_1_echo_filter_parameters}{Echo\+Filter\+Parameters} a\+Parameters)
+\begin{DoxyCompactList}\small\item\em Called whenever the echo filter should be modified. \end{DoxyCompactList}\item 
+void \hyperlink{group___virtual_instrument_manager_a2b310217971075b1b2db67d68fbbea5a}{On\+Modify\+Reverb\+Filter\+Event} (\hyperlink{group___virtual_instrument_manager_struct_virtual_instrument_manager_1_1_reverb_filter_parameters}{Reverb\+Filter\+Parameters} a\+Parameters)
+\begin{DoxyCompactList}\small\item\em Called whenever the reverb filter should be modified. \end{DoxyCompactList}\item 
+void \hyperlink{group___virtual_instrument_manager_a80b3821df3b1488a150f6062638f105c}{On\+Play\+Note\+Event} (Music.\+P\+I\+T\+CH a\+Note\+To\+Play, int a\+Velocity)
+\begin{DoxyCompactList}\small\item\em Called whenever a note should be played. Uses the appropriate Note\+Output\+Object to play the note. \end{DoxyCompactList}\item 
+void \hyperlink{group___virtual_instrument_manager_adae914ac99141bc37853d3c536c3943a}{On\+Note\+Release\+Event} (Music.\+P\+I\+T\+CH a\+Note\+To\+Release)
+\begin{DoxyCompactList}\small\item\em Called whenever a note should be released. Uses the appropriate Note\+Output\+Object to release the note. \end{DoxyCompactList}\item 
+void \hyperlink{group___virtual_instrument_manager_ae2e2010b9a36ae2409466181ae0b9679}{On\+Play\+Drum\+Loop\+Event} (Song a\+Loop)
+\begin{DoxyCompactList}\small\item\em Begins playing a drum loop. It creates an array of audio data from each note of the Song and sends it to the right Note\+Output\+Object. \end{DoxyCompactList}\item 
+void \hyperlink{group___virtual_instrument_manager_a7fd877a7d429403abbfd2728aa63c056}{On\+Play\+Song\+Event} (Song a\+Song)
+\begin{DoxyCompactList}\small\item\em Begins playing a song. It creates an array of audio data from each note of the Song and sends it to the right Note\+Output\+Object. \end{DoxyCompactList}\item 
+void \hyperlink{group___virtual_instrument_manager_ac64ceff10f8db3a11868f251cea72349}{On\+G\+UI} ()
+\begin{DoxyCompactList}\small\item\em Called whenever there is a G\+UI event. Used for Musical Typing. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\paragraph{Member Function Documentation}
+\mbox{\Hypertarget{group___virtual_instrument_manager_aba165ca4757b6c8555914fe6b42b638d}\label{group___virtual_instrument_manager_aba165ca4757b6c8555914fe6b42b638d}} 
+\index{Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}!Load\+Drum\+Kit@{Load\+Drum\+Kit}}
+\index{Load\+Drum\+Kit@{Load\+Drum\+Kit}!Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}}
+\subparagraph{\texorpdfstring{Load\+Drum\+Kit()}{LoadDrumKit()}}
+{\footnotesize\ttfamily I\+Enumerator Virtual\+Instrument\+Manager.\+Load\+Drum\+Kit (\begin{DoxyParamCaption}\item[{System.\+Action$<$ Virtual\+Instrument $>$}]{a\+Drum\+Kit\+Callback }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Coroutine to load the drum kit. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em a\+Drum\+Kit\+Callback} & Callback to allow returning the loaded instrument to the calling context.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+Drum\+Kit Music\+::\+I\+N\+S\+T\+R\+U\+M\+E\+N\+T\+\_\+\+T\+Y\+PE \hyperlink{group___virtual_instrument_manager_a0bc7c9f776b0d2dae0ccb1f1ee5f2143}{Virtual\+Instrument\+Manager\+::m\+Drum\+Kit} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group___virtual_instrument_manager_ab8082c1cc590771bf57da8b5ae8603d1}\label{group___virtual_instrument_manager_ab8082c1cc590771bf57da8b5ae8603d1}} 
+\index{Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}!Load\+Instrument@{Load\+Instrument}}
+\index{Load\+Instrument@{Load\+Instrument}!Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}}
+\subparagraph{\texorpdfstring{Load\+Instrument()}{LoadInstrument()}}
+{\footnotesize\ttfamily I\+Enumerator Virtual\+Instrument\+Manager.\+Load\+Instrument (\begin{DoxyParamCaption}\item[{Music.\+I\+N\+S\+T\+R\+U\+M\+E\+N\+T\+\_\+\+T\+Y\+PE}]{a\+I\+N\+S\+T\+R\+U\+M\+E\+N\+T\+\_\+\+T\+Y\+PE,  }\item[{System.\+Action$<$ Virtual\+Instrument $>$}]{a\+Instrument\+Callback }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Coroutine to load an instrument. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+I\+N\+S\+T\+R\+U\+M\+E\+N\+T\+\_\+\+T\+Y\+PE} & The type of instrument to load. \\
+\hline
+\mbox{\tt out}  & {\em a\+Instrument\+Callback} & Callback to allow returning the loaded instrument to the calling context.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+Virtual\+Instrument Music\+::\+I\+N\+S\+T\+R\+U\+M\+E\+N\+T\+\_\+\+T\+Y\+PE \hyperlink{group___virtual_instrument_manager_aed435d1f9be09864846db4322dc21fd1}{Virtual\+Instrument\+Manager\+::m\+Instrument} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group___virtual_instrument_manager_a8817e32cc5074737b4d9489922b0fcb8}\label{group___virtual_instrument_manager_a8817e32cc5074737b4d9489922b0fcb8}} 
+\index{Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}!Load\+Note\+Output\+Objects@{Load\+Note\+Output\+Objects}}
+\index{Load\+Note\+Output\+Objects@{Load\+Note\+Output\+Objects}!Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}}
+\subparagraph{\texorpdfstring{Load\+Note\+Output\+Objects()}{LoadNoteOutputObjects()}}
+{\footnotesize\ttfamily void Virtual\+Instrument\+Manager.\+Load\+Note\+Output\+Objects (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Loads each Note\+Output\+Object that is used to output the audio. 
+
+This function loads a Note\+Output\+Object for every currently playable note, and uses the loaded Virtual\+Instrument to set the audio data that they will output.
+
+\begin{DoxySeeAlso}{See also}
+Note\+Output\+Object 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group___virtual_instrument_manager_a8e79286073756c31e08fecd59ce04fa7}\label{group___virtual_instrument_manager_a8e79286073756c31e08fecd59ce04fa7}} 
+\index{Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}!On\+Change\+Instrument\+Event@{On\+Change\+Instrument\+Event}}
+\index{On\+Change\+Instrument\+Event@{On\+Change\+Instrument\+Event}!Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}}
+\subparagraph{\texorpdfstring{On\+Change\+Instrument\+Event()}{OnChangeInstrumentEvent()}}
+{\footnotesize\ttfamily void Virtual\+Instrument\+Manager.\+On\+Change\+Instrument\+Event (\begin{DoxyParamCaption}\item[{Music.\+I\+N\+S\+T\+R\+U\+M\+E\+N\+T\+\_\+\+T\+Y\+PE}]{a\+New\+Instrument\+Type }\end{DoxyParamCaption})}
+
+
+
+Called whenever an instrument should be loaded. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+New\+Instrument\+Type} & The type of instrument that should be loaded\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+Music\+::\+I\+N\+S\+T\+R\+U\+M\+E\+N\+T\+\_\+\+T\+Y\+PE \hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_change_instrument_event}{Virtual\+Instrument\+Manager\+::\+Change\+Instrument\+Event} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group___virtual_instrument_manager_a660c766dceebfc830de2cf96686692df}\label{group___virtual_instrument_manager_a660c766dceebfc830de2cf96686692df}} 
+\index{Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}!On\+Change\+Note\+Range\+Event@{On\+Change\+Note\+Range\+Event}}
+\index{On\+Change\+Note\+Range\+Event@{On\+Change\+Note\+Range\+Event}!Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}}
+\subparagraph{\texorpdfstring{On\+Change\+Note\+Range\+Event()}{OnChangeNoteRangeEvent()}}
+{\footnotesize\ttfamily void Virtual\+Instrument\+Manager.\+On\+Change\+Note\+Range\+Event (\begin{DoxyParamCaption}\item[{Music.\+P\+I\+T\+CH}]{a\+New\+Lowest\+Pitch }\end{DoxyParamCaption})}
+
+
+
+Called whenever the range of active notes should be changed. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+New\+Lowest\+Pitch} & The lowest pitch in the new range.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+Music\+::\+P\+I\+T\+CH \hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_change_note_range_event}{Virtual\+Instrument\+Manager\+::\+Change\+Note\+Range\+Event} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group___virtual_instrument_manager_ac64ceff10f8db3a11868f251cea72349}\label{group___virtual_instrument_manager_ac64ceff10f8db3a11868f251cea72349}} 
+\index{Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}!On\+G\+UI@{On\+G\+UI}}
+\index{On\+G\+UI@{On\+G\+UI}!Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}}
+\subparagraph{\texorpdfstring{On\+G\+U\+I()}{OnGUI()}}
+{\footnotesize\ttfamily void Virtual\+Instrument\+Manager.\+On\+G\+UI (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Called whenever there is a G\+UI event. Used for Musical Typing. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___audio_testing_ga3a8d2d91b97d0541c8a509e5785e9bdf}{Virtual\+Instrument\+Manager\+::\+D\+E\+B\+U\+G\+\_\+\+Handle\+Musical\+Typing\+Event} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group___virtual_instrument_manager_ac7d5b65484e450a400e32ab416ebc9f6}\label{group___virtual_instrument_manager_ac7d5b65484e450a400e32ab416ebc9f6}} 
+\index{Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}!On\+Instrument\+Loaded@{On\+Instrument\+Loaded}}
+\index{On\+Instrument\+Loaded@{On\+Instrument\+Loaded}!Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}}
+\subparagraph{\texorpdfstring{On\+Instrument\+Loaded()}{OnInstrumentLoaded()}}
+{\footnotesize\ttfamily void Virtual\+Instrument\+Manager.\+On\+Instrument\+Loaded (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Called whenever the instrument has finished loading. It begins loading the Note\+Output\+Objects. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_instrument_loaded_event}{Virtual\+Instrument\+Manager\+::\+Instrument\+Loaded\+Event} Note\+Output\+Object 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group___virtual_instrument_manager_ae504c6ded8eb68ffb117c207fc25d99d}\label{group___virtual_instrument_manager_ae504c6ded8eb68ffb117c207fc25d99d}} 
+\index{Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}!On\+Modify\+Echo\+Filter\+Event@{On\+Modify\+Echo\+Filter\+Event}}
+\index{On\+Modify\+Echo\+Filter\+Event@{On\+Modify\+Echo\+Filter\+Event}!Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}}
+\subparagraph{\texorpdfstring{On\+Modify\+Echo\+Filter\+Event()}{OnModifyEchoFilterEvent()}}
+{\footnotesize\ttfamily void Virtual\+Instrument\+Manager.\+On\+Modify\+Echo\+Filter\+Event (\begin{DoxyParamCaption}\item[{\hyperlink{group___virtual_instrument_manager_struct_virtual_instrument_manager_1_1_echo_filter_parameters}{Echo\+Filter\+Parameters}}]{a\+Parameters }\end{DoxyParamCaption})}
+
+
+
+Called whenever the echo filter should be modified. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Parameters} & The new parameters of the echo filter\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_modify_echo_filter_event}{Virtual\+Instrument\+Manager\+::\+Modify\+Echo\+Filter\+Event} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group___virtual_instrument_manager_a2b310217971075b1b2db67d68fbbea5a}\label{group___virtual_instrument_manager_a2b310217971075b1b2db67d68fbbea5a}} 
+\index{Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}!On\+Modify\+Reverb\+Filter\+Event@{On\+Modify\+Reverb\+Filter\+Event}}
+\index{On\+Modify\+Reverb\+Filter\+Event@{On\+Modify\+Reverb\+Filter\+Event}!Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}}
+\subparagraph{\texorpdfstring{On\+Modify\+Reverb\+Filter\+Event()}{OnModifyReverbFilterEvent()}}
+{\footnotesize\ttfamily void Virtual\+Instrument\+Manager.\+On\+Modify\+Reverb\+Filter\+Event (\begin{DoxyParamCaption}\item[{\hyperlink{group___virtual_instrument_manager_struct_virtual_instrument_manager_1_1_reverb_filter_parameters}{Reverb\+Filter\+Parameters}}]{a\+Parameters }\end{DoxyParamCaption})}
+
+
+
+Called whenever the reverb filter should be modified. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Parameters} & The new parameters of the reverb filter\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_modify_reverb_filter_event}{Virtual\+Instrument\+Manager\+::\+Modify\+Reverb\+Filter\+Event} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group___virtual_instrument_manager_adae914ac99141bc37853d3c536c3943a}\label{group___virtual_instrument_manager_adae914ac99141bc37853d3c536c3943a}} 
+\index{Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}!On\+Note\+Release\+Event@{On\+Note\+Release\+Event}}
+\index{On\+Note\+Release\+Event@{On\+Note\+Release\+Event}!Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}}
+\subparagraph{\texorpdfstring{On\+Note\+Release\+Event()}{OnNoteReleaseEvent()}}
+{\footnotesize\ttfamily void Virtual\+Instrument\+Manager.\+On\+Note\+Release\+Event (\begin{DoxyParamCaption}\item[{Music.\+P\+I\+T\+CH}]{a\+Note\+To\+Release }\end{DoxyParamCaption})}
+
+
+
+Called whenever a note should be released. Uses the appropriate Note\+Output\+Object to release the note. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Note\+To\+Release} & The pitch of the note to release\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_play_note_event}{Virtual\+Instrument\+Manager\+::\+Play\+Note\+Event} Music\+::\+P\+I\+T\+CH Note\+Output\+Object\+::\+Begin\+Release 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group___virtual_instrument_manager_ae2e2010b9a36ae2409466181ae0b9679}\label{group___virtual_instrument_manager_ae2e2010b9a36ae2409466181ae0b9679}} 
+\index{Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}!On\+Play\+Drum\+Loop\+Event@{On\+Play\+Drum\+Loop\+Event}}
+\index{On\+Play\+Drum\+Loop\+Event@{On\+Play\+Drum\+Loop\+Event}!Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}}
+\subparagraph{\texorpdfstring{On\+Play\+Drum\+Loop\+Event()}{OnPlayDrumLoopEvent()}}
+{\footnotesize\ttfamily void Virtual\+Instrument\+Manager.\+On\+Play\+Drum\+Loop\+Event (\begin{DoxyParamCaption}\item[{Song}]{a\+Loop }\end{DoxyParamCaption})}
+
+
+
+Begins playing a drum loop. It creates an array of audio data from each note of the Song and sends it to the right Note\+Output\+Object. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Loop} & The drum loop to play.\\
+\hline
+\end{DoxyParams}
+This function begins playing drum loops which are handled differently from other songs. Special handling of offsets and the number of waveform samples in the loop is required in order to make the loop as seamless as possible. \mbox{\Hypertarget{group___virtual_instrument_manager_a80b3821df3b1488a150f6062638f105c}\label{group___virtual_instrument_manager_a80b3821df3b1488a150f6062638f105c}} 
+\index{Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}!On\+Play\+Note\+Event@{On\+Play\+Note\+Event}}
+\index{On\+Play\+Note\+Event@{On\+Play\+Note\+Event}!Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}}
+\subparagraph{\texorpdfstring{On\+Play\+Note\+Event()}{OnPlayNoteEvent()}}
+{\footnotesize\ttfamily void Virtual\+Instrument\+Manager.\+On\+Play\+Note\+Event (\begin{DoxyParamCaption}\item[{Music.\+P\+I\+T\+CH}]{a\+Note\+To\+Play,  }\item[{int}]{a\+Velocity }\end{DoxyParamCaption})}
+
+
+
+Called whenever a note should be played. Uses the appropriate Note\+Output\+Object to play the note. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Note\+To\+Play} & The pitch of the note to play \\
+\hline
+\mbox{\tt in}  & {\em a\+Velocity} & The velocity at which to play the pitch.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_play_note_event}{Virtual\+Instrument\+Manager\+::\+Play\+Note\+Event} Music\+::\+P\+I\+T\+CH Note\+Output\+Object\+::\+Begin\+Playing 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group___virtual_instrument_manager_a7fd877a7d429403abbfd2728aa63c056}\label{group___virtual_instrument_manager_a7fd877a7d429403abbfd2728aa63c056}} 
+\index{Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}!On\+Play\+Song\+Event@{On\+Play\+Song\+Event}}
+\index{On\+Play\+Song\+Event@{On\+Play\+Song\+Event}!Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}}
+\subparagraph{\texorpdfstring{On\+Play\+Song\+Event()}{OnPlaySongEvent()}}
+{\footnotesize\ttfamily void Virtual\+Instrument\+Manager.\+On\+Play\+Song\+Event (\begin{DoxyParamCaption}\item[{Song}]{a\+Song }\end{DoxyParamCaption})}
+
+
+
+Begins playing a song. It creates an array of audio data from each note of the Song and sends it to the right Note\+Output\+Object. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Song} & The song to play. \\
+\hline
+\end{DoxyParams}
+
+
+\paragraph{Member Data Documentation}
+\mbox{\Hypertarget{group___virtual_instrument_manager_a1b9f12a73a5418ea5695d38b78c506c4}\label{group___virtual_instrument_manager_a1b9f12a73a5418ea5695d38b78c506c4}} 
+\index{Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}!Change\+Instrument@{Change\+Instrument}}
+\index{Change\+Instrument@{Change\+Instrument}!Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}}
+\subparagraph{\texorpdfstring{Change\+Instrument}{ChangeInstrument}}
+{\footnotesize\ttfamily \hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_change_instrument_event}{Change\+Instrument\+Event} Virtual\+Instrument\+Manager.\+Change\+Instrument}
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_change_instrument_event}{Virtual\+Instrument\+Manager\+::\+Change\+Instrument\+Event} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group___virtual_instrument_manager_ab6fa99d08e8466406835b9fc4ff859f1}\label{group___virtual_instrument_manager_ab6fa99d08e8466406835b9fc4ff859f1}} 
+\index{Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}!Change\+Note\+Range@{Change\+Note\+Range}}
+\index{Change\+Note\+Range@{Change\+Note\+Range}!Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}}
+\subparagraph{\texorpdfstring{Change\+Note\+Range}{ChangeNoteRange}}
+{\footnotesize\ttfamily \hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_change_note_range_event}{Change\+Note\+Range\+Event} Virtual\+Instrument\+Manager.\+Change\+Note\+Range}
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_change_note_range_event}{Virtual\+Instrument\+Manager\+::\+Change\+Note\+Range\+Event} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group___virtual_instrument_manager_a2dea060b2fba524166433300113dc281}\label{group___virtual_instrument_manager_a2dea060b2fba524166433300113dc281}} 
+\index{Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}!Drum\+Kit\+Loaded@{Drum\+Kit\+Loaded}}
+\index{Drum\+Kit\+Loaded@{Drum\+Kit\+Loaded}!Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}}
+\subparagraph{\texorpdfstring{Drum\+Kit\+Loaded}{DrumKitLoaded}}
+{\footnotesize\ttfamily \hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_drum_kit_loaded_event}{Drum\+Kit\+Loaded\+Event} Virtual\+Instrument\+Manager.\+Drum\+Kit\+Loaded}
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_drum_kit_loaded_event}{Virtual\+Instrument\+Manager\+::\+Drum\+Kit\+Loaded\+Event} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group___virtual_instrument_manager_ad79b789b020d7e4a8c149ec653c0b97f}\label{group___virtual_instrument_manager_ad79b789b020d7e4a8c149ec653c0b97f}} 
+\index{Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}!Instrument\+Loaded@{Instrument\+Loaded}}
+\index{Instrument\+Loaded@{Instrument\+Loaded}!Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}}
+\subparagraph{\texorpdfstring{Instrument\+Loaded}{InstrumentLoaded}}
+{\footnotesize\ttfamily \hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_instrument_loaded_event}{Instrument\+Loaded\+Event} Virtual\+Instrument\+Manager.\+Instrument\+Loaded}
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_instrument_loaded_event}{Virtual\+Instrument\+Manager\+::\+Instrument\+Loaded\+Event} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group___virtual_instrument_manager_a112ed15f48fd261f1ad71c3c953c0a58}\label{group___virtual_instrument_manager_a112ed15f48fd261f1ad71c3c953c0a58}} 
+\index{Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}!Modify\+Echo\+Filter@{Modify\+Echo\+Filter}}
+\index{Modify\+Echo\+Filter@{Modify\+Echo\+Filter}!Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}}
+\subparagraph{\texorpdfstring{Modify\+Echo\+Filter}{ModifyEchoFilter}}
+{\footnotesize\ttfamily \hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_modify_echo_filter_event}{Modify\+Echo\+Filter\+Event} Virtual\+Instrument\+Manager.\+Modify\+Echo\+Filter}
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_modify_echo_filter_event}{Virtual\+Instrument\+Manager\+::\+Modify\+Echo\+Filter\+Event} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group___virtual_instrument_manager_aadd137e073cb3849f610a46e0d032858}\label{group___virtual_instrument_manager_aadd137e073cb3849f610a46e0d032858}} 
+\index{Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}!Modify\+Reverb\+Filter@{Modify\+Reverb\+Filter}}
+\index{Modify\+Reverb\+Filter@{Modify\+Reverb\+Filter}!Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}}
+\subparagraph{\texorpdfstring{Modify\+Reverb\+Filter}{ModifyReverbFilter}}
+{\footnotesize\ttfamily \hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_modify_reverb_filter_event}{Modify\+Reverb\+Filter\+Event} Virtual\+Instrument\+Manager.\+Modify\+Reverb\+Filter}
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_modify_reverb_filter_event}{Virtual\+Instrument\+Manager\+::\+Modify\+Reverb\+Filter\+Event} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group___virtual_instrument_manager_a5657ff4bcc7de6d240d7092ffd22a6fe}\label{group___virtual_instrument_manager_a5657ff4bcc7de6d240d7092ffd22a6fe}} 
+\index{Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}!Play\+Drum\+Loop@{Play\+Drum\+Loop}}
+\index{Play\+Drum\+Loop@{Play\+Drum\+Loop}!Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}}
+\subparagraph{\texorpdfstring{Play\+Drum\+Loop}{PlayDrumLoop}}
+{\footnotesize\ttfamily \hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_play_drum_loop_event}{Play\+Drum\+Loop\+Event} Virtual\+Instrument\+Manager.\+Play\+Drum\+Loop}
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_play_drum_loop_event}{Virtual\+Instrument\+Manager\+::\+Play\+Drum\+Loop\+Event} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group___virtual_instrument_manager_aa21021c13a8c9d13cbf374d5bf9d68fa}\label{group___virtual_instrument_manager_aa21021c13a8c9d13cbf374d5bf9d68fa}} 
+\index{Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}!Play\+Note@{Play\+Note}}
+\index{Play\+Note@{Play\+Note}!Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}}
+\subparagraph{\texorpdfstring{Play\+Note}{PlayNote}}
+{\footnotesize\ttfamily \hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_play_note_event}{Play\+Note\+Event} Virtual\+Instrument\+Manager.\+Play\+Note}
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_play_note_event}{Virtual\+Instrument\+Manager\+::\+Play\+Note\+Event} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group___virtual_instrument_manager_ae450bdba9c513ab4e43f69def50fa84d}\label{group___virtual_instrument_manager_ae450bdba9c513ab4e43f69def50fa84d}} 
+\index{Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}!Play\+Song@{Play\+Song}}
+\index{Play\+Song@{Play\+Song}!Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}}
+\subparagraph{\texorpdfstring{Play\+Song}{PlaySong}}
+{\footnotesize\ttfamily \hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_play_song_event}{Play\+Song\+Event} Virtual\+Instrument\+Manager.\+Play\+Song}
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_play_song_event}{Virtual\+Instrument\+Manager\+::\+Play\+Song\+Event} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group___virtual_instrument_manager_a3a1726a6366126421434c2c7be5e5678}\label{group___virtual_instrument_manager_a3a1726a6366126421434c2c7be5e5678}} 
+\index{Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}!Release\+Note@{Release\+Note}}
+\index{Release\+Note@{Release\+Note}!Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}}
+\subparagraph{\texorpdfstring{Release\+Note}{ReleaseNote}}
+{\footnotesize\ttfamily \hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_release_note_event}{Release\+Note\+Event} Virtual\+Instrument\+Manager.\+Release\+Note}
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_release_note_event}{Virtual\+Instrument\+Manager\+::\+Release\+Note\+Event} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group___virtual_instrument_manager_a33dae94932c10c66db76a0eebec76b01}\label{group___virtual_instrument_manager_a33dae94932c10c66db76a0eebec76b01}} 
+\index{Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}!Song\+Manager@{Song\+Manager}}
+\index{Song\+Manager@{Song\+Manager}!Virtual\+Instrument\+Manager@{Virtual\+Instrument\+Manager}}
+\subparagraph{\texorpdfstring{Song\+Manager}{SongManager}}
+{\footnotesize\ttfamily Song\+Manager\+Class Virtual\+Instrument\+Manager.\+Song\+Manager}
+
+
+
+The song manager. 
+
+\begin{DoxySeeAlso}{See also}
+Song\+Manager\+Class 
+\end{DoxySeeAlso}
+\index{Virtual\+Instrument\+Manager\+::\+Reverb\+Filter\+Parameters@{Virtual\+Instrument\+Manager\+::\+Reverb\+Filter\+Parameters}}\label{struct_virtual_instrument_manager_1_1_reverb_filter_parameters}
+\Hypertarget{group___virtual_instrument_manager_struct_virtual_instrument_manager_1_1_reverb_filter_parameters}
+\subsubsection{struct Virtual\+Instrument\+Manager\+:\+:Reverb\+Filter\+Parameters}
+A struct that holds the parameters for the reverb filter. 
+
+The parameters other than Active are used only if Active is true. If Active is false, then a set of parameters is used that negates the filter. \begin{DoxyFields}{Class Members}
+\mbox{\Hypertarget{group___virtual_instrument_manager_a5696ae11db74364234cfa3a1b392478b}\label{group___virtual_instrument_manager_a5696ae11db74364234cfa3a1b392478b}} 
+bool&
+Active&
+\\
+\hline
+
+\mbox{\Hypertarget{group___virtual_instrument_manager_af0b0548c6e50ca27a9c7c431536de226}\label{group___virtual_instrument_manager_af0b0548c6e50ca27a9c7c431536de226}} 
+float&
+DecayHFRatio&
+\\
+\hline
+
+\mbox{\Hypertarget{group___virtual_instrument_manager_a0d4f06f9eb253847d91976cf4e890f94}\label{group___virtual_instrument_manager_a0d4f06f9eb253847d91976cf4e890f94}} 
+float&
+DecayTime&
+\\
+\hline
+
+\mbox{\Hypertarget{group___virtual_instrument_manager_a50712c619ef5aa8a29743071932f97cf}\label{group___virtual_instrument_manager_a50712c619ef5aa8a29743071932f97cf}} 
+float&
+Density&
+\\
+\hline
+
+\mbox{\Hypertarget{group___virtual_instrument_manager_a7f0df133bca26a8df749cb4c8a0c2fde}\label{group___virtual_instrument_manager_a7f0df133bca26a8df749cb4c8a0c2fde}} 
+float&
+Diffusion&
+\\
+\hline
+
+\mbox{\Hypertarget{group___virtual_instrument_manager_a7bd1b1132e241d4326e9391ab8725a14}\label{group___virtual_instrument_manager_a7bd1b1132e241d4326e9391ab8725a14}} 
+float&
+DryLevel&
+\\
+\hline
+
+\mbox{\Hypertarget{group___virtual_instrument_manager_aef76135465fe5a51b9cdfb0a4c6d7b8e}\label{group___virtual_instrument_manager_aef76135465fe5a51b9cdfb0a4c6d7b8e}} 
+float&
+HFReference&
+\\
+\hline
+
+\mbox{\Hypertarget{group___virtual_instrument_manager_a7b3168d519f1c20dac8e7c017e421d58}\label{group___virtual_instrument_manager_a7b3168d519f1c20dac8e7c017e421d58}} 
+float&
+LFReference&
+\\
+\hline
+
+\mbox{\Hypertarget{group___virtual_instrument_manager_aca80ad03bd9dce72578cba5c10878f97}\label{group___virtual_instrument_manager_aca80ad03bd9dce72578cba5c10878f97}} 
+float&
+ReflectDelay&
+\\
+\hline
+
+\mbox{\Hypertarget{group___virtual_instrument_manager_a6a97ac76aa1503956201878b0517bab7}\label{group___virtual_instrument_manager_a6a97ac76aa1503956201878b0517bab7}} 
+float&
+Reflections&
+\\
+\hline
+
+\mbox{\Hypertarget{group___virtual_instrument_manager_a4db1acfd33ea8f9ab20e936d6cd0c6af}\label{group___virtual_instrument_manager_a4db1acfd33ea8f9ab20e936d6cd0c6af}} 
+float&
+Reverb&
+\\
+\hline
+
+\mbox{\Hypertarget{group___virtual_instrument_manager_a64f9dcc29c7c75651feb2d10b8494c41}\label{group___virtual_instrument_manager_a64f9dcc29c7c75651feb2d10b8494c41}} 
+float&
+ReverbDelay&
+\\
+\hline
+
+\mbox{\Hypertarget{group___virtual_instrument_manager_aa95fd8e568f09b14452030ada4e3e6b5}\label{group___virtual_instrument_manager_aa95fd8e568f09b14452030ada4e3e6b5}} 
+float&
+Room&
+\\
+\hline
+
+\mbox{\Hypertarget{group___virtual_instrument_manager_aa1313c71d899da694ed67ef322a817e4}\label{group___virtual_instrument_manager_aa1313c71d899da694ed67ef322a817e4}} 
+float&
+RoomHF&
+\\
+\hline
+
+\mbox{\Hypertarget{group___virtual_instrument_manager_a34e15a2268f1d64e57898c553e47fdfe}\label{group___virtual_instrument_manager_a34e15a2268f1d64e57898c553e47fdfe}} 
+float&
+RoomLF&
+\\
+\hline
+
+\end{DoxyFields}
+\index{Virtual\+Instrument\+Manager\+::\+Echo\+Filter\+Parameters@{Virtual\+Instrument\+Manager\+::\+Echo\+Filter\+Parameters}}\label{struct_virtual_instrument_manager_1_1_echo_filter_parameters}
+\Hypertarget{group___virtual_instrument_manager_struct_virtual_instrument_manager_1_1_echo_filter_parameters}
+\subsubsection{struct Virtual\+Instrument\+Manager\+:\+:Echo\+Filter\+Parameters}
+A struct that holds the parameters for the echo filter. 
+
+The parameters other than Active are used only if Active is true. If Active is false, then a set of parameters is used that negates the filter. \begin{DoxyFields}{Class Members}
+\mbox{\Hypertarget{group___virtual_instrument_manager_adbed98a4cc0e2688edabbadfba58a18b}\label{group___virtual_instrument_manager_adbed98a4cc0e2688edabbadfba58a18b}} 
+bool&
+Active&
+\\
+\hline
+
+\mbox{\Hypertarget{group___virtual_instrument_manager_a7e529eb3e4de120daabef80608dcde27}\label{group___virtual_instrument_manager_a7e529eb3e4de120daabef80608dcde27}} 
+float&
+Decay&
+\\
+\hline
+
+\mbox{\Hypertarget{group___virtual_instrument_manager_a2594ca005d747a272e4aa411bef21f6e}\label{group___virtual_instrument_manager_a2594ca005d747a272e4aa411bef21f6e}} 
+float&
+Delay&
+\\
+\hline
+
+\mbox{\Hypertarget{group___virtual_instrument_manager_ab192892df9a03c86b8ce93be434f75be}\label{group___virtual_instrument_manager_ab192892df9a03c86b8ce93be434f75be}} 
+float&
+DryMix&
+\\
+\hline
+
+\mbox{\Hypertarget{group___virtual_instrument_manager_a654d4a14431e8c8758f3f58a97d1e61f}\label{group___virtual_instrument_manager_a654d4a14431e8c8758f3f58a97d1e61f}} 
+float&
+WetMix&
+\\
+\hline
+
+\end{DoxyFields}
+\index{Virtual\+Instrument\+Manager\+::\+Release\+Note\+Event@{Virtual\+Instrument\+Manager\+::\+Release\+Note\+Event}}\label{class_virtual_instrument_manager_1_1_release_note_event}
+\Hypertarget{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_release_note_event}
+\subsubsection{class Virtual\+Instrument\+Manager\+:\+:Release\+Note\+Event}
+A type of event that is invoked whenever a note should fade out as though the key was released. 
+
+The parameter for this type of event is a Music.\+P\+I\+T\+CH which is the pitch of the note that was released.
+
+\begin{DoxySeeAlso}{See also}
+Music Music\+::\+P\+I\+T\+CH 
+\end{DoxySeeAlso}
+Inheritance diagram for Virtual\+Instrument\+Manager.\+Release\+Note\+Event\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{group___virtual_instrument_manager}
+\end{center}
+\end{figure}
+\index{Virtual\+Instrument\+Manager\+::\+Play\+Song\+Event@{Virtual\+Instrument\+Manager\+::\+Play\+Song\+Event}}\label{class_virtual_instrument_manager_1_1_play_song_event}
+\Hypertarget{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_play_song_event}
+\subsubsection{class Virtual\+Instrument\+Manager\+:\+:Play\+Song\+Event}
+A type of event that is invoked in order to play a song. 
+
+The parameter for this type of event is a Song. The song can be obtained from the Song\+Manager\+Class, which the \hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} holds a reference to with \hyperlink{group___virtual_instrument_manager_a33dae94932c10c66db76a0eebec76b01}{Virtual\+Instrument\+Manager\+::\+Song\+Manager}.
+
+\begin{DoxySeeAlso}{See also}
+Song Song\+Manager\+Class \hyperlink{group___virtual_instrument_manager_a33dae94932c10c66db76a0eebec76b01}{Virtual\+Instrument\+Manager\+::\+Song\+Manager} 
+\end{DoxySeeAlso}
+Inheritance diagram for Virtual\+Instrument\+Manager.\+Play\+Song\+Event\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{group___virtual_instrument_manager}
+\end{center}
+\end{figure}
+\index{Virtual\+Instrument\+Manager\+::\+Play\+Note\+Event@{Virtual\+Instrument\+Manager\+::\+Play\+Note\+Event}}\label{class_virtual_instrument_manager_1_1_play_note_event}
+\Hypertarget{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_play_note_event}
+\subsubsection{class Virtual\+Instrument\+Manager\+:\+:Play\+Note\+Event}
+A type of event that is invoked whenever a note should be played. 
+
+The parameters for this type of event are a Music.\+P\+I\+T\+CH which is the pitch of the note to play and an integer which is the velocity at which to play it.
+
+\begin{DoxySeeAlso}{See also}
+Music Music\+::\+P\+I\+T\+CH 
+\end{DoxySeeAlso}
+Inheritance diagram for Virtual\+Instrument\+Manager.\+Play\+Note\+Event\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{group___virtual_instrument_manager}
+\end{center}
+\end{figure}
+\index{Virtual\+Instrument\+Manager\+::\+Play\+Drum\+Loop\+Event@{Virtual\+Instrument\+Manager\+::\+Play\+Drum\+Loop\+Event}}\label{class_virtual_instrument_manager_1_1_play_drum_loop_event}
+\Hypertarget{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_play_drum_loop_event}
+\subsubsection{class Virtual\+Instrument\+Manager\+:\+:Play\+Drum\+Loop\+Event}
+A type of event that is invoked in order to play a drum loop. 
+
+The parameter for this type of event is a Song with the Song\+::\+Song\+Type\+::\+Drum\+Loop. The song can be obtained from the Song\+Manager\+Class, which the \hyperlink{group___virtual_instrument_manager_class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} holds a reference to with \hyperlink{group___virtual_instrument_manager_a33dae94932c10c66db76a0eebec76b01}{Virtual\+Instrument\+Manager\+::\+Song\+Manager}.
+
+\begin{DoxySeeAlso}{See also}
+Song Song\+::\+Song\+Type Song\+Manager\+Class \hyperlink{group___virtual_instrument_manager_a33dae94932c10c66db76a0eebec76b01}{Virtual\+Instrument\+Manager\+::\+Song\+Manager} 
+\end{DoxySeeAlso}
+Inheritance diagram for Virtual\+Instrument\+Manager.\+Play\+Drum\+Loop\+Event\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{group___virtual_instrument_manager}
+\end{center}
+\end{figure}
+\index{Virtual\+Instrument\+Manager\+::\+Modify\+Reverb\+Filter\+Event@{Virtual\+Instrument\+Manager\+::\+Modify\+Reverb\+Filter\+Event}}\label{class_virtual_instrument_manager_1_1_modify_reverb_filter_event}
+\Hypertarget{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_modify_reverb_filter_event}
+\subsubsection{class Virtual\+Instrument\+Manager\+:\+:Modify\+Reverb\+Filter\+Event}
+A type of event that is invoked in order to modify the reverb filter. 
+
+The parameter for this type of event is an \hyperlink{group___virtual_instrument_manager_struct_virtual_instrument_manager_1_1_reverb_filter_parameters}{Reverb\+Filter\+Parameters} struct.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___virtual_instrument_manager_struct_virtual_instrument_manager_1_1_reverb_filter_parameters}{Virtual\+Instrument\+Manager\+::\+Reverb\+Filter\+Parameters} 
+\end{DoxySeeAlso}
+Inheritance diagram for Virtual\+Instrument\+Manager.\+Modify\+Reverb\+Filter\+Event\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{group___virtual_instrument_manager}
+\end{center}
+\end{figure}
+\index{Virtual\+Instrument\+Manager\+::\+Modify\+Echo\+Filter\+Event@{Virtual\+Instrument\+Manager\+::\+Modify\+Echo\+Filter\+Event}}\label{class_virtual_instrument_manager_1_1_modify_echo_filter_event}
+\Hypertarget{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_modify_echo_filter_event}
+\subsubsection{class Virtual\+Instrument\+Manager\+:\+:Modify\+Echo\+Filter\+Event}
+A type of event that is invoked in order to modify the echo filter. 
+
+The parameter for this type of event is an \hyperlink{group___virtual_instrument_manager_struct_virtual_instrument_manager_1_1_echo_filter_parameters}{Echo\+Filter\+Parameters} struct.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___virtual_instrument_manager_struct_virtual_instrument_manager_1_1_echo_filter_parameters}{Virtual\+Instrument\+Manager\+::\+Echo\+Filter\+Parameters} 
+\end{DoxySeeAlso}
+Inheritance diagram for Virtual\+Instrument\+Manager.\+Modify\+Echo\+Filter\+Event\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{group___virtual_instrument_manager}
+\end{center}
+\end{figure}
+\index{Virtual\+Instrument\+Manager\+::\+Instrument\+Loaded\+Event@{Virtual\+Instrument\+Manager\+::\+Instrument\+Loaded\+Event}}\label{class_virtual_instrument_manager_1_1_instrument_loaded_event}
+\Hypertarget{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_instrument_loaded_event}
+\subsubsection{class Virtual\+Instrument\+Manager\+:\+:Instrument\+Loaded\+Event}
+A type of event that is invoked in order to signal that the instrument has loaded. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___virtual_instrument_manager_aed435d1f9be09864846db4322dc21fd1}{Virtual\+Instrument\+Manager\+::m\+Instrument} Virtual\+Instrument 
+\end{DoxySeeAlso}
+Inheritance diagram for Virtual\+Instrument\+Manager.\+Instrument\+Loaded\+Event\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{group___virtual_instrument_manager}
+\end{center}
+\end{figure}
+\index{Virtual\+Instrument\+Manager\+::\+Drum\+Kit\+Loaded\+Event@{Virtual\+Instrument\+Manager\+::\+Drum\+Kit\+Loaded\+Event}}\label{class_virtual_instrument_manager_1_1_drum_kit_loaded_event}
+\Hypertarget{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_drum_kit_loaded_event}
+\subsubsection{class Virtual\+Instrument\+Manager\+:\+:Drum\+Kit\+Loaded\+Event}
+A type of event that is invoked in order to signal that the drum kit has loaded. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___virtual_instrument_manager_a0bc7c9f776b0d2dae0ccb1f1ee5f2143}{Virtual\+Instrument\+Manager\+::m\+Drum\+Kit} Drum\+Kit Virtual\+Instrument 
+\end{DoxySeeAlso}
+Inheritance diagram for Virtual\+Instrument\+Manager.\+Drum\+Kit\+Loaded\+Event\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{group___virtual_instrument_manager}
+\end{center}
+\end{figure}
+\index{Virtual\+Instrument\+Manager\+::\+Change\+Instrument\+Event@{Virtual\+Instrument\+Manager\+::\+Change\+Instrument\+Event}}\label{class_virtual_instrument_manager_1_1_change_instrument_event}
+\Hypertarget{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_change_instrument_event}
+\subsubsection{class Virtual\+Instrument\+Manager\+:\+:Change\+Instrument\+Event}
+A type of event that is invoked whenever a new instrument should be loaded. 
+
+The parameter for this type of event is a Music.\+I\+N\+S\+T\+R\+U\+M\+E\+N\+T\+\_\+\+T\+Y\+PE which is the type of instrument that should be loaded.
+
+\begin{DoxySeeAlso}{See also}
+Music Music\+::\+I\+N\+S\+T\+R\+U\+M\+E\+N\+T\+\_\+\+T\+Y\+PE 
+\end{DoxySeeAlso}
+Inheritance diagram for Virtual\+Instrument\+Manager.\+Change\+Instrument\+Event\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{group___virtual_instrument_manager}
+\end{center}
+\end{figure}
+\index{Virtual\+Instrument\+Manager\+::\+Change\+Note\+Range\+Event@{Virtual\+Instrument\+Manager\+::\+Change\+Note\+Range\+Event}}\label{class_virtual_instrument_manager_1_1_change_note_range_event}
+\Hypertarget{group___virtual_instrument_manager_class_virtual_instrument_manager_1_1_change_note_range_event}
+\subsubsection{class Virtual\+Instrument\+Manager\+:\+:Change\+Note\+Range\+Event}
+A type of event that is invoked whenever the range of playable pitches should change. 
+
+\hypertarget{group___virtual_instrument_manager_EventTypes}{}\subsection{Event\+Types}\label{group___virtual_instrument_manager_EventTypes}
+The parameter for this type of event is a Music.\+P\+I\+T\+CH which is the lowest pitch of the new range.
+
+\begin{DoxySeeAlso}{See also}
+Music Music\+::\+P\+I\+T\+CH 
+\end{DoxySeeAlso}
+Inheritance diagram for Virtual\+Instrument\+Manager.\+Change\+Note\+Range\+Event\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{group___virtual_instrument_manager}
+\end{center}
+\end{figure}

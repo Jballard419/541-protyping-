@@ -1,0 +1,278 @@
+\hypertarget{group___v_i_m_pub_func}{}\section{Public Functions}
+\label{group___v_i_m_pub_func}\index{Public Functions@{Public Functions}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} \mbox{[}$\,$\mbox{]} \hyperlink{group___v_i_m_pub_func_ga119e0c582106fc9ecc2631e39d71d681}{Virtual\+Instrument\+Manager.\+Get\+Active\+Notes} ()
+\begin{DoxyCompactList}\small\item\em Gets the array of active notes. \end{DoxyCompactList}\item 
+\hyperlink{group___audio_testing_class_a_t_i___diagnostics}{A\+T\+I\+\_\+\+Diagnostics} \hyperlink{group___v_i_m_pub_func_ga7e60bc3c5464d8f34f0d56def675bcc6}{Virtual\+Instrument\+Manager.\+Get\+Diagnostics\+Handler} ()
+\begin{DoxyCompactList}\small\item\em Gets the \hyperlink{group___audio_testing_class_a_t_i___diagnostics}{audio diagnostics handler}. \end{DoxyCompactList}\item 
+\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} \hyperlink{group___v_i_m_pub_func_gab58eabfbcdaa60a3a7dbd972df6f57a6}{Virtual\+Instrument\+Manager.\+Get\+Highest\+Active\+Note} ()
+\begin{DoxyCompactList}\small\item\em Gets the highest active note. \end{DoxyCompactList}\item 
+\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} \hyperlink{group___v_i_m_pub_func_ga586d5ed5b0fe832d66c9a99aa160ceee}{Virtual\+Instrument\+Manager.\+Get\+Highest\+Supported\+Note} ()
+\begin{DoxyCompactList}\small\item\em Gets the highest note that is supported by the loaded instrument. \end{DoxyCompactList}\item 
+\hyperlink{class_virtual_instrument}{Virtual\+Instrument} \hyperlink{group___v_i_m_pub_func_gac39a3e411417dc010f0e4fd8f146fbc3}{Virtual\+Instrument\+Manager.\+Get\+Instrument} ()
+\begin{DoxyCompactList}\small\item\em Gets the loaded \hyperlink{class_virtual_instrument}{Virtual\+Instrument}. \end{DoxyCompactList}\item 
+\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} \hyperlink{group___v_i_m_pub_func_ga09bfbd0756fc8110c877e5b59c104bcd}{Virtual\+Instrument\+Manager.\+Get\+Lowest\+Active\+Note} ()
+\begin{DoxyCompactList}\small\item\em Gets the lowest active note. \end{DoxyCompactList}\item 
+\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} \hyperlink{group___v_i_m_pub_func_gaeb152486450d6c6dc50078e1644c4c6a}{Virtual\+Instrument\+Manager.\+Get\+Lowest\+Supported\+Note} ()
+\begin{DoxyCompactList}\small\item\em Gets the lowest note that is supported by the loaded instrument. \end{DoxyCompactList}\item 
+\hyperlink{class_musical_typing_handler}{Musical\+Typing\+Handler} \hyperlink{group___v_i_m_pub_func_gae6701458a23a3f14db90501f871d4d0d}{Virtual\+Instrument\+Manager.\+Get\+Musical\+Typing\+Handler} ()
+\item 
+int \hyperlink{group___v_i_m_pub_func_ga3d6c823b1c1083eac8202f6c89e60b48}{Virtual\+Instrument\+Manager.\+Get\+Num\+Active\+Notes} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of notes that currently can be played. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+These are functions that allow other classes to retrieve information from the \hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___v_i_m_pub_func_ga119e0c582106fc9ecc2631e39d71d681}\label{group___v_i_m_pub_func_ga119e0c582106fc9ecc2631e39d71d681}} 
+\index{Public Functions@{Public Functions}!Get\+Active\+Notes@{Get\+Active\+Notes}}
+\index{Get\+Active\+Notes@{Get\+Active\+Notes}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Get\+Active\+Notes()}{GetActiveNotes()}}
+{\footnotesize\ttfamily \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} \mbox{[}$\,$\mbox{]} Virtual\+Instrument\+Manager.\+Get\+Active\+Notes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the array of active notes. 
+
+\begin{DoxyReturn}{Returns}
+The array of active notes. 
+\end{DoxyReturn}
+
+
+Definition at line 431 of file Virtual\+Instrument\+Manager.\+cs.
+
+
+
+References Virtual\+Instrument\+Manager.\+m\+Active\+Notes.
+
+
+
+Referenced by Musical\+Typing\+Handler.\+On\+Musical\+Typing\+Event().
+
+
+\begin{DoxyCode}
+432     \{
+433         \textcolor{keywordflow}{return} \hyperlink{group___v_i_m_priv_ga5cedf9995d59b416412677e6004b659c}{mActiveNotes};
+434     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___v_i_m_pub_func_ga7e60bc3c5464d8f34f0d56def675bcc6}\label{group___v_i_m_pub_func_ga7e60bc3c5464d8f34f0d56def675bcc6}} 
+\index{Public Functions@{Public Functions}!Get\+Diagnostics\+Handler@{Get\+Diagnostics\+Handler}}
+\index{Get\+Diagnostics\+Handler@{Get\+Diagnostics\+Handler}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Get\+Diagnostics\+Handler()}{GetDiagnosticsHandler()}}
+{\footnotesize\ttfamily \hyperlink{group___audio_testing_class_a_t_i___diagnostics}{A\+T\+I\+\_\+\+Diagnostics} Virtual\+Instrument\+Manager.\+Get\+Diagnostics\+Handler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the \hyperlink{group___audio_testing_class_a_t_i___diagnostics}{audio diagnostics handler}. 
+
+\begin{DoxyReturn}{Returns}
+The \hyperlink{group___audio_testing_class_a_t_i___diagnostics}{audio diagnostics handler}. 
+\end{DoxyReturn}
+
+
+Definition at line 441 of file Virtual\+Instrument\+Manager.\+cs.
+
+
+
+References Virtual\+Instrument\+Manager.\+m\+Diagnostics\+Handler.
+
+
+
+Referenced by Key\+Container.\+Handle\+Black\+Key\+Pressed(), Key\+Container.\+Handle\+White\+Key\+Pressed(), Musical\+Typing\+Handler.\+Set\+Musical\+Typing\+Variables(), and Note\+Output\+Object.\+Set\+V\+I\+M().
+
+
+\begin{DoxyCode}
+442         \{
+443             \textcolor{keywordflow}{return} \hyperlink{group___v_i_m_priv_gafabe4a874fc21f7bcedf431df3b94201}{mDiagnosticsHandler};
+444         \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___v_i_m_pub_func_gab58eabfbcdaa60a3a7dbd972df6f57a6}\label{group___v_i_m_pub_func_gab58eabfbcdaa60a3a7dbd972df6f57a6}} 
+\index{Public Functions@{Public Functions}!Get\+Highest\+Active\+Note@{Get\+Highest\+Active\+Note}}
+\index{Get\+Highest\+Active\+Note@{Get\+Highest\+Active\+Note}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Get\+Highest\+Active\+Note()}{GetHighestActiveNote()}}
+{\footnotesize\ttfamily \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} Virtual\+Instrument\+Manager.\+Get\+Highest\+Active\+Note (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the highest active note. 
+
+
+
+Definition at line 450 of file Virtual\+Instrument\+Manager.\+cs.
+
+
+
+References Virtual\+Instrument\+Manager.\+m\+Highest\+Active\+Note.
+
+
+\begin{DoxyCode}
+451     \{
+452         \textcolor{keywordflow}{return} \hyperlink{group___v_i_m_priv_ga73a09a4e4f09c0e5b3871dc9ad6c757e}{mHighestActiveNote};
+453     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___v_i_m_pub_func_ga586d5ed5b0fe832d66c9a99aa160ceee}\label{group___v_i_m_pub_func_ga586d5ed5b0fe832d66c9a99aa160ceee}} 
+\index{Public Functions@{Public Functions}!Get\+Highest\+Supported\+Note@{Get\+Highest\+Supported\+Note}}
+\index{Get\+Highest\+Supported\+Note@{Get\+Highest\+Supported\+Note}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Get\+Highest\+Supported\+Note()}{GetHighestSupportedNote()}}
+{\footnotesize\ttfamily \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} Virtual\+Instrument\+Manager.\+Get\+Highest\+Supported\+Note (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the highest note that is supported by the loaded instrument. 
+
+
+
+Definition at line 458 of file Virtual\+Instrument\+Manager.\+cs.
+
+
+
+References Virtual\+Instrument.\+Get\+Highest\+Supported\+Pitch().
+
+
+
+Referenced by A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler.\+Handle\+Instrument\+Loaded().
+
+
+\begin{DoxyCode}
+459     \{
+460         \textcolor{keywordflow}{return} \hyperlink{group___v_i_m_priv_gaed435d1f9be09864846db4322dc21fd1}{mInstrument}.\hyperlink{group___v_i_base_pub_func_ga859f3e73b1d28051cecf0ecd1c8b10ee}{GetHighestSupportedPitch}();
+461     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___v_i_m_pub_func_gac39a3e411417dc010f0e4fd8f146fbc3}\label{group___v_i_m_pub_func_gac39a3e411417dc010f0e4fd8f146fbc3}} 
+\index{Public Functions@{Public Functions}!Get\+Instrument@{Get\+Instrument}}
+\index{Get\+Instrument@{Get\+Instrument}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Get\+Instrument()}{GetInstrument()}}
+{\footnotesize\ttfamily \hyperlink{class_virtual_instrument}{Virtual\+Instrument} Virtual\+Instrument\+Manager.\+Get\+Instrument (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the loaded \hyperlink{class_virtual_instrument}{Virtual\+Instrument}. 
+
+
+
+Definition at line 466 of file Virtual\+Instrument\+Manager.\+cs.
+
+
+
+References Virtual\+Instrument\+Manager.\+m\+Instrument.
+
+
+\begin{DoxyCode}
+467     \{
+468         \textcolor{keywordflow}{return} \hyperlink{group___v_i_m_priv_gaed435d1f9be09864846db4322dc21fd1}{mInstrument};
+469     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___v_i_m_pub_func_ga09bfbd0756fc8110c877e5b59c104bcd}\label{group___v_i_m_pub_func_ga09bfbd0756fc8110c877e5b59c104bcd}} 
+\index{Public Functions@{Public Functions}!Get\+Lowest\+Active\+Note@{Get\+Lowest\+Active\+Note}}
+\index{Get\+Lowest\+Active\+Note@{Get\+Lowest\+Active\+Note}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Get\+Lowest\+Active\+Note()}{GetLowestActiveNote()}}
+{\footnotesize\ttfamily \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} Virtual\+Instrument\+Manager.\+Get\+Lowest\+Active\+Note (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the lowest active note. 
+
+
+
+Definition at line 474 of file Virtual\+Instrument\+Manager.\+cs.
+
+
+
+References Virtual\+Instrument\+Manager.\+m\+Lowest\+Active\+Note.
+
+
+
+Referenced by A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler.\+Handle\+Instrument\+Loaded().
+
+
+\begin{DoxyCode}
+475     \{
+476         \textcolor{keywordflow}{return} \hyperlink{group___v_i_m_priv_ga5e3a5116e0dabb37e0ea21d73ac1567e}{mLowestActiveNote};
+477     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___v_i_m_pub_func_gaeb152486450d6c6dc50078e1644c4c6a}\label{group___v_i_m_pub_func_gaeb152486450d6c6dc50078e1644c4c6a}} 
+\index{Public Functions@{Public Functions}!Get\+Lowest\+Supported\+Note@{Get\+Lowest\+Supported\+Note}}
+\index{Get\+Lowest\+Supported\+Note@{Get\+Lowest\+Supported\+Note}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Get\+Lowest\+Supported\+Note()}{GetLowestSupportedNote()}}
+{\footnotesize\ttfamily \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} Virtual\+Instrument\+Manager.\+Get\+Lowest\+Supported\+Note (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the lowest note that is supported by the loaded instrument. 
+
+
+
+Definition at line 482 of file Virtual\+Instrument\+Manager.\+cs.
+
+
+
+References Virtual\+Instrument.\+Get\+Lowest\+Supported\+Pitch().
+
+
+
+Referenced by A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler.\+Handle\+Instrument\+Loaded().
+
+
+\begin{DoxyCode}
+483     \{
+484         \textcolor{keywordflow}{return} \hyperlink{group___v_i_m_priv_gaed435d1f9be09864846db4322dc21fd1}{mInstrument}.\hyperlink{group___v_i_base_pub_func_gac42b3915bbfec60b83650abd701d0690}{GetLowestSupportedPitch}();
+485     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___v_i_m_pub_func_gae6701458a23a3f14db90501f871d4d0d}\label{group___v_i_m_pub_func_gae6701458a23a3f14db90501f871d4d0d}} 
+\index{Public Functions@{Public Functions}!Get\+Musical\+Typing\+Handler@{Get\+Musical\+Typing\+Handler}}
+\index{Get\+Musical\+Typing\+Handler@{Get\+Musical\+Typing\+Handler}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Get\+Musical\+Typing\+Handler()}{GetMusicalTypingHandler()}}
+{\footnotesize\ttfamily \hyperlink{class_musical_typing_handler}{Musical\+Typing\+Handler} Virtual\+Instrument\+Manager.\+Get\+Musical\+Typing\+Handler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Gets the \hyperlink{class_musical_typing_handler}{Musical Typing Handler}. \begin{DoxyReturn}{Returns}
+The \hyperlink{class_musical_typing_handler}{Musical Typing Handler}. 
+\end{DoxyReturn}
+
+
+Definition at line 491 of file Virtual\+Instrument\+Manager.\+cs.
+
+
+
+References Virtual\+Instrument\+Manager.\+m\+Musical\+Typing\+Handler.
+
+
+
+Referenced by A\+T\+I\+\_\+\+Velocity\+Handler.\+Handle\+Musical\+Typing\+Key\+Velocity\+Change(), A\+T\+I\+\_\+\+Velocity\+Handler.\+Randomize\+Key\+Velocities(), and Key\+Container.\+Update().
+
+
+\begin{DoxyCode}
+492         \{
+493             \textcolor{keywordflow}{return} \hyperlink{group___v_i_m_priv_gad7b95bd21383d11ea0cbf33d79b78e09}{mMusicalTypingHandler};
+494         \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___v_i_m_pub_func_ga3d6c823b1c1083eac8202f6c89e60b48}\label{group___v_i_m_pub_func_ga3d6c823b1c1083eac8202f6c89e60b48}} 
+\index{Public Functions@{Public Functions}!Get\+Num\+Active\+Notes@{Get\+Num\+Active\+Notes}}
+\index{Get\+Num\+Active\+Notes@{Get\+Num\+Active\+Notes}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Get\+Num\+Active\+Notes()}{GetNumActiveNotes()}}
+{\footnotesize\ttfamily int Virtual\+Instrument\+Manager.\+Get\+Num\+Active\+Notes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the number of notes that currently can be played. 
+
+
+
+Definition at line 500 of file Virtual\+Instrument\+Manager.\+cs.
+
+
+
+References Virtual\+Instrument\+Manager.\+m\+Num\+Active\+Notes.
+
+
+
+Referenced by A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler.\+Handle\+Instrument\+Loaded(), A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler.\+Handle\+Note\+Range\+Change(), and Musical\+Typing\+Handler.\+On\+Musical\+Typing\+Event().
+
+
+\begin{DoxyCode}
+501     \{
+502         \textcolor{keywordflow}{return} \hyperlink{group___v_i_m_priv_ga0f7e11945763c48057be326b661dfdaf}{mNumActiveNotes};
+503     \}
+\end{DoxyCode}

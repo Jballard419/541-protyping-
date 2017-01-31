@@ -1,0 +1,181 @@
+\hypertarget{class_a_t_i_1_1_slider_trigger}{}\section{A\+T\+I.\+Slider\+Trigger Class Reference}
+\label{class_a_t_i_1_1_slider_trigger}\index{A\+T\+I.\+Slider\+Trigger@{A\+T\+I.\+Slider\+Trigger}}
+Inheritance diagram for A\+T\+I.\+Slider\+Trigger\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_a_t_i_1_1_slider_trigger}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_a_t_i_1_1_slider_trigger_a03b00593630437fbf23973564ebd35ec}{Awake} ()
+\item 
+void \hyperlink{class_a_t_i_1_1_slider_trigger_a258f79d013266d0c82a5382525adcdef}{Set\+Handler} (\hyperlink{class_a_t_i_1_1_slider_handler}{Slider\+Handler} a\+Handler)
+\item 
+void \hyperlink{class_a_t_i_1_1_slider_trigger_a90347192aede3444d468ed2ab0d97f6c}{Set\+Type} (\hyperlink{class_a_t_i_ac4c6056a99cbd16ff0d292d33b038b9b}{Slider\+Type} a\+Type)
+\item 
+void \hyperlink{class_a_t_i_1_1_slider_trigger_abed7a842d506b1f727b7e2b3cbb58aae}{On\+Drag} (Pointer\+Event\+Data a\+Event\+Data)
+\item 
+void \hyperlink{class_a_t_i_1_1_slider_trigger_ae58a83edce79a49d1fd21317c7536b48}{On\+End\+Drag} (Pointer\+Event\+Data a\+Event\+Data)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Slider \hyperlink{class_a_t_i_1_1_slider_trigger_adb4a609592234cac1451eeeb2d394740}{m\+Slider}
+\item 
+\hyperlink{class_a_t_i_1_1_slider_handler}{Slider\+Handler} \hyperlink{class_a_t_i_1_1_slider_trigger_ab2c5ecc1828e1618dc7966aa815fdaba}{m\+Handler}
+\item 
+\hyperlink{class_a_t_i_ac4c6056a99cbd16ff0d292d33b038b9b}{Slider\+Type} \hyperlink{class_a_t_i_1_1_slider_trigger_a62a01bc9c41be54f58bd77664181fd5d}{m\+Slider\+Type}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 62 of file A\+T\+I.\+cs.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_a_t_i_1_1_slider_trigger_a03b00593630437fbf23973564ebd35ec}\label{class_a_t_i_1_1_slider_trigger_a03b00593630437fbf23973564ebd35ec}} 
+\index{A\+T\+I\+::\+Slider\+Trigger@{A\+T\+I\+::\+Slider\+Trigger}!Awake@{Awake}}
+\index{Awake@{Awake}!A\+T\+I\+::\+Slider\+Trigger@{A\+T\+I\+::\+Slider\+Trigger}}
+\subsubsection{\texorpdfstring{Awake()}{Awake()}}
+{\footnotesize\ttfamily void A\+T\+I.\+Slider\+Trigger.\+Awake (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 75 of file A\+T\+I.\+cs.
+
+
+\begin{DoxyCode}
+76         \{
+77             \hyperlink{class_a_t_i_1_1_slider_trigger_adb4a609592234cac1451eeeb2d394740}{mSlider} = gameObject.transform.GetComponent<Slider>();
+78             \hyperlink{class_a_t_i_1_1_slider_trigger_ab2c5ecc1828e1618dc7966aa815fdaba}{mHandler} = null;
+79             \hyperlink{class_a_t_i_1_1_slider_trigger_a62a01bc9c41be54f58bd77664181fd5d}{mSliderType} = \hyperlink{class_a_t_i_ac4c6056a99cbd16ff0d292d33b038b9b}{SliderType}.Uninitialized;
+80         \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i_1_1_slider_trigger_abed7a842d506b1f727b7e2b3cbb58aae}\label{class_a_t_i_1_1_slider_trigger_abed7a842d506b1f727b7e2b3cbb58aae}} 
+\index{A\+T\+I\+::\+Slider\+Trigger@{A\+T\+I\+::\+Slider\+Trigger}!On\+Drag@{On\+Drag}}
+\index{On\+Drag@{On\+Drag}!A\+T\+I\+::\+Slider\+Trigger@{A\+T\+I\+::\+Slider\+Trigger}}
+\subsubsection{\texorpdfstring{On\+Drag()}{OnDrag()}}
+{\footnotesize\ttfamily void A\+T\+I.\+Slider\+Trigger.\+On\+Drag (\begin{DoxyParamCaption}\item[{Pointer\+Event\+Data}]{a\+Event\+Data }\end{DoxyParamCaption})}
+
+
+
+Definition at line 106 of file A\+T\+I.\+cs.
+
+
+
+References A\+T\+I.\+Slider\+Handler.\+Handle\+Drag().
+
+
+\begin{DoxyCode}
+107         \{
+108             \textcolor{keywordflow}{if}( aEventData.dragging )
+109             \{
+110                 \hyperlink{class_a_t_i_1_1_slider_trigger_ab2c5ecc1828e1618dc7966aa815fdaba}{mHandler}.\hyperlink{class_a_t_i_1_1_slider_handler_a0ef4eeb2a91b744eaaf2453856aded60}{HandleDrag}( \hyperlink{class_a_t_i_1_1_slider_trigger_adb4a609592234cac1451eeeb2d394740}{mSlider}, 
+      \hyperlink{class_a_t_i_1_1_slider_trigger_a62a01bc9c41be54f58bd77664181fd5d}{mSliderType} );
+111             \}
+112         \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i_1_1_slider_trigger_ae58a83edce79a49d1fd21317c7536b48}\label{class_a_t_i_1_1_slider_trigger_ae58a83edce79a49d1fd21317c7536b48}} 
+\index{A\+T\+I\+::\+Slider\+Trigger@{A\+T\+I\+::\+Slider\+Trigger}!On\+End\+Drag@{On\+End\+Drag}}
+\index{On\+End\+Drag@{On\+End\+Drag}!A\+T\+I\+::\+Slider\+Trigger@{A\+T\+I\+::\+Slider\+Trigger}}
+\subsubsection{\texorpdfstring{On\+End\+Drag()}{OnEndDrag()}}
+{\footnotesize\ttfamily void A\+T\+I.\+Slider\+Trigger.\+On\+End\+Drag (\begin{DoxyParamCaption}\item[{Pointer\+Event\+Data}]{a\+Event\+Data }\end{DoxyParamCaption})}
+
+
+
+Definition at line 116 of file A\+T\+I.\+cs.
+
+
+
+References A\+T\+I.\+Slider\+Handler.\+Handle\+Drag\+End().
+
+
+\begin{DoxyCode}
+117         \{
+118             \hyperlink{class_a_t_i_1_1_slider_trigger_ab2c5ecc1828e1618dc7966aa815fdaba}{mHandler}.\hyperlink{class_a_t_i_1_1_slider_handler_ada65f41ef84f50737cece7be16c548f9}{HandleDragEnd}( \hyperlink{class_a_t_i_1_1_slider_trigger_adb4a609592234cac1451eeeb2d394740}{mSlider}, 
+      \hyperlink{class_a_t_i_1_1_slider_trigger_a62a01bc9c41be54f58bd77664181fd5d}{mSliderType} );
+119         \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i_1_1_slider_trigger_a258f79d013266d0c82a5382525adcdef}\label{class_a_t_i_1_1_slider_trigger_a258f79d013266d0c82a5382525adcdef}} 
+\index{A\+T\+I\+::\+Slider\+Trigger@{A\+T\+I\+::\+Slider\+Trigger}!Set\+Handler@{Set\+Handler}}
+\index{Set\+Handler@{Set\+Handler}!A\+T\+I\+::\+Slider\+Trigger@{A\+T\+I\+::\+Slider\+Trigger}}
+\subsubsection{\texorpdfstring{Set\+Handler()}{SetHandler()}}
+{\footnotesize\ttfamily void A\+T\+I.\+Slider\+Trigger.\+Set\+Handler (\begin{DoxyParamCaption}\item[{\hyperlink{class_a_t_i_1_1_slider_handler}{Slider\+Handler}}]{a\+Handler }\end{DoxyParamCaption})}
+
+
+
+Definition at line 88 of file A\+T\+I.\+cs.
+
+
+
+Referenced by A\+T\+I.\+Audio\+Effect\+Parameter\+Trigger.\+Awake(), A\+T\+I\+\_\+\+Note\+Range\+Selection\+Handler.\+Start(), and A\+T\+I\+\_\+\+Velocity\+Handler.\+Start().
+
+
+\begin{DoxyCode}
+89         \{
+90             \hyperlink{class_a_t_i_1_1_slider_trigger_ab2c5ecc1828e1618dc7966aa815fdaba}{mHandler} = aHandler;
+91         \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i_1_1_slider_trigger_a90347192aede3444d468ed2ab0d97f6c}\label{class_a_t_i_1_1_slider_trigger_a90347192aede3444d468ed2ab0d97f6c}} 
+\index{A\+T\+I\+::\+Slider\+Trigger@{A\+T\+I\+::\+Slider\+Trigger}!Set\+Type@{Set\+Type}}
+\index{Set\+Type@{Set\+Type}!A\+T\+I\+::\+Slider\+Trigger@{A\+T\+I\+::\+Slider\+Trigger}}
+\subsubsection{\texorpdfstring{Set\+Type()}{SetType()}}
+{\footnotesize\ttfamily void A\+T\+I.\+Slider\+Trigger.\+Set\+Type (\begin{DoxyParamCaption}\item[{\hyperlink{class_a_t_i_ac4c6056a99cbd16ff0d292d33b038b9b}{Slider\+Type}}]{a\+Type }\end{DoxyParamCaption})}
+
+
+
+Definition at line 95 of file A\+T\+I.\+cs.
+
+
+
+Referenced by A\+T\+I\+\_\+\+Velocity\+Handler.\+Start().
+
+
+\begin{DoxyCode}
+96         \{
+97             \hyperlink{class_a_t_i_1_1_slider_trigger_a62a01bc9c41be54f58bd77664181fd5d}{mSliderType} = aType;
+98         \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_a_t_i_1_1_slider_trigger_ab2c5ecc1828e1618dc7966aa815fdaba}\label{class_a_t_i_1_1_slider_trigger_ab2c5ecc1828e1618dc7966aa815fdaba}} 
+\index{A\+T\+I\+::\+Slider\+Trigger@{A\+T\+I\+::\+Slider\+Trigger}!m\+Handler@{m\+Handler}}
+\index{m\+Handler@{m\+Handler}!A\+T\+I\+::\+Slider\+Trigger@{A\+T\+I\+::\+Slider\+Trigger}}
+\subsubsection{\texorpdfstring{m\+Handler}{mHandler}}
+{\footnotesize\ttfamily \hyperlink{class_a_t_i_1_1_slider_handler}{Slider\+Handler} A\+T\+I.\+Slider\+Trigger.\+m\+Handler\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 69 of file A\+T\+I.\+cs.
+
+\mbox{\Hypertarget{class_a_t_i_1_1_slider_trigger_adb4a609592234cac1451eeeb2d394740}\label{class_a_t_i_1_1_slider_trigger_adb4a609592234cac1451eeeb2d394740}} 
+\index{A\+T\+I\+::\+Slider\+Trigger@{A\+T\+I\+::\+Slider\+Trigger}!m\+Slider@{m\+Slider}}
+\index{m\+Slider@{m\+Slider}!A\+T\+I\+::\+Slider\+Trigger@{A\+T\+I\+::\+Slider\+Trigger}}
+\subsubsection{\texorpdfstring{m\+Slider}{mSlider}}
+{\footnotesize\ttfamily Slider A\+T\+I.\+Slider\+Trigger.\+m\+Slider\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 68 of file A\+T\+I.\+cs.
+
+\mbox{\Hypertarget{class_a_t_i_1_1_slider_trigger_a62a01bc9c41be54f58bd77664181fd5d}\label{class_a_t_i_1_1_slider_trigger_a62a01bc9c41be54f58bd77664181fd5d}} 
+\index{A\+T\+I\+::\+Slider\+Trigger@{A\+T\+I\+::\+Slider\+Trigger}!m\+Slider\+Type@{m\+Slider\+Type}}
+\index{m\+Slider\+Type@{m\+Slider\+Type}!A\+T\+I\+::\+Slider\+Trigger@{A\+T\+I\+::\+Slider\+Trigger}}
+\subsubsection{\texorpdfstring{m\+Slider\+Type}{mSliderType}}
+{\footnotesize\ttfamily \hyperlink{class_a_t_i_ac4c6056a99cbd16ff0d292d33b038b9b}{Slider\+Type} A\+T\+I.\+Slider\+Trigger.\+m\+Slider\+Type\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 70 of file A\+T\+I.\+cs.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Documents/\+School Documents/2017\+Spring/\+E\+E\+C\+S542/\+V\+R\+Piano\+Project/\+Assets/\+Scripts/\+Audio/\+Testing/\hyperlink{_a_t_i_8cs}{A\+T\+I.\+cs}\end{DoxyCompactItemize}

@@ -1,0 +1,98 @@
+\hypertarget{group___song_structs}{}\section{Structs}
+\label{group___song_structs}\index{Structs@{Structs}}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{group___song_structs_struct_song_1_1_percussion_data}{Song.\+Percussion\+Data}
+\begin{DoxyCompactList}\small\item\em A struct for data related to \hyperlink{group___music_structs_struct_music_1_1_percussion_note}{drums}.  \hyperlink{group___song_structs_struct_song_1_1_percussion_data}{More...}\end{DoxyCompactList}\item 
+struct \hyperlink{group___song_structs_struct_song_1_1_melody_note_data}{Song.\+Melody\+Note\+Data}
+\begin{DoxyCompactList}\small\item\em A struct for data related to \hyperlink{group___music_structs_struct_music_1_1_melody_note}{notes that contain pitches}.  \hyperlink{group___song_structs_struct_song_1_1_melody_note_data}{More...}\end{DoxyCompactList}\item 
+struct \hyperlink{group___song_structs_struct_song_1_1_combined_note_data}{Song.\+Combined\+Note\+Data}
+\begin{DoxyCompactList}\small\item\em A struct that contains data for both \hyperlink{group___music_structs_struct_music_1_1_percussion_note}{drums} and the \hyperlink{group___music_structs_struct_music_1_1_melody_note}{melody}.  \hyperlink{group___song_structs_struct_song_1_1_combined_note_data}{More...}\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Structs for holding data about the \hyperlink{group___music_structs_struct_music_1_1_combined_note}{notes} in the \hyperlink{class_song}{Song} as they relate to audio waveforms. 
+
+\subsection{Class Documentation}
+\index{Song\+::\+Percussion\+Data@{Song\+::\+Percussion\+Data}}\label{struct_song_1_1_percussion_data}
+\Hypertarget{group___song_structs_struct_song_1_1_percussion_data}
+\subsubsection{struct Song\+:\+:Percussion\+Data}
+A struct for data related to \hyperlink{group___music_structs_struct_music_1_1_percussion_note}{drums}. 
+
+Definition at line 60 of file Song.\+cs.
+
+\begin{DoxyFields}{Class Members}
+\mbox{\Hypertarget{group___song_structs_a0487a8cb56e5454ea46c9c42e55033eb}\label{group___song_structs_a0487a8cb56e5454ea46c9c42e55033eb}} 
+bool&
+HasHiHat&
+Whether or not the \hyperlink{group___music_structs_struct_music_1_1_percussion_note}{note} contains a hi-\/hat hit. Used for silencing open hi-\/hats when a closed/pedal hi-\/hat hit occurs. \\
+\hline
+
+\mbox{\Hypertarget{group___song_structs_ac8a09dee6f5d73d31bd91e5df71d65ff}\label{group___song_structs_ac8a09dee6f5d73d31bd91e5df71d65ff}} 
+\hyperlink{class_music}{Music}&
+Hits&
+The \hyperlink{group___music_structs_a11ba5b49d8ee25941337573029660f25}{drum hits} in the note. \\
+\hline
+
+\mbox{\Hypertarget{group___song_structs_ad3e20aaef3edeeb78a01522adb218797}\label{group___song_structs_ad3e20aaef3edeeb78a01522adb218797}} 
+int&
+Velocity&
+The \hyperlink{group___audio_DefVel}{velocity} of the \hyperlink{group___music_structs_a11ba5b49d8ee25941337573029660f25}{drum hits} in the note. \\
+\hline
+
+\end{DoxyFields}
+\index{Song\+::\+Melody\+Note\+Data@{Song\+::\+Melody\+Note\+Data}}\label{struct_song_1_1_melody_note_data}
+\Hypertarget{group___song_structs_struct_song_1_1_melody_note_data}
+\subsubsection{struct Song\+:\+:Melody\+Note\+Data}
+A struct for data related to \hyperlink{group___music_structs_struct_music_1_1_melody_note}{notes that contain pitches}. 
+
+Definition at line 71 of file Song.\+cs.
+
+\begin{DoxyFields}{Class Members}
+\mbox{\Hypertarget{group___song_structs_a3281b43fa098f3ecb6c3e89581eafc46}\label{group___song_structs_a3281b43fa098f3ecb6c3e89581eafc46}} 
+int&
+NumSamples&
+The \hyperlink{group___music_structs_ac35cd02f5b3c00e3040b51e40e9e6c94}{length of the note} in terms of the number of waveform samples that should be output. \\
+\hline
+
+\mbox{\Hypertarget{group___song_structs_acae800be2929ee4b0ec6a56f3b461f43}\label{group___song_structs_acae800be2929ee4b0ec6a56f3b461f43}} 
+\hyperlink{class_music}{Music}&
+Pitches&
+The \hyperlink{group___music_structs_aab23b49ea9d7961aef5091154ce45946}{pitches} in the note. \\
+\hline
+
+\mbox{\Hypertarget{group___song_structs_ad803d70e058e26220191fccca7f0867c}\label{group___song_structs_ad803d70e058e26220191fccca7f0867c}} 
+int&
+Velocity&
+The \hyperlink{group___audio_DefVel}{velocity} of the note. \\
+\hline
+
+\end{DoxyFields}
+\index{Song\+::\+Combined\+Note\+Data@{Song\+::\+Combined\+Note\+Data}}\label{struct_song_1_1_combined_note_data}
+\Hypertarget{group___song_structs_struct_song_1_1_combined_note_data}
+\subsubsection{struct Song\+:\+:Combined\+Note\+Data}
+A struct that contains data for both \hyperlink{group___music_structs_struct_music_1_1_percussion_note}{drums} and the \hyperlink{group___music_structs_struct_music_1_1_melody_note}{melody}. 
+
+Definition at line 82 of file Song.\+cs.
+
+\begin{DoxyFields}{Class Members}
+\mbox{\Hypertarget{group___song_structs_a68c8aba7d8d48bc0b88c8d4fc0dcc0ea}\label{group___song_structs_a68c8aba7d8d48bc0b88c8d4fc0dcc0ea}} 
+\hyperlink{group___song_structs_struct_song_1_1_melody_note_data}{MelodyNoteData}&
+MelodyData&
+The data related to playing \hyperlink{group___music_structs_struct_music_1_1_melody_note}{pitches}. \\
+\hline
+
+\mbox{\Hypertarget{group___song_structs_a98cc55f2de1d8e8015e5bd2cda2d48ce}\label{group___song_structs_a98cc55f2de1d8e8015e5bd2cda2d48ce}} 
+\hyperlink{group___song_structs_struct_song_1_1_percussion_data}{PercussionData}&
+PercussionData&
+The data related to playing \hyperlink{group___music_structs_struct_music_1_1_percussion_note}{drum hits}. \\
+\hline
+
+\mbox{\Hypertarget{group___song_structs_a9a0f4830f464d3c7e7f4f156ce490cec}\label{group___song_structs_a9a0f4830f464d3c7e7f4f156ce490cec}} 
+int&
+TotalOffset&
+The number of waveform samples before the note should be played. Important\+: This offset is relative to the song as a whole, not just the previous note like in \hyperlink{group___music_structs_struct_music_1_1_combined_note}{the abstract version of this struct}. \\
+\hline
+
+\end{DoxyFields}

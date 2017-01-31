@@ -1,0 +1,202 @@
+\hypertarget{group___doc_white_key}{}\section{White Key}
+\label{group___doc_white_key}\index{White Key@{White Key}}
+
+
+A script for handling the behavior of a white key on the keyboard.  
+
+
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___white_key_event_types}{Event Types}
+\item 
+\hyperlink{group___white_key_events}{Events}
+\item 
+\hyperlink{group___white_key_priv_var}{Private Variables}
+\item 
+\hyperlink{group___white_key_pub_func}{Public Functions}
+\item 
+\hyperlink{group___white_key_pub_var}{Public Variables}
+\item 
+\hyperlink{group___white_key_unity}{Unity Functions}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A script for handling the behavior of a white key on the keyboard. 
+
+\hypertarget{group___doc_white_key_DocWhiteKeyInfo}{}\subsection{Information}\label{group___doc_white_key_DocWhiteKeyInfo}
+This class handles the behavior of a Unity Game\+Object that represents a white key on the keyboard.\hypertarget{group___doc_white_key_DocWhiteKeyEventTypes}{}\subsection{Event Types}\label{group___doc_white_key_DocWhiteKeyEventTypes}
+The types of events for a \hyperlink{class_white_key}{White\+Key}. ~\newline
+ \hyperlink{group___white_key_event_types}{More details}.\hypertarget{group___doc_white_key_DocWhiteKeyEvents}{}\subsection{Events}\label{group___doc_white_key_DocWhiteKeyEvents}
+Events used by the \hyperlink{class_white_key}{White\+Key}. ~\newline
+ \hyperlink{group___white_key_events}{More details}.\hypertarget{group___doc_white_key_DocWhiteKeyPubVar}{}\subsection{Public Variables}\label{group___doc_white_key_DocWhiteKeyPubVar}
+Variables for setting attributes of a \hyperlink{class_white_key}{White\+Key} in the Unity Editor. ~\newline
+ \hyperlink{group___white_key_pub_var}{More details}.\hypertarget{group___doc_white_key_DocWhiteKeyPrivVar}{}\subsection{Private Variables}\label{group___doc_white_key_DocWhiteKeyPrivVar}
+Variables used internally by the \hyperlink{class_white_key}{White\+Key}. ~\newline
+ \hyperlink{group___white_key_priv_var}{More details}.\hypertarget{group___doc_white_key_DocWhiteKeyUnity}{}\subsection{Unity Functions}\label{group___doc_white_key_DocWhiteKeyUnity}
+Built-\/in Unity functions for creating and updating the \hyperlink{class_white_key}{White\+Key}. ~\newline
+ \hyperlink{group___white_key_unity}{More details}.\hypertarget{group___doc_white_key_DocWhiteKeyPubFunc}{}\subsection{Private Functions}\label{group___doc_white_key_DocWhiteKeyPubFunc}
+Functions for other classes to configure the \hyperlink{class_white_key}{White\+Key}. ~\newline
+ \hyperlink{group___white_key_pub_func}{More details}.\hypertarget{group___doc_white_key_DocWhiteKeyCode}{}\subsection{Code}\label{group___doc_white_key_DocWhiteKeyCode}
+
+\begin{DoxyCodeInclude}
+1 \textcolor{keyword}{using} \hyperlink{namespace_system}{System}.Collections;
+2 \textcolor{keyword}{using} \hyperlink{namespace_system}{System}.Collections.Generic;
+3 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine};
+4 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine}.Assertions;
+5 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine}.Events;
+6 \textcolor{comment}{}
+7 \textcolor{comment}{/**}
+8 \textcolor{comment}{ * @class WhiteKey}
+9 \textcolor{comment}{ * @brief A script for handling the behavior of a white key on the keyboard}
+10 \textcolor{comment}{ * }
+11 \textcolor{comment}{ * This class handles the behavior of a Unity GameObject that represents a white key}
+12 \textcolor{comment}{ * on the keyboard. }
+13 \textcolor{comment}{ * */}
+14 \textcolor{keyword}{public} \textcolor{keyword}{class }\hyperlink{class_white_key}{WhiteKey} : MonoBehaviour
+15 \{
+16     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+17 \textcolor{comment}{     * @\}}
+18 \textcolor{comment}{     * @defgroup WhiteKeyEventTypes Event Types}
+19 \textcolor{comment}{     * @ingroup DocWhiteKey}
+20 \textcolor{comment}{     * The types of events for a WhiteKey.}
+21 \textcolor{comment}{     * @\{}
+22 \textcolor{comment}{    ****************************************************************************/}
+23         \textcolor{keyword}{public} \textcolor{keyword}{class }WhiteKeyPressedEvent : UnityEvent<WhiteKey> \{ \} \textcolor{comment}{//!< Used for testing the container.
+       Will probably need to change later.}
+24 \textcolor{comment}{}        \textcolor{keyword}{public} \textcolor{keyword}{class }WhiteKeyReleasedEvent : UnityEvent<WhiteKey> \{ \} \textcolor{comment}{//!< Used for testing the container.
+       Will probably need to change later.}
+25 \textcolor{comment}{}
+26     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+27 \textcolor{comment}{     * @\}}
+28 \textcolor{comment}{     * @defgroup WhiteKeyEvents Events}
+29 \textcolor{comment}{     * @ingroup DocWhiteKey}
+30 \textcolor{comment}{     * Events used by the WhiteKey.}
+31 \textcolor{comment}{     * @\{}
+32 \textcolor{comment}{    ****************************************************************************/}
+33     \textcolor{keyword}{public} WhiteKeyPressedEvent WhiteKeyPressed = null; \textcolor{comment}{//!< Used for testing the container. Will probably
+       need to change later.}
+34 \textcolor{comment}{}    \textcolor{keyword}{public} WhiteKeyReleasedEvent WhiteKeyReleased = null; \textcolor{comment}{//!< Used for testing the container. Will
+       probably need to change later.}
+35 \textcolor{comment}{}
+36     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+37 \textcolor{comment}{     * @\}}
+38 \textcolor{comment}{     * @defgroup WhiteKeyPubVar Public Variables}
+39 \textcolor{comment}{     * @ingroup DocWhiteKey}
+40 \textcolor{comment}{     * Variables for setting attributes of a WhiteKey in the Unity Editor.}
+41 \textcolor{comment}{     * @\{}
+42 \textcolor{comment}{    ****************************************************************************/}
+43     \textcolor{keyword}{public} \textcolor{keywordtype}{float} \hyperlink{group___white_key_pub_var_gacecf2bff47104955b5dae63840443744}{Velocity}; \textcolor{comment}{//!< The velocity of the key object.}
+44 \textcolor{comment}{}    \textcolor{keyword}{public} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH} \hyperlink{group___white_key_pub_var_ga1ddd98b85ba069defc7cf47d25f625f4}{Pitch} = \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.C4; \textcolor{comment}{//!< The pitch that this key
+       represents.}
+45 \textcolor{comment}{}
+46     \textcolor{comment}{// I put a default value since it'll mess up the dynamic loading otherwise.}
+47     \textcolor{keyword}{public} \textcolor{keywordtype}{string} Key = \textcolor{stringliteral}{"A"}; \textcolor{comment}{//!< The key that begins pressing the white key. }
+48 \textcolor{comment}{}
+49     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+50 \textcolor{comment}{     * @\}}
+51 \textcolor{comment}{     * @defgroup WhiteKeyPrivVar Private Variables}
+52 \textcolor{comment}{     * @ingroup DocWhiteKey}
+53 \textcolor{comment}{     * Variables used internally by the WhiteKey.}
+54 \textcolor{comment}{     * @\{}
+55 \textcolor{comment}{     ****************************************************************************/}
+56     \textcolor{keyword}{private} \textcolor{keywordtype}{bool} mKeyPressed = \textcolor{keyword}{false}; \textcolor{comment}{//!< Has the note started?}
+57 \textcolor{comment}{}    \textcolor{keyword}{private} KeyCode \hyperlink{group___white_key_priv_var_gaeb8c5eafd138c45894858554f739eaf7}{mKeyCode}; \textcolor{comment}{//!< The keycode to check for when testing physics.}
+58 \textcolor{comment}{}    \textcolor{keyword}{private} \hyperlink{class_key_container}{KeyContainer} mContainer = null; \textcolor{comment}{//!< The parent @link DocKeyContain
+       container@endlink.}
+59 \textcolor{comment}{}    \textcolor{keyword}{private} Rigidbody \hyperlink{group___white_key_priv_var_gadc6bd637ef5229f7519b213f038ca15d}{mRigidBody}; \textcolor{comment}{//!< The rigidbody representing the key.}
+60 \textcolor{comment}{}
+61     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+62 \textcolor{comment}{     * @\}}
+63 \textcolor{comment}{     * @defgroup WhiteKeyUnity Unity Functions}
+64 \textcolor{comment}{     * @ingroup DocWhiteKey}
+65 \textcolor{comment}{     * Built-in Unity functions for creating and updating the WhiteKey.}
+66 \textcolor{comment}{     * @\{}
+67 \textcolor{comment}{     ****************************************************************************/}
+68 \textcolor{comment}{}
+69 \textcolor{comment}{    /**}
+70 \textcolor{comment}{     * @brief Called when object is initialized.}
+71 \textcolor{comment}{     * }
+72 \textcolor{comment}{     * Sets the key that is used to simulate pressing the object and gets the RigidBody}
+73 \textcolor{comment}{     * and sets that it shouldn't use gravity.}
+74 \textcolor{comment}{     */}
+75     \textcolor{keywordtype}{void} \hyperlink{group___white_key_unity_ga92c78e57e0ccc8cf2dec655676698b21}{Awake}()
+76     \{
+77         mKeyCode = (KeyCode)\hyperlink{namespace_system}{System}.Enum.Parse( typeof( KeyCode ), Key );
+78         mRigidBody = GetComponent<Rigidbody>();
+79         mRigidBody.useGravity = \textcolor{keyword}{false};
+80         WhiteKeyPressed = \textcolor{keyword}{new} WhiteKeyPressedEvent();
+81         WhiteKeyReleased = \textcolor{keyword}{new} WhiteKeyReleasedEvent();
+82     \}
+83 \textcolor{comment}{}
+84 \textcolor{comment}{    /**}
+85 \textcolor{comment}{     * @brief Called every frame. Used for loading the VirtualInstrumentManager.}
+86 \textcolor{comment}{     * }
+87 \textcolor{comment}{     * Checks if audio should be loaded/unloaded and handles the asynchronous scene}
+88 \textcolor{comment}{     * operation that does so.}
+89 \textcolor{comment}{     */}
+90     \textcolor{keywordtype}{void} \hyperlink{group___white_key_unity_ga160cb397de3ab7084247e7fede943cf7}{Update}()
+91     \{
+92     \}
+93 \textcolor{comment}{}
+94 \textcolor{comment}{    /**}
+95 \textcolor{comment}{     * @brief Called every physics step. Used for applying torque to the RigidBody.}
+96 \textcolor{comment}{     * }
+97 \textcolor{comment}{     * Checks if the appropriate key was pressed/released and applies a torque if so.}
+98 \textcolor{comment}{     * It also calls the functions that send input to the VirtualInstrumentManager if}
+99 \textcolor{comment}{     * needed.}
+100 \textcolor{comment}{     */}
+101     \textcolor{keywordtype}{void} \hyperlink{group___white_key_unity_ga54ddd22238f4a46b2824eacb90430245}{FixedUpdate}()
+102     \{
+103         \textcolor{comment}{//float move = Input.GetAxis ("Horizontal");}
+104         Vector3 movement = \textcolor{keyword}{new} Vector3( 0, 0.0f, -1f );
+105         \textcolor{keywordflow}{if}( Input.GetKey( mKeyCode ) )
+106         \{
+107             \textcolor{comment}{//Debug.Log( key );}
+108             mRigidBody.AddTorque( movement );
+109 
+110             \textcolor{comment}{// Handle playing the sound if audio is loaded.}
+111             \textcolor{keywordflow}{if}( !mKeyPressed )
+112             \{
+113                 Debug.Log( \textcolor{stringliteral}{"Key representing "} + \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( 
+      \hyperlink{group___white_key_pub_var_ga1ddd98b85ba069defc7cf47d25f625f4}{Pitch} ) + \textcolor{stringliteral}{" was pressed."} );
+114                 mKeyPressed = \textcolor{keyword}{true};
+115                 WhiteKeyPressed.Invoke( \textcolor{keyword}{this} );
+116             \}
+117         \}
+118         \textcolor{keywordflow}{else}
+119         \{
+120             mRigidBody.AddTorque( movement * -1f );
+121 
+122             \textcolor{comment}{// Handle releasing the note if audio is loaded}
+123             \textcolor{keywordflow}{if}( mKeyPressed )
+124             \{
+125                 Debug.Log( \textcolor{stringliteral}{"Key representing "} + \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( 
+      \hyperlink{group___white_key_pub_var_ga1ddd98b85ba069defc7cf47d25f625f4}{Pitch} ) + \textcolor{stringliteral}{" was released."} );
+126                 mKeyPressed = \textcolor{keyword}{false};
+127                 WhiteKeyReleased.Invoke( \textcolor{keyword}{this} );
+128             \}
+129         \}
+130     \}
+131 
+132     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+133 \textcolor{comment}{     * @\}}
+134 \textcolor{comment}{     * @defgroup WhiteKeyPubFunc Public Functions}
+135 \textcolor{comment}{     * @ingroup DocWhiteKey}
+136 \textcolor{comment}{     * Functions for other classes to configure the WhiteKey.}
+137 \textcolor{comment}{     * @\{}
+138 \textcolor{comment}{    *****************************************************************************/}
+139 \textcolor{comment}{}
+140 \textcolor{comment}{    /**}
+141 \textcolor{comment}{     * @brief Sets the @link DocKeyContain parent container@endlink.}
+142 \textcolor{comment}{     * @param[in] aContainer The parent container.}
+143 \textcolor{comment}{    */}
+144     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___white_key_pub_func_gab926585e88db73a20431ac93d979b61d}{SetParentContainer}( \hyperlink{class_key_container}{KeyContainer} aContainer )
+145     \{
+146         mContainer = aContainer;
+147     \}\textcolor{comment}{}
+148 \textcolor{comment}{    /** @\} */}
+149 \}
+\end{DoxyCodeInclude}
+ 

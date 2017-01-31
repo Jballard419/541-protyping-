@@ -1,0 +1,555 @@
+\hypertarget{class_a_t_i___demo_song_button_handler}{}\section{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler Class Reference}
+\label{class_a_t_i___demo_song_button_handler}\index{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler@{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler}}
+Inheritance diagram for A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_a_t_i___demo_song_button_handler}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_a_t_i___demo_song_button_handler_a584b9dd672e492fe0df592061c7733de}{Load\+Demo\+Song} (int a\+Index)
+\item 
+void \hyperlink{class_a_t_i___demo_song_button_handler_a9a7fc268b3021a826dc4ad031a856dfc}{Change\+B\+PM} (float a\+B\+PM)
+\item 
+void \hyperlink{class_a_t_i___demo_song_button_handler_a2801913e33a297ae1f5db91f851ddea6}{Handle\+Instrument\+Change} (\hyperlink{group___music_enums_gabfce60192305965558a36e368ebd67c3}{Music.\+I\+N\+S\+T\+R\+U\+M\+E\+N\+T\+\_\+\+T\+Y\+PE} a\+Type)
+\item 
+void \hyperlink{class_a_t_i___demo_song_button_handler_a2b25debcc12ccdd2db23d4339d80f260}{On\+Play\+Pause\+Button\+Clicked} ()
+\item 
+void \hyperlink{class_a_t_i___demo_song_button_handler_a74b93fb6f260529a0f7260238226677b}{On\+Stop\+Button\+Clicked} ()
+\item 
+void \hyperlink{class_a_t_i___demo_song_button_handler_aec5406e1eb0c885f0e6fe044cfe4113e}{Set\+Finished} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{class_a_t_i___demo_song_button_handler_a772b617c22a316a99f3a4b6979d0657a}{Drum\+Loop\+Selector} = false
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_a_t_i___demo_song_button_handler_a723e9581adb3cbc7198af345b8c88b66}{Start} ()
+\item 
+void \hyperlink{class_a_t_i___demo_song_button_handler_a27b2b6ae2ef7d38ba4212bc4ad280247}{Update} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{class_a_t_i___demo_song_button_handler_a14e70250c780214dc71d2aae6d638a25}{m\+Active} = true
+\item 
+bool \hyperlink{class_a_t_i___demo_song_button_handler_a4a9d01d8ee385c66a6a27da6d9d94f18}{m\+Finished} = false
+\begin{DoxyCompactList}\small\item\em Is the song finished? \end{DoxyCompactList}\item 
+bool \hyperlink{class_a_t_i___demo_song_button_handler_abee877053d95bfba813d61d5a5d87a23}{m\+Paused} = false
+\begin{DoxyCompactList}\small\item\em Is the song paused? \end{DoxyCompactList}\item 
+bool \hyperlink{class_a_t_i___demo_song_button_handler_aefbba0db111a0d4ba1b1d9f5c1cae41d}{m\+Playing} = false
+\begin{DoxyCompactList}\small\item\em Is the song playing? \end{DoxyCompactList}\item 
+Button \hyperlink{class_a_t_i___demo_song_button_handler_a9f3be8593e24316510ca461f105061fd}{m\+Play\+Pause\+Button} = null
+\item 
+Button \hyperlink{class_a_t_i___demo_song_button_handler_ad6a342b9b2333c8c613b968a0ca7545c}{m\+Stop\+Button} = null
+\begin{DoxyCompactList}\small\item\em The button to stop the song. \end{DoxyCompactList}\item 
+Dropdown \hyperlink{class_a_t_i___demo_song_button_handler_af58c5b6dd392fbf606b74188b02044ce}{m\+Song\+Selection\+Menu} = null
+\item 
+Slider \hyperlink{class_a_t_i___demo_song_button_handler_a7d1ed48ed81d7fc9fbde52f8ee87600e}{m\+B\+P\+M\+Slider} = null
+\item 
+\hyperlink{class_song}{Song} \hyperlink{class_a_t_i___demo_song_button_handler_aef782d481c6250a9062162c71298ed8f}{m\+Song} = null
+\item 
+Sprite \mbox{[}$\,$\mbox{]} \hyperlink{class_a_t_i___demo_song_button_handler_a9d62cca93ee54ba52e0c7de5f30d9490}{m\+Button\+Images} = null
+\begin{DoxyCompactList}\small\item\em The images for the buttons. \end{DoxyCompactList}\item 
+Text \hyperlink{class_a_t_i___demo_song_button_handler_af884aa63036769a78f92d86084156263}{m\+B\+P\+M\+Slider\+Text} = null
+\item 
+\hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} \hyperlink{class_a_t_i___demo_song_button_handler_ac078f283ce74a7b310ebb2cbbc55f70b}{m\+V\+IM} = null
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 16 of file A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+cs.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_a_t_i___demo_song_button_handler_a9a7fc268b3021a826dc4ad031a856dfc}\label{class_a_t_i___demo_song_button_handler_a9a7fc268b3021a826dc4ad031a856dfc}} 
+\index{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler@{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler}!Change\+B\+PM@{Change\+B\+PM}}
+\index{Change\+B\+PM@{Change\+B\+PM}!A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler@{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler}}
+\subsubsection{\texorpdfstring{Change\+B\+P\+M()}{ChangeBPM()}}
+{\footnotesize\ttfamily void A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+Change\+B\+PM (\begin{DoxyParamCaption}\item[{float}]{a\+B\+PM }\end{DoxyParamCaption})}
+
+
+
+Definition at line 132 of file A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+cs.
+
+
+
+References Song.\+Set\+B\+P\+M().
+
+
+
+Referenced by Start().
+
+
+\begin{DoxyCode}
+133     \{
+134         \textcolor{comment}{// Update the BPM slider's label.}
+135         \hyperlink{class_a_t_i___demo_song_button_handler_af884aa63036769a78f92d86084156263}{mBPMSliderText}.text = \textcolor{stringliteral}{"BPM: "} + aBPM.ToString();
+136 
+137         \textcolor{comment}{// Update the loaded song.}
+138         \hyperlink{class_a_t_i___demo_song_button_handler_aef782d481c6250a9062162c71298ed8f}{mSong}.\hyperlink{group___song_pub_func_gaa65bbba1af7192edff7e0f848029013b}{SetBPM}( aBPM );
+139     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i___demo_song_button_handler_a2801913e33a297ae1f5db91f851ddea6}\label{class_a_t_i___demo_song_button_handler_a2801913e33a297ae1f5db91f851ddea6}} 
+\index{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler@{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler}!Handle\+Instrument\+Change@{Handle\+Instrument\+Change}}
+\index{Handle\+Instrument\+Change@{Handle\+Instrument\+Change}!A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler@{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler}}
+\subsubsection{\texorpdfstring{Handle\+Instrument\+Change()}{HandleInstrumentChange()}}
+{\footnotesize\ttfamily void A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+Handle\+Instrument\+Change (\begin{DoxyParamCaption}\item[{\hyperlink{group___music_enums_gabfce60192305965558a36e368ebd67c3}{Music.\+I\+N\+S\+T\+R\+U\+M\+E\+N\+T\+\_\+\+T\+Y\+PE}}]{a\+Type }\end{DoxyParamCaption})}
+
+
+
+Definition at line 142 of file A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+cs.
+
+
+
+Referenced by Start().
+
+
+\begin{DoxyCode}
+143     \{
+144         \textcolor{keywordflow}{if}( aType == \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gabfce60192305965558a36e368ebd67c3}{INSTRUMENT\_TYPE}.DRUM\_KIT && !
+      \hyperlink{class_a_t_i___demo_song_button_handler_a772b617c22a316a99f3a4b6979d0657a}{DrumLoopSelector} )
+145         \{
+146             \hyperlink{class_a_t_i___demo_song_button_handler_a14e70250c780214dc71d2aae6d638a25}{mActive} = \textcolor{keyword}{false};
+147             \hyperlink{class_a_t_i___demo_song_button_handler_a7d1ed48ed81d7fc9fbde52f8ee87600e}{mBPMSlider}.gameObject.SetActive( \textcolor{keyword}{false} );
+148             \hyperlink{class_a_t_i___demo_song_button_handler_a9f3be8593e24316510ca461f105061fd}{mPlayPauseButton}.transform.parent.gameObject.SetActive( \textcolor{keyword}{false} );
+149             \hyperlink{class_a_t_i___demo_song_button_handler_ad6a342b9b2333c8c613b968a0ca7545c}{mStopButton}.transform.parent.gameObject.SetActive( \textcolor{keyword}{false} );
+150             \hyperlink{class_a_t_i___demo_song_button_handler_af58c5b6dd392fbf606b74188b02044ce}{mSongSelectionMenu}.gameObject.SetActive( \textcolor{keyword}{false} );
+151         \}
+152         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}( !\hyperlink{class_a_t_i___demo_song_button_handler_a14e70250c780214dc71d2aae6d638a25}{mActive} )
+153         \{
+154             \hyperlink{class_a_t_i___demo_song_button_handler_a14e70250c780214dc71d2aae6d638a25}{mActive} = \textcolor{keyword}{true};
+155             \hyperlink{class_a_t_i___demo_song_button_handler_a7d1ed48ed81d7fc9fbde52f8ee87600e}{mBPMSlider}.gameObject.SetActive( \textcolor{keyword}{true} );
+156             \hyperlink{class_a_t_i___demo_song_button_handler_a9f3be8593e24316510ca461f105061fd}{mPlayPauseButton}.transform.parent.gameObject.SetActive( \textcolor{keyword}{true} );
+157             \hyperlink{class_a_t_i___demo_song_button_handler_af58c5b6dd392fbf606b74188b02044ce}{mSongSelectionMenu}.gameObject.SetActive( \textcolor{keyword}{true} );
+158         \}
+159     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i___demo_song_button_handler_a584b9dd672e492fe0df592061c7733de}\label{class_a_t_i___demo_song_button_handler_a584b9dd672e492fe0df592061c7733de}} 
+\index{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler@{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler}!Load\+Demo\+Song@{Load\+Demo\+Song}}
+\index{Load\+Demo\+Song@{Load\+Demo\+Song}!A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler@{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler}}
+\subsubsection{\texorpdfstring{Load\+Demo\+Song()}{LoadDemoSong()}}
+{\footnotesize\ttfamily void A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+Load\+Demo\+Song (\begin{DoxyParamCaption}\item[{int}]{a\+Index }\end{DoxyParamCaption})}
+
+
+
+Definition at line 120 of file A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+cs.
+
+
+
+References Song.\+Get\+B\+P\+M(), Song\+Manager\+Class.\+Get\+Song\+By\+Name(), and Virtual\+Instrument\+Manager.\+Song\+Manager.
+
+
+
+Referenced by Start().
+
+
+\begin{DoxyCode}
+121     \{
+122         \hyperlink{class_a_t_i___demo_song_button_handler_aef782d481c6250a9062162c71298ed8f}{mSong} = null;
+123         \hyperlink{class_a_t_i___demo_song_button_handler_aef782d481c6250a9062162c71298ed8f}{mSong} = \hyperlink{class_a_t_i___demo_song_button_handler_ac078f283ce74a7b310ebb2cbbc55f70b}{mVIM}.\hyperlink{group___v_i_m_pub_ga33dae94932c10c66db76a0eebec76b01}{SongManager}.\hyperlink{group___s_m_pub_func_gafe818c55bd858c52c95a2fa7a566006a}{GetSongByName}( 
+      \hyperlink{class_a_t_i___demo_song_button_handler_af58c5b6dd392fbf606b74188b02044ce}{mSongSelectionMenu}.options[aIndex].text );
+124         \hyperlink{class_a_t_i___demo_song_button_handler_a7d1ed48ed81d7fc9fbde52f8ee87600e}{mBPMSlider}.value = \hyperlink{class_a_t_i___demo_song_button_handler_aef782d481c6250a9062162c71298ed8f}{mSong}.\hyperlink{group___song_pub_func_gaaaf3d27d474713d7d368e3fd4c570be0}{GetBPM}();
+125     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i___demo_song_button_handler_a2b25debcc12ccdd2db23d4339d80f260}\label{class_a_t_i___demo_song_button_handler_a2b25debcc12ccdd2db23d4339d80f260}} 
+\index{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler@{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler}!On\+Play\+Pause\+Button\+Clicked@{On\+Play\+Pause\+Button\+Clicked}}
+\index{On\+Play\+Pause\+Button\+Clicked@{On\+Play\+Pause\+Button\+Clicked}!A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler@{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler}}
+\subsubsection{\texorpdfstring{On\+Play\+Pause\+Button\+Clicked()}{OnPlayPauseButtonClicked()}}
+{\footnotesize\ttfamily void A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+On\+Play\+Pause\+Button\+Clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 162 of file A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+cs.
+
+
+
+References Virtual\+Instrument\+Manager.\+Pause\+Drum\+Loop, Virtual\+Instrument\+Manager.\+Pause\+Song, Virtual\+Instrument\+Manager.\+Play\+Drum\+Loop, Virtual\+Instrument\+Manager.\+Play\+Song, Virtual\+Instrument\+Manager.\+Resume\+Drum\+Loop, and Virtual\+Instrument\+Manager.\+Resume\+Song.
+
+
+
+Referenced by Start().
+
+
+\begin{DoxyCode}
+163     \{
+164         \textcolor{keywordflow}{if}( \hyperlink{class_a_t_i___demo_song_button_handler_a772b617c22a316a99f3a4b6979d0657a}{DrumLoopSelector} )
+165         \{
+166             \textcolor{keywordflow}{if}( \hyperlink{class_a_t_i___demo_song_button_handler_aefbba0db111a0d4ba1b1d9f5c1cae41d}{mPlaying} && !\hyperlink{class_a_t_i___demo_song_button_handler_abee877053d95bfba813d61d5a5d87a23}{mPaused} )
+167             \{
+168                 \hyperlink{class_a_t_i___demo_song_button_handler_ac078f283ce74a7b310ebb2cbbc55f70b}{mVIM}.\hyperlink{group___v_i_m_events_ga6de00a430321852cc3c8c4a213d62c70}{PauseDrumLoop}.Invoke();
+169                 \hyperlink{class_a_t_i___demo_song_button_handler_a9f3be8593e24316510ca461f105061fd}{mPlayPauseButton}.image.sprite = \hyperlink{class_a_t_i___demo_song_button_handler_a9d62cca93ee54ba52e0c7de5f30d9490}{mButtonImages}[0];
+170                 \hyperlink{class_a_t_i___demo_song_button_handler_abee877053d95bfba813d61d5a5d87a23}{mPaused} = \textcolor{keyword}{true};
+171             \}
+172             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}( \hyperlink{class_a_t_i___demo_song_button_handler_abee877053d95bfba813d61d5a5d87a23}{mPaused} )
+173             \{
+174                 \hyperlink{class_a_t_i___demo_song_button_handler_ac078f283ce74a7b310ebb2cbbc55f70b}{mVIM}.\hyperlink{group___v_i_m_events_ga54db2dc24076cd3cd130e95c2fd5bea0}{ResumeDrumLoop}.Invoke();
+175                 \hyperlink{class_a_t_i___demo_song_button_handler_a9f3be8593e24316510ca461f105061fd}{mPlayPauseButton}.image.sprite = \hyperlink{class_a_t_i___demo_song_button_handler_a9d62cca93ee54ba52e0c7de5f30d9490}{mButtonImages}[1];
+176                 \hyperlink{class_a_t_i___demo_song_button_handler_abee877053d95bfba813d61d5a5d87a23}{mPaused} = \textcolor{keyword}{false};
+177                 \hyperlink{class_a_t_i___demo_song_button_handler_aefbba0db111a0d4ba1b1d9f5c1cae41d}{mPlaying} = \textcolor{keyword}{true};
+178             \}
+179             \textcolor{keywordflow}{else}
+180             \{
+181                 \hyperlink{class_a_t_i___demo_song_button_handler_ac078f283ce74a7b310ebb2cbbc55f70b}{mVIM}.\hyperlink{group___v_i_m_events_ga5657ff4bcc7de6d240d7092ffd22a6fe}{PlayDrumLoop}.Invoke( \hyperlink{class_a_t_i___demo_song_button_handler_aef782d481c6250a9062162c71298ed8f}{mSong} );
+182                 \hyperlink{class_a_t_i___demo_song_button_handler_ad6a342b9b2333c8c613b968a0ca7545c}{mStopButton}.transform.parent.gameObject.SetActive( \textcolor{keyword}{true} );
+183                 \hyperlink{class_a_t_i___demo_song_button_handler_a9f3be8593e24316510ca461f105061fd}{mPlayPauseButton}.image.sprite = \hyperlink{class_a_t_i___demo_song_button_handler_a9d62cca93ee54ba52e0c7de5f30d9490}{mButtonImages}[1];
+184                 \hyperlink{class_a_t_i___demo_song_button_handler_aefbba0db111a0d4ba1b1d9f5c1cae41d}{mPlaying} = \textcolor{keyword}{true};
+185             \}
+186         \}
+187         \textcolor{keywordflow}{else}
+188         \{
+189             \textcolor{keywordflow}{if}( \hyperlink{class_a_t_i___demo_song_button_handler_aefbba0db111a0d4ba1b1d9f5c1cae41d}{mPlaying} && !\hyperlink{class_a_t_i___demo_song_button_handler_abee877053d95bfba813d61d5a5d87a23}{mPaused} )
+190             \{
+191                 \hyperlink{class_a_t_i___demo_song_button_handler_ac078f283ce74a7b310ebb2cbbc55f70b}{mVIM}.\hyperlink{group___v_i_m_events_gae2d76fc98161d7a4573628dbd93e7887}{PauseSong}.Invoke();
+192                 \hyperlink{class_a_t_i___demo_song_button_handler_a9f3be8593e24316510ca461f105061fd}{mPlayPauseButton}.image.sprite = \hyperlink{class_a_t_i___demo_song_button_handler_a9d62cca93ee54ba52e0c7de5f30d9490}{mButtonImages}[0];
+193                 \hyperlink{class_a_t_i___demo_song_button_handler_abee877053d95bfba813d61d5a5d87a23}{mPaused} = \textcolor{keyword}{true};
+194             \}
+195             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}( \hyperlink{class_a_t_i___demo_song_button_handler_abee877053d95bfba813d61d5a5d87a23}{mPaused} )
+196             \{
+197                 \hyperlink{class_a_t_i___demo_song_button_handler_ac078f283ce74a7b310ebb2cbbc55f70b}{mVIM}.\hyperlink{group___v_i_m_events_ga01670916ae3917c84a0fb51667f30ab9}{ResumeSong}.Invoke();
+198                 \hyperlink{class_a_t_i___demo_song_button_handler_a9f3be8593e24316510ca461f105061fd}{mPlayPauseButton}.image.sprite = \hyperlink{class_a_t_i___demo_song_button_handler_a9d62cca93ee54ba52e0c7de5f30d9490}{mButtonImages}[1];
+199                 \hyperlink{class_a_t_i___demo_song_button_handler_abee877053d95bfba813d61d5a5d87a23}{mPaused} = \textcolor{keyword}{false};
+200                 \hyperlink{class_a_t_i___demo_song_button_handler_aefbba0db111a0d4ba1b1d9f5c1cae41d}{mPlaying} = \textcolor{keyword}{true};
+201             \}
+202             \textcolor{keywordflow}{else}
+203             \{
+204                 \hyperlink{class_a_t_i___demo_song_button_handler_ac078f283ce74a7b310ebb2cbbc55f70b}{mVIM}.\hyperlink{group___v_i_m_events_gae450bdba9c513ab4e43f69def50fa84d}{PlaySong}.Invoke( \hyperlink{class_a_t_i___demo_song_button_handler_aef782d481c6250a9062162c71298ed8f}{mSong} );
+205                 \hyperlink{class_a_t_i___demo_song_button_handler_ad6a342b9b2333c8c613b968a0ca7545c}{mStopButton}.transform.parent.gameObject.SetActive( \textcolor{keyword}{true} );
+206                 \hyperlink{class_a_t_i___demo_song_button_handler_a9f3be8593e24316510ca461f105061fd}{mPlayPauseButton}.image.sprite = \hyperlink{class_a_t_i___demo_song_button_handler_a9d62cca93ee54ba52e0c7de5f30d9490}{mButtonImages}[1];
+207                 \hyperlink{class_a_t_i___demo_song_button_handler_aefbba0db111a0d4ba1b1d9f5c1cae41d}{mPlaying} = \textcolor{keyword}{true};
+208             \}
+209         \}
+210     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i___demo_song_button_handler_a74b93fb6f260529a0f7260238226677b}\label{class_a_t_i___demo_song_button_handler_a74b93fb6f260529a0f7260238226677b}} 
+\index{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler@{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler}!On\+Stop\+Button\+Clicked@{On\+Stop\+Button\+Clicked}}
+\index{On\+Stop\+Button\+Clicked@{On\+Stop\+Button\+Clicked}!A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler@{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler}}
+\subsubsection{\texorpdfstring{On\+Stop\+Button\+Clicked()}{OnStopButtonClicked()}}
+{\footnotesize\ttfamily void A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+On\+Stop\+Button\+Clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 212 of file A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+cs.
+
+
+
+References Virtual\+Instrument\+Manager.\+Stop\+Drum\+Loop, and Virtual\+Instrument\+Manager.\+Stop\+Song.
+
+
+
+Referenced by Start().
+
+
+\begin{DoxyCode}
+213     \{
+214         Assert.IsTrue( \hyperlink{class_a_t_i___demo_song_button_handler_aefbba0db111a0d4ba1b1d9f5c1cae41d}{mPlaying} || \hyperlink{class_a_t_i___demo_song_button_handler_abee877053d95bfba813d61d5a5d87a23}{mPaused}, \textcolor{stringliteral}{"Somehow we tried to stop a song that wasn't
+       playing."} );
+215 
+216         \hyperlink{class_a_t_i___demo_song_button_handler_ad6a342b9b2333c8c613b968a0ca7545c}{mStopButton}.transform.parent.gameObject.SetActive( \textcolor{keyword}{false} );
+217         \hyperlink{class_a_t_i___demo_song_button_handler_aefbba0db111a0d4ba1b1d9f5c1cae41d}{mPlaying} = \textcolor{keyword}{false};
+218         \hyperlink{class_a_t_i___demo_song_button_handler_abee877053d95bfba813d61d5a5d87a23}{mPaused} = \textcolor{keyword}{false};
+219         \hyperlink{class_a_t_i___demo_song_button_handler_a9f3be8593e24316510ca461f105061fd}{mPlayPauseButton}.image.sprite = \hyperlink{class_a_t_i___demo_song_button_handler_a9d62cca93ee54ba52e0c7de5f30d9490}{mButtonImages}[0];
+220 
+221         \textcolor{keywordflow}{if}( \hyperlink{class_a_t_i___demo_song_button_handler_a772b617c22a316a99f3a4b6979d0657a}{DrumLoopSelector} )
+222         \{
+223             \hyperlink{class_a_t_i___demo_song_button_handler_ac078f283ce74a7b310ebb2cbbc55f70b}{mVIM}.\hyperlink{group___v_i_m_events_ga9466995fd3b4a07351a8577042ee8b31}{StopDrumLoop}.Invoke();
+224         \}
+225         \textcolor{keywordflow}{else}
+226         \{
+227             \hyperlink{class_a_t_i___demo_song_button_handler_ac078f283ce74a7b310ebb2cbbc55f70b}{mVIM}.\hyperlink{group___v_i_m_events_gaa9e464629814abf2e4db88e240fac72c}{StopSong}.Invoke();
+228         \}
+229     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i___demo_song_button_handler_aec5406e1eb0c885f0e6fe044cfe4113e}\label{class_a_t_i___demo_song_button_handler_aec5406e1eb0c885f0e6fe044cfe4113e}} 
+\index{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler@{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler}!Set\+Finished@{Set\+Finished}}
+\index{Set\+Finished@{Set\+Finished}!A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler@{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler}}
+\subsubsection{\texorpdfstring{Set\+Finished()}{SetFinished()}}
+{\footnotesize\ttfamily void A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+Set\+Finished (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 231 of file A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+cs.
+
+
+
+Referenced by Start().
+
+
+\begin{DoxyCode}
+232     \{
+233         \hyperlink{class_a_t_i___demo_song_button_handler_a4a9d01d8ee385c66a6a27da6d9d94f18}{mFinished} = \textcolor{keyword}{true};
+234     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i___demo_song_button_handler_a723e9581adb3cbc7198af345b8c88b66}\label{class_a_t_i___demo_song_button_handler_a723e9581adb3cbc7198af345b8c88b66}} 
+\index{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler@{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler}!Start@{Start}}
+\index{Start@{Start}!A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler@{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler}}
+\subsubsection{\texorpdfstring{Start()}{Start()}}
+{\footnotesize\ttfamily void A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 40 of file A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+cs.
+
+
+
+References Change\+B\+P\+M(), Virtual\+Instrument\+Manager.\+Change\+Instrument, Song.\+Get\+B\+P\+M(), Handle\+Instrument\+Change(), Load\+Demo\+Song(), On\+Play\+Pause\+Button\+Clicked(), On\+Stop\+Button\+Clicked(), and Set\+Finished().
+
+
+\begin{DoxyCode}
+41     \{
+42         \textcolor{comment}{// Get the button images.}
+43         \hyperlink{class_a_t_i___demo_song_button_handler_a9d62cca93ee54ba52e0c7de5f30d9490}{mButtonImages} = \textcolor{keyword}{new} Sprite[3];
+44         \hyperlink{class_a_t_i___demo_song_button_handler_a9d62cca93ee54ba52e0c7de5f30d9490}{mButtonImages}[0] = Resources.Load<Sprite>( \textcolor{stringliteral}{"Audio/Images/play\_button"} );
+45         \hyperlink{class_a_t_i___demo_song_button_handler_a9d62cca93ee54ba52e0c7de5f30d9490}{mButtonImages}[1] = Resources.Load<Sprite>( \textcolor{stringliteral}{"Audio/Images/pause\_button"} );
+46         mButtonImages[2] = Resources.Load<Sprite>( \textcolor{stringliteral}{"Audio/Images/stop\_button"} );
+47 
+48         \textcolor{comment}{// Get the virtual instrument manager.}
+49         \hyperlink{class_a_t_i___demo_song_button_handler_ac078f283ce74a7b310ebb2cbbc55f70b}{mVIM} = GameObject.Find( \textcolor{stringliteral}{"VirtualInstrumentManager"} ).GetComponent<
+      \hyperlink{class_virtual_instrument_manager}{VirtualInstrumentManager}>();
+50 
+51         \textcolor{comment}{// Account for the VIM changing instruments.}
+52         mVIM.\hyperlink{group___v_i_m_events_ga1b9f12a73a5418ea5695d38b78c506c4}{ChangeInstrument}.AddListener( 
+      \hyperlink{class_a_t_i___demo_song_button_handler_a2801913e33a297ae1f5db91f851ddea6}{HandleInstrumentChange} );
+53 
+54         \textcolor{comment}{// Set up the selection menu.}
+55         \hyperlink{class_a_t_i___demo_song_button_handler_af58c5b6dd392fbf606b74188b02044ce}{mSongSelectionMenu} = gameObject.GetComponent<Dropdown>();
+56         \hyperlink{class_a_t_i___demo_song_button_handler_af58c5b6dd392fbf606b74188b02044ce}{mSongSelectionMenu}.options.Clear();
+57 
+58         \textcolor{keywordflow}{if}( !\hyperlink{class_a_t_i___demo_song_button_handler_a772b617c22a316a99f3a4b6979d0657a}{DrumLoopSelector} )
+59         \{
+60             \hyperlink{class_a_t_i___demo_song_button_handler_af58c5b6dd392fbf606b74188b02044ce}{mSongSelectionMenu}.AddOptions( mVIM.SongManager.GetCombinedSongNames() );
+61             \hyperlink{class_a_t_i___demo_song_button_handler_af58c5b6dd392fbf606b74188b02044ce}{mSongSelectionMenu}.AddOptions( mVIM.SongManager.GetMelodyNames() );
+62             \hyperlink{class_a_t_i___demo_song_button_handler_af58c5b6dd392fbf606b74188b02044ce}{mSongSelectionMenu}.onValueChanged.AddListener( 
+      \hyperlink{class_a_t_i___demo_song_button_handler_a584b9dd672e492fe0df592061c7733de}{LoadDemoSong} );
+63 
+64             \textcolor{comment}{// Load the default demo song.}
+65             \hyperlink{class_a_t_i___demo_song_button_handler_aef782d481c6250a9062162c71298ed8f}{mSong} = mVIM.SongManager.GetCombinedSongs()[0];
+66         \}
+67         \textcolor{keywordflow}{else}
+68         \{
+69             \hyperlink{class_a_t_i___demo_song_button_handler_af58c5b6dd392fbf606b74188b02044ce}{mSongSelectionMenu}.AddOptions( mVIM.SongManager.GetDrumLoopNames() );
+70             \hyperlink{class_a_t_i___demo_song_button_handler_af58c5b6dd392fbf606b74188b02044ce}{mSongSelectionMenu}.onValueChanged.AddListener( 
+      \hyperlink{class_a_t_i___demo_song_button_handler_a584b9dd672e492fe0df592061c7733de}{LoadDemoSong} );
+71             \hyperlink{class_a_t_i___demo_song_button_handler_aef782d481c6250a9062162c71298ed8f}{mSong} = mVIM.SongManager.GetDrumLoops()[0];
+72         \}
+73 
+74         \textcolor{comment}{// Set up the play button.}
+75         \hyperlink{class_a_t_i___demo_song_button_handler_a9f3be8593e24316510ca461f105061fd}{mPlayPauseButton} = gameObject.transform.GetChild( 5 ).GetChild( 0 ).GetComponent<
+      Button>();
+76         \hyperlink{class_a_t_i___demo_song_button_handler_a9f3be8593e24316510ca461f105061fd}{mPlayPauseButton}.onClick.AddListener( 
+      \hyperlink{class_a_t_i___demo_song_button_handler_a2b25debcc12ccdd2db23d4339d80f260}{OnPlayPauseButtonClicked} );
+77 
+78         \textcolor{comment}{// Set up the stop button}
+79         \hyperlink{class_a_t_i___demo_song_button_handler_ad6a342b9b2333c8c613b968a0ca7545c}{mStopButton} = gameObject.transform.GetChild( 6 ).GetChild( 0 ).GetComponent<Button>();
+80         \hyperlink{class_a_t_i___demo_song_button_handler_ad6a342b9b2333c8c613b968a0ca7545c}{mStopButton}.onClick.AddListener( \hyperlink{class_a_t_i___demo_song_button_handler_a74b93fb6f260529a0f7260238226677b}{OnStopButtonClicked} );
+81         \hyperlink{class_a_t_i___demo_song_button_handler_ad6a342b9b2333c8c613b968a0ca7545c}{mStopButton}.transform.parent.gameObject.SetActive( \textcolor{keyword}{false} );
+82 
+83         \textcolor{comment}{// Set up the BPM slider.}
+84         \hyperlink{class_a_t_i___demo_song_button_handler_a7d1ed48ed81d7fc9fbde52f8ee87600e}{mBPMSlider} = gameObject.transform.GetChild( 4 ).GetComponent<Slider>();
+85         \hyperlink{class_a_t_i___demo_song_button_handler_a7d1ed48ed81d7fc9fbde52f8ee87600e}{mBPMSlider}.value = \hyperlink{class_a_t_i___demo_song_button_handler_aef782d481c6250a9062162c71298ed8f}{mSong}.\hyperlink{group___song_pub_func_gaaaf3d27d474713d7d368e3fd4c570be0}{GetBPM}();
+86         \hyperlink{class_a_t_i___demo_song_button_handler_a7d1ed48ed81d7fc9fbde52f8ee87600e}{mBPMSlider}.onValueChanged.AddListener( \hyperlink{class_a_t_i___demo_song_button_handler_a9a7fc268b3021a826dc4ad031a856dfc}{ChangeBPM} );
+87 
+88         \textcolor{comment}{// Set up the BPM slider's label.}
+89         \hyperlink{class_a_t_i___demo_song_button_handler_af884aa63036769a78f92d86084156263}{mBPMSliderText} = \hyperlink{class_a_t_i___demo_song_button_handler_a7d1ed48ed81d7fc9fbde52f8ee87600e}{mBPMSlider}.transform.GetChild( 3 ).GetComponent<Text>();
+90         \hyperlink{class_a_t_i___demo_song_button_handler_af884aa63036769a78f92d86084156263}{mBPMSliderText}.text = \textcolor{stringliteral}{"BPM: "} + \hyperlink{class_a_t_i___demo_song_button_handler_aef782d481c6250a9062162c71298ed8f}{mSong}.\hyperlink{group___song_pub_func_gaaaf3d27d474713d7d368e3fd4c570be0}{GetBPM}().ToString();
+91 
+92 
+93         
+94 
+95         \textcolor{comment}{// Add a listener for when the song is finished if needed.}
+96         \textcolor{keywordflow}{if}( !\hyperlink{class_a_t_i___demo_song_button_handler_a772b617c22a316a99f3a4b6979d0657a}{DrumLoopSelector} )
+97         \{
+98             mVIM.AudioFinished.AddListener( \hyperlink{class_a_t_i___demo_song_button_handler_aec5406e1eb0c885f0e6fe044cfe4113e}{SetFinished} );
+99         \}
+100     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i___demo_song_button_handler_a27b2b6ae2ef7d38ba4212bc4ad280247}\label{class_a_t_i___demo_song_button_handler_a27b2b6ae2ef7d38ba4212bc4ad280247}} 
+\index{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler@{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler}!Update@{Update}}
+\index{Update@{Update}!A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler@{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler}}
+\subsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily void A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 102 of file A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+cs.
+
+
+\begin{DoxyCode}
+103     \{
+104         \textcolor{keywordflow}{if}( \hyperlink{class_a_t_i___demo_song_button_handler_a4a9d01d8ee385c66a6a27da6d9d94f18}{mFinished} )
+105         \{
+106             \hyperlink{class_a_t_i___demo_song_button_handler_a4a9d01d8ee385c66a6a27da6d9d94f18}{mFinished} = \textcolor{keyword}{false};
+107             \hyperlink{class_a_t_i___demo_song_button_handler_ad6a342b9b2333c8c613b968a0ca7545c}{mStopButton}.transform.parent.gameObject.SetActive( \textcolor{keyword}{false} );
+108             \hyperlink{class_a_t_i___demo_song_button_handler_aefbba0db111a0d4ba1b1d9f5c1cae41d}{mPlaying} = \textcolor{keyword}{false};
+109             \hyperlink{class_a_t_i___demo_song_button_handler_abee877053d95bfba813d61d5a5d87a23}{mPaused} = \textcolor{keyword}{false};
+110             \hyperlink{class_a_t_i___demo_song_button_handler_a9f3be8593e24316510ca461f105061fd}{mPlayPauseButton}.image.sprite = \hyperlink{class_a_t_i___demo_song_button_handler_a9d62cca93ee54ba52e0c7de5f30d9490}{mButtonImages}[0];
+111 
+112         \}
+113     \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_a_t_i___demo_song_button_handler_a772b617c22a316a99f3a4b6979d0657a}\label{class_a_t_i___demo_song_button_handler_a772b617c22a316a99f3a4b6979d0657a}} 
+\index{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler@{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler}!Drum\+Loop\+Selector@{Drum\+Loop\+Selector}}
+\index{Drum\+Loop\+Selector@{Drum\+Loop\+Selector}!A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler@{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler}}
+\subsubsection{\texorpdfstring{Drum\+Loop\+Selector}{DrumLoopSelector}}
+{\footnotesize\ttfamily bool A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+Drum\+Loop\+Selector = false}
+
+
+
+Definition at line 19 of file A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+cs.
+
+\mbox{\Hypertarget{class_a_t_i___demo_song_button_handler_a14e70250c780214dc71d2aae6d638a25}\label{class_a_t_i___demo_song_button_handler_a14e70250c780214dc71d2aae6d638a25}} 
+\index{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler@{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler}!m\+Active@{m\+Active}}
+\index{m\+Active@{m\+Active}!A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler@{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler}}
+\subsubsection{\texorpdfstring{m\+Active}{mActive}}
+{\footnotesize\ttfamily bool A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+m\+Active = true\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 24 of file A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+cs.
+
+\mbox{\Hypertarget{class_a_t_i___demo_song_button_handler_a7d1ed48ed81d7fc9fbde52f8ee87600e}\label{class_a_t_i___demo_song_button_handler_a7d1ed48ed81d7fc9fbde52f8ee87600e}} 
+\index{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler@{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler}!m\+B\+P\+M\+Slider@{m\+B\+P\+M\+Slider}}
+\index{m\+B\+P\+M\+Slider@{m\+B\+P\+M\+Slider}!A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler@{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler}}
+\subsubsection{\texorpdfstring{m\+B\+P\+M\+Slider}{mBPMSlider}}
+{\footnotesize\ttfamily Slider A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+m\+B\+P\+M\+Slider = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 31 of file A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+cs.
+
+\mbox{\Hypertarget{class_a_t_i___demo_song_button_handler_af884aa63036769a78f92d86084156263}\label{class_a_t_i___demo_song_button_handler_af884aa63036769a78f92d86084156263}} 
+\index{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler@{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler}!m\+B\+P\+M\+Slider\+Text@{m\+B\+P\+M\+Slider\+Text}}
+\index{m\+B\+P\+M\+Slider\+Text@{m\+B\+P\+M\+Slider\+Text}!A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler@{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler}}
+\subsubsection{\texorpdfstring{m\+B\+P\+M\+Slider\+Text}{mBPMSliderText}}
+{\footnotesize\ttfamily Text A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+m\+B\+P\+M\+Slider\+Text = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 34 of file A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+cs.
+
+\mbox{\Hypertarget{class_a_t_i___demo_song_button_handler_a9d62cca93ee54ba52e0c7de5f30d9490}\label{class_a_t_i___demo_song_button_handler_a9d62cca93ee54ba52e0c7de5f30d9490}} 
+\index{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler@{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler}!m\+Button\+Images@{m\+Button\+Images}}
+\index{m\+Button\+Images@{m\+Button\+Images}!A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler@{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler}}
+\subsubsection{\texorpdfstring{m\+Button\+Images}{mButtonImages}}
+{\footnotesize\ttfamily Sprite \mbox{[}$\,$\mbox{]} A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+m\+Button\+Images = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The images for the buttons. 
+
+
+
+Definition at line 33 of file A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+cs.
+
+\mbox{\Hypertarget{class_a_t_i___demo_song_button_handler_a4a9d01d8ee385c66a6a27da6d9d94f18}\label{class_a_t_i___demo_song_button_handler_a4a9d01d8ee385c66a6a27da6d9d94f18}} 
+\index{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler@{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler}!m\+Finished@{m\+Finished}}
+\index{m\+Finished@{m\+Finished}!A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler@{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler}}
+\subsubsection{\texorpdfstring{m\+Finished}{mFinished}}
+{\footnotesize\ttfamily bool A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+m\+Finished = false\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Is the song finished? 
+
+
+
+Definition at line 25 of file A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+cs.
+
+\mbox{\Hypertarget{class_a_t_i___demo_song_button_handler_abee877053d95bfba813d61d5a5d87a23}\label{class_a_t_i___demo_song_button_handler_abee877053d95bfba813d61d5a5d87a23}} 
+\index{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler@{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler}!m\+Paused@{m\+Paused}}
+\index{m\+Paused@{m\+Paused}!A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler@{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler}}
+\subsubsection{\texorpdfstring{m\+Paused}{mPaused}}
+{\footnotesize\ttfamily bool A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+m\+Paused = false\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Is the song paused? 
+
+
+
+Definition at line 26 of file A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+cs.
+
+\mbox{\Hypertarget{class_a_t_i___demo_song_button_handler_aefbba0db111a0d4ba1b1d9f5c1cae41d}\label{class_a_t_i___demo_song_button_handler_aefbba0db111a0d4ba1b1d9f5c1cae41d}} 
+\index{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler@{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler}!m\+Playing@{m\+Playing}}
+\index{m\+Playing@{m\+Playing}!A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler@{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler}}
+\subsubsection{\texorpdfstring{m\+Playing}{mPlaying}}
+{\footnotesize\ttfamily bool A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+m\+Playing = false\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Is the song playing? 
+
+
+
+Definition at line 27 of file A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+cs.
+
+\mbox{\Hypertarget{class_a_t_i___demo_song_button_handler_a9f3be8593e24316510ca461f105061fd}\label{class_a_t_i___demo_song_button_handler_a9f3be8593e24316510ca461f105061fd}} 
+\index{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler@{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler}!m\+Play\+Pause\+Button@{m\+Play\+Pause\+Button}}
+\index{m\+Play\+Pause\+Button@{m\+Play\+Pause\+Button}!A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler@{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler}}
+\subsubsection{\texorpdfstring{m\+Play\+Pause\+Button}{mPlayPauseButton}}
+{\footnotesize\ttfamily Button A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+m\+Play\+Pause\+Button = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 28 of file A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+cs.
+
+\mbox{\Hypertarget{class_a_t_i___demo_song_button_handler_aef782d481c6250a9062162c71298ed8f}\label{class_a_t_i___demo_song_button_handler_aef782d481c6250a9062162c71298ed8f}} 
+\index{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler@{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler}!m\+Song@{m\+Song}}
+\index{m\+Song@{m\+Song}!A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler@{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler}}
+\subsubsection{\texorpdfstring{m\+Song}{mSong}}
+{\footnotesize\ttfamily \hyperlink{class_song}{Song} A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+m\+Song = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 32 of file A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+cs.
+
+\mbox{\Hypertarget{class_a_t_i___demo_song_button_handler_af58c5b6dd392fbf606b74188b02044ce}\label{class_a_t_i___demo_song_button_handler_af58c5b6dd392fbf606b74188b02044ce}} 
+\index{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler@{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler}!m\+Song\+Selection\+Menu@{m\+Song\+Selection\+Menu}}
+\index{m\+Song\+Selection\+Menu@{m\+Song\+Selection\+Menu}!A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler@{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler}}
+\subsubsection{\texorpdfstring{m\+Song\+Selection\+Menu}{mSongSelectionMenu}}
+{\footnotesize\ttfamily Dropdown A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+m\+Song\+Selection\+Menu = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 30 of file A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+cs.
+
+\mbox{\Hypertarget{class_a_t_i___demo_song_button_handler_ad6a342b9b2333c8c613b968a0ca7545c}\label{class_a_t_i___demo_song_button_handler_ad6a342b9b2333c8c613b968a0ca7545c}} 
+\index{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler@{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler}!m\+Stop\+Button@{m\+Stop\+Button}}
+\index{m\+Stop\+Button@{m\+Stop\+Button}!A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler@{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler}}
+\subsubsection{\texorpdfstring{m\+Stop\+Button}{mStopButton}}
+{\footnotesize\ttfamily Button A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+m\+Stop\+Button = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The button to stop the song. 
+
+
+
+Definition at line 29 of file A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+cs.
+
+\mbox{\Hypertarget{class_a_t_i___demo_song_button_handler_ac078f283ce74a7b310ebb2cbbc55f70b}\label{class_a_t_i___demo_song_button_handler_ac078f283ce74a7b310ebb2cbbc55f70b}} 
+\index{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler@{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler}!m\+V\+IM@{m\+V\+IM}}
+\index{m\+V\+IM@{m\+V\+IM}!A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler@{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler}}
+\subsubsection{\texorpdfstring{m\+V\+IM}{mVIM}}
+{\footnotesize\ttfamily \hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+m\+V\+IM = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 35 of file A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+cs.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Documents/\+School Documents/2017\+Spring/\+E\+E\+C\+S542/\+V\+R\+Piano\+Project/\+Assets/\+Scripts/\+Audio/\+Testing/\hyperlink{_a_t_i___demo_song_button_handler_8cs}{A\+T\+I\+\_\+\+Demo\+Song\+Button\+Handler.\+cs}\end{DoxyCompactItemize}

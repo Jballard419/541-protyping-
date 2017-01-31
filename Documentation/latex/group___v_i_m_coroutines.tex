@@ -1,0 +1,106 @@
+\hypertarget{group___v_i_m_coroutines}{}\section{Coroutines}
+\label{group___v_i_m_coroutines}\index{Coroutines@{Coroutines}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+I\+Enumerator \hyperlink{group___v_i_m_coroutines_gaba165ca4757b6c8555914fe6b42b638d}{Virtual\+Instrument\+Manager.\+Load\+Drum\+Kit} (System.\+Action$<$ \hyperlink{class_virtual_instrument}{Virtual\+Instrument} $>$ a\+Drum\+Kit\+Callback)
+\begin{DoxyCompactList}\small\item\em Coroutine to load the drum kit. \end{DoxyCompactList}\item 
+I\+Enumerator \hyperlink{group___v_i_m_coroutines_gab8082c1cc590771bf57da8b5ae8603d1}{Virtual\+Instrument\+Manager.\+Load\+Instrument} (\hyperlink{group___music_enums_gabfce60192305965558a36e368ebd67c3}{Music.\+I\+N\+S\+T\+R\+U\+M\+E\+N\+T\+\_\+\+T\+Y\+PE} a\+I\+N\+S\+T\+R\+U\+M\+E\+N\+T\+\_\+\+T\+Y\+PE, System.\+Action$<$ \hyperlink{class_virtual_instrument}{Virtual\+Instrument} $>$ a\+Instrument\+Callback)
+\begin{DoxyCompactList}\small\item\em Coroutine to load an instrument. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+These are functions that are started by the \hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} which allows it to perform other tasks while waiting. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___v_i_m_coroutines_gaba165ca4757b6c8555914fe6b42b638d}\label{group___v_i_m_coroutines_gaba165ca4757b6c8555914fe6b42b638d}} 
+\index{Coroutines@{Coroutines}!Load\+Drum\+Kit@{Load\+Drum\+Kit}}
+\index{Load\+Drum\+Kit@{Load\+Drum\+Kit}!Coroutines@{Coroutines}}
+\subsubsection{\texorpdfstring{Load\+Drum\+Kit()}{LoadDrumKit()}}
+{\footnotesize\ttfamily I\+Enumerator Virtual\+Instrument\+Manager.\+Load\+Drum\+Kit (\begin{DoxyParamCaption}\item[{System.\+Action$<$ \hyperlink{class_virtual_instrument}{Virtual\+Instrument} $>$}]{a\+Drum\+Kit\+Callback }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Coroutine to load the drum kit. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em a\+Drum\+Kit\+Callback} & Callback to allow returning the loaded instrument to the calling context.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_drum_kit}{Drum\+Kit} \hyperlink{group___music_enums_gabfce60192305965558a36e368ebd67c3}{Music\+::\+I\+N\+S\+T\+R\+U\+M\+E\+N\+T\+\_\+\+T\+Y\+PE} \hyperlink{group___v_i_m_priv_ga0bc7c9f776b0d2dae0ccb1f1ee5f2143}{Virtual\+Instrument\+Manager\+::m\+Drum\+Kit} 
+\end{DoxySeeAlso}
+
+
+Definition at line 657 of file Virtual\+Instrument\+Manager.\+cs.
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+Awake().
+
+
+\begin{DoxyCode}
+658     \{
+659         \textcolor{comment}{// Load a new instrument}
+660         \hyperlink{class_virtual_instrument}{VirtualInstrument} returned = \textcolor{keyword}{new} \hyperlink{class_drum_kit}{DrumKit}( \textcolor{keyword}{this} );
+661 
+662         \textcolor{comment}{// Return the loaded instrument and invoke the instrument's LoadEvent.}
+663         aDrumKitCallback( returned );
+664         \textcolor{comment}{//DrumKitLoaded.Invoke();}
+665         yield \textcolor{keywordflow}{return} null;
+666     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___v_i_m_coroutines_gab8082c1cc590771bf57da8b5ae8603d1}\label{group___v_i_m_coroutines_gab8082c1cc590771bf57da8b5ae8603d1}} 
+\index{Coroutines@{Coroutines}!Load\+Instrument@{Load\+Instrument}}
+\index{Load\+Instrument@{Load\+Instrument}!Coroutines@{Coroutines}}
+\subsubsection{\texorpdfstring{Load\+Instrument()}{LoadInstrument()}}
+{\footnotesize\ttfamily I\+Enumerator Virtual\+Instrument\+Manager.\+Load\+Instrument (\begin{DoxyParamCaption}\item[{\hyperlink{group___music_enums_gabfce60192305965558a36e368ebd67c3}{Music.\+I\+N\+S\+T\+R\+U\+M\+E\+N\+T\+\_\+\+T\+Y\+PE}}]{a\+I\+N\+S\+T\+R\+U\+M\+E\+N\+T\+\_\+\+T\+Y\+PE,  }\item[{System.\+Action$<$ \hyperlink{class_virtual_instrument}{Virtual\+Instrument} $>$}]{a\+Instrument\+Callback }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Coroutine to load an instrument. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+I\+N\+S\+T\+R\+U\+M\+E\+N\+T\+\_\+\+T\+Y\+PE} & The type of instrument to load. \\
+\hline
+\mbox{\tt out}  & {\em a\+Instrument\+Callback} & Callback to allow returning the loaded instrument to the calling context.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_virtual_instrument}{Virtual\+Instrument} \hyperlink{group___music_enums_gabfce60192305965558a36e368ebd67c3}{Music\+::\+I\+N\+S\+T\+R\+U\+M\+E\+N\+T\+\_\+\+T\+Y\+PE} \hyperlink{group___v_i_m_priv_gaed435d1f9be09864846db4322dc21fd1}{Virtual\+Instrument\+Manager\+::m\+Instrument} 
+\end{DoxySeeAlso}
+
+
+Definition at line 675 of file Virtual\+Instrument\+Manager.\+cs.
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+Awake(), and Virtual\+Instrument\+Manager.\+On\+Change\+Instrument\+Event().
+
+
+\begin{DoxyCode}
+676     \{
+677         \textcolor{comment}{// Load a new instrument}
+678         \hyperlink{class_virtual_instrument}{VirtualInstrument} returned = null;
+679         \textcolor{keywordflow}{switch}( aINSTRUMENT\_TYPE )
+680         \{
+681             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gabfce60192305965558a36e368ebd67c3}{INSTRUMENT\_TYPE}.DRUM\_KIT:
+682                 returned = \textcolor{keyword}{new} \hyperlink{class_drum_kit}{DrumKit}( \textcolor{keyword}{this} );
+683                 \textcolor{keywordflow}{break};
+684             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gabfce60192305965558a36e368ebd67c3}{INSTRUMENT\_TYPE}.MARIMBA:
+685                 returned = \textcolor{keyword}{new} \hyperlink{class_marimba}{Marimba}( \textcolor{keyword}{this} );
+686                 \textcolor{keywordflow}{break};
+687             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gabfce60192305965558a36e368ebd67c3}{INSTRUMENT\_TYPE}.PIANO:
+688             \textcolor{keywordflow}{default}:
+689                 returned = \textcolor{keyword}{new} \hyperlink{class_piano}{Piano}( \textcolor{keyword}{this} );
+690                 \textcolor{keywordflow}{break};
+691         \}
+692 
+693         \textcolor{comment}{// Return the loaded instrument and invoke the instrument's LoadEvent.}
+694         aInstrumentCallback( returned );
+695         \hyperlink{group___v_i_m_events_gad79b789b020d7e4a8c149ec653c0b97f}{InstrumentLoaded}.Invoke();
+696         yield \textcolor{keywordflow}{return} null;
+697     \}
+\end{DoxyCode}

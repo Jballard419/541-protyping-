@@ -1,0 +1,129 @@
+\hypertarget{group___v_i_m_unity}{}\section{Unity Functions}
+\label{group___v_i_m_unity}\index{Unity Functions@{Unity Functions}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___v_i_m_unity_gab92bac4e22476ffe39fc40f49fbd6ae5}{Virtual\+Instrument\+Manager.\+Awake} ()
+\begin{DoxyCompactList}\small\item\em Called when the object is created. Sets the default values, sets up the events, and begins loading the instrument. \end{DoxyCompactList}\item 
+void \hyperlink{group___v_i_m_unity_ga87f2b8783dc03eac75819c3ace35f880}{Virtual\+Instrument\+Manager.\+On\+Destroy} ()
+\begin{DoxyCompactList}\small\item\em Destroys the \hyperlink{group___v_i_m}{Virtual Instrument Manager}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+These are functions that are built-\/in to Unity. Since the \hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} is a Unity Game\+Object, these are called automatically. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___v_i_m_unity_gab92bac4e22476ffe39fc40f49fbd6ae5}\label{group___v_i_m_unity_gab92bac4e22476ffe39fc40f49fbd6ae5}} 
+\index{Unity Functions@{Unity Functions}!Awake@{Awake}}
+\index{Awake@{Awake}!Unity Functions@{Unity Functions}}
+\subsubsection{\texorpdfstring{Awake()}{Awake()}}
+{\footnotesize\ttfamily void Virtual\+Instrument\+Manager.\+Awake (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Called when the object is created. Sets the default values, sets up the events, and begins loading the instrument. 
+
+
+
+Definition at line 346 of file Virtual\+Instrument\+Manager.\+cs.
+
+
+
+References Virtual\+Instrument\+Manager.\+Load\+Drum\+Kit(), Virtual\+Instrument\+Manager.\+Load\+Instrument(), Virtual\+Instrument\+Manager.\+m\+Instrument\+Type, Virtual\+Instrument\+Manager.\+Set\+Default\+Values(), and Virtual\+Instrument\+Manager.\+Set\+Up\+Events().
+
+
+\begin{DoxyCode}
+347     \{
+348         \hyperlink{group___v_i_m_priv_ga983a11920bf16794735cc193c327ac42}{mReady} = \textcolor{keyword}{false};
+349 
+350 \textcolor{preprocessor}{        #if DEBUG\_AUDIO\_DIAGNOSTICS}
+351             \textcolor{comment}{// Set up the audio diagnostics scene}
+352             GameObject diagnosticsContainer = Instantiate( Resources.Load<GameObject>( \textcolor{stringliteral}{"
+      Audio/Prefabs/AudioDiagnosticsPrefab"} ) );
+353             Assert.IsNotNull( diagnosticsContainer, \textcolor{stringliteral}{"Could not load the diagnostics prefab!"} );
+354             \hyperlink{group___v_i_m_priv_gafabe4a874fc21f7bcedf431df3b94201}{mDiagnosticsHandler} = diagnosticsContainer.transform.GetChild( 0 ).
+      GetComponent<\hyperlink{group___audio_testing_class_a_t_i___diagnostics}{ATI\_Diagnostics}>();
+355             Assert.IsNotNull( \hyperlink{group___v_i_m_priv_gafabe4a874fc21f7bcedf431df3b94201}{mDiagnosticsHandler}, \textcolor{stringliteral}{"Could not get the diagnostics
+       handler!"} );
+356 \textcolor{preprocessor}{        #endif}
+357 
+358 \textcolor{preprocessor}{        #if DEBUG\_MUSICAL\_TYPING}
+359             \hyperlink{group___v_i_m_priv_gad7b95bd21383d11ea0cbf33d79b78e09}{mMusicalTypingHandler} = gameObject.AddComponent<
+      \hyperlink{class_musical_typing_handler}{MusicalTypingHandler}>();
+360             Assert.IsNotNull( \hyperlink{group___v_i_m_priv_gad7b95bd21383d11ea0cbf33d79b78e09}{mMusicalTypingHandler}, \textcolor{stringliteral}{"Could not load Musical Typing!"} 
+      );
+361 \textcolor{preprocessor}{        #endif}
+362 
+363         \textcolor{comment}{// Set up the Song Manager.}
+364         \hyperlink{group___v_i_m_pub_ga33dae94932c10c66db76a0eebec76b01}{SongManager} = \textcolor{keyword}{new} \hyperlink{class_song_manager_class}{SongManagerClass}();
+365 
+366         \textcolor{comment}{// Set up the events.}
+367         \hyperlink{group___v_i_m_priv_func_gaa207d18111d38374017c580de4077589}{SetUpEvents}();
+368 
+369         \textcolor{comment}{// Set default values for the member variables.}
+370         \hyperlink{group___v_i_m_priv_func_gaa9e05e51f025afb0ab5cb2a8532c8bba}{SetDefaultValues}();
+371 
+372         \textcolor{comment}{// Begin loading the default virtual instrument which is a piano.}
+373         StartCoroutine( \hyperlink{group___v_i_m_coroutines_gab8082c1cc590771bf57da8b5ae8603d1}{LoadInstrument}( \hyperlink{group___v_i_m_priv_ga108c350257b3a2080e06cd4a8251f6a4}{mInstrumentType}, ( returned ) => \{ 
+      \hyperlink{group___v_i_m_priv_gaed435d1f9be09864846db4322dc21fd1}{mInstrument} = returned; \} ) );
+374         StartCoroutine( \hyperlink{group___v_i_m_coroutines_gaba165ca4757b6c8555914fe6b42b638d}{LoadDrumKit}( ( returned ) => \{ \hyperlink{group___v_i_m_priv_ga0bc7c9f776b0d2dae0ccb1f1ee5f2143}{mDrumKit} = returned; \} ) );
+375     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___v_i_m_unity_ga87f2b8783dc03eac75819c3ace35f880}\label{group___v_i_m_unity_ga87f2b8783dc03eac75819c3ace35f880}} 
+\index{Unity Functions@{Unity Functions}!On\+Destroy@{On\+Destroy}}
+\index{On\+Destroy@{On\+Destroy}!Unity Functions@{Unity Functions}}
+\subsubsection{\texorpdfstring{On\+Destroy()}{OnDestroy()}}
+{\footnotesize\ttfamily void Virtual\+Instrument\+Manager.\+On\+Destroy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Destroys the \hyperlink{group___v_i_m}{Virtual Instrument Manager}. 
+
+
+
+Definition at line 380 of file Virtual\+Instrument\+Manager.\+cs.
+
+
+
+References Virtual\+Instrument\+Manager.\+m\+Num\+Active\+Notes.
+
+
+\begin{DoxyCode}
+381     \{
+382         \textcolor{comment}{// Destroy everything created by the VIM.}
+383         \textcolor{keywordflow}{if}( \hyperlink{group___v_i_m_priv_ga5f71cb71d240042312dcc13b481b068d}{mDrumLoopOutput} != null )
+384         \{
+385             DestroyImmediate( \hyperlink{group___v_i_m_priv_ga5f71cb71d240042312dcc13b481b068d}{mDrumLoopOutput}.gameObject, \textcolor{keyword}{false} );
+386             \hyperlink{group___v_i_m_priv_ga5f71cb71d240042312dcc13b481b068d}{mDrumLoopOutput} = null;
+387         \}
+388 
+389         \textcolor{keywordflow}{if}( \hyperlink{group___v_i_m_priv_gaa8d4f5642f5ac4dca4f4178b0052c78d}{mSongOutput} != null )
+390         \{
+391             DestroyImmediate( \hyperlink{group___v_i_m_priv_gaa8d4f5642f5ac4dca4f4178b0052c78d}{mSongOutput}.gameObject, \textcolor{keyword}{false} );
+392             \hyperlink{group___v_i_m_priv_gaa8d4f5642f5ac4dca4f4178b0052c78d}{mSongOutput} = null;
+393         \}
+394 
+395         \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < \hyperlink{group___v_i_m_priv_ga0f7e11945763c48057be326b661dfdaf}{mNumActiveNotes}; i++ )
+396         \{
+397             \textcolor{keywordflow}{if}( \hyperlink{group___v_i_m_priv_ga53f837fd01475fa35629a650e7fa00e3}{mOutputs} != null && \hyperlink{group___v_i_m_priv_ga53f837fd01475fa35629a650e7fa00e3}{mOutputs}[i] != null )
+398             \{
+399                 DestroyImmediate( \hyperlink{group___v_i_m_priv_ga53f837fd01475fa35629a650e7fa00e3}{mOutputs}[i].gameObject, \textcolor{keyword}{false} );
+400                 \hyperlink{group___v_i_m_priv_ga53f837fd01475fa35629a650e7fa00e3}{mOutputs}[i] = null;
+401             \}
+402         \}
+403         \hyperlink{group___v_i_m_priv_ga53f837fd01475fa35629a650e7fa00e3}{mOutputs} = null;
+404 
+405 \textcolor{preprocessor}{        #if DEBUG\_AUDIO\_DIAGNOSTICS}
+406             \textcolor{keywordflow}{if}( \hyperlink{group___v_i_m_priv_gafabe4a874fc21f7bcedf431df3b94201}{mDiagnosticsHandler} != null )
+407             \{
+408                 DestroyImmediate( \hyperlink{group___v_i_m_priv_gafabe4a874fc21f7bcedf431df3b94201}{mDiagnosticsHandler}.transform.parent.gameObject, \textcolor{keyword}{false}
+       );
+409                 \hyperlink{group___v_i_m_priv_gafabe4a874fc21f7bcedf431df3b94201}{mDiagnosticsHandler} = null;
+410             \}
+411 \textcolor{preprocessor}{        #endif}
+412 
+413         \textcolor{comment}{// Clean up}
+414         GC.Collect();
+415         Resources.UnloadUnusedAssets();
+416     \}
+\end{DoxyCode}

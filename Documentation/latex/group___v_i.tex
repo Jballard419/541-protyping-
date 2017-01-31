@@ -1,0 +1,24 @@
+\hypertarget{group___v_i}{}\section{Virtual Instruments}
+\label{group___v_i}\index{Virtual Instruments@{Virtual Instruments}}
+
+
+Used to load and store audio data for a specific instrument.  
+
+
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___doc_mar}{Marimba}
+\begin{DoxyCompactList}\small\item\em A specific type of \hyperlink{group___v_i}{Virtual Instrument} that uses marimba samples. \end{DoxyCompactList}\item 
+\hyperlink{group___doc_piano}{Piano}
+\begin{DoxyCompactList}\small\item\em A specific type of \hyperlink{group___v_i}{Virtual Instrument} that uses piano samples. \end{DoxyCompactList}\item 
+\hyperlink{group___v_i_base}{Virtual\+Instrument}
+\begin{DoxyCompactList}\small\item\em The base class that all types of \hyperlink{group___v_i}{Virtual Instruments} implement. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Used to load and store audio data for a specific instrument. 
+
+\hypertarget{group___v_i_VIInfo}{}\subsection{Information}\label{group___v_i_VIInfo}
+Virtual instruments are responsible for loading the proper wav files, normalizing them, and providing the audio data from them to the \hyperlink{group___v_i_m}{Virtual Instrument Manager}.\hypertarget{group___v_i_VISuppInst}{}\subsection{Supported Instruments}\label{group___v_i_VISuppInst}
+Right now we only support a \hyperlink{class_piano}{Piano}, \hyperlink{class_marimba}{Marimba}, and \hyperlink{class_drum_kit}{Drum Kit}. 

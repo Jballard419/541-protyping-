@@ -1,0 +1,271 @@
+\hypertarget{group___v_i_m_priv}{}\section{Private Variables}
+\label{group___v_i_m_priv}\index{Private Variables@{Private Variables}}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___audio_testing_class_a_t_i___diagnostics}{A\+T\+I\+\_\+\+Diagnostics} \hyperlink{group___v_i_m_priv_gafabe4a874fc21f7bcedf431df3b94201}{Virtual\+Instrument\+Manager.\+m\+Diagnostics\+Handler}
+\begin{DoxyCompactList}\small\item\em The handler for displaying audio diagnostics. \end{DoxyCompactList}\item 
+Audio\+Mixer \hyperlink{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}{Virtual\+Instrument\+Manager.\+m\+Mixer}
+\begin{DoxyCompactList}\small\item\em The audio mixer that all audio output will be routed through. \end{DoxyCompactList}\item 
+bool \hyperlink{group___v_i_m_priv_ga983a11920bf16794735cc193c327ac42}{Virtual\+Instrument\+Manager.\+m\+Ready}
+\begin{DoxyCompactList}\small\item\em Whether or not the manager is ready to play notes. \end{DoxyCompactList}\item 
+int \hyperlink{group___v_i_m_priv_ga0f7e11945763c48057be326b661dfdaf}{Virtual\+Instrument\+Manager.\+m\+Num\+Active\+Notes}
+\begin{DoxyCompactList}\small\item\em The number of currently active notes. \end{DoxyCompactList}\item 
+\hyperlink{group___music_enums_gabfce60192305965558a36e368ebd67c3}{Music.\+I\+N\+S\+T\+R\+U\+M\+E\+N\+T\+\_\+\+T\+Y\+PE} \hyperlink{group___v_i_m_priv_ga108c350257b3a2080e06cd4a8251f6a4}{Virtual\+Instrument\+Manager.\+m\+Instrument\+Type}
+\begin{DoxyCompactList}\small\item\em The type of instrument that is currently loaded. \end{DoxyCompactList}\item 
+\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} \hyperlink{group___v_i_m_priv_ga5e3a5116e0dabb37e0ea21d73ac1567e}{Virtual\+Instrument\+Manager.\+m\+Lowest\+Active\+Note}
+\begin{DoxyCompactList}\small\item\em The lowest currently active note. \end{DoxyCompactList}\item 
+\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} \hyperlink{group___v_i_m_priv_ga73a09a4e4f09c0e5b3871dc9ad6c757e}{Virtual\+Instrument\+Manager.\+m\+Highest\+Active\+Note}
+\begin{DoxyCompactList}\small\item\em The highest currently active note. \end{DoxyCompactList}\item 
+\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} \mbox{[}$\,$\mbox{]} \hyperlink{group___v_i_m_priv_ga5cedf9995d59b416412677e6004b659c}{Virtual\+Instrument\+Manager.\+m\+Active\+Notes}
+\begin{DoxyCompactList}\small\item\em An array that holds all of the currently active notes. \end{DoxyCompactList}\item 
+\hyperlink{class_musical_typing_handler}{Musical\+Typing\+Handler} \hyperlink{group___v_i_m_priv_gad7b95bd21383d11ea0cbf33d79b78e09}{Virtual\+Instrument\+Manager.\+m\+Musical\+Typing\+Handler} = null
+\begin{DoxyCompactList}\small\item\em The handler for \hyperlink{class_musical_typing_handler}{Musical Typing}. \end{DoxyCompactList}\item 
+\hyperlink{class_note_output_object}{Note\+Output\+Object} \hyperlink{group___v_i_m_priv_ga5f71cb71d240042312dcc13b481b068d}{Virtual\+Instrument\+Manager.\+m\+Drum\+Loop\+Output}
+\begin{DoxyCompactList}\small\item\em A \hyperlink{class_note_output_object}{Note\+Output\+Object}, but the note is actually a drum loop. \end{DoxyCompactList}\item 
+\hyperlink{class_note_output_object}{Note\+Output\+Object} \hyperlink{group___v_i_m_priv_gaa8d4f5642f5ac4dca4f4178b0052c78d}{Virtual\+Instrument\+Manager.\+m\+Song\+Output}
+\begin{DoxyCompactList}\small\item\em A \hyperlink{class_note_output_object}{Note\+Output\+Object}, but the note is actually a song. \end{DoxyCompactList}\item 
+\hyperlink{class_note_output_object}{Note\+Output\+Object} \mbox{[}$\,$\mbox{]} \hyperlink{group___v_i_m_priv_ga53f837fd01475fa35629a650e7fa00e3}{Virtual\+Instrument\+Manager.\+m\+Outputs}
+\begin{DoxyCompactList}\small\item\em An array that holds the Note\+Output\+Objects that actually handle sound output. \end{DoxyCompactList}\item 
+\hyperlink{class_virtual_instrument}{Virtual\+Instrument} \hyperlink{group___v_i_m_priv_ga0bc7c9f776b0d2dae0ccb1f1ee5f2143}{Virtual\+Instrument\+Manager.\+m\+Drum\+Kit}
+\begin{DoxyCompactList}\small\item\em A drum kit virtual instrument for drum loops. \end{DoxyCompactList}\item 
+\hyperlink{class_virtual_instrument}{Virtual\+Instrument} \hyperlink{group___v_i_m_priv_gaed435d1f9be09864846db4322dc21fd1}{Virtual\+Instrument\+Manager.\+m\+Instrument}
+\begin{DoxyCompactList}\small\item\em The loaded virtual instrument that this object will manage. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+These are variables used internally by the \hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager}. 
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{group___v_i_m_priv_ga5cedf9995d59b416412677e6004b659c}\label{group___v_i_m_priv_ga5cedf9995d59b416412677e6004b659c}} 
+\index{Private Variables@{Private Variables}!m\+Active\+Notes@{m\+Active\+Notes}}
+\index{m\+Active\+Notes@{m\+Active\+Notes}!Private Variables@{Private Variables}}
+\subsubsection{\texorpdfstring{m\+Active\+Notes}{mActiveNotes}}
+{\footnotesize\ttfamily \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} \mbox{[}$\,$\mbox{]} Virtual\+Instrument\+Manager.\+m\+Active\+Notes\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+An array that holds all of the currently active notes. 
+
+
+
+Definition at line 325 of file Virtual\+Instrument\+Manager.\+cs.
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+Get\+Active\+Notes(), Virtual\+Instrument\+Manager.\+Load\+Note\+Output\+Objects(), Virtual\+Instrument\+Manager.\+On\+Change\+Instrument\+Event(), Virtual\+Instrument\+Manager.\+On\+Change\+Note\+Range\+Event(), and Virtual\+Instrument\+Manager.\+Set\+Default\+Values().
+
+\mbox{\Hypertarget{group___v_i_m_priv_gafabe4a874fc21f7bcedf431df3b94201}\label{group___v_i_m_priv_gafabe4a874fc21f7bcedf431df3b94201}} 
+\index{Private Variables@{Private Variables}!m\+Diagnostics\+Handler@{m\+Diagnostics\+Handler}}
+\index{m\+Diagnostics\+Handler@{m\+Diagnostics\+Handler}!Private Variables@{Private Variables}}
+\subsubsection{\texorpdfstring{m\+Diagnostics\+Handler}{mDiagnosticsHandler}}
+{\footnotesize\ttfamily \hyperlink{group___audio_testing_class_a_t_i___diagnostics}{A\+T\+I\+\_\+\+Diagnostics} Virtual\+Instrument\+Manager.\+m\+Diagnostics\+Handler\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The handler for displaying audio diagnostics. 
+
+
+
+Definition at line 317 of file Virtual\+Instrument\+Manager.\+cs.
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+Get\+Diagnostics\+Handler().
+
+\mbox{\Hypertarget{group___v_i_m_priv_ga0bc7c9f776b0d2dae0ccb1f1ee5f2143}\label{group___v_i_m_priv_ga0bc7c9f776b0d2dae0ccb1f1ee5f2143}} 
+\index{Private Variables@{Private Variables}!m\+Drum\+Kit@{m\+Drum\+Kit}}
+\index{m\+Drum\+Kit@{m\+Drum\+Kit}!Private Variables@{Private Variables}}
+\subsubsection{\texorpdfstring{m\+Drum\+Kit}{mDrumKit}}
+{\footnotesize\ttfamily \hyperlink{class_virtual_instrument}{Virtual\+Instrument} Virtual\+Instrument\+Manager.\+m\+Drum\+Kit\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+A drum kit virtual instrument for drum loops. 
+
+
+
+Definition at line 332 of file Virtual\+Instrument\+Manager.\+cs.
+
+\mbox{\Hypertarget{group___v_i_m_priv_ga5f71cb71d240042312dcc13b481b068d}\label{group___v_i_m_priv_ga5f71cb71d240042312dcc13b481b068d}} 
+\index{Private Variables@{Private Variables}!m\+Drum\+Loop\+Output@{m\+Drum\+Loop\+Output}}
+\index{m\+Drum\+Loop\+Output@{m\+Drum\+Loop\+Output}!Private Variables@{Private Variables}}
+\subsubsection{\texorpdfstring{m\+Drum\+Loop\+Output}{mDrumLoopOutput}}
+{\footnotesize\ttfamily \hyperlink{class_note_output_object}{Note\+Output\+Object} Virtual\+Instrument\+Manager.\+m\+Drum\+Loop\+Output\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+A \hyperlink{class_note_output_object}{Note\+Output\+Object}, but the note is actually a drum loop. 
+
+
+
+Definition at line 329 of file Virtual\+Instrument\+Manager.\+cs.
+
+\mbox{\Hypertarget{group___v_i_m_priv_ga73a09a4e4f09c0e5b3871dc9ad6c757e}\label{group___v_i_m_priv_ga73a09a4e4f09c0e5b3871dc9ad6c757e}} 
+\index{Private Variables@{Private Variables}!m\+Highest\+Active\+Note@{m\+Highest\+Active\+Note}}
+\index{m\+Highest\+Active\+Note@{m\+Highest\+Active\+Note}!Private Variables@{Private Variables}}
+\subsubsection{\texorpdfstring{m\+Highest\+Active\+Note}{mHighestActiveNote}}
+{\footnotesize\ttfamily \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} Virtual\+Instrument\+Manager.\+m\+Highest\+Active\+Note\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The highest currently active note. 
+
+
+
+Definition at line 324 of file Virtual\+Instrument\+Manager.\+cs.
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+Get\+Highest\+Active\+Note(), Virtual\+Instrument\+Manager.\+On\+Change\+Instrument\+Event(), Virtual\+Instrument\+Manager.\+On\+Change\+Note\+Range\+Event(), Virtual\+Instrument\+Manager.\+On\+Play\+Note\+Event(), Virtual\+Instrument\+Manager.\+On\+Release\+Note\+Event(), and Virtual\+Instrument\+Manager.\+Set\+Default\+Values().
+
+\mbox{\Hypertarget{group___v_i_m_priv_gaed435d1f9be09864846db4322dc21fd1}\label{group___v_i_m_priv_gaed435d1f9be09864846db4322dc21fd1}} 
+\index{Private Variables@{Private Variables}!m\+Instrument@{m\+Instrument}}
+\index{m\+Instrument@{m\+Instrument}!Private Variables@{Private Variables}}
+\subsubsection{\texorpdfstring{m\+Instrument}{mInstrument}}
+{\footnotesize\ttfamily \hyperlink{class_virtual_instrument}{Virtual\+Instrument} Virtual\+Instrument\+Manager.\+m\+Instrument\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The loaded virtual instrument that this object will manage. 
+
+
+
+Definition at line 333 of file Virtual\+Instrument\+Manager.\+cs.
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+Get\+Instrument().
+
+\mbox{\Hypertarget{group___v_i_m_priv_ga108c350257b3a2080e06cd4a8251f6a4}\label{group___v_i_m_priv_ga108c350257b3a2080e06cd4a8251f6a4}} 
+\index{Private Variables@{Private Variables}!m\+Instrument\+Type@{m\+Instrument\+Type}}
+\index{m\+Instrument\+Type@{m\+Instrument\+Type}!Private Variables@{Private Variables}}
+\subsubsection{\texorpdfstring{m\+Instrument\+Type}{mInstrumentType}}
+{\footnotesize\ttfamily \hyperlink{group___music_enums_gabfce60192305965558a36e368ebd67c3}{Music.\+I\+N\+S\+T\+R\+U\+M\+E\+N\+T\+\_\+\+T\+Y\+PE} Virtual\+Instrument\+Manager.\+m\+Instrument\+Type\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The type of instrument that is currently loaded. 
+
+
+
+Definition at line 322 of file Virtual\+Instrument\+Manager.\+cs.
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+Awake(), Virtual\+Instrument\+Manager.\+On\+Change\+Instrument\+Event(), Virtual\+Instrument\+Manager.\+On\+Play\+Note\+Event(), Virtual\+Instrument\+Manager.\+On\+Release\+Note\+Event(), and Virtual\+Instrument\+Manager.\+Set\+Default\+Values().
+
+\mbox{\Hypertarget{group___v_i_m_priv_ga5e3a5116e0dabb37e0ea21d73ac1567e}\label{group___v_i_m_priv_ga5e3a5116e0dabb37e0ea21d73ac1567e}} 
+\index{Private Variables@{Private Variables}!m\+Lowest\+Active\+Note@{m\+Lowest\+Active\+Note}}
+\index{m\+Lowest\+Active\+Note@{m\+Lowest\+Active\+Note}!Private Variables@{Private Variables}}
+\subsubsection{\texorpdfstring{m\+Lowest\+Active\+Note}{mLowestActiveNote}}
+{\footnotesize\ttfamily \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} Virtual\+Instrument\+Manager.\+m\+Lowest\+Active\+Note\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The lowest currently active note. 
+
+
+
+Definition at line 323 of file Virtual\+Instrument\+Manager.\+cs.
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+Get\+Lowest\+Active\+Note(), Virtual\+Instrument\+Manager.\+On\+Change\+Instrument\+Event(), Virtual\+Instrument\+Manager.\+On\+Change\+Note\+Range\+Event(), Virtual\+Instrument\+Manager.\+On\+Play\+Note\+Event(), Virtual\+Instrument\+Manager.\+On\+Release\+Note\+Event(), and Virtual\+Instrument\+Manager.\+Set\+Default\+Values().
+
+\mbox{\Hypertarget{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}\label{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}} 
+\index{Private Variables@{Private Variables}!m\+Mixer@{m\+Mixer}}
+\index{m\+Mixer@{m\+Mixer}!Private Variables@{Private Variables}}
+\subsubsection{\texorpdfstring{m\+Mixer}{mMixer}}
+{\footnotesize\ttfamily Audio\+Mixer Virtual\+Instrument\+Manager.\+m\+Mixer\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The audio mixer that all audio output will be routed through. 
+
+
+
+Definition at line 319 of file Virtual\+Instrument\+Manager.\+cs.
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+Load\+Note\+Output\+Objects().
+
+\mbox{\Hypertarget{group___v_i_m_priv_gad7b95bd21383d11ea0cbf33d79b78e09}\label{group___v_i_m_priv_gad7b95bd21383d11ea0cbf33d79b78e09}} 
+\index{Private Variables@{Private Variables}!m\+Musical\+Typing\+Handler@{m\+Musical\+Typing\+Handler}}
+\index{m\+Musical\+Typing\+Handler@{m\+Musical\+Typing\+Handler}!Private Variables@{Private Variables}}
+\subsubsection{\texorpdfstring{m\+Musical\+Typing\+Handler}{mMusicalTypingHandler}}
+{\footnotesize\ttfamily \hyperlink{class_musical_typing_handler}{Musical\+Typing\+Handler} Virtual\+Instrument\+Manager.\+m\+Musical\+Typing\+Handler = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The handler for \hyperlink{class_musical_typing_handler}{Musical Typing}. 
+
+
+
+Definition at line 327 of file Virtual\+Instrument\+Manager.\+cs.
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+Get\+Musical\+Typing\+Handler().
+
+\mbox{\Hypertarget{group___v_i_m_priv_ga0f7e11945763c48057be326b661dfdaf}\label{group___v_i_m_priv_ga0f7e11945763c48057be326b661dfdaf}} 
+\index{Private Variables@{Private Variables}!m\+Num\+Active\+Notes@{m\+Num\+Active\+Notes}}
+\index{m\+Num\+Active\+Notes@{m\+Num\+Active\+Notes}!Private Variables@{Private Variables}}
+\subsubsection{\texorpdfstring{m\+Num\+Active\+Notes}{mNumActiveNotes}}
+{\footnotesize\ttfamily int Virtual\+Instrument\+Manager.\+m\+Num\+Active\+Notes\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The number of currently active notes. 
+
+
+
+Definition at line 321 of file Virtual\+Instrument\+Manager.\+cs.
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+Get\+Num\+Active\+Notes(), Virtual\+Instrument\+Manager.\+Load\+Note\+Output\+Objects(), Virtual\+Instrument\+Manager.\+On\+Change\+Instrument\+Event(), Virtual\+Instrument\+Manager.\+On\+Change\+Note\+Range\+Event(), Virtual\+Instrument\+Manager.\+On\+Destroy(), and Virtual\+Instrument\+Manager.\+Set\+Default\+Values().
+
+\mbox{\Hypertarget{group___v_i_m_priv_ga53f837fd01475fa35629a650e7fa00e3}\label{group___v_i_m_priv_ga53f837fd01475fa35629a650e7fa00e3}} 
+\index{Private Variables@{Private Variables}!m\+Outputs@{m\+Outputs}}
+\index{m\+Outputs@{m\+Outputs}!Private Variables@{Private Variables}}
+\subsubsection{\texorpdfstring{m\+Outputs}{mOutputs}}
+{\footnotesize\ttfamily \hyperlink{class_note_output_object}{Note\+Output\+Object} \mbox{[}$\,$\mbox{]} Virtual\+Instrument\+Manager.\+m\+Outputs\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+An array that holds the Note\+Output\+Objects that actually handle sound output. 
+
+
+
+Definition at line 331 of file Virtual\+Instrument\+Manager.\+cs.
+
+\mbox{\Hypertarget{group___v_i_m_priv_ga983a11920bf16794735cc193c327ac42}\label{group___v_i_m_priv_ga983a11920bf16794735cc193c327ac42}} 
+\index{Private Variables@{Private Variables}!m\+Ready@{m\+Ready}}
+\index{m\+Ready@{m\+Ready}!Private Variables@{Private Variables}}
+\subsubsection{\texorpdfstring{m\+Ready}{mReady}}
+{\footnotesize\ttfamily bool Virtual\+Instrument\+Manager.\+m\+Ready\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Whether or not the manager is ready to play notes. 
+
+
+
+Definition at line 320 of file Virtual\+Instrument\+Manager.\+cs.
+
+\mbox{\Hypertarget{group___v_i_m_priv_gaa8d4f5642f5ac4dca4f4178b0052c78d}\label{group___v_i_m_priv_gaa8d4f5642f5ac4dca4f4178b0052c78d}} 
+\index{Private Variables@{Private Variables}!m\+Song\+Output@{m\+Song\+Output}}
+\index{m\+Song\+Output@{m\+Song\+Output}!Private Variables@{Private Variables}}
+\subsubsection{\texorpdfstring{m\+Song\+Output}{mSongOutput}}
+{\footnotesize\ttfamily \hyperlink{class_note_output_object}{Note\+Output\+Object} Virtual\+Instrument\+Manager.\+m\+Song\+Output\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+A \hyperlink{class_note_output_object}{Note\+Output\+Object}, but the note is actually a song. 
+
+
+
+Definition at line 330 of file Virtual\+Instrument\+Manager.\+cs.
+

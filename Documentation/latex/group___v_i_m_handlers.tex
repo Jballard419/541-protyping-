@@ -1,0 +1,1003 @@
+\hypertarget{group___v_i_m_handlers}{}\section{Event Handlers}
+\label{group___v_i_m_handlers}\index{Event Handlers@{Event Handlers}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___v_i_m_handlers_ga8e79286073756c31e08fecd59ce04fa7}{Virtual\+Instrument\+Manager.\+On\+Change\+Instrument\+Event} (\hyperlink{group___music_enums_gabfce60192305965558a36e368ebd67c3}{Music.\+I\+N\+S\+T\+R\+U\+M\+E\+N\+T\+\_\+\+T\+Y\+PE} a\+New\+Instrument\+Type)
+\begin{DoxyCompactList}\small\item\em Called whenever an instrument should be loaded. \end{DoxyCompactList}\item 
+void \hyperlink{group___v_i_m_handlers_ga660c766dceebfc830de2cf96686692df}{Virtual\+Instrument\+Manager.\+On\+Change\+Note\+Range\+Event} (\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} a\+New\+Lowest\+Pitch)
+\begin{DoxyCompactList}\small\item\em Called whenever the range of active notes should be changed. \end{DoxyCompactList}\item 
+void \hyperlink{group___v_i_m_handlers_gac7d5b65484e450a400e32ab416ebc9f6}{Virtual\+Instrument\+Manager.\+On\+Instrument\+Loaded} ()
+\begin{DoxyCompactList}\small\item\em Called whenever the instrument has finished loading. It begins loading the Note\+Output\+Objects. \end{DoxyCompactList}\item 
+void \hyperlink{group___v_i_m_handlers_gae504c6ded8eb68ffb117c207fc25d99d}{Virtual\+Instrument\+Manager.\+On\+Modify\+Echo\+Filter\+Event} (\hyperlink{group__filter_params_struct_virtual_instrument_manager_1_1_echo_filter_parameters}{Echo\+Filter\+Parameters} a\+Parameters)
+\begin{DoxyCompactList}\small\item\em Called whenever the echo filter should be modified. \end{DoxyCompactList}\item 
+void \hyperlink{group___v_i_m_handlers_ga2b310217971075b1b2db67d68fbbea5a}{Virtual\+Instrument\+Manager.\+On\+Modify\+Reverb\+Filter\+Event} (\hyperlink{group__filter_params_struct_virtual_instrument_manager_1_1_reverb_filter_parameters}{Reverb\+Filter\+Parameters} a\+Parameters)
+\begin{DoxyCompactList}\small\item\em Called whenever the reverb filter should be modified. \end{DoxyCompactList}\item 
+void \hyperlink{group___v_i_m_handlers_ga30cd7f00fea55becd6d90f0ec737510a}{Virtual\+Instrument\+Manager.\+On\+Pause\+Drum\+Loop\+Event} ()
+\begin{DoxyCompactList}\small\item\em Handles pausing a drum loop. \end{DoxyCompactList}\item 
+void \hyperlink{group___v_i_m_handlers_gad052b3cc53b35b25631f9b399be489ae}{Virtual\+Instrument\+Manager.\+On\+Pause\+Song\+Event} ()
+\begin{DoxyCompactList}\small\item\em Handles pausing a song. \end{DoxyCompactList}\item 
+void \hyperlink{group___v_i_m_handlers_gae2e2010b9a36ae2409466181ae0b9679}{Virtual\+Instrument\+Manager.\+On\+Play\+Drum\+Loop\+Event} (\hyperlink{class_song}{Song} a\+Loop)
+\begin{DoxyCompactList}\small\item\em Begins playing a drum loop. It creates an array of audio data from each note of the \hyperlink{class_song}{Song} and sends it to the right \hyperlink{class_note_output_object}{Note\+Output\+Object}. \end{DoxyCompactList}\item 
+void \hyperlink{group___v_i_m_handlers_ga80b3821df3b1488a150f6062638f105c}{Virtual\+Instrument\+Manager.\+On\+Play\+Note\+Event} (\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} a\+Note\+To\+Play, int a\+Velocity)
+\begin{DoxyCompactList}\small\item\em Called whenever a note should be played. Uses the appropriate \hyperlink{class_note_output_object}{Note\+Output\+Object} to play the note. \end{DoxyCompactList}\item 
+void \hyperlink{group___v_i_m_handlers_ga7fd877a7d429403abbfd2728aa63c056}{Virtual\+Instrument\+Manager.\+On\+Play\+Song\+Event} (\hyperlink{class_song}{Song} a\+Song)
+\begin{DoxyCompactList}\small\item\em Begins playing a song. It creates an array of audio data from each note of the \hyperlink{class_song}{Song} and sends it to the right \hyperlink{class_note_output_object}{Note\+Output\+Object}. \end{DoxyCompactList}\item 
+void \hyperlink{group___v_i_m_handlers_ga0f0a34c251d154131f9ea130a54dc989}{Virtual\+Instrument\+Manager.\+On\+Release\+Note\+Event} (\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} a\+Note\+To\+Release)
+\begin{DoxyCompactList}\small\item\em Called whenever a note should be released. Uses the appropriate \hyperlink{class_note_output_object}{Note\+Output\+Object} to release the note. \end{DoxyCompactList}\item 
+void \hyperlink{group___v_i_m_handlers_ga97e3e73e05a7ab6027f25573712367a2}{Virtual\+Instrument\+Manager.\+On\+Resume\+Drum\+Loop\+Event} ()
+\begin{DoxyCompactList}\small\item\em Handles resuming a drum loop. \end{DoxyCompactList}\item 
+void \hyperlink{group___v_i_m_handlers_gaca3d2c89672fe0eb3d94b3cb2072de59}{Virtual\+Instrument\+Manager.\+On\+Resume\+Song\+Event} ()
+\begin{DoxyCompactList}\small\item\em Handles resuming a song. \end{DoxyCompactList}\item 
+void \hyperlink{group___v_i_m_handlers_ga9d251d8b2036a3416680ced5d6125d0e}{Virtual\+Instrument\+Manager.\+On\+Stop\+Drum\+Loop\+Event} ()
+\begin{DoxyCompactList}\small\item\em Handles stopping a drum loop. \end{DoxyCompactList}\item 
+void \hyperlink{group___v_i_m_handlers_ga5d9afb7a74107b5c6016555f0bb0a0a8}{Virtual\+Instrument\+Manager.\+On\+Stop\+Song\+Event} ()
+\begin{DoxyCompactList}\small\item\em Handles stopping a song. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+These are functions that the \hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} uses to handle invoked \hyperlink{group___v_i_m_events}{events } 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___v_i_m_handlers_ga8e79286073756c31e08fecd59ce04fa7}\label{group___v_i_m_handlers_ga8e79286073756c31e08fecd59ce04fa7}} 
+\index{Event Handlers@{Event Handlers}!On\+Change\+Instrument\+Event@{On\+Change\+Instrument\+Event}}
+\index{On\+Change\+Instrument\+Event@{On\+Change\+Instrument\+Event}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{On\+Change\+Instrument\+Event()}{OnChangeInstrumentEvent()}}
+{\footnotesize\ttfamily void Virtual\+Instrument\+Manager.\+On\+Change\+Instrument\+Event (\begin{DoxyParamCaption}\item[{\hyperlink{group___music_enums_gabfce60192305965558a36e368ebd67c3}{Music.\+I\+N\+S\+T\+R\+U\+M\+E\+N\+T\+\_\+\+T\+Y\+PE}}]{a\+New\+Instrument\+Type }\end{DoxyParamCaption})}
+
+
+
+Called whenever an instrument should be loaded. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+New\+Instrument\+Type} & The type of instrument that should be loaded\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___music_enums_gabfce60192305965558a36e368ebd67c3}{Music\+::\+I\+N\+S\+T\+R\+U\+M\+E\+N\+T\+\_\+\+T\+Y\+PE} \hyperlink{group___v_i_m_event_types_class_virtual_instrument_manager_1_1_change_instrument_event}{Virtual\+Instrument\+Manager\+::\+Change\+Instrument\+Event} 
+\end{DoxySeeAlso}
+
+
+Definition at line 713 of file Virtual\+Instrument\+Manager.\+cs.
+
+
+
+References Virtual\+Instrument\+Manager.\+D\+E\+F\+A\+U\+L\+T\+\_\+\+L\+O\+W\+E\+S\+T\+\_\+\+P\+I\+T\+CH, Virtual\+Instrument\+Manager.\+Load\+Instrument(), Virtual\+Instrument\+Manager.\+m\+Active\+Notes, Virtual\+Instrument\+Manager.\+m\+Highest\+Active\+Note, Virtual\+Instrument\+Manager.\+m\+Instrument\+Type, Virtual\+Instrument\+Manager.\+m\+Lowest\+Active\+Note, and Virtual\+Instrument\+Manager.\+m\+Num\+Active\+Notes.
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+Set\+Up\+Events().
+
+
+\begin{DoxyCode}
+714     \{
+715         \textcolor{comment}{// Mark that we're not ready for note events.}
+716         \hyperlink{group___v_i_m_priv_ga983a11920bf16794735cc193c327ac42}{mReady} = \textcolor{keyword}{false};
+717         \hyperlink{group___v_i_m_priv_gaed435d1f9be09864846db4322dc21fd1}{mInstrument} = null;
+718 
+719         \textcolor{comment}{// Set the instrument type.}
+720         \hyperlink{group___v_i_m_priv_ga108c350257b3a2080e06cd4a8251f6a4}{mInstrumentType} = aNewInstrumentType;
+721 
+722         \textcolor{comment}{// Handle the difference in active notes for a drum kit vs. a normal instrument.}
+723         \textcolor{keywordflow}{if}( \hyperlink{group___v_i_m_priv_ga108c350257b3a2080e06cd4a8251f6a4}{mInstrumentType} == \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gabfce60192305965558a36e368ebd67c3}{INSTRUMENT\_TYPE}.DRUM\_KIT )
+724         \{
+725             \hyperlink{group___v_i_m_priv_ga0f7e11945763c48057be326b661dfdaf}{mNumActiveNotes} = 18;
+726         \}
+727         \textcolor{keywordflow}{else}
+728         \{
+729             \hyperlink{group___v_i_m_priv_ga0f7e11945763c48057be326b661dfdaf}{mNumActiveNotes} = 24;
+730         \}
+731 
+732         \textcolor{comment}{// Destroy the note output objects.}
+733         \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < \hyperlink{group___v_i_m_priv_ga53f837fd01475fa35629a650e7fa00e3}{mOutputs}.Length; i++ )
+734         \{
+735             DestroyImmediate( \hyperlink{group___v_i_m_priv_ga53f837fd01475fa35629a650e7fa00e3}{mOutputs}[i], \textcolor{keyword}{false} );
+736         \}
+737 
+738         \hyperlink{group___v_i_m_priv_ga53f837fd01475fa35629a650e7fa00e3}{mOutputs} = null;
+739 
+740         \textcolor{comment}{// Set default values for the active notes and be sure to account for drums}
+741         \textcolor{keywordflow}{if}( \hyperlink{group___v_i_m_priv_ga108c350257b3a2080e06cd4a8251f6a4}{mInstrumentType} == \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gabfce60192305965558a36e368ebd67c3}{INSTRUMENT\_TYPE}.DRUM\_KIT )
+742         \{
+743             \hyperlink{group___v_i_m_priv_ga5e3a5116e0dabb37e0ea21d73ac1567e}{mLowestActiveNote} = \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.C0;
+744         \}
+745         \textcolor{keywordflow}{else}
+746         \{
+747             \hyperlink{group___v_i_m_priv_ga5e3a5116e0dabb37e0ea21d73ac1567e}{mLowestActiveNote} = \hyperlink{group___v_i_m_const_ga0ae09555ae6bc8a04110599510a0d77d}{DEFAULT\_LOWEST\_PITCH};
+748         \}
+749         \hyperlink{group___v_i_m_priv_ga73a09a4e4f09c0e5b3871dc9ad6c757e}{mHighestActiveNote} = (\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH})( (\textcolor{keywordtype}{int})
+      \hyperlink{group___v_i_m_priv_ga5e3a5116e0dabb37e0ea21d73ac1567e}{mLowestActiveNote} + \hyperlink{group___v_i_m_priv_ga0f7e11945763c48057be326b661dfdaf}{mNumActiveNotes} - 1 );
+750         \hyperlink{group___v_i_m_priv_ga5cedf9995d59b416412677e6004b659c}{mActiveNotes} = \textcolor{keyword}{new} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}[\hyperlink{group___v_i_m_priv_ga0f7e11945763c48057be326b661dfdaf}{mNumActiveNotes}];
+751         \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < \hyperlink{group___v_i_m_priv_ga0f7e11945763c48057be326b661dfdaf}{mNumActiveNotes}; i++ )
+752         \{
+753             \hyperlink{group___v_i_m_priv_ga5cedf9995d59b416412677e6004b659c}{mActiveNotes}[i] = (\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH})( i + (\textcolor{keywordtype}{int})
+      \hyperlink{group___v_i_m_priv_ga5e3a5116e0dabb37e0ea21d73ac1567e}{mLowestActiveNote} );
+754         \}
+755 
+756         \textcolor{comment}{// Start a coroutine to load the instrument.}
+757         StartCoroutine( \hyperlink{group___v_i_m_coroutines_gab8082c1cc590771bf57da8b5ae8603d1}{LoadInstrument}( \hyperlink{group___v_i_m_priv_ga108c350257b3a2080e06cd4a8251f6a4}{mInstrumentType}, ( returned ) => \{ 
+      \hyperlink{group___v_i_m_priv_gaed435d1f9be09864846db4322dc21fd1}{mInstrument} = returned; \} ) );
+758     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___v_i_m_handlers_ga660c766dceebfc830de2cf96686692df}\label{group___v_i_m_handlers_ga660c766dceebfc830de2cf96686692df}} 
+\index{Event Handlers@{Event Handlers}!On\+Change\+Note\+Range\+Event@{On\+Change\+Note\+Range\+Event}}
+\index{On\+Change\+Note\+Range\+Event@{On\+Change\+Note\+Range\+Event}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{On\+Change\+Note\+Range\+Event()}{OnChangeNoteRangeEvent()}}
+{\footnotesize\ttfamily void Virtual\+Instrument\+Manager.\+On\+Change\+Note\+Range\+Event (\begin{DoxyParamCaption}\item[{\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH}}]{a\+New\+Lowest\+Pitch }\end{DoxyParamCaption})}
+
+
+
+Called whenever the range of active notes should be changed. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+New\+Lowest\+Pitch} & The lowest pitch in the new range.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music\+::\+P\+I\+T\+CH} \hyperlink{group___v_i_m_event_types_class_virtual_instrument_manager_1_1_change_note_range_event}{Virtual\+Instrument\+Manager\+::\+Change\+Note\+Range\+Event} 
+\end{DoxySeeAlso}
+
+
+Definition at line 766 of file Virtual\+Instrument\+Manager.\+cs.
+
+
+
+References Virtual\+Instrument.\+Is\+Pitch\+Supported(), Virtual\+Instrument\+Manager.\+Load\+Note\+Output\+Objects(), Virtual\+Instrument\+Manager.\+m\+Active\+Notes, Virtual\+Instrument\+Manager.\+m\+Highest\+Active\+Note, Virtual\+Instrument\+Manager.\+m\+Lowest\+Active\+Note, and Virtual\+Instrument\+Manager.\+m\+Num\+Active\+Notes.
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+Set\+Up\+Events().
+
+
+\begin{DoxyCode}
+767     \{
+768         \textcolor{keywordflow}{if}( \hyperlink{group___v_i_m_priv_ga983a11920bf16794735cc193c327ac42}{mReady} )
+769         \{
+770             \hyperlink{group___v_i_m_priv_ga983a11920bf16794735cc193c327ac42}{mReady} = \textcolor{keyword}{false};
+771 
+772             \textcolor{comment}{// Make sure that we can change to the note range given.}
+773             \textcolor{keywordtype}{int} newHighestIndex = (int)aNewLowestPitch + \hyperlink{group___v_i_m_priv_ga0f7e11945763c48057be326b661dfdaf}{mNumActiveNotes} - 1;
+774             \textcolor{keywordflow}{if}( !\hyperlink{group___v_i_m_priv_gaed435d1f9be09864846db4322dc21fd1}{mInstrument}.\hyperlink{group___v_i_base_pub_func_ga89655451c108a7ad5cb96ab308e33937}{IsPitchSupported}( aNewLowestPitch ) || !
+      \hyperlink{group___v_i_m_priv_gaed435d1f9be09864846db4322dc21fd1}{mInstrument}.\hyperlink{group___v_i_base_pub_func_ga89655451c108a7ad5cb96ab308e33937}{IsPitchSupported}( (\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH})newHighestIndex ) )
+775             \{
+776                 Assert.IsTrue( \textcolor{keyword}{false}, \textcolor{stringliteral}{"Tried to change the note range to include notes that aren't
+       supported by the instrument!"} );
+777                 \textcolor{keywordflow}{return};
+778             \}
+779 
+780             \textcolor{comment}{// Set the active note variables accordingly.}
+781             \hyperlink{group___v_i_m_priv_ga5e3a5116e0dabb37e0ea21d73ac1567e}{mLowestActiveNote} = aNewLowestPitch;
+782             \hyperlink{group___v_i_m_priv_ga73a09a4e4f09c0e5b3871dc9ad6c757e}{mHighestActiveNote} = (\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH})( (\textcolor{keywordtype}{int})aNewLowestPitch + 
+      \hyperlink{group___v_i_m_priv_ga0f7e11945763c48057be326b661dfdaf}{mNumActiveNotes} - 1 );
+783             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < \hyperlink{group___v_i_m_priv_ga0f7e11945763c48057be326b661dfdaf}{mNumActiveNotes}; i++ )
+784             \{
+785                 \hyperlink{group___v_i_m_priv_ga5cedf9995d59b416412677e6004b659c}{mActiveNotes}[i] = (\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH})( (\textcolor{keywordtype}{int})aNewLowestPitch + i );
+786             \}
+787 
+788             \textcolor{comment}{// Load the note output objects.}
+789             \hyperlink{group___v_i_m_priv_func_ga8817e32cc5074737b4d9489922b0fcb8}{LoadNoteOutputObjects}();
+790         \}
+791 
+792     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___v_i_m_handlers_gac7d5b65484e450a400e32ab416ebc9f6}\label{group___v_i_m_handlers_gac7d5b65484e450a400e32ab416ebc9f6}} 
+\index{Event Handlers@{Event Handlers}!On\+Instrument\+Loaded@{On\+Instrument\+Loaded}}
+\index{On\+Instrument\+Loaded@{On\+Instrument\+Loaded}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{On\+Instrument\+Loaded()}{OnInstrumentLoaded()}}
+{\footnotesize\ttfamily void Virtual\+Instrument\+Manager.\+On\+Instrument\+Loaded (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Called whenever the instrument has finished loading. It begins loading the Note\+Output\+Objects. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___v_i_m_event_types_class_virtual_instrument_manager_1_1_instrument_loaded_event}{Virtual\+Instrument\+Manager\+::\+Instrument\+Loaded\+Event} \hyperlink{class_note_output_object}{Note\+Output\+Object} 
+\end{DoxySeeAlso}
+
+
+Definition at line 799 of file Virtual\+Instrument\+Manager.\+cs.
+
+
+
+References Virtual\+Instrument\+Manager.\+Load\+Note\+Output\+Objects().
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+Set\+Up\+Events().
+
+
+\begin{DoxyCode}
+800     \{
+801         Assert.IsNotNull( \hyperlink{group___v_i_m_priv_gaed435d1f9be09864846db4322dc21fd1}{mInstrument}, \textcolor{stringliteral}{"OnInstrumentLoaded was called, but the instrument was
+       not loaded."} );
+802 
+803         \hyperlink{group___v_i_m_priv_func_ga8817e32cc5074737b4d9489922b0fcb8}{LoadNoteOutputObjects}();
+804     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___v_i_m_handlers_gae504c6ded8eb68ffb117c207fc25d99d}\label{group___v_i_m_handlers_gae504c6ded8eb68ffb117c207fc25d99d}} 
+\index{Event Handlers@{Event Handlers}!On\+Modify\+Echo\+Filter\+Event@{On\+Modify\+Echo\+Filter\+Event}}
+\index{On\+Modify\+Echo\+Filter\+Event@{On\+Modify\+Echo\+Filter\+Event}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{On\+Modify\+Echo\+Filter\+Event()}{OnModifyEchoFilterEvent()}}
+{\footnotesize\ttfamily void Virtual\+Instrument\+Manager.\+On\+Modify\+Echo\+Filter\+Event (\begin{DoxyParamCaption}\item[{\hyperlink{group__filter_params_struct_virtual_instrument_manager_1_1_echo_filter_parameters}{Echo\+Filter\+Parameters}}]{a\+Parameters }\end{DoxyParamCaption})}
+
+
+
+Called whenever the echo filter should be modified. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Parameters} & The new parameters of the echo filter\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___v_i_m_event_types_class_virtual_instrument_manager_1_1_modify_echo_filter_event}{Virtual\+Instrument\+Manager\+::\+Modify\+Echo\+Filter\+Event} 
+\end{DoxySeeAlso}
+
+
+Definition at line 812 of file Virtual\+Instrument\+Manager.\+cs.
+
+
+
+References Virtual\+Instrument\+Manager.\+Echo\+Filter\+Parameters.\+Active, Virtual\+Instrument\+Manager.\+Echo\+Filter\+Parameters.\+Decay, Virtual\+Instrument\+Manager.\+Echo\+Filter\+Parameters.\+Delay, Virtual\+Instrument\+Manager.\+Echo\+Filter\+Parameters.\+Dry\+Mix, and Virtual\+Instrument\+Manager.\+Echo\+Filter\+Parameters.\+Wet\+Mix.
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+Set\+Up\+Events().
+
+
+\begin{DoxyCode}
+813     \{
+814         \textcolor{comment}{// If the filter is active and the parameters are valid, then use the new parameters.}
+815         \textcolor{keywordflow}{if}( aParameters.Active )
+816         \{
+817             \hyperlink{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}{mMixer}.SetFloat( \textcolor{stringliteral}{"echoDelay"}, aParameters.Delay );
+818             \hyperlink{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}{mMixer}.SetFloat( \textcolor{stringliteral}{"echoDecay"}, aParameters.Decay );
+819             \hyperlink{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}{mMixer}.SetFloat( \textcolor{stringliteral}{"echoDryMix"}, aParameters.DryMix );
+820             \hyperlink{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}{mMixer}.SetFloat( \textcolor{stringliteral}{"echoWetMix"}, aParameters.WetMix );
+821         \}
+822         \textcolor{comment}{// If the filter is not active, then set values that negate the filter.}
+823         \textcolor{keywordflow}{else}
+824         \{
+825             \hyperlink{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}{mMixer}.SetFloat( \textcolor{stringliteral}{"echoDelay"}, 1f );
+826             \hyperlink{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}{mMixer}.SetFloat( \textcolor{stringliteral}{"echoDecay"}, 0f );
+827             \hyperlink{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}{mMixer}.SetFloat( \textcolor{stringliteral}{"echoDryMix"}, 100f );
+828             \hyperlink{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}{mMixer}.SetFloat( \textcolor{stringliteral}{"echoWetMix"}, 0f );
+829         \}
+830     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___v_i_m_handlers_ga2b310217971075b1b2db67d68fbbea5a}\label{group___v_i_m_handlers_ga2b310217971075b1b2db67d68fbbea5a}} 
+\index{Event Handlers@{Event Handlers}!On\+Modify\+Reverb\+Filter\+Event@{On\+Modify\+Reverb\+Filter\+Event}}
+\index{On\+Modify\+Reverb\+Filter\+Event@{On\+Modify\+Reverb\+Filter\+Event}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{On\+Modify\+Reverb\+Filter\+Event()}{OnModifyReverbFilterEvent()}}
+{\footnotesize\ttfamily void Virtual\+Instrument\+Manager.\+On\+Modify\+Reverb\+Filter\+Event (\begin{DoxyParamCaption}\item[{\hyperlink{group__filter_params_struct_virtual_instrument_manager_1_1_reverb_filter_parameters}{Reverb\+Filter\+Parameters}}]{a\+Parameters }\end{DoxyParamCaption})}
+
+
+
+Called whenever the reverb filter should be modified. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Parameters} & The new parameters of the reverb filter\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___v_i_m_event_types_class_virtual_instrument_manager_1_1_modify_reverb_filter_event}{Virtual\+Instrument\+Manager\+::\+Modify\+Reverb\+Filter\+Event} 
+\end{DoxySeeAlso}
+
+
+Definition at line 838 of file Virtual\+Instrument\+Manager.\+cs.
+
+
+
+References Virtual\+Instrument\+Manager.\+Reverb\+Filter\+Parameters.\+Active, Virtual\+Instrument\+Manager.\+Reverb\+Filter\+Parameters.\+Decay\+H\+F\+Ratio, Virtual\+Instrument\+Manager.\+Reverb\+Filter\+Parameters.\+Decay\+Time, Virtual\+Instrument\+Manager.\+Reverb\+Filter\+Parameters.\+Density, Virtual\+Instrument\+Manager.\+Reverb\+Filter\+Parameters.\+Diffusion, Virtual\+Instrument\+Manager.\+Reverb\+Filter\+Parameters.\+Dry\+Level, Virtual\+Instrument\+Manager.\+Reverb\+Filter\+Parameters.\+H\+F\+Reference, Virtual\+Instrument\+Manager.\+Reverb\+Filter\+Parameters.\+L\+F\+Reference, Virtual\+Instrument\+Manager.\+Reverb\+Filter\+Parameters.\+Reflect\+Delay, Virtual\+Instrument\+Manager.\+Reverb\+Filter\+Parameters.\+Reflections, Virtual\+Instrument\+Manager.\+Reverb\+Filter\+Parameters.\+Reverb, Virtual\+Instrument\+Manager.\+Reverb\+Filter\+Parameters.\+Reverb\+Delay, Virtual\+Instrument\+Manager.\+Reverb\+Filter\+Parameters.\+Room, Virtual\+Instrument\+Manager.\+Reverb\+Filter\+Parameters.\+Room\+HF, and Virtual\+Instrument\+Manager.\+Reverb\+Filter\+Parameters.\+Room\+LF.
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+Set\+Up\+Events().
+
+
+\begin{DoxyCode}
+839     \{
+840         \textcolor{keywordflow}{if}( aParameters.Active )
+841         \{
+842             \hyperlink{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}{mMixer}.SetFloat( \textcolor{stringliteral}{"revDryLevel"}, aParameters.DryLevel );
+843             \hyperlink{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}{mMixer}.SetFloat( \textcolor{stringliteral}{"revRoom"}, aParameters.Room );
+844             \hyperlink{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}{mMixer}.SetFloat( \textcolor{stringliteral}{"revRoomHF"}, aParameters.RoomHF );
+845             \hyperlink{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}{mMixer}.SetFloat( \textcolor{stringliteral}{"revDecayTime"}, aParameters.DecayTime );
+846             \hyperlink{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}{mMixer}.SetFloat( \textcolor{stringliteral}{"revDecayHFRatio"}, aParameters.DecayHFRatio );
+847             \hyperlink{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}{mMixer}.SetFloat( \textcolor{stringliteral}{"revReflections"}, aParameters.Reflections );
+848             \hyperlink{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}{mMixer}.SetFloat( \textcolor{stringliteral}{"revReflectDelay"}, aParameters.ReflectDelay );
+849             \hyperlink{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}{mMixer}.SetFloat( \textcolor{stringliteral}{"revReverb"}, aParameters.Reverb );
+850             \hyperlink{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}{mMixer}.SetFloat( \textcolor{stringliteral}{"revReverbDelay"}, aParameters.ReverbDelay );
+851             \hyperlink{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}{mMixer}.SetFloat( \textcolor{stringliteral}{"revDiffusion"}, aParameters.Diffusion );
+852             \hyperlink{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}{mMixer}.SetFloat( \textcolor{stringliteral}{"revDensity"}, aParameters.Density );
+853             \hyperlink{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}{mMixer}.SetFloat( \textcolor{stringliteral}{"revHFReference"}, aParameters.HFReference );
+854             \hyperlink{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}{mMixer}.SetFloat( \textcolor{stringliteral}{"revRoomLF"}, aParameters.RoomLF );
+855             \hyperlink{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}{mMixer}.SetFloat( \textcolor{stringliteral}{"revLFReference"}, aParameters.LFReference );
+856         \}
+857         \textcolor{keywordflow}{else}
+858         \{
+859             \hyperlink{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}{mMixer}.SetFloat( \textcolor{stringliteral}{"revDryLevel"}, 0f );
+860             \hyperlink{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}{mMixer}.SetFloat( \textcolor{stringliteral}{"revRoom"}, -10000f );
+861             \hyperlink{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}{mMixer}.SetFloat( \textcolor{stringliteral}{"revRoomHF"}, -10000f );
+862             \hyperlink{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}{mMixer}.SetFloat( \textcolor{stringliteral}{"revDecayTime"}, 0.1f );
+863             \hyperlink{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}{mMixer}.SetFloat( \textcolor{stringliteral}{"revDecayHFRatio"}, 0.1f );
+864             \hyperlink{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}{mMixer}.SetFloat( \textcolor{stringliteral}{"revReflections"}, -10000f );
+865             \hyperlink{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}{mMixer}.SetFloat( \textcolor{stringliteral}{"revReflectDelay"}, -10000f );
+866             \hyperlink{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}{mMixer}.SetFloat( \textcolor{stringliteral}{"revReverb"}, -10000f );
+867             \hyperlink{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}{mMixer}.SetFloat( \textcolor{stringliteral}{"revReverbDelay"}, 0f );
+868             \hyperlink{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}{mMixer}.SetFloat( \textcolor{stringliteral}{"revDiffusion"}, 0f );
+869             \hyperlink{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}{mMixer}.SetFloat( \textcolor{stringliteral}{"revDensity"}, 0f );
+870             \hyperlink{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}{mMixer}.SetFloat( \textcolor{stringliteral}{"revHFReference"}, 20f );
+871             \hyperlink{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}{mMixer}.SetFloat( \textcolor{stringliteral}{"revRoomLF"}, -10000f );
+872             \hyperlink{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}{mMixer}.SetFloat( \textcolor{stringliteral}{"revLFReference"}, 20f );
+873         \}
+874     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___v_i_m_handlers_ga30cd7f00fea55becd6d90f0ec737510a}\label{group___v_i_m_handlers_ga30cd7f00fea55becd6d90f0ec737510a}} 
+\index{Event Handlers@{Event Handlers}!On\+Pause\+Drum\+Loop\+Event@{On\+Pause\+Drum\+Loop\+Event}}
+\index{On\+Pause\+Drum\+Loop\+Event@{On\+Pause\+Drum\+Loop\+Event}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{On\+Pause\+Drum\+Loop\+Event()}{OnPauseDrumLoopEvent()}}
+{\footnotesize\ttfamily void Virtual\+Instrument\+Manager.\+On\+Pause\+Drum\+Loop\+Event (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Handles pausing a drum loop. 
+
+
+
+Definition at line 879 of file Virtual\+Instrument\+Manager.\+cs.
+
+
+
+References Note\+Output\+Object.\+Pause\+Audio().
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+Set\+Up\+Events().
+
+
+\begin{DoxyCode}
+880     \{
+881         \hyperlink{group___v_i_m_priv_ga5f71cb71d240042312dcc13b481b068d}{mDrumLoopOutput}.\hyperlink{group___n_o_o_pub_func_ga7977bc941f355866c7e4c141a8f7b8bb}{PauseAudio}();
+882     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___v_i_m_handlers_gad052b3cc53b35b25631f9b399be489ae}\label{group___v_i_m_handlers_gad052b3cc53b35b25631f9b399be489ae}} 
+\index{Event Handlers@{Event Handlers}!On\+Pause\+Song\+Event@{On\+Pause\+Song\+Event}}
+\index{On\+Pause\+Song\+Event@{On\+Pause\+Song\+Event}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{On\+Pause\+Song\+Event()}{OnPauseSongEvent()}}
+{\footnotesize\ttfamily void Virtual\+Instrument\+Manager.\+On\+Pause\+Song\+Event (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Handles pausing a song. 
+
+
+
+Definition at line 887 of file Virtual\+Instrument\+Manager.\+cs.
+
+
+
+References Note\+Output\+Object.\+Pause\+Audio().
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+Set\+Up\+Events().
+
+
+\begin{DoxyCode}
+888     \{
+889         \hyperlink{group___v_i_m_priv_gaa8d4f5642f5ac4dca4f4178b0052c78d}{mSongOutput}.\hyperlink{group___n_o_o_pub_func_ga7977bc941f355866c7e4c141a8f7b8bb}{PauseAudio}();
+890     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___v_i_m_handlers_gae2e2010b9a36ae2409466181ae0b9679}\label{group___v_i_m_handlers_gae2e2010b9a36ae2409466181ae0b9679}} 
+\index{Event Handlers@{Event Handlers}!On\+Play\+Drum\+Loop\+Event@{On\+Play\+Drum\+Loop\+Event}}
+\index{On\+Play\+Drum\+Loop\+Event@{On\+Play\+Drum\+Loop\+Event}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{On\+Play\+Drum\+Loop\+Event()}{OnPlayDrumLoopEvent()}}
+{\footnotesize\ttfamily void Virtual\+Instrument\+Manager.\+On\+Play\+Drum\+Loop\+Event (\begin{DoxyParamCaption}\item[{\hyperlink{class_song}{Song}}]{a\+Loop }\end{DoxyParamCaption})}
+
+
+
+Begins playing a drum loop. It creates an array of audio data from each note of the \hyperlink{class_song}{Song} and sends it to the right \hyperlink{class_note_output_object}{Note\+Output\+Object}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Loop} & The drum loop to play.\\
+\hline
+\end{DoxyParams}
+This function begins playing drum loops which are handled differently from other songs. Special handling of offsets and the number of waveform samples in the loop is required in order to make the loop as seamless as possible. 
+
+Definition at line 901 of file Virtual\+Instrument\+Manager.\+cs.
+
+
+
+References Note\+Output\+Object.\+Being\+Playing(), Virtual\+Instrument.\+Get\+Adjusted\+Velocity\+Factor(), Virtual\+Instrument.\+Get\+Audio\+Data\+For\+Pitch(), Virtual\+Instrument.\+Get\+Built\+In\+Dynamics\+Threshold\+Index(), Song.\+Get\+Note\+Data(), Note\+Output\+Object.\+Set\+Audio\+Data(), Note\+Output\+Object.\+Set\+Loop(), and Song.\+Combined\+Note\+Data.\+Total\+Offset.
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+Set\+Up\+Events().
+
+
+\begin{DoxyCode}
+902     \{
+903         \textcolor{comment}{// Get the song's note data.}
+904         \hyperlink{class_song}{Song}.\hyperlink{group___song_structs_struct_song_1_1_combined_note_data}{CombinedNoteData}[] loopNoteData = aLoop.
+      \hyperlink{group___song_pub_func_gae3df1fd5448b7d9cefb0fed4af967985}{GetNoteData}();
+905 
+906         \textcolor{comment}{// Get the number of notes in the loop.}
+907         \textcolor{keywordtype}{int} numNotes = loopNoteData.Length;
+908 
+909         \textcolor{comment}{// Get the number of waveform samples in the loop.}
+910         \textcolor{keywordtype}{int} numSamples = loopNoteData[numNotes - 1].\hyperlink{group___song_structs_a9a0f4830f464d3c7e7f4f156ce490cec}{TotalOffset};
+911 
+912         \textcolor{comment}{// Get the start index for the loop.}
+913         \textcolor{keywordtype}{int} startIndex = loopNoteData[0].TotalOffset;
+914 
+915         \textcolor{comment}{// Allocate a 2-D array for the song's audio data.}
+916         \textcolor{keywordtype}{float}[][] loopAudioData = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[1][];
+917         loopAudioData[0] = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[numSamples];
+918 
+919         \textcolor{comment}{// Make some variables to keep track of the velocity and offset.}
+920         \textcolor{keywordtype}{int} offset = 0;
+921         \textcolor{keywordtype}{int} velocity = 0;
+922         \textcolor{keywordtype}{int} velIndex = 0;
+923         \textcolor{keywordtype}{float} velFactor = 0f;
+924 
+925         \textcolor{comment}{// Iterate through all of the notes.}
+926         \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < numNotes; i++ )
+927         \{
+928             \textcolor{comment}{// In order to loop, the offset for the last note is set to 0.}
+929             \textcolor{keywordflow}{if}( i == numNotes - 1 )
+930             \{
+931                 offset = 0;
+932             \}
+933             \textcolor{keywordflow}{else}
+934             \{
+935                 offset = loopNoteData[i].TotalOffset;
+936             \}
+937             
+938             \textcolor{comment}{// Get the velocity from the note.}
+939             velocity = loopNoteData[i].PercussionData.Velocity;
+940 
+941             \textcolor{comment}{// Get the associated dynamics index and velocity factor.}
+942             velIndex = \hyperlink{group___v_i_m_priv_ga0bc7c9f776b0d2dae0ccb1f1ee5f2143}{mDrumKit}.\hyperlink{group___v_i_base_pub_func_gacddf07c08c3a8154a6934be22f539788}{GetBuiltInDynamicsThresholdIndex}( 
+      velocity );
+943             velFactor = \hyperlink{group___v_i_m_priv_ga0bc7c9f776b0d2dae0ccb1f1ee5f2143}{mDrumKit}.\hyperlink{group___v_i_base_pub_func_gae638c68bd0e79d0b99495be69e50f49d}{GetAdjustedVelocityFactor}( velocity );
+944 
+945             \textcolor{comment}{// Add the audio data for all of the drums in the note.}
+946             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} j = 0; j < loopNoteData[i].PercussionData.Hits.Length; j++ )
+947             \{
+948                 \textcolor{comment}{// Get the audio data for the note.}
+949                 \textcolor{keywordtype}{float}[][] drumAudioData = \hyperlink{group___v_i_m_priv_ga0bc7c9f776b0d2dae0ccb1f1ee5f2143}{mDrumKit}.\hyperlink{group___v_i_base_pub_func_gaf715f7c3bbd2f1a2fa543b2f0684f8a6}{GetAudioDataForPitch}( (
+      \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH})( loopNoteData[i].PercussionData.Hits[j] ) );
+950 
+951                 \textcolor{comment}{// Put all of the samples from the drum's audio data into the song audio data.}
+952                 \textcolor{keywordtype}{int} audioDataIndex = 0;
+953                 \textcolor{keywordtype}{int} loopDataIndex = offset;
+954 
+955                 \textcolor{comment}{// Account for silencing hi-hats if needed.}
+956                 \textcolor{keywordtype}{int} numSamplesUntilNextHiHat = numSamples;
+957                 \textcolor{keywordflow}{if}( loopNoteData[i].PercussionData.Hits[j] == \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}.HIHAT\_O )
+958                 \{
+959                     \textcolor{keywordtype}{int} nextHiHatIndex = i+1;
+960                     \textcolor{keywordtype}{bool} nextHiHatFound = \textcolor{keyword}{false};
+961 
+962                     \textcolor{comment}{// Get the next hi hat hit by iterating through the notes.}
+963                     \textcolor{keywordflow}{while}( nextHiHatIndex != i && !nextHiHatFound )
+964                     \{
+965                         \textcolor{comment}{// Make sure we don't have any index out of bounds errors.}
+966                         \textcolor{keywordflow}{if}( nextHiHatIndex == numNotes )
+967                         \{
+968                             nextHiHatIndex = 0;
+969                         \}
+970 
+971                         \textcolor{comment}{// See if this note has hi-hat hits. Break the loop if so.}
+972                         \textcolor{keywordflow}{if}( loopNoteData[nextHiHatIndex].PercussionData.HasHiHat )
+973                         \{
+974                             nextHiHatFound = \textcolor{keyword}{true};
+975                             numSamplesUntilNextHiHat = loopNoteData[nextHiHatIndex].TotalOffset - 
+      loopNoteData[i].TotalOffset;
+976                             \textcolor{keywordflow}{if}( numSamplesUntilNextHiHat < 0 )
+977                             \{
+978                                 numSamplesUntilNextHiHat = ( -1 * numSamplesUntilNextHiHat ) + ( numSamples
+       - loopNoteData[i].TotalOffset );
+979                             \}
+980                         \}
+981                         \textcolor{keywordflow}{else}
+982                         \{
+983                             \textcolor{comment}{// Go to the next note if this note doesn't have any hi-hat hits.}
+984                             nextHiHatIndex++;
+985                         \}
+986                     \}
+987                 \}
+988 
+989                 \textcolor{comment}{// Put the audio data for the drum into the loop.}
+990                 \textcolor{keywordflow}{while}( audioDataIndex < drumAudioData[velIndex].Length && numSamplesUntilNextHiHat > 0 )
+991                 \{
+992                     loopAudioData[0][loopDataIndex] += ( drumAudioData[velIndex][audioDataIndex] * 
+      velFactor );
+993                     loopDataIndex++;
+994 
+995                     \textcolor{comment}{// Account for bleeding over into the next loop.}
+996                     \textcolor{keywordflow}{if}( loopDataIndex >= numSamples )
+997                     \{
+998                         loopDataIndex = 0;
+999                     \}
+1000 
+1001                     audioDataIndex++;
+1002                     numSamplesUntilNextHiHat--;
+1003                 \}
+1004 
+1005             \}
+1006         \}
+1007 
+1008         \textcolor{comment}{// Set the song output object's audio data and begin playing the song.}
+1009         \hyperlink{group___v_i_m_priv_ga5f71cb71d240042312dcc13b481b068d}{mDrumLoopOutput}.\hyperlink{group___n_o_o_pub_func_gaef9ab691f0a2671a62249d853f24162d}{SetAudioData}( loopAudioData, 
+      \hyperlink{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}{mMixer}, null );
+1010         \hyperlink{group___v_i_m_priv_ga5f71cb71d240042312dcc13b481b068d}{mDrumLoopOutput}.\hyperlink{group___n_o_o_pub_func_ga7b79bbd2c7a68831b322edff140f29d2}{SetLoop}( \textcolor{keyword}{true} );
+1011         \hyperlink{group___v_i_m_priv_ga5f71cb71d240042312dcc13b481b068d}{mDrumLoopOutput}.\hyperlink{group___n_o_o_pub_func_ga2bdaa2787408f353f71ef6c6a18e9285}{BeingPlaying}( 1f, 0, startIndex );
+1012     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___v_i_m_handlers_ga80b3821df3b1488a150f6062638f105c}\label{group___v_i_m_handlers_ga80b3821df3b1488a150f6062638f105c}} 
+\index{Event Handlers@{Event Handlers}!On\+Play\+Note\+Event@{On\+Play\+Note\+Event}}
+\index{On\+Play\+Note\+Event@{On\+Play\+Note\+Event}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{On\+Play\+Note\+Event()}{OnPlayNoteEvent()}}
+{\footnotesize\ttfamily void Virtual\+Instrument\+Manager.\+On\+Play\+Note\+Event (\begin{DoxyParamCaption}\item[{\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH}}]{a\+Note\+To\+Play,  }\item[{int}]{a\+Velocity }\end{DoxyParamCaption})}
+
+
+
+Called whenever a note should be played. Uses the appropriate \hyperlink{class_note_output_object}{Note\+Output\+Object} to play the note. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Note\+To\+Play} & The pitch of the note to play \\
+\hline
+\mbox{\tt in}  & {\em a\+Velocity} & The velocity at which to play the pitch.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___v_i_m_event_types_class_virtual_instrument_manager_1_1_play_note_event}{Virtual\+Instrument\+Manager\+::\+Play\+Note\+Event} \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music\+::\+P\+I\+T\+CH} Note\+Output\+Object\+::\+Begin\+Playing 
+\end{DoxySeeAlso}
+
+
+Definition at line 1021 of file Virtual\+Instrument\+Manager.\+cs.
+
+
+
+References Note\+Output\+Object.\+Being\+Playing(), Virtual\+Instrument.\+Get\+Adjusted\+Velocity\+Factor(), Virtual\+Instrument.\+Get\+Built\+In\+Dynamics\+Threshold\+Index(), Virtual\+Instrument\+Manager.\+m\+Highest\+Active\+Note, Virtual\+Instrument\+Manager.\+m\+Instrument\+Type, Virtual\+Instrument\+Manager.\+m\+Lowest\+Active\+Note, and Music.\+Note\+To\+String().
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+Set\+Up\+Events().
+
+
+\begin{DoxyCode}
+1022     \{
+1023         \textcolor{keywordflow}{if}( \hyperlink{group___v_i_m_priv_ga983a11920bf16794735cc193c327ac42}{mReady} )
+1024         \{
+1025             \textcolor{comment}{// Sanity checks.}
+1026             Assert.IsTrue( (\textcolor{keywordtype}{int})aNoteToPlay >= (\textcolor{keywordtype}{int})\hyperlink{group___v_i_m_priv_ga5e3a5116e0dabb37e0ea21d73ac1567e}{mLowestActiveNote} && (\textcolor{keywordtype}{int})aNoteToPlay 
+      <= (\textcolor{keywordtype}{int})\hyperlink{group___v_i_m_priv_ga73a09a4e4f09c0e5b3871dc9ad6c757e}{mHighestActiveNote},
+1027                 \textcolor{stringliteral}{"Tried to play the note "} + \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( aNoteToPlay ) + \textcolor{stringliteral}{" which is
+       not active!"} );
+1028             Assert.IsTrue( aVelocity <= 100 && aVelocity >= 0,
+1029                 \textcolor{stringliteral}{"Tried to play a note with a velocity of "} + aVelocity.ToString() + \textcolor{stringliteral}{" which is not within
+       the range from 0 to 100!"} );
+1030 
+1031             \textcolor{comment}{// Get the note index.}
+1032             \textcolor{keywordtype}{int} noteIndex = (int)aNoteToPlay - (\textcolor{keywordtype}{int})\hyperlink{group___v_i_m_priv_ga5e3a5116e0dabb37e0ea21d73ac1567e}{mLowestActiveNote};
+1033 
+1034             \textcolor{comment}{// Account for drum kits where we would need to make some outputs silent in some situations.}
+1035             \textcolor{comment}{// Ex: Playing a closed hi-hat should stop an open hi-hat that is still playing.}
+1036             \textcolor{keywordflow}{if}( \hyperlink{group___v_i_m_priv_ga108c350257b3a2080e06cd4a8251f6a4}{mInstrumentType} == \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gabfce60192305965558a36e368ebd67c3}{INSTRUMENT\_TYPE}.DRUM\_KIT )
+1037             \{
+1038                 \textcolor{keywordflow}{switch}( (\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM})aNoteToPlay )
+1039                 \{
+1040                     \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}.HIHAT\_C:
+1041                         \hyperlink{group___v_i_m_priv_ga53f837fd01475fa35629a650e7fa00e3}{mOutputs}[(int)\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}.HIHAT\_O].
+      \hyperlink{group___n_o_o_pub_func_ga2bdaa2787408f353f71ef6c6a18e9285}{BeingPlaying}( 0, 0 );
+1042                         \hyperlink{group___v_i_m_priv_ga53f837fd01475fa35629a650e7fa00e3}{mOutputs}[(int)\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}.HIHAT\_P].
+      \hyperlink{group___n_o_o_pub_func_ga2bdaa2787408f353f71ef6c6a18e9285}{BeingPlaying}( 0, 0 );
+1043                         \textcolor{keywordflow}{break};
+1044                     \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}.HIHAT\_O:
+1045                         \hyperlink{group___v_i_m_priv_ga53f837fd01475fa35629a650e7fa00e3}{mOutputs}[(int)\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}.HIHAT\_C].
+      \hyperlink{group___n_o_o_pub_func_ga2bdaa2787408f353f71ef6c6a18e9285}{BeingPlaying}( 0, 0 );
+1046                         \hyperlink{group___v_i_m_priv_ga53f837fd01475fa35629a650e7fa00e3}{mOutputs}[(int)\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}.HIHAT\_P].
+      \hyperlink{group___n_o_o_pub_func_ga2bdaa2787408f353f71ef6c6a18e9285}{BeingPlaying}( 0, 0 );
+1047                         \textcolor{keywordflow}{break};
+1048                     \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}.HIHAT\_P:
+1049                         \hyperlink{group___v_i_m_priv_ga53f837fd01475fa35629a650e7fa00e3}{mOutputs}[(int)\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}.HIHAT\_C].
+      \hyperlink{group___n_o_o_pub_func_ga2bdaa2787408f353f71ef6c6a18e9285}{BeingPlaying}( 0, 0 );
+1050                         \hyperlink{group___v_i_m_priv_ga53f837fd01475fa35629a650e7fa00e3}{mOutputs}[(int)\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}.HIHAT\_O].
+      \hyperlink{group___n_o_o_pub_func_ga2bdaa2787408f353f71ef6c6a18e9285}{BeingPlaying}( 0, 0 );
+1051                         \textcolor{keywordflow}{break};
+1052                     \textcolor{keywordflow}{default}:
+1053                         \textcolor{keywordflow}{break};
+1054                 \}
+1055             \}
+1056 
+1057             \textcolor{comment}{// Get the built-in dynamics index and the velocity factor.}
+1058             \textcolor{keywordtype}{int} velIndex = \hyperlink{group___v_i_m_priv_gaed435d1f9be09864846db4322dc21fd1}{mInstrument}.
+      \hyperlink{group___v_i_base_pub_func_gacddf07c08c3a8154a6934be22f539788}{GetBuiltInDynamicsThresholdIndex}( aVelocity );
+1059             \textcolor{keywordtype}{float} velFactor = \hyperlink{group___v_i_m_priv_gaed435d1f9be09864846db4322dc21fd1}{mInstrument}.\hyperlink{group___v_i_base_pub_func_gae638c68bd0e79d0b99495be69e50f49d}{GetAdjustedVelocityFactor}( 
+      aVelocity );
+1060 
+1061             \textcolor{comment}{// Begin playing the note.}
+1062             \hyperlink{group___v_i_m_priv_ga53f837fd01475fa35629a650e7fa00e3}{mOutputs}[noteIndex].\hyperlink{group___n_o_o_pub_func_ga2bdaa2787408f353f71ef6c6a18e9285}{BeingPlaying}( velFactor, velIndex, 0 );
+1063         \}
+1064 
+1065     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___v_i_m_handlers_ga7fd877a7d429403abbfd2728aa63c056}\label{group___v_i_m_handlers_ga7fd877a7d429403abbfd2728aa63c056}} 
+\index{Event Handlers@{Event Handlers}!On\+Play\+Song\+Event@{On\+Play\+Song\+Event}}
+\index{On\+Play\+Song\+Event@{On\+Play\+Song\+Event}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{On\+Play\+Song\+Event()}{OnPlaySongEvent()}}
+{\footnotesize\ttfamily void Virtual\+Instrument\+Manager.\+On\+Play\+Song\+Event (\begin{DoxyParamCaption}\item[{\hyperlink{class_song}{Song}}]{a\+Song }\end{DoxyParamCaption})}
+
+
+
+Begins playing a song. It creates an array of audio data from each note of the \hyperlink{class_song}{Song} and sends it to the right \hyperlink{class_note_output_object}{Note\+Output\+Object}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Song} & The song to play. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1071 of file Virtual\+Instrument\+Manager.\+cs.
+
+
+
+References Note\+Output\+Object.\+Being\+Playing(), Virtual\+Instrument.\+Get\+Adjusted\+Velocity\+Factor(), Virtual\+Instrument.\+Get\+Audio\+Data\+For\+Pitch(), Virtual\+Instrument.\+Get\+Built\+In\+Dynamics\+Threshold\+Index(), Song.\+Get\+Note\+Data(), Song.\+Get\+Song\+Type(), Note\+Output\+Object.\+Set\+Audio\+Data(), and Song.\+Combined\+Note\+Data.\+Total\+Offset.
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+Set\+Up\+Events().
+
+
+\begin{DoxyCode}
+1072     \{
+1073         \textcolor{comment}{// Get the song's note data.}
+1074         \hyperlink{class_song}{Song}.\hyperlink{group___song_structs_struct_song_1_1_combined_note_data}{CombinedNoteData}[] songNoteData = aSong.
+      \hyperlink{group___song_pub_func_gae3df1fd5448b7d9cefb0fed4af967985}{GetNoteData}();
+1075 
+1076         \textcolor{comment}{// Get the number of notes in the song.}
+1077         \textcolor{keywordtype}{int} numNotes = songNoteData.Length;
+1078 
+1079         \textcolor{comment}{// Get the total number of samples in the song.}
+1080         \textcolor{keywordtype}{int} numSamples = 0;
+1081 
+1082         \textcolor{keywordflow}{if}( aSong.\hyperlink{group___song_pub_func_gabae5b5d8f727b2d9da7867a99347f86b}{GetSongType}() != \hyperlink{class_song}{Song}.\hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{SongType}.DrumLoop )
+1083         \{
+1084             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < numNotes; i++ )
+1085             \{
+1086                 numSamples = Mathf.Max( ( songNoteData[i].MelodyData.NumSamples + songNoteData[i].
+      TotalOffset ), numSamples );
+1087             \}
+1088         \}
+1089         \textcolor{keywordflow}{else}
+1090         \{
+1091             numSamples = 0;
+1092             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < songNoteData[numNotes - 1].PercussionData.Hits.Length; i++ )
+1093             \{
+1094                 \textcolor{keywordflow}{if}( numSamples < ( songNoteData[numNotes - 1].TotalOffset +
+1095                     \hyperlink{group___v_i_m_priv_ga0bc7c9f776b0d2dae0ccb1f1ee5f2143}{mDrumKit}.\hyperlink{group___v_i_base_pub_func_gaf715f7c3bbd2f1a2fa543b2f0684f8a6}{GetAudioDataForPitch}( (
+      \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH})( songNoteData[numNotes - 1].PercussionData.Hits[i] ) )[0].Length ) )
+1096                 \{
+1097                     numSamples = songNoteData[numNotes - 1].\hyperlink{group___song_structs_a9a0f4830f464d3c7e7f4f156ce490cec}{TotalOffset} +
+1098                         \hyperlink{group___v_i_m_priv_ga0bc7c9f776b0d2dae0ccb1f1ee5f2143}{mDrumKit}.\hyperlink{group___v_i_base_pub_func_gaf715f7c3bbd2f1a2fa543b2f0684f8a6}{GetAudioDataForPitch}( (
+      \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH})( songNoteData[numNotes - 1].PercussionData.Hits[i] ) )[0].Length;
+1099                 \}
+1100             \}
+1101         \}
+1102 
+1103 
+1104         \textcolor{comment}{// Allocate a 2-D array for the song's audio data.}
+1105         \textcolor{keywordtype}{float}[][] songAudioData = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[1][];
+1106         songAudioData[0] = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[numSamples];
+1107 
+1108         \textcolor{comment}{// Make some variables to keep track of the velocity and offset.}
+1109         \textcolor{keywordtype}{int} offset = 0;
+1110         \textcolor{keywordtype}{int} velocity = 0;
+1111         \textcolor{keywordtype}{int} velIndex = 0;
+1112         \textcolor{keywordtype}{float} velFactor = 0f;
+1113 
+1114         \textcolor{comment}{// Iterate through all of the notes.}
+1115         \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < numNotes; i++ )
+1116         \{
+1117             \textcolor{comment}{// If the note is a rest, we don't need to worry its pitches. Otherwise, add the note's
+       pitches.}
+1118             \textcolor{keywordflow}{if}( songNoteData[i].MelodyData.Pitches != null && songNoteData[i].MelodyData.Pitches[0] != 
+      \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.REST )
+1119             \{
+1120                 \textcolor{comment}{// Get the offset and velocity from the note.}
+1121                 offset = songNoteData[i].TotalOffset;
+1122                 velocity = songNoteData[i].MelodyData.Velocity;
+1123 
+1124                 \textcolor{comment}{// Get the associated dynamics index and velocity factor.}
+1125                 velIndex = \hyperlink{group___v_i_m_priv_gaed435d1f9be09864846db4322dc21fd1}{mInstrument}.
+      \hyperlink{group___v_i_base_pub_func_gacddf07c08c3a8154a6934be22f539788}{GetBuiltInDynamicsThresholdIndex}( velocity );
+1126                 velFactor = \hyperlink{group___v_i_m_priv_gaed435d1f9be09864846db4322dc21fd1}{mInstrument}.\hyperlink{group___v_i_base_pub_func_gae638c68bd0e79d0b99495be69e50f49d}{GetAdjustedVelocityFactor}( 
+      velocity );
+1127 
+1128                 \textcolor{comment}{// Add the audio data for all of the pitches in the note.}
+1129                 \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} j = 0; j < songNoteData[i].MelodyData.Pitches.Length; j++ )
+1130                 \{
+1131                     \textcolor{comment}{// Get the audio data for the note.}
+1132                     \textcolor{keywordtype}{float}[][] pitchAudioData = \hyperlink{group___v_i_m_priv_gaed435d1f9be09864846db4322dc21fd1}{mInstrument}.
+      \hyperlink{group___v_i_base_pub_func_gaf715f7c3bbd2f1a2fa543b2f0684f8a6}{GetAudioDataForPitch}( songNoteData[i].MelodyData.Pitches[j] );
+1133 
+1134                     \textcolor{comment}{// Put all of the samples from the pitch's audio data into the song audio data.}
+1135                     \textcolor{keywordtype}{int} k = 0;
+1136                     \textcolor{keywordflow}{while}( k < songNoteData[i].MelodyData.NumSamples && k < pitchAudioData[velIndex].Length
+       )
+1137                     \{
+1138                         songAudioData[0][k + offset] += ( pitchAudioData[velIndex][k] * velFactor );
+1139                         k++;
+1140                     \}
+1141 
+1142                     \textcolor{comment}{// Adjust for when the note is released.}
+1143                     \textcolor{keywordtype}{float} releaseFactor = velFactor;
+1144                     \textcolor{keywordflow}{while}( k < pitchAudioData[velIndex].Length && k + offset < numSamples && releaseFactor
+       > 0 )
+1145                     \{
+1146                         songAudioData[0][k + offset] += pitchAudioData[velIndex][k] * releaseFactor;
+1147                         releaseFactor -= ( 1f / 22500f );
+1148                         k++;
+1149                     \}
+1150 
+1151                     \textcolor{comment}{// Cleanup}
+1152                     pitchAudioData = null;
+1153                 \}
+1154 
+1155 
+1156             \}
+1157 
+1158             \textcolor{comment}{// If the note has drums, then add them.}
+1159             \textcolor{keywordflow}{if}( songNoteData[i].PercussionData.Hits != null )
+1160             \{
+1161                 \textcolor{comment}{// Get the offset and velocity from the note.}
+1162                 offset = songNoteData[i].TotalOffset;
+1163                 velocity = songNoteData[i].PercussionData.Velocity;
+1164 
+1165                 \textcolor{comment}{// Get the associated dynamics index and velocity factor.}
+1166                 velIndex = \hyperlink{group___v_i_m_priv_ga0bc7c9f776b0d2dae0ccb1f1ee5f2143}{mDrumKit}.\hyperlink{group___v_i_base_pub_func_gacddf07c08c3a8154a6934be22f539788}{GetBuiltInDynamicsThresholdIndex}
+      ( velocity );
+1167                 velFactor = \hyperlink{group___v_i_m_priv_ga0bc7c9f776b0d2dae0ccb1f1ee5f2143}{mDrumKit}.\hyperlink{group___v_i_base_pub_func_gae638c68bd0e79d0b99495be69e50f49d}{GetAdjustedVelocityFactor}( velocity )
+      ;
+1168 
+1169                 \textcolor{comment}{// Add the audio data for all of the drums in the note.}
+1170                 \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} j = 0; j < songNoteData[i].PercussionData.Hits.Length; j++ )
+1171                 \{
+1172                     \textcolor{comment}{// Get the audio data for the note.}
+1173                     \textcolor{keywordtype}{float}[][] drumAudioData = \hyperlink{group___v_i_m_priv_ga0bc7c9f776b0d2dae0ccb1f1ee5f2143}{mDrumKit}.
+      \hyperlink{group___v_i_base_pub_func_gaf715f7c3bbd2f1a2fa543b2f0684f8a6}{GetAudioDataForPitch}( (\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH})( songNoteData[i].PercussionData.Hits[j] )
+       );
+1174 
+1175                     \textcolor{comment}{// Put all of the samples from the drum's audio data into the song audio data.}
+1176                     \textcolor{keywordtype}{int} audioDataIndex = 0;
+1177                     \textcolor{keywordtype}{int} drumDataIndex = offset;
+1178 
+1179                     \textcolor{comment}{// Account for silencing hi-hats if needed.}
+1180                     \textcolor{keywordtype}{int} numSamplesUntilNextHiHat = numSamples;
+1181                     \textcolor{keywordflow}{if}( songNoteData[i].PercussionData.Hits[j] == \hyperlink{class_music}{Music}.
+      \hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM}.HIHAT\_O )
+1182                     \{
+1183                         \textcolor{keywordtype}{int} nextHiHatIndex = i+1;
+1184                         \textcolor{keywordtype}{bool} nextHiHatFound = \textcolor{keyword}{false};
+1185 
+1186                         \textcolor{comment}{// Get the next hi hat hit by iterating through the notes.}
+1187                         \textcolor{keywordflow}{while}( nextHiHatIndex != i && !nextHiHatFound )
+1188                         \{
+1189                             \textcolor{comment}{// Make sure we don't have any index out of bounds errors.}
+1190                             \textcolor{keywordflow}{if}( nextHiHatIndex == numNotes )
+1191                             \{
+1192                                 nextHiHatIndex = 0;
+1193                             \}
+1194 
+1195                             \textcolor{comment}{// See if this note has hi-hat hits. Break the loop if so.}
+1196                             \textcolor{keywordflow}{if}( songNoteData[nextHiHatIndex].PercussionData.HasHiHat )
+1197                             \{
+1198                                 nextHiHatFound = \textcolor{keyword}{true};
+1199                                 numSamplesUntilNextHiHat = songNoteData[nextHiHatIndex].TotalOffset - 
+      songNoteData[i].TotalOffset;
+1200                                 \textcolor{keywordflow}{if}( numSamplesUntilNextHiHat < 0 )
+1201                                 \{
+1202                                     numSamplesUntilNextHiHat = ( -1 * numSamplesUntilNextHiHat ) + ( 
+      numSamples - songNoteData[i].TotalOffset );
+1203                                 \}
+1204                             \}
+1205                             \textcolor{keywordflow}{else}
+1206                             \{
+1207                                 \textcolor{comment}{// Go to the next note if this note doesn't have any hi-hat hits.}
+1208                                 nextHiHatIndex++;
+1209                             \}
+1210                         \}
+1211                     \}
+1212 
+1213                     \textcolor{comment}{// Put the audio data for the drum into the song.}
+1214                     \textcolor{keywordflow}{while}( audioDataIndex < drumAudioData[velIndex].Length && numSamplesUntilNextHiHat > 0 
+      && drumDataIndex < numSamples )
+1215                     \{
+1216                         songAudioData[0][drumDataIndex] += ( drumAudioData[velIndex][audioDataIndex] * 
+      velFactor );
+1217                         drumDataIndex++;
+1218                         audioDataIndex++;
+1219                         numSamplesUntilNextHiHat--;
+1220                     \}
+1221 
+1222                     \textcolor{comment}{// Cleanup}
+1223                     drumAudioData = null;
+1224                 \}
+1225             \}
+1226         \}
+1227 
+1228         \textcolor{comment}{// Set the song output object's audio data and begin playing the song.}
+1229         \hyperlink{group___v_i_m_priv_gaa8d4f5642f5ac4dca4f4178b0052c78d}{mSongOutput}.\hyperlink{group___n_o_o_pub_func_gaef9ab691f0a2671a62249d853f24162d}{SetAudioData}( songAudioData, \hyperlink{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}{mMixer}, null );
+1230         \hyperlink{group___v_i_m_priv_gaa8d4f5642f5ac4dca4f4178b0052c78d}{mSongOutput}.\hyperlink{group___n_o_o_pub_func_ga2bdaa2787408f353f71ef6c6a18e9285}{BeingPlaying}( 1f, 0 );
+1231 
+1232         \textcolor{comment}{// Cleanup}
+1233         songAudioData = null;
+1234         GC.Collect();
+1235     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___v_i_m_handlers_ga0f0a34c251d154131f9ea130a54dc989}\label{group___v_i_m_handlers_ga0f0a34c251d154131f9ea130a54dc989}} 
+\index{Event Handlers@{Event Handlers}!On\+Release\+Note\+Event@{On\+Release\+Note\+Event}}
+\index{On\+Release\+Note\+Event@{On\+Release\+Note\+Event}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{On\+Release\+Note\+Event()}{OnReleaseNoteEvent()}}
+{\footnotesize\ttfamily void Virtual\+Instrument\+Manager.\+On\+Release\+Note\+Event (\begin{DoxyParamCaption}\item[{\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH}}]{a\+Note\+To\+Release }\end{DoxyParamCaption})}
+
+
+
+Called whenever a note should be released. Uses the appropriate \hyperlink{class_note_output_object}{Note\+Output\+Object} to release the note. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Note\+To\+Release} & The pitch of the note to release\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___v_i_m_event_types_class_virtual_instrument_manager_1_1_play_note_event}{Virtual\+Instrument\+Manager\+::\+Play\+Note\+Event} \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music\+::\+P\+I\+T\+CH} \hyperlink{group___n_o_o_pub_func_ga044e62759958d717c7fa4fd1615e2ec1}{Note\+Output\+Object\+::\+Begin\+Release} 
+\end{DoxySeeAlso}
+
+
+Definition at line 1243 of file Virtual\+Instrument\+Manager.\+cs.
+
+
+
+References Note\+Output\+Object.\+Begin\+Release(), Virtual\+Instrument\+Manager.\+m\+Highest\+Active\+Note, Virtual\+Instrument\+Manager.\+m\+Instrument\+Type, Virtual\+Instrument\+Manager.\+m\+Lowest\+Active\+Note, and Music.\+Note\+To\+String().
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+Set\+Up\+Events().
+
+
+\begin{DoxyCode}
+1244     \{
+1245         \textcolor{comment}{// Don't account for note releases for drums.}
+1246         \textcolor{keywordflow}{if}( \hyperlink{group___v_i_m_priv_ga108c350257b3a2080e06cd4a8251f6a4}{mInstrumentType} != \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gabfce60192305965558a36e368ebd67c3}{INSTRUMENT\_TYPE}.DRUM\_KIT )
+1247         \{
+1248             Assert.IsTrue( (\textcolor{keywordtype}{int})aNoteToRelease >= (\textcolor{keywordtype}{int})\hyperlink{group___v_i_m_priv_ga5e3a5116e0dabb37e0ea21d73ac1567e}{mLowestActiveNote} && (\textcolor{keywordtype}{int})
+      aNoteToRelease <= (\textcolor{keywordtype}{int})\hyperlink{group___v_i_m_priv_ga73a09a4e4f09c0e5b3871dc9ad6c757e}{mHighestActiveNote},
+1249                 \textcolor{stringliteral}{"Tried to fade out the note "} + \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( aNoteToRelease ) + \textcolor{stringliteral}{"
+       which is not active!"} );
+1250             \textcolor{keywordtype}{int} noteIndex = (int)aNoteToRelease - (\textcolor{keywordtype}{int})\hyperlink{group___v_i_m_priv_ga5e3a5116e0dabb37e0ea21d73ac1567e}{mLowestActiveNote};
+1251             \hyperlink{group___v_i_m_priv_ga53f837fd01475fa35629a650e7fa00e3}{mOutputs}[noteIndex].\hyperlink{group___n_o_o_pub_func_ga044e62759958d717c7fa4fd1615e2ec1}{BeginRelease}();
+1252         \}
+1253     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___v_i_m_handlers_ga97e3e73e05a7ab6027f25573712367a2}\label{group___v_i_m_handlers_ga97e3e73e05a7ab6027f25573712367a2}} 
+\index{Event Handlers@{Event Handlers}!On\+Resume\+Drum\+Loop\+Event@{On\+Resume\+Drum\+Loop\+Event}}
+\index{On\+Resume\+Drum\+Loop\+Event@{On\+Resume\+Drum\+Loop\+Event}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{On\+Resume\+Drum\+Loop\+Event()}{OnResumeDrumLoopEvent()}}
+{\footnotesize\ttfamily void Virtual\+Instrument\+Manager.\+On\+Resume\+Drum\+Loop\+Event (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Handles resuming a drum loop. 
+
+
+
+Definition at line 1258 of file Virtual\+Instrument\+Manager.\+cs.
+
+
+
+References Note\+Output\+Object.\+Resume\+Audio().
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+Set\+Up\+Events().
+
+
+\begin{DoxyCode}
+1259     \{
+1260         \hyperlink{group___v_i_m_priv_ga5f71cb71d240042312dcc13b481b068d}{mDrumLoopOutput}.\hyperlink{group___n_o_o_pub_func_ga2df8edec357dd4123146c9a7e8485ffb}{ResumeAudio}();
+1261     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___v_i_m_handlers_gaca3d2c89672fe0eb3d94b3cb2072de59}\label{group___v_i_m_handlers_gaca3d2c89672fe0eb3d94b3cb2072de59}} 
+\index{Event Handlers@{Event Handlers}!On\+Resume\+Song\+Event@{On\+Resume\+Song\+Event}}
+\index{On\+Resume\+Song\+Event@{On\+Resume\+Song\+Event}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{On\+Resume\+Song\+Event()}{OnResumeSongEvent()}}
+{\footnotesize\ttfamily void Virtual\+Instrument\+Manager.\+On\+Resume\+Song\+Event (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Handles resuming a song. 
+
+
+
+Definition at line 1266 of file Virtual\+Instrument\+Manager.\+cs.
+
+
+
+References Note\+Output\+Object.\+Resume\+Audio().
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+Set\+Up\+Events().
+
+
+\begin{DoxyCode}
+1267     \{
+1268         \hyperlink{group___v_i_m_priv_gaa8d4f5642f5ac4dca4f4178b0052c78d}{mSongOutput}.\hyperlink{group___n_o_o_pub_func_ga2df8edec357dd4123146c9a7e8485ffb}{ResumeAudio}();
+1269     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___v_i_m_handlers_ga9d251d8b2036a3416680ced5d6125d0e}\label{group___v_i_m_handlers_ga9d251d8b2036a3416680ced5d6125d0e}} 
+\index{Event Handlers@{Event Handlers}!On\+Stop\+Drum\+Loop\+Event@{On\+Stop\+Drum\+Loop\+Event}}
+\index{On\+Stop\+Drum\+Loop\+Event@{On\+Stop\+Drum\+Loop\+Event}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{On\+Stop\+Drum\+Loop\+Event()}{OnStopDrumLoopEvent()}}
+{\footnotesize\ttfamily void Virtual\+Instrument\+Manager.\+On\+Stop\+Drum\+Loop\+Event (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Handles stopping a drum loop. 
+
+
+
+Definition at line 1274 of file Virtual\+Instrument\+Manager.\+cs.
+
+
+
+References Note\+Output\+Object.\+Stop\+Audio().
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+Set\+Up\+Events().
+
+
+\begin{DoxyCode}
+1275     \{
+1276         \hyperlink{group___v_i_m_priv_ga5f71cb71d240042312dcc13b481b068d}{mDrumLoopOutput}.\hyperlink{group___n_o_o_pub_func_gae8a8e5bc027fd0186464a68399a4fecb}{StopAudio}();
+1277     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___v_i_m_handlers_ga5d9afb7a74107b5c6016555f0bb0a0a8}\label{group___v_i_m_handlers_ga5d9afb7a74107b5c6016555f0bb0a0a8}} 
+\index{Event Handlers@{Event Handlers}!On\+Stop\+Song\+Event@{On\+Stop\+Song\+Event}}
+\index{On\+Stop\+Song\+Event@{On\+Stop\+Song\+Event}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{On\+Stop\+Song\+Event()}{OnStopSongEvent()}}
+{\footnotesize\ttfamily void Virtual\+Instrument\+Manager.\+On\+Stop\+Song\+Event (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Handles stopping a song. 
+
+
+
+Definition at line 1282 of file Virtual\+Instrument\+Manager.\+cs.
+
+
+
+References Note\+Output\+Object.\+Stop\+Audio().
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+Set\+Up\+Events().
+
+
+\begin{DoxyCode}
+1283     \{
+1284         \hyperlink{group___v_i_m_priv_gaa8d4f5642f5ac4dca4f4178b0052c78d}{mSongOutput}.\hyperlink{group___n_o_o_pub_func_gae8a8e5bc027fd0186464a68399a4fecb}{StopAudio}();
+1285     \}
+\end{DoxyCode}

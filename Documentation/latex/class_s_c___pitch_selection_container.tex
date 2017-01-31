@@ -1,0 +1,57 @@
+\hypertarget{class_s_c___pitch_selection_container}{}\section{S\+C\+\_\+\+Pitch\+Selection\+Container Class Reference}
+\label{class_s_c___pitch_selection_container}\index{S\+C\+\_\+\+Pitch\+Selection\+Container@{S\+C\+\_\+\+Pitch\+Selection\+Container}}
+
+
+C\# Class that contains the \hyperlink{group___doc_s_c___p_s_t}{pitch and drum selections} for a \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note} in the \hyperlink{group___doc_s_c}{Song Creation Interface}.  
+
+
+Inheritance diagram for S\+C\+\_\+\+Pitch\+Selection\+Container\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_s_c___pitch_selection_container}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} \mbox{[}$\,$\mbox{]} \hyperlink{group___s_c___p_s_c_pub_func_ga05750cc6e1199f1522f8b87d6579dc34}{Get\+Selected\+Pitches} ()
+\begin{DoxyCompactList}\small\item\em Gets the currently selected \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitches}/\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{drums}. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c___p_s_c_pub_func_ga678ef561c5418e4bf43a5f9ed753f0f0}{Reset\+Pitches} ()
+\begin{DoxyCompactList}\small\item\em Resets the selected selected \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitches}/\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{drums}. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c___p_s_c_pub_func_ga0b85aab924084ebb49be4f64ad6f81e5}{Set\+Pitches} (\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH}\mbox{[}$\,$\mbox{]} a\+Pitches)
+\begin{DoxyCompactList}\small\item\em Sets the selected \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitches}/\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{drums}. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c___p_s_c_pub_func_ga08a0a4943359eb7f28c64aaf4cbc233c}{Set\+Up\+As\+Drum\+Selector} ()
+\begin{DoxyCompactList}\small\item\em Sets up this selection container as a selector for \hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{drums}. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c___p_s_c_pub_func_gaf6e9338cfe7202df9787304e49afa24d}{Set\+Up\+As\+Pitch\+Selector} ()
+\begin{DoxyCompactList}\small\item\em Sets up this selection container as a selector for \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitches}. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c___p_s_c_handlers_gaa2afa8167100515d412cf751d9334f0c}{Handle\+Pitch\+Selection} (bool a\+Selected, int a\+Index)
+\item 
+void \hyperlink{group___s_c___p_s_c_handlers_ga8715b5976fdae2c56e05a60832553864}{On\+Rest\+Toggle} (bool a\+Is\+Rest\+Note)
+\begin{DoxyCompactList}\small\item\em Handles switching between this \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note} being a \hyperlink{group___doc_s_c___p_s_c_DocSC_PSCRest}{rest note} or not. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{group___s_c___p_s_c_priv_var_ga6eec175f775c35e2d0eb51dfe6def49f}{m\+Rest\+Note} = false
+\begin{DoxyCompactList}\small\item\em Is this note currently set to be a rest note? \end{DoxyCompactList}\item 
+List$<$ int $>$ \hyperlink{group___s_c___p_s_c_priv_var_ga5a8a5c31158f6af7f0c17d4fd03c5641}{m\+Selected\+Pitches} = null
+\begin{DoxyCompactList}\small\item\em The selected \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitches} or \hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{drums}. \end{DoxyCompactList}\item 
+\hyperlink{class_s_c___pitch_selection_trigger}{S\+C\+\_\+\+Pitch\+Selection\+Trigger} \mbox{[}$\,$\mbox{]} \hyperlink{group___s_c___p_s_c_priv_var_ga8431846d376b98bc6de5a872cce2c596}{m\+Pitch\+Selection\+Triggers} = null
+\begin{DoxyCompactList}\small\item\em The \hyperlink{group___doc_s_c___p_s_t}{triggers} that fire off an event when a \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitch} or \hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{drum} is selected. \end{DoxyCompactList}\item 
+Toggle \hyperlink{group___s_c___p_s_c_priv_var_gae4378d4e0b53501eb0f55b8af38a5a8c}{m\+Rest} = null
+\begin{DoxyCompactList}\small\item\em The toggle switch for setting the \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note} as a \hyperlink{group___doc_s_c___p_s_c_DocSC_PSCRest}{rest note}. \end{DoxyCompactList}\item 
+Toggle \mbox{[}$\,$\mbox{]} \hyperlink{group___s_c___p_s_c_priv_var_ga25180add92621da773b024083d3a61af}{m\+Pitches} = null
+\begin{DoxyCompactList}\small\item\em The toggle switches for each \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitch}/\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{drum}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+C\# Class that contains the \hyperlink{group___doc_s_c___p_s_t}{pitch and drum selections} for a \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note} in the \hyperlink{group___doc_s_c}{Song Creation Interface}. 
+
+Though called a "Pitch Selection Container", this class is also used for selecting \hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{drums}. The \hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{drums} and \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitches} are typecast to integer in the \hyperlink{group___s_c___p_s_c_priv_var_ga5a8a5c31158f6af7f0c17d4fd03c5641}{list of selected pitches} anyway, so there is not much of a difference in how each are handled by this class. 
+
+Definition at line 20 of file S\+C\+\_\+\+Pitch\+Selection\+Container.\+cs.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Documents/\+School Documents/2017\+Spring/\+E\+E\+C\+S542/\+V\+R\+Piano\+Project/\+Assets/\+Scripts/\+Audio/\+Song\+Creation/\hyperlink{_s_c___pitch_selection_container_8cs}{S\+C\+\_\+\+Pitch\+Selection\+Container.\+cs}\end{DoxyCompactItemize}

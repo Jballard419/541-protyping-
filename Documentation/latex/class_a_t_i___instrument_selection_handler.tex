@@ -1,0 +1,110 @@
+\hypertarget{class_a_t_i___instrument_selection_handler}{}\section{A\+T\+I\+\_\+\+Instrument\+Selection\+Handler Class Reference}
+\label{class_a_t_i___instrument_selection_handler}\index{A\+T\+I\+\_\+\+Instrument\+Selection\+Handler@{A\+T\+I\+\_\+\+Instrument\+Selection\+Handler}}
+Inheritance diagram for A\+T\+I\+\_\+\+Instrument\+Selection\+Handler\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_a_t_i___instrument_selection_handler}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_a_t_i___instrument_selection_handler_af9ac3dae1f7938a64d9ecdee529ee677}{On\+Instrument\+Selected} (int a\+Selection)
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_a_t_i___instrument_selection_handler_a5c6b182a8c8be5d409a2b17e6d8f67a2}{Start} ()
+\item 
+void \hyperlink{class_a_t_i___instrument_selection_handler_a725510a41c1f4665e3874029486aab99}{Update} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} \hyperlink{class_a_t_i___instrument_selection_handler_a744213ecae613372020009bc5c9688c8}{m\+V\+IM} = null
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 14 of file A\+T\+I\+\_\+\+Instrument\+Selection\+Handler.\+cs.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_a_t_i___instrument_selection_handler_af9ac3dae1f7938a64d9ecdee529ee677}\label{class_a_t_i___instrument_selection_handler_af9ac3dae1f7938a64d9ecdee529ee677}} 
+\index{A\+T\+I\+\_\+\+Instrument\+Selection\+Handler@{A\+T\+I\+\_\+\+Instrument\+Selection\+Handler}!On\+Instrument\+Selected@{On\+Instrument\+Selected}}
+\index{On\+Instrument\+Selected@{On\+Instrument\+Selected}!A\+T\+I\+\_\+\+Instrument\+Selection\+Handler@{A\+T\+I\+\_\+\+Instrument\+Selection\+Handler}}
+\subsubsection{\texorpdfstring{On\+Instrument\+Selected()}{OnInstrumentSelected()}}
+{\footnotesize\ttfamily void A\+T\+I\+\_\+\+Instrument\+Selection\+Handler.\+On\+Instrument\+Selected (\begin{DoxyParamCaption}\item[{int}]{a\+Selection }\end{DoxyParamCaption})}
+
+
+
+Definition at line 58 of file A\+T\+I\+\_\+\+Instrument\+Selection\+Handler.\+cs.
+
+
+
+References Virtual\+Instrument\+Manager.\+Change\+Instrument.
+
+
+\begin{DoxyCode}
+59     \{
+60         \hyperlink{class_a_t_i___instrument_selection_handler_a744213ecae613372020009bc5c9688c8}{mVIM}.\hyperlink{group___v_i_m_events_ga1b9f12a73a5418ea5695d38b78c506c4}{ChangeInstrument}.Invoke( (\hyperlink{class_music}{Music}.
+      \hyperlink{group___music_enums_gabfce60192305965558a36e368ebd67c3}{INSTRUMENT\_TYPE})aSelection );
+61     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i___instrument_selection_handler_a5c6b182a8c8be5d409a2b17e6d8f67a2}\label{class_a_t_i___instrument_selection_handler_a5c6b182a8c8be5d409a2b17e6d8f67a2}} 
+\index{A\+T\+I\+\_\+\+Instrument\+Selection\+Handler@{A\+T\+I\+\_\+\+Instrument\+Selection\+Handler}!Start@{Start}}
+\index{Start@{Start}!A\+T\+I\+\_\+\+Instrument\+Selection\+Handler@{A\+T\+I\+\_\+\+Instrument\+Selection\+Handler}}
+\subsubsection{\texorpdfstring{Start()}{Start()}}
+{\footnotesize\ttfamily void A\+T\+I\+\_\+\+Instrument\+Selection\+Handler.\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 34 of file A\+T\+I\+\_\+\+Instrument\+Selection\+Handler.\+cs.
+
+
+\begin{DoxyCode}
+35     \{
+36 
+37 \textcolor{preprocessor}{#if DEBUG && DEBUG\_MUSICAL\_TYPING}
+38         \hyperlink{class_a_t_i___instrument_selection_handler_a744213ecae613372020009bc5c9688c8}{mVIM} = GameObject.Find( \textcolor{stringliteral}{"VirtualInstrumentManager"} ).GetComponent<
+      \hyperlink{class_virtual_instrument_manager}{VirtualInstrumentManager}>();
+39 \textcolor{preprocessor}{#endif}
+40 
+41     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{class_a_t_i___instrument_selection_handler_a725510a41c1f4665e3874029486aab99}\label{class_a_t_i___instrument_selection_handler_a725510a41c1f4665e3874029486aab99}} 
+\index{A\+T\+I\+\_\+\+Instrument\+Selection\+Handler@{A\+T\+I\+\_\+\+Instrument\+Selection\+Handler}!Update@{Update}}
+\index{Update@{Update}!A\+T\+I\+\_\+\+Instrument\+Selection\+Handler@{A\+T\+I\+\_\+\+Instrument\+Selection\+Handler}}
+\subsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily void A\+T\+I\+\_\+\+Instrument\+Selection\+Handler.\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 44 of file A\+T\+I\+\_\+\+Instrument\+Selection\+Handler.\+cs.
+
+
+\begin{DoxyCode}
+45     \{
+46     \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_a_t_i___instrument_selection_handler_a744213ecae613372020009bc5c9688c8}\label{class_a_t_i___instrument_selection_handler_a744213ecae613372020009bc5c9688c8}} 
+\index{A\+T\+I\+\_\+\+Instrument\+Selection\+Handler@{A\+T\+I\+\_\+\+Instrument\+Selection\+Handler}!m\+V\+IM@{m\+V\+IM}}
+\index{m\+V\+IM@{m\+V\+IM}!A\+T\+I\+\_\+\+Instrument\+Selection\+Handler@{A\+T\+I\+\_\+\+Instrument\+Selection\+Handler}}
+\subsubsection{\texorpdfstring{m\+V\+IM}{mVIM}}
+{\footnotesize\ttfamily \hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} A\+T\+I\+\_\+\+Instrument\+Selection\+Handler.\+m\+V\+IM = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 24 of file A\+T\+I\+\_\+\+Instrument\+Selection\+Handler.\+cs.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Documents/\+School Documents/2017\+Spring/\+E\+E\+C\+S542/\+V\+R\+Piano\+Project/\+Assets/\+Scripts/\+Audio/\+Testing/\hyperlink{_a_t_i___instrument_selection_handler_8cs}{A\+T\+I\+\_\+\+Instrument\+Selection\+Handler.\+cs}\end{DoxyCompactItemize}

@@ -1,0 +1,43 @@
+\hypertarget{group___s_m_construct}{}\section{Constructors}
+\label{group___s_m_construct}\index{Constructors@{Constructors}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___s_m_construct_gacd94623c6402ad7c7af2f725265d0e4d}{Song\+Manager\+Class.\+Song\+Manager\+Class} ()
+\begin{DoxyCompactList}\small\item\em Initializes the \hyperlink{class_song_manager_class}{Song\+Manager\+Class} by creating its lists of songs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Constructors to create a \hyperlink{class_song_manager_class}{Song\+Manager\+Class}. Should only be used in the \hyperlink{group___v_i_m_unity_gab92bac4e22476ffe39fc40f49fbd6ae5}{awake function} of the \hyperlink{group___v_i_m}{Virtual\+Instrument\+Manager}. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___s_m_construct_gacd94623c6402ad7c7af2f725265d0e4d}\label{group___s_m_construct_gacd94623c6402ad7c7af2f725265d0e4d}} 
+\index{Constructors@{Constructors}!Song\+Manager\+Class@{Song\+Manager\+Class}}
+\index{Song\+Manager\+Class@{Song\+Manager\+Class}!Constructors@{Constructors}}
+\subsubsection{\texorpdfstring{Song\+Manager\+Class()}{SongManagerClass()}}
+{\footnotesize\ttfamily Song\+Manager\+Class.\+Song\+Manager\+Class (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initializes the \hyperlink{class_song_manager_class}{Song\+Manager\+Class} by creating its lists of songs. 
+
+
+
+Definition at line 41 of file Song\+Manager\+Class.\+cs.
+
+
+
+References Song\+Manager\+Class.\+Load\+Songs().
+
+
+\begin{DoxyCode}
+42     \{
+43         \textcolor{comment}{// Initialize the dictionaries of songs.}
+44         \hyperlink{group___s_m_priv_var_gaf6b4ff41b8da95d10ad3db62df111faa}{mCombinedSongs} = \textcolor{keyword}{new} Dictionary<string, Song>();
+45         \hyperlink{group___s_m_priv_var_ga84f25335035755448d11acb9287360f2}{mDrumLoops} = \textcolor{keyword}{new} Dictionary<string, Song>();
+46         \hyperlink{group___s_m_priv_var_ga935e80f645d0546003f7df8443b79242}{mMelodies} = \textcolor{keyword}{new} Dictionary<string, Song>();
+47 
+48         \textcolor{comment}{// Load the songs in the folder.}
+49         \hyperlink{group___s_m_priv_func_ga73d6d3b38a160fd73b63b786b9cd384a}{LoadSongs}();
+50     \}
+\end{DoxyCode}

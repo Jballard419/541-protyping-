@@ -1,0 +1,71 @@
+\hypertarget{group___n_o_o_priv_func}{}\section{Private Functions}
+\label{group___n_o_o_priv_func}\index{Private Functions@{Private Functions}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___n_o_o_priv_func_ga12f593bb5de83dc548eff4617fc687b5}{Note\+Output\+Object.\+Remove\+Audio\+Data} ()
+\begin{DoxyCompactList}\small\item\em Removes the audio data and resets relevant variables to default values. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+These are functions that are used internally by the \hyperlink{class_note_output_object}{Note\+Output\+Object}. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___n_o_o_priv_func_ga12f593bb5de83dc548eff4617fc687b5}\label{group___n_o_o_priv_func_ga12f593bb5de83dc548eff4617fc687b5}} 
+\index{Private Functions@{Private Functions}!Remove\+Audio\+Data@{Remove\+Audio\+Data}}
+\index{Remove\+Audio\+Data@{Remove\+Audio\+Data}!Private Functions@{Private Functions}}
+\subsubsection{\texorpdfstring{Remove\+Audio\+Data()}{RemoveAudioData()}}
+{\footnotesize\ttfamily void Note\+Output\+Object.\+Remove\+Audio\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Removes the audio data and resets relevant variables to default values. 
+
+
+
+Definition at line 298 of file Note\+Output\+Object.\+cs.
+
+
+
+References Note\+Output\+Object.\+m\+Num\+Built\+In\+Dynamics.
+
+
+
+Referenced by Note\+Output\+Object.\+Set\+Audio\+Data().
+
+
+\begin{DoxyCode}
+299     \{
+300         \hyperlink{group___n_o_o_priv_var_gaf01d2583555de6a523cdf82808718ca9}{mLoaded} = \textcolor{keyword}{false};
+301         \hyperlink{group___n_o_o_priv_var_ga88bfcc80d0cd20c81cd89d19d3231b84}{mNoteRelease} = \textcolor{keyword}{false};
+302         \hyperlink{group___n_o_o_priv_var_gac537ec036adf0645dca2f31fbc5b3dec}{mNewNote} = \textcolor{keyword}{false};
+303         \hyperlink{group___n_o_o_priv_var_ga4417170b8fa977f05a0b4cd0d16412fd}{mNotePlaying} = \textcolor{keyword}{false};
+304 
+305         \textcolor{comment}{// Remove the audio data array.}
+306         \textcolor{keywordflow}{if}( \hyperlink{group___n_o_o_priv_var_ga842eef5bfade070f914b8a551b3bcf43}{mAudioData} != null )
+307         \{
+308             \textcolor{keywordflow}{if}( \hyperlink{group___n_o_o_priv_var_ga3cc04564fcc1b1c4597af18e7e4fbc47}{mNumBuiltInDynamics} == 0 )
+309             \{
+310                 \hyperlink{group___n_o_o_priv_var_ga842eef5bfade070f914b8a551b3bcf43}{mAudioData}[0] = null;
+311             \}
+312             \textcolor{keywordflow}{else}
+313             \{
+314                 \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < \hyperlink{group___n_o_o_priv_var_ga3cc04564fcc1b1c4597af18e7e4fbc47}{mNumBuiltInDynamics}; i++ )
+315                 \{
+316                     \hyperlink{group___n_o_o_priv_var_ga842eef5bfade070f914b8a551b3bcf43}{mAudioData}[i] = null;
+317                 \}
+318             \}
+319             \hyperlink{group___n_o_o_priv_var_ga842eef5bfade070f914b8a551b3bcf43}{mAudioData} = null;
+320         \}
+321 
+322         \textcolor{comment}{// Set relevant variables to default values. This isn't a destructor, it's just}
+323         \textcolor{comment}{// a function to give the output object a clean slate. }
+324         \hyperlink{group___n_o_o_priv_var_ga48c676306790f40714072cd6a81a0128}{mEndSampleIndices} = null;
+325         \hyperlink{group___n_o_o_priv_var_ga5dca97be8d58837ace4ea6f4a972b20a}{mCounter} = 0;
+326         \hyperlink{group___n_o_o_priv_var_ga6a530f5e624caf8087c636df98d7f0b0}{mBuiltInDynamicsThresholds} = null;
+327         \hyperlink{group___n_o_o_priv_var_ga3cc04564fcc1b1c4597af18e7e4fbc47}{mNumBuiltInDynamics} = 0;
+328 
+329         \textcolor{comment}{// Clean up.}
+330         GC.Collect();
+331     \}
+\end{DoxyCode}

@@ -1,0 +1,220 @@
+\hypertarget{group___v_i_m_priv_func}{}\section{Private Functions}
+\label{group___v_i_m_priv_func}\index{Private Functions@{Private Functions}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___v_i_m_priv_func_ga8817e32cc5074737b4d9489922b0fcb8}{Virtual\+Instrument\+Manager.\+Load\+Note\+Output\+Objects} ()
+\begin{DoxyCompactList}\small\item\em Loads each \hyperlink{class_note_output_object}{Note\+Output\+Object} that is used to output the audio. \end{DoxyCompactList}\item 
+void \hyperlink{group___v_i_m_priv_func_gaa207d18111d38374017c580de4077589}{Virtual\+Instrument\+Manager.\+Set\+Up\+Events} ()
+\begin{DoxyCompactList}\small\item\em Sets up the events and adds their listeners. Should only be called from \hyperlink{group___v_i_m_unity_gab92bac4e22476ffe39fc40f49fbd6ae5}{Virtual\+Instrument\+Manager\+::\+Awake()}. \end{DoxyCompactList}\item 
+void \hyperlink{group___v_i_m_priv_func_gaa9e05e51f025afb0ab5cb2a8532c8bba}{Virtual\+Instrument\+Manager.\+Set\+Default\+Values} ()
+\begin{DoxyCompactList}\small\item\em Sets the default values for the \hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager}. Should only be called from \hyperlink{group___v_i_m_unity_gab92bac4e22476ffe39fc40f49fbd6ae5}{Virtual\+Instrument\+Manager\+::\+Awake()}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+These are functions that the \hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} uses internally to perform its tasks. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___v_i_m_priv_func_ga8817e32cc5074737b4d9489922b0fcb8}\label{group___v_i_m_priv_func_ga8817e32cc5074737b4d9489922b0fcb8}} 
+\index{Private Functions@{Private Functions}!Load\+Note\+Output\+Objects@{Load\+Note\+Output\+Objects}}
+\index{Load\+Note\+Output\+Objects@{Load\+Note\+Output\+Objects}!Private Functions@{Private Functions}}
+\subsubsection{\texorpdfstring{Load\+Note\+Output\+Objects()}{LoadNoteOutputObjects()}}
+{\footnotesize\ttfamily void Virtual\+Instrument\+Manager.\+Load\+Note\+Output\+Objects (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Loads each \hyperlink{class_note_output_object}{Note\+Output\+Object} that is used to output the audio. 
+
+This function loads a \hyperlink{class_note_output_object}{Note\+Output\+Object} for every currently playable note, and uses the loaded \hyperlink{class_virtual_instrument}{Virtual\+Instrument} to set the audio data that they will output.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_note_output_object}{Note\+Output\+Object} 
+\end{DoxySeeAlso}
+
+
+Definition at line 521 of file Virtual\+Instrument\+Manager.\+cs.
+
+
+
+References Virtual\+Instrument.\+Get\+Audio\+Data\+For\+Pitch(), Virtual\+Instrument.\+Get\+Built\+In\+Dynamics\+Thresholds(), Virtual\+Instrument\+Manager.\+m\+Active\+Notes, Virtual\+Instrument\+Manager.\+m\+Mixer, Virtual\+Instrument\+Manager.\+m\+Num\+Active\+Notes, Music.\+Note\+To\+String(), Note\+Output\+Object.\+Set\+Audio\+Data(), Note\+Output\+Object.\+Set\+Loop(), and Note\+Output\+Object.\+Set\+V\+I\+M().
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+On\+Change\+Note\+Range\+Event(), and Virtual\+Instrument\+Manager.\+On\+Instrument\+Loaded().
+
+
+\begin{DoxyCode}
+522     \{
+523         Assert.IsNotNull( \hyperlink{group___v_i_m_priv_gaed435d1f9be09864846db4322dc21fd1}{mInstrument}, \textcolor{stringliteral}{"Tried to load NoteOutputObjects when the instrument was
+       null!"} );
+524 
+525         \textcolor{keywordflow}{if}( \hyperlink{group___v_i_m_priv_ga53f837fd01475fa35629a650e7fa00e3}{mOutputs} == null )
+526         \{
+527             \textcolor{comment}{// Initialize the array of NoteOutputObjects.}
+528             \hyperlink{group___v_i_m_priv_ga53f837fd01475fa35629a650e7fa00e3}{mOutputs} = \textcolor{keyword}{new} \hyperlink{class_note_output_object}{NoteOutputObject}[
+      \hyperlink{group___v_i_m_priv_ga0f7e11945763c48057be326b661dfdaf}{mNumActiveNotes}];
+529 
+530             \textcolor{comment}{// For each note, clone a NoteOutputObject.}
+531             GameObject clone = null;
+532             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < \hyperlink{group___v_i_m_priv_ga0f7e11945763c48057be326b661dfdaf}{mNumActiveNotes}; i++ )
+533             \{
+534                 clone = Instantiate( Resources.Load<GameObject>( \textcolor{stringliteral}{"Audio/Prefabs/NoteOutputObjectPrefab"} ) )
+      ;
+535                 clone.transform.position = transform.position;
+536                 \hyperlink{group___v_i_m_priv_ga53f837fd01475fa35629a650e7fa00e3}{mOutputs}[i] = clone.GetComponent<\hyperlink{class_note_output_object}{NoteOutputObject}>();
+537                 clone = null;
+538             \}
+539         \}
+540 
+541         \textcolor{comment}{// Set the audio data of the NoteOutputObject and make sure that they don't loop..}
+542         \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < \hyperlink{group___v_i_m_priv_ga0f7e11945763c48057be326b661dfdaf}{mNumActiveNotes}; i++ )
+543         \{
+544             \hyperlink{group___v_i_m_priv_ga53f837fd01475fa35629a650e7fa00e3}{mOutputs}[i].gameObject.name = \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( 
+      \hyperlink{group___v_i_m_priv_ga5cedf9995d59b416412677e6004b659c}{mActiveNotes}[i] ) + \textcolor{stringliteral}{"NoteOutputObjectContainer"};
+545             \hyperlink{group___v_i_m_priv_ga53f837fd01475fa35629a650e7fa00e3}{mOutputs}[i].\hyperlink{group___n_o_o_pub_func_gaef9ab691f0a2671a62249d853f24162d}{SetAudioData}( \hyperlink{group___v_i_m_priv_gaed435d1f9be09864846db4322dc21fd1}{mInstrument}.
+      \hyperlink{group___v_i_base_pub_func_gaf715f7c3bbd2f1a2fa543b2f0684f8a6}{GetAudioDataForPitch}( \hyperlink{group___v_i_m_priv_ga5cedf9995d59b416412677e6004b659c}{mActiveNotes}[i] ), \hyperlink{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}{mMixer}, 
+      \hyperlink{group___v_i_m_priv_gaed435d1f9be09864846db4322dc21fd1}{mInstrument}.\hyperlink{group___v_i_base_pub_func_gac8fc20c49c1b97b6787ed1b3e0073a7f}{GetBuiltInDynamicsThresholds}() );
+546             \hyperlink{group___v_i_m_priv_ga53f837fd01475fa35629a650e7fa00e3}{mOutputs}[i].\hyperlink{group___n_o_o_pub_func_ga7b79bbd2c7a68831b322edff140f29d2}{SetLoop}( \textcolor{keyword}{false} );
+547             \hyperlink{group___v_i_m_priv_ga53f837fd01475fa35629a650e7fa00e3}{mOutputs}[i].\hyperlink{group___n_o_o_pub_func_gaca261a6f8d95fc7f81bbc3c8108bad58}{SetVIM}( \textcolor{keyword}{this} );
+548         \}
+549 
+550         \textcolor{comment}{// Cleanup.}
+551         GC.Collect();
+552         Resources.UnloadUnusedAssets();
+553 
+554         \textcolor{comment}{// Set that we're ready for note events.}
+555         \hyperlink{group___v_i_m_priv_ga983a11920bf16794735cc193c327ac42}{mReady} = \textcolor{keyword}{true};
+556 
+557         Debug.Log( \textcolor{stringliteral}{"NoteOutputObjects are loaded"} );
+558     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___v_i_m_priv_func_gaa9e05e51f025afb0ab5cb2a8532c8bba}\label{group___v_i_m_priv_func_gaa9e05e51f025afb0ab5cb2a8532c8bba}} 
+\index{Private Functions@{Private Functions}!Set\+Default\+Values@{Set\+Default\+Values}}
+\index{Set\+Default\+Values@{Set\+Default\+Values}!Private Functions@{Private Functions}}
+\subsubsection{\texorpdfstring{Set\+Default\+Values()}{SetDefaultValues()}}
+{\footnotesize\ttfamily void Virtual\+Instrument\+Manager.\+Set\+Default\+Values (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Sets the default values for the \hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager}. Should only be called from \hyperlink{group___v_i_m_unity_gab92bac4e22476ffe39fc40f49fbd6ae5}{Virtual\+Instrument\+Manager\+::\+Awake()}. 
+
+
+
+Definition at line 606 of file Virtual\+Instrument\+Manager.\+cs.
+
+
+
+References Virtual\+Instrument\+Manager.\+D\+E\+F\+A\+U\+L\+T\+\_\+\+H\+I\+G\+H\+E\+S\+T\+\_\+\+P\+I\+T\+CH, Virtual\+Instrument\+Manager.\+D\+E\+F\+A\+U\+L\+T\+\_\+\+I\+N\+S\+T\+R\+U\+M\+E\+N\+T\+\_\+\+T\+Y\+PE, Virtual\+Instrument\+Manager.\+D\+E\+F\+A\+U\+L\+T\+\_\+\+L\+O\+W\+E\+S\+T\+\_\+\+P\+I\+T\+CH, Virtual\+Instrument\+Manager.\+m\+Active\+Notes, Virtual\+Instrument\+Manager.\+m\+Highest\+Active\+Note, Virtual\+Instrument\+Manager.\+m\+Instrument\+Type, Virtual\+Instrument\+Manager.\+m\+Lowest\+Active\+Note, Virtual\+Instrument\+Manager.\+m\+Num\+Active\+Notes, Note\+Output\+Object.\+Set\+Loop(), Note\+Output\+Object.\+Set\+V\+I\+M(), and Note\+Output\+Object.\+Should\+Notify\+When\+Finished().
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+Awake().
+
+
+\begin{DoxyCode}
+607     \{
+608         \hyperlink{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}{mMixer} = Resources.Load<AudioMixer>( \textcolor{stringliteral}{"Audio/VirtualInstrument/VirtualInstrumentAudioMixer"} );
+609         Assert.IsNotNull( \hyperlink{group___v_i_m_priv_ga08c8db1bb89f4ab1e28451dd93d6b99c}{mMixer}, \textcolor{stringliteral}{"Audio mixer was unable to load!"} );
+610 
+611         \textcolor{comment}{// Set the active notes.}
+612         \hyperlink{group___v_i_m_priv_ga5e3a5116e0dabb37e0ea21d73ac1567e}{mLowestActiveNote} = \hyperlink{group___v_i_m_const_ga0ae09555ae6bc8a04110599510a0d77d}{DEFAULT\_LOWEST\_PITCH};
+613         \hyperlink{group___v_i_m_priv_ga73a09a4e4f09c0e5b3871dc9ad6c757e}{mHighestActiveNote} = \hyperlink{group___v_i_m_const_gadb93993bf989a9ac6e95be9e1561a5bb}{DEFAULT\_HIGHEST\_PITCH};
+614         \hyperlink{group___v_i_m_priv_ga0f7e11945763c48057be326b661dfdaf}{mNumActiveNotes} = (int)\hyperlink{group___v_i_m_priv_ga73a09a4e4f09c0e5b3871dc9ad6c757e}{mHighestActiveNote} - (\textcolor{keywordtype}{int})
+      \hyperlink{group___v_i_m_priv_ga5e3a5116e0dabb37e0ea21d73ac1567e}{mLowestActiveNote} + 1;
+615         \hyperlink{group___v_i_m_priv_ga5cedf9995d59b416412677e6004b659c}{mActiveNotes} = \textcolor{keyword}{new} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}[\hyperlink{group___v_i_m_priv_ga0f7e11945763c48057be326b661dfdaf}{mNumActiveNotes}];
+616         \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < \hyperlink{group___v_i_m_priv_ga0f7e11945763c48057be326b661dfdaf}{mNumActiveNotes}; i++ )
+617         \{
+618             \hyperlink{group___v_i_m_priv_ga5cedf9995d59b416412677e6004b659c}{mActiveNotes}[i] = (\hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH})( i + (\textcolor{keywordtype}{int})
+      \hyperlink{group___v_i_m_priv_ga5e3a5116e0dabb37e0ea21d73ac1567e}{mLowestActiveNote} );
+619         \}
+620 
+621         \textcolor{comment}{// Set the instrument type}
+622         \hyperlink{group___v_i_m_priv_ga108c350257b3a2080e06cd4a8251f6a4}{mInstrumentType} = \hyperlink{group___v_i_m_const_gad74e35b317d6cc0bb57a78117fa430e6}{DEFAULT\_INSTRUMENT\_TYPE};
+623 
+624         \textcolor{comment}{// Initialize the song and drum loop outputs.}
+625         GameObject songOutputContainer = Instantiate( Resources.Load<GameObject>( \textcolor{stringliteral}{"
+      Audio/Prefabs/NoteOutputObjectPrefab"} ) );
+626         Assert.IsNotNull( songOutputContainer, \textcolor{stringliteral}{"Could not load NoteOutputObject prefab!"} );
+627         songOutputContainer.name = \textcolor{stringliteral}{"Song Output"};
+628         songOutputContainer.transform.position = transform.position;
+629         \hyperlink{group___v_i_m_priv_gaa8d4f5642f5ac4dca4f4178b0052c78d}{mSongOutput} = songOutputContainer.GetComponent<
+      \hyperlink{class_note_output_object}{NoteOutputObject}>();
+630         \hyperlink{group___v_i_m_priv_gaa8d4f5642f5ac4dca4f4178b0052c78d}{mSongOutput}.\hyperlink{group___n_o_o_pub_func_ga7b79bbd2c7a68831b322edff140f29d2}{SetLoop}( \textcolor{keyword}{false} );
+631         \hyperlink{group___v_i_m_priv_gaa8d4f5642f5ac4dca4f4178b0052c78d}{mSongOutput}.\hyperlink{group___n_o_o_pub_func_gaca261a6f8d95fc7f81bbc3c8108bad58}{SetVIM}( \textcolor{keyword}{this} );
+632         \hyperlink{group___v_i_m_priv_gaa8d4f5642f5ac4dca4f4178b0052c78d}{mSongOutput}.\hyperlink{group___n_o_o_pub_func_gab7bad1b7d462676843be9e0bbfa1c9fb}{ShouldNotifyWhenFinished}( \textcolor{keyword}{true} );
+633 
+634         GameObject drumOutputContainer = Instantiate( Resources.Load<GameObject>( \textcolor{stringliteral}{"
+      Audio/Prefabs/NoteOutputObjectPrefab"} ) );
+635         Assert.IsNotNull( songOutputContainer, \textcolor{stringliteral}{"Could not load NoteOutputObject prefab!"} );
+636         drumOutputContainer.name = \textcolor{stringliteral}{"Drum Loop Output"};
+637         drumOutputContainer.transform.position = transform.position;
+638         \hyperlink{group___v_i_m_priv_ga5f71cb71d240042312dcc13b481b068d}{mDrumLoopOutput} = drumOutputContainer.GetComponent<
+      \hyperlink{class_note_output_object}{NoteOutputObject}>();
+639         \hyperlink{group___v_i_m_priv_ga5f71cb71d240042312dcc13b481b068d}{mDrumLoopOutput}.\hyperlink{group___n_o_o_pub_func_ga7b79bbd2c7a68831b322edff140f29d2}{SetLoop}( \textcolor{keyword}{true} );
+640         \hyperlink{group___v_i_m_priv_ga5f71cb71d240042312dcc13b481b068d}{mDrumLoopOutput}.\hyperlink{group___n_o_o_pub_func_gaca261a6f8d95fc7f81bbc3c8108bad58}{SetVIM}( \textcolor{keyword}{this} );
+641     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___v_i_m_priv_func_gaa207d18111d38374017c580de4077589}\label{group___v_i_m_priv_func_gaa207d18111d38374017c580de4077589}} 
+\index{Private Functions@{Private Functions}!Set\+Up\+Events@{Set\+Up\+Events}}
+\index{Set\+Up\+Events@{Set\+Up\+Events}!Private Functions@{Private Functions}}
+\subsubsection{\texorpdfstring{Set\+Up\+Events()}{SetUpEvents()}}
+{\footnotesize\ttfamily void Virtual\+Instrument\+Manager.\+Set\+Up\+Events (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Sets up the events and adds their listeners. Should only be called from \hyperlink{group___v_i_m_unity_gab92bac4e22476ffe39fc40f49fbd6ae5}{Virtual\+Instrument\+Manager\+::\+Awake()}. 
+
+
+
+Definition at line 563 of file Virtual\+Instrument\+Manager.\+cs.
+
+
+
+References Virtual\+Instrument\+Manager.\+On\+Change\+Instrument\+Event(), Virtual\+Instrument\+Manager.\+On\+Change\+Note\+Range\+Event(), Virtual\+Instrument\+Manager.\+On\+Instrument\+Loaded(), Virtual\+Instrument\+Manager.\+On\+Modify\+Echo\+Filter\+Event(), Virtual\+Instrument\+Manager.\+On\+Modify\+Reverb\+Filter\+Event(), Virtual\+Instrument\+Manager.\+On\+Pause\+Drum\+Loop\+Event(), Virtual\+Instrument\+Manager.\+On\+Pause\+Song\+Event(), Virtual\+Instrument\+Manager.\+On\+Play\+Drum\+Loop\+Event(), Virtual\+Instrument\+Manager.\+On\+Play\+Note\+Event(), Virtual\+Instrument\+Manager.\+On\+Play\+Song\+Event(), Virtual\+Instrument\+Manager.\+On\+Release\+Note\+Event(), Virtual\+Instrument\+Manager.\+On\+Resume\+Drum\+Loop\+Event(), Virtual\+Instrument\+Manager.\+On\+Resume\+Song\+Event(), Virtual\+Instrument\+Manager.\+On\+Stop\+Drum\+Loop\+Event(), and Virtual\+Instrument\+Manager.\+On\+Stop\+Song\+Event().
+
+
+
+Referenced by Virtual\+Instrument\+Manager.\+Awake().
+
+
+\begin{DoxyCode}
+564     \{
+565         \textcolor{comment}{// Initialize the events.}
+566         \hyperlink{group___v_i_m_events_ga39ffa8215ab5c9ad46c563e2bd87c219}{AudioFinished} = \textcolor{keyword}{new} AudioFinishedEvent();
+567         \hyperlink{group___v_i_m_events_gab6fa99d08e8466406835b9fc4ff859f1}{ChangeNoteRange} = \textcolor{keyword}{new} ChangeNoteRangeEvent();
+568         \hyperlink{group___v_i_m_events_ga1b9f12a73a5418ea5695d38b78c506c4}{ChangeInstrument} = \textcolor{keyword}{new} ChangeInstrumentEvent();
+569         \hyperlink{group___v_i_m_events_gad79b789b020d7e4a8c149ec653c0b97f}{InstrumentLoaded} = \textcolor{keyword}{new} InstrumentLoadedEvent();
+570         \hyperlink{group___v_i_m_events_ga112ed15f48fd261f1ad71c3c953c0a58}{ModifyEchoFilter} = \textcolor{keyword}{new} ModifyEchoFilterEvent();
+571         \hyperlink{group___v_i_m_events_gaadd137e073cb3849f610a46e0d032858}{ModifyReverbFilter} = \textcolor{keyword}{new} ModifyReverbFilterEvent();
+572         \hyperlink{group___v_i_m_events_ga6de00a430321852cc3c8c4a213d62c70}{PauseDrumLoop} = \textcolor{keyword}{new} PauseDrumLoopEvent();
+573         \hyperlink{group___v_i_m_events_gae2d76fc98161d7a4573628dbd93e7887}{PauseSong} = \textcolor{keyword}{new} PauseSongEvent();
+574         \hyperlink{group___v_i_m_events_ga5657ff4bcc7de6d240d7092ffd22a6fe}{PlayDrumLoop} = \textcolor{keyword}{new} PlayDrumLoopEvent();
+575         \hyperlink{group___v_i_m_events_gaa21021c13a8c9d13cbf374d5bf9d68fa}{PlayNote} = \textcolor{keyword}{new} PlayNoteEvent();
+576         \hyperlink{group___v_i_m_events_gae450bdba9c513ab4e43f69def50fa84d}{PlaySong} = \textcolor{keyword}{new} PlaySongEvent();
+577         \hyperlink{group___v_i_m_events_ga3a1726a6366126421434c2c7be5e5678}{ReleaseNote} = \textcolor{keyword}{new} ReleaseNoteEvent();
+578         \hyperlink{group___v_i_m_events_ga54db2dc24076cd3cd130e95c2fd5bea0}{ResumeDrumLoop} = \textcolor{keyword}{new} ResumeDrumLoopEvent();
+579         \hyperlink{group___v_i_m_events_ga01670916ae3917c84a0fb51667f30ab9}{ResumeSong} = \textcolor{keyword}{new} ResumeSongEvent();
+580         \hyperlink{group___v_i_m_events_ga9466995fd3b4a07351a8577042ee8b31}{StopDrumLoop} = \textcolor{keyword}{new} StopDrumLoopEvent();
+581         \hyperlink{group___v_i_m_events_gaa9e464629814abf2e4db88e240fac72c}{StopSong} = \textcolor{keyword}{new} StopSongEvent();
+582 
+583         \textcolor{comment}{// Add their listeners.}
+584         \hyperlink{group___v_i_m_events_gab6fa99d08e8466406835b9fc4ff859f1}{ChangeNoteRange}.AddListener( \hyperlink{group___v_i_m_handlers_ga660c766dceebfc830de2cf96686692df}{OnChangeNoteRangeEvent} );
+585         \hyperlink{group___v_i_m_events_ga1b9f12a73a5418ea5695d38b78c506c4}{ChangeInstrument}.AddListener( \hyperlink{group___v_i_m_handlers_ga8e79286073756c31e08fecd59ce04fa7}{OnChangeInstrumentEvent} );
+586         \hyperlink{group___v_i_m_events_gad79b789b020d7e4a8c149ec653c0b97f}{InstrumentLoaded}.AddListener( \hyperlink{group___v_i_m_handlers_gac7d5b65484e450a400e32ab416ebc9f6}{OnInstrumentLoaded} );
+587         \hyperlink{group___v_i_m_events_ga112ed15f48fd261f1ad71c3c953c0a58}{ModifyEchoFilter}.AddListener( \hyperlink{group___v_i_m_handlers_gae504c6ded8eb68ffb117c207fc25d99d}{OnModifyEchoFilterEvent} );
+588         \hyperlink{group___v_i_m_events_gaadd137e073cb3849f610a46e0d032858}{ModifyReverbFilter}.AddListener( 
+      \hyperlink{group___v_i_m_handlers_ga2b310217971075b1b2db67d68fbbea5a}{OnModifyReverbFilterEvent} );
+589         \hyperlink{group___v_i_m_events_ga6de00a430321852cc3c8c4a213d62c70}{PauseDrumLoop}.AddListener( \hyperlink{group___v_i_m_handlers_ga30cd7f00fea55becd6d90f0ec737510a}{OnPauseDrumLoopEvent} );
+590         \hyperlink{group___v_i_m_events_gae2d76fc98161d7a4573628dbd93e7887}{PauseSong}.AddListener( \hyperlink{group___v_i_m_handlers_gad052b3cc53b35b25631f9b399be489ae}{OnPauseSongEvent} );
+591         \hyperlink{group___v_i_m_events_ga5657ff4bcc7de6d240d7092ffd22a6fe}{PlayDrumLoop}.AddListener( \hyperlink{group___v_i_m_handlers_gae2e2010b9a36ae2409466181ae0b9679}{OnPlayDrumLoopEvent} );
+592         \hyperlink{group___v_i_m_events_gaa21021c13a8c9d13cbf374d5bf9d68fa}{PlayNote}.AddListener( \hyperlink{group___v_i_m_handlers_ga80b3821df3b1488a150f6062638f105c}{OnPlayNoteEvent} );
+593         \hyperlink{group___v_i_m_events_gae450bdba9c513ab4e43f69def50fa84d}{PlaySong}.AddListener( \hyperlink{group___v_i_m_handlers_ga7fd877a7d429403abbfd2728aa63c056}{OnPlaySongEvent} );
+594         \hyperlink{group___v_i_m_events_ga3a1726a6366126421434c2c7be5e5678}{ReleaseNote}.AddListener( \hyperlink{group___v_i_m_handlers_ga0f0a34c251d154131f9ea130a54dc989}{OnReleaseNoteEvent} );
+595         \hyperlink{group___v_i_m_events_ga54db2dc24076cd3cd130e95c2fd5bea0}{ResumeDrumLoop}.AddListener( \hyperlink{group___v_i_m_handlers_ga97e3e73e05a7ab6027f25573712367a2}{OnResumeDrumLoopEvent} );
+596         \hyperlink{group___v_i_m_events_ga01670916ae3917c84a0fb51667f30ab9}{ResumeSong}.AddListener( \hyperlink{group___v_i_m_handlers_gaca3d2c89672fe0eb3d94b3cb2072de59}{OnResumeSongEvent} );
+597         \hyperlink{group___v_i_m_events_ga9466995fd3b4a07351a8577042ee8b31}{StopDrumLoop}.AddListener( \hyperlink{group___v_i_m_handlers_ga9d251d8b2036a3416680ced5d6125d0e}{OnStopDrumLoopEvent} );
+598         \hyperlink{group___v_i_m_events_gaa9e464629814abf2e4db88e240fac72c}{StopSong}.AddListener( \hyperlink{group___v_i_m_handlers_ga5d9afb7a74107b5c6016555f0bb0a0a8}{OnStopSongEvent} );
+599 
+600 
+601     \}
+\end{DoxyCode}

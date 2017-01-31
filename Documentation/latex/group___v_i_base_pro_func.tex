@@ -1,0 +1,226 @@
+\hypertarget{group___v_i_base_pro_func}{}\section{Protected Functions}
+\label{group___v_i_base_pro_func}\index{Protected Functions@{Protected Functions}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___v_i_base_pro_func_gadbd95083895b09465fbc5b18115a1dbc}{Virtual\+Instrument.\+Load\+Audio\+Clip\+For\+Pitch} (\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} a\+Pitch)
+\begin{DoxyCompactList}\small\item\em Loads all the audio clips associated with a pitch. \end{DoxyCompactList}\item 
+void \hyperlink{group___v_i_base_pro_func_ga873242f52d077ca4305b0b69a0100b55}{Virtual\+Instrument.\+Load\+Audio\+Clips} ()
+\begin{DoxyCompactList}\small\item\em Loads the audio clips for the instrument. \hyperlink{group___v_i_base_virt_func_gaacfc9521214176292bfb9665556fb991}{Virtual\+Instrument\+::\+Create\+Filenames} must be called prior to this function in order to actually find the files. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Functions that are used by the subclasses. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___v_i_base_pro_func_gadbd95083895b09465fbc5b18115a1dbc}\label{group___v_i_base_pro_func_gadbd95083895b09465fbc5b18115a1dbc}} 
+\index{Protected Functions@{Protected Functions}!Load\+Audio\+Clip\+For\+Pitch@{Load\+Audio\+Clip\+For\+Pitch}}
+\index{Load\+Audio\+Clip\+For\+Pitch@{Load\+Audio\+Clip\+For\+Pitch}!Protected Functions@{Protected Functions}}
+\subsubsection{\texorpdfstring{Load\+Audio\+Clip\+For\+Pitch()}{LoadAudioClipForPitch()}}
+{\footnotesize\ttfamily void Virtual\+Instrument.\+Load\+Audio\+Clip\+For\+Pitch (\begin{DoxyParamCaption}\item[{\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH}}]{a\+Pitch }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Loads all the audio clips associated with a pitch. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Pitch} & The pitch to load the audio clips for. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 304 of file Virtual\+Instrument.\+cs.
+
+
+
+References Virtual\+Instrument.\+m\+Highest\+Supported\+Pitch, Virtual\+Instrument.\+m\+Lowest\+Supported\+Pitch, Virtual\+Instrument.\+m\+Num\+Built\+In\+Dynamics, Virtual\+Instrument.\+m\+Num\+Supported\+Pitches, Virtual\+Instrument.\+Normalize\+Audio\+Clips\+For\+Pitch(), and Music.\+Note\+To\+String().
+
+
+
+Referenced by Virtual\+Instrument.\+Get\+Audio\+Data\+For\+Pitch().
+
+
+\begin{DoxyCode}
+305     \{
+306         Assert.IsTrue( aPitch >= \hyperlink{group___v_i_base_pro_var_ga3cae52b1bcc0178a8a6b03c7aaf7aac8}{mLowestSupportedPitch} && aPitch <= 
+      \hyperlink{group___v_i_base_pro_var_ga61fb2c33b53a0f663047779d7ceb18f3}{mHighestSupportedPitch},
+307             \textcolor{stringliteral}{"Tried to load the pitch "} + \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( aPitch ) + \textcolor{stringliteral}{", but that's out
+       of the instrument's range from "} +
+308             \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( \hyperlink{group___v_i_base_pro_var_ga3cae52b1bcc0178a8a6b03c7aaf7aac8}{mLowestSupportedPitch} ) + \textcolor{stringliteral}{" to "} + 
+      \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( \hyperlink{group___v_i_base_pro_var_ga61fb2c33b53a0f663047779d7ceb18f3}{mHighestSupportedPitch} ) );
+309 
+310         \textcolor{comment}{// Get the file index.}
+311         \textcolor{keywordtype}{int} fileIndex = (int)aPitch - (\textcolor{keywordtype}{int})\hyperlink{group___v_i_base_pro_var_ga3cae52b1bcc0178a8a6b03c7aaf7aac8}{mLowestSupportedPitch};
+312         
+313         \textcolor{comment}{// Get the audio clips for the pitch.}
+314         AudioClip[] clips = null;
+315 
+316         \textcolor{comment}{// If Built-In Dynamics are not supported, then just get the one clip.}
+317         \textcolor{keywordflow}{if}( \hyperlink{group___v_i_base_pro_var_gac265f64f759d267ee1e1680f8d387011}{mNumBuiltInDynamics} == 0 )
+318         \{
+319             \textcolor{comment}{// Get the audio file.}
+320             clips = \textcolor{keyword}{new} AudioClip[1];
+321             clips[0] = Resources.Load<AudioClip>( \hyperlink{group___v_i_base_pro_var_gab2add474ca506357688b5dd08cac4cb5}{mFilenames}[fileIndex] );
+322             Assert.IsNotNull( clips[0], \textcolor{stringliteral}{"Failed to load audioclip from file "} + 
+      \hyperlink{group___v_i_base_pro_var_gab2add474ca506357688b5dd08cac4cb5}{mFilenames}[fileIndex] );
+323 
+324             \textcolor{comment}{// Load the audio data.}
+325             clips[0].LoadAudioData();
+326 
+327             \textcolor{comment}{// Normalize the clip.}
+328             \hyperlink{group___v_i_base_priv_func_gaecd4f9ead08a03be878b2085055a975c}{NormalizeAudioClipsForPitch}( aPitch, clips );
+329         \}
+330         \textcolor{comment}{// If Built-In Dynamics are supported, then get all of the associated clips.}
+331         \textcolor{keywordflow}{else}
+332         \{
+333             \textcolor{comment}{// Allocate space for the clips.}
+334             clips = \textcolor{keyword}{new} AudioClip[\hyperlink{group___v_i_base_pro_var_gac265f64f759d267ee1e1680f8d387011}{mNumBuiltInDynamics}];
+335 
+336             \textcolor{comment}{// Load the clips.}
+337             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < \hyperlink{group___v_i_base_pro_var_gac265f64f759d267ee1e1680f8d387011}{mNumBuiltInDynamics}; i++ )
+338             \{
+339                 \textcolor{comment}{// Load the wav file.}
+340                 clips[i] = Resources.Load<AudioClip>( \hyperlink{group___v_i_base_pro_var_gab2add474ca506357688b5dd08cac4cb5}{mFilenames}[fileIndex] );
+341                 Assert.IsNotNull( clips[0], \textcolor{stringliteral}{"Failed to load audioclip from file "} + 
+      \hyperlink{group___v_i_base_pro_var_gab2add474ca506357688b5dd08cac4cb5}{mFilenames}[fileIndex] );
+342 
+343                 \textcolor{comment}{// Load the audio data into the AudioClip.}
+344                 clips[i].LoadAudioData();
+345 
+346                 \textcolor{comment}{// Go to the next file.}
+347                 fileIndex += \hyperlink{group___v_i_base_pro_var_gafc759a16324cf9b3f230bcbf040afcd2}{mNumSupportedPitches};
+348             \}
+349 
+350             \textcolor{comment}{// Normalize the clips.}
+351             \hyperlink{group___v_i_base_priv_func_gaecd4f9ead08a03be878b2085055a975c}{NormalizeAudioClipsForPitch}( aPitch, clips );
+352         \}
+353 
+354         \textcolor{comment}{// Clean up.}
+355         clips = null;
+356         Resources.UnloadUnusedAssets();
+357         GC.Collect();
+358     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___v_i_base_pro_func_ga873242f52d077ca4305b0b69a0100b55}\label{group___v_i_base_pro_func_ga873242f52d077ca4305b0b69a0100b55}} 
+\index{Protected Functions@{Protected Functions}!Load\+Audio\+Clips@{Load\+Audio\+Clips}}
+\index{Load\+Audio\+Clips@{Load\+Audio\+Clips}!Protected Functions@{Protected Functions}}
+\subsubsection{\texorpdfstring{Load\+Audio\+Clips()}{LoadAudioClips()}}
+{\footnotesize\ttfamily void Virtual\+Instrument.\+Load\+Audio\+Clips (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Loads the audio clips for the instrument. \hyperlink{group___v_i_base_virt_func_gaacfc9521214176292bfb9665556fb991}{Virtual\+Instrument\+::\+Create\+Filenames} must be called prior to this function in order to actually find the files. 
+
+This function handles the loading of the audio clips, getting their audio data, and passing the audio data to \hyperlink{group___v_i_base_priv_func_ga0262de8cfb1e671b01ba76de2e9d140a}{Virtual\+Instrument\+::\+Normalize\+Audio\+Clips()}. 
+
+Definition at line 366 of file Virtual\+Instrument.\+cs.
+
+
+
+References Music.\+M\+A\+X\+\_\+\+S\+U\+P\+P\+O\+R\+T\+E\+D\+\_\+\+D\+R\+U\+MS, Music.\+M\+A\+X\+\_\+\+S\+U\+P\+P\+O\+R\+T\+E\+D\+\_\+\+N\+O\+T\+ES, Virtual\+Instrument.\+m\+Highest\+Supported\+Pitch, Virtual\+Instrument.\+m\+Lowest\+Supported\+Pitch, Virtual\+Instrument.\+m\+Num\+Built\+In\+Dynamics, and Virtual\+Instrument.\+Normalize\+Audio\+Clips().
+
+
+\begin{DoxyCode}
+367     \{
+368         \textcolor{comment}{// Initialize index variables so that all of the files can be iterated through and appropriately }
+369         \textcolor{comment}{// assigned to an array of audio clips. }
+370         \textcolor{keywordtype}{int} index = (int)\hyperlink{group___v_i_base_pro_var_ga3cae52b1bcc0178a8a6b03c7aaf7aac8}{mLowestSupportedPitch};
+371         \textcolor{keywordtype}{int} fileIndex = 0;
+372         AudioClip[][] audioClips = null;
+373         \textcolor{comment}{// If there aren't any built-in dynamics, then use a hard-coded index of 0 for the outer array.}
+374         \textcolor{keywordflow}{if}( \hyperlink{group___v_i_base_pro_var_gac265f64f759d267ee1e1680f8d387011}{mNumBuiltInDynamics} == 0 )
+375         \{
+376             \textcolor{comment}{// Initialize the array of audio clips. In order to account for instruments differing in the
+       range of notes }
+377             \textcolor{comment}{// that they support, the inner audio clip array is set to have an element for every possible
+       note. Unsupported}
+378             \textcolor{comment}{// notes will have null audio clips at their indices. Drum kits will not have to worry about
+       this.   }
+379             audioClips = \textcolor{keyword}{new} AudioClip[1][];
+380 
+381             \textcolor{keywordflow}{if}( \hyperlink{group___v_i_base_pro_var_ga47dbd8aa02ab32b8f802adfd2d3d81de}{mIsDrum} )
+382             \{
+383                 audioClips[0] = \textcolor{keyword}{new} AudioClip[\hyperlink{class_music}{Music}.\hyperlink{group___music_constants_gabce1a1ac5b9b6355af6bd7fb3868467a}{MAX\_SUPPORTED\_DRUMS}];
+384             \}
+385             \textcolor{keywordflow}{else}
+386             \{
+387                 audioClips[0] = \textcolor{keyword}{new} AudioClip[\hyperlink{class_music}{Music}.\hyperlink{group___music_constants_gaaf07da909a12e9fec0e43b70864f27b7}{MAX\_SUPPORTED\_NOTES}];
+388             \}
+389 
+390 
+391             \textcolor{comment}{// The indices of the loaded audio clips are mapped to their corresponding note. }
+392             \textcolor{keywordflow}{while}( index <= (\textcolor{keywordtype}{int})\hyperlink{group___v_i_base_pro_var_ga61fb2c33b53a0f663047779d7ceb18f3}{mHighestSupportedPitch} )
+393             \{
+394                 \textcolor{comment}{// Load the audio clip into the audio clip array.}
+395                 audioClips[0][index] = Resources.Load<AudioClip>( \hyperlink{group___v_i_base_pro_var_gab2add474ca506357688b5dd08cac4cb5}{mFilenames}[fileIndex] );
+396                 Assert.IsNotNull( audioClips[0][index], \textcolor{stringliteral}{"Failed to load audioclip from file "} + 
+      \hyperlink{group___v_i_base_pro_var_gab2add474ca506357688b5dd08cac4cb5}{mFilenames}[fileIndex] );
+397 
+398                 \textcolor{comment}{// Load the audio data for the audio clip}
+399                 audioClips[0][index].LoadAudioData();
+400 
+401                 \textcolor{comment}{// Increment the index variables.}
+402                 index++;
+403                 fileIndex++;
+404                 Assert.IsTrue( fileIndex <= \hyperlink{group___v_i_base_pro_var_ga9a602db8c9833ce75d95dd453c27d341}{mNumFiles}, \textcolor{stringliteral}{"Tried to load more files than were
+       available. Recheck how many files are availabled for the virtual instrument"} );
+405             \}
+406         \}
+407         \textcolor{comment}{// If built-in dynamics are available for this instrument, then load audio clips for each built-in
+       dynamics value.}
+408         \textcolor{keywordflow}{else}
+409         \{
+410             \textcolor{comment}{// Initializ the outer array of audio clips}
+411             audioClips = \textcolor{keyword}{new} AudioClip[\hyperlink{group___v_i_base_pro_var_gac265f64f759d267ee1e1680f8d387011}{mNumBuiltInDynamics}][];
+412 
+413             \textcolor{comment}{// Iterate through each outer array.}
+414             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < \hyperlink{group___v_i_base_pro_var_gac265f64f759d267ee1e1680f8d387011}{mNumBuiltInDynamics}; i++ )
+415             \{
+416                 \textcolor{comment}{// Initialize the inner array of audio clips. In order to account for instruments differing
+       in the range of notes }
+417                 \textcolor{comment}{// that they support, the inner audio clip array is set to have an element for every
+       possible note. Unsupported}
+418                 \textcolor{comment}{// notes will have null audio clips at their indices. Drum kits will not have to worry
+       about this.}
+419 
+420                 \textcolor{keywordflow}{if}( \hyperlink{group___v_i_base_pro_var_ga47dbd8aa02ab32b8f802adfd2d3d81de}{mIsDrum} )
+421                 \{
+422                     audioClips[i] = \textcolor{keyword}{new} AudioClip[\hyperlink{class_music}{Music}.\hyperlink{group___music_constants_gabce1a1ac5b9b6355af6bd7fb3868467a}{MAX\_SUPPORTED\_DRUMS}];
+423                 \}
+424                 \textcolor{keywordflow}{else}
+425                 \{
+426                     audioClips[i] = \textcolor{keyword}{new} AudioClip[\hyperlink{class_music}{Music}.\hyperlink{group___music_constants_gaaf07da909a12e9fec0e43b70864f27b7}{MAX\_SUPPORTED\_NOTES}];
+427 
+428                 \}
+429 
+430                 \textcolor{comment}{// The indices of the loaded audio clips are mapped to their corresponding note. }
+431                 \textcolor{keywordflow}{while}( index <= (\textcolor{keywordtype}{int})\hyperlink{group___v_i_base_pro_var_ga61fb2c33b53a0f663047779d7ceb18f3}{mHighestSupportedPitch} )
+432                 \{
+433                     \textcolor{comment}{// Load the audio clip into the audio clip array.}
+434                     audioClips[i][index] = Resources.Load<AudioClip>( \hyperlink{group___v_i_base_pro_var_gab2add474ca506357688b5dd08cac4cb5}{mFilenames}[fileIndex] );
+435                     Assert.IsNotNull( audioClips[0][index], \textcolor{stringliteral}{"Failed to load audioclip from file "} + 
+      \hyperlink{group___v_i_base_pro_var_gab2add474ca506357688b5dd08cac4cb5}{mFilenames}[fileIndex] );
+436 
+437                     \textcolor{comment}{// Load the audio data for the audio clip}
+438                     audioClips[i][index].LoadAudioData();
+439 
+440                     \textcolor{comment}{// Increment the index variables.}
+441                     index++;
+442                     fileIndex++;
+443                     Assert.IsTrue( fileIndex <= \hyperlink{group___v_i_base_pro_var_ga9a602db8c9833ce75d95dd453c27d341}{mNumFiles}, \textcolor{stringliteral}{"Tried to load more files than were
+       available. Recheck how many files are availabled for the piano virtual instrument"} );
+444                 \}
+445                 \textcolor{comment}{// Reset the note index when going to the next outer array. }
+446                 index = (int)\hyperlink{group___v_i_base_pro_var_ga3cae52b1bcc0178a8a6b03c7aaf7aac8}{mLowestSupportedPitch};
+447             \}
+448         \}
+449         \textcolor{comment}{// Normalize the audio clips.}
+450         \hyperlink{group___v_i_base_priv_func_ga0262de8cfb1e671b01ba76de2e9d140a}{NormalizeAudioClips}( audioClips );
+451 
+452         \textcolor{comment}{// Get rid of unused assets.}
+453         audioClips = null;
+454         Resources.UnloadUnusedAssets();
+455         GC.Collect();
+456     \}
+\end{DoxyCode}

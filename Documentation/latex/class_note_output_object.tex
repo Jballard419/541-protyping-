@@ -1,0 +1,109 @@
+\hypertarget{class_note_output_object}{}\section{Note\+Output\+Object Class Reference}
+\label{class_note_output_object}\index{Note\+Output\+Object@{Note\+Output\+Object}}
+
+
+Unity Game\+Object that handles the actual output of sound.  
+
+
+Inheritance diagram for Note\+Output\+Object\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_note_output_object}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___n_o_o_pub_func_ga2bdaa2787408f353f71ef6c6a18e9285}{Being\+Playing} (float a\+Velocity\+Factor, int a\+Dynamics\+Index, int a\+Start\+Index=0)
+\begin{DoxyCompactList}\small\item\em Handler for setting the note to be played. Should be called from \hyperlink{group___v_i_m_event_types_class_virtual_instrument_manager_1_1_play_note_event}{the manager\textquotesingle{}s Play\+Note event}. \end{DoxyCompactList}\item 
+void \hyperlink{group___n_o_o_pub_func_ga044e62759958d717c7fa4fd1615e2ec1}{Begin\+Release} ()
+\begin{DoxyCompactList}\small\item\em Marks that the audio should begin fading out. \end{DoxyCompactList}\item 
+bool \hyperlink{group___n_o_o_pub_func_ga24d76043802c442f571c5c34a854ff86}{Get\+Loop} ()
+\begin{DoxyCompactList}\small\item\em Gets whether or not the audio should loop. \end{DoxyCompactList}\item 
+void \hyperlink{group___n_o_o_pub_func_ga7977bc941f355866c7e4c141a8f7b8bb}{Pause\+Audio} ()
+\begin{DoxyCompactList}\small\item\em Pauses the audio. \end{DoxyCompactList}\item 
+void \hyperlink{group___n_o_o_pub_func_ga2df8edec357dd4123146c9a7e8485ffb}{Resume\+Audio} ()
+\begin{DoxyCompactList}\small\item\em Resumes the audio. \end{DoxyCompactList}\item 
+void \hyperlink{group___n_o_o_pub_func_gaef9ab691f0a2671a62249d853f24162d}{Set\+Audio\+Data} (float\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} a\+Audio\+Data, Audio\+Mixer a\+Mixer, int\mbox{[}$\,$\mbox{]} a\+Thresholds=null)
+\begin{DoxyCompactList}\small\item\em Sets the audio data for this object. \end{DoxyCompactList}\item 
+void \hyperlink{group___n_o_o_pub_func_ga7b79bbd2c7a68831b322edff140f29d2}{Set\+Loop} (bool a\+Loop)
+\begin{DoxyCompactList}\small\item\em Sets whether or not the audio should loop. \end{DoxyCompactList}\item 
+void \hyperlink{group___n_o_o_pub_func_gaca261a6f8d95fc7f81bbc3c8108bad58}{Set\+V\+IM} (\hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} a\+V\+IM)
+\begin{DoxyCompactList}\small\item\em Sets the parent \hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} and sets up diagnostics if needed. \end{DoxyCompactList}\item 
+void \hyperlink{group___n_o_o_pub_func_gab7bad1b7d462676843be9e0bbfa1c9fb}{Should\+Notify\+When\+Finished} (bool a\+Should\+Notify)
+\begin{DoxyCompactList}\small\item\em Sets whether or not an others should be notified when the audio has finished playing. \end{DoxyCompactList}\item 
+void \hyperlink{group___n_o_o_pub_func_gae8a8e5bc027fd0186464a68399a4fecb}{Stop\+Audio} ()
+\begin{DoxyCompactList}\small\item\em Stops playing the audio. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___n_o_o_unity_ga5c3cd343b7bfe7dec693d2cb69ec3cce}{Awake} ()
+\begin{DoxyCompactList}\small\item\em Called when the object is created. This function creates an audio source and sets the initial values for each variable. \end{DoxyCompactList}\item 
+void \hyperlink{group___n_o_o_priv_func_ga12f593bb5de83dc548eff4617fc687b5}{Remove\+Audio\+Data} ()
+\begin{DoxyCompactList}\small\item\em Removes the audio data and resets relevant variables to default values. \end{DoxyCompactList}\item 
+void \hyperlink{group___n_o_o_handlers_gaafd22f8a8c8d2cf101a54a4bf92782a5}{On\+Audio\+Filter\+Read} (float\mbox{[}$\,$\mbox{]} data, int channels)
+\begin{DoxyCompactList}\small\item\em Handler that is called whenever the audio buffer is refilled. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___audio_testing_class_a_t_i___diagnostics}{A\+T\+I\+\_\+\+Diagnostics} \hyperlink{group___n_o_o_priv_var_gacd4376d2314caafc831cc049e9ca58d8}{m\+Diagnostics\+Handler} = null
+\begin{DoxyCompactList}\small\item\em The audio diagnostics handler. \end{DoxyCompactList}\item 
+Audio\+Source \hyperlink{group___n_o_o_priv_var_gad5e14a91b348e61166dbf6b6cf13649c}{m\+Source}
+\begin{DoxyCompactList}\small\item\em The Audio\+Source component of this object. \end{DoxyCompactList}\item 
+bool \hyperlink{group___n_o_o_priv_var_ga1efa96121f085b27c7d9e8725f90a336}{m\+Audio\+Data\+Being\+Used}
+\begin{DoxyCompactList}\small\item\em Whether or not On\+Audio\+Filter\+Read is currently using the audio data. \end{DoxyCompactList}\item 
+bool \hyperlink{group___n_o_o_priv_var_gaf01d2583555de6a523cdf82808718ca9}{m\+Loaded}
+\begin{DoxyCompactList}\small\item\em Whether or not this object has loaded. \end{DoxyCompactList}\item 
+bool \hyperlink{group___n_o_o_priv_var_gabf1d5013f44773e9fd3e4dbb59d74aeb}{m\+Loop}
+\begin{DoxyCompactList}\small\item\em Whether or not the audio should loop. \end{DoxyCompactList}\item 
+bool \hyperlink{group___n_o_o_priv_var_gac537ec036adf0645dca2f31fbc5b3dec}{m\+New\+Note}
+\begin{DoxyCompactList}\small\item\em Whether or not a new note needs to be started. \end{DoxyCompactList}\item 
+bool \hyperlink{group___n_o_o_priv_var_gaf72dd5943487433966b20b973be1e8b3}{m\+Notify\+When\+Finished}
+\begin{DoxyCompactList}\small\item\em Should it notify the parent when the audio has finished playing? \end{DoxyCompactList}\item 
+bool \hyperlink{group___n_o_o_priv_var_ga50fe6047e6a199215fc70b9fc78ac7eb}{m\+Paused}
+\begin{DoxyCompactList}\small\item\em Is the audio paused? \end{DoxyCompactList}\item 
+bool \hyperlink{group___n_o_o_priv_var_ga1f7a31f1aefc1633f1f435e3438a1efb}{m\+Resume}
+\begin{DoxyCompactList}\small\item\em Whether or not the audio should resume from its previous position. \end{DoxyCompactList}\item 
+bool \hyperlink{group___n_o_o_priv_var_ga4417170b8fa977f05a0b4cd0d16412fd}{m\+Note\+Playing}
+\begin{DoxyCompactList}\small\item\em Whether or not the note is currently playing. \end{DoxyCompactList}\item 
+bool \hyperlink{group___n_o_o_priv_var_ga88bfcc80d0cd20c81cd89d19d3231b84}{m\+Note\+Release}
+\begin{DoxyCompactList}\small\item\em Whether or not the note has been released. \end{DoxyCompactList}\item 
+bool \hyperlink{group___n_o_o_priv_var_gafa20525b5515ab62d109f44ab45fba21}{m\+Reported} = false
+\begin{DoxyCompactList}\small\item\em Whether or not we have reported to the audio diagnostics handler. \end{DoxyCompactList}\item 
+float \hyperlink{group___n_o_o_priv_var_gaf3cd650d21c56c25ce988d9f75279278}{m\+New\+Note\+Velocity\+Factor}
+\begin{DoxyCompactList}\small\item\em The velocity of a new note mapped to the range \mbox{[}0,1\mbox{]}. \end{DoxyCompactList}\item 
+float \hyperlink{group___n_o_o_priv_var_ga84df25e871d69746a7c520f3f8b49a27}{m\+Velocity\+Factor}
+\begin{DoxyCompactList}\small\item\em A percentage mapping a given velocity to the output volume. \end{DoxyCompactList}\item 
+float \mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} \hyperlink{group___n_o_o_priv_var_ga842eef5bfade070f914b8a551b3bcf43}{m\+Audio\+Data}
+\begin{DoxyCompactList}\small\item\em A container for raw audio data. \end{DoxyCompactList}\item 
+int \hyperlink{group___n_o_o_priv_var_ga5dca97be8d58837ace4ea6f4a972b20a}{m\+Counter}
+\begin{DoxyCompactList}\small\item\em A counter to keep track of the current position in the raw audio data. \end{DoxyCompactList}\item 
+int \hyperlink{group___n_o_o_priv_var_gaf0c9c2a90b5d73b8ffa0906bc69acdbc}{m\+Dynamics\+Index}
+\begin{DoxyCompactList}\small\item\em The index corresponding to which built-\/in dynamics value is currently in use. \end{DoxyCompactList}\item 
+int \hyperlink{group___n_o_o_priv_var_ga13de232048b35fc513f8aa3eeef65de0}{m\+New\+Note\+Dynamics\+Index}
+\begin{DoxyCompactList}\small\item\em The dynamics index of the new note. \end{DoxyCompactList}\item 
+int \hyperlink{group___n_o_o_priv_var_ga93720712088a4b6f91abe63d6f07a2c2}{m\+New\+Note\+Start\+Index}
+\begin{DoxyCompactList}\small\item\em The index from which to start playing the audio. \end{DoxyCompactList}\item 
+int \hyperlink{group___n_o_o_priv_var_ga3cc04564fcc1b1c4597af18e7e4fbc47}{m\+Num\+Built\+In\+Dynamics}
+\begin{DoxyCompactList}\small\item\em The number of built-\/in dynamics values. \end{DoxyCompactList}\item 
+int \mbox{[}$\,$\mbox{]} \hyperlink{group___n_o_o_priv_var_ga6a530f5e624caf8087c636df98d7f0b0}{m\+Built\+In\+Dynamics\+Thresholds}
+\begin{DoxyCompactList}\small\item\em The thresholds that map a velocity to a built-\/in dynamics value. \end{DoxyCompactList}\item 
+int \mbox{[}$\,$\mbox{]} \hyperlink{group___n_o_o_priv_var_ga48c676306790f40714072cd6a81a0128}{m\+End\+Sample\+Indices}
+\begin{DoxyCompactList}\small\item\em The indices corresponding to the last sample in the audio data. \end{DoxyCompactList}\item 
+\hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} \hyperlink{group___n_o_o_priv_var_ga61394090fddcb90c67bf68f19a5bfb6e}{m\+V\+IM} = null
+\begin{DoxyCompactList}\small\item\em The parent \hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Unity Game\+Object that handles the actual output of sound. 
+
+This class handles the sound output for \hyperlink{class_song}{Songs} and \hyperlink{group___v_i_m_event_types_class_virtual_instrument_manager_1_1_play_note_event}{Notes}. \hyperlink{group___v_i_m_priv_ga53f837fd01475fa35629a650e7fa00e3}{Copies of this object} are \hyperlink{group___v_i_m_priv_func_ga8817e32cc5074737b4d9489922b0fcb8}{dynamically created} by the \hyperlink{group___v_i_m}{Virtual Instrument Manager} for each \hyperlink{group___v_i_m_priv_ga5cedf9995d59b416412677e6004b659c}{note that can be played}. Separate copies are also created to \hyperlink{group___v_i_m_priv_gaa8d4f5642f5ac4dca4f4178b0052c78d}{handle playing Songs} and \hyperlink{group___v_i_m_priv_ga5f71cb71d240042312dcc13b481b068d}{drum loops}. ~\newline
+ This class should only be handled by the \hyperlink{group___v_i_m}{Virtual Instrument Manager}. 
+
+Definition at line 19 of file Note\+Output\+Object.\+cs.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Documents/\+School Documents/2017\+Spring/\+E\+E\+C\+S542/\+V\+R\+Piano\+Project/\+Assets/\+Scripts/\+Audio/\+Virtual\+Instrument/\hyperlink{_note_output_object_8cs}{Note\+Output\+Object.\+cs}\end{DoxyCompactItemize}

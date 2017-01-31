@@ -1,0 +1,260 @@
+\hypertarget{group___s_c___m_d_p_pub_func}{}\section{Public Functions}
+\label{group___s_c___m_d_p_pub_func}\index{Public Functions@{Public Functions}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___s_c___m_d_p_pub_func_gadce2fd2e70d867b38c98305e2392b3df}{S\+C\+\_\+\+Measure\+Display\+Panel.\+Add\+Note} (int a\+Note\+Index, int a\+Melody\+Velocity, \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{Music.\+N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH} a\+Length, \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH}\mbox{[}$\,$\mbox{]} a\+Pitches, int a\+Drum\+Velocity, \hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{Music.\+D\+R\+UM}\mbox{[}$\,$\mbox{]} a\+Drum\+Hits, \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{Music.\+N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH} a\+Offset\+From\+Prev\+Note)
+\begin{DoxyCompactList}\small\item\em Adds a \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note} to the \hyperlink{group___s_c___m_d_p_priv_var_gaf8a533bce87e58d8f7a1da88f476ac6f}{list of notes managed by this panel}. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c___m_d_p_pub_func_ga5c4379bcb1309f70b7406eb6523c6179}{S\+C\+\_\+\+Measure\+Display\+Panel.\+Clear\+Measure} ()
+\begin{DoxyCompactList}\small\item\em Clears the notes in the measure and self-\/destructs. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c___m_d_p_pub_func_ga334c177603c25d6206b7c7b639281b07}{S\+C\+\_\+\+Measure\+Display\+Panel.\+Set\+Parent\+Container} (\hyperlink{class_s_c___note_display_container}{S\+C\+\_\+\+Note\+Display\+Container} a\+Parent)
+\begin{DoxyCompactList}\small\item\em Sets the \hyperlink{group___doc_s_c___n_d_c}{parent container}. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c___m_d_p_pub_func_gab8a32b1ba282d441cb1325d29f53dd1c}{S\+C\+\_\+\+Measure\+Display\+Panel.\+Set\+Percentage\+Used} (float a\+Percent)
+\begin{DoxyCompactList}\small\item\em Sets the percentage of the measure that is filled. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c___m_d_p_pub_func_ga6512fa5010bcecd85f7e8542cea91310}{S\+C\+\_\+\+Measure\+Display\+Panel.\+Set\+Toggle} (bool a\+Show\+Measure)
+\begin{DoxyCompactList}\small\item\em Sets whether or not the measure should be shown. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Functions for other classes to interact with the \hyperlink{class_s_c___measure_display_panel}{S\+C\+\_\+\+Measure\+Display\+Panel}. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___s_c___m_d_p_pub_func_gadce2fd2e70d867b38c98305e2392b3df}\label{group___s_c___m_d_p_pub_func_gadce2fd2e70d867b38c98305e2392b3df}} 
+\index{Public Functions@{Public Functions}!Add\+Note@{Add\+Note}}
+\index{Add\+Note@{Add\+Note}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Add\+Note()}{AddNote()}}
+{\footnotesize\ttfamily void S\+C\+\_\+\+Measure\+Display\+Panel.\+Add\+Note (\begin{DoxyParamCaption}\item[{int}]{a\+Note\+Index,  }\item[{int}]{a\+Melody\+Velocity,  }\item[{\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{Music.\+N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH}}]{a\+Length,  }\item[{\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} \mbox{[}$\,$\mbox{]}}]{a\+Pitches,  }\item[{int}]{a\+Drum\+Velocity,  }\item[{\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{Music.\+D\+R\+UM} \mbox{[}$\,$\mbox{]}}]{a\+Drum\+Hits,  }\item[{\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{Music.\+N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH}}]{a\+Offset\+From\+Prev\+Note }\end{DoxyParamCaption})}
+
+
+
+Adds a \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note} to the \hyperlink{group___s_c___m_d_p_priv_var_gaf8a533bce87e58d8f7a1da88f476ac6f}{list of notes managed by this panel}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Note\+Index} & The index of the \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note} in the overall \hyperlink{class_song}{Song}. \\
+\hline
+\mbox{\tt in}  & {\em a\+Melody\+Velocity} & The \hyperlink{group___audio_DefVel}{velocity} of the \hyperlink{group___music_structs_struct_music_1_1_melody_note}{pitches} in the \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note}. \\
+\hline
+\mbox{\tt in}  & {\em a\+Length} & The \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{length} of the \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note}. \\
+\hline
+\mbox{\tt in}  & {\em a\+Pitches} & The \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitches} in the \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note}. \\
+\hline
+\mbox{\tt in}  & {\em a\+Drum\+Velocity} & The \hyperlink{group___audio_DefVel}{velocity} of the \hyperlink{group___music_structs_struct_music_1_1_percussion_note}{drums} in the \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note}. \\
+\hline
+\mbox{\tt in}  & {\em a\+Drum\+Hits} & The \hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{drums} that are hit for this \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note}. \\
+\hline
+\mbox{\tt in}  & {\em a\+Offset\+From\+Prev\+Note} & The \hyperlink{group___music_structs_ae281187907aed4c728c7981300dbebaf}{offset from the previous note}.\\
+\hline
+\end{DoxyParams}
+This function also creates the \hyperlink{group___doc_s_c___n_d_p}{S\+C\+\_\+\+Note\+Display\+Panel object} for the \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note}. 
+
+Definition at line 81 of file S\+C\+\_\+\+Measure\+Display\+Panel.\+cs.
+
+
+
+References Music.\+Drum\+To\+String(), Music.\+Get\+Note\+Length\+Relative\+To\+Measure(), S\+C\+\_\+\+Note\+Display\+Container.\+Get\+Sprites(), S\+C\+\_\+\+Note\+Display\+Container.\+Handle\+Full\+Measure(), Music.\+Note\+To\+String(), S\+C\+\_\+\+Note\+Display\+Panel.\+Set\+Drums(), S\+C\+\_\+\+Note\+Display\+Panel.\+Set\+Length\+Image(), S\+C\+\_\+\+Note\+Display\+Panel.\+Set\+Note\+Index(), S\+C\+\_\+\+Note\+Display\+Panel.\+Set\+Offset(), S\+C\+\_\+\+Note\+Display\+Panel.\+Set\+Offset\+Image(), S\+C\+\_\+\+Note\+Display\+Panel.\+Set\+Parent\+Container(), S\+C\+\_\+\+Note\+Display\+Panel.\+Set\+Pitches(), S\+C\+\_\+\+Note\+Display\+Panel.\+Set\+Velocity(), and Music.\+T\+I\+M\+E\+\_\+\+S\+I\+G\+N\+A\+T\+U\+R\+E\+\_\+4\+\_\+4().
+
+
+\begin{DoxyCode}
+83     \{
+84         \textcolor{comment}{// Declare variables to help create the note.}
+85         Sprite[] sprites = \hyperlink{group___s_c___m_d_p_priv_var_ga6f22ae359dd68605a8b2fd961ced96b5}{mParent}.\hyperlink{group___s_c___n_d_c_pub_func_ga3cdbb1068cd6511112c564fc636c56ca}{GetSprites}();
+86         \textcolor{keywordtype}{string} pitches = \textcolor{stringliteral}{"None"};
+87         \textcolor{keywordtype}{string} drums = \textcolor{stringliteral}{"None"};
+88 
+89 
+90         \textcolor{comment}{// Calculate the percentage used up in the measure.}
+91         \textcolor{keywordtype}{float} newPercentage = \hyperlink{group___s_c___m_d_p_priv_var_ga7567e9001016a06d950b9d0cc9e1d905}{mPercentageUsed} + \hyperlink{class_music}{Music}.
+      \hyperlink{group___music_stat_func_ga91e290b48ad2289493ba4421308abe49}{GetNoteLengthRelativeToMeasure}( aOffsetFromPrevNote, 
+      \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_gac95af323eef7511543c799154e1c29fd}{TIME\_SIGNATURE\_4\_4}() );
+92 
+93         \textcolor{comment}{// If there is no more room in the measure for this note, then send it back to the parent.}
+94         \textcolor{keywordflow}{if}( newPercentage >= 1f )
+95         \{
+96             \hyperlink{group___s_c___m_d_p_priv_var_ga6f22ae359dd68605a8b2fd961ced96b5}{mParent}.\hyperlink{group___s_c___n_d_c_handlers_ga40c5a3b59608c559ab96ad0338c5e042}{HandleFullMeasure}( \textcolor{keyword}{this}, newPercentage - 
+      \hyperlink{group___s_c___m_d_p_priv_var_ga7567e9001016a06d950b9d0cc9e1d905}{mPercentageUsed}, aMelodyVelocity, aLength, aPitches, aDrumVelocity, aDrumHits, 
+      aOffsetFromPrevNote );
+97         \}
+98 
+99         \textcolor{comment}{// If there is more room, then create the new panel and add it to this measure.}
+100         \textcolor{keywordflow}{else}
+101         \{
+102             \textcolor{comment}{// Update the percentage used.}
+103             \hyperlink{group___s_c___m_d_p_priv_var_ga7567e9001016a06d950b9d0cc9e1d905}{mPercentageUsed} = newPercentage;
+104 
+105             \textcolor{comment}{// Create a SC\_NoteDisplayPanel}
+106             GameObject clone = null;
+107             clone = Instantiate( Resources.Load<GameObject>( 
+      \hyperlink{group___s_c___m_d_p_const_ga6eee69b23fe2146403f41e4e862a3df9}{NOTE\_DISPLAY\_PANEL\_PATH} ) );
+108             Assert.IsNotNull( clone, \textcolor{stringliteral}{"Could not load SC\_NoteDisplayPanel prefab!"} );
+109 
+110             \textcolor{comment}{// Set the values for the note's transform.}
+111             clone.transform.SetParent( transform.parent );
+112             clone.transform.localScale = Vector3.one;
+113 
+114             \textcolor{comment}{// Set the pitch string if needed.}
+115             \textcolor{keywordflow}{if}( aPitches != null )
+116             \{
+117                 pitches = \textcolor{stringliteral}{""};
+118                 \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < aPitches.Length; i++ )
+119                 \{
+120                     \textcolor{keywordflow}{if}( aPitches[i] == \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.REST )
+121                     \{
+122                         pitches += \textcolor{stringliteral}{"Rest "};
+123                     \}
+124                     \textcolor{keywordflow}{else}
+125                     \{
+126                         pitches += ( \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( aPitches[i] ) + \textcolor{stringliteral}{" "} );
+127                     \}
+128                 \}
+129             \}
+130 
+131             \textcolor{comment}{// Set the drum string if needed.}
+132             \textcolor{keywordflow}{if}( aDrumHits != null )
+133             \{
+134                 drums = \textcolor{stringliteral}{""};
+135                 \textcolor{keywordflow}{foreach}( \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{DRUM} drum in aDrumHits )
+136                 \{
+137                     drums += \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_gaf5f64ebe9a7e036e07f283e41f26d22b}{DrumToString}( drum ) + \textcolor{stringliteral}{" "};
+138                 \}
+139             \}
+140 
+141             \textcolor{comment}{// Initialize the cloned panel.}
+142             \hyperlink{class_s_c___note_display_panel}{SC\_NoteDisplayPanel} newPanel = clone.AddComponent<
+      \hyperlink{class_s_c___note_display_panel}{SC\_NoteDisplayPanel}>();
+143             newPanel.\hyperlink{group___s_c___n_d_p_unity_gae14b5564be204df7699b95186d83f69f}{SetDrums}( drums );
+144             newPanel.\hyperlink{group___s_c___n_d_p_unity_gad9bf776f0c51cf6170faccf9fc4ac7e0}{SetPitches}( pitches );
+145             newPanel.\hyperlink{group___s_c___n_d_p_unity_ga1a1c4b8111463ec3e134d17fe5064a54}{SetLengthImage}( sprites[(\textcolor{keywordtype}{int})aLength] );
+146             newPanel.\hyperlink{group___s_c___n_d_p_unity_gaa0a517d1359cd1ed109a130bd52763f1}{SetOffsetImage}( sprites[(\textcolor{keywordtype}{int})aOffsetFromPrevNote] );
+147             newPanel.\hyperlink{group___s_c___n_d_p_unity_ga8ff7588e8c3f59a03842feaff92f97e9}{SetOffset}( aOffsetFromPrevNote );
+148             newPanel.\hyperlink{group___s_c___n_d_p_unity_ga8a2fef715606caa884c7b490850fb9b7}{SetVelocity}( aMelodyVelocity.ToString() );
+149             newPanel.\hyperlink{group___s_c___n_d_p_unity_gae642b50484b9c7fb2bd3b201aeef726c}{SetParentContainer}( \textcolor{keyword}{this} );
+150             newPanel.\hyperlink{group___s_c___n_d_p_unity_gaf3160e3686e44e7718768242438ea1cc}{SetNoteIndex}( aNoteIndex );
+151 
+152             \textcolor{comment}{// Add the panel to the list.}
+153             \hyperlink{group___s_c___m_d_p_priv_var_gaf8a533bce87e58d8f7a1da88f476ac6f}{mNotes}.Add( newPanel );
+154         \}
+155     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_c___m_d_p_pub_func_ga5c4379bcb1309f70b7406eb6523c6179}\label{group___s_c___m_d_p_pub_func_ga5c4379bcb1309f70b7406eb6523c6179}} 
+\index{Public Functions@{Public Functions}!Clear\+Measure@{Clear\+Measure}}
+\index{Clear\+Measure@{Clear\+Measure}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Clear\+Measure()}{ClearMeasure()}}
+{\footnotesize\ttfamily void S\+C\+\_\+\+Measure\+Display\+Panel.\+Clear\+Measure (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Clears the notes in the measure and self-\/destructs. 
+
+
+
+Definition at line 160 of file S\+C\+\_\+\+Measure\+Display\+Panel.\+cs.
+
+
+\begin{DoxyCode}
+161     \{
+162         \textcolor{keywordflow}{foreach}( \hyperlink{class_s_c___note_display_panel}{SC\_NoteDisplayPanel} note \textcolor{keywordflow}{in} \hyperlink{group___s_c___m_d_p_priv_var_gaf8a533bce87e58d8f7a1da88f476ac6f}{mNotes} )
+163         \{
+164             DestroyImmediate( note.gameObject, \textcolor{keyword}{false} );
+165         \}
+166         DestroyImmediate( gameObject, \textcolor{keyword}{false} );
+167     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_c___m_d_p_pub_func_ga334c177603c25d6206b7c7b639281b07}\label{group___s_c___m_d_p_pub_func_ga334c177603c25d6206b7c7b639281b07}} 
+\index{Public Functions@{Public Functions}!Set\+Parent\+Container@{Set\+Parent\+Container}}
+\index{Set\+Parent\+Container@{Set\+Parent\+Container}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Set\+Parent\+Container()}{SetParentContainer()}}
+{\footnotesize\ttfamily void S\+C\+\_\+\+Measure\+Display\+Panel.\+Set\+Parent\+Container (\begin{DoxyParamCaption}\item[{\hyperlink{class_s_c___note_display_container}{S\+C\+\_\+\+Note\+Display\+Container}}]{a\+Parent }\end{DoxyParamCaption})}
+
+
+
+Sets the \hyperlink{group___doc_s_c___n_d_c}{parent container}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Parent} & The \hyperlink{group___doc_s_c___n_d_c}{parent container}. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 173 of file S\+C\+\_\+\+Measure\+Display\+Panel.\+cs.
+
+
+\begin{DoxyCode}
+174     \{
+175         \textcolor{comment}{// Set the parent.}
+176         \hyperlink{group___s_c___m_d_p_priv_var_ga6f22ae359dd68605a8b2fd961ced96b5}{mParent} = aParent;
+177     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_c___m_d_p_pub_func_gab8a32b1ba282d441cb1325d29f53dd1c}\label{group___s_c___m_d_p_pub_func_gab8a32b1ba282d441cb1325d29f53dd1c}} 
+\index{Public Functions@{Public Functions}!Set\+Percentage\+Used@{Set\+Percentage\+Used}}
+\index{Set\+Percentage\+Used@{Set\+Percentage\+Used}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Set\+Percentage\+Used()}{SetPercentageUsed()}}
+{\footnotesize\ttfamily void S\+C\+\_\+\+Measure\+Display\+Panel.\+Set\+Percentage\+Used (\begin{DoxyParamCaption}\item[{float}]{a\+Percent }\end{DoxyParamCaption})}
+
+
+
+Sets the percentage of the measure that is filled. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Percent} & How full the measure is.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+Song\+::\+Get\+Note\+Length\+Relative\+To\+Measure 
+\end{DoxySeeAlso}
+
+
+Definition at line 185 of file S\+C\+\_\+\+Measure\+Display\+Panel.\+cs.
+
+
+\begin{DoxyCode}
+186     \{
+187         \hyperlink{group___s_c___m_d_p_priv_var_ga7567e9001016a06d950b9d0cc9e1d905}{mPercentageUsed} = aPercent;
+188     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_c___m_d_p_pub_func_ga6512fa5010bcecd85f7e8542cea91310}\label{group___s_c___m_d_p_pub_func_ga6512fa5010bcecd85f7e8542cea91310}} 
+\index{Public Functions@{Public Functions}!Set\+Toggle@{Set\+Toggle}}
+\index{Set\+Toggle@{Set\+Toggle}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Set\+Toggle()}{SetToggle()}}
+{\footnotesize\ttfamily void S\+C\+\_\+\+Measure\+Display\+Panel.\+Set\+Toggle (\begin{DoxyParamCaption}\item[{bool}]{a\+Show\+Measure }\end{DoxyParamCaption})}
+
+
+
+Sets whether or not the measure should be shown. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Show\+Measure} & True if the measure should be shown. False otherwise. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 194 of file S\+C\+\_\+\+Measure\+Display\+Panel.\+cs.
+
+
+
+References S\+C\+\_\+\+Measure\+Display\+Panel.\+On\+Show\+Toggle().
+
+
+
+Referenced by S\+C\+\_\+\+Note\+Display\+Container.\+Handle\+Measure\+Toggled().
+
+
+\begin{DoxyCode}
+195     \{
+196         \textcolor{comment}{// Show/Hide the notes in the measure depending on the given bool.}
+197         \textcolor{keywordflow}{foreach}( \hyperlink{class_s_c___note_display_panel}{SC\_NoteDisplayPanel} note \textcolor{keywordflow}{in} \hyperlink{group___s_c___m_d_p_priv_var_gaf8a533bce87e58d8f7a1da88f476ac6f}{mNotes} )
+198         \{
+199             note.gameObject.SetActive( aShowMeasure );
+200         \}
+201 
+202         \textcolor{comment}{// Update the toggle value.}
+203         \hyperlink{group___s_c___m_d_p_priv_var_gabec551ab0b79d269b028f4bc99e82b00}{mShowMeasureToggle}.onValueChanged.RemoveListener( 
+      \hyperlink{group___s_c___m_d_p_handlers_ga31c72fee5ddd5ae7b057b2f265341263}{OnShowToggle} );
+204         \hyperlink{group___s_c___m_d_p_priv_var_gabec551ab0b79d269b028f4bc99e82b00}{mShowMeasureToggle}.isOn = aShowMeasure;
+205         \hyperlink{group___s_c___m_d_p_priv_var_gabec551ab0b79d269b028f4bc99e82b00}{mShowMeasureToggle}.onValueChanged.AddListener( 
+      \hyperlink{group___s_c___m_d_p_handlers_ga31c72fee5ddd5ae7b057b2f265341263}{OnShowToggle} );
+206     \}
+\end{DoxyCode}

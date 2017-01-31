@@ -1,0 +1,134 @@
+\hypertarget{group___doc_mar}{}\section{Marimba}
+\label{group___doc_mar}\index{Marimba@{Marimba}}
+
+
+A specific type of \hyperlink{group___v_i}{Virtual Instrument} that uses marimba samples.  
+
+
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___mar_construct}{Constructors}
+\item 
+\hyperlink{group___mar_virt_func}{Implementations of Pure Virtual Functions}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A specific type of \hyperlink{group___v_i}{Virtual Instrument} that uses marimba samples. 
+
+\hypertarget{group___doc_mar_DocMarInfo}{}\subsection{Information}\label{group___doc_mar_DocMarInfo}
+The lowest supported \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitch} of the marimba is \hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1daf1a543f5a2c5d49bc5dde298fcf716e4}{C2}. ~\newline
+ The highest supported \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitch} of the marimba is \hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da517d42f048d2dd422533522c796aaf37}{C7}. ~\newline
+ The marimba does not support \hyperlink{group___audio_DefBID}{Built-\/\+In Dynamics}.\hypertarget{group___doc_mar_DocMarConstruct}{}\subsection{Constructors}\label{group___doc_mar_DocMarConstruct}
+These are functions that create a new instance of a \hyperlink{class_marimba}{Marimba}. ~\newline
+ \hyperlink{group___mar_construct}{More details}.\hypertarget{group___doc_mar_DocMarVirtFunc}{}\subsection{Implemented Virtual Functions}\label{group___doc_mar_DocMarVirtFunc}
+These are functions from the \hyperlink{group___v_i_base}{base class} that are given implementations specific to the \hyperlink{class_marimba}{Marimba}. ~\newline
+ \hyperlink{group___mar_virt_func}{More details}.\hypertarget{group___doc_mar_DocMarCode}{}\subsection{Code}\label{group___doc_mar_DocMarCode}
+
+\begin{DoxyCodeInclude}
+1 \textcolor{keyword}{using} \hyperlink{namespace_system}{System}.Collections;
+2 \textcolor{keyword}{using} \hyperlink{namespace_system}{System}.Collections.Generic;
+3 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine};
+4 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine}.Audio;
+5 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine}.Assertions;
+6 \textcolor{comment}{}
+7 \textcolor{comment}{/**}
+8 \textcolor{comment}{ * @class Marimba}
+9 \textcolor{comment}{ * @brief A specific type of @link VI Virtual Instrument@endlink that uses marimba samples.}
+10 \textcolor{comment}{ * }
+11 \textcolor{comment}{ * The lowest supported @link Music::PITCH pitch@endlink of the marimba is @link Music::PITCH.C2
+       C2@endlink.}
+12 \textcolor{comment}{ * @n The highest supported @link Music::PITCH pitch@endlink of the marimba is @link Music::PITCH.C7
+       C7@endlink.}
+13 \textcolor{comment}{ * @n The marimba does not support @link DefBID Built-In Dynamics@endlink.}
+14 \textcolor{comment}{*/}
+15 \textcolor{keyword}{public} \textcolor{keyword}{class }\hyperlink{class_marimba}{Marimba} : \hyperlink{class_virtual_instrument}{VirtualInstrument}
+16 \{
+17     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+18 \textcolor{comment}{    * @defgroup MarConstruct Constructors}
+19 \textcolor{comment}{    * @ingroup DocMar}
+20 \textcolor{comment}{    * These are functions that create a new instance of a Marimba.}
+21 \textcolor{comment}{    * @\{}
+22 \textcolor{comment}{    *****************************************************************************/}
+23 \textcolor{comment}{}
+24 \textcolor{comment}{    /**}
+25 \textcolor{comment}{     * @brief Creates a new Marimba instance.}
+26 \textcolor{comment}{     * @param[in] aParent The @link VIM Virtual Instrument Manager@endlink that will manage this
+       instrument.}
+27 \textcolor{comment}{     * @return A newly created Marimba @link VI Virtual Instrument@endlink.}
+28 \textcolor{comment}{    */}
+29     \textcolor{keyword}{public} \hyperlink{group___mar_construct_ga48c946fe0f78f8905a8e4d063cbc0fa2}{Marimba}( \hyperlink{class_virtual_instrument_manager}{VirtualInstrumentManager} aParent ) : base( aParent )
+30     \{
+31 
+32         \textcolor{comment}{// Set default values}
+33         mIsDrum = \textcolor{keyword}{false};
+34         \hyperlink{group___v_i_base_pro_var_ga3cae52b1bcc0178a8a6b03c7aaf7aac8}{mLowestSupportedPitch} = \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.C2;
+35         mHighestSupportedPitch = \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.C7;
+36         mNumSupportedPitches = 61;
+37         mSampleRate = 44100;
+38         mSampleInterval = 1f / \hyperlink{group___v_i_base_pro_var_ga80b3d2ff29b27698eea6bcf2f8ddc5d7}{mSampleRate};
+39 
+40         \textcolor{comment}{// Call functions to set the values relating to built-in dynamics, and create the filenames for
+       each sample.}
+41         \hyperlink{group___mar_virt_func_ga293d829cb8571c21452c23e90968b2d8}{InitializeBuiltInDynamics}();
+42         \hyperlink{group___mar_virt_func_gae57d9737fd07708dc7e13e74ee777878}{CreateFilenames}();
+43 
+44         \textcolor{comment}{// Set that this instrument is loaded.}
+45         mLoaded = \textcolor{keyword}{true};
+46 
+47     \}
+48     
+49     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+50 \textcolor{comment}{    * @\}}
+51 \textcolor{comment}{    * @defgroup MarVirtFunc Implementations of Pure Virtual Functions}
+52 \textcolor{comment}{    * @ingroup DocMar}
+53 \textcolor{comment}{    * These are functions from the @link VIBase base class@endlink that are given implementations specific
+       to the Marimba.}
+54 \textcolor{comment}{    * @\{}
+55 \textcolor{comment}{    *****************************************************************************/}
+56 \textcolor{comment}{}
+57 \textcolor{comment}{    /**}
+58 \textcolor{comment}{     * @brief Initializes values related to the @link DefBID Built-In Dynamics@endlink for this instrument.}
+59 \textcolor{comment}{     * }
+60 \textcolor{comment}{     * There aren't built-in dynamics for the marimba, so the dynamics and thresholds are set to null.}
+61 \textcolor{comment}{    */}
+62     \textcolor{keyword}{protected} \textcolor{keyword}{override} \textcolor{keywordtype}{void} \hyperlink{group___mar_virt_func_ga293d829cb8571c21452c23e90968b2d8}{InitializeBuiltInDynamics}()
+63     \{
+64         \textcolor{comment}{// There are no built-in dynamics for the marimba.}
+65         mNumBuiltInDynamics = 0;
+66         mBuiltInDynamics = null;
+67         mBuiltInDynamicsThresholds = null;
+68 
+69         \textcolor{comment}{// Allocate the audio data container.}
+70         mAudioData = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[1][][];
+71         mAudioData[0] = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[\hyperlink{class_music}{Music}.\hyperlink{group___music_constants_gaaf07da909a12e9fec0e43b70864f27b7}{MAX\_SUPPORTED\_NOTES}][];
+72     \}
+73 \textcolor{comment}{}
+74 \textcolor{comment}{    /**}
+75 \textcolor{comment}{     * @brief Creates the filenames of the WAV files used to create the Marimba.}
+76 \textcolor{comment}{     * }
+77 \textcolor{comment}{     * The files are stored in "Audio/VirtualInstrument/Marimba/Samples".}
+78 \textcolor{comment}{    */} 
+79     \textcolor{keyword}{protected} \textcolor{keyword}{override} \textcolor{keywordtype}{void} \hyperlink{group___mar_virt_func_gae57d9737fd07708dc7e13e74ee777878}{CreateFilenames}()
+80     \{
+81         \textcolor{comment}{// Set the base filepath and number of files.}
+82         mFilepath = \textcolor{stringliteral}{"Audio/VirtualInstrument/Marimba/Samples/"};
+83         mNumFiles = 61;
+84 
+85         \textcolor{comment}{// Initialize the array of filenames.}
+86         mFilenames = \textcolor{keyword}{new} \textcolor{keywordtype}{string}[\hyperlink{group___v_i_base_pro_var_ga9a602db8c9833ce75d95dd453c27d341}{mNumFiles}];
+87 
+88         \textcolor{comment}{// Iterate through each dynamics value and create filenames for each supported note.}
+89         \textcolor{keywordtype}{int} index = 0;
+90         \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = (\textcolor{keywordtype}{int})\hyperlink{group___v_i_base_pro_var_ga3cae52b1bcc0178a8a6b03c7aaf7aac8}{mLowestSupportedPitch}; i <= (int)mHighestSupportedPitch; i++
+       )
+91         \{
+92             mFilenames[index] = mFilepath + \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_ga85a22c905d56d4c5f4e62159bfecee8c}{NoteToString}( i );
+93             index++;
+94         \}
+95     \}\textcolor{comment}{}
+96 \textcolor{comment}{    /** @\} */}
+97 \}
+\end{DoxyCodeInclude}
+ 

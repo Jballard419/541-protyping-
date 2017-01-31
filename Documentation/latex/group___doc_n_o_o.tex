@@ -1,0 +1,537 @@
+\hypertarget{group___doc_n_o_o}{}\section{Note\+Output\+Object}
+\label{group___doc_n_o_o}\index{Note\+Output\+Object@{Note\+Output\+Object}}
+
+
+Unity Game\+Object that handles the actual output of sound.  
+
+
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___n_o_o_handlers}{Event Handlers}
+\item 
+\hyperlink{group___n_o_o_priv_func}{Private Functions}
+\item 
+\hyperlink{group___n_o_o_priv_var}{Private Variables}
+\item 
+\hyperlink{group___n_o_o_pub_func}{Public Functions}
+\item 
+\hyperlink{group___n_o_o_unity}{Unity Functions}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Unity Game\+Object that handles the actual output of sound. 
+
+\hypertarget{group___doc_n_o_o_DocNOOIntro}{}\subsection{Introduction}\label{group___doc_n_o_o_DocNOOIntro}
+This class handles the sound output for \hyperlink{class_song}{Songs} and \hyperlink{group___v_i_m_event_types_class_virtual_instrument_manager_1_1_play_note_event}{Notes}. \hyperlink{group___v_i_m_priv_ga53f837fd01475fa35629a650e7fa00e3}{Copies of this object} are \hyperlink{group___v_i_m_priv_func_ga8817e32cc5074737b4d9489922b0fcb8}{dynamically created} by the \hyperlink{group___v_i_m}{Virtual Instrument Manager} for each \hyperlink{group___v_i_m_priv_ga5cedf9995d59b416412677e6004b659c}{note that can be played}. Separate copies are also created to \hyperlink{group___v_i_m_priv_gaa8d4f5642f5ac4dca4f4178b0052c78d}{handle playing Songs} and \hyperlink{group___v_i_m_priv_ga5f71cb71d240042312dcc13b481b068d}{drum loops}. ~\newline
+ This class should only be handled by the \hyperlink{group___v_i_m}{Virtual Instrument Manager}.\hypertarget{group___doc_n_o_o_DocNOOPrivVar}{}\subsection{Private Variables}\label{group___doc_n_o_o_DocNOOPrivVar}
+These are variables used internally by the \hyperlink{class_note_output_object}{Note\+Output\+Object}. ~\newline
+ \hyperlink{group___n_o_o_priv_var}{More details}.\hypertarget{group___doc_n_o_o_DocNOOUnity}{}\subsection{Unity Functions}\label{group___doc_n_o_o_DocNOOUnity}
+These are functions called automatically by Unity. ~\newline
+ \hyperlink{group___n_o_o_unity}{More details}.\hypertarget{group___doc_n_o_o_DocNOOPubFunc}{}\subsection{Public Functions}\label{group___doc_n_o_o_DocNOOPubFunc}
+These are functions other classes use to interact with the \hyperlink{class_note_output_object}{Note\+Output\+Object}. ~\newline
+ \hyperlink{group___n_o_o_pub_func}{More details}.\hypertarget{group___doc_n_o_o_DocNOOPrivFunc}{}\subsection{Private Functions}\label{group___doc_n_o_o_DocNOOPrivFunc}
+These are functions that are used internally by the \hyperlink{class_note_output_object}{Note\+Output\+Object}. ~\newline
+ \hyperlink{group___n_o_o_priv_func}{More details}.\hypertarget{group___doc_n_o_o_DocNOOHandlers}{}\subsection{Event Handlers}\label{group___doc_n_o_o_DocNOOHandlers}
+These are functions that are automatically called when an event is invoked. ~\newline
+ \hyperlink{group___n_o_o_handlers}{More details}.\hypertarget{group___doc_n_o_o_DocNOOCode}{}\subsection{Code}\label{group___doc_n_o_o_DocNOOCode}
+
+\begin{DoxyCodeInclude}
+1 \textcolor{keyword}{using} \hyperlink{namespace_system}{System};
+2 \textcolor{keyword}{using} \hyperlink{namespace_system}{System}.Collections;
+3 \textcolor{keyword}{using} \hyperlink{namespace_system}{System}.Collections.Generic;
+4 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine};
+5 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine}.Audio;
+6 \textcolor{keyword}{using} \hyperlink{namespace_unity_engine}{UnityEngine}.Assertions;
+7 \textcolor{comment}{}
+8 \textcolor{comment}{/**}
+9 \textcolor{comment}{ * @class NoteOutputObject}
+10 \textcolor{comment}{ * @brief Unity GameObject that handles the actual output of sound.}
+11 \textcolor{comment}{ * }
+12 \textcolor{comment}{ * This class handles the sound output for @link Song Songs@endlink and @link
+       VirtualInstrumentManager::PlayNoteEvent Notes@endlink.}
+13 \textcolor{comment}{ * @link VirtualInstrumentManager::mOutputs Copies of this object@endlink are @link
+       VirtualInstrumentManager::LoadNoteOutputObjects dynamically created@endlink }
+14 \textcolor{comment}{ * by the @link VIM Virtual Instrument Manager@endlink for each @link
+       VirtualInstrumentManager::mActiveNotes note that can be played@endlink.}
+15 \textcolor{comment}{ * Separate copies are also created to @link VirtualInstrumentManager::mSongOutput handle playing
+       Songs@endlink}
+16 \textcolor{comment}{ * and @link VirtualInstrumentManager::mDrumLoopOutput drum loops@endlink.}
+17 \textcolor{comment}{ * @n This class should only be handled by the @link VIM Virtual Instrument Manager@endlink.}
+18 \textcolor{comment}{*/}
+19 \textcolor{keyword}{public} \textcolor{keyword}{class }\hyperlink{class_note_output_object}{NoteOutputObject} : MonoBehaviour
+20 \{
+21     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+22 \textcolor{comment}{    * @defgroup NOOPrivVar Private Variables}
+23 \textcolor{comment}{    * @ingroup DocNOO}
+24 \textcolor{comment}{    * These are variables used internally by the NoteOutputObject.}
+25 \textcolor{comment}{    * @\{}
+26 \textcolor{comment}{    *****************************************************************************/}
+27 \textcolor{preprocessor}{    #if DEBUG\_AUDIO\_DIAGNOSTICS}
+28         \textcolor{keyword}{private} \hyperlink{group___audio_testing_class_a_t_i___diagnostics}{ATI\_Diagnostics} mDiagnosticsHandler = null; \textcolor{comment}{//!< The audio diagnostics
+       handler.}
+29 \textcolor{comment}{}\textcolor{preprocessor}{    #endif}
+30     \textcolor{keyword}{private} AudioSource                \hyperlink{group___n_o_o_priv_var_gad5e14a91b348e61166dbf6b6cf13649c}{mSource}; \textcolor{comment}{//!< The AudioSource component of this object}
+31 \textcolor{comment}{}    \textcolor{keyword}{private} \textcolor{keywordtype}{bool}                       \hyperlink{group___n_o_o_priv_var_ga1efa96121f085b27c7d9e8725f90a336}{mAudioDataBeingUsed}; \textcolor{comment}{//!< Whether or not
+       OnAudioFilterRead is currently using the audio data}
+32 \textcolor{comment}{}    \textcolor{keyword}{private} \textcolor{keywordtype}{bool}                       \hyperlink{group___n_o_o_priv_var_gaf01d2583555de6a523cdf82808718ca9}{mLoaded}; \textcolor{comment}{//!< Whether or not this object has loaded.}
+33 \textcolor{comment}{}    \textcolor{keyword}{private} \textcolor{keywordtype}{bool}                       \hyperlink{group___n_o_o_priv_var_gabf1d5013f44773e9fd3e4dbb59d74aeb}{mLoop}; \textcolor{comment}{//!< Whether or not the audio should loop.}
+34 \textcolor{comment}{}    \textcolor{keyword}{private} \textcolor{keywordtype}{bool}                       \hyperlink{group___n_o_o_priv_var_gac537ec036adf0645dca2f31fbc5b3dec}{mNewNote}; \textcolor{comment}{//!< Whether or not a new note needs to be
+       started.}
+35 \textcolor{comment}{}    \textcolor{keyword}{private} \textcolor{keywordtype}{bool}                       \hyperlink{group___n_o_o_priv_var_gaf72dd5943487433966b20b973be1e8b3}{mNotifyWhenFinished}; \textcolor{comment}{//!< Should it notify the
+       parent when the audio has finished playing?}
+36 \textcolor{comment}{}    \textcolor{keyword}{private} \textcolor{keywordtype}{bool}                       \hyperlink{group___n_o_o_priv_var_ga50fe6047e6a199215fc70b9fc78ac7eb}{mPaused}; \textcolor{comment}{//!< Is the audio paused?}
+37 \textcolor{comment}{}    \textcolor{keyword}{private} \textcolor{keywordtype}{bool}                       \hyperlink{group___n_o_o_priv_var_ga1f7a31f1aefc1633f1f435e3438a1efb}{mResume}; \textcolor{comment}{//!< Whether or not the audio should resume from its
+       previous position.}
+38 \textcolor{comment}{}    \textcolor{keyword}{private} \textcolor{keywordtype}{bool}                       \hyperlink{group___n_o_o_priv_var_ga4417170b8fa977f05a0b4cd0d16412fd}{mNotePlaying}; \textcolor{comment}{//!< Whether or not the note is currently
+       playing.}
+39 \textcolor{comment}{}    \textcolor{keyword}{private} \textcolor{keywordtype}{bool}                       \hyperlink{group___n_o_o_priv_var_ga88bfcc80d0cd20c81cd89d19d3231b84}{mNoteRelease}; \textcolor{comment}{//!< Whether or not the note has been
+       released.}
+40 \textcolor{comment}{}\textcolor{preprocessor}{    #if DEBUG\_AUDIO\_DIAGNOSTICS}
+41         \textcolor{keyword}{private} \textcolor{keywordtype}{bool} mReported = \textcolor{keyword}{false}; \textcolor{comment}{//!< Whether or not we have reported to the audio diagnostics
+       handler.}
+42 \textcolor{comment}{}\textcolor{preprocessor}{    #endif}
+43     \textcolor{keyword}{private} \textcolor{keywordtype}{float}                      \hyperlink{group___n_o_o_priv_var_gaf3cd650d21c56c25ce988d9f75279278}{mNewNoteVelocityFactor}; \textcolor{comment}{//!< The velocity of a
+       new note mapped to the range [0,1]}
+44 \textcolor{comment}{}    \textcolor{keyword}{private} \textcolor{keywordtype}{float}                      \hyperlink{group___n_o_o_priv_var_ga84df25e871d69746a7c520f3f8b49a27}{mVelocityFactor}; \textcolor{comment}{//!< A percentage mapping a given
+       velocity to the output volume}
+45 \textcolor{comment}{}    \textcolor{keyword}{private} \textcolor{keywordtype}{float}[][]                  \hyperlink{group___n_o_o_priv_var_ga842eef5bfade070f914b8a551b3bcf43}{mAudioData}; \textcolor{comment}{//!< A container for raw audio data.}
+46 \textcolor{comment}{}    \textcolor{keyword}{private} \textcolor{keywordtype}{int}                        \hyperlink{group___n_o_o_priv_var_ga5dca97be8d58837ace4ea6f4a972b20a}{mCounter}; \textcolor{comment}{//!< A counter to keep track of the current
+       position in the raw audio data.}
+47 \textcolor{comment}{}    \textcolor{keyword}{private} \textcolor{keywordtype}{int}                        \hyperlink{group___n_o_o_priv_var_gaf0c9c2a90b5d73b8ffa0906bc69acdbc}{mDynamicsIndex}; \textcolor{comment}{//!< The index corresponding to which
+       built-in dynamics value is currently in use.}
+48 \textcolor{comment}{}    \textcolor{keyword}{private} \textcolor{keywordtype}{int}                        \hyperlink{group___n_o_o_priv_var_ga13de232048b35fc513f8aa3eeef65de0}{mNewNoteDynamicsIndex}; \textcolor{comment}{//!< The dynamics index
+       of the new note.}
+49 \textcolor{comment}{}    \textcolor{keyword}{private} \textcolor{keywordtype}{int}                        \hyperlink{group___n_o_o_priv_var_ga93720712088a4b6f91abe63d6f07a2c2}{mNewNoteStartIndex}; \textcolor{comment}{//!< The index from which to
+       start playing the audio.}
+50 \textcolor{comment}{}    \textcolor{keyword}{private} \textcolor{keywordtype}{int}                        \hyperlink{group___n_o_o_priv_var_ga3cc04564fcc1b1c4597af18e7e4fbc47}{mNumBuiltInDynamics}; \textcolor{comment}{//!< The number of built-in
+       dynamics values.}
+51 \textcolor{comment}{}    \textcolor{keyword}{private} \textcolor{keywordtype}{int}[]                      \hyperlink{group___n_o_o_priv_var_ga6a530f5e624caf8087c636df98d7f0b0}{mBuiltInDynamicsThresholds}; \textcolor{comment}{//!< The
+       thresholds that map a velocity to a built-in dynamics value.}
+52 \textcolor{comment}{}    \textcolor{keyword}{private} \textcolor{keywordtype}{int}[]                      \hyperlink{group___n_o_o_priv_var_ga48c676306790f40714072cd6a81a0128}{mEndSampleIndices}; \textcolor{comment}{//!< The indices corresponding
+       to the last sample in the audio data.}
+53 \textcolor{comment}{}    \textcolor{keyword}{private} \hyperlink{class_virtual_instrument_manager}{VirtualInstrumentManager}   mVIM = null; \textcolor{comment}{//!< The parent
+       VirtualInstrumentManager.}
+54 \textcolor{comment}{}
+55     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+56 \textcolor{comment}{    * @\}}
+57 \textcolor{comment}{    * @defgroup NOOUnity Unity Functions}
+58 \textcolor{comment}{    * @ingroup DocNOO}
+59 \textcolor{comment}{    * These are functions called automatically by Unity.}
+60 \textcolor{comment}{    * @\{}
+61 \textcolor{comment}{    *****************************************************************************/}
+62 \textcolor{comment}{}
+63 \textcolor{comment}{    /**}
+64 \textcolor{comment}{     * @brief Called when the object is created. This function creates an audio source and sets the initial
+       values for each variable.}
+65 \textcolor{comment}{    */}
+66     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{group___n_o_o_unity_ga5c3cd343b7bfe7dec693d2cb69ec3cce}{Awake}()
+67     \{
+68         \textcolor{comment}{// Set the values of the member variables}
+69         mAudioDataBeingUsed = \textcolor{keyword}{false};
+70         mLoaded = \textcolor{keyword}{false};
+71         mCounter = 0;
+72         mEndSampleIndices = null;
+73         mAudioData = null;
+74         mNewNote = \textcolor{keyword}{false};
+75         mResume = \textcolor{keyword}{false};
+76         mNumBuiltInDynamics = 0;
+77         mDynamicsIndex = 0;
+78         mVelocityFactor = 1f;
+79         mNoteRelease = \textcolor{keyword}{false};
+80         mLoop = \textcolor{keyword}{false};
+81         mNotifyWhenFinished = \textcolor{keyword}{false};
+82 
+83         \textcolor{comment}{// Destroy the audio source if it already exists.}
+84         mSource = gameObject.GetComponent<AudioSource>();
+85         \textcolor{keywordflow}{if}( mSource != null )
+86         \{
+87             DestroyImmediate( mSource, \textcolor{keyword}{false} );
+88         \}
+89 
+90         \textcolor{comment}{// Add a new audio source to this object and set its values.}
+91         mSource = gameObject.AddComponent<AudioSource>();
+92         mSource.enabled = \textcolor{keyword}{true};
+93         mSource.playOnAwake = \textcolor{keyword}{false};
+94         mSource.minDistance = 0f;
+95         mSource.maxDistance = 0.01f;
+96     \}
+97 
+98     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+99 \textcolor{comment}{    * @\}}
+100 \textcolor{comment}{    * @defgroup NOOPubFunc Public Functions}
+101 \textcolor{comment}{    * @ingroup DocNOO}
+102 \textcolor{comment}{    * These are functions other classes use to interact with the NoteOutputObject.}
+103 \textcolor{comment}{    * @\{}
+104 \textcolor{comment}{    *****************************************************************************/}
+105 \textcolor{comment}{}
+106 \textcolor{comment}{    /**}
+107 \textcolor{comment}{    * @brief Handler for setting the note to be played. Should be called from @link
+       VirtualInstrumentManager::PlayNoteEvent the manager's PlayNote event@endlink.}
+108 \textcolor{comment}{    * @param[in] aVelocityFactor The adjusted velocity of the note to be played. Ranges from 0 (silent) to
+       1.0 (max volume).}
+109 \textcolor{comment}{    * @param[in] aDynamicsIndex the index of the built-in dynamics.}
+110 \textcolor{comment}{    * @param[in] aStartIndex Where the note/song/loop should begin playing. Defaults to 0.}
+111 \textcolor{comment}{    * }
+112 \textcolor{comment}{    * This function signals to OnAudioFilterRead that it should begin playing audio. }
+113 \textcolor{comment}{    * In order to avoid threading issues, the signalling mechanism functions somewhat }
+114 \textcolor{comment}{    * like a Moore state machine where it'll have an effect on the next cycle of OnAudioFilterRead.}
+115 \textcolor{comment}{    */}
+116     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___n_o_o_pub_func_ga2bdaa2787408f353f71ef6c6a18e9285}{BeingPlaying}( \textcolor{keywordtype}{float} aVelocityFactor, \textcolor{keywordtype}{int} aDynamicsIndex, \textcolor{keywordtype}{int} aStartIndex = 0 )
+117     \{
+118         Assert.IsTrue( aVelocityFactor <= 1f, \textcolor{stringliteral}{"NoteOutputObject was given a velocity factor greater than 1!
+      "} );
+119 
+120         \textcolor{keywordflow}{if}( mLoaded )
+121         \{
+122             mNewNoteVelocityFactor = aVelocityFactor;
+123             mNewNoteDynamicsIndex = aDynamicsIndex;
+124             mNewNoteStartIndex = aStartIndex;
+125             mNewNote = \textcolor{keyword}{true};
+126             mNoteRelease = \textcolor{keyword}{false};
+127             mPaused = \textcolor{keyword}{false};
+128         \}
+129     \}
+130 \textcolor{comment}{}
+131 \textcolor{comment}{    /**}
+132 \textcolor{comment}{     * @brief Marks that the audio should begin fading out. }
+133 \textcolor{comment}{     * }
+134 \textcolor{comment}{     * This should only be called from @link VIM the manager's@endlink @link
+       VirtualInstrumentManager::ReleaseNote release note event@endlink.}
+135 \textcolor{comment}{    */}
+136     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___n_o_o_pub_func_ga044e62759958d717c7fa4fd1615e2ec1}{BeginRelease}()
+137     \{
+138         \textcolor{keywordflow}{if}( mLoaded && mNotePlaying )
+139         \{
+140             \textcolor{comment}{// Set that the note should fade out. }
+141             \textcolor{comment}{// Actually processing the fade out will be handled by the onAudioFilterRead function.}
+142             mNoteRelease = \textcolor{keyword}{true};
+143         \}
+144     \}
+145 \textcolor{comment}{}
+146 \textcolor{comment}{    /**}
+147 \textcolor{comment}{     * @brief Gets whether or not the audio should loop.}
+148 \textcolor{comment}{     * @return True if the audio should loop. False otherwise.}
+149 \textcolor{comment}{    */}
+150     \textcolor{keyword}{public} \textcolor{keywordtype}{bool} \hyperlink{group___n_o_o_pub_func_ga24d76043802c442f571c5c34a854ff86}{GetLoop}()
+151     \{
+152         \textcolor{keywordflow}{return} \hyperlink{group___n_o_o_priv_var_gabf1d5013f44773e9fd3e4dbb59d74aeb}{mLoop};
+153     \}
+154 \textcolor{comment}{}
+155 \textcolor{comment}{    /** }
+156 \textcolor{comment}{     * @brief Pauses the audio.}
+157 \textcolor{comment}{     * }
+158 \textcolor{comment}{     * @see VirtualInstrumentManager::PauseSongEvent VirtualInstrumentManager::PauseDrumLoopEvent}
+159 \textcolor{comment}{    */}
+160     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___n_o_o_pub_func_ga7977bc941f355866c7e4c141a8f7b8bb}{PauseAudio}()
+161     \{
+162         mPaused = \textcolor{keyword}{true};
+163     \}
+164 \textcolor{comment}{}
+165 \textcolor{comment}{    /**}
+166 \textcolor{comment}{     * @brief Resumes the audio.}
+167 \textcolor{comment}{     * }
+168 \textcolor{comment}{     * @see VirtualInstrumentManager::ResumeSongEvent VirtualInstrumentManager::ResumeDrumLoopEvent}
+169 \textcolor{comment}{    */}
+170     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___n_o_o_pub_func_ga2df8edec357dd4123146c9a7e8485ffb}{ResumeAudio}()
+171     \{
+172         mPaused = \textcolor{keyword}{false};
+173         mNotePlaying = \textcolor{keyword}{true};
+174     \}
+175 \textcolor{comment}{}
+176 \textcolor{comment}{    /**}
+177 \textcolor{comment}{     * @brief Sets the audio data for this object}
+178 \textcolor{comment}{     * @param[in] aAudioData The raw audio data for each @link DefBID Built-In Dynamic@endlink if supported
+       by the instrument. It is just the raw audio data for a single @link Music::PITCH@endlink otherwise.}
+179 \textcolor{comment}{     * @param[in] aMixer The audio mixer to route the audio output to.}
+180 \textcolor{comment}{     * @param[in] aThresholds The @link DefBIDThresh Built-In Dynamics thresholds@endlink if supported by
+       the instrument. Default is null for instruments that don't support @link DefBID Built-In Dynamics@endlink.}
+181 \textcolor{comment}{    */}
+182     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___n_o_o_pub_func_gaef9ab691f0a2671a62249d853f24162d}{SetAudioData}( \textcolor{keywordtype}{float}[][] aAudioData, AudioMixer aMixer, \textcolor{keywordtype}{int}[] aThresholds = null
+       )
+183     \{
+184         mLoaded = \textcolor{keyword}{false};
+185 
+186         \textcolor{keywordflow}{while}( mAudioDataBeingUsed ) ;
+187 
+188         \textcolor{comment}{// Remove any existing audio data.}
+189         \hyperlink{group___n_o_o_priv_func_ga12f593bb5de83dc548eff4617fc687b5}{RemoveAudioData}();
+190 
+191         \textcolor{comment}{// Set the values related to built-in dynamics if necessary. }
+192         \textcolor{keywordflow}{if}( aThresholds != null )
+193         \{
+194             mNumBuiltInDynamics = aThresholds.Length;
+195             mBuiltInDynamicsThresholds = \textcolor{keyword}{new} \textcolor{keywordtype}{int}[\hyperlink{group___n_o_o_priv_var_ga3cc04564fcc1b1c4597af18e7e4fbc47}{mNumBuiltInDynamics}];
+196             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < aThresholds.Length; i++ )
+197             \{
+198                 mBuiltInDynamicsThresholds[i] = aThresholds[i];
+199             \}
+200         \}
+201         \textcolor{keywordflow}{else}
+202         \{
+203             mBuiltInDynamicsThresholds = null;
+204             mDynamicsIndex = 0;
+205             mNumBuiltInDynamics = 0;
+206             mCounter = 0;
+207         \}
+208 
+209         \textcolor{comment}{// Set the output mixer.}
+210         mSource.outputAudioMixerGroup = aMixer.FindMatchingGroups( \textcolor{stringliteral}{"Master"} )[0];
+211 
+212         \textcolor{comment}{// Initialize the audio data array and copy the values from the given parameter.}
+213         \textcolor{comment}{// If we don't have to worry about built in dynamics, then use hard-coded indices }
+214         \textcolor{comment}{// for the outer array.}
+215         \textcolor{keywordflow}{if}( mNumBuiltInDynamics == 0 )
+216         \{
+217             mAudioData = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[1][];
+218             mAudioData[0] = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[aAudioData[0].Length];
+219             mEndSampleIndices = \textcolor{keyword}{new} \textcolor{keywordtype}{int}[1];
+220             mEndSampleIndices[0] = aAudioData[0].Length - 1;
+221             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < aAudioData[0].Length; i++ )
+222             \{
+223                 mAudioData[0][i] = aAudioData[0][i];
+224             \}
+225         \}
+226         \textcolor{comment}{// If there are built in dynamics, then iterate through each one.}
+227         \textcolor{keywordflow}{else}
+228         \{
+229             mAudioData = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[\hyperlink{group___n_o_o_priv_var_ga3cc04564fcc1b1c4597af18e7e4fbc47}{mNumBuiltInDynamics}][];
+230             mEndSampleIndices = \textcolor{keyword}{new} \textcolor{keywordtype}{int}[\hyperlink{group___n_o_o_priv_var_ga3cc04564fcc1b1c4597af18e7e4fbc47}{mNumBuiltInDynamics}];
+231             \textcolor{comment}{// int bufferLength = 0;}
+232             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < \hyperlink{group___n_o_o_priv_var_ga3cc04564fcc1b1c4597af18e7e4fbc47}{mNumBuiltInDynamics}; i++ )
+233             \{
+234                 mAudioData[i] = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[aAudioData[i].Length];
+235                 mEndSampleIndices[i] = aAudioData[i].Length - 1;
+236                 \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} j = 0; j < mAudioData[i].Length; j++ )
+237                 \{
+238                     mAudioData[i][j] = aAudioData[i][j];
+239                 \}
+240             \}
+241         \}
+242 
+243         \textcolor{comment}{// Mark that this object is loaded. }
+244         mLoaded = \textcolor{keyword}{true};
+245     \}
+246 \textcolor{comment}{}
+247 \textcolor{comment}{    /**}
+248 \textcolor{comment}{     * @brief Sets whether or not the audio should loop.}
+249 \textcolor{comment}{     * @param[in] aLoop Whether or not the audio should loop.}
+250 \textcolor{comment}{    */}
+251     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___n_o_o_pub_func_ga7b79bbd2c7a68831b322edff140f29d2}{SetLoop}( \textcolor{keywordtype}{bool} aLoop )
+252     \{
+253         mLoop = aLoop;
+254     \}
+255 \textcolor{comment}{}
+256 \textcolor{comment}{    /**}
+257 \textcolor{comment}{     * @brief Sets the parent VirtualInstrumentManager and sets up diagnostics if needed.}
+258 \textcolor{comment}{     * @param[in] aVIM The parent VirtualInstrumentManager.}
+259 \textcolor{comment}{    */}
+260     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___n_o_o_pub_func_gaca261a6f8d95fc7f81bbc3c8108bad58}{SetVIM}( \hyperlink{class_virtual_instrument_manager}{VirtualInstrumentManager} aVIM )
+261     \{
+262         mVIM = aVIM;
+263 \textcolor{preprocessor}{        #if DEBUG\_AUDIO\_DIAGNOSTICS}
+264             mDiagnosticsHandler = mVIM.\hyperlink{group___v_i_m_pub_func_ga7e60bc3c5464d8f34f0d56def675bcc6}{GetDiagnosticsHandler}();
+265             mReported = \textcolor{keyword}{false};
+266 \textcolor{preprocessor}{        #endif}
+267     \}
+268 \textcolor{comment}{}
+269 \textcolor{comment}{    /** }
+270 \textcolor{comment}{     * @brief Sets whether or not an others should be notified when the audio has finished playing.}
+271 \textcolor{comment}{     * @param[in] aShouldNotify Whether or not others should be notified when the audio has finished
+       playing}
+272 \textcolor{comment}{    */}
+273     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___n_o_o_pub_func_gab7bad1b7d462676843be9e0bbfa1c9fb}{ShouldNotifyWhenFinished}( \textcolor{keywordtype}{bool} aShouldNotify )
+274     \{
+275         mNotifyWhenFinished = aShouldNotify;
+276     \}
+277 \textcolor{comment}{}
+278 \textcolor{comment}{    /**}
+279 \textcolor{comment}{     * @brief Stops playing the audio.}
+280 \textcolor{comment}{    */}
+281     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{group___n_o_o_pub_func_gae8a8e5bc027fd0186464a68399a4fecb}{StopAudio}()
+282     \{
+283         mNotePlaying = \textcolor{keyword}{false};
+284         mPaused = \textcolor{keyword}{false};
+285     \}
+286 
+287     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+288 \textcolor{comment}{    * @\}}
+289 \textcolor{comment}{    * @defgroup NOOPrivFunc Private Functions}
+290 \textcolor{comment}{    * @ingroup DocNOO}
+291 \textcolor{comment}{    * These are functions that are used internally by the NoteOutputObject.}
+292 \textcolor{comment}{    * @\{}
+293 \textcolor{comment}{    *****************************************************************************/}
+294 \textcolor{comment}{}
+295 \textcolor{comment}{    /**}
+296 \textcolor{comment}{     * @brief Removes the audio data and resets relevant variables to default values.}
+297 \textcolor{comment}{    */}
+298     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{group___n_o_o_priv_func_ga12f593bb5de83dc548eff4617fc687b5}{RemoveAudioData}()
+299     \{
+300         mLoaded = \textcolor{keyword}{false};
+301         mNoteRelease = \textcolor{keyword}{false};
+302         mNewNote = \textcolor{keyword}{false};
+303         mNotePlaying = \textcolor{keyword}{false};
+304 
+305         \textcolor{comment}{// Remove the audio data array.}
+306         \textcolor{keywordflow}{if}( mAudioData != null )
+307         \{
+308             \textcolor{keywordflow}{if}( mNumBuiltInDynamics == 0 )
+309             \{
+310                 mAudioData[0] = null;
+311             \}
+312             \textcolor{keywordflow}{else}
+313             \{
+314                 \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < \hyperlink{group___n_o_o_priv_var_ga3cc04564fcc1b1c4597af18e7e4fbc47}{mNumBuiltInDynamics}; i++ )
+315                 \{
+316                     mAudioData[i] = null;
+317                 \}
+318             \}
+319             mAudioData = null;
+320         \}
+321 
+322         \textcolor{comment}{// Set relevant variables to default values. This isn't a destructor, it's just}
+323         \textcolor{comment}{// a function to give the output object a clean slate. }
+324         mEndSampleIndices = null;
+325         mCounter = 0;
+326         mBuiltInDynamicsThresholds = null;
+327         mNumBuiltInDynamics = 0;
+328 
+329         \textcolor{comment}{// Clean up.}
+330         GC.Collect();
+331     \}
+332 
+333     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+334 \textcolor{comment}{    * @\}}
+335 \textcolor{comment}{    * @defgroup NOOHandlers Event Handlers}
+336 \textcolor{comment}{    * @ingroup DocNOO}
+337 \textcolor{comment}{    * These are functions that are automatically called when an event is invoked.}
+338 \textcolor{comment}{    * @\{}
+339 \textcolor{comment}{    *****************************************************************************/}
+340 \textcolor{comment}{}
+341 \textcolor{comment}{    /**}
+342 \textcolor{comment}{     * @brief Handler that is called whenever the audio buffer is refilled. }
+343 \textcolor{comment}{     * @param[inout] data The raw audio data that will be played. This will be replaced by the function
+       with a section of the audio data if needed. }
+344 \textcolor{comment}{     * @param[in] channels The number of channels in the audio data. Not too relevent at this moment.}
+345 \textcolor{comment}{     * }
+346 \textcolor{comment}{     * If the audio is playing, then this handler will pass the appropriate section}
+347 \textcolor{comment}{     * of the raw audio data to the buffer which will cause the sound to actually be played. }
+348 \textcolor{comment}{     * It also keeps track of the position in the audio data, so that the sections are iterated through.}
+349 \textcolor{comment}{     * @n This handler is automatically called whenever the buffer needs to be refilled,}
+350 \textcolor{comment}{     * which is at intervals of ~23ms.}
+351 \textcolor{comment}{    */}
+352     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{group___n_o_o_handlers_gaafd22f8a8c8d2cf101a54a4bf92782a5}{OnAudioFilterRead}( \textcolor{keywordtype}{float}[] data, \textcolor{keywordtype}{int} channels )
+353     \{
+354         \textcolor{comment}{// Only generate the sound if it's loaded.}
+355         \textcolor{keywordflow}{if}( mLoaded )
+356         \{
+357             mAudioDataBeingUsed = \textcolor{keyword}{true};
+358             \textcolor{comment}{// Check for a new note.}
+359             \textcolor{keywordflow}{if}( mNewNote )
+360             \{
+361                 \textcolor{comment}{// Handle starting a new note by setting the relevant member variables}
+362                 mVelocityFactor = \hyperlink{group___n_o_o_priv_var_gaf3cd650d21c56c25ce988d9f75279278}{mNewNoteVelocityFactor};
+363                 mDynamicsIndex = \hyperlink{group___n_o_o_priv_var_ga13de232048b35fc513f8aa3eeef65de0}{mNewNoteDynamicsIndex};
+364                 \textcolor{keywordflow}{if}( !mResume )
+365                 \{
+366                     mCounter = \hyperlink{group___n_o_o_priv_var_ga93720712088a4b6f91abe63d6f07a2c2}{mNewNoteStartIndex};
+367                 \}
+368                 mNewNote = \textcolor{keyword}{false};
+369                 mNoteRelease = \textcolor{keyword}{false};
+370                 mNotePlaying = \textcolor{keyword}{true};
+371                 mResume = \textcolor{keyword}{false};
+372 \textcolor{preprocessor}{                #if DEBUG\_AUDIO\_DIAGNOSTICS}
+373                     mReported = \textcolor{keyword}{false};
+374 \textcolor{preprocessor}{                #endif}
+375             \}
+376             \textcolor{comment}{// Check for a note release.}
+377             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}( mNoteRelease )
+378             \{
+379                 \textcolor{comment}{// If the note has been released, then set the velocity factor to }
+380                 \textcolor{comment}{// decrease each time this function is called.}
+381                 mVelocityFactor -= ( 1f / 100f );
+382             \}
+383             \textcolor{comment}{// Check for pausing the audio.}
+384             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}( mPaused )
+385             \{
+386                 mNotePlaying = \textcolor{keyword}{false};
+387             \}
+388             \textcolor{keywordflow}{if}( mNotePlaying )
+389             \{
+390                 \textcolor{comment}{// If the note hasn't faded out, then play it.}
+391                 \textcolor{keywordflow}{if}( mVelocityFactor > 0 )
+392                 \{
+393                     \textcolor{comment}{// See if we should loop or not.}
+394                     \textcolor{keywordflow}{if}( mLoop )
+395                     \{
+396                         \textcolor{comment}{// Retrieve the audio data.}
+397                         \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < data.Length; i++ )
+398                         \{
+399                             \textcolor{keywordflow}{if}( mCounter == mEndSampleIndices[mDynamicsIndex] )
+400                             \{
+401                                 mCounter = 0;
+402                             \}
+403                             data[i] = mAudioData[\hyperlink{group___n_o_o_priv_var_gaf0c9c2a90b5d73b8ffa0906bc69acdbc}{mDynamicsIndex}][
+      \hyperlink{group___n_o_o_priv_var_ga5dca97be8d58837ace4ea6f4a972b20a}{mCounter}] * \hyperlink{group___n_o_o_priv_var_ga84df25e871d69746a7c520f3f8b49a27}{mVelocityFactor};
+404                             mCounter++;
+405                         \}
+406                     \}
+407                     \textcolor{comment}{// If we shouldn't loop, then make sure that we stop playing right before the end
+       index.}
+408                     \textcolor{keywordflow}{else}
+409                     \{
+410                         \textcolor{comment}{// If we're currently playing a note then retrieve the audio data. }
+411                         \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < data.Length && ( mCounter + i ) < mEndSampleIndices[
+      mDynamicsIndex]; i++ )
+412                         \{
+413                             data[i] = mAudioData[\hyperlink{group___n_o_o_priv_var_gaf0c9c2a90b5d73b8ffa0906bc69acdbc}{mDynamicsIndex}][mCounter + i] * 
+      \hyperlink{group___n_o_o_priv_var_ga84df25e871d69746a7c520f3f8b49a27}{mVelocityFactor};
+414                         \}
+415 
+416                         \textcolor{comment}{// If we've reached the end of the audio data, then the note is no longer playing
+       so}
+417                         \textcolor{comment}{// we should reset some variables.}
+418                         \textcolor{keywordflow}{if}( mCounter + data.Length >= mEndSampleIndices[mDynamicsIndex] )
+419                         \{
+420                             \textcolor{keywordflow}{if}( mNotifyWhenFinished )
+421                             \{
+422                                 mVIM.\hyperlink{group___v_i_m_events_ga39ffa8215ab5c9ad46c563e2bd87c219}{AudioFinished}.Invoke();
+423                             \}
+424                             mCounter = 0;
+425                             mNotePlaying = \textcolor{keyword}{false};
+426                             mNoteRelease = \textcolor{keyword}{false};
+427                         \}
+428                         \textcolor{comment}{// If we haven't reached the end of the audio data yet, then increase the counter.}
+429                         \textcolor{keywordflow}{else}
+430                         \{
+431                             mCounter += data.Length;
+432                         \}
+433 
+434 \textcolor{preprocessor}{                        #if DEBUG\_AUDIO\_DIAGNOSTICS}
+435                             \textcolor{comment}{// Notify the diagnostics.}
+436                             \textcolor{keywordflow}{if}( mDiagnosticsHandler != null && !mReported )
+437                             \{
+438                                 mReported = \textcolor{keyword}{true};
+439                                 mDiagnosticsHandler.\hyperlink{group___audio_testing_a6360e6098323b921b4a1b306914d06ef}{SetOutputTime}.Invoke();
+440                             \}
+441 \textcolor{preprocessor}{                        #endif}
+442                     \}
+443 
+444                 \}
+445                 \textcolor{comment}{// If the note has faded out, then the note is no longer playing so}
+446                 \textcolor{comment}{// we should reset some variables.}
+447                 \textcolor{keywordflow}{else}
+448                 \{
+449                     mCounter = 0;
+450                     mNotePlaying = \textcolor{keyword}{false};
+451                     mNoteRelease = \textcolor{keyword}{false};
+452                 \}
+453             \}
+454             mAudioDataBeingUsed = \textcolor{keyword}{false};
+455         \}
+456     \}\textcolor{comment}{}
+457 \textcolor{comment}{    /** @\} */}
+458 \}
+\end{DoxyCodeInclude}
+ 

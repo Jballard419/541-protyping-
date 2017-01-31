@@ -1,0 +1,157 @@
+\hypertarget{group__filter_params}{}\section{Audio Effect Parameters}
+\label{group__filter_params}\index{Audio Effect Parameters@{Audio Effect Parameters}}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{group__filter_params_struct_virtual_instrument_manager_1_1_echo_filter_parameters}{Virtual\+Instrument\+Manager.\+Echo\+Filter\+Parameters}
+\begin{DoxyCompactList}\small\item\em A struct that holds the parameters for the echo filter.  \hyperlink{group__filter_params_struct_virtual_instrument_manager_1_1_echo_filter_parameters}{More...}\end{DoxyCompactList}\item 
+struct \hyperlink{group__filter_params_struct_virtual_instrument_manager_1_1_reverb_filter_parameters}{Virtual\+Instrument\+Manager.\+Reverb\+Filter\+Parameters}
+\begin{DoxyCompactList}\small\item\em A struct that holds the parameters for the reverb filter.  \hyperlink{group__filter_params_struct_virtual_instrument_manager_1_1_reverb_filter_parameters}{More...}\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+These are structs that contain parameters for the audio effects. 
+
+\subsection{Class Documentation}
+\index{Virtual\+Instrument\+Manager\+::\+Echo\+Filter\+Parameters@{Virtual\+Instrument\+Manager\+::\+Echo\+Filter\+Parameters}}\label{struct_virtual_instrument_manager_1_1_echo_filter_parameters}
+\Hypertarget{group__filter_params_struct_virtual_instrument_manager_1_1_echo_filter_parameters}
+\subsubsection{struct Virtual\+Instrument\+Manager\+:\+:Echo\+Filter\+Parameters}
+A struct that holds the parameters for the echo filter. 
+
+The parameters other than Active are used only if Active is true. If Active is false, then a set of parameters is used that negates the filter. 
+
+Definition at line 238 of file Virtual\+Instrument\+Manager.\+cs.
+
+\begin{DoxyFields}{Class Members}
+\mbox{\Hypertarget{group__filter_params_adbed98a4cc0e2688edabbadfba58a18b}\label{group__filter_params_adbed98a4cc0e2688edabbadfba58a18b}} 
+bool&
+Active&
+\\
+\hline
+
+\mbox{\Hypertarget{group__filter_params_a7e529eb3e4de120daabef80608dcde27}\label{group__filter_params_a7e529eb3e4de120daabef80608dcde27}} 
+float&
+Decay&
+\\
+\hline
+
+\mbox{\Hypertarget{group__filter_params_a2594ca005d747a272e4aa411bef21f6e}\label{group__filter_params_a2594ca005d747a272e4aa411bef21f6e}} 
+float&
+Delay&
+\\
+\hline
+
+\mbox{\Hypertarget{group__filter_params_ab192892df9a03c86b8ce93be434f75be}\label{group__filter_params_ab192892df9a03c86b8ce93be434f75be}} 
+float&
+DryMix&
+\\
+\hline
+
+\mbox{\Hypertarget{group__filter_params_a654d4a14431e8c8758f3f58a97d1e61f}\label{group__filter_params_a654d4a14431e8c8758f3f58a97d1e61f}} 
+float&
+WetMix&
+\\
+\hline
+
+\end{DoxyFields}
+\index{Virtual\+Instrument\+Manager\+::\+Reverb\+Filter\+Parameters@{Virtual\+Instrument\+Manager\+::\+Reverb\+Filter\+Parameters}}\label{struct_virtual_instrument_manager_1_1_reverb_filter_parameters}
+\Hypertarget{group__filter_params_struct_virtual_instrument_manager_1_1_reverb_filter_parameters}
+\subsubsection{struct Virtual\+Instrument\+Manager\+:\+:Reverb\+Filter\+Parameters}
+A struct that holds the parameters for the reverb filter. 
+
+The parameters other than Active are used only if Active is true. If Active is false, then a set of parameters is used that negates the filter. 
+
+Definition at line 254 of file Virtual\+Instrument\+Manager.\+cs.
+
+\begin{DoxyFields}{Class Members}
+\mbox{\Hypertarget{group__filter_params_a5696ae11db74364234cfa3a1b392478b}\label{group__filter_params_a5696ae11db74364234cfa3a1b392478b}} 
+bool&
+Active&
+\\
+\hline
+
+\mbox{\Hypertarget{group__filter_params_af0b0548c6e50ca27a9c7c431536de226}\label{group__filter_params_af0b0548c6e50ca27a9c7c431536de226}} 
+float&
+DecayHFRatio&
+\\
+\hline
+
+\mbox{\Hypertarget{group__filter_params_a0d4f06f9eb253847d91976cf4e890f94}\label{group__filter_params_a0d4f06f9eb253847d91976cf4e890f94}} 
+float&
+DecayTime&
+\\
+\hline
+
+\mbox{\Hypertarget{group__filter_params_a50712c619ef5aa8a29743071932f97cf}\label{group__filter_params_a50712c619ef5aa8a29743071932f97cf}} 
+float&
+Density&
+\\
+\hline
+
+\mbox{\Hypertarget{group__filter_params_a7f0df133bca26a8df749cb4c8a0c2fde}\label{group__filter_params_a7f0df133bca26a8df749cb4c8a0c2fde}} 
+float&
+Diffusion&
+\\
+\hline
+
+\mbox{\Hypertarget{group__filter_params_a7bd1b1132e241d4326e9391ab8725a14}\label{group__filter_params_a7bd1b1132e241d4326e9391ab8725a14}} 
+float&
+DryLevel&
+\\
+\hline
+
+\mbox{\Hypertarget{group__filter_params_aef76135465fe5a51b9cdfb0a4c6d7b8e}\label{group__filter_params_aef76135465fe5a51b9cdfb0a4c6d7b8e}} 
+float&
+HFReference&
+\\
+\hline
+
+\mbox{\Hypertarget{group__filter_params_a7b3168d519f1c20dac8e7c017e421d58}\label{group__filter_params_a7b3168d519f1c20dac8e7c017e421d58}} 
+float&
+LFReference&
+\\
+\hline
+
+\mbox{\Hypertarget{group__filter_params_aca80ad03bd9dce72578cba5c10878f97}\label{group__filter_params_aca80ad03bd9dce72578cba5c10878f97}} 
+float&
+ReflectDelay&
+\\
+\hline
+
+\mbox{\Hypertarget{group__filter_params_a6a97ac76aa1503956201878b0517bab7}\label{group__filter_params_a6a97ac76aa1503956201878b0517bab7}} 
+float&
+Reflections&
+\\
+\hline
+
+\mbox{\Hypertarget{group__filter_params_a4db1acfd33ea8f9ab20e936d6cd0c6af}\label{group__filter_params_a4db1acfd33ea8f9ab20e936d6cd0c6af}} 
+float&
+Reverb&
+\\
+\hline
+
+\mbox{\Hypertarget{group__filter_params_a64f9dcc29c7c75651feb2d10b8494c41}\label{group__filter_params_a64f9dcc29c7c75651feb2d10b8494c41}} 
+float&
+ReverbDelay&
+\\
+\hline
+
+\mbox{\Hypertarget{group__filter_params_aa95fd8e568f09b14452030ada4e3e6b5}\label{group__filter_params_aa95fd8e568f09b14452030ada4e3e6b5}} 
+float&
+Room&
+\\
+\hline
+
+\mbox{\Hypertarget{group__filter_params_aa1313c71d899da694ed67ef322a817e4}\label{group__filter_params_aa1313c71d899da694ed67ef322a817e4}} 
+float&
+RoomHF&
+\\
+\hline
+
+\mbox{\Hypertarget{group__filter_params_a34e15a2268f1d64e57898c553e47fdfe}\label{group__filter_params_a34e15a2268f1d64e57898c553e47fdfe}} 
+float&
+RoomLF&
+\\
+\hline
+
+\end{DoxyFields}

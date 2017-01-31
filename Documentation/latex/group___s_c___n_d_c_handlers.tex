@@ -1,0 +1,208 @@
+\hypertarget{group___s_c___n_d_c_handlers}{}\section{Event Handlers}
+\label{group___s_c___n_d_c_handlers}\index{Event Handlers@{Event Handlers}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___s_c___n_d_c_handlers_ga40c5a3b59608c559ab96ad0338c5e042}{S\+C\+\_\+\+Note\+Display\+Container.\+Handle\+Full\+Measure} (\hyperlink{class_s_c___measure_display_panel}{S\+C\+\_\+\+Measure\+Display\+Panel} a\+Full\+Measure, float a\+Spillover, int a\+Melody\+Velocity, \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{Music.\+N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH} a\+Length, \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH}\mbox{[}$\,$\mbox{]} a\+Pitches, int a\+Drum\+Velocity, \hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{Music.\+D\+R\+UM}\mbox{[}$\,$\mbox{]} a\+Drum\+Hits, \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{Music.\+N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH} a\+Offset\+From\+Prev\+Note)
+\begin{DoxyCompactList}\small\item\em Handler for when a \hyperlink{group___doc_s_c___m_d_p}{measure} fills up. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c___n_d_c_handlers_ga40ffb2c779af43930924348c265c9e09}{S\+C\+\_\+\+Note\+Display\+Container.\+Handle\+Measure\+Deleted} (\hyperlink{class_s_c___measure_display_panel}{S\+C\+\_\+\+Measure\+Display\+Panel} a\+Measure)
+\begin{DoxyCompactList}\small\item\em Handles when a \hyperlink{group___doc_s_c___m_d_p}{measure} has all of its \hyperlink{group___music_structs_struct_music_1_1_combined_note}{notes} removed by deleting the \hyperlink{group___doc_s_c___m_d_p}{measure object}. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c___n_d_c_handlers_ga458d57203645be514d3626211044b584}{S\+C\+\_\+\+Note\+Display\+Container.\+Handle\+Measure\+Toggled} (\hyperlink{class_s_c___measure_display_panel}{S\+C\+\_\+\+Measure\+Display\+Panel} a\+Measure)
+\begin{DoxyCompactList}\small\item\em Handles when a \hyperlink{group___doc_s_c___m_d_p}{measure} is \hyperlink{group___s_c___m_d_p_handlers_ga31c72fee5ddd5ae7b057b2f265341263}{toggled}. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c___n_d_c_handlers_ga6dbbf12e55681d13f43e489dd4a100dc}{S\+C\+\_\+\+Note\+Display\+Container.\+On\+Remove\+Note} ()
+\begin{DoxyCompactList}\small\item\em Handles when a note is removed by decreasing the count of notes in the song. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Functions that are called by the \hyperlink{class_s_c___note_display_container}{S\+C\+\_\+\+Note\+Display\+Container} to handle events. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___s_c___n_d_c_handlers_ga40c5a3b59608c559ab96ad0338c5e042}\label{group___s_c___n_d_c_handlers_ga40c5a3b59608c559ab96ad0338c5e042}} 
+\index{Event Handlers@{Event Handlers}!Handle\+Full\+Measure@{Handle\+Full\+Measure}}
+\index{Handle\+Full\+Measure@{Handle\+Full\+Measure}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{Handle\+Full\+Measure()}{HandleFullMeasure()}}
+{\footnotesize\ttfamily void S\+C\+\_\+\+Note\+Display\+Container.\+Handle\+Full\+Measure (\begin{DoxyParamCaption}\item[{\hyperlink{class_s_c___measure_display_panel}{S\+C\+\_\+\+Measure\+Display\+Panel}}]{a\+Full\+Measure,  }\item[{float}]{a\+Spillover,  }\item[{int}]{a\+Melody\+Velocity,  }\item[{\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{Music.\+N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH}}]{a\+Length,  }\item[{\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{Music.\+P\+I\+T\+CH} \mbox{[}$\,$\mbox{]}}]{a\+Pitches,  }\item[{int}]{a\+Drum\+Velocity,  }\item[{\hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{Music.\+D\+R\+UM} \mbox{[}$\,$\mbox{]}}]{a\+Drum\+Hits,  }\item[{\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{Music.\+N\+O\+T\+E\+\_\+\+L\+E\+N\+G\+TH}}]{a\+Offset\+From\+Prev\+Note }\end{DoxyParamCaption})}
+
+
+
+Handler for when a \hyperlink{group___doc_s_c___m_d_p}{measure} fills up. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Full\+Measure} & The \hyperlink{group___doc_s_c___m_d_p}{measure} that filled up. \\
+\hline
+\mbox{\tt in}  & {\em a\+Spillover} & How much did the new note exceed the limit of the \hyperlink{group___doc_s_c___m_d_p}{measure}. \\
+\hline
+\mbox{\tt in}  & {\em a\+Melody\+Velocity} & The \hyperlink{group___audio_DefVel}{velocity} of the \hyperlink{group___music_structs_struct_music_1_1_melody_note}{pitches} in the \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note}. \\
+\hline
+\mbox{\tt in}  & {\em a\+Length} & The \hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{length} of the \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note}. \\
+\hline
+\mbox{\tt in}  & {\em a\+Pitches} & The \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitches} in the \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note}. \\
+\hline
+\mbox{\tt in}  & {\em a\+Drum\+Velocity} & The \hyperlink{group___audio_DefVel}{velocity} of the \hyperlink{group___music_structs_struct_music_1_1_percussion_note}{drums} in the \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note}. \\
+\hline
+\mbox{\tt in}  & {\em a\+Drum\+Hits} & The \hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{drums} that are hit for this \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note}. \\
+\hline
+\mbox{\tt in}  & {\em a\+Offset\+From\+Prev\+Note} & The \hyperlink{group___music_structs_ae281187907aed4c728c7981300dbebaf}{offset from the previous note}.\\
+\hline
+\end{DoxyParams}
+This function creates a new \hyperlink{group___doc_s_c___m_d_p}{measure} and puts \hyperlink{group___s_c___n_d_c_pub_func_ga43e58800daae0e46bbe1b86d78c2f677}{the note} that couldn\textquotesingle{}t be added to the last \hyperlink{group___doc_s_c___m_d_p}{measure} into the new one. 
+
+Definition at line 168 of file S\+C\+\_\+\+Note\+Display\+Container.\+cs.
+
+
+
+References S\+C\+\_\+\+Note\+Display\+Container.\+Handle\+Measure\+Toggled(), and S\+C\+\_\+\+Note\+Display\+Container.\+m\+Current\+Measure.
+
+
+
+Referenced by S\+C\+\_\+\+Measure\+Display\+Panel.\+Add\+Note().
+
+
+\begin{DoxyCode}
+170     \{
+171         \textcolor{comment}{// Create a new measure toggle.}
+172         GameObject clone = Instantiate( Resources.Load<GameObject>( 
+      \hyperlink{group___s_c___n_d_c_const_gabc95cd739b62996e8a19f0e9417e5f8e}{MEASURE\_PANEL\_PREFAB\_PATH} ) );
+173         Assert.IsNotNull( clone, \textcolor{stringliteral}{"Could not load the MeasurePanel prefab!"} );
+174 
+175         \textcolor{comment}{// Add the measure panel to the list.}
+176         \hyperlink{group___s_c___n_d_c_priv_var_gaa072fb53f6bd6646bc85f2ebc2a02229}{mMeasures}.Add( clone.AddComponent<\hyperlink{class_s_c___measure_display_panel}{SC\_MeasureDisplayPanel}>() );
+177 
+178         \textcolor{comment}{// Increase the current measure.}
+179         \hyperlink{group___s_c___n_d_c_priv_var_ga28ce2bf8358c9f686b5b9e362aa96dff}{mCurrentMeasure}++;
+180 
+181         \textcolor{comment}{// Set the values for the new measure toggle.}
+182         \hyperlink{group___s_c___n_d_c_priv_var_gaa072fb53f6bd6646bc85f2ebc2a02229}{mMeasures}[\hyperlink{group___s_c___n_d_c_priv_var_ga28ce2bf8358c9f686b5b9e362aa96dff}{mCurrentMeasure}].transform.GetChild( 0 ).GetChild( 1 ).
+      GetComponent<Text>().text = \textcolor{stringliteral}{"Measure "} + ( \hyperlink{group___s_c___n_d_c_priv_var_ga28ce2bf8358c9f686b5b9e362aa96dff}{mCurrentMeasure} + 1 ).ToString();
+183         \hyperlink{group___s_c___n_d_c_priv_var_gaa072fb53f6bd6646bc85f2ebc2a02229}{mMeasures}[\hyperlink{group___s_c___n_d_c_priv_var_ga28ce2bf8358c9f686b5b9e362aa96dff}{mCurrentMeasure}].transform.SetParent( gameObject.transform );
+184         \hyperlink{group___s_c___n_d_c_priv_var_gaa072fb53f6bd6646bc85f2ebc2a02229}{mMeasures}[\hyperlink{group___s_c___n_d_c_priv_var_ga28ce2bf8358c9f686b5b9e362aa96dff}{mCurrentMeasure}].SetParentContainer( \textcolor{keyword}{this} );
+185         \hyperlink{group___s_c___n_d_c_priv_var_gaa072fb53f6bd6646bc85f2ebc2a02229}{mMeasures}[\hyperlink{group___s_c___n_d_c_priv_var_ga28ce2bf8358c9f686b5b9e362aa96dff}{mCurrentMeasure}].transform.localScale = Vector3.one;
+186         \hyperlink{group___s_c___n_d_c_priv_var_gaa072fb53f6bd6646bc85f2ebc2a02229}{mMeasures}[\hyperlink{group___s_c___n_d_c_priv_var_ga28ce2bf8358c9f686b5b9e362aa96dff}{mCurrentMeasure}].SetToggle( \textcolor{keyword}{true} );
+187 
+188         \textcolor{comment}{// Handle Spillover from the previous measure.}
+189         \hyperlink{group___s_c___n_d_c_priv_var_gaa072fb53f6bd6646bc85f2ebc2a02229}{mMeasures}[\hyperlink{group___s_c___n_d_c_priv_var_ga28ce2bf8358c9f686b5b9e362aa96dff}{mCurrentMeasure}].SetPercentageUsed( 0f - aSpillover );
+190 
+191         \textcolor{comment}{// Add the note to the new measure.}
+192         \hyperlink{group___s_c___n_d_c_priv_var_gaa072fb53f6bd6646bc85f2ebc2a02229}{mMeasures}[\hyperlink{group___s_c___n_d_c_priv_var_ga28ce2bf8358c9f686b5b9e362aa96dff}{mCurrentMeasure}].AddNote( \hyperlink{group___s_c___n_d_c_priv_var_gae06a4919a63806ed57b2040f41b7ca1b}{mNumNotes}, aMelodyVelocity, 
+      aLength, aPitches, aDrumVelocity, aDrumHits, aOffsetFromPrevNote );
+193 
+194         \textcolor{comment}{// Make only the new measure be shown.}
+195         \hyperlink{group___s_c___n_d_c_handlers_ga458d57203645be514d3626211044b584}{HandleMeasureToggled}( \hyperlink{group___s_c___n_d_c_priv_var_gaa072fb53f6bd6646bc85f2ebc2a02229}{mMeasures}[
+      \hyperlink{group___s_c___n_d_c_priv_var_ga28ce2bf8358c9f686b5b9e362aa96dff}{mCurrentMeasure}] );
+196 
+197     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_c___n_d_c_handlers_ga40ffb2c779af43930924348c265c9e09}\label{group___s_c___n_d_c_handlers_ga40ffb2c779af43930924348c265c9e09}} 
+\index{Event Handlers@{Event Handlers}!Handle\+Measure\+Deleted@{Handle\+Measure\+Deleted}}
+\index{Handle\+Measure\+Deleted@{Handle\+Measure\+Deleted}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{Handle\+Measure\+Deleted()}{HandleMeasureDeleted()}}
+{\footnotesize\ttfamily void S\+C\+\_\+\+Note\+Display\+Container.\+Handle\+Measure\+Deleted (\begin{DoxyParamCaption}\item[{\hyperlink{class_s_c___measure_display_panel}{S\+C\+\_\+\+Measure\+Display\+Panel}}]{a\+Measure }\end{DoxyParamCaption})}
+
+
+
+Handles when a \hyperlink{group___doc_s_c___m_d_p}{measure} has all of its \hyperlink{group___music_structs_struct_music_1_1_combined_note}{notes} removed by deleting the \hyperlink{group___doc_s_c___m_d_p}{measure object}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Measure} & The \hyperlink{group___doc_s_c___m_d_p}{measure} that was deleted. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 203 of file S\+C\+\_\+\+Note\+Display\+Container.\+cs.
+
+
+
+Referenced by S\+C\+\_\+\+Measure\+Display\+Panel.\+On\+Remove\+Note().
+
+
+\begin{DoxyCode}
+204     \{
+205         \textcolor{comment}{// Find the measure that is deleted.}
+206         \textcolor{keywordtype}{int} index = \hyperlink{group___s_c___n_d_c_priv_var_gaa072fb53f6bd6646bc85f2ebc2a02229}{mMeasures}.IndexOf( aMeasure );
+207         \hyperlink{group___s_c___n_d_c_priv_var_ga28ce2bf8358c9f686b5b9e362aa96dff}{mCurrentMeasure}--;
+208 
+209         \textcolor{comment}{// Remove the measure and show the previous one if there is one. }
+210         \hyperlink{group___s_c___n_d_c_priv_var_gaa072fb53f6bd6646bc85f2ebc2a02229}{mMeasures}.RemoveAt( index );
+211         \textcolor{keywordflow}{if}( index > 0 )
+212         \{
+213             \hyperlink{group___s_c___n_d_c_priv_var_gaa072fb53f6bd6646bc85f2ebc2a02229}{mMeasures}[index - 1].SetToggle( \textcolor{keyword}{true} );
+214         \}
+215 
+216         \textcolor{comment}{// Delete the measure.}
+217         DestroyImmediate( aMeasure.gameObject, \textcolor{keyword}{false} );
+218     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_c___n_d_c_handlers_ga458d57203645be514d3626211044b584}\label{group___s_c___n_d_c_handlers_ga458d57203645be514d3626211044b584}} 
+\index{Event Handlers@{Event Handlers}!Handle\+Measure\+Toggled@{Handle\+Measure\+Toggled}}
+\index{Handle\+Measure\+Toggled@{Handle\+Measure\+Toggled}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{Handle\+Measure\+Toggled()}{HandleMeasureToggled()}}
+{\footnotesize\ttfamily void S\+C\+\_\+\+Note\+Display\+Container.\+Handle\+Measure\+Toggled (\begin{DoxyParamCaption}\item[{\hyperlink{class_s_c___measure_display_panel}{S\+C\+\_\+\+Measure\+Display\+Panel}}]{a\+Measure }\end{DoxyParamCaption})}
+
+
+
+Handles when a \hyperlink{group___doc_s_c___m_d_p}{measure} is \hyperlink{group___s_c___m_d_p_handlers_ga31c72fee5ddd5ae7b057b2f265341263}{toggled}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Measure} & The \hyperlink{group___doc_s_c___m_d_p}{measure} that was toggled. This function sets only the toggled \hyperlink{group___doc_s_c___m_d_p}{measure} to be shown. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 225 of file S\+C\+\_\+\+Note\+Display\+Container.\+cs.
+
+
+
+References S\+C\+\_\+\+Measure\+Display\+Panel.\+Set\+Toggle().
+
+
+
+Referenced by S\+C\+\_\+\+Note\+Display\+Container.\+Handle\+Full\+Measure(), and S\+C\+\_\+\+Measure\+Display\+Panel.\+On\+Show\+Toggle().
+
+
+\begin{DoxyCode}
+226     \{
+227         \textcolor{comment}{// Set that only the toggled measure should be shown.}
+228         \textcolor{keywordflow}{foreach}( \hyperlink{class_s_c___measure_display_panel}{SC\_MeasureDisplayPanel} measure \textcolor{keywordflow}{in} 
+      \hyperlink{group___s_c___n_d_c_priv_var_gaa072fb53f6bd6646bc85f2ebc2a02229}{mMeasures} )
+229         \{
+230             \textcolor{keywordflow}{if}( aMeasure != measure )
+231             \{
+232                 measure.\hyperlink{group___s_c___m_d_p_pub_func_ga6512fa5010bcecd85f7e8542cea91310}{SetToggle}( \textcolor{keyword}{false} );
+233             \}
+234             \textcolor{keywordflow}{else}
+235             \{
+236                 measure.\hyperlink{group___s_c___m_d_p_pub_func_ga6512fa5010bcecd85f7e8542cea91310}{SetToggle}( \textcolor{keyword}{true} );
+237             \}
+238         \}
+239     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_c___n_d_c_handlers_ga6dbbf12e55681d13f43e489dd4a100dc}\label{group___s_c___n_d_c_handlers_ga6dbbf12e55681d13f43e489dd4a100dc}} 
+\index{Event Handlers@{Event Handlers}!On\+Remove\+Note@{On\+Remove\+Note}}
+\index{On\+Remove\+Note@{On\+Remove\+Note}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{On\+Remove\+Note()}{OnRemoveNote()}}
+{\footnotesize\ttfamily void S\+C\+\_\+\+Note\+Display\+Container.\+On\+Remove\+Note (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Handles when a note is removed by decreasing the count of notes in the song. 
+
+\begin{DoxySeeAlso}{See also}
+S\+C\+\_\+\+Measure\+Display\+Panel\+::\+Remove\+Note 
+\end{DoxySeeAlso}
+
+
+Definition at line 246 of file S\+C\+\_\+\+Note\+Display\+Container.\+cs.
+
+
+
+Referenced by S\+C\+\_\+\+Measure\+Display\+Panel.\+On\+Remove\+Note().
+
+
+\begin{DoxyCode}
+247     \{
+248         \hyperlink{group___s_c___n_d_c_priv_var_gae06a4919a63806ed57b2040f41b7ca1b}{mNumNotes}--;
+249     \}
+\end{DoxyCode}

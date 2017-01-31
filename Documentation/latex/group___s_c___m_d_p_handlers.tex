@@ -1,0 +1,120 @@
+\hypertarget{group___s_c___m_d_p_handlers}{}\section{Event Handlers}
+\label{group___s_c___m_d_p_handlers}\index{Event Handlers@{Event Handlers}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___s_c___m_d_p_handlers_ga31c72fee5ddd5ae7b057b2f265341263}{S\+C\+\_\+\+Measure\+Display\+Panel.\+On\+Show\+Toggle} (bool a\+Show\+Measure)
+\begin{DoxyCompactList}\small\item\em Handles showing the measure or hiding it. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c___m_d_p_handlers_gab48fa7fe4d7d4b29a3b0567be2b29849}{S\+C\+\_\+\+Measure\+Display\+Panel.\+On\+Remove\+Note} (\hyperlink{class_s_c___note_display_panel}{S\+C\+\_\+\+Note\+Display\+Panel} a\+Note\+Display\+Panel)
+\begin{DoxyCompactList}\small\item\em Removes a \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Functions called by the \hyperlink{class_s_c___measure_display_panel}{S\+C\+\_\+\+Measure\+Display\+Panel} in order to handle events. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___s_c___m_d_p_handlers_gab48fa7fe4d7d4b29a3b0567be2b29849}\label{group___s_c___m_d_p_handlers_gab48fa7fe4d7d4b29a3b0567be2b29849}} 
+\index{Event Handlers@{Event Handlers}!On\+Remove\+Note@{On\+Remove\+Note}}
+\index{On\+Remove\+Note@{On\+Remove\+Note}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{On\+Remove\+Note()}{OnRemoveNote()}}
+{\footnotesize\ttfamily void S\+C\+\_\+\+Measure\+Display\+Panel.\+On\+Remove\+Note (\begin{DoxyParamCaption}\item[{\hyperlink{class_s_c___note_display_panel}{S\+C\+\_\+\+Note\+Display\+Panel}}]{a\+Note\+Display\+Panel }\end{DoxyParamCaption})}
+
+
+
+Removes a \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Note\+Display\+Panel} & The panel displaying the note to be removed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 232 of file S\+C\+\_\+\+Measure\+Display\+Panel.\+cs.
+
+
+
+References Music.\+Get\+Note\+Length\+Relative\+To\+Measure(), S\+C\+\_\+\+Note\+Display\+Panel.\+Get\+Offset(), S\+C\+\_\+\+Note\+Display\+Container.\+Handle\+Measure\+Deleted(), S\+C\+\_\+\+Note\+Display\+Container.\+On\+Remove\+Note(), and Music.\+T\+I\+M\+E\+\_\+\+S\+I\+G\+N\+A\+T\+U\+R\+E\+\_\+4\+\_\+4().
+
+
+
+Referenced by S\+C\+\_\+\+Note\+Display\+Panel.\+On\+Remove\+Button\+Clicked().
+
+
+\begin{DoxyCode}
+233     \{
+234         \textcolor{comment}{// If there is more than one note in the measure, then just remove it from the measure.}
+235         \textcolor{keywordflow}{if}( \hyperlink{group___s_c___m_d_p_priv_var_gaf8a533bce87e58d8f7a1da88f476ac6f}{mNotes}.Count > 1 )
+236         \{
+237             \textcolor{comment}{// Find the note.}
+238             \textcolor{keywordtype}{bool} found = \textcolor{keyword}{false};
+239             \textcolor{keywordtype}{int} index = 0;
+240             \textcolor{keywordflow}{while}( !found && index < \hyperlink{group___s_c___m_d_p_priv_var_gaf8a533bce87e58d8f7a1da88f476ac6f}{mNotes}.Count )
+241             \{
+242                 \textcolor{keywordflow}{if}( aNoteDisplayPanel == \hyperlink{group___s_c___m_d_p_priv_var_gaf8a533bce87e58d8f7a1da88f476ac6f}{mNotes}[index] )
+243                 \{
+244                     found = \textcolor{keyword}{true};
+245                 \}
+246                 \textcolor{keywordflow}{else}
+247                 \{
+248                     index++;
+249                 \}
+250             \}
+251             \hyperlink{class_s_c___note_display_panel}{SC\_NoteDisplayPanel} temp = \hyperlink{group___s_c___m_d_p_priv_var_gaf8a533bce87e58d8f7a1da88f476ac6f}{mNotes}[index];
+252 
+253             \textcolor{comment}{// Remove the note from the list.}
+254             \hyperlink{group___s_c___m_d_p_priv_var_gaf8a533bce87e58d8f7a1da88f476ac6f}{mNotes}.RemoveAt( index );
+255 
+256             \textcolor{comment}{// Update the percentage used.}
+257             \hyperlink{group___s_c___m_d_p_priv_var_ga7567e9001016a06d950b9d0cc9e1d905}{mPercentageUsed} -= \hyperlink{class_music}{Music}.
+      \hyperlink{group___music_stat_func_ga91e290b48ad2289493ba4421308abe49}{GetNoteLengthRelativeToMeasure}( temp.\hyperlink{group___s_c___n_d_p_unity_ga371654221730812200062322c8a3e750}{GetOffset}(), 
+      \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_gac95af323eef7511543c799154e1c29fd}{TIME\_SIGNATURE\_4\_4}() );
+258 
+259             \textcolor{comment}{// Destroy the note object.}
+260             DestroyImmediate( temp.gameObject, \textcolor{keyword}{false} );
+261 
+262         \}
+263         \textcolor{comment}{// If there aren't any notes left, then handle this measure being deleted.}
+264         \textcolor{keywordflow}{else}
+265         \{
+266             \hyperlink{class_s_c___note_display_panel}{SC\_NoteDisplayPanel} temp = \hyperlink{group___s_c___m_d_p_priv_var_gaf8a533bce87e58d8f7a1da88f476ac6f}{mNotes}[0];
+267             \hyperlink{group___s_c___m_d_p_priv_var_gaf8a533bce87e58d8f7a1da88f476ac6f}{mNotes}.Clear();
+268             DestroyImmediate( temp.gameObject, \textcolor{keyword}{false} );
+269             \hyperlink{group___s_c___m_d_p_priv_var_ga6f22ae359dd68605a8b2fd961ced96b5}{mParent}.\hyperlink{group___s_c___n_d_c_handlers_ga40ffb2c779af43930924348c265c9e09}{HandleMeasureDeleted}( \textcolor{keyword}{this} );
+270         \}
+271         \hyperlink{group___s_c___m_d_p_priv_var_ga6f22ae359dd68605a8b2fd961ced96b5}{mParent}.\hyperlink{group___s_c___n_d_c_handlers_ga6dbbf12e55681d13f43e489dd4a100dc}{OnRemoveNote}();
+272     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_c___m_d_p_handlers_ga31c72fee5ddd5ae7b057b2f265341263}\label{group___s_c___m_d_p_handlers_ga31c72fee5ddd5ae7b057b2f265341263}} 
+\index{Event Handlers@{Event Handlers}!On\+Show\+Toggle@{On\+Show\+Toggle}}
+\index{On\+Show\+Toggle@{On\+Show\+Toggle}!Event Handlers@{Event Handlers}}
+\subsubsection{\texorpdfstring{On\+Show\+Toggle()}{OnShowToggle()}}
+{\footnotesize\ttfamily void S\+C\+\_\+\+Measure\+Display\+Panel.\+On\+Show\+Toggle (\begin{DoxyParamCaption}\item[{bool}]{a\+Show\+Measure }\end{DoxyParamCaption})}
+
+
+
+Handles showing the measure or hiding it. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Show\+Measure} & True if the measure should be shown. False otherwise.\\
+\hline
+\end{DoxyParams}
+This just passes it from the \hyperlink{group___s_c___m_d_p_priv_var_gabec551ab0b79d269b028f4bc99e82b00}{toggle switch} to the \hyperlink{group___s_c___n_d_c_handlers_ga458d57203645be514d3626211044b584}{parent\textquotesingle{}s handling function}. 
+
+Definition at line 223 of file S\+C\+\_\+\+Measure\+Display\+Panel.\+cs.
+
+
+
+References S\+C\+\_\+\+Note\+Display\+Container.\+Handle\+Measure\+Toggled().
+
+
+
+Referenced by S\+C\+\_\+\+Measure\+Display\+Panel.\+Awake(), and S\+C\+\_\+\+Measure\+Display\+Panel.\+Set\+Toggle().
+
+
+\begin{DoxyCode}
+224     \{
+225         \hyperlink{group___s_c___m_d_p_priv_var_ga6f22ae359dd68605a8b2fd961ced96b5}{mParent}.\hyperlink{group___s_c___n_d_c_handlers_ga458d57203645be514d3626211044b584}{HandleMeasureToggled}( \textcolor{keyword}{this} );
+226     \}
+\end{DoxyCode}

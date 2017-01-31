@@ -1,0 +1,111 @@
+\hypertarget{group___s_c___p_s_t_pub_func}{}\section{Public Functions}
+\label{group___s_c___p_s_t_pub_func}\index{Public Functions@{Public Functions}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___s_c___p_s_t_pub_func_ga0b334518dbdac5874adf9436cd2c7fed}{S\+C\+\_\+\+Pitch\+Selection\+Trigger.\+Set\+Handler} (\hyperlink{class_s_c___pitch_selection_container}{S\+C\+\_\+\+Pitch\+Selection\+Container} a\+Handler)
+\begin{DoxyCompactList}\small\item\em Sets \hyperlink{group___doc_s_c___p_s_c}{the parent handler}. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c___p_s_t_pub_func_ga0b4edbf9719a384aa5cf8d29d1065696}{S\+C\+\_\+\+Pitch\+Selection\+Trigger.\+Set\+Index} (int a\+Index)
+\begin{DoxyCompactList}\small\item\em Sets the index of this trigger in \hyperlink{group___doc_s_c___p_s_c}{the parent handler}. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_c___p_s_t_pub_func_ga267db9aed38ba33ad44c26c84a1757df}{S\+C\+\_\+\+Pitch\+Selection\+Trigger.\+Set\+Selection} (bool a\+Selected)
+\begin{DoxyCompactList}\small\item\em Sets whether or not this trigger is selected. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+These are functions that allow other classes to interact with the \hyperlink{class_s_c___pitch_selection_trigger}{S\+C\+\_\+\+Pitch\+Selection\+Trigger}. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___s_c___p_s_t_pub_func_ga0b334518dbdac5874adf9436cd2c7fed}\label{group___s_c___p_s_t_pub_func_ga0b334518dbdac5874adf9436cd2c7fed}} 
+\index{Public Functions@{Public Functions}!Set\+Handler@{Set\+Handler}}
+\index{Set\+Handler@{Set\+Handler}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Set\+Handler()}{SetHandler()}}
+{\footnotesize\ttfamily void S\+C\+\_\+\+Pitch\+Selection\+Trigger.\+Set\+Handler (\begin{DoxyParamCaption}\item[{\hyperlink{class_s_c___pitch_selection_container}{S\+C\+\_\+\+Pitch\+Selection\+Container}}]{a\+Handler }\end{DoxyParamCaption})}
+
+
+
+Sets \hyperlink{group___doc_s_c___p_s_c}{the parent handler}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Handler} & \hyperlink{group___doc_s_c___p_s_c}{The parent handler}. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 57 of file S\+C\+\_\+\+Pitch\+Selection\+Trigger.\+cs.
+
+
+
+Referenced by S\+C\+\_\+\+Pitch\+Selection\+Container.\+Set\+Up\+As\+Drum\+Selector(), and S\+C\+\_\+\+Pitch\+Selection\+Container.\+Set\+Up\+As\+Pitch\+Selector().
+
+
+\begin{DoxyCode}
+58     \{
+59         \hyperlink{group___s_c___p_s_t_priv_var_ga23cf7134e224e9718a99949979cd5078}{mHandler} = aHandler;
+60     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_c___p_s_t_pub_func_ga0b4edbf9719a384aa5cf8d29d1065696}\label{group___s_c___p_s_t_pub_func_ga0b4edbf9719a384aa5cf8d29d1065696}} 
+\index{Public Functions@{Public Functions}!Set\+Index@{Set\+Index}}
+\index{Set\+Index@{Set\+Index}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Set\+Index()}{SetIndex()}}
+{\footnotesize\ttfamily void S\+C\+\_\+\+Pitch\+Selection\+Trigger.\+Set\+Index (\begin{DoxyParamCaption}\item[{int}]{a\+Index }\end{DoxyParamCaption})}
+
+
+
+Sets the index of this trigger in \hyperlink{group___doc_s_c___p_s_c}{the parent handler}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Index} & The index of this trigger in \hyperlink{group___doc_s_c___p_s_c}{the parent handler}. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 66 of file S\+C\+\_\+\+Pitch\+Selection\+Trigger.\+cs.
+
+
+
+Referenced by S\+C\+\_\+\+Pitch\+Selection\+Container.\+Set\+Up\+As\+Drum\+Selector(), and S\+C\+\_\+\+Pitch\+Selection\+Container.\+Set\+Up\+As\+Pitch\+Selector().
+
+
+\begin{DoxyCode}
+67     \{
+68         \hyperlink{group___s_c___p_s_t_priv_var_ga7d7771170c1f6cb1d6a9eb41e96a478f}{mIndex} = aIndex;
+69     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{group___s_c___p_s_t_pub_func_ga267db9aed38ba33ad44c26c84a1757df}\label{group___s_c___p_s_t_pub_func_ga267db9aed38ba33ad44c26c84a1757df}} 
+\index{Public Functions@{Public Functions}!Set\+Selection@{Set\+Selection}}
+\index{Set\+Selection@{Set\+Selection}!Public Functions@{Public Functions}}
+\subsubsection{\texorpdfstring{Set\+Selection()}{SetSelection()}}
+{\footnotesize\ttfamily void S\+C\+\_\+\+Pitch\+Selection\+Trigger.\+Set\+Selection (\begin{DoxyParamCaption}\item[{bool}]{a\+Selected }\end{DoxyParamCaption})}
+
+
+
+Sets whether or not this trigger is selected. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Selected} & True if the trigger is selected. False otherwise. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 75 of file S\+C\+\_\+\+Pitch\+Selection\+Trigger.\+cs.
+
+
+
+References S\+C\+\_\+\+Pitch\+Selection\+Trigger.\+On\+Pitch\+Selected().
+
+
+
+Referenced by S\+C\+\_\+\+Pitch\+Selection\+Container.\+Handle\+Pitch\+Selection(), S\+C\+\_\+\+Pitch\+Selection\+Container.\+On\+Rest\+Toggle(), and S\+C\+\_\+\+Pitch\+Selection\+Container.\+Reset\+Pitches().
+
+
+\begin{DoxyCode}
+76     \{
+77         \textcolor{comment}{// Update the toggle switch.}
+78         \hyperlink{group___s_c___p_s_t_priv_var_ga1ecd33f50c82f6ffda81850438907a31}{mToggle}.onValueChanged.RemoveListener( \hyperlink{group___s_c___p_s_t_handlers_ga5f4ea69eee3ed20cb09d56b7281ce861}{OnPitchSelected} );
+79         \hyperlink{group___s_c___p_s_t_priv_var_ga1ecd33f50c82f6ffda81850438907a31}{mToggle}.isOn = aSelected;
+80         \hyperlink{group___s_c___p_s_t_priv_var_ga1ecd33f50c82f6ffda81850438907a31}{mToggle}.onValueChanged.AddListener( \hyperlink{group___s_c___p_s_t_handlers_ga5f4ea69eee3ed20cb09d56b7281ce861}{OnPitchSelected} );
+81     \}
+\end{DoxyCode}

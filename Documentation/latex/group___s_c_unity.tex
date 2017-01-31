@@ -1,0 +1,95 @@
+\hypertarget{group___s_c_unity}{}\section{Unity Functions}
+\label{group___s_c_unity}\index{Unity Functions@{Unity Functions}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___s_c_unity_ga0130f42289ace34cb59f70eedc858757}{Song\+Creation.\+Awake} ()
+\begin{DoxyCompactList}\small\item\em Initializes the \hyperlink{group___doc_s_c}{Song Creation Interface} by getting references to all of the modules within the scene. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+These are functions called automatically by Unity. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___s_c_unity_ga0130f42289ace34cb59f70eedc858757}\label{group___s_c_unity_ga0130f42289ace34cb59f70eedc858757}} 
+\index{Unity Functions@{Unity Functions}!Awake@{Awake}}
+\index{Awake@{Awake}!Unity Functions@{Unity Functions}}
+\subsubsection{\texorpdfstring{Awake()}{Awake()}}
+{\footnotesize\ttfamily void Song\+Creation.\+Awake (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Initializes the \hyperlink{group___doc_s_c}{Song Creation Interface} by getting references to all of the modules within the scene. 
+
+
+
+Definition at line 551 of file Song\+Creation.\+cs.
+
+
+
+References Song\+Creation.\+On\+B\+P\+M\+Change(), Song\+Creation.\+On\+Create\+Note(), Song\+Creation.\+On\+Load\+Song\+Button\+Clicked(), Song\+Creation.\+On\+Play\+Song(), Song\+Creation.\+On\+Save\+Song(), Song\+Creation.\+On\+Velocity\+Change(), Song.\+Set\+Name(), Song\+Creation.\+Song\+Creation\+Selection\+Container.\+Set\+Selected(), Song\+Creation.\+Pitch\+Selection\+Container.\+Set\+Up\+Drums(), and Song\+Creation.\+Unload\+Song\+Creation\+Interface().
+
+
+\begin{DoxyCode}
+552     \{
+553         \textcolor{comment}{// Initialize the song.}
+554         \hyperlink{group___s_c_priv_var_ga9554e9b3758d1cc1e841a5f7d8aa9f56}{mSong} = \textcolor{keyword}{new} \hyperlink{class_song}{Song}();
+555 
+556         \textcolor{comment}{// Get the virtual instrument manager.}
+557         \hyperlink{group___s_c_priv_var_ga1bad472098eec4194c5b18e7b3ccfd94}{mVIM} = GameObject.Find( \textcolor{stringliteral}{"VirtualInstrumentManager"} ).GetComponent<
+      \hyperlink{class_virtual_instrument_manager}{VirtualInstrumentManager}>();
+558 
+559         \textcolor{comment}{// Set up the container for showing the song's notes.}
+560         \hyperlink{group___s_c_priv_var_ga19cefeb7077126193c7f60d07dfdf32c}{mNoteDisplay} = gameObject.transform.GetChild( 1 ).GetChild( 0 ).GetChild( 0 ).
+      gameObject.AddComponent<\hyperlink{class_note_display_container}{NoteDisplayContainer}>();
+561 
+562         \textcolor{comment}{// Set up the container for selecting pitches.}
+563         \hyperlink{group___s_c_priv_var_gac32e68713b2b504807f52acef445df1c}{mPitchSelector} = gameObject.transform.GetChild( 2 ).GetChild( 0 ).GetChild( 0 ).
+      gameObject.AddComponent<PitchSelectionContainer>();
+564         mPitchSelector.SetUpPitches();
+565 
+566         \textcolor{comment}{// Set up the panels for choosing a note's length and offset.}
+567         \hyperlink{group___s_c_priv_var_ga370237b50bc11a581fc963cdd8ffd4ea}{mLengthPanel} = gameObject.transform.GetChild( 3 ).gameObject.AddComponent<
+      SongCreationSelectionContainer>();
+568         \hyperlink{group___s_c_priv_var_ga370237b50bc11a581fc963cdd8ffd4ea}{mLengthPanel}.\hyperlink{group___s_c_handlers_ga71307336af2197a0ee20bbaf3bfb02aa}{SetSelected}( \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.Q );
+569         \hyperlink{group___s_c_priv_var_gafeeda8ab122f574c6fff94814234334c}{mOffsetPanel} = gameObject.transform.GetChild( 4 ).gameObject.AddComponent<
+      SongCreationSelectionContainer>();
+570 
+571         \textcolor{comment}{// Set up the slider for the note's velocity.}
+572         \hyperlink{group___s_c_priv_var_ga0738678367556ebb69df6e73213f616d}{mVelocitySlider} = gameObject.transform.GetChild( 5 ).GetChild( 0 ).GetComponent<
+      Slider>();
+573         mVelocitySlider.onValueChanged.AddListener( \hyperlink{group___s_c_handlers_ga929912496540563f4ec02295a0d333c6}{OnVelocityChange} );
+574 
+575         \textcolor{comment}{// Set up the slider for the song's default BPM.}
+576         \hyperlink{group___s_c_priv_var_ga6f751fe7fc31196eeec490cdbc679baa}{mBPMSlider} = gameObject.transform.GetChild( 5 ).GetChild( 1 ).GetComponent<Slider>();
+577         \hyperlink{group___s_c_priv_var_ga6f751fe7fc31196eeec490cdbc679baa}{mBPMSlider}.onValueChanged.AddListener( \hyperlink{group___s_c_handlers_ga867d521ac1d7184636c40dad3ebd43b0}{OnBPMChange} );
+578 
+579         \textcolor{comment}{// Set up the input field for naming the song.        }
+580         \hyperlink{group___s_c_priv_var_ga768474e1f768bfcce7010995020b09f3}{mSongNameInputField} = gameObject.transform.GetChild( 6 ).gameObject.GetComponent
+      <InputField>();
+581         \hyperlink{group___s_c_priv_var_ga768474e1f768bfcce7010995020b09f3}{mSongNameInputField}.onEndEdit.AddListener( \hyperlink{group___s_c_priv_var_ga9554e9b3758d1cc1e841a5f7d8aa9f56}{mSong}.
+      \hyperlink{group___song_const_gacb01510cf72657fc7c64bb6ba00c2c56}{SetName} );
+582 
+583         \textcolor{comment}{// Set up the buttons.}
+584         \hyperlink{group___s_c_priv_var_ga488ce0727c77abe7c84989241f4e55b4}{mNewNoteButton} = gameObject.transform.GetChild( 7 ).gameObject.GetComponent<Button>()
+      ;
+585         \hyperlink{group___s_c_priv_var_ga488ce0727c77abe7c84989241f4e55b4}{mNewNoteButton}.onClick.AddListener( \hyperlink{group___s_c_handlers_ga70f2fdac755a6b62f48afd96f2446d71}{OnCreateNote} );
+586         \hyperlink{group___s_c_priv_var_ga89e82b9c8af6b34d7e0ec37c81f2f674}{mResetPitchesButton} = gameObject.transform.GetChild( 8 ).GetComponent<Button>();
+587         \hyperlink{group___s_c_priv_var_ga89e82b9c8af6b34d7e0ec37c81f2f674}{mResetPitchesButton}.onClick.AddListener( mPitchSelector.ResetPitches );
+588         \hyperlink{group___s_c_priv_var_ga8bcdbe4c52da2e90edf9afffb35b48d3}{mSaveSongButton} = gameObject.transform.GetChild( 9 ).gameObject.GetComponent<Button>
+      ();
+589         \hyperlink{group___s_c_priv_var_ga8bcdbe4c52da2e90edf9afffb35b48d3}{mSaveSongButton}.onClick.AddListener( \hyperlink{group___s_c_handlers_ga3fac289dfb9e67d94afbeb0dfdb22f48}{OnSaveSong} );
+590         \hyperlink{group___s_c_priv_var_ga8afebf9e2e92619f9ef9cfe5410a143a}{mPlaySongButton} = gameObject.transform.GetChild( 10 ).GetComponent<Button>();
+591         \hyperlink{group___s_c_priv_var_ga8afebf9e2e92619f9ef9cfe5410a143a}{mPlaySongButton}.onClick.AddListener( \hyperlink{group___s_c_handlers_gab333656dbc41fbebb320a30c48501370}{OnPlaySong} );
+592         \hyperlink{group___s_c_priv_var_gacc018689b7f6508762958c3796a68937}{mATIButton} = gameObject.transform.GetChild( 11 ).GetComponent<Button>();
+593         \hyperlink{group___s_c_priv_var_gacc018689b7f6508762958c3796a68937}{mATIButton}.onClick.AddListener( \hyperlink{group___s_c_handlers_gae631852736624d333cc26e1ae9d14871}{UnloadSongCreationInterface} );
+594         \hyperlink{group___s_c_priv_var_ga0e016451dff405f570bf530586fb36fa}{mLoadSongButton} = transform.GetChild( 13 ).GetComponent<Button>();
+595         \hyperlink{group___s_c_priv_var_ga0e016451dff405f570bf530586fb36fa}{mLoadSongButton}.onClick.AddListener( 
+      \hyperlink{group___s_c_handlers_ga77a56bedfce632cf7c341f8fefc02b9a}{OnLoadSongButtonClicked} );
+596 
+597         \textcolor{comment}{// Set up the drum selector.}
+598         \hyperlink{group___s_c_priv_var_ga3f1c71d8cabe505745220d728c6f97bc}{mDrumSelector} = gameObject.transform.GetChild( 12 ).GetChild( 0 ).GetChild( 0 ).
+      gameObject.AddComponent<PitchSelectionContainer>();
+599         \hyperlink{group___s_c_priv_var_ga3f1c71d8cabe505745220d728c6f97bc}{mDrumSelector}.\hyperlink{group___s_c_handlers_gae0bda65460aedf8384cd51bd6079d85b}{SetUpDrums}();
+600     \}
+\end{DoxyCode}
