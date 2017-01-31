@@ -5,6 +5,6 @@ var searchData=
   ['clearkeyboard',['ClearKeyboard',['../group___key_contain_priv_func.html#ga679f5ca9d6b1505180e90ee00bbfe616',1,'KeyContainer']]],
   ['clearmeasure',['ClearMeasure',['../group___s_c___m_d_p_pub_func.html#ga5c4379bcb1309f70b7406eb6523c6179',1,'SC_MeasureDisplayPanel']]],
   ['clearnotes',['ClearNotes',['../group___s_c___n_d_c_pub_func.html#gaa344983500e83531210ae1c4789182f3',1,'SC_NoteDisplayContainer']]],
-  ['createfilenames',['CreateFilenames',['../class_drum_kit.html#a25bb92cf56bc1b3434465faf73cd09cf',1,'DrumKit.CreateFilenames()'],['../group___mar_virt_func.html#gae57d9737fd07708dc7e13e74ee777878',1,'Marimba.CreateFilenames()'],['../group___piano_virt_func.html#gaafd50f0f04ea7ea4f560accc628b8f1b',1,'Piano.CreateFilenames()'],['../group___v_i_base_virt_func.html#gaacfc9521214176292bfb9665556fb991',1,'VirtualInstrument.CreateFilenames()']]],
+  ['createfilenames',['CreateFilenames',['../group___drum_virt_func.html#ga25bb92cf56bc1b3434465faf73cd09cf',1,'DrumKit.CreateFilenames()'],['../group___mar_virt_func.html#gae57d9737fd07708dc7e13e74ee777878',1,'Marimba.CreateFilenames()'],['../group___piano_virt_func.html#gaafd50f0f04ea7ea4f560accc628b8f1b',1,'Piano.CreateFilenames()'],['../group___v_i_base_virt_func.html#gaacfc9521214176292bfb9665556fb991',1,'VirtualInstrument.CreateFilenames()']]],
   ['createnote',['CreateNote',['../group___music_stat_func.html#gaaf74885e43eb623f64f961985fadcd08',1,'Music']]]
 ];

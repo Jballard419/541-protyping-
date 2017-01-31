@@ -5,18 +5,18 @@
  * @{
  * @section DocSongTerminology Terminology
  * @subsection DocSongMelody Melody
- * A @link Song::SongType type@endlink of Song that contains only @link Music::PITCH pitches@endlink.
+ * A @link Song::SongType type@endlink of Song that contains only @link Music::PITCH pitches@endlink. @see VirtualInstrumentManager::OnPlaySongEvent
  * @subsection DocSongDrumLoop Drum Loop
- * A @link Song::SongType type@endlink of Song that contains only @link Music::DRUM drums@endlink. These are looped when played. @see VirtualInstrumentManager::PlayDrumLoopEvent
+ * A @link Song::SongType type@endlink of Song that contains only @link Music::DRUM drums@endlink. These are looped when played. @see VirtualInstrumentManager::OnPlayDrumLoopEvent
  * @subsection DocSongCombined Combined
- * A @link Song::SongType type@endlink of Song that has both @link Music::PITCH pitches@endlink and @link Music::DRUM drums@endlink.
+ * A @link Song::SongType type@endlink of Song that has both @link Music::PITCH pitches@endlink and @link Music::DRUM drums@endlink. @see VirtualInstrumentManager::OnPlaySongEvent
  * 
- * @subsection DocSongFileFormat Song File Format
+ * @section DocSongFileFormat Song File Format
  * There are @link Song::SongType three types@endlink of Songs which can be stored in a file. Which type the Song is will affect @link Song::WriteSongToFile how it is saved@endlink.
  * For all @link Song::SongType song types@endlink, the files are saved in Assets/StreamingAssets/Songs/.
  * @note The values from @link DocMusicEnums Music enums@endlink are typecast to integers for saving. Ex: @link Music::PITCH.C4 Music.PITCH.C4@endlink is saved as 48. 
  * 
- * @subsubsection DocSongFileFormatMelody File Format for a Melody
+ * @subsection DocSongFileFormatMelody File Format for a Melody
  * If the song is a @link DocSongMelody melody@endlink, then the file is saved as \"MELODY_@link Song::mName songName@endlink\.song\"\.
  * The format of the file is
  * @li First line: @link Song::mName "Name of song"@endlink 
@@ -37,7 +37,7 @@ Melody Example
 55,52,48,36;10;6;70
 @endverbatim
  * 
- * @subsubsection DocSongFileFormatDrumLoop File Format for a Drum Loop
+ * @subsection DocSongFileFormatDrumLoop File Format for a Drum Loop
  * If the song is a @link DocSongDrumLoop drum loop@endlink, then the file is saved as \"DRUMLOOP_@link Song::mName songName@endlink\.song\"\.
  * The format of the file is:
  * @li First line: @link Song::mName "Name of song"@endlink 
@@ -59,7 +59,7 @@ Drum Loop Example
 0;4;100
 @endverbatim
  * 
- * @subsubsection DocSongFileFormatCombined File Format for a Combined Song
+ * @subsection DocSongFileFormatCombined File Format for a Combined Song
  * If the song @link DocSongCombined has both melody and percussion@endlink, then it will be saved as \"SONG_@link Song::mName songName@endlink\.song\"\.
  * The format of the file is:
  * @li First line: @link Song::mName "Name of song"@endlink 

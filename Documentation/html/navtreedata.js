@@ -1,6 +1,10 @@
 var NAVTREE =
 [
   [ "VR Piano Project", "index.html", [
+    [ "Information", "index.html#mainpageinfo", null ],
+    [ "Development Team", "index.html#mainpagedevelopers", null ],
+    [ "Screenshots", "index.html#mainpagescreen", null ],
+    [ "Instructions", "index.html#mainpageinstructions", null ],
     [ "Modules", "modules.html", "modules" ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
@@ -22,13 +26,13 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_a_t_i_8cs.html",
-"class_a_t_i___reverb_filter_handler.html#a4cb8ab454ef637beb189053a0877c8c6",
-"group___key_contain_handlers.html#ga05cc2543fd9772b26e27bf4f6247ab47",
-"group___music_enums.html#gga508f69b199ea518f935486c990edac1daadb7bf1cff0c81595de38f51cd60c62c",
-"group___n_o_o_priv_var.html#gad5e14a91b348e61166dbf6b6cf13649c",
-"group___s_c_m_handlers.html#gacb552a4f02b22d7c10a8420eb1431201",
-"group___v_i_base_pro_var.html#ga47dbd8aa02ab32b8f802adfd2d3d81de",
-"group__filter_params.html#a34e15a2268f1d64e57898c553e47fdfe"
+"class_a_t_i___reverb_filter_handler.html#a45c18f64f4e32e59580246305ba785ae",
+"group___key_contain_const.html#ga8dc749271ab095b5759129459bcb647a",
+"group___music_enums.html#gga508f69b199ea518f935486c990edac1da9c5959e6f08f10d0edbadf5be1f33c53",
+"group___n_o_o_priv_var.html#ga93720712088a4b6f91abe63d6f07a2c2",
+"group___s_c_m_handlers.html#ga1747d021ddb36a8c2c172315d6fbb3a8",
+"group___v_i_base_pro_func.html#gadbd95083895b09465fbc5b18115a1dbc",
+"group___white_key_unity.html#ga160cb397de3ab7084247e7fede943cf7"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

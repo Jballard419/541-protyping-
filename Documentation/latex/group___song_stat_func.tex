@@ -37,7 +37,7 @@ The number of waveform samples that represents the given \hyperlink{group___musi
 \end{DoxyReturn}
 
 
-Definition at line 864 of file Song.\+cs.
+Definition at line 873 of file Song.\+cs.
 
 
 
@@ -45,58 +45,58 @@ Referenced by Song.\+Get\+Note\+Data().
 
 
 \begin{DoxyCode}
-865     \{
-866         \textcolor{comment}{// Initialize variables for calculating the note length.}
-867         \textcolor{keywordtype}{float} beatsPerSecond = (float)aBPM / 60f;
-868 
-869         \textcolor{comment}{// Since the audio data is split into two channels with even indices for the data }
-870         \textcolor{comment}{// in the left channel and odd indices for the data in the right channel, the}
-871         \textcolor{comment}{// actual conversion for number of samples per second is 2 * sample rate.}
-872         \textcolor{keywordtype}{float} numSamplesPerBeat = 2f * ( 1f / beatsPerSecond ) * (\textcolor{keywordtype}{float})aSampleRate;
-873 
-874         \textcolor{comment}{// Calculate the length for various time signatures by relating the base beat to }
-875         \textcolor{comment}{// a quarter note. }
-876         \textcolor{keywordtype}{float} numQuarterNotesPerBeat = 1f;
+874     \{
+875         \textcolor{comment}{// Initialize variables for calculating the note length.}
+876         \textcolor{keywordtype}{float} beatsPerSecond = (float)aBPM / 60f;
 877 
-878         \textcolor{comment}{// Right now, only provide support for base beats of 4 and 8.}
-879         \textcolor{keywordflow}{switch}( aTimeSignature.BaseBeat )
-880         \{
-881             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.E:
-882                 numQuarterNotesPerBeat /= 2f;
-883                 \textcolor{keywordflow}{break};
-884             \textcolor{keywordflow}{default}:
-885                 \textcolor{keywordflow}{break};
-886         \}
-887 
-888         \textcolor{comment}{// Calculate the note length in samples.}
-889         \textcolor{keywordflow}{switch}( aNoteLength )
-890         \{
-891             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.T:
-892                 \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})( numSamplesPerBeat / ( 8f * numQuarterNotesPerBeat ) );
-893             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.D\_T:
-894                 \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})( 1.5f * numSamplesPerBeat / ( 8f * numQuarterNotesPerBeat ) );
-895             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.S:
-896                 \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})( numSamplesPerBeat / ( 4f * numQuarterNotesPerBeat ) );
-897             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.D\_S:
-898                 \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})( 1.5f * numSamplesPerBeat / ( 4f * numQuarterNotesPerBeat ) );
-899             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.E:
-900                 \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})( numSamplesPerBeat / ( 2f * numQuarterNotesPerBeat ) );
-901             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.D\_E:
-902                 \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})( 1.5f * numSamplesPerBeat / ( 2f * numQuarterNotesPerBeat ) );
-903             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.Q:
-904                 \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})( numSamplesPerBeat / numQuarterNotesPerBeat );
-905             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.D\_Q:
-906                 \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})( numSamplesPerBeat * ( 1.5f / numQuarterNotesPerBeat ) );
-907             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.H:
-908                 \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})( numSamplesPerBeat * ( 2f / numQuarterNotesPerBeat ) );
-909             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.D\_H:
-910                 \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})( numSamplesPerBeat * ( 3f / numQuarterNotesPerBeat ) );
-911             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.W:
-912                 \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})( numSamplesPerBeat * ( 4f / numQuarterNotesPerBeat ) );
-913             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.D\_W:
-914                 \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})( numSamplesPerBeat * ( 6f / numQuarterNotesPerBeat ) );
-915             \textcolor{keywordflow}{default}:
-916                 \textcolor{keywordflow}{return} 0;
-917         \}
-918     \}
+878         \textcolor{comment}{// Since the audio data is split into two channels with even indices for the data }
+879         \textcolor{comment}{// in the left channel and odd indices for the data in the right channel, the}
+880         \textcolor{comment}{// actual conversion for number of samples per second is 2 * sample rate.}
+881         \textcolor{keywordtype}{float} numSamplesPerBeat = 2f * ( 1f / beatsPerSecond ) * (\textcolor{keywordtype}{float})aSampleRate;
+882 
+883         \textcolor{comment}{// Calculate the length for various time signatures by relating the base beat to }
+884         \textcolor{comment}{// a quarter note. }
+885         \textcolor{keywordtype}{float} numQuarterNotesPerBeat = 1f;
+886 
+887         \textcolor{comment}{// Right now, only provide support for base beats of 4 and 8.}
+888         \textcolor{keywordflow}{switch}( aTimeSignature.BaseBeat )
+889         \{
+890             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.E:
+891                 numQuarterNotesPerBeat /= 2f;
+892                 \textcolor{keywordflow}{break};
+893             \textcolor{keywordflow}{default}:
+894                 \textcolor{keywordflow}{break};
+895         \}
+896 
+897         \textcolor{comment}{// Calculate the note length in samples.}
+898         \textcolor{keywordflow}{switch}( aNoteLength )
+899         \{
+900             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.T:
+901                 \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})( numSamplesPerBeat / ( 8f * numQuarterNotesPerBeat ) );
+902             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.D\_T:
+903                 \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})( 1.5f * numSamplesPerBeat / ( 8f * numQuarterNotesPerBeat ) );
+904             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.S:
+905                 \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})( numSamplesPerBeat / ( 4f * numQuarterNotesPerBeat ) );
+906             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.D\_S:
+907                 \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})( 1.5f * numSamplesPerBeat / ( 4f * numQuarterNotesPerBeat ) );
+908             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.E:
+909                 \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})( numSamplesPerBeat / ( 2f * numQuarterNotesPerBeat ) );
+910             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.D\_E:
+911                 \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})( 1.5f * numSamplesPerBeat / ( 2f * numQuarterNotesPerBeat ) );
+912             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.Q:
+913                 \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})( numSamplesPerBeat / numQuarterNotesPerBeat );
+914             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.D\_Q:
+915                 \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})( numSamplesPerBeat * ( 1.5f / numQuarterNotesPerBeat ) );
+916             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.H:
+917                 \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})( numSamplesPerBeat * ( 2f / numQuarterNotesPerBeat ) );
+918             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.D\_H:
+919                 \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})( numSamplesPerBeat * ( 3f / numQuarterNotesPerBeat ) );
+920             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.W:
+921                 \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})( numSamplesPerBeat * ( 4f / numQuarterNotesPerBeat ) );
+922             \textcolor{keywordflow}{case} \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_gaf11b5f079adbb21c800b9eca1c5c3cbd}{NOTE\_LENGTH}.D\_W:
+923                 \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})( numSamplesPerBeat * ( 6f / numQuarterNotesPerBeat ) );
+924             \textcolor{keywordflow}{default}:
+925                 \textcolor{keywordflow}{return} 0;
+926         \}
+927     \}
 \end{DoxyCode}

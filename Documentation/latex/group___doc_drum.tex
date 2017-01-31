@@ -1,0 +1,139 @@
+\hypertarget{group___doc_drum}{}\section{Drum Kit}
+\label{group___doc_drum}\index{Drum Kit@{Drum Kit}}
+
+
+A specific instance of a \hyperlink{class_virtual_instrument}{Virtual\+Instrument} that uses drum/cymbal samples.  
+
+
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___drum_construct}{Constructors}
+\item 
+\hyperlink{group___drum_virt_func}{Implemented Virtual Functions}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A specific instance of a \hyperlink{class_virtual_instrument}{Virtual\+Instrument} that uses drum/cymbal samples. 
+
+\hypertarget{group___doc_drum_DocDrumInfo}{}\subsection{Information}\label{group___doc_drum_DocDrumInfo}
+Currently, the drum kit supports playing \hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{19 separate drums/cymbals}. The kit only uses 13 sounds though, as the snare/tom sound files are duplicated for two entries each. This is done so that fast series of notes can be played on a tom or snare by spreading them across two keys rather than one. ~\newline
+Though there is \hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{an enum for drums}, the \hyperlink{group___v_i_base}{base class} deals in \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitches}. In order to account for this without having to duplicate a lot of code, the \hyperlink{class_drum_kit}{Drum\+Kit} actually acts on the pitch range from \hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1da9c5959e6f08f10d0edbadf5be1f33c53}{C0} to \hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1dae1dffc8709f31a4987c8a88334107e89}{F1}. ~\newline
+ Currently, \hyperlink{group___audio_DefBID}{Built-\/\+In Dynamics} are not supported for the \hyperlink{class_drum_kit}{Drum\+Kit}, but they will be in the future. \begin{DoxySeeAlso}{See also}
+\hyperlink{group___v_i_m_priv_ga5f71cb71d240042312dcc13b481b068d}{Virtual\+Instrument\+Manager\+::m\+Drum\+Loop\+Output} \hyperlink{group___music_enums_ggabfce60192305965558a36e368ebd67c3aceaaf30d57fed4b1c3f4b95c60a76df6}{Music\+::\+I\+N\+S\+T\+R\+U\+M\+E\+N\+T\+\_\+\+T\+Y\+P\+E\+::\+D\+R\+U\+M\+\_\+\+K\+IT} \hyperlink{group___v_i_base_pro_var_ga47dbd8aa02ab32b8f802adfd2d3d81de}{Virtual\+Instrument\+::m\+Is\+Drum}
+\end{DoxySeeAlso}
+\hypertarget{group___doc_drum_DocDrumConstruct}{}\subsection{Constructors}\label{group___doc_drum_DocDrumConstruct}
+Constructors to create the \hyperlink{class_drum_kit}{Drum\+Kit}. ~\newline
+ \hyperlink{group___drum_construct}{More details}.\hypertarget{group___doc_drum_DocDrumVirtFunc}{}\subsection{Implemented Virtual Functions}\label{group___doc_drum_DocDrumVirtFunc}
+Functions from the \hyperlink{group___v_i_base}{base class} that are implemented specifically for Drum\+Kits ~\newline
+ \hyperlink{group___drum_virt_func}{More details}.\hypertarget{group___doc_drum_DocDrumCode}{}\subsection{Code}\label{group___doc_drum_DocDrumCode}
+
+\begin{DoxyCodeInclude}
+1 \textcolor{keyword}{using} \hyperlink{namespace_system}{System}.Collections;
+2 \textcolor{keyword}{using} \hyperlink{namespace_system}{System}.Collections.Generic;
+3 \textcolor{comment}{}
+4 \textcolor{comment}{/**}
+5 \textcolor{comment}{ * @class DrumKit}
+6 \textcolor{comment}{ * @brief A specific instance of a VirtualInstrument that uses drum/cymbal samples. }
+7 \textcolor{comment}{ * }
+8 \textcolor{comment}{ * Currently, the drum kit supports playing @link Music::DRUM 19 separate drums/cymbals@endlink.}
+9 \textcolor{comment}{ * The kit only uses 13 sounds though, as the snare/tom sound files are duplicated for }
+10 \textcolor{comment}{ * two entries each. This is done so that fast series of notes can be played on a tom}
+11 \textcolor{comment}{ * or snare by spreading them across two keys rather than one. @n}
+12 \textcolor{comment}{ * Though there is @link Music::DRUM an enum for drums@endlink, the @link VIBase base class@endlink}
+13 \textcolor{comment}{ * deals in @link Music::PITCH pitches@endlink. In order to account for this without}
+14 \textcolor{comment}{ * having to duplicate a lot of code, the DrumKit actually acts on the pitch range}
+15 \textcolor{comment}{ * from @link Music::PITCH::C0 C0@endlink to @link Music::PITCH::F1 F1@endlink. }
+16 \textcolor{comment}{ * @n Currently, @link DefBID Built-In Dynamics@endlink are not supported for the }
+17 \textcolor{comment}{ * DrumKit, but they will be in the future.}
+18 \textcolor{comment}{ * @see VirtualInstrumentManager::mDrumLoopOutput Music::INSTRUMENT\_TYPE::DRUM\_KIT
+       VirtualInstrument::mIsDrum}
+19 \textcolor{comment}{*/}
+20 \textcolor{keyword}{public} \textcolor{keyword}{class }\hyperlink{class_drum_kit}{DrumKit} : \hyperlink{class_virtual_instrument}{VirtualInstrument}
+21 \{
+22     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+23 \textcolor{comment}{     * @defgroup DrumConstruct Constructors}
+24 \textcolor{comment}{     * @ingroup DocDrum}
+25 \textcolor{comment}{     * Constructors to create the DrumKit.}
+26 \textcolor{comment}{     * @\{}
+27 \textcolor{comment}{    *****************************************************************************/}
+28 \textcolor{comment}{}
+29 \textcolor{comment}{    /**}
+30 \textcolor{comment}{     * @brief Creates a new Drum Kit instance.}
+31 \textcolor{comment}{     * @param[in] aParent The @link VIM Virtual Instrument Manager@endlink that will manage this
+       instrument.}
+32 \textcolor{comment}{     * @return A newly created DrumKit}
+33 \textcolor{comment}{    */}
+34     \textcolor{keyword}{public} \hyperlink{group___drum_construct_gabade574e7f9d5684653c0b33524362a7}{DrumKit}( \hyperlink{class_virtual_instrument_manager}{VirtualInstrumentManager} aParent ) : base( aParent )
+35     \{
+36         \textcolor{comment}{// Set default values}
+37         mIsDrum = \textcolor{keyword}{true};
+38         \hyperlink{group___v_i_base_pro_var_ga3cae52b1bcc0178a8a6b03c7aaf7aac8}{mLowestSupportedPitch} = \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.C0;
+39         mHighestSupportedPitch = \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.F1;
+40         mNumSupportedPitches = 18;
+41         mSampleRate = 44100;
+42         mSampleInterval = 1f / \hyperlink{group___v_i_base_pro_var_ga80b3d2ff29b27698eea6bcf2f8ddc5d7}{mSampleRate};
+43 
+44         \textcolor{comment}{// Call functions to set the values relating to built-in dynamics and create the filenames for each
+       sample.}
+45         \hyperlink{group___drum_virt_func_gad14c6155e6ec62f26a30261e273d6379}{InitializeBuiltInDynamics}();
+46         \hyperlink{group___drum_virt_func_ga25bb92cf56bc1b3434465faf73cd09cf}{CreateFilenames}();
+47 
+48         \textcolor{comment}{// Set that this instrument is loaded.}
+49         mLoaded = \textcolor{keyword}{true};
+50     \}
+51 
+52     \textcolor{comment}{/*************************************************************************/}\textcolor{comment}{/** }
+53 \textcolor{comment}{     * @\}}
+54 \textcolor{comment}{     * @defgroup DrumVirtFunc Implemented Virtual Functions}
+55 \textcolor{comment}{     * @ingroup DocDrum}
+56 \textcolor{comment}{     * Functions from the @link VIBase base class@endlink that are implemented }
+57 \textcolor{comment}{     * specifically for DrumKits}
+58 \textcolor{comment}{     * @\{}
+59 \textcolor{comment}{    *****************************************************************************/}
+60 \textcolor{comment}{}
+61 \textcolor{comment}{    /**}
+62 \textcolor{comment}{     * @brief Initializes values related to the @link DefBID Built-In Dynamics@endlink for this instrument.}
+63 \textcolor{comment}{     * }
+64 \textcolor{comment}{     * @note There are \(\backslash\)(currently\(\backslash\)) no @link DefBID Built-In Dynamics@endlink for the DrumKit. This just
+       sets the variables such that other functions will know that it is not supported.}
+65 \textcolor{comment}{    */}
+66     \textcolor{keyword}{protected} \textcolor{keyword}{override} \textcolor{keywordtype}{void} \hyperlink{group___drum_virt_func_gad14c6155e6ec62f26a30261e273d6379}{InitializeBuiltInDynamics}()
+67     \{
+68         \textcolor{comment}{// There are no built-in dynamics for the drum kit (yet).}
+69         mNumBuiltInDynamics = 0;
+70         mBuiltInDynamics = null;
+71         mBuiltInDynamicsThresholds = null;
+72 
+73         \textcolor{comment}{// Allocate the audio data container.}
+74         mAudioData = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[1][][];
+75         mAudioData[0] = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[\hyperlink{class_music}{Music}.\hyperlink{group___music_constants_gabce1a1ac5b9b6355af6bd7fb3868467a}{MAX\_SUPPORTED\_DRUMS}][];
+76     \}
+77 \textcolor{comment}{}
+78 \textcolor{comment}{    /**}
+79 \textcolor{comment}{     * @brief Creates the filenames for each drum wav file.}
+80 \textcolor{comment}{     * }
+81 \textcolor{comment}{     * The files are stored in "Resources/Audio/VirtualInstrument/DrumKit/Samples".}
+82 \textcolor{comment}{    */} 
+83     \textcolor{keyword}{protected} \textcolor{keyword}{override} \textcolor{keywordtype}{void} \hyperlink{group___drum_virt_func_ga25bb92cf56bc1b3434465faf73cd09cf}{CreateFilenames}()
+84     \{
+85         \textcolor{comment}{// Set the base filepath and number of files.}
+86         mFilepath = \textcolor{stringliteral}{"Audio/VirtualInstrument/DrumKit/Samples/"};
+87         mNumFiles = 18;
+88 
+89         \textcolor{comment}{// Initialize the array of filenames.}
+90         mFilenames = \textcolor{keyword}{new} \textcolor{keywordtype}{string}[\hyperlink{group___v_i_base_pro_var_ga9a602db8c9833ce75d95dd453c27d341}{mNumFiles}];
+91 
+92         \textcolor{comment}{// Iterate through each dynamics value and create filenames for each supported note.}
+93         \textcolor{keywordtype}{int} index = 0;
+94         \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = (\textcolor{keywordtype}{int})\hyperlink{group___v_i_base_pro_var_ga3cae52b1bcc0178a8a6b03c7aaf7aac8}{mLowestSupportedPitch}; i <= (int)mHighestSupportedPitch; i++
+       )
+95         \{
+96             mFilenames[index] = mFilepath + \hyperlink{class_music}{Music}.\hyperlink{group___music_stat_func_gaf5f64ebe9a7e036e07f283e41f26d22b}{DrumToString}( i );
+97             index++;
+98         \}
+99     \}
+100 \}
+\end{DoxyCodeInclude}
+ 

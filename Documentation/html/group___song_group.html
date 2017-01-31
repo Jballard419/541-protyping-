@@ -107,18 +107,18 @@ Modules</h2></td></tr>
 Terminology</h1>
 <h2><a class="anchor" id="DocSongMelody"></a>
 Melody</h2>
-<p>A <a class="el" href="group___song_enums.html#gae681a1f001333e39fc1cb4fea97bfe1b">type</a> of <a class="el" href="class_song.html" title="A C# class that represents a song. ">Song</a> that contains only <a class="el" href="group___music_enums.html#ga508f69b199ea518f935486c990edac1d">pitches</a>. </p>
+<p>A <a class="el" href="group___song_enums.html#gae681a1f001333e39fc1cb4fea97bfe1b">type</a> of <a class="el" href="class_song.html" title="A C# class that represents a song. ">Song</a> that contains only <a class="el" href="group___music_enums.html#ga508f69b199ea518f935486c990edac1d">pitches</a>. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="group___v_i_m_handlers.html#ga7fd877a7d429403abbfd2728aa63c056" title="Begins playing a song. It creates an array of audio data from each note of the Song and sends it to t...">VirtualInstrumentManager::OnPlaySongEvent</a> </dd></dl>
 <h2><a class="anchor" id="DocSongDrumLoop"></a>
 Drum Loop</h2>
-<p>A <a class="el" href="group___song_enums.html#gae681a1f001333e39fc1cb4fea97bfe1b">type</a> of <a class="el" href="class_song.html" title="A C# class that represents a song. ">Song</a> that contains only <a class="el" href="group___music_enums.html#gade475b4382c7066d1af13e7c13c029b6">drums</a>. These are looped when played. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="group___v_i_m_event_types.html#class_virtual_instrument_manager_1_1_play_drum_loop_event" title="A type of event that is invoked in order to play a drum loop. ">VirtualInstrumentManager::PlayDrumLoopEvent</a> </dd></dl>
+<p>A <a class="el" href="group___song_enums.html#gae681a1f001333e39fc1cb4fea97bfe1b">type</a> of <a class="el" href="class_song.html" title="A C# class that represents a song. ">Song</a> that contains only <a class="el" href="group___music_enums.html#gade475b4382c7066d1af13e7c13c029b6">drums</a>. These are looped when played. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="group___v_i_m_handlers.html#gae2e2010b9a36ae2409466181ae0b9679" title="Begins playing a drum loop. It creates an array of audio data from each note of the Song and sends it...">VirtualInstrumentManager::OnPlayDrumLoopEvent</a> </dd></dl>
 <h2><a class="anchor" id="DocSongCombined"></a>
 Combined</h2>
-<p>A <a class="el" href="group___song_enums.html#gae681a1f001333e39fc1cb4fea97bfe1b">type</a> of <a class="el" href="class_song.html" title="A C# class that represents a song. ">Song</a> that has both <a class="el" href="group___music_enums.html#ga508f69b199ea518f935486c990edac1d">pitches</a> and <a class="el" href="group___music_enums.html#gade475b4382c7066d1af13e7c13c029b6">drums</a>.</p>
-<h2><a class="anchor" id="DocSongFileFormat"></a>
-Song File Format</h2>
+<p>A <a class="el" href="group___song_enums.html#gae681a1f001333e39fc1cb4fea97bfe1b">type</a> of <a class="el" href="class_song.html" title="A C# class that represents a song. ">Song</a> that has both <a class="el" href="group___music_enums.html#ga508f69b199ea518f935486c990edac1d">pitches</a> and <a class="el" href="group___music_enums.html#gade475b4382c7066d1af13e7c13c029b6">drums</a>. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="group___v_i_m_handlers.html#ga7fd877a7d429403abbfd2728aa63c056" title="Begins playing a song. It creates an array of audio data from each note of the Song and sends it to t...">VirtualInstrumentManager::OnPlaySongEvent</a></dd></dl>
+<h1><a class="anchor" id="DocSongFileFormat"></a>
+Song File Format</h1>
 <p>There are <a class="el" href="group___song_enums.html#gae681a1f001333e39fc1cb4fea97bfe1b">three types</a> of Songs which can be stored in a file. Which type the <a class="el" href="class_song.html" title="A C# class that represents a song. ">Song</a> is will affect <a class="el" href="group___song_pub_func.html#ga70b0f6021c3b0590c561a88e3d1e5c2f">how it is saved</a>. For all <a class="el" href="group___song_enums.html#gae681a1f001333e39fc1cb4fea97bfe1b">song types</a>, the files are saved in Assets/StreamingAssets/Songs/. </p><dl class="section note"><dt>Note</dt><dd>The values from <a class="el" href="group___doc_music.html#DocMusicEnums">Music enums</a> are typecast to integers for saving. Ex: <a class="el" href="group___music_enums.html#gga508f69b199ea518f935486c990edac1dab713e6323a68d3ddabf4855826c50148">Music.PITCH.C4</a> is saved as 48.</dd></dl>
-<h3><a class="anchor" id="DocSongFileFormatMelody"></a>
-File Format for a Melody</h3>
+<h2><a class="anchor" id="DocSongFileFormatMelody"></a>
+File Format for a Melody</h2>
 <p>If the song is a <a class="el" href="group___song_group.html#DocSongMelody">melody</a>, then the file is saved as "MELODY_<a class="el" href="group___song_priv_var.html#ga6a5e6c1e4aa92939e2b5c1e3d9908df8">songName</a>.song". The format of the file is </p><ul>
 <li>First line: <a class="el" href="group___song_priv_var.html#ga6a5e6c1e4aa92939e2b5c1e3d9908df8">"Name of song"</a> </li>
 <li>Second Line: "<a class="el" href="group___song_enums.html#gae681a1f001333e39fc1cb4fea97bfe1b">songType</a>;<a class="el" href="group___audio.html#DefBPM">defaultBPM</a>;<a class="el" href="group___music_structs.html#acda79d249e7a1974a152832a881e9f0b">beatsPerMeasure</a>;<a class="el" href="group___music_structs.html#aaf5b010a2541959c26f96630db042ee8">baseBeat</a>" </li>
@@ -136,8 +136,8 @@ File Format for a Melody</h3>
 55,52,48,36;10;6;70
 </pre></li>
 </ul>
-<h3><a class="anchor" id="DocSongFileFormatDrumLoop"></a>
-File Format for a Drum Loop</h3>
+<h2><a class="anchor" id="DocSongFileFormatDrumLoop"></a>
+File Format for a Drum Loop</h2>
 <p>If the song is a <a class="el" href="group___song_group.html#DocSongDrumLoop">drum loop</a>, then the file is saved as "DRUMLOOP_<a class="el" href="group___song_priv_var.html#ga6a5e6c1e4aa92939e2b5c1e3d9908df8">songName</a>.song". The format of the file is: </p><ul>
 <li>First line: <a class="el" href="group___song_priv_var.html#ga6a5e6c1e4aa92939e2b5c1e3d9908df8">"Name of song"</a> </li>
 <li>Second Line: "<a class="el" href="group___song_enums.html#gae681a1f001333e39fc1cb4fea97bfe1b">songType</a>;<a class="el" href="group___audio.html#DefBPM">defaultBPM</a>;<a class="el" href="group___music_structs.html#acda79d249e7a1974a152832a881e9f0b">beatsPerMeasure</a>;<a class="el" href="group___music_structs.html#aaf5b010a2541959c26f96630db042ee8">baseBeat</a>" </li>
@@ -156,8 +156,8 @@ File Format for a Drum Loop</h3>
 0;4;100
 </pre></li>
 </ul>
-<h3><a class="anchor" id="DocSongFileFormatCombined"></a>
-File Format for a Combined Song</h3>
+<h2><a class="anchor" id="DocSongFileFormatCombined"></a>
+File Format for a Combined Song</h2>
 <p>If the song <a class="el" href="group___song_group.html#DocSongCombined">has both melody and percussion</a>, then it will be saved as "SONG_<a class="el" href="group___song_priv_var.html#ga6a5e6c1e4aa92939e2b5c1e3d9908df8">songName</a>.song". The format of the file is: </p><ul>
 <li>First line: <a class="el" href="group___song_priv_var.html#ga6a5e6c1e4aa92939e2b5c1e3d9908df8">"Name of song"</a> </li>
 <li>Second Line: "<a class="el" href="group___song_enums.html#gae681a1f001333e39fc1cb4fea97bfe1b">songType</a>;<a class="el" href="group___audio.html#DefBPM">defaultBPM</a>;<a class="el" href="group___music_structs.html#acda79d249e7a1974a152832a881e9f0b">beatsPerMeasure</a>;<a class="el" href="group___music_structs.html#aaf5b010a2541959c26f96630db042ee8">baseBeat</a>" </li>
@@ -180,7 +180,7 @@ null|8,0;12;4;0|100
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Jan 30 2017 20:19:53 for VR Piano Project by
+    <li class="footer">Generated on Tue Jan 31 2017 04:52:28 for VR Piano Project by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

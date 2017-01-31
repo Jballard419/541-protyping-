@@ -198,6 +198,27 @@
 */
 
 /**
+ * @defgroup DocDrum Drum Kit
+ * @ingroup VI
+ * @brief @copybrief DrumKit
+ * @{
+ * @section DocDrumInfo Information
+ * @copydetails DrumKit
+ * 
+ * @section DocDrumConstruct Constructors
+ * @copydoc DrumConstruct
+ * @n @link DrumConstruct More details@endlink.
+ * 
+ * @section DocDrumVirtFunc Implemented Virtual Functions
+ * @copydoc DrumVirtFunc
+ * @n @link DrumVirtFunc More details@endlink.
+ * 
+ * @section DocDrumCode Code
+ * @includelineno DrumKit.cs
+ * @}
+*/
+
+/**
  * @defgroup DocNOO NoteOutputObject
  * @ingroup AudioManagement
  * @brief @copybrief NoteOutputObject

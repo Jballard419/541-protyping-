@@ -6,6 +6,7 @@ var searchData=
   ['measure_20display_20panel',['Measure Display Panel',['../group___doc_s_c___m_d_p.html',1,'']]],
   ['mactive',['mActive',['../class_a_t_i___demo_song_button_handler.html#a14e70250c780214dc71d2aae6d638a25',1,'ATI_DemoSongButtonHandler']]],
   ['mactivenotes',['mActiveNotes',['../group___v_i_m_priv.html#ga5cedf9995d59b416412677e6004b659c',1,'VirtualInstrumentManager']]],
+  ['mainpagedocumentation_2ecs',['MainPageDocumentation.cs',['../_main_page_documentation_8cs.html',1,'']]],
   ['marimba',['Marimba',['../class_marimba.html',1,'Marimba'],['../group___music_enums.html#ggabfce60192305965558a36e368ebd67c3ae84dbd9f12bf5278bfa76a692e42f50f',1,'Music.MARIMBA()'],['../group___mar_construct.html#ga48c946fe0f78f8905a8e4d063cbc0fa2',1,'Marimba.Marimba()']]],
   ['marimba_2ecs',['Marimba.cs',['../_marimba_8cs.html',1,'']]],
   ['matibutton',['mATIButton',['../group___s_c_m_priv_var.html#gae702ec5de2c75149b8c650db9ac260a6',1,'SongCreationManager']]],

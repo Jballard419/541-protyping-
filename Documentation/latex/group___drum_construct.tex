@@ -1,0 +1,60 @@
+\hypertarget{group___drum_construct}{}\section{Constructors}
+\label{group___drum_construct}\index{Constructors@{Constructors}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___drum_construct_gabade574e7f9d5684653c0b33524362a7}{Drum\+Kit.\+Drum\+Kit} (\hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager} a\+Parent)
+\begin{DoxyCompactList}\small\item\em Creates a new Drum Kit instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Constructors to create the \hyperlink{class_drum_kit}{Drum\+Kit}. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___drum_construct_gabade574e7f9d5684653c0b33524362a7}\label{group___drum_construct_gabade574e7f9d5684653c0b33524362a7}} 
+\index{Constructors@{Constructors}!Drum\+Kit@{Drum\+Kit}}
+\index{Drum\+Kit@{Drum\+Kit}!Constructors@{Constructors}}
+\subsubsection{\texorpdfstring{Drum\+Kit()}{DrumKit()}}
+{\footnotesize\ttfamily Drum\+Kit.\+Drum\+Kit (\begin{DoxyParamCaption}\item[{\hyperlink{class_virtual_instrument_manager}{Virtual\+Instrument\+Manager}}]{a\+Parent }\end{DoxyParamCaption})}
+
+
+
+Creates a new Drum Kit instance. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a\+Parent} & The \hyperlink{group___v_i_m}{Virtual Instrument Manager} that will manage this instrument. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A newly created \hyperlink{class_drum_kit}{Drum\+Kit} 
+\end{DoxyReturn}
+
+
+Definition at line 34 of file Drum\+Kit.\+cs.
+
+
+
+References Drum\+Kit.\+Create\+Filenames(), Drum\+Kit.\+Initialize\+Built\+In\+Dynamics(), Virtual\+Instrument.\+m\+Highest\+Supported\+Pitch, Virtual\+Instrument.\+m\+Is\+Drum, Virtual\+Instrument.\+m\+Loaded, Virtual\+Instrument.\+m\+Lowest\+Supported\+Pitch, Virtual\+Instrument.\+m\+Num\+Supported\+Pitches, Virtual\+Instrument.\+m\+Sample\+Interval, and Virtual\+Instrument.\+m\+Sample\+Rate.
+
+
+\begin{DoxyCode}
+34                                                        : base( aParent )
+35     \{
+36         \textcolor{comment}{// Set default values}
+37         \hyperlink{group___v_i_base_pro_var_ga47dbd8aa02ab32b8f802adfd2d3d81de}{mIsDrum} = \textcolor{keyword}{true};
+38         \hyperlink{group___v_i_base_pro_var_ga3cae52b1bcc0178a8a6b03c7aaf7aac8}{mLowestSupportedPitch} = \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.C0;
+39         \hyperlink{group___v_i_base_pro_var_ga61fb2c33b53a0f663047779d7ceb18f3}{mHighestSupportedPitch} = \hyperlink{class_music}{Music}.\hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{PITCH}.F1;
+40         \hyperlink{group___v_i_base_pro_var_gafc759a16324cf9b3f230bcbf040afcd2}{mNumSupportedPitches} = 18;
+41         \hyperlink{group___v_i_base_pro_var_ga80b3d2ff29b27698eea6bcf2f8ddc5d7}{mSampleRate} = 44100;
+42         \hyperlink{group___v_i_base_pro_var_ga20c1d3d25ea666378d72c833d160ae2e}{mSampleInterval} = 1f / \hyperlink{group___v_i_base_pro_var_ga80b3d2ff29b27698eea6bcf2f8ddc5d7}{mSampleRate};
+43 
+44         \textcolor{comment}{// Call functions to set the values relating to built-in dynamics and create the filenames for each
+       sample.}
+45         \hyperlink{group___drum_virt_func_gad14c6155e6ec62f26a30261e273d6379}{InitializeBuiltInDynamics}();
+46         \hyperlink{group___drum_virt_func_ga25bb92cf56bc1b3434465faf73cd09cf}{CreateFilenames}();
+47 
+48         \textcolor{comment}{// Set that this instrument is loaded.}
+49         \hyperlink{group___v_i_base_pro_var_ga8978807d1878db5aae91fbd057c46097}{mLoaded} = \textcolor{keyword}{true};
+50     \}
+\end{DoxyCode}

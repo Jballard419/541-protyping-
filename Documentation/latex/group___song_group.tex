@@ -19,16 +19,22 @@ The backend for songs and lessons from an audio perspective.
 
 \hypertarget{group___song_group_DocSongTerminology}{}\subsection{Terminology}\label{group___song_group_DocSongTerminology}
 \hypertarget{group___song_group_DocSongMelody}{}\subsubsection{Melody}\label{group___song_group_DocSongMelody}
-A \hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{type} of \hyperlink{class_song}{Song} that contains only \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitches}. \hypertarget{group___song_group_DocSongDrumLoop}{}\subsubsection{Drum Loop}\label{group___song_group_DocSongDrumLoop}
+A \hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{type} of \hyperlink{class_song}{Song} that contains only \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitches}. \begin{DoxySeeAlso}{See also}
+\hyperlink{group___v_i_m_handlers_ga7fd877a7d429403abbfd2728aa63c056}{Virtual\+Instrument\+Manager\+::\+On\+Play\+Song\+Event} 
+\end{DoxySeeAlso}
+\hypertarget{group___song_group_DocSongDrumLoop}{}\subsubsection{Drum Loop}\label{group___song_group_DocSongDrumLoop}
 A \hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{type} of \hyperlink{class_song}{Song} that contains only \hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{drums}. These are looped when played. \begin{DoxySeeAlso}{See also}
-\hyperlink{group___v_i_m_event_types_class_virtual_instrument_manager_1_1_play_drum_loop_event}{Virtual\+Instrument\+Manager\+::\+Play\+Drum\+Loop\+Event} 
+\hyperlink{group___v_i_m_handlers_gae2e2010b9a36ae2409466181ae0b9679}{Virtual\+Instrument\+Manager\+::\+On\+Play\+Drum\+Loop\+Event} 
 \end{DoxySeeAlso}
 \hypertarget{group___song_group_DocSongCombined}{}\subsubsection{Combined}\label{group___song_group_DocSongCombined}
-A \hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{type} of \hyperlink{class_song}{Song} that has both \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitches} and \hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{drums}.\hypertarget{group___song_group_DocSongFileFormat}{}\subsubsection{Song File Format}\label{group___song_group_DocSongFileFormat}
+A \hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{type} of \hyperlink{class_song}{Song} that has both \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitches} and \hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{drums}. \begin{DoxySeeAlso}{See also}
+\hyperlink{group___v_i_m_handlers_ga7fd877a7d429403abbfd2728aa63c056}{Virtual\+Instrument\+Manager\+::\+On\+Play\+Song\+Event}
+\end{DoxySeeAlso}
+\hypertarget{group___song_group_DocSongFileFormat}{}\subsection{Song File Format}\label{group___song_group_DocSongFileFormat}
 There are \hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{three types} of Songs which can be stored in a file. Which type the \hyperlink{class_song}{Song} is will affect \hyperlink{group___song_pub_func_ga70b0f6021c3b0590c561a88e3d1e5c2f}{how it is saved}. For all \hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{song types}, the files are saved in Assets/\+Streaming\+Assets/\+Songs/. \begin{DoxyNote}{Note}
 The values from \hyperlink{group___doc_music_DocMusicEnums}{Music enums} are typecast to integers for saving. Ex\+: \hyperlink{group___music_enums_gga508f69b199ea518f935486c990edac1dab713e6323a68d3ddabf4855826c50148}{Music.\+P\+I\+T\+C\+H.\+C4} is saved as 48.
 \end{DoxyNote}
-\hypertarget{group___song_group_DocSongFileFormatMelody}{}\paragraph{File Format for a Melody}\label{group___song_group_DocSongFileFormatMelody}
+\hypertarget{group___song_group_DocSongFileFormatMelody}{}\subsubsection{File Format for a Melody}\label{group___song_group_DocSongFileFormatMelody}
 If the song is a \hyperlink{group___song_group_DocSongMelody}{melody}, then the file is saved as "M\+E\+L\+O\+D\+Y\+\_\+\hyperlink{group___song_priv_var_ga6a5e6c1e4aa92939e2b5c1e3d9908df8}{song\+Name}.song". The format of the file is \begin{DoxyItemize}
 \item First line\+: \hyperlink{group___song_priv_var_ga6a5e6c1e4aa92939e2b5c1e3d9908df8}{\char`\"{}\+Name of song\char`\"{}} \item Second Line\+: "\hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{song\+Type};\hyperlink{group___audio_DefBPM}{default\+B\+PM};\hyperlink{group___music_structs_acda79d249e7a1974a152832a881e9f0b}{beats\+Per\+Measure};\hyperlink{group___music_structs_aaf5b010a2541959c26f96630db042ee8}{base\+Beat}" \item Rest of lines\+: "\hyperlink{group___music_structs_aab23b49ea9d7961aef5091154ce45946}{pitch0,pitch1,...,pitchN};\hyperlink{group___music_structs_ac35cd02f5b3c00e3040b51e40e9e6c94}{note\+Length};\hyperlink{group___music_structs_ae281187907aed4c728c7981300dbebaf}{offset\+From\+Prev\+Note};\hyperlink{group___music_structs_a0c87d54ce8d28ea08fb4a526cb821c20}{melody\+Velocity}" \item Example from "M\+E\+L\+O\+D\+Y\+\_\+\+Melody Example.\+song"\+: \begin{DoxyVerb}Melody Example
 1;111;4;6
@@ -43,7 +49,7 @@ If the song is a \hyperlink{group___song_group_DocSongMelody}{melody}, then the 
 55,52,48,36;10;6;70
 \end{DoxyVerb}
 \end{DoxyItemize}
-\hypertarget{group___song_group_DocSongFileFormatDrumLoop}{}\paragraph{File Format for a Drum Loop}\label{group___song_group_DocSongFileFormatDrumLoop}
+\hypertarget{group___song_group_DocSongFileFormatDrumLoop}{}\subsubsection{File Format for a Drum Loop}\label{group___song_group_DocSongFileFormatDrumLoop}
 If the song is a \hyperlink{group___song_group_DocSongDrumLoop}{drum loop}, then the file is saved as "D\+R\+U\+M\+L\+O\+O\+P\+\_\+\hyperlink{group___song_priv_var_ga6a5e6c1e4aa92939e2b5c1e3d9908df8}{song\+Name}.song". The format of the file is\+: \begin{DoxyItemize}
 \item First line\+: \hyperlink{group___song_priv_var_ga6a5e6c1e4aa92939e2b5c1e3d9908df8}{\char`\"{}\+Name of song\char`\"{}} \item Second Line\+: "\hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{song\+Type};\hyperlink{group___audio_DefBPM}{default\+B\+PM};\hyperlink{group___music_structs_acda79d249e7a1974a152832a881e9f0b}{beats\+Per\+Measure};\hyperlink{group___music_structs_aaf5b010a2541959c26f96630db042ee8}{base\+Beat}" \item Rest of lines\+: "\hyperlink{group___music_structs_a11ba5b49d8ee25941337573029660f25}{drum0,drum1,...,drumN};\hyperlink{group___music_structs_ae281187907aed4c728c7981300dbebaf}{offset\+From\+Prev\+Note};\hyperlink{group___music_structs_a98181a53f924736c2df08f886cffed7d}{drum\+Velocity}" \item Example from "D\+R\+U\+M\+L\+O\+O\+P\+\_\+\+Drum Loop Example.\+song"\+: \begin{DoxyVerb}Drum Loop Example
 2;120;4;6
@@ -59,7 +65,7 @@ If the song is a \hyperlink{group___song_group_DocSongDrumLoop}{drum loop}, then
 0;4;100
 \end{DoxyVerb}
 \end{DoxyItemize}
-\hypertarget{group___song_group_DocSongFileFormatCombined}{}\paragraph{File Format for a Combined Song}\label{group___song_group_DocSongFileFormatCombined}
+\hypertarget{group___song_group_DocSongFileFormatCombined}{}\subsubsection{File Format for a Combined Song}\label{group___song_group_DocSongFileFormatCombined}
 If the song \hyperlink{group___song_group_DocSongCombined}{has both melody and percussion}, then it will be saved as "S\+O\+N\+G\+\_\+\hyperlink{group___song_priv_var_ga6a5e6c1e4aa92939e2b5c1e3d9908df8}{song\+Name}.song". The format of the file is\+: \begin{DoxyItemize}
 \item First line\+: \hyperlink{group___song_priv_var_ga6a5e6c1e4aa92939e2b5c1e3d9908df8}{\char`\"{}\+Name of song\char`\"{}} \item Second Line\+: "\hyperlink{group___song_enums_gae681a1f001333e39fc1cb4fea97bfe1b}{song\+Type};\hyperlink{group___audio_DefBPM}{default\+B\+PM};\hyperlink{group___music_structs_acda79d249e7a1974a152832a881e9f0b}{beats\+Per\+Measure};\hyperlink{group___music_structs_aaf5b010a2541959c26f96630db042ee8}{base\+Beat}" \item Rest of lines\+: "\hyperlink{group___music_structs_aab23b49ea9d7961aef5091154ce45946}{pitch0,pitch1,...,pitchN}$|$\hyperlink{group___music_structs_a11ba5b49d8ee25941337573029660f25}{drum0,drum1,...,drumN};\hyperlink{group___music_structs_ac35cd02f5b3c00e3040b51e40e9e6c94}{note\+Length};\hyperlink{group___music_structs_ae281187907aed4c728c7981300dbebaf}{offset\+From\+Prev\+Note};\hyperlink{group___music_structs_a0c87d54ce8d28ea08fb4a526cb821c20}{melody\+Velocity}$|$\hyperlink{group___music_structs_a98181a53f924736c2df08f886cffed7d}{drum\+Velocity}" \begin{DoxyNote}{Note}
 If \hyperlink{group___music_enums_ga508f69b199ea518f935486c990edac1d}{pitches} or \hyperlink{group___music_enums_gade475b4382c7066d1af13e7c13c029b6}{drums} don\textquotesingle{}t exist for a \hyperlink{group___music_structs_struct_music_1_1_combined_note}{note}, then "null" is used in the first section of lines 3+ and the \hyperlink{group___audio_DefVel}{velocity} for the missing type is set to 0. 
