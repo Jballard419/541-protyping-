@@ -376,7 +376,7 @@ PlayerSettings:
   webGLUseWasm: 0
   webGLCompressionFormat: 1
   scriptingDefineSymbols:
-    1: DEBUG;DEBUG_MUSICAL_TYPING;DEBUG_AUDIO_DIAGNOSTICS;SONG_CREATION_ENABLED
+    1: DEBUG;DEBUG_MUSICAL_TYPING;DEBUG_AUDIO_DIAGNOSTICS;SONG_CREATION_ENABLED;DEBUG_KEYS
   platformArchitecture: {}
   scriptingBackend: {}
   incrementalIl2cppBuild: {}

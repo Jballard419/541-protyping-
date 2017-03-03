@@ -21,7 +21,7 @@
  * The format of the file is
  * @li First line: @link Song::mName "Name of song"@endlink 
  * @li Second Line: \"@link Song::SongType songType@endlink;@link DefBPM defaultBPM@endlink;@link Music::TimeSignature.BeatsPerMeasure beatsPerMeasure@endlink;@link Music::TimeSignature.BaseBeat baseBeat@endlink\"
- * @li Rest of lines: \"@link Music::MelodyNote.Pitches pitch0,pitch1,...,pitchN@endlink;@link Music::MelodyNote.Length noteLength@endlink;@link Music::CombinedNote.OffsetFromPrevNote offsetFromPrevNote@endlink;@link Music::MelodyNote.Velocity melodyVelocity@endlink\"
+ * @li Rest of lines: \"@link Music::MelodyNote.Pitches pitch0,pitch1,...,pitchN@endlink;@link Music::MelodyNote.Length noteLength0,notelength1,...@endlink;@link Music::CombinedNote.OffsetFromPrevNote offsetFromPrevNote@endlink;@link Music::MelodyNote.Velocity melodyVelocity0,melodyVelocity1,...@endlink\"
  * @li Example from \"MELODY_Melody Example.song\": 
 @verbatim 
 Melody Example
@@ -64,7 +64,11 @@ Drum Loop Example
  * The format of the file is:
  * @li First line: @link Song::mName "Name of song"@endlink 
  * @li Second Line: \"@link Song::SongType songType@endlink;@link DefBPM defaultBPM@endlink;@link Music::TimeSignature.BeatsPerMeasure beatsPerMeasure@endlink;@link Music::TimeSignature.BaseBeat baseBeat@endlink\"
- * @li Rest of lines: \"@link Music::MelodyNote.Pitches pitch0,pitch1,...,pitchN@endlink\|@link Music::PercussionNote.Hits drum0,drum1,...,drumN@endlink;@link Music::MelodyNote.Length noteLength@endlink;@link Music::CombinedNote.OffsetFromPrevNote offsetFromPrevNote@endlink;@link Music::MelodyNote.Velocity melodyVelocity@endlink\|@link Music::PercussionNote.Velocity drumVelocity@endlink\"
+ * @li Rest of lines: 
+ * \"@link Music::MelodyNote.Pitches pitch0,pitch1,...,pitchN@endlink\|@link Music::PercussionNote.Hits drum0,drum1,...,drumN@endlink;
+ * @link Music::MelodyNote.Length noteLength0,noteLength1,...@endlink;
+ * @link Music::CombinedNote.OffsetFromPrevNote offsetFromPrevNote@endlink;
+ * @link Music::MelodyNote.Velocity melodyVelocity0,melodyVelocity1,...@endlink\|@link Music::PercussionNote.Velocity drumVelocity0,drumVelocity1,...@endlink\"
  * @note If @link Music::PITCH pitches@endlink or @link Music::DRUM drums@endlink don't exist for a @link Music::CombinedNote note@endlink, then \"null\" is used in the first section of lines 3+ and the @link DefVel velocity@endlink for the missing type is set to 0. 
  * @li Example from \"SONG_Combined Example.song\": 
 @verbatim

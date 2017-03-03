@@ -304,6 +304,7 @@ public class VirtualInstrumentManager : MonoBehaviour
     * These are variables that can be used in classes outside the VirtualInstrumentManager
     *****************************************************************************/
     /** @{ */
+    public bool                        ShowDiagnostics = true; //!< Whether or not to show the @link ATI_Diagnostics diagnostic overlay@endlink. 
     public SongManagerClass            SongManager; //!< The song manager. @see SongManagerClass                 
                                                     /** @} */
 
@@ -353,6 +354,10 @@ public class VirtualInstrumentManager : MonoBehaviour
             Assert.IsNotNull( diagnosticsContainer, "Could not load the diagnostics prefab!" );
             mDiagnosticsHandler = diagnosticsContainer.transform.GetChild( 0 ).GetComponent<ATI_Diagnostics>();
             Assert.IsNotNull( mDiagnosticsHandler, "Could not get the diagnostics handler!" );
+            if( !ShowDiagnostics )
+            {
+                diagnosticsContainer.SetActive( false );
+            }
         #endif
 
         #if DEBUG_MUSICAL_TYPING
@@ -935,16 +940,16 @@ public class VirtualInstrumentManager : MonoBehaviour
                 offset = loopNoteData[i].TotalOffset;
             }
             
-            // Get the velocity from the note.
-            velocity = loopNoteData[i].PercussionData.Velocity;
-
-            // Get the associated dynamics index and velocity factor.
-            velIndex = mDrumKit.GetBuiltInDynamicsThresholdIndex( velocity );
-            velFactor = mDrumKit.GetAdjustedVelocityFactor( velocity );
-
             // Add the audio data for all of the drums in the note.
             for( int j = 0; j < loopNoteData[i].PercussionData.Hits.Length; j++ )
             {
+                // Get the velocity from the note.
+                velocity = loopNoteData[i].PercussionData.Velocities[j];
+
+                // Get the associated dynamics index and velocity factor.
+                velIndex = mDrumKit.GetBuiltInDynamicsThresholdIndex( velocity );
+                velFactor = mDrumKit.GetAdjustedVelocityFactor( velocity );
+
                 // Get the audio data for the note.
                 float[][] drumAudioData = mDrumKit.GetAudioDataForPitch( (Music.PITCH)( loopNoteData[i].PercussionData.Hits[j] ) );
 
@@ -1002,6 +1007,8 @@ public class VirtualInstrumentManager : MonoBehaviour
                     numSamplesUntilNextHiHat--;
                 }
 
+                // Reset the drum audio data.
+                drumAudioData = null;
             }
         }
 
@@ -1009,6 +1016,9 @@ public class VirtualInstrumentManager : MonoBehaviour
         mDrumLoopOutput.SetAudioData( loopAudioData, mMixer, null );
         mDrumLoopOutput.SetLoop( true );
         mDrumLoopOutput.BeingPlaying( 1f, 0, startIndex );
+
+        loopNoteData = null;
+        loopAudioData = null;
     }
 
     /**
@@ -1083,7 +1093,17 @@ public class VirtualInstrumentManager : MonoBehaviour
         {
             for( int i = 0; i < numNotes; i++ )
             {
-                numSamples = Mathf.Max( ( songNoteData[i].MelodyData.NumSamples + songNoteData[i].TotalOffset ), numSamples );
+                if( songNoteData[i].MelodyData.Pitches != null )
+                {
+                    for( int j = 0; j < songNoteData[i].MelodyData.Pitches.Length; j++ )
+                    {
+                        numSamples = Mathf.Max( ( songNoteData[i].MelodyData.NumSamples[j] + songNoteData[i].TotalOffset ), numSamples );
+                    }
+                }
+                else
+                {
+                    numSamples = Mathf.Max( songNoteData[i].TotalOffset, numSamples );
+                }
             }
         }
         else
@@ -1119,21 +1139,23 @@ public class VirtualInstrumentManager : MonoBehaviour
             {
                 // Get the offset and velocity from the note.
                 offset = songNoteData[i].TotalOffset;
-                velocity = songNoteData[i].MelodyData.Velocity;
-
-                // Get the associated dynamics index and velocity factor.
-                velIndex = mInstrument.GetBuiltInDynamicsThresholdIndex( velocity );
-                velFactor = mInstrument.GetAdjustedVelocityFactor( velocity );
 
                 // Add the audio data for all of the pitches in the note.
                 for( int j = 0; j < songNoteData[i].MelodyData.Pitches.Length; j++ )
                 {
+                    // Get the pitch's velocity.
+                    velocity = songNoteData[i].MelodyData.Velocities[j];
+
+                    // Get the associated dynamics index and velocity factor.
+                    velIndex = mInstrument.GetBuiltInDynamicsThresholdIndex( velocity );
+                    velFactor = mInstrument.GetAdjustedVelocityFactor( velocity );
+
                     // Get the audio data for the note.
                     float[][] pitchAudioData = mInstrument.GetAudioDataForPitch( songNoteData[i].MelodyData.Pitches[j] );
 
                     // Put all of the samples from the pitch's audio data into the song audio data.
                     int k = 0;
-                    while( k < songNoteData[i].MelodyData.NumSamples && k < pitchAudioData[velIndex].Length )
+                    while( k < songNoteData[i].MelodyData.NumSamples[j] && k < pitchAudioData[velIndex].Length )
                     {
                         songAudioData[0][k + offset] += ( pitchAudioData[velIndex][k] * velFactor );
                         k++;
@@ -1160,15 +1182,17 @@ public class VirtualInstrumentManager : MonoBehaviour
             {
                 // Get the offset and velocity from the note.
                 offset = songNoteData[i].TotalOffset;
-                velocity = songNoteData[i].PercussionData.Velocity;
-
-                // Get the associated dynamics index and velocity factor.
-                velIndex = mDrumKit.GetBuiltInDynamicsThresholdIndex( velocity );
-                velFactor = mDrumKit.GetAdjustedVelocityFactor( velocity );
 
                 // Add the audio data for all of the drums in the note.
                 for( int j = 0; j < songNoteData[i].PercussionData.Hits.Length; j++ )
                 {
+                    // Get the drum's velocity
+                    velocity = songNoteData[i].PercussionData.Velocities[j];
+
+                    // Get the associated dynamics index and velocity factor.
+                    velIndex = mDrumKit.GetBuiltInDynamicsThresholdIndex( velocity );
+                    velFactor = mDrumKit.GetAdjustedVelocityFactor( velocity );
+
                     // Get the audio data for the note.
                     float[][] drumAudioData = mDrumKit.GetAudioDataForPitch( (Music.PITCH)( songNoteData[i].PercussionData.Hits[j] ) );
 
@@ -1231,7 +1255,7 @@ public class VirtualInstrumentManager : MonoBehaviour
 
         // Cleanup
         songAudioData = null;
-        GC.Collect();
+        Resources.UnloadUnusedAssets();
     }
 
     /**

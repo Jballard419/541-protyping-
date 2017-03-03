@@ -70,13 +70,28 @@ public class SongManagerClass
         switch( aSong.GetSongType() )
         {
             case Song.SongType.Melody:
+                // Overwrite if the name already exists.
+                if( mMelodies.ContainsKey( aSong.GetName() ) )
+                {
+                    mMelodies.Remove( aSong.GetName() );
+                }
                 mMelodies.Add( aSong.GetName(), aSong );
                 break;
             case Song.SongType.DrumLoop:
+                // Overwrite if the name already exists.
+                if( mDrumLoops.ContainsKey( aSong.GetName() ) )
+                {
+                    mDrumLoops.Remove( aSong.GetName() );
+                }
                 mDrumLoops.Add( aSong.GetName(), aSong );
                 mNumDrumLoops++;
                 break;
             case Song.SongType.CombinedMelodyAndPercussion:
+                // Overwrite if the name already exists.
+                if( mCombinedSongs.ContainsKey( aSong.GetName() ) )
+                {
+                    mCombinedSongs.Remove( aSong.GetName() );
+                }
                 mCombinedSongs.Add( aSong.GetName(), aSong );
                 mNumCombinedSongs++;
                 break;
@@ -343,7 +358,7 @@ public class SongManagerClass
                     mMelodies.Add( newSong.GetName(), newSong );
                     mNumMelodies++;
                 }
-                else if( file.Name.StartsWith( "DRUMLOOP" ) )
+                else if( file.Name.StartsWith( "DRUMLOOP_" ) )
                 {
                     mDrumLoops.Add( newSong.GetName(), newSong );
                     mNumDrumLoops++;

@@ -354,7 +354,6 @@ public class VirtualInstrument
         // Clean up.
         clips = null;
         Resources.UnloadUnusedAssets();
-        GC.Collect();
     }
 
     /**

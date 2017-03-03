@@ -67,7 +67,7 @@ public class ATI_Buttons : MonoBehaviour
     */
     private void OnLoadSongCreationButtonClicked()
     {
-        SceneManager.LoadScene( "SongCreationInterfaceScene", LoadSceneMode.Additive );
+        SceneManager.LoadScene( "SongCreationInterfaceScene" );
     }
     /** @} */
 }

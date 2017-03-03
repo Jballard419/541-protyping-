@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using Leap.Unity.Interaction;
 
 /** 
  * @class KeyContainer
@@ -17,7 +21,6 @@ public class KeyContainer : MonoBehaviour {
     * These are constants used for creating the keys.
     * @{
     ****************************************************************************/
-    private const int NUM_KEYS = 25; //!< The default number of keys shown.
     private const string BLACK_KEY_PATH = "Graphics/Prefabs/BlackKeyPrefab"; //!< The path to load the prefab for the black keys.
     private const string LESSON_MARKER_PATH = "Audio/Prefabs/LessonMarkerPrefab"; //!< The path to load a lesson marker.
     private const string VIM_PATH = "Audio/Prefabs/VirtualInstrumentManagerPrefab"; //!< The path to load the @link VIM Virtual Instrument Manager@endlink.
@@ -34,6 +37,13 @@ public class KeyContainer : MonoBehaviour {
     * @{
     ****************************************************************************/
     public bool EnableAudio = false;
+    public Leap.Unity.Interaction.InteractionManager mInteractionManager;
+    public float KeyboardCenterX = 0f;
+    public float KeyboardCenterY = 10f;
+    public float KeyboardCenterZ = 0f;
+    public int NumberOfKeysToLoad = 25;
+	public int keyAngle = -12;
+    public Music.PITCH LowestPitchToLoad = Music.PITCH.C3;
 
     /*************************************************************************//** 
     * @}
@@ -42,13 +52,15 @@ public class KeyContainer : MonoBehaviour {
     * These are variables used to manage the keys.
     * @{
     ****************************************************************************/
-    private float mBlackKeyWidth = 0f; //!< The width of a black key.
-    private float mWhiteKeyWidth = 0f; //!< The width of a white key.
     private GameObject[] mKeyObjects = null; //!< The keys held in the container. Need to update this once the classes are combined.
     private GameObject[] mLessonMarkers = null; //!< Lesson markers for showing which key to hit. Just testing this for now to see if I can get the audio timing right.
     private int mNumWhiteKeys = 0; //!< The number of white keys being shown. Used for positioning.
     private Music.PITCH[] mRepresentedPitches = null; //!< The pitches that are represented by the keyboard.
+    private Vector3 mBlackKeySize; //!< The size of a black key.
+    private Vector3 mKeyboardPosition; //!< The position of the center of the keyboard.
+    private Vector3 mWhiteKeySize; //!< The size of a white key.
     private VirtualInstrumentManager mVIM = null; //!< The bridge to the audio code.
+	private TextAndSlider mTextAndSlider = null;
 
     /*************************************************************************//** 
     * @}
@@ -57,29 +69,43 @@ public class KeyContainer : MonoBehaviour {
     * Built-in Unity functions that are automatically called.
     * @{
     *****************************************************************************/
-    
+
     /**
-     * @brief Initializes the KeyContainer and loads each key.
+     * @brief Initializes the KeyContainer and @link KeyContainer::LoadKeys begins loading each key@endlink.
     */
     void Awake()
     {
+        // Destroy the placement marker.
+        GameObject placementMarker = transform.GetChild( 1 ).gameObject;
+        DestroyImmediate( placementMarker, false );
+
+		// Set up the slider
+		mTextAndSlider = gameObject.AddComponent<TextAndSlider>();
+
         // Initialize the represented pitches. Default is from C3 to C5.
-        mRepresentedPitches = new Music.PITCH[NUM_KEYS];
-        for( int i = 0; i < NUM_KEYS; i++ )
+        mRepresentedPitches = new Music.PITCH[NumberOfKeysToLoad];
+        for( int i = 0; i < NumberOfKeysToLoad; i++ )
         {
-            mRepresentedPitches[i] = (Music.PITCH)( (int)Music.PITCH.C3 + i );
+            mRepresentedPitches[i] = (Music.PITCH)( (int)LowestPitchToLoad + i );
             if( !Music.IsPitchABlackKey( mRepresentedPitches[i] ) )
             {
                 mNumWhiteKeys++;
             }
         }
 
-        // Get the width of each key.
-        mWhiteKeyWidth = Resources.Load<GameObject>( WHITE_KEY_PATH ).GetComponent<Renderer>().bounds.size.z;
-        mWhiteKeyWidth += ( mWhiteKeyWidth / 10f );
-        mBlackKeyWidth = Resources.Load<GameObject>( BLACK_KEY_PATH ).GetComponent<Renderer>().bounds.size.z;
-        Debug.Log( "White key width: " + mWhiteKeyWidth.ToString() );
-        Debug.Log( "Black key width: " + mBlackKeyWidth.ToString() );
+        // Load a black key and a white key to find their dimensions.
+        GameObject whiteKey = Resources.Load<GameObject>( WHITE_KEY_PATH );
+        Assert.IsNotNull( whiteKey, "Could not load the white key prefab!" );
+        GameObject blackKey = Resources.Load<GameObject>( BLACK_KEY_PATH );
+        Assert.IsNotNull( blackKey, "Could not load the black key prefab!" );
+
+        // Get the dimensions of each key.
+        mWhiteKeySize = whiteKey.GetComponent<Renderer>().bounds.size * 1.1f;
+        mBlackKeySize = blackKey.GetComponent<Renderer>().bounds.size * 1.1f;
+
+        // Get the position of the keyboard.
+        mKeyboardPosition = new Vector3( KeyboardCenterX, KeyboardCenterY, KeyboardCenterZ );
+        transform.position = mKeyboardPosition;
 
         // Load the keys.
         LoadKeys();      
@@ -163,117 +189,104 @@ public class KeyContainer : MonoBehaviour {
         // Destroy the previous keys if needed.
         if( mKeyObjects != null )
         {
-           // ClearKeyboard();
+           ClearKeyboard();
         }
 
         // Load the keys.
         mKeyObjects = new GameObject[mRepresentedPitches.Length];
         mLessonMarkers = new GameObject[mRepresentedPitches.Length];
-        Vector3 keyPosition = Vector3.zero;
+        Vector3 keyPosition = mKeyboardPosition;
+        Vector3 hingePosition = mKeyboardPosition;
+        Vector3 lessonMarkerPosition = Vector3.zero;
+
+        // Position the keys according to the number of white keys since
+        // the black keys are put in the intersection between two white keys.
         int whiteKeyIndex = -1 * ( mNumWhiteKeys / 2 );
+
+        // Loop through all of the needed keys.
         for( int i = 0; i < mRepresentedPitches.Length; i++ )
         {
+            PianoKey key = null;
+			BoxCollider keyCollider = null;
 
             // Handle if the key is a black key.
             if( Music.IsPitchABlackKey( mRepresentedPitches[i] ) )
             {
-                // Make an empty black key to help initialize this one.
-                BlackKey key = null;
-
                 // Create the black key object.
                 mKeyObjects[i] = Instantiate( Resources.Load<GameObject>( BLACK_KEY_PATH ) );
                 Assert.IsNotNull( mKeyObjects[i], "Failed to load prefab from " + BLACK_KEY_PATH + "!" );
-                mKeyObjects[i].name = Music.NoteToString( mRepresentedPitches[i] ) + "Key";
-
-                // Get the black key.
-                key = mKeyObjects[i].GetComponent<BlackKey>();
-                Assert.IsNotNull( key, "Could not get a reference to the BlackKey script!" );
-
-                // Set its pitch.
-                key.Pitch = mRepresentedPitches[i];
-
-                // Add listeners to its events.
-                key.BlackKeyPressed.AddListener( HandleBlackKeyPressed );
-                key.BlackKeyReleased.AddListener( HandleBlackKeyReleased );
-
-                // Set its position, which is determined by its joint. First, get the spring joint.
-                SpringJoint spring = mKeyObjects[i].GetComponent<SpringJoint>();
-                Assert.IsNotNull( spring, "Could not get spring joint of black key!" );
 
                 // Get the offset position.
-                keyPosition = Vector3.zero;
-                keyPosition.z += ( ( (float)( whiteKeyIndex - 1 ) * mWhiteKeyWidth ) + ( mWhiteKeyWidth / 2f ) );
+				keyCollider = mKeyObjects[i].GetComponent<BoxCollider>(); 
+                keyPosition = mKeyboardPosition;
+                keyPosition.x += ( ( mBlackKeySize.x - mWhiteKeySize.x ) / 1.21f );
+                keyPosition.y += ( mWhiteKeySize.y / 2f );
+                keyPosition.z += ( ( (float)( whiteKeyIndex - 1 ) * mWhiteKeySize.z ) + ( mWhiteKeySize.z / 2f ) );
 
-                // Update the joint's connected anchor.
-                spring.autoConfigureConnectedAnchor = false;
-                spring.connectedAnchor += keyPosition;
+                // Get the position for the hinge (rotation point).
+                hingePosition = keyPosition;
+				hingePosition.x -= keyCollider.bounds.extents.x;
 
-                // Set the new position.
-                keyPosition.y = mKeyObjects[i].transform.position.y;
-                keyPosition.x = mKeyObjects[i].transform.position.x;
-                mKeyObjects[i].transform.position = keyPosition;
-
-                // Put settings back on the spring joint.
-                spring.autoConfigureConnectedAnchor = true;
-
-                // Set its place in the hierarchy.
-                mKeyObjects[i].transform.SetParent( transform, true );
-
-                Debug.Log( "Position of key representing " + Music.NoteToString( mRepresentedPitches[i] ) + ":" + keyPosition.ToString() );
-
-                // Set its parent.
-                key.SetParentContainer( this );
+                // Get the position of the lesson marker for this key.
+                lessonMarkerPosition = keyPosition;
+                lessonMarkerPosition.y += ( ( mBlackKeySize.y / 2f ) + .001f );
+                lessonMarkerPosition.x += ( mBlackKeySize.x / 5f );
             }
 
             // Handle if the key is a white key.
             else
             {
-                // Make an empty black key to help initialize this one.
-                WhiteKey key = null;
-
-                // Create the black key object.
+                // Create the white key object.
                 mKeyObjects[i] = Instantiate( Resources.Load<GameObject>( WHITE_KEY_PATH ) );
                 Assert.IsNotNull( mKeyObjects[i], "Failed to load prefab from " + WHITE_KEY_PATH + "!" );
                 mKeyObjects[i].name = Music.NoteToString( mRepresentedPitches[i] ) + "Key";
 
-                // Get the black key.
-                key = mKeyObjects[i].GetComponent<WhiteKey>();
-                Assert.IsNotNull( key, "Could not get a reference to the BlackKey script!" );
-
-                // Set its pitch.
-                key.Pitch = mRepresentedPitches[i];
-
-                // Add listeners to its events.
-                key.WhiteKeyPressed.AddListener( HandleWhiteKeyPressed );
-                key.WhiteKeyReleased.AddListener( HandleWhiteKeyReleased );
-
-                // Get the hinge joint.
-                HingeJoint hinge = mKeyObjects[i].GetComponent<HingeJoint>();
-                hinge.autoConfigureConnectedAnchor = false;
-
                 // Get the offset position.
-                keyPosition = Vector3.zero;
-                keyPosition.z += ( (float)whiteKeyIndex * mWhiteKeyWidth );
+				keyCollider = mKeyObjects[i].GetComponent<BoxCollider>(); 
+                keyPosition = mKeyboardPosition;
+                keyPosition.z += ( (float)whiteKeyIndex * mWhiteKeySize.z );
 
-                // Set the hinge's position.
-                hinge.anchor += keyPosition;
-                hinge.connectedAnchor += keyPosition;
+                // Get the position for the hinge (rotation point).
+                hingePosition = keyPosition;
+				hingePosition.x -= keyCollider.bounds.extents.x;
 
-                // Set the key's position.
-                mKeyObjects[i].transform.position += keyPosition;
-                hinge.autoConfigureConnectedAnchor = true;
+                // Get the position of the lesson marker for this key.
+                lessonMarkerPosition = keyPosition;
+                lessonMarkerPosition.y += ( ( mWhiteKeySize.y / 2f ) + 0.001f );
+                lessonMarkerPosition.x += ( mWhiteKeySize.x / 5f );
 
                 // Update the index of which white key we're on.
                 whiteKeyIndex++;
-
-                // Set its place in the hierarchy.
-                mKeyObjects[i].transform.SetParent( transform, true ); 
-
-                Debug.Log( "Position of key representing " + Music.NoteToString( mRepresentedPitches[i] ) + ":" + mKeyObjects[i].transform.position.ToString() );
-
-                // Set its parent.
-                key.SetParentContainer( this );
             }
+
+            // Set the key's position.
+            mKeyObjects[i].transform.position = keyPosition;
+
+            // Get the key's script.
+            key = mKeyObjects[i].GetComponent<PianoKey>();
+
+            // Set its pitch.
+            key.Pitch = mRepresentedPitches[i];
+
+            // Add listeners to its events.
+            key.PianoKeyPressed.AddListener( HandleKeyPressed );
+            key.PianoKeyReleased.AddListener( HandlePianoKeyReleased );
+
+            // Set the object's name.
+            mKeyObjects[i].name = Music.NoteToString( mRepresentedPitches[i] ) + "Key";
+
+            // Set its place in the hierarchy.
+            key.SetParentContainer( this );
+            mKeyObjects[i].transform.SetParent( transform, true );
+
+            // Make sure that it knows its hinge position
+            key.SetHingePosition( hingePosition );
+			Vector3 pressedPosition = mKeyObjects[i].transform.localPosition;
+			pressedPosition.x = ( keyCollider.bounds.extents.x * ( Mathf.Cos( keyAngle * Mathf.Deg2Rad ) ) ) - keyCollider.bounds.extents.x;
+			pressedPosition.y = keyCollider.bounds.extents.x * ( Mathf.Sin( keyAngle * Mathf.Deg2Rad ) ) ;
+			key.SetPressedPosition( pressedPosition );
+
+            Debug.Log( "Position of key representing " + Music.NoteToString( mRepresentedPitches[i] ) + ":" + mKeyObjects[i].transform.position.ToString() );
 
             // Load the lesson marker.
             mLessonMarkers[i] = Instantiate( Resources.Load<GameObject>( LESSON_MARKER_PATH ) );
@@ -281,9 +294,7 @@ public class KeyContainer : MonoBehaviour {
 
             // Set the lesson marker position.
             mLessonMarkers[i].transform.SetParent( transform, true );
-            keyPosition.y += ( mKeyObjects[i].GetComponent<Renderer>().bounds.size.y / 2f ) + 0.001f;
-            keyPosition.x += ( mKeyObjects[i].GetComponent<Renderer>().bounds.size.x / 5f );
-            mLessonMarkers[i].transform.position = keyPosition;
+            mLessonMarkers[i].transform.position = lessonMarkerPosition;
             mLessonMarkers[i].SetActive( false );
 
         }
@@ -306,34 +317,6 @@ public class KeyContainer : MonoBehaviour {
         EnableAudio = aAudioEnabled;
     }
 
-    /**
-    * @brief Handles a black key in the container being pressed.
-    * @param[in] aBlackKey The black key that was pressed.
-    */
-    private void HandleBlackKeyPressed( BlackKey aBlackKey )
-    {
-        if( EnableAudio && mVIM != null )
-        {
-            #if DEBUG_AUDIO_DIAGNOSTICS
-                mVIM.GetDiagnosticsHandler().SetInputTime.Invoke();
-            #endif
-
-            mVIM.PlayNote.Invoke( aBlackKey.Pitch, 100 );
-        }
-    }
-
-    /**
-    * @brief Handles a black key in the container being released.
-    * @param[in] aBlackKey The black key that was released.
-    */
-    private void HandleBlackKeyReleased( BlackKey aBlackKey )
-    {
-        if( EnableAudio && mVIM != null )
-        {
-            mVIM.ReleaseNote.Invoke( aBlackKey.Pitch );
-        }
-    }
-
     /** 
      * @brief Handles @link VirtualInstrumentManager::ChangeNoteRangeEvent a change in the note range@endlink.
      * @param[in] aNewLowestPitch The lowest pitch of the new range.
@@ -348,7 +331,7 @@ public class KeyContainer : MonoBehaviour {
         mNumWhiteKeys = 0;
 
         // Update the represented pitches.
-        for( int i = 0; i < NUM_KEYS; i++ )
+        for( int i = 0; i < NumberOfKeysToLoad; i++ )
         {
             mRepresentedPitches[i] = (Music.PITCH)( i + (int)aNewLowestPitch );
             if( !Music.IsPitchABlackKey( mRepresentedPitches[i] ) )
@@ -362,10 +345,10 @@ public class KeyContainer : MonoBehaviour {
     }
 
     /**
-    * @brief Handles a white key in the container being pressed.
-    * @param[in] aWhiteKey The white key that was pressed.
+    * @brief Handles a key in the container being pressed.
+    * @param[in] aPianoKey The white key that was pressed.
     */
-    private void HandleWhiteKeyPressed( WhiteKey aWhiteKey )
+    private void HandleKeyPressed( PianoKey aPianoKey, int aNoteVelocity )
     {
         if( EnableAudio && mVIM != null )
         {
@@ -373,7 +356,7 @@ public class KeyContainer : MonoBehaviour {
                 mVIM.GetDiagnosticsHandler().SetInputTime.Invoke();
             #endif
 
-            mVIM.PlayNote.Invoke( aWhiteKey.Pitch, 100 );
+            mVIM.PlayNote.Invoke( aPianoKey.Pitch, aNoteVelocity );
         }
     }
 
@@ -381,11 +364,11 @@ public class KeyContainer : MonoBehaviour {
     * @brief Handles a white key in the container being released.
     * @param[in] aWhiteKey The white key that was released.
     */
-    private void HandleWhiteKeyReleased( WhiteKey aWhiteKey )
+    private void HandlePianoKeyReleased( PianoKey aPianoKey )
     {
         if( EnableAudio && mVIM != null )
         {
-            mVIM.ReleaseNote.Invoke( aWhiteKey.Pitch );
+            mVIM.ReleaseNote.Invoke( aPianoKey.Pitch );
         }
     }
 
@@ -435,9 +418,11 @@ public class KeyContainer : MonoBehaviour {
         {
             if( note.MelodyData.Pitches != null )
             {
+                int index = 0;
                 foreach( Music.PITCH pitch in note.MelodyData.Pitches )
                 {
-                    StartCoroutine( DrawLessonMarker( (int)pitch - (int)lowestPitch, (float)note.TotalOffset * sampInt, ( note.MelodyData.NumSamples * sampInt ) - .02f ) );
+                    StartCoroutine( DrawLessonMarker( (int)pitch - (int)lowestPitch, (float)note.TotalOffset * sampInt, ( note.MelodyData.NumSamples[index] * sampInt ) - .02f ) );
+                    index++;
                 }
             }
         }
