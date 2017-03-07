@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -24,7 +25,8 @@ public class SongCreationManager : MonoBehaviour
     * These are paths to the prefabs that are used in the @link DocSC Song Creation Interface@endlink.
     * @{
     *****************************************************************************/
-    private string LOAD_SONG_DIALOG_PATH = "Audio/Prefabs/SongCreation/LoadSongDialogPrefab"; //!< The path to load the @link DocSC_LSD Load Song Dialog@endlink's prefab.
+    private const string LOAD_SONG_DIALOG_PATH = "Audio/Prefabs/SongCreation/LoadSongDialogPrefab"; //!< The path to load the @link DocSC_LSD Load Song Dialog@endlink's prefab.
+    private const string NOTE_DIALOG_PATH = "Audio/Prefabs/SongCreation/NoteDialogPrefab";
 
     /*************************************************************************//** 
     * @}
@@ -34,179 +36,194 @@ public class SongCreationManager : MonoBehaviour
     * @{
     *****************************************************************************/
     
-    //---------------------------------------------------------------------------- 
-    // Class that handles selecting a note length/offset.
-    //----------------------------------------------------------------------------
-    private class SongCreationSelectionContainer : MonoBehaviour
+    /**
+     * @class SC_InputFieldAndSlider
+     * @brief A simple class that connects an arbitrary slider and input field.
+    */
+    public class SC_InputFieldAndSlider : MonoBehaviour, IEndDragHandler
     {
-        //---------------------------------------------------------------------------- 
-        // Nested class that uses this class as a handler.
-        //---------------------------------------------------------------------------- 
-        private class SongCreationSelectionTrigger : MonoBehaviour
-        {
-            //---------------------------------------------------------------------------- 
-            // Private Variables
-            //---------------------------------------------------------------------------- 
-            private bool mSelected = false; // Whether or not this object is selected.
-            private SongCreationSelectionContainer mContainer = null; // The parent container.
-            private Toggle mToggle = null; // The associated toggle switch.
+        /*************************************************************************//** 
+        * @defgroup SC_IFASEventType Event Types
+        * @ingroup DocSC_IFAS
+        * These are The types of events for the SC_InputFieldAndSlider.
+        * @{
+        *****************************************************************************/
 
-            //---------------------------------------------------------------------------- 
-            // Unity Functions
-            //---------------------------------------------------------------------------- 
-            private void Awake()
-            {
-                // Get the toggle and set its listener
-                mToggle = gameObject.GetComponent<Toggle>();
-                mToggle.onValueChanged.AddListener( OnSelected );
-            }
+        /**
+         * @brief The type of event that is invoked whenever the value of the input field or slider finishes changing.
+        */
+        public class ValueChangedEvent : UnityEvent<float> {}
 
-            //---------------------------------------------------------------------------- 
-            // Public Functions
-            //---------------------------------------------------------------------------- 
+        /*************************************************************************//**
+         * @} 
+        * @defgroup SC_IFASEvents Events
+        * @ingroup DocSC_IFAS
+        * These are the events for the SC_InputFieldAndSlider.
+        * @{
+        *****************************************************************************/
+        public ValueChangedEvent ValueChanged; //!< The event that is invoked when the value of the input field or slider finishes changing.
 
-            // Sets the parent container
-            public void SetContainer( SongCreationSelectionContainer aContainer )
-            {
-                mContainer = aContainer;
-            }
+        /*************************************************************************//** 
+        * @}
+        * @defgroup SC_IFASPrivVar Private Variables
+        * @ingroup DocSC_IFAS
+        * These are private variables for the SC_InputFieldAndSlider.
+        * @{
+        *****************************************************************************/
+        private bool mAsInt = false; //!< Should the value be an integer or a float?
+        private float mValue = 0f;
+        private InputField mInputField = null;
+        private Slider mSlider = null;
 
-            // Sets whether or not the object is selected.
-            public void SetSelected( bool aSelected )
-            {
-                mSelected = aSelected;
+        /*************************************************************************//** 
+        * @}
+        * @defgroup SC_IFASUnity Unity Functions
+        * @ingroup DocSC_IFAS
+        * These are functions automatically called by Unity for the SC_InputFieldAndSlider.
+        * @{
+        *****************************************************************************/
 
-                // Change the color to indicate that this is or isn't the selected object
-                ChangeColor();
-
-                // Set the value of the toggle.
-                mToggle.onValueChanged.RemoveListener( OnSelected );
-                mToggle.isOn = aSelected;
-                mToggle.onValueChanged.AddListener( OnSelected );
-            }
-
-            //---------------------------------------------------------------------------- 
-            // Private Functions
-            //---------------------------------------------------------------------------- 
-
-            // Changes color to show whether or not this object is selected.
-            private void ChangeColor()
-            {
-                if( mSelected )
-                {
-                    mToggle.transform.GetChild( 0 ).GetComponent<Image>().color = new Color32( 255, 255, 255, 118 );
-
-                }
-                else
-                {
-                    mToggle.transform.GetChild( 0 ).GetComponent<Image>().color = new Color32( 255, 255, 255, 255 );
-                }
-            }
-
-            //---------------------------------------------------------------------------- 
-            // Event Handlers
-            //---------------------------------------------------------------------------- 
-
-            // Handles the object being selected or unselected.
-            public void OnSelected( bool aSelected )
-            {
-                // If this object is now selected, then change the color and send it to the handler.
-                if( aSelected )
-                {
-                    mSelected = aSelected;
-                    ChangeColor();
-                    mContainer.HandleToggle( this );
-                }
-                // This object can not be unselected by clicking on it. Set the value back to selected.
-                else
-                {
-                    mToggle.onValueChanged.RemoveListener( OnSelected );
-                    mToggle.isOn = true;
-                    mToggle.onValueChanged.AddListener( OnSelected );
-                }
-
-            }
-        }
-
-        //---------------------------------------------------------------------------- 
-        // Private Variables
-        //----------------------------------------------------------------------------
-        private int mSelectedIndex = 0; // The index of the current selection
-        private SongCreationSelectionTrigger[] mTriggers = null; // The triggers that pass a selection event to this handler.
-
-
-        //---------------------------------------------------------------------------- 
-        // Unity Functions
-        //----------------------------------------------------------------------------
+        /** Initializes the object by getting the input field and the slider. */
         private void Awake()
         {
-            // Set up the triggers.
-            mTriggers = new SongCreationSelectionTrigger[13];
-            for( int i = 0; i < 13; i++ )
+            // Get the slider and add its listener.
+            mSlider = gameObject.GetComponent<Slider>();
+            mSlider.onValueChanged.AddListener( OnSliderValueChanged );
+            Assert.IsNotNull( mSlider, "InputField/Slider handler could not find the slider!" );
+
+            ValueChanged = new ValueChangedEvent();
+        }
+
+        /*************************************************************************//** 
+        * @}
+        * @defgroup SC_IFASPubFunc Public Functions
+        * @ingroup DocSC_IFAS
+        * These are functions for other classes to interact with the SC_InputFieldAndSlider.
+        * @{
+        *****************************************************************************/
+
+        /**
+         * @brief Gets the value of the input field/slider.
+         * @return The value of the input field/slider.
+        */
+        public float GetValue()
+        {
+            return mValue;
+        }
+
+        /**
+         * @brief Sets whether or not the value should be an integer.
+         * @param[in] aAsInt Whether or not the value should be an integer.
+        */
+        public void SetAsInt( bool aAsInt )
+        {
+            mAsInt = aAsInt;
+        }
+
+        /**
+         * @brief Sets the input field that this should update.
+         * @param[in] aInputField The input field that should be updated.
+        */
+        public void SetReferenceToInputField( InputField aInputField )
+        {
+            mInputField = aInputField;
+            mInputField.onEndEdit.AddListener( OnInputFieldEdit );
+            if( mAsInt )
             {
-                mTriggers[i] = gameObject.transform.GetChild( i + 1 ).gameObject.AddComponent<SongCreationSelectionTrigger>();
-                mTriggers[i].SetContainer( this );
-                mTriggers[i].SetSelected( false );
+                mInputField.text = ( (int)mSlider.value ).ToString();
             }
-
-            // Set the default selection (Quarter note).
-            mTriggers[12].SetSelected( true );
-            mSelectedIndex = 12;
-        }
-
-        //---------------------------------------------------------------------------- 
-        // Public Functions
-        //----------------------------------------------------------------------------
-
-        // Gets the current selection.
-        public Music.NOTE_LENGTH GetSelected()
-        {
-            return (Music.NOTE_LENGTH)mSelectedIndex;
-        }
-
-        // Sets the current selection.
-        public void SetSelected( Music.NOTE_LENGTH aSelection )
-        {
-            // Update the private variable.
-            mSelectedIndex = (int)aSelection;
-
-            // Update the child objects.
-            for( int i = 0; i < 13; i++ )
+            else
             {
-                if( i != mSelectedIndex )
+                mInputField.text = mSlider.value.ToString( "F2" );
+            }
+        }
+
+        /**
+         * @brief Sets the value of the input field and slider.
+         * @param[in] aValue The new value.
+        */
+        public void SetValue( float aValue )
+        {
+            if( mAsInt )
+            {
+                mInputField.text = ( (int)aValue ).ToString();
+            }
+            else
+            {
+                mInputField.text = aValue.ToString( "F2" );
+            }
+            mSlider.value = aValue;
+            mValue = aValue;
+        }
+
+        /*************************************************************************//** 
+        * @}
+        * @defgroup SC_IFASHandlers Event Handlers
+        * @ingroup DocSC_IFAS
+        * These are functions that the SC_InputFieldAndSlider uses to handle events.
+        * @{
+        *****************************************************************************/
+
+        /**
+         * @brief Handles the slider stopping a drag.
+         * @param[in] aPointerData The data relating to the drag event.
+        */
+        public void OnEndDrag( PointerEventData aPointerData )
+        {
+            if( mAsInt )
+            {
+                mInputField.text = ( (int)mSlider.value ).ToString();
+            }
+            else
+            {
+                mInputField.text = mSlider.value.ToString( "F2" );
+            }
+            mValue = mSlider.value;
+            ValueChanged.Invoke( mSlider.value );
+        }
+
+        /**
+         * @brief Handles an edit in the Input Field
+         * @param[in] aInput The string put into the input field.
+        */
+        private void OnInputFieldEdit( string aInput )
+        {
+            float value = float.Parse( aInput );
+            if( value >= mSlider.minValue && value <= mSlider.maxValue )
+            {
+                mSlider.value = value;
+                ValueChanged.Invoke( mValue );
+            }
+            else
+            {
+                if( mAsInt )
                 {
-                    mTriggers[i].SetSelected( false );
+                    mInputField.text = ( (int)mValue ).ToString();
                 }
                 else
                 {
-                    mTriggers[i].SetSelected( true );
+                    mInputField.text = mValue.ToString( "F2" );
                 }
             }
         }
 
-        //---------------------------------------------------------------------------- 
-        // Event Handlers
-        //----------------------------------------------------------------------------
-
-        // Handles a new selection.
-        // IN: aTrigger The trigger that is now the new selection.
-        private void HandleToggle( SongCreationSelectionTrigger aTrigger )
+        /**
+         * @brief Handles the slider's value changing before the drag is complete.
+         * @param[in] aNewValue The new value of the slider.
+        */
+        private void OnSliderValueChanged( float aNewValue )
         {
-            // Set all other triggers to unselected.
-            for( int i = 0; i < 13; i++ )
+            if( mAsInt )
             {
-                if( mTriggers[i] != aTrigger )
-                {
-                    mTriggers[i].SetSelected( false );
-                }
-
-                // Update the current selection.
-                else
-                {
-                    mSelectedIndex = i;
-                }
+                mInputField.text = ( (int)aNewValue ).ToString();
+            }
+            else
+            {
+                mInputField.text = aNewValue.ToString( "F2" );
             }
         }
+
+        /** @} */
     }
 
     /*************************************************************************//** 
@@ -216,24 +233,16 @@ public class SongCreationManager : MonoBehaviour
     * These are variables that are used internally by the SongCreationManager
     * @{
     ******************************************************************************/
-    private bool mEditing = false; //!< Whether or not a note is being modified.
     private Button mATIButton = null; //!< The button to reload the audio testing interface.
     private Button mLoadSongButton = null; //!< The button to load a song.
     private Button mNewNoteButton = null; //!< The button to add a new note with the chosen values.
     private Button mPlaySongButton = null; //!< The button to play the song. 
-    private Button mResetPitchesButton = null; //!< The button to reset the pitch selections.
     private Button mSaveSongButton = null; //!< The button to save the song to a file.
     private InputField mSongNameInputField = null; //!< The input field to name the song.
-    private Music.NOTE_LENGTH mLastLength = Music.NOTE_LENGTH.NONE; //!< The length used to create the last note. Used for special handling of drum loops.
+    private int mEditIndex = -1; //!< The index of the todocnote being edited.
     private SC_NoteDisplayContainer mNoteDisplay = null; //!< The container to show the notes for the song.
-    private SC_NoteDisplayPanel mEditPanel = null; //!< The panel that was selected to be edited.
-    private SC_PitchSelectionContainer mDrumSelector = null; //!< The container for choosing drums.
-    private SC_PitchSelectionContainer mPitchSelector = null; //!< The container for choosing pitches.
-    private Slider mBPMSlider = null; //!< The slider for the BPM of the song.
-    private Slider mVelocitySlider = null; //!< The slider for the velocity of the new note.
+    private SC_InputFieldAndSlider mBPMSlider = null; //!< The slider for the BPM of the song.
     private Song mSong = null; //!< The song being created.
-    private SongCreationSelectionContainer mLengthPanel = null; //!< The panel to choose a length for the new note.
-    private SongCreationSelectionContainer mOffsetPanel = null; //!< The panel to choose an offset for the new note.
     private VirtualInstrumentManager mVIM = null; //!< The virtual instrument manager
 
     /*************************************************************************//** 
@@ -258,44 +267,44 @@ public class SongCreationManager : MonoBehaviour
         // Set up the container for showing the song's notes.
         mNoteDisplay = gameObject.transform.GetChild( 1 ).GetChild( 0 ).GetChild( 0 ).gameObject.AddComponent<SC_NoteDisplayContainer>();
 
-        // Set up the container for selecting pitches.
-        mPitchSelector = gameObject.transform.GetChild( 2 ).GetChild( 0 ).GetChild( 0 ).gameObject.AddComponent<SC_PitchSelectionContainer>();
-        mPitchSelector.SetUpAsPitchSelector();
-
-        // Set up the panels for choosing a note's length and offset.
-        mLengthPanel = gameObject.transform.GetChild( 3 ).gameObject.AddComponent<SongCreationSelectionContainer>();
-        mLengthPanel.SetSelected( Music.NOTE_LENGTH.Q );
-        mOffsetPanel = gameObject.transform.GetChild( 4 ).gameObject.AddComponent<SongCreationSelectionContainer>();
-
-        // Set up the slider for the note's velocity.
-        mVelocitySlider = gameObject.transform.GetChild( 5 ).GetChild( 0 ).GetComponent<Slider>();
-        mVelocitySlider.onValueChanged.AddListener( OnVelocityChange );
-
         // Set up the slider for the song's default BPM.
-        mBPMSlider = gameObject.transform.GetChild( 5 ).GetChild( 1 ).GetComponent<Slider>();
-        mBPMSlider.onValueChanged.AddListener( OnBPMChange );
+        mBPMSlider = gameObject.transform.GetChild( 2 ).GetChild( 2 ).gameObject.AddComponent<SC_InputFieldAndSlider>();
+        mBPMSlider.SetReferenceToInputField( transform.GetChild( 2 ).GetChild( 1 ).GetComponent<InputField>() );
+        mBPMSlider.SetAsInt( true );
+        mBPMSlider.ValueChanged.AddListener( OnBPMChange );
 
         // Set up the input field for naming the song.        
-        mSongNameInputField = gameObject.transform.GetChild( 6 ).gameObject.GetComponent<InputField>();
+        mSongNameInputField = gameObject.transform.GetChild( 3 ).gameObject.GetComponent<InputField>();
         mSongNameInputField.onEndEdit.AddListener( mSong.SetName );
 
         // Set up the buttons.
-        mNewNoteButton = gameObject.transform.GetChild( 7 ).gameObject.GetComponent<Button>();
-        mNewNoteButton.onClick.AddListener( OnCreateNote );
-        mResetPitchesButton = gameObject.transform.GetChild( 8 ).GetComponent<Button>();
-        mResetPitchesButton.onClick.AddListener( mPitchSelector.ResetPitches );
-        mSaveSongButton = gameObject.transform.GetChild( 9 ).gameObject.GetComponent<Button>();
+        mNewNoteButton = gameObject.transform.GetChild( 5 ).GetChild( 1 ).gameObject.GetComponent<Button>();
+        mNewNoteButton.onClick.AddListener( OnNewNoteButtonClicked );
+        mSaveSongButton = gameObject.transform.GetChild( 5 ).GetChild( 2 ).gameObject.GetComponent<Button>();
         mSaveSongButton.onClick.AddListener( OnSaveSong );
-        mPlaySongButton = gameObject.transform.GetChild( 10 ).GetComponent<Button>();
+        mPlaySongButton = gameObject.transform.GetChild( 5 ).GetChild( 0 ).GetComponent<Button>();
         mPlaySongButton.onClick.AddListener( OnPlaySong );
-        mATIButton = gameObject.transform.GetChild( 11 ).GetComponent<Button>();
+        mATIButton = gameObject.transform.GetChild( 4 ).GetComponent<Button>();
         mATIButton.onClick.AddListener( UnloadSongCreationInterface );
-        mLoadSongButton = transform.GetChild( 13 ).GetComponent<Button>();
+        mLoadSongButton = transform.GetChild( 5 ).GetChild( 3 ).GetComponent<Button>();
         mLoadSongButton.onClick.AddListener( OnLoadSongButtonClicked );
+    }
 
-        // Set up the drum selector.
-        mDrumSelector = gameObject.transform.GetChild( 12 ).GetChild( 0 ).GetChild( 0 ).gameObject.AddComponent<SC_PitchSelectionContainer>();
-        mDrumSelector.SetUpAsDrumSelector();
+    /*************************************************************************//** 
+    * @}
+    * @defgroup SCMPubFunc Public Functions
+    * @ingroup DocSCM
+    * These are functions that allow for other classes to get information from the SongCreationManager.
+    * @{
+    ******************************************************************************/
+
+    /**
+     * @brief Gets the number of todocnotes in the Song.
+     * @return The number of todocnotes in the Song.
+    */
+    public int GetNumNotes()
+    {
+        return mSong.GetNumNotes();
     }
 
     /*************************************************************************//** 
@@ -317,9 +326,6 @@ public class SongCreationManager : MonoBehaviour
     */
     public void OnBPMChange( float aBPM )
     {
-        // Update the BPM slider's label.
-        mBPMSlider.transform.GetChild( 3 ).GetComponent<Text>().text = "Default BPM: " + aBPM.ToString();
-
         // Update the song.
         mSong.SetBPM( (int)aBPM );
     }
@@ -335,75 +341,13 @@ public class SongCreationManager : MonoBehaviour
      * 
      * @see SongCreationManager::mNewNoteButton
     */
-    public void OnCreateNote()
+    public void OnCreateNote( Music.CombinedNote aNote )
     {
-        // Sanity check.
-        if( mEditing )
-        {
-            Assert.IsFalse( !mEditing, "Tried to create a note in the song creation interface when we should have been editing one!" );
-            return;
-        }
+        // Add the note to the song.
+        mSong.AddNote( aNote );
 
-        // Get the selected pitches
-        Music.PITCH[] pitches = mPitchSelector.GetSelectedPitches();
-
-        // Get the selected drums.
-        Music.PITCH[] drums = mDrumSelector.GetSelectedPitches();
-
-        // Make sure that some pitches or drums are actually selected.
-        if( pitches != null || drums != null )
-        {
-            // Get the offset and velocity.
-            Music.NOTE_LENGTH length = Music.NOTE_LENGTH.NONE;
-            mLastLength = mLengthPanel.GetSelected();
-            Music.NOTE_LENGTH offset = mOffsetPanel.GetSelected();
-            int pitchVelocity = 0;
-            int drumVelocity = 0;
-
-            // If the song doesn't have any notes, then set the offset of the first note to none.
-            if( mSong.GetNumNotes() == 0 )
-            {
-                offset = Music.NOTE_LENGTH.NONE;
-            }
-
-            // Convert the selected pitches from the drum selector into actual drum hits.
-            Music.DRUM[] Hits = null;
-            if( drums != null )
-            {
-                Hits = new Music.DRUM[drums.Length];
-                for( int i = 0; i < drums.Length; i++ )
-                {
-                    Hits[i] = (Music.DRUM)drums[i];
-                }
-            }
-
-
-            // Update the velocity/length for the pitches and drums if needed.
-            if( pitches != null )
-            {
-                pitchVelocity = (int)mVelocitySlider.value;
-                length = mLengthPanel.GetSelected();
-            }
-
-            if( drums != null )
-            {
-                drumVelocity = (int)mVelocitySlider.value;
-            }
-
-
-            // Add the note to the song.
-            mSong.AddNote( Music.CreateNote( pitchVelocity, length, pitches, drumVelocity, Hits, offset ) );
-
-            // Add the note to the note display.
-            mNoteDisplay.AddNote( pitchVelocity, length, pitches, drumVelocity, Hits, offset );
-
-            // Reset the pitches.
-            mPitchSelector.ResetPitches();
-            mDrumSelector.ResetPitches();
-
-            // Update the selection of the offset panel since most cases will use the previous length.
-            mOffsetPanel.SetSelected( mLengthPanel.GetSelected() );
-        }
+        // Add the note to the note display.
+        mNoteDisplay.AddNote( aNote );
     }
 
     /**
@@ -412,77 +356,65 @@ public class SongCreationManager : MonoBehaviour
      * 
      * @see SongCreationManager::OnModifyNote
     */
-    public void OnEditEvent( SC_NoteDisplayPanel aPanel )
+    public void HandleEditNote( SC_NoteDisplayPanel aPanel )
     {
-        // Handle the case where we begin editing a note.
-        if( mEditPanel == null || mEditPanel != aPanel )
-        {
-            // Handle switching from editing one panel to editing a different one.
-            if( mEditPanel != null )
-            {
-                // Stop editing the current note/note panel.
-                mEditPanel.StopEditing();
+        // Create a new note dialog.
+        GameObject dialogObj = Instantiate( Resources.Load<GameObject>( NOTE_DIALOG_PATH ) );
+        dialogObj.transform.SetParent( transform );
 
-                // Change the note/note panel being edited to the new one.
-                mEditPanel = aPanel;
-            }
-            // Handle when we start editing a panel.
-            else
-            {
-                // Update the new note button to be a modify note button.
-                mNewNoteButton.transform.GetChild( 0 ).GetComponent<Text>().text = "Modify Note";
-                mNewNoteButton.onClick.RemoveListener( OnCreateNote );
-                mNewNoteButton.onClick.AddListener( OnModifyNote );
+        // Get the dialog's script and add the listener for when it's finished.
+        SC_NoteDialog dialog = dialogObj.transform.GetChild( 0 ).GetComponent<SC_NoteDialog>();
+        dialog.LoadNoteIntoDialog( aPanel.GetNote() );
+        mEditIndex = aPanel.GetNoteIndex();
+        dialog.NoteDialogFinished.AddListener( OnModifyNote );
+    }
 
-                // Set the variables related to editing a note.
-                mEditPanel = aPanel;
-                mEditing = true;
-            }
+    /**
+     * @brief Moves a todocnote earlier in the Song.
+     * @param[in] aNotePanel The panel that triggered the event.
+    */
+    public void HandleMoveNoteLeft( SC_NoteDisplayPanel aNotePanel )
+    {
+        // Get the note to move and the note that was previously to the left.
+        Music.CombinedNote noteToMove = aNotePanel.GetNote();
+        int noteToMoveIndex = aNotePanel.GetNoteIndex();
+        Music.CombinedNote noteToLeft = mSong.GetNote( noteToMoveIndex - 1 );
 
-            // Get the note being modified.
-            Music.CombinedNote noteBeingModified = mSong.GetNote( aPanel.GetNoteIndex() );
+        // Swap the notes.
+        mSong.ReplaceNote( noteToMove, noteToMoveIndex - 1 );
+        mSong.ReplaceNote( noteToLeft, noteToMoveIndex );
 
-            // Set the pitch selector to have the pitches from the note.
-            mPitchSelector.SetPitches( noteBeingModified.MusicalNote.Pitches );
+        // Reload the song.
+        OnLoadSong( mSong );
+    }
 
-            // Set the drum selector to have the drums from the note.
-            Music.PITCH[] drumsAsPitches = null;
-            if( noteBeingModified.Drums.Hits != null )
-            {
-                drumsAsPitches = new Music.PITCH[noteBeingModified.Drums.Hits.Length];
-                int index = 0;
-                foreach( Music.DRUM drum in noteBeingModified.Drums.Hits )
-                {
-                    drumsAsPitches[index] = (Music.PITCH)drum;
-                    index++;
-                }
-            }
-            mDrumSelector.SetPitches( drumsAsPitches );
-            mLengthPanel.SetSelected( noteBeingModified.MusicalNote.Length );
-            mOffsetPanel.SetSelected( noteBeingModified.OffsetFromPrevNote );
-            mVelocitySlider.value = Mathf.Max( noteBeingModified.Drums.Velocity, noteBeingModified.MusicalNote.Velocity );
-        }
-        // Handle the case where we're editing a note/note panel and it calls this 
-        // event while it's being edited. This means that the edit should be cancelled.
-        else
-        {
-            // Change the new note button back to its original state.
-            mNewNoteButton.transform.GetChild( 0 ).GetComponent<Text>().text = "Insert Note";
-            mNewNoteButton.onClick.RemoveListener( OnModifyNote );
-            mNewNoteButton.onClick.AddListener( OnCreateNote );
+    /**
+     * @brief Moves a todocnote earlier in the Song.
+     * @param[in] aNotePanel The panel that triggered the event.
+    */
+    public void HandleMoveNoteRight( SC_NoteDisplayPanel aNotePanel )
+    {
+        // Get the note to move and the note that was previously to the left.
+        Music.CombinedNote noteToMove = aNotePanel.GetNote();
+        int noteToMoveIndex = aNotePanel.GetNoteIndex();
+        Music.CombinedNote noteToRight = mSong.GetNote( noteToMoveIndex + 1 );
 
-            // Mark that the panel is no longer being edited.
-            mEditPanel.StopEditing();
+        // Swap the notes.
+        mSong.ReplaceNote( noteToMove, noteToMoveIndex + 1 );
+        mSong.ReplaceNote( noteToRight, noteToMoveIndex );
 
-            // Reset the variables related to editing a note.
-            mLengthPanel.SetSelected( Music.NOTE_LENGTH.Q );
-            mOffsetPanel.SetSelected( Music.NOTE_LENGTH.NONE );
-            mVelocitySlider.value = 100;
-            mPitchSelector.ResetPitches();
-            mDrumSelector.ResetPitches();
-            mEditPanel = null;
-            mEditing = false;
-        }
+        // Reload the song.
+        OnLoadSong( mSong );
+    }
+
+    /**
+     * @brief Handles a todocnote being removed.
+     * @param[in] aPanel The todocpanel representing the todocnote being removed.
+    */
+    public void HandleRemoveNote( SC_NoteDisplayPanel aPanel )
+    {
+        mSong.RemoveNote( aPanel.GetNoteIndex() );
+        OnLoadSong( mSong );
     }
 
     /**
@@ -515,6 +447,13 @@ public class SongCreationManager : MonoBehaviour
         // Set mSong
         mSong = aSong;
 
+        // Set the song name
+        mSongNameInputField.text = mSong.GetName();
+        mSongNameInputField.onEndEdit.AddListener( mSong.SetName );
+
+        // Set the BPM slider.
+        mBPMSlider.SetValue( (float)mSong.GetBPM() );
+
         // Clear the notes.
         mNoteDisplay.ClearNotes();
 
@@ -522,8 +461,7 @@ public class SongCreationManager : MonoBehaviour
         List<Music.CombinedNote> notes = mSong.GetAllNotes();
         foreach( Music.CombinedNote note in notes )
         {
-            mNoteDisplay.AddNote( note.MusicalNote.Velocity, note.MusicalNote.Length, note.MusicalNote.Pitches, note.Drums.Velocity,
-                note.Drums.Hits, note.OffsetFromPrevNote );
+            mNoteDisplay.AddNote( note );
         }
     }
 
@@ -532,117 +470,54 @@ public class SongCreationManager : MonoBehaviour
      * 
      * @see Song::ReplaceNote
     */
-    public void OnModifyNote()
+    public void OnModifyNote( Music.CombinedNote aNote )
     {
-        // Make sure that we're actually editing a note.
-        if( mEditing )
+        mSong.ReplaceNote( aNote, mEditIndex );
+        OnLoadSong( mSong );
+    }
+
+    /**
+     * @brief Handles the Add Note button being clicked by loading a @link DocSC_NDia Note Dialog@endlink.
+    */
+    public void OnNewNoteButtonClicked()
+    {
+        // Load the dialog.
+        GameObject dialogObj = Instantiate( Resources.Load<GameObject>( NOTE_DIALOG_PATH ) );
+        dialogObj.transform.SetParent( transform, true );
+        SC_NoteDialog dialog = dialogObj.transform.GetChild( 0 ).GetComponent<SC_NoteDialog>();
+
+        // Get the initial offset for the note dialog. 
+        Music.NoteLength dialogOffset = new Music.NoteLength( Music.NOTE_LENGTH_BASE.NONE );
+        if( mSong.GetNumNotes() > 0 )
         {
-            // Sanity check.
-            if( mEditPanel == null )
+            // Get the last note to find the initial offset.
+            int lastNoteIndex = mSong.GetNumNotes() - 1;
+            Music.CombinedNote lastNote = mSong.GetNote( lastNoteIndex );
+
+            // If there are pitches in the last note, then set the dialog's offset to 
+            // be the shortest length of all of the pitches in the last note.
+            if( lastNote.NumPitches > 0 )
             {
-                Assert.IsNotNull( mEditPanel, "Tried to modify a note, but the note panel in the song creator was null!" );
-                return;
+                Music.NoteLength shortestLength = lastNote.MusicalNote.Lengths[0];
+                for( int i = 1; i < lastNote.NumPitches; i++ )
+                {
+                    if( lastNote.MusicalNote.Lengths[i] < shortestLength )
+                    {
+                        shortestLength = lastNote.MusicalNote.Lengths[i];
+                    }
+                }
+                dialogOffset = shortestLength;
             }
-
-            // Get the pitches 
-            Music.PITCH[] pitches = mPitchSelector.GetSelectedPitches();
-
-            // Get the drums
-            Music.PITCH[] drums = mDrumSelector.GetSelectedPitches();
-
-            // Make sure that some pitches or drums are actually selected.
-            if( pitches != null || drums != null )
+            // If there are not pitches in the last note, then set it to
+            // the last note's offset.
+            else
             {
-                // Get the index of the note in the song and the images for the length/offset.
-                int index = mEditPanel.GetNoteIndex();
-                Sprite[] images = mNoteDisplay.GetSprites();
-
-                // Convert the selected pitches from the drum selector into actual drum hits.
-                Music.DRUM[] Hits = null;
-                if( drums != null )
-                {
-                    Hits = new Music.DRUM[drums.Length];
-                    for( int i = 0; i < drums.Length; i++ )
-                    {
-                        Hits[i] = (Music.DRUM)drums[i];
-                    }
-                }
-
-                // Set the values of the note struct.
-                Music.NOTE_LENGTH length = Music.NOTE_LENGTH.NONE;
-                Music.NOTE_LENGTH offset = mOffsetPanel.GetSelected();
-                int pitchVelocity = 0;
-                int drumVelocity = 0;
-
-                // Update the velocity for the pitches and drums if needed.
-                if( pitches != null )
-                {
-                    pitchVelocity = (int)mVelocitySlider.value;
-                    length = mLengthPanel.GetSelected();
-                }
-
-                if( drums != null )
-                {
-                    drumVelocity = (int)mVelocitySlider.value;
-                }
-
-                // Replace the note in the song with the modified note.
-                mSong.ReplaceNote( Music.CreateNote( pitchVelocity, length, pitches, drumVelocity, Hits, offset ), index );
-
-                // Get the string of pitches for the modified note.
-                string pitchString = "None";
-                if( pitches != null )
-                {
-                    pitchString = "";
-                    for( int i = 0; i < pitches.Length; i++ )
-                    {
-                        if( pitches[i] == Music.PITCH.REST )
-                        {
-                            pitchString += "Rest ";
-                        }
-                        else
-                        {
-                            pitchString += ( Music.NoteToString( pitches[i] ) + " " );
-                        }
-                    }
-                }
-
-                // Get the string of drums for the modified note.
-                string drumString = "None";
-                if( Hits != null )
-                {
-                    drumString = "";
-                    foreach( Music.DRUM drum in Hits )
-                    {
-                        drumString += Music.DrumToString( drum ) + " ";
-                    }
-                }
-
-                // Update the panel representing the note.
-                mEditPanel.SetDrums( drumString );
-                mEditPanel.SetPitches( pitchString );
-                mEditPanel.SetLengthImage( images[(int)length] );
-                mEditPanel.SetOffsetImage( images[(int)offset] );
-                mEditPanel.SetOffset( offset );
-                mEditPanel.SetVelocity( mVelocitySlider.value.ToString() );
-
-                // Mark that the panel is no longer being edited.
-                mEditPanel.StopEditing();
-
-                // Update the new note button so that it shows that we're no longer editing a note.
-                mNewNoteButton.transform.GetChild( 0 ).GetComponent<Text>().text = "Insert Note";
-                mNewNoteButton.onClick.RemoveListener( OnModifyNote );
-                mNewNoteButton.onClick.AddListener( OnCreateNote );
-
-                // Reset the variables related to editing a note.
-                mEditPanel = null;
-                mEditing = false;
-
-                // Reset the pitch selections.
-                mPitchSelector.ResetPitches();
-                mDrumSelector.ResetPitches();
+                dialogOffset = lastNote.OffsetFromPrevNote;
             }
         }
+
+        dialog.SetDefaultOffset( dialogOffset );
+        dialog.NoteDialogFinished.AddListener( OnCreateNote );
     }
 
     /**
@@ -684,23 +559,10 @@ public class SongCreationManager : MonoBehaviour
         if( mSong.GetSongType() == Song.SongType.DrumLoop )
         {
             Music.CombinedNote firstNote = mSong.GetAllNotes()[0];
-            firstNote.OffsetFromPrevNote = mLastLength;
             mSong.ReplaceNote( firstNote, 0 );
         }
         mVIM.SongManager.AddSong( mSong );
         mSong.WriteSongToFile();
-    }
-
-    /** 
-     * @brief Handles a change in the @link DefVel velocity@endlink for a @link Music::CombinedNote note@endlink in the Song being created.
-     * @param[in] aVelocity The new @link DefVel velocity@endlink.
-     * 
-     * @see SongCreationManager::mVelocitySlider
-    */
-    public void OnVelocityChange( float aVelocity )
-    {
-        // Update the text of the velocity slider's label.
-        mVelocitySlider.transform.GetChild( 3 ).GetComponent<Text>().text = "Velocity: " + aVelocity.ToString();
     }
 
     /**
@@ -708,7 +570,7 @@ public class SongCreationManager : MonoBehaviour
     */
     public void UnloadSongCreationInterface()
     {
-        SceneManager.UnloadSceneAsync( "SongCreationInterfaceScene" );
+        SceneManager.LoadScene( "AudioTestingInterface" );
     }
     /** @} */
 }

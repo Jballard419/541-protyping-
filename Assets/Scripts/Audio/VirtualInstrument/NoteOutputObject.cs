@@ -113,7 +113,7 @@ public class NoteOutputObject : MonoBehaviour
     * In order to avoid threading issues, the signalling mechanism functions somewhat 
     * like a Moore state machine where it'll have an effect on the next cycle of OnAudioFilterRead.
     */
-    public void BeingPlaying( float aVelocityFactor, int aDynamicsIndex, int aStartIndex = 0 )
+    public void BeginPlaying( float aVelocityFactor, int aDynamicsIndex, int aStartIndex = 0 )
     {
         Assert.IsTrue( aVelocityFactor <= 1f, "NoteOutputObject was given a velocity factor greater than 1!" );
 

@@ -46,10 +46,10 @@
 /**
 * @defgroup DocWhiteKey White Key
 * @ingroup DocKeys
-* @brief @copybrief WhiteKey
+* @brief @copybrief PianoKey
 * @{
 * @section DocWhiteKeyInfo Information
-* @copydetails WhiteKey
+* @copydetails PianoKey
 * 
 * @section DocWhiteKeyEventTypes Event Types
 * @copydoc WhiteKeyEventTypes
@@ -76,6 +76,6 @@
 * @n @link WhiteKeyPubFunc More details@endlink.
 * 
 * @section DocWhiteKeyCode Code
-* @includelineno WhiteKey.cs
+* @includelineno PianoKey.cs
 * @}
 */

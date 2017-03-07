@@ -19,7 +19,7 @@
  * 
  * @defgroup DocSC_LOS Length and Offset Selection
  * @ingroup DocSC
- * @brief Modules for selecting the @link Music::NOTE_LENGTH length@endlink and @link Music::CombinedNote.OffsetFromPrevNote offsets@endlink of @link Music::CombinedNote notes@endlink in the Song being created.
+ * @brief Modules for selecting the @link Music::NOTE_LENGTH_BASE length@endlink and @link Music::CombinedNote.OffsetFromPrevNote offsets@endlink of @link Music::CombinedNote notes@endlink in the Song being created.
 */
 
 /**

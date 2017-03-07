@@ -171,6 +171,17 @@ public class VirtualInstrumentManager : MonoBehaviour
     {
     }
 
+    /**
+     * @brief A type of event that is invoked whenever a song needs to be queued for later playback.
+     * 
+     * The parameter for this type of event is the song that needs to be queued.
+     * 
+     * @see Song
+    */
+    public class QueueSongEvent : UnityEvent<Song>
+    {
+    }
+
     /** 
      * @brief A type of event that is invoked whenever a note should fade out as though the key was released. 
      * 
@@ -291,6 +302,7 @@ public class VirtualInstrumentManager : MonoBehaviour
     public PlayDrumLoopEvent           PlayDrumLoop; //!< @see VirtualInstrumentManager::PlayDrumLoopEvent
     public PlayNoteEvent               PlayNote; //!< @see VirtualInstrumentManager::PlayNoteEvent
     public PlaySongEvent               PlaySong; //!< @see VirtualInstrumentManager::PlaySongEvent
+    public QueueSongEvent              QueueSong; //!< @see VirtualInstrumentManager::QueueSongEvent
     public ReleaseNoteEvent            ReleaseNote; //!< @see VirtualInstrumentManager::ReleaseNoteEvent
     public ResumeDrumLoopEvent         ResumeDrumLoop; //!< @see VirtualInstrumentManager::ResumeDrumLoopEvent
     public ResumeSongEvent             ResumeSong; //!< @see VirtualInstrumentManager::ResumeSongEvent
@@ -304,6 +316,7 @@ public class VirtualInstrumentManager : MonoBehaviour
     * These are variables that can be used in classes outside the VirtualInstrumentManager
     *****************************************************************************/
     /** @{ */
+    public bool                        ShowDiagnostics = true; //!< Whether or not to show the @link ATI_Diagnostics diagnostic overlay@endlink. 
     public SongManagerClass            SongManager; //!< The song manager. @see SongManagerClass                 
                                                     /** @} */
 
@@ -329,6 +342,7 @@ public class VirtualInstrumentManager : MonoBehaviour
     private NoteOutputObject           mDrumLoopOutput; //!< A NoteOutputObject, but the note is actually a drum loop.
     private NoteOutputObject           mSongOutput; //!< A NoteOutputObject, but the note is actually a song.
     private NoteOutputObject[]         mOutputs; //!< An array that holds the NoteOutputObjects that actually handle sound output.
+    private Song                       mQueuedSong = null; //!< The song that is currently queued.
     private VirtualInstrument          mDrumKit; //!< A drum kit virtual instrument for drum loops.
     private VirtualInstrument          mInstrument; //!< The loaded virtual instrument that this object will manage.
     /** @} */
@@ -353,6 +367,10 @@ public class VirtualInstrumentManager : MonoBehaviour
             Assert.IsNotNull( diagnosticsContainer, "Could not load the diagnostics prefab!" );
             mDiagnosticsHandler = diagnosticsContainer.transform.GetChild( 0 ).GetComponent<ATI_Diagnostics>();
             Assert.IsNotNull( mDiagnosticsHandler, "Could not get the diagnostics handler!" );
+            if( !ShowDiagnostics )
+            {
+                diagnosticsContainer.SetActive( false );
+            }
         #endif
 
         #if DEBUG_MUSICAL_TYPING
@@ -574,6 +592,7 @@ public class VirtualInstrumentManager : MonoBehaviour
         PlayDrumLoop = new PlayDrumLoopEvent();
         PlayNote = new PlayNoteEvent();
         PlaySong = new PlaySongEvent();
+        QueueSong = new QueueSongEvent();
         ReleaseNote = new ReleaseNoteEvent();
         ResumeDrumLoop = new ResumeDrumLoopEvent();
         ResumeSong = new ResumeSongEvent();
@@ -935,16 +954,16 @@ public class VirtualInstrumentManager : MonoBehaviour
                 offset = loopNoteData[i].TotalOffset;
             }
             
-            // Get the velocity from the note.
-            velocity = loopNoteData[i].PercussionData.Velocity;
-
-            // Get the associated dynamics index and velocity factor.
-            velIndex = mDrumKit.GetBuiltInDynamicsThresholdIndex( velocity );
-            velFactor = mDrumKit.GetAdjustedVelocityFactor( velocity );
-
             // Add the audio data for all of the drums in the note.
             for( int j = 0; j < loopNoteData[i].PercussionData.Hits.Length; j++ )
             {
+                // Get the velocity from the note.
+                velocity = loopNoteData[i].PercussionData.Velocities[j];
+
+                // Get the associated dynamics index and velocity factor.
+                velIndex = mDrumKit.GetBuiltInDynamicsThresholdIndex( velocity );
+                velFactor = mDrumKit.GetAdjustedVelocityFactor( velocity );
+
                 // Get the audio data for the note.
                 float[][] drumAudioData = mDrumKit.GetAudioDataForPitch( (Music.PITCH)( loopNoteData[i].PercussionData.Hits[j] ) );
 
@@ -1002,13 +1021,18 @@ public class VirtualInstrumentManager : MonoBehaviour
                     numSamplesUntilNextHiHat--;
                 }
 
+                // Reset the drum audio data.
+                drumAudioData = null;
             }
         }
 
         // Set the song output object's audio data and begin playing the song.
         mDrumLoopOutput.SetAudioData( loopAudioData, mMixer, null );
         mDrumLoopOutput.SetLoop( true );
-        mDrumLoopOutput.BeingPlaying( 1f, 0, startIndex );
+        mDrumLoopOutput.BeginPlaying( 1f, 0, startIndex );
+
+        loopNoteData = null;
+        loopAudioData = null;
     }
 
     /**
@@ -1038,16 +1062,16 @@ public class VirtualInstrumentManager : MonoBehaviour
                 switch( (Music.DRUM)aNoteToPlay )
                 {
                     case Music.DRUM.HIHAT_C:
-                        mOutputs[(int)Music.DRUM.HIHAT_O].BeingPlaying( 0, 0 );
-                        mOutputs[(int)Music.DRUM.HIHAT_P].BeingPlaying( 0, 0 );
+                        mOutputs[(int)Music.DRUM.HIHAT_O].BeginPlaying( 0, 0 );
+                        mOutputs[(int)Music.DRUM.HIHAT_P].BeginPlaying( 0, 0 );
                         break;
                     case Music.DRUM.HIHAT_O:
-                        mOutputs[(int)Music.DRUM.HIHAT_C].BeingPlaying( 0, 0 );
-                        mOutputs[(int)Music.DRUM.HIHAT_P].BeingPlaying( 0, 0 );
+                        mOutputs[(int)Music.DRUM.HIHAT_C].BeginPlaying( 0, 0 );
+                        mOutputs[(int)Music.DRUM.HIHAT_P].BeginPlaying( 0, 0 );
                         break;
                     case Music.DRUM.HIHAT_P:
-                        mOutputs[(int)Music.DRUM.HIHAT_C].BeingPlaying( 0, 0 );
-                        mOutputs[(int)Music.DRUM.HIHAT_O].BeingPlaying( 0, 0 );
+                        mOutputs[(int)Music.DRUM.HIHAT_C].BeginPlaying( 0, 0 );
+                        mOutputs[(int)Music.DRUM.HIHAT_O].BeginPlaying( 0, 0 );
                         break;
                     default:
                         break;
@@ -1059,7 +1083,7 @@ public class VirtualInstrumentManager : MonoBehaviour
             float velFactor = mInstrument.GetAdjustedVelocityFactor( aVelocity );
 
             // Begin playing the note.
-            mOutputs[noteIndex].BeingPlaying( velFactor, velIndex, 0 );
+            mOutputs[noteIndex].BeginPlaying( velFactor, velIndex, 0 );
         }
 
     }
@@ -1070,6 +1094,22 @@ public class VirtualInstrumentManager : MonoBehaviour
     */
     public void OnPlaySongEvent( Song aSong )
     {
+        // Queue the song if needed.
+        if( mQueuedSong != aSong )
+        {
+            OnQueueSongEvent( aSong );
+        }
+
+        // Play the song.
+        mSongOutput.BeginPlaying( 1f, 0 );
+    }
+
+    /**
+     * @brief Called whenever a song needs to be queued through a QueueSongEvent.
+     * @param[in] aSong The song that needs to be queued.
+    */
+    public void OnQueueSongEvent( Song aSong )
+    {
         // Get the song's note data.
         Song.CombinedNoteData[] songNoteData = aSong.GetNoteData();
 
@@ -1079,13 +1119,25 @@ public class VirtualInstrumentManager : MonoBehaviour
         // Get the total number of samples in the song.
         int numSamples = 0;
 
+        // If the song is not a drum loop, then base the number of samples off of the pitches in the song.
         if( aSong.GetSongType() != Song.SongType.DrumLoop )
         {
             for( int i = 0; i < numNotes; i++ )
             {
-                numSamples = Mathf.Max( ( songNoteData[i].MelodyData.NumSamples + songNoteData[i].TotalOffset ), numSamples );
+                if( songNoteData[i].MelodyData.Pitches != null )
+                {
+                    for( int j = 0; j < songNoteData[i].MelodyData.Pitches.Length; j++ )
+                    {
+                        numSamples = Mathf.Max( ( songNoteData[i].MelodyData.NumSamples[j] + songNoteData[i].TotalOffset ), numSamples );
+                    }
+                }
+                else
+                {
+                    numSamples = Mathf.Max( songNoteData[i].TotalOffset, numSamples );
+                }
             }
         }
+        // If the song is a drum loop, then base the number of samples off of the drums in the song.
         else
         {
             numSamples = 0;
@@ -1099,7 +1151,6 @@ public class VirtualInstrumentManager : MonoBehaviour
                 }
             }
         }
-
 
         // Allocate a 2-D array for the song's audio data.
         float[][] songAudioData = new float[1][];
@@ -1119,21 +1170,23 @@ public class VirtualInstrumentManager : MonoBehaviour
             {
                 // Get the offset and velocity from the note.
                 offset = songNoteData[i].TotalOffset;
-                velocity = songNoteData[i].MelodyData.Velocity;
-
-                // Get the associated dynamics index and velocity factor.
-                velIndex = mInstrument.GetBuiltInDynamicsThresholdIndex( velocity );
-                velFactor = mInstrument.GetAdjustedVelocityFactor( velocity );
 
                 // Add the audio data for all of the pitches in the note.
                 for( int j = 0; j < songNoteData[i].MelodyData.Pitches.Length; j++ )
                 {
+                    // Get the pitch's velocity.
+                    velocity = songNoteData[i].MelodyData.Velocities[j];
+
+                    // Get the associated dynamics index and velocity factor.
+                    velIndex = mInstrument.GetBuiltInDynamicsThresholdIndex( velocity );
+                    velFactor = mInstrument.GetAdjustedVelocityFactor( velocity );
+
                     // Get the audio data for the note.
                     float[][] pitchAudioData = mInstrument.GetAudioDataForPitch( songNoteData[i].MelodyData.Pitches[j] );
 
                     // Put all of the samples from the pitch's audio data into the song audio data.
                     int k = 0;
-                    while( k < songNoteData[i].MelodyData.NumSamples && k < pitchAudioData[velIndex].Length )
+                    while( k < songNoteData[i].MelodyData.NumSamples[j] && k < pitchAudioData[velIndex].Length )
                     {
                         songAudioData[0][k + offset] += ( pitchAudioData[velIndex][k] * velFactor );
                         k++;
@@ -1160,15 +1213,17 @@ public class VirtualInstrumentManager : MonoBehaviour
             {
                 // Get the offset and velocity from the note.
                 offset = songNoteData[i].TotalOffset;
-                velocity = songNoteData[i].PercussionData.Velocity;
-
-                // Get the associated dynamics index and velocity factor.
-                velIndex = mDrumKit.GetBuiltInDynamicsThresholdIndex( velocity );
-                velFactor = mDrumKit.GetAdjustedVelocityFactor( velocity );
 
                 // Add the audio data for all of the drums in the note.
                 for( int j = 0; j < songNoteData[i].PercussionData.Hits.Length; j++ )
                 {
+                    // Get the drum's velocity
+                    velocity = songNoteData[i].PercussionData.Velocities[j];
+
+                    // Get the associated dynamics index and velocity factor.
+                    velIndex = mDrumKit.GetBuiltInDynamicsThresholdIndex( velocity );
+                    velFactor = mDrumKit.GetAdjustedVelocityFactor( velocity );
+
                     // Get the audio data for the note.
                     float[][] drumAudioData = mDrumKit.GetAudioDataForPitch( (Music.PITCH)( songNoteData[i].PercussionData.Hits[j] ) );
 
@@ -1227,11 +1282,10 @@ public class VirtualInstrumentManager : MonoBehaviour
 
         // Set the song output object's audio data and begin playing the song.
         mSongOutput.SetAudioData( songAudioData, mMixer, null );
-        mSongOutput.BeingPlaying( 1f, 0 );
 
         // Cleanup
         songAudioData = null;
-        GC.Collect();
+        Resources.UnloadUnusedAssets();
     }
 
     /**

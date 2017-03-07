@@ -17,3 +17,7 @@ EditorBuildSettings:
     path: Assets/Scenes/AudioScenes/AudioManagementScene.unity
   - enabled: 1
     path: Assets/Scenes/AudioScenes/AudioTestingInterfaceScenes/SongCreationInterfaceScene.unity
+  - enabled: 1
+    path: Assets/Scenes/KeyboardScenes/keyboard.unity
+  - enabled: 1
+    path: Assets/Scenes/LessonScenes/LessonScene.unity
